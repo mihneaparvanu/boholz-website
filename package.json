@@ -10,7 +10,13 @@
   },
   "dependencies": {
     "@astrojs/vue": "^5.1.4",
-    "astro": "^5.17.1",
+    "astro": "^5.18.0",
     "vue": "^3.5.28"
+  },
+  "devDependencies": {
+    "@csstools/postcss-global-data": "^4.0.0",
+    "postcss-preset-env": "^11.2.0",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }
