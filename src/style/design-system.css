@@ -1,3 +1,5 @@
+@import "/src/style/fonts.css";
+
 :root {
 /* --- Colors--- */
 
@@ -14,7 +16,7 @@
   --pastell-oliv-alt: rgba(63, 93, 40, 1.00);
   --light-stone: rgba(179, 170, 163, 1.00);
   --stone: rgba(149, 137, 126, 1.00);
-    --stone-alt: rgba(127, 70, 26, 1.00);
+  --stone-alt: rgba(127, 70, 26, 1.00);
   --terracotta: rgba(147, 38, 26, 1.00);
   --dark-stone: rgba(28, 25, 23, 1.00);
   --neutral-gray-100: rgba(26, 26, 26, 1.00);
@@ -48,35 +50,35 @@
   /* Semantics */
 
   /* Surface */
-  --color-surface-primary: var(--neutral-gray-900);
-  --color-surface-secondary: var(--neutral-gray-800);
-  --color-surface-tertiary: var(--cold-gray-900);
-  --color-surface-quaternary: var(--pastell-bg);
+  --clr-surface-primary: var(--neutral-gray-900);
+  --clr-surface-secondary: var(--neutral-gray-800);
+  --clr-surface-tertiary: var(--cold-gray-900);
+  --clr-surface-quaternary: var(--pastell-bg);
 
   /* Content */
-  --color-content-primary: var(--neutral-gray-100);
-  --color-content-secondary: var(--cold-gray-300);
-  --color-content-tertiary: var(--cold-gray-400);
-  --color-content-quaternary: var(--cold-gray-500);
+  --clr-content-primary: var(--neutral-gray-100);
+  --clr-content-secondary: var(--cold-gray-300);
+  --clr-content-tertiary: var(--cold-gray-400);
+  --clr-content-quaternary: var(--cold-gray-500);
 
   /* Border */
-  --color-border-primary: var(--cold-gray-800);
-  --color-border-secondary: var(--cold-gray-700);
-  --color-border-tertiary: var(--cold-gray-600);
-  --color-border-quaternary: var(--cold-gray-400);
+  --clr-border-primary: var(--cold-gray-800);
+  --clr-border-secondary: var(--cold-gray-700);
+  --clr-border-tertiary: var(--cold-gray-600);
+  --clr-border-quaternary: var(--cold-gray-400);
 
   /* Accent */
-  --color-accent-primary: var(--boholz-blau-alt);
-  --color-accent-secondary: var(--boholz-blau-alt-deep);
+  --clr-accent-primary: var(--boholz-blau-alt);
+  --clr-accent-secondary: var(--boholz-blau-alt-deep);
 
   /* Status */
-  --color-status-info: var(--boholz-blau-alt-deep);
-  --color-status-success: var(--pastell-oliv-alt);
-  --color-status-warning: var(--stone-alt);
-  --color-status-error: var(--terracotta);
+  --clr-status-info: var(--boholz-blau-alt-deep);
+  --clr-status-success: var(--pastell-oliv-alt);
+  --clr-status-warning: var(--stone-alt);
+  --clr-status-error: var(--terracotta);
 
 
-  /* Base Spacing (Desktop First) */
+  /* Spacing  */
   --spacing-0: 4px;
   --spacing-1: 8px;
   --spacing-2: 12px;
@@ -87,13 +89,50 @@
   --spacing-7: 136px;
   --spacing-8: 220px;
 
-/* Mobile Spacing (Screens smaller than 768px) */
-@media (max-width: 768px) {
+@media (--mobile) {
+    --spacing-5: 32px;  
+    --spacing-6: 52px;  
+    --spacing-7: 84px;  
+    --spacing-8: 136px; 
+}
 
-    --spacing-5: 32px;  /* was 52px */
-    --spacing-6: 52px;  /* was 84px */
-    --spacing-7: 84px;  /* was 136px */
-    --spacing-8: 136px; /* was 220px */
-  
+/* --- Typography --- */
+
+/* Fonts */
+
+  --font-primary: "DIN", system-ui, sans-serif;
+  --font-secondary: "Josefin Sans", system-ui, sans-serif;
+
+/* Font Size */
+
+--fs-base: 0.875rem;
+--fs-scale: 1.33333;
+
+--fs-small: calc(var(--fs-body) / var(--fs-scale));
+--fs-body: clamp(0.7rem, var(--fs-base) + 0.5vw, 1.25rem);
+--fs-h6: calc(var(--fs-body) * var(--fs-scale));
+--fs-h5: calc(var(--fs-h6) * var(--fs-scale));
+--fs-h4: calc(var(--fs-h5) * var(--fs-scale));
+--fs-h3: calc(var(--fs-h4) * var(--fs-scale)); 
+--fs-h2: calc(var(--fs-h3) * var(--fs-scale));
+--fs-h1: calc(var(--fs-h2) * var(--fs-scale));
+
+
+/* Line Height */
+ --lh-tight: 1;
+  --lh-heading: 1.1;
+  --lh-body: 1.5;
 }
+
+body {
+  font: 400 var(--fs-body)/var(--lh-body) var(--font-primary);
+  color: var(--clr-content-primary);
+  background-color: var(--clr-surface-primary);
 }
+
+h1 {
+  font: 500 var(--fs-h1)/var(--lh-heading) var(--font-primary);
+}
+
+
+

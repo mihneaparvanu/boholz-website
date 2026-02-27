@@ -19,6 +19,11 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+Thumbs.db
+
+# Local NAS Symlinks
+public/nas-images/
+src/assets/nas-images/
 
 # jetbrains setting folder
 .idea/
