@@ -122,17 +122,59 @@
  --lh-tight: 1;
   --lh-heading: 1.1;
   --lh-body: 1.5;
+
+  /* Letter Spacing */
+  --ls-heading: -0.06em;
 }
 
+
+
+
 body {
-  font: 400 var(--fs-body)/var(--lh-body) var(--font-primary);
+  font: 300 var(--fs-body)/var(--lh-body) var(--font-primary);
   color: var(--clr-content-primary);
   background-color: var(--clr-surface-primary);
 }
 
-h1 {
-  font: 500 var(--fs-h1)/var(--lh-heading) var(--font-primary);
+h1, h2, h3, h4, h5, h6 {
+font-family: var(--font-primary);
+font-weight: 400;
+letter-spacing: var(--ls-heading);
 }
+
+h1 {
+  font-size: var(--fs-h1);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+}
+
+h1, h2, h3 {
+line-height: var(--lh-heading);
+}
+
+h4 {
+  font-size: var(--fs-h4);
+}
+
+h5 {
+  font-size: var(--fs-h5);
+}
+
+h6 {
+  font-size: var(--fs-h6);
+}
+
+h4, h5, h6 {
+  line-height: var(--lh-body);
+}
+
+
 
 
 
