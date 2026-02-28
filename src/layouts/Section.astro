@@ -30,14 +30,16 @@ const { heading, subheading, highlightWord } = Astro.props;
     align-items: center;
     gap: var(--spacing-3);
     text-align: center;
+    width: 100%;
 
     h2 {
       font-weight: 400;
     }
 
     span {
-      font-family: "Instrument Sans";
+      font-family: var(--font-secondary);
       font-style: italic;
+      font-weight: 500;
     }
 
     p {

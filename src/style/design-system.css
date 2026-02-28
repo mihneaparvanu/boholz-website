@@ -100,8 +100,12 @@
 
 /* Fonts */
 
-  --font-primary: "DIN", system-ui, sans-serif;
-  --font-secondary: "Josefin Sans", system-ui, sans-serif;
+--font-din: "DIN";
+--font-josefin: "Josefin Sans";
+--font-instrument-serif: "Instrument Serif";
+
+--font-primary: var(--font-din), system-ui, sans-serif;
+--font-secondary: var(--font-instrument-serif), serif;
 
 /* Font Size */
 
@@ -122,13 +126,10 @@
  --lh-tight: 1;
   --lh-heading: 1.1;
   --lh-body: 1.5;
-
+  
   /* Letter Spacing */
-  --ls-heading: -0.06em;
+--ls-heading: -0.05em;
 }
-
-
-
 
 body {
   font: 300 var(--fs-body)/var(--lh-body) var(--font-primary);
