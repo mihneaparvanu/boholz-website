@@ -2,51 +2,51 @@
 @import "/src/style/breakpoints.css";
 
 :root {
-/* --- Colors--- */
+  /* --- Colors--- */
 
-/* Base */
+  /* Base */
 
-  --boholz-blau: rgba(145, 172, 190, 1.00);
-  --boholz-grun: rgba(162, 164, 131, 1.00);
-  --boholz-blau-alt: rgba(10, 120, 194, 1.00);
-  --boholz-blau-alt-deep: rgba(15, 89, 138, 1.00);
-  --pastell-bg: rgba(234, 236, 227, 1.00);
-  --pastell-petrol: rgba(167, 185, 184, 1.00);
-  --pastell-grün: rgba(181, 177, 151, 1.00);
-  --pastell-oliv: rgba(139, 147, 133, 1.00);
-  --pastell-oliv-alt: rgba(63, 93, 40, 1.00);
-  --light-stone: rgba(179, 170, 163, 1.00);
-  --stone: rgba(149, 137, 126, 1.00);
-  --stone-alt: rgba(127, 70, 26, 1.00);
-  --terracotta: rgba(147, 38, 26, 1.00);
-  --dark-stone: rgba(28, 25, 23, 1.00);
-  --neutral-gray-100: rgba(26, 26, 26, 1.00);
-  --neutral-gray-200: rgba(64, 64, 64, 1.00);
-  --neutral-gray-300: rgba(84, 84, 84, 1.00);
-  --neutral-gray-400: rgba(112, 112, 112, 1.00);
-  --neutral-gray-500: rgba(176, 176, 176, 1.00);
-  --neutral-gray-600: rgba(207, 207, 207, 1.00);
-  --neutral-gray-700: rgba(237, 237, 237, 1.00);
-  --neutral-gray-800: rgba(245, 245, 245, 1.00);
-  --neutral-gray-900: rgba(252, 252, 252, 1.00);
-  --warm-gray-100: rgba(26, 23, 20, 1.00);
-  --warm-gray-200: rgba(42, 40, 38, 1.00);
-  --warm-gray-300: rgba(89, 88, 87, 1.00);
-  --warm-gray-400: rgba(122, 121, 120, 1.00);
-  --warm-gray-500: rgba(153, 151, 150, 1.00);
-  --warm-gray-600: rgba(191, 189, 187, 1.00);
-  --warm-gray-700: rgba(224, 222, 220, 1.00);
-  --warm-gray-800: rgba(245, 243, 240, 1.00);
-  --warm-gray-900: rgba(252, 251, 250, 1.00);
-  --cold-gray-100: rgba(21, 25, 28, 1.00);
-  --cold-gray-200: rgba(54, 60, 64, 1.00);
-  --cold-gray-300: rgba(76, 84, 89, 1.00);
-  --cold-gray-400: rgba(126, 135, 140, 1.00);
-  --cold-gray-500: rgba(158, 164, 168, 1.00);
-  --cold-gray-600: rgba(186, 189, 191, 1.00);
-  --cold-gray-700: rgba(219, 222, 224, 1.00);
-  --cold-gray-800: rgba(242, 244, 245, 1.00);
-  --cold-gray-900: rgba(249, 251, 252, 1.00);
+  --boholz-blau: rgba(145, 172, 190, 1);
+  --boholz-grun: rgba(162, 164, 131, 1);
+  --boholz-blau-alt: rgba(10, 120, 194, 1);
+  --boholz-blau-alt-deep: rgba(15, 89, 138, 1);
+  --pastell-bg: rgba(234, 236, 227, 1);
+  --pastell-petrol: rgba(167, 185, 184, 1);
+  --pastell-grün: rgba(181, 177, 151, 1);
+  --pastell-oliv: rgba(139, 147, 133, 1);
+  --pastell-oliv-alt: rgba(63, 93, 40, 1);
+  --light-stone: rgba(179, 170, 163, 1);
+  --stone: rgba(149, 137, 126, 1);
+  --stone-alt: rgba(127, 70, 26, 1);
+  --terracotta: rgba(147, 38, 26, 1);
+  --dark-stone: rgba(28, 25, 23, 1);
+  --neutral-gray-100: rgba(26, 26, 26, 1);
+  --neutral-gray-200: rgba(64, 64, 64, 1);
+  --neutral-gray-300: rgba(84, 84, 84, 1);
+  --neutral-gray-400: rgba(112, 112, 112, 1);
+  --neutral-gray-500: rgba(176, 176, 176, 1);
+  --neutral-gray-600: rgba(207, 207, 207, 1);
+  --neutral-gray-700: rgba(237, 237, 237, 1);
+  --neutral-gray-800: rgba(245, 245, 245, 1);
+  --neutral-gray-900: rgba(252, 252, 252, 1);
+  --warm-gray-100: rgba(26, 23, 20, 1);
+  --warm-gray-200: rgba(42, 40, 38, 1);
+  --warm-gray-300: rgba(89, 88, 87, 1);
+  --warm-gray-400: rgba(122, 121, 120, 1);
+  --warm-gray-500: rgba(153, 151, 150, 1);
+  --warm-gray-600: rgba(191, 189, 187, 1);
+  --warm-gray-700: rgba(224, 222, 220, 1);
+  --warm-gray-800: rgba(245, 243, 240, 1);
+  --warm-gray-900: rgba(252, 251, 250, 1);
+  --cold-gray-100: rgba(21, 25, 28, 1);
+  --cold-gray-200: rgba(54, 60, 64, 1);
+  --cold-gray-300: rgba(76, 84, 89, 1);
+  --cold-gray-400: rgba(126, 135, 140, 1);
+  --cold-gray-500: rgba(158, 164, 168, 1);
+  --cold-gray-600: rgba(186, 189, 191, 1);
+  --cold-gray-700: rgba(219, 222, 224, 1);
+  --cold-gray-800: rgba(242, 244, 245, 1);
+  --cold-gray-900: rgba(249, 251, 252, 1);
 
   /* Semantics */
 
@@ -78,7 +78,6 @@
   --clr-status-warning: var(--stone-alt);
   --clr-status-error: var(--terracotta);
 
-
   /* Spacing  */
   --spacing-0: 4px;
   --spacing-1: 8px;
@@ -90,46 +89,38 @@
   --spacing-7: 136px;
   --spacing-8: 220px;
 
-@media (--mobile) {
-    --spacing-5: 32px;  
-    --spacing-6: 52px;  
-    --spacing-7: 84px;  
-    --spacing-8: 136px; 
-}
+  /* --- Typography --- */
 
-/* --- Typography --- */
+  /* Fonts */
 
-/* Fonts */
+  --font-din: "DIN";
+  --font-josefin: "Josefin Sans";
+  --font-instrument-serif: "Instrument Serif";
 
---font-din: "DIN";
---font-josefin: "Josefin Sans";
---font-instrument-serif: "Instrument Serif";
+  --font-primary: var(--font-din), system-ui, sans-serif;
+  --font-secondary: var(--font-instrument-serif), serif;
 
---font-primary: var(--font-din), system-ui, sans-serif;
---font-secondary: var(--font-instrument-serif), serif;
+  /* Font Size */
 
-/* Font Size */
+  --fs-base: 0.875rem;
+  --fs-scale: 1.33333;
 
---fs-base: 0.875rem;
---fs-scale: 1.33333;
+  --fs-small: calc(var(--fs-body) / var(--fs-scale));
+  --fs-body: clamp(0.7rem, var(--fs-base) + 0.5vw, 1.25rem);
+  --fs-h6: calc(var(--fs-body) * var(--fs-scale));
+  --fs-h5: calc(var(--fs-h6) * var(--fs-scale));
+  --fs-h4: calc(var(--fs-h5) * var(--fs-scale));
+  --fs-h3: calc(var(--fs-h4) * var(--fs-scale));
+  --fs-h2: calc(var(--fs-h3) * var(--fs-scale));
+  --fs-h1: calc(var(--fs-h2) * var(--fs-scale));
 
---fs-small: calc(var(--fs-body) / var(--fs-scale));
---fs-body: clamp(0.7rem, var(--fs-base) + 0.5vw, 1.25rem);
---fs-h6: calc(var(--fs-body) * var(--fs-scale));
---fs-h5: calc(var(--fs-h6) * var(--fs-scale));
---fs-h4: calc(var(--fs-h5) * var(--fs-scale));
---fs-h3: calc(var(--fs-h4) * var(--fs-scale)); 
---fs-h2: calc(var(--fs-h3) * var(--fs-scale));
---fs-h1: calc(var(--fs-h2) * var(--fs-scale));
-
-
-/* Line Height */
- --lh-tight: 1;
+  /* Line Height */
+  --lh-tight: 1;
   --lh-heading: 1.1;
   --lh-body: 1.5;
-  
+
   /* Letter Spacing */
---ls-heading: -0.05em;
+  --ls-heading: -0.05em;
 }
 
 body {
@@ -138,10 +129,15 @@ body {
   background-color: var(--clr-surface-primary);
 }
 
-h1, h2, h3, h4, h5, h6 {
-font-family: var(--font-primary);
-font-weight: 400;
-letter-spacing: var(--ls-heading);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  letter-spacing: var(--ls-heading);
 }
 
 h1 {
@@ -156,8 +152,10 @@ h3 {
   font-size: var(--fs-h3);
 }
 
-h1, h2, h3 {
-line-height: var(--lh-heading);
+h1,
+h2,
+h3 {
+  line-height: var(--lh-heading);
 }
 
 h4 {
@@ -172,11 +170,17 @@ h6 {
   font-size: var(--fs-h6);
 }
 
-h4, h5, h6 {
+h4,
+h5,
+h6 {
   line-height: var(--lh-body);
 }
 
-
-
-
-
+@media (--mobile) {
+  :root {
+    --spacing-5: 32px;
+    --spacing-6: 52px;
+    --spacing-7: 84px;
+    --spacing-8: 136px;
+  }
+}

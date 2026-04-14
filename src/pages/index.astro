@@ -23,8 +23,9 @@ import Section from "../layouts/Section.astro";
           </div>
         </div>
       </div>
+      <div class="hero-img-bg"></div>
       <Image
-        src="https://boholz-assets.sadnights.com/images/home/img-home-hero.jpg"
+        src={`https://dash.cloudflare.com/0ee39e9c-ae4e-4b15-9076-ce20addc70ce`}
         alt="A picture of the Stadtvilla on a mountain valley"
         width={1200}
         height={800}
@@ -43,6 +44,7 @@ import Section from "../layouts/Section.astro";
       subheading="Wir bauen nicht nur Häuser, wir bauen Sicherheit. Mit zertifizierter Qualität aus Deutschland und Garantien, auf die Sie sich verlassen können."
     />
   </div>
+  </Layout>
 
   <style>
     .hero {
@@ -73,6 +75,7 @@ import Section from "../layouts/Section.astro";
     }
 
     .hero-img-bg {
+      background-color: var(--clr-content-secondary);
       position: absolute;
       top: 0;
       left: 0;
@@ -82,4 +85,4 @@ import Section from "../layouts/Section.astro";
       z-index: -1;
     }
   </style>
-</Layout>
+
