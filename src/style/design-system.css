@@ -1,4 +1,5 @@
 @import "/src/style/fonts.css";
+@import "/src/style/breakpoints.css";
 
 :root {
 /* --- Colors--- */
