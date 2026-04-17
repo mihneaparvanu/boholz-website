@@ -33,3 +33,4 @@
 - **Code Quality:** Use TypeScript for everything. No `any` types.
 - **Performance:** Optimize for Largest Contentful Paint (LCP). Use the sorted WebP assets.
 - **Aesthetics:** Maintain the high-precision German engineering aesthetic in the UI components.
+  SVG Protocol: All logos and icons must be implemented as functional components (Astro or Vue). Hardcoded hex colors in SVGs are forbidden; use fill="currentColor" to ensure the UI remains dynamic and consistent with the BoHolz color palette.

@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import type { HouseModel } from "../../../types/models";
+
 const props = defineProps<{
-  model: any;
+  model: HouseModel;
 }>();
 </script>
 <template>
-  <div class="house-model-circle">
-    <img :src="model.house_model_images[0].url" :alt="model.name" />
-  </div>
+  <div class="house-model-circle"></div>
 </template>
 <style scoped>
 .house-model-circle {

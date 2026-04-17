@@ -1,45 +1,35 @@
 ---
 // Framework Components
 import { getMediaURL } from "../utils/media";
-import { supabase } from "../utils/supabase";
+import { db } from "../db/db";
+import { houseModels, houseImages } from "../db/schema";
+import { asc, count } from "drizzle-orm";
 
 // Layout
 import Layout from "../layouts/Layout.astro";
 import Section from "../layouts/Section.astro";
 
 // Components
-import HouseModelsSlider from "../features/HouseModelsSlider/HouseModelsSlider.vue";
-import { MOCK_HOUSE_MODELS } from "../utils/mockData";
+import ModelSlider from "../features/ModelSlider/ModelSlider.vue";
 import type { HouseModel } from "../types/models";
 
-// Feature Flag: Easily switch between Mock Data (for speed/demos) and Real Supabase Data
-const useMockData = import.meta.env.USE_MOCK_DATA === "true";
 let models: HouseModel[] = [];
 
-if (useMockData) {
-  console.log("🛠️ Using localized Mock Data for Houses");
-  models = MOCK_HOUSE_MODELS;
-} else {
-  console.log("🌐 Fetching real data from Supabase...");
-  const { data, error } = await supabase
-    .schema("boholz")
-    .from("house_models")
-    .select(`
-      *,
-      house_model_images (
-         url,
-         alt_text,
-         category,
-         is_primary
-      )
-    `)
-    .order('sort_order', { referencedTable: 'house_model_images', ascending: true });
 
-  if (error) {
+try {
+    const [{ value }] = await db.select({ value: count() }).from(houseModels);
+    const data = await db.query.houseModels.findMany({
+      with: {
+        images: {
+          columns: { url: true, isHero: true },
+          orderBy: [asc(houseImages.sortOrder)],
+        },
+      },
+    });
+    models = (data as unknown as HouseModel[]) || [];
+  } catch (error) {
     console.error("Error fetching house models:", error);
   }
-  models = (data as HouseModel[]) || [];
-}
 ---
 
 <Layout title="Boholz Haus">
@@ -66,7 +56,7 @@ if (useMockData) {
         class="hero-img-bg"
       />
     </div>
-    <HouseModelsSlider models={models} />
+    <ModelSlider client:load models={models} />
     <Section
       heading="Fertighäuser in Zimmermannsqualität für Menschen mit"
       highlightWord="Anspruch."

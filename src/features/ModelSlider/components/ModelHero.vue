@@ -1,20 +1,17 @@
 <script setup lang="ts">
+import type { HouseModel } from "../../../types/models";
+
 const props = defineProps<{
-  model: any;
+  model: HouseModel;
 }>();
 </script>
 
 <template>
   <div class="content-wrapper">
     <div class="text-content">
-      <h2>{{ model.name }}</h2>
-      <p>{{ model.description }}</p>
+      <h2>{{ model.title }}</h2>
+      <p>{{ model.livingArea }} sqm</p>
     </div>
-    <img
-      class="model-image"
-      :src="model.house_model_images[0].url"
-      :alt="model.name"
-    />
   </div>
 </template>
 

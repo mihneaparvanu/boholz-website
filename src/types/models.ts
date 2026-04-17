@@ -1,27 +1,10 @@
-export type ImageCategory =
-  | "hero"
-  | "gallery"
-  | "floorplan"
-  | "interior"
-  | "exterior";
+import type { InferSelectModel } from "drizzle-orm";
+import { houseModels, houseImages } from "../db/schema";
 
-export interface HouseModelImage {
-  id: string;
-  house_model_id: string;
-  url: string;
-  alt_text: string;
-  category: ImageCategory; 
-  sort_order: number;
-  is_primary: boolean;
-  width?: number;
-  height?: number; 
-}
+export type BaseHouseModel = InferSelectModel<typeof houseModels>;
+export type BaseHouseImage = InferSelectModel<typeof houseImages>;
 
-export interface HouseModel {
-  id: string;
-  name: string;
-  description: string;
-  living_area_sqm: number;
-  rooms: number;
-  house_model_images?: HouseModelImage[];
-}
+// Composed type that matches our specific DB Query in index.astro
+export type HouseModel = BaseHouseModel & {
+  images: Pick<BaseHouseImage, "url" | "isHero">[];
+};

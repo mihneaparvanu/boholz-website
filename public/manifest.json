@@ -1,0 +1,648 @@
+{
+  "homepage": [
+    {
+      "path": "/images/homepage/overview-gallery-1.webp",
+      "file": "overview-gallery-1.webp"
+    },
+    {
+      "path": "/images/homepage/overview-gallery-2.webp",
+      "file": "overview-gallery-2.webp"
+    },
+    {
+      "path": "/images/homepage/overview-gallery-3.webp",
+      "file": "overview-gallery-3.webp"
+    },
+    {
+      "path": "/images/homepage/overview-gallery-4.webp",
+      "file": "overview-gallery-4.webp"
+    },
+    {
+      "path": "/images/homepage/overview-hero.webp",
+      "file": "overview-hero.webp"
+    },
+    {
+      "path": "/images/homepage/overview-side.webp",
+      "file": "overview-side.webp"
+    }
+  ],
+  "stages": [
+    {
+      "path": "/images/stages/nearly-complete.webp",
+      "file": "nearly-complete.webp"
+    },
+    {
+      "path": "/images/stages/shell.webp",
+      "file": "shell.webp"
+    },
+    {
+      "path": "/images/stages/turnkey.webp",
+      "file": "turnkey.webp"
+    },
+    {
+      "path": "/images/stages/utility-ready.webp",
+      "file": "utility-ready.webp"
+    }
+  ],
+  "brand": [
+    {
+      "path": "/images/brand/brochure-vertical.webp",
+      "file": "brochure-vertical.webp"
+    },
+    {
+      "path": "/images/brand/hero.jpg",
+      "file": "hero.jpg"
+    }
+  ],
+  "photography": [
+    {
+      "path": "/images/photography/niederkofler-01.jpg",
+      "file": "niederkofler-01.jpg"
+    },
+    {
+      "path": "/images/photography/niederkofler-02.jpg",
+      "file": "niederkofler-02.jpg"
+    },
+    {
+      "path": "/images/photography/niederkofler-03.jpg",
+      "file": "niederkofler-03.jpg"
+    },
+    {
+      "path": "/images/photography/niederkofler-04.jpg",
+      "file": "niederkofler-04.jpg"
+    },
+    {
+      "path": "/images/photography/niederkofler-05.jpg",
+      "file": "niederkofler-05.jpg"
+    },
+    {
+      "path": "/images/photography/niederkofler-06.jpg",
+      "file": "niederkofler-06.jpg"
+    },
+    {
+      "path": "/images/photography/niederkofler-07.jpg",
+      "file": "niederkofler-07.jpg"
+    }
+  ],
+  "lifestyle": [
+    {
+      "path": "/images/lifestyle/craftsmanship-factory.webp",
+      "file": "craftsmanship-factory.webp"
+    },
+    {
+      "path": "/images/lifestyle/energy-efficiency-heatpump.webp",
+      "file": "energy-efficiency-heatpump.webp"
+    },
+    {
+      "path": "/images/lifestyle/house-planning-office.webp",
+      "file": "house-planning-office.webp"
+    },
+    {
+      "path": "/images/lifestyle/smart-living",
+      "file": "smart-living"
+    },
+    {
+      "path": "/images/lifestyle/smart-living.webp",
+      "file": "smart-living.webp"
+    },
+    {
+      "path": "/images/lifestyle/wooden-logs.webp",
+      "file": "wooden-logs.webp"
+    }
+  ],
+  "models": [
+    {
+      "path": "/images/models/duplex/28-299/floor-plans/duplex-28-299-floor-plan-ground-2351x2077.jpg",
+      "file": "duplex-28-299-floor-plan-ground-2351x2077.jpg"
+    },
+    {
+      "path": "/images/models/duplex/28-299/floor-plans/duplex-28-299-floor-plan-upper-2579x2220.jpg",
+      "file": "duplex-28-299-floor-plan-upper-2579x2220.jpg"
+    },
+    {
+      "path": "/images/models/duplex/28-314-190/floor-plans/duplex-28-314-190-floor-plan-ground-1000x908.jpg",
+      "file": "duplex-28-314-190-floor-plan-ground-1000x908.jpg"
+    },
+    {
+      "path": "/images/models/duplex/28-314-190/floor-plans/duplex-28-314-190-floor-plan-upper-1000x863.jpg",
+      "file": "duplex-28-314-190-floor-plan-upper-1000x863.jpg"
+    },
+    {
+      "path": "/images/models/duplex/38-238-125/floor-plans/duplex-38-238-125-floor-plan-attic-2907x1947.jpg",
+      "file": "duplex-38-238-125-floor-plan-attic-2907x1947.jpg"
+    },
+    {
+      "path": "/images/models/duplex/38-238-125/floor-plans/duplex-38-238-125-floor-plan-ground-2764x1904.jpg",
+      "file": "duplex-38-238-125-floor-plan-ground-2764x1904.jpg"
+    },
+    {
+      "path": "/images/models/cube-house/cube-house-thumb.jpg",
+      "file": "cube-house-thumb.jpg"
+    },
+    {
+      "path": "/images/models/cube-house/0-145/floor-plans/cube-house-0-145-floor-plan-ground-1000x1018.jpg",
+      "file": "cube-house-0-145-floor-plan-ground-1000x1018.jpg"
+    },
+    {
+      "path": "/images/models/cube-house/0-145/floor-plans/cube-house-0-145-floor-plan-upper-1000x897.jpg",
+      "file": "cube-house-0-145-floor-plan-upper-1000x897.jpg"
+    },
+    {
+      "path": "/images/models/cube-house/193-0-0-1800/gallery/cube-house-193-0-0-1800-gallery-1800x1273.jpg",
+      "file": "cube-house-193-0-0-1800-gallery-1800x1273.jpg"
+    },
+    {
+      "path": "/images/models/cube-house/0-166/floor-plans/cube-house-0-166-floor-plan-ground-919x889.jpg",
+      "file": "cube-house-0-166-floor-plan-ground-919x889.jpg"
+    },
+    {
+      "path": "/images/models/cube-house/0-166/floor-plans/cube-house-0-166-floor-plan-upper-956x845.jpg",
+      "file": "cube-house-0-166-floor-plan-upper-956x845.jpg"
+    },
+    {
+      "path": "/images/models/cube-house/0-283/floor-plans/cube-house-0-283-floor-plan-ground-1000x909.jpg",
+      "file": "cube-house-0-283-floor-plan-ground-1000x909.jpg"
+    },
+    {
+      "path": "/images/models/cube-house/0-283/floor-plans/cube-house-0-283-floor-plan-upper-1000x863.jpg",
+      "file": "cube-house-0-283-floor-plan-upper-1000x863.jpg"
+    },
+    {
+      "path": "/images/models/cube-house/0-278/floor-plans/cube-house-0-278-floor-plan-ground-2001x2009.jpg",
+      "file": "cube-house-0-278-floor-plan-ground-2001x2009.jpg"
+    },
+    {
+      "path": "/images/models/cube-house/0-278/floor-plans/cube-house-0-278-floor-plan-upper-2112x2065.jpg",
+      "file": "cube-house-0-278-floor-plan-upper-2112x2065.jpg"
+    },
+    {
+      "path": "/images/models/cube-house/172-0-0-1800/gallery/cube-house-172-0-0-1800-gallery-1800x1273.jpg",
+      "file": "cube-house-172-0-0-1800-gallery-1800x1273.jpg"
+    },
+    {
+      "path": "/images/models/cube-house/172-0-0-1800/floor-plans/cube-house-172-0-0-1800-floor-plan-ground-914x824.jpg",
+      "file": "cube-house-172-0-0-1800-floor-plan-ground-914x824.jpg"
+    },
+    {
+      "path": "/images/models/cube-house/172-0-0-1800/floor-plans/cube-house-172-0-0-1800-floor-plan-upper-907x832.jpg",
+      "file": "cube-house-172-0-0-1800-floor-plan-upper-907x832.jpg"
+    },
+    {
+      "path": "/images/models/mono-pitch/21-349-225/gallery/mono-pitch-21-349-225-gallery-2-2367x1381.png",
+      "file": "mono-pitch-21-349-225-gallery-2-2367x1381.png"
+    },
+    {
+      "path": "/images/models/mono-pitch/21-349-225/gallery/mono-pitch-21-349-225-gallery-2529x1345.png",
+      "file": "mono-pitch-21-349-225-gallery-2529x1345.png"
+    },
+    {
+      "path": "/images/models/mono-pitch/21-349-225/gallery/mono-pitch-21-349-225-gallery-3-1828x1276.png",
+      "file": "mono-pitch-21-349-225-gallery-3-1828x1276.png"
+    },
+    {
+      "path": "/images/models/mono-pitch/21-349-225/floor-plans/mono-pitch-21-349-225-floor-plan-basement-2779x1793.jpg",
+      "file": "mono-pitch-21-349-225-floor-plan-basement-2779x1793.jpg"
+    },
+    {
+      "path": "/images/models/mono-pitch/21-349-225/floor-plans/mono-pitch-21-349-225-floor-plan-ground-2745x1800.jpg",
+      "file": "mono-pitch-21-349-225-floor-plan-ground-2745x1800.jpg"
+    },
+    {
+      "path": "/images/models/multi-generational/multi-generational-thumb.jpg",
+      "file": "multi-generational-thumb.jpg"
+    },
+    {
+      "path": "/images/models/multi-generation/28-264-160/gallery/multi-generation-28-264-160-gallery-2-1942x1451.png",
+      "file": "multi-generation-28-264-160-gallery-2-1942x1451.png"
+    },
+    {
+      "path": "/images/models/multi-generation/28-264-160/gallery/multi-generation-28-264-160-gallery-3-2086x1509.png",
+      "file": "multi-generation-28-264-160-gallery-3-2086x1509.png"
+    },
+    {
+      "path": "/images/models/multi-generation/28-264-160/gallery/multi-generation-28-264-160-gallery-3507x2479.jpg",
+      "file": "multi-generation-28-264-160-gallery-3507x2479.jpg"
+    },
+    {
+      "path": "/images/models/multi-generation/28-264-160/floor-plans/multi-generation-28-264-160-floor-plan-attic-2394x1970.jpg",
+      "file": "multi-generation-28-264-160-floor-plan-attic-2394x1970.jpg"
+    },
+    {
+      "path": "/images/models/multi-generation/28-264-160/floor-plans/multi-generation-28-264-160-floor-plan-ground-2301x1874.jpg",
+      "file": "multi-generation-28-264-160-floor-plan-ground-2301x1874.jpg"
+    },
+    {
+      "path": "/images/models/multi-generation/campaign-multi-family/gallery/multi-generation-campaign-multi-family-gallery-2-2368x1728.webp",
+      "file": "multi-generation-campaign-multi-family-gallery-2-2368x1728.webp"
+    },
+    {
+      "path": "/images/models/multi-generation/campaign-multi-family/gallery/multi-generation-campaign-multi-family-gallery-2368x1728.webp",
+      "file": "multi-generation-campaign-multi-family-gallery-2368x1728.webp"
+    },
+    {
+      "path": "/images/models/multi-generation/campaign-multi-family/gallery/multi-generation-campaign-multi-family-gallery-3-2368x1728.webp",
+      "file": "multi-generation-campaign-multi-family-gallery-3-2368x1728.webp"
+    },
+    {
+      "path": "/images/models/multi-generation/campaign-multi-family/gallery/multi-generation-campaign-multi-family-gallery-4-2368x1728.webp",
+      "file": "multi-generation-campaign-multi-family-gallery-4-2368x1728.webp"
+    },
+    {
+      "path": "/images/models/multi-generation/campaign-multi-family/hero/multi-generation-campaign-multi-family-hero-2368x1728.webp",
+      "file": "multi-generation-campaign-multi-family-hero-2368x1728.webp"
+    },
+    {
+      "path": "/images/models/multi-generation/271-28-160/gallery/multi-generation-271-28-160-gallery-2048x1448.jpg",
+      "file": "multi-generation-271-28-160-gallery-2048x1448.jpg"
+    },
+    {
+      "path": "/images/models/single-family/35-150-185.webp",
+      "file": "35-150-185.webp"
+    },
+    {
+      "path": "/images/models/single-family/single-family-thumb.jpg",
+      "file": "single-family-thumb.jpg"
+    },
+    {
+      "path": "/images/models/single-family/22-141-190/floor-plans/single-family-22-141-190-floor-plan-attic-2015x1168.jpg",
+      "file": "single-family-22-141-190-floor-plan-attic-2015x1168.jpg"
+    },
+    {
+      "path": "/images/models/single-family/22-141-190/floor-plans/single-family-22-141-190-floor-plan-ground-1958x1103.jpg",
+      "file": "single-family-22-141-190-floor-plan-ground-1958x1103.jpg"
+    },
+    {
+      "path": "/images/models/single-family/35-150/gallery/single-family-35-150-gallery-2048x1448.jpg",
+      "file": "single-family-35-150-gallery-2048x1448.jpg"
+    },
+    {
+      "path": "/images/models/single-family/35-150/hero/single-family-35-150-hero-3507x2480.jpg",
+      "file": "single-family-35-150-hero-3507x2480.jpg"
+    },
+    {
+      "path": "/images/models/single-family/35-181-150/floor-plans/single-family-35-181-150-floor-plan-attic-1846x1708.jpg",
+      "file": "single-family-35-181-150-floor-plan-attic-1846x1708.jpg"
+    },
+    {
+      "path": "/images/models/single-family/35-181-150/floor-plans/single-family-35-181-150-floor-plan-ground-1610x1635.jpg",
+      "file": "single-family-35-181-150-floor-plan-ground-1610x1635.jpg"
+    },
+    {
+      "path": "/images/models/single-family/38-144-125/floor-plans/single-family-38-144-125-floor-plan-attic-1000x979.jpg",
+      "file": "single-family-38-144-125-floor-plan-attic-1000x979.jpg"
+    },
+    {
+      "path": "/images/models/single-family/38-144-125/floor-plans/single-family-38-144-125-floor-plan-ground-1000x1032.jpg",
+      "file": "single-family-38-144-125-floor-plan-ground-1000x1032.jpg"
+    },
+    {
+      "path": "/images/models/single-family/35-146-150/floor-plans/single-family-35-146-150-floor-plan-attic-2042x1471.jpg",
+      "file": "single-family-35-146-150-floor-plan-attic-2042x1471.jpg"
+    },
+    {
+      "path": "/images/models/single-family/35-146-150/floor-plans/single-family-35-146-150-floor-plan-ground-1849x1488.jpg",
+      "file": "single-family-35-146-150-floor-plan-ground-1849x1488.jpg"
+    },
+    {
+      "path": "/images/models/single-family/28-194-170/gallery/single-family-28-194-170-gallery-4960x3507.png",
+      "file": "single-family-28-194-170-gallery-4960x3507.png"
+    },
+    {
+      "path": "/images/models/single-family/35-151-150/floor-plans/single-family-35-151-150-floor-plan-attic-1000x838.jpg",
+      "file": "single-family-35-151-150-floor-plan-attic-1000x838.jpg"
+    },
+    {
+      "path": "/images/models/single-family/35-151-150/floor-plans/single-family-35-151-150-floor-plan-ground-1000x829.jpg",
+      "file": "single-family-35-151-150-floor-plan-ground-1000x829.jpg"
+    },
+    {
+      "path": "/images/models/single-family/38-119-125/floor-plans/single-family-38-119-125-floor-plan-attic-1000x996.jpg",
+      "file": "single-family-38-119-125-floor-plan-attic-1000x996.jpg"
+    },
+    {
+      "path": "/images/models/single-family/38-119-125/floor-plans/single-family-38-119-125-floor-plan-ground-1000x1072.jpg",
+      "file": "single-family-38-119-125-floor-plan-ground-1000x1072.jpg"
+    },
+    {
+      "path": "/images/models/single-family/38-132-125/floor-plans/single-family-38-132-125-floor-plan-ground-800x853.jpg",
+      "file": "single-family-38-132-125-floor-plan-ground-800x853.jpg"
+    },
+    {
+      "path": "/images/models/single-family/169-25-190/gallery/single-family-169-25-190-gallery-10000x6667.jpg",
+      "file": "single-family-169-25-190-gallery-10000x6667.jpg"
+    },
+    {
+      "path": "/images/models/single-family/169-25-190/floor-plans/single-family-169-25-190-floor-plan-attic-1000x801.jpg",
+      "file": "single-family-169-25-190-floor-plan-attic-1000x801.jpg"
+    },
+    {
+      "path": "/images/models/single-family/38-138-125/gallery/single-family-38-138-125-gallery-2-3507x1799.jpg",
+      "file": "single-family-38-138-125-gallery-2-3507x1799.jpg"
+    },
+    {
+      "path": "/images/models/single-family/38-138-125/gallery/single-family-38-138-125-gallery-3507x1799.jpg",
+      "file": "single-family-38-138-125-gallery-3507x1799.jpg"
+    },
+    {
+      "path": "/images/models/single-family/38-138-125/floor-plans/single-family-38-138-125-floor-plan-attic-1670x1651.jpg",
+      "file": "single-family-38-138-125-floor-plan-attic-1670x1651.jpg"
+    },
+    {
+      "path": "/images/models/single-family/38-138-125/floor-plans/single-family-38-138-125-floor-plan-ground-1604x1621.jpg",
+      "file": "single-family-38-138-125-floor-plan-ground-1604x1621.jpg"
+    },
+    {
+      "path": "/images/models/single-family/45-147-75/floor-plans/single-family-45-147-75-floor-plan-attic-1000x919.jpg",
+      "file": "single-family-45-147-75-floor-plan-attic-1000x919.jpg"
+    },
+    {
+      "path": "/images/models/single-family/45-147-75/floor-plans/single-family-45-147-75-floor-plan-ground-1000x878.jpg",
+      "file": "single-family-45-147-75-floor-plan-ground-1000x878.jpg"
+    },
+    {
+      "path": "/images/models/single-family/38-115-125/floor-plans/single-family-38-115-125-floor-plan-attic-1670x1634.jpg",
+      "file": "single-family-38-115-125-floor-plan-attic-1670x1634.jpg"
+    },
+    {
+      "path": "/images/models/single-family/38-115-125/floor-plans/single-family-38-115-125-floor-plan-ground-1603x1665.jpg",
+      "file": "single-family-38-115-125-floor-plan-ground-1603x1665.jpg"
+    },
+    {
+      "path": "/images/models/single-family/38-128-125/floor-plans/single-family-38-128-125-floor-plan-ground-1485x1526.jpg",
+      "file": "single-family-38-128-125-floor-plan-ground-1485x1526.jpg"
+    },
+    {
+      "path": "/images/models/single-family/38-128-125/floor-plans/single-family-38-128-125-floor-plan-upper-1580x1550.jpg",
+      "file": "single-family-38-128-125-floor-plan-upper-1580x1550.jpg"
+    },
+    {
+      "path": "/images/models/single-family/22-162-190/floor-plans/single-family-22-162-190-floor-plan-attic-1752x1687.jpg",
+      "file": "single-family-22-162-190-floor-plan-attic-1752x1687.jpg"
+    },
+    {
+      "path": "/images/models/single-family/22-162-190/floor-plans/single-family-22-162-190-floor-plan-ground-1711x1676.jpg",
+      "file": "single-family-22-162-190-floor-plan-ground-1711x1676.jpg"
+    },
+    {
+      "path": "/images/models/single-family/45-139-75/floor-plans/single-family-45-139-75-floor-plan-attic-1741x1401.jpg",
+      "file": "single-family-45-139-75-floor-plan-attic-1741x1401.jpg"
+    },
+    {
+      "path": "/images/models/single-family/45-139-75/floor-plans/single-family-45-139-75-floor-plan-ground-1618x1392.jpg",
+      "file": "single-family-45-139-75-floor-plan-ground-1618x1392.jpg"
+    },
+    {
+      "path": "/images/models/single-family/22-166-190/floor-plans/single-family-22-166-190-floor-plan-attic-1000x870.jpg",
+      "file": "single-family-22-166-190-floor-plan-attic-1000x870.jpg"
+    },
+    {
+      "path": "/images/models/single-family/22-166-190/floor-plans/single-family-22-166-190-floor-plan-basement-1000x845.jpg",
+      "file": "single-family-22-166-190-floor-plan-basement-1000x845.jpg"
+    },
+    {
+      "path": "/images/models/single-family/22-166-190/floor-plans/single-family-22-166-190-floor-plan-ground-1000x857.jpg",
+      "file": "single-family-22-166-190-floor-plan-ground-1000x857.jpg"
+    },
+    {
+      "path": "/images/models/two-family/22-282/floor-plans/two-family-22-282-floor-plan-ground-2252x1881.jpg",
+      "file": "two-family-22-282-floor-plan-ground-2252x1881.jpg"
+    },
+    {
+      "path": "/images/models/two-family/22-282/floor-plans/two-family-22-282-floor-plan-upper-2305x1946.jpg",
+      "file": "two-family-22-282-floor-plan-upper-2305x1946.jpg"
+    },
+    {
+      "path": "/images/models/two-family/22-282/hero/two-family-22-282-hero-1700x1201.jpg",
+      "file": "two-family-22-282-hero-1700x1201.jpg"
+    },
+    {
+      "path": "/images/models/bungalow/bungalow-thumb.jpg",
+      "file": "bungalow-thumb.jpg"
+    },
+    {
+      "path": "/images/models/bungalow/0-142/floor-plans/bungalow-0-142-floor-plan-ground-2197x2028.jpg",
+      "file": "bungalow-0-142-floor-plan-ground-2197x2028.jpg"
+    },
+    {
+      "path": "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-2640x1509.png",
+      "file": "bungalow-22-134-gallery-2640x1509.png"
+    },
+    {
+      "path": "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-4960x3507.jpg",
+      "file": "bungalow-22-134-gallery-4960x3507.jpg"
+    },
+    {
+      "path": "/images/models/bungalow/22-134/hero/bungalow-22-134-hero-4960x3507.jpg",
+      "file": "bungalow-22-134-hero-4960x3507.jpg"
+    },
+    {
+      "path": "/images/models/bungalow/22-117/floor-plans/bungalow-22-117-floor-plan-ground-2248x1874.jpg",
+      "file": "bungalow-22-117-floor-plan-ground-2248x1874.jpg"
+    },
+    {
+      "path": "/images/models/bungalow/145-0-0/gallery/bungalow-145-0-0-gallery-3508x2479.jpg",
+      "file": "bungalow-145-0-0-gallery-3508x2479.jpg"
+    },
+    {
+      "path": "/images/models/bungalow/145-0-0/floor-plans/bungalow-145-0-0-floor-plan-ground-1000x931.jpg",
+      "file": "bungalow-145-0-0-floor-plan-ground-1000x931.jpg"
+    },
+    {
+      "path": "/images/models/bungalow/22-152/floor-plans/bungalow-22-152-floor-plan-ground-910x822.jpg",
+      "file": "bungalow-22-152-floor-plan-ground-910x822.jpg"
+    },
+    {
+      "path": "/images/models/bungalow/bungalow/gallery/bungalow-bungalow-gallery-2-3000x3000.webp",
+      "file": "bungalow-bungalow-gallery-2-3000x3000.webp"
+    },
+    {
+      "path": "/images/models/bungalow/bungalow/gallery/bungalow-bungalow-gallery-2368x1728.webp",
+      "file": "bungalow-bungalow-gallery-2368x1728.webp"
+    },
+    {
+      "path": "/images/models/bungalow/bungalow/gallery/bungalow-bungalow-gallery-3-2368x1728.webp",
+      "file": "bungalow-bungalow-gallery-3-2368x1728.webp"
+    },
+    {
+      "path": "/images/models/bungalow/bungalow/gallery/bungalow-bungalow-gallery-4-2368x1728.webp",
+      "file": "bungalow-bungalow-gallery-4-2368x1728.webp"
+    },
+    {
+      "path": "/images/models/bungalow/bungalow/gallery/bungalow-bungalow-gallery-5-2368x1728.webp",
+      "file": "bungalow-bungalow-gallery-5-2368x1728.webp"
+    },
+    {
+      "path": "/images/models/bungalow/bungalow/hero/bungalow-bungalow-hero-2368x1728.webp",
+      "file": "bungalow-bungalow-hero-2368x1728.webp"
+    },
+    {
+      "path": "/images/models/bungalow/22-149/floor-plans/bungalow-22-149-floor-plan-ground-2136x1989.jpg",
+      "file": "bungalow-22-149-floor-plan-ground-2136x1989.jpg"
+    },
+    {
+      "path": "/images/models/city-villa/city-villa-thumb.jpg",
+      "file": "city-villa-thumb.jpg"
+    },
+    {
+      "path": "/images/models/city-villa/22-157/gallery/city-villa-22-157-gallery-4252x3007.jpg",
+      "file": "city-villa-22-157-gallery-4252x3007.jpg"
+    },
+    {
+      "path": "/images/models/city-villa/22-157/floor-plans/city-villa-22-157-floor-plan-ground-2795x1635.jpg",
+      "file": "city-villa-22-157-floor-plan-ground-2795x1635.jpg"
+    },
+    {
+      "path": "/images/models/city-villa/22-157/floor-plans/city-villa-22-157-floor-plan-upper-2775x1742.jpg",
+      "file": "city-villa-22-157-floor-plan-upper-2775x1742.jpg"
+    },
+    {
+      "path": "/images/models/city-villa/172-22-0-1800/gallery/city-villa-172-22-0-1800-gallery-1800x1273.jpg",
+      "file": "city-villa-172-22-0-1800-gallery-1800x1273.jpg"
+    },
+    {
+      "path": "/images/models/city-villa/172-22-0-1800/floor-plans/city-villa-172-22-0-1800-floor-plan-ground-883x818.jpg",
+      "file": "city-villa-172-22-0-1800-floor-plan-ground-883x818.jpg"
+    },
+    {
+      "path": "/images/models/city-villa/166-22-0/floor-plans/city-villa-166-22-0-floor-plan-ground-2112x1835.jpg",
+      "file": "city-villa-166-22-0-floor-plan-ground-2112x1835.jpg"
+    },
+    {
+      "path": "/images/models/city-villa/18-145/floor-plans/city-villa-18-145-floor-plan-ground-1000x1018.jpg",
+      "file": "city-villa-18-145-floor-plan-ground-1000x1018.jpg"
+    },
+    {
+      "path": "/images/models/city-villa/18-145/floor-plans/city-villa-18-145-floor-plan-upper-1000x897.jpg",
+      "file": "city-villa-18-145-floor-plan-upper-1000x897.jpg"
+    },
+    {
+      "path": "/images/models/city-villa/22-187/floor-plans/city-villa-22-187-floor-plan-ground-1024x827.jpg",
+      "file": "city-villa-22-187-floor-plan-ground-1024x827.jpg"
+    },
+    {
+      "path": "/images/models/city-villa/22-187/floor-plans/city-villa-22-187-floor-plan-upper-1024x827.jpg",
+      "file": "city-villa-22-187-floor-plan-upper-1024x827.jpg"
+    },
+    {
+      "path": "/images/models/city-villa/22-173/gallery/city-villa-22-173-gallery-1945x1246.png",
+      "file": "city-villa-22-173-gallery-1945x1246.png"
+    },
+    {
+      "path": "/images/models/city-villa/22-173/gallery/city-villa-22-173-gallery-2-1977x1277.png",
+      "file": "city-villa-22-173-gallery-2-1977x1277.png"
+    },
+    {
+      "path": "/images/models/city-villa/18-140/floor-plans/city-villa-18-140-floor-plan-ground-1346x1580.jpg",
+      "file": "city-villa-18-140-floor-plan-ground-1346x1580.jpg"
+    },
+    {
+      "path": "/images/models/city-villa/18-140/floor-plans/city-villa-18-140-floor-plan-upper-1389x1604.jpg",
+      "file": "city-villa-18-140-floor-plan-upper-1389x1604.jpg"
+    },
+    {
+      "path": "/images/models/multi-family/18-845/floor-plans/multi-family-18-845-floor-plan-ground-1118x822.jpg",
+      "file": "multi-family-18-845-floor-plan-ground-1118x822.jpg"
+    },
+    {
+      "path": "/images/models/multi-family/18-845/floor-plans/multi-family-18-845-floor-plan-upper-1147x806.jpg",
+      "file": "multi-family-18-845-floor-plan-upper-1147x806.jpg"
+    },
+    {
+      "path": "/images/models/multi-family/house-east/floor-plans/multi-family-house-east-floor-plan-ground-2572x2269.jpg",
+      "file": "multi-family-house-east-floor-plan-ground-2572x2269.jpg"
+    },
+    {
+      "path": "/images/models/multi-family/satteldorf-nord/floor-plans/multi-family-satteldorf-nord-floor-plan-attic-3262x2119.jpg",
+      "file": "multi-family-satteldorf-nord-floor-plan-attic-3262x2119.jpg"
+    },
+    {
+      "path": "/images/models/multi-family/satteldorf-nord/floor-plans/multi-family-satteldorf-nord-floor-plan-ground-3348x2027.jpg",
+      "file": "multi-family-satteldorf-nord-floor-plan-ground-3348x2027.jpg"
+    },
+    {
+      "path": "/images/models/multi-family/satteldorf-nord/floor-plans/multi-family-satteldorf-nord-floor-plan-upper-3172x2027.jpg",
+      "file": "multi-family-satteldorf-nord-floor-plan-upper-3172x2027.jpg"
+    },
+    {
+      "path": "/images/models/multi-family/satteldorf-nord/hero/satteldorf-nord-hero.jpg",
+      "file": "satteldorf-nord-hero.jpg"
+    },
+    {
+      "path": "/images/models/multi-family/dombuehl/floor-plans/multi-family-dombuehl-floor-plan-ground-1200x1255.jpg",
+      "file": "multi-family-dombuehl-floor-plan-ground-1200x1255.jpg"
+    }
+  ],
+  "showhouses": [
+    {
+      "path": "/images/showhouses/model-house-exterior.jpg",
+      "file": "model-house-exterior.jpg"
+    },
+    {
+      "path": "/images/showhouses/model-house-front.jpg",
+      "file": "model-house-front.jpg"
+    },
+    {
+      "path": "/images/showhouses/sales-office-fuerth.jpg",
+      "file": "sales-office-fuerth.jpg"
+    },
+    {
+      "path": "/images/showhouses/showroom-bad-vilbel-night.jpg",
+      "file": "showroom-bad-vilbel-night.jpg"
+    },
+    {
+      "path": "/images/showhouses/showroom-fellbach-2.jpg",
+      "file": "showroom-fellbach-2.jpg"
+    },
+    {
+      "path": "/images/showhouses/showroom-fellbach.jpg",
+      "file": "showroom-fellbach.jpg"
+    }
+  ],
+  "team": [
+    {
+      "path": "/images/team/bernd-keller-2.jpg",
+      "file": "bernd-keller-2.jpg"
+    },
+    {
+      "path": "/images/team/bernd-keller.jpg",
+      "file": "bernd-keller.jpg"
+    },
+    {
+      "path": "/images/team/david-ludwig.jpg",
+      "file": "david-ludwig.jpg"
+    },
+    {
+      "path": "/images/team/franziska-vetters.jpg",
+      "file": "franziska-vetters.jpg"
+    },
+    {
+      "path": "/images/team/horst-hellmann.jpg",
+      "file": "horst-hellmann.jpg"
+    },
+    {
+      "path": "/images/team/jonas-prax.jpg",
+      "file": "jonas-prax.jpg"
+    },
+    {
+      "path": "/images/team/stiliyan-nenchev.jpg",
+      "file": "stiliyan-nenchev.jpg"
+    },
+    {
+      "path": "/images/team/veronika-czyz.jpg",
+      "file": "veronika-czyz.jpg"
+    },
+    {
+      "path": "/images/team/wilfried-bolz.jpg",
+      "file": "wilfried-bolz.jpg"
+    },
+    {
+      "path": "/images/team/zvezdelin-nenchev.jpg",
+      "file": "zvezdelin-nenchev.jpg"
+    }
+  ],
+  "construction": [
+    {
+      "path": "/images/construction/construction-progress-1.jpg",
+      "file": "construction-progress-1.jpg"
+    }
+  ]
+}
