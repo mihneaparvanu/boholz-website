@@ -20,6 +20,18 @@ export const houseCategories = boholzSchema.table("house_categories", {
   slug: varchar("slug").notNull(),
 });
 
+// Category Media (Added for category-level thumbnails/hero images)
+export const categoryMedia = boholzSchema.table("category_media", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  categoryId: uuid("category_id")
+    .references(() => houseCategories.id)
+    .notNull(),
+  url: text("url").notNull(),
+  isThumbnail: boolean("is_thumbnail").default(false),
+  isHero: boolean("is_hero").default(false),
+  sortOrder: integer("sort_order").default(0),
+});
+
 // House Models
 export const houseModels = boholzSchema.table("house_models", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -49,6 +61,7 @@ export const houseImages = boholzSchema.table("house_images", {
   houseId: uuid("house_id").references(() => houseModels.id),
   url: text("url").notNull(),
   isHero: boolean("is_hero").default(false),
+  isThumbnail: boolean("is_thumbnail").default(false),
   sortOrder: integer("sort_order").default(0),
 });
 
@@ -113,6 +126,20 @@ export const showhouseAgents = boholzSchema.table("showhouse_agents", {
 });
 
 // --- Relations ---
+export const houseCategoriesRelations = relations(
+  houseCategories,
+  ({ many }) => ({
+    media: many(categoryMedia),
+  }),
+);
+
+export const categoryMediaRelations = relations(categoryMedia, ({ one }) => ({
+  category: one(houseCategories, {
+    fields: [categoryMedia.categoryId],
+    references: [houseCategories.id],
+  }),
+}));
+
 export const houseModelsRelations = relations(houseModels, ({ many, one }) => ({
   category: one(houseCategories, {
     fields: [houseModels.categoryId],

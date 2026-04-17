@@ -2,7 +2,10 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as schema from "./schema";
 
-const connectionString = import.meta.env.DATABASE_URL;
+const connectionString =
+  (typeof process !== "undefined" ? process.env.DATABASE_URL : undefined) ||
+  // @ts-ignore
+  (import.meta.env ? import.meta.env.DATABASE_URL : undefined);
 
 if (!connectionString) {
   throw new Error("DATABASE_URL is missing in environment variables");

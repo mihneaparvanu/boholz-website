@@ -2,8 +2,8 @@
 import { ref } from "vue";
 import type { HouseModel } from "../../types/models";
 
-import ModelThumbnail from "./components/ModelThumbnail.vue";
-import ModelHero from "./components/ModelHero.vue";
+import HouseModelSelector from "./components/HouseModelSelector.vue";
+import SelectedModel from "./components/SelectedModel.vue";
 
 const props = defineProps<{
   models: HouseModel[];
@@ -14,10 +14,10 @@ const selectedModel = ref<HouseModel | null>(props.models[0] || null);
 
 <template>
   <div class="models-slider">
-    <ModelHero v-if="selectedModel" :model="selectedModel" />
+    <SelectedModel v-if="selectedModel" :model="selectedModel" />
 
     <div class="model-thumbnails">
-      <ModelThumbnail
+      <HouseModelSelector
         v-for="model in props.models"
         :key="model.slug"
         :model="model"

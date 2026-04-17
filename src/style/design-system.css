@@ -114,6 +114,18 @@
   --fs-h2: calc(var(--fs-h3) * var(--fs-scale));
   --fs-h1: calc(var(--fs-h2) * var(--fs-scale));
 
+  /* Size System (Shared Scale) */
+  --sz-scale: var(--fs-scale);
+  --sz-base: 1em; /* Tie this to the active font-size automatically (the em trick!) */
+
+  --sz-xs: calc(var(--sz-sm) / var(--sz-scale));
+  --sz-sm: calc(var(--sz-base) / var(--sz-scale));
+  --sz-md: var(--sz-base);
+  --sz-lg: calc(var(--sz-md) * var(--sz-scale));
+  --sz-xl: calc(var(--sz-lg) * var(--sz-scale));
+  --sz-2xl: calc(var(--sz-xl) * var(--sz-scale));
+  --sz-3xl: calc(var(--sz-2xl) * var(--sz-scale));
+
   /* Line Height */
   --lh-tight: 1;
   --lh-heading: 1.1;

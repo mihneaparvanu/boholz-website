@@ -10,5 +10,6 @@
   "search.exclude": {
     "**/public/to-organize/**": true,
     "**/public/sorted-assets/**": true
-  }
+  },
+  "python.terminal.useEnvFile": true
 }
