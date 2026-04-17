@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { eq } from "drizzle-orm";
 import { db } from "../src/db/db";
-import { houseModels, houseImages, houseCategories, categoryMedia } from "../src/db/schema";
+import { houseModels, modelMedia, houseCategories, categoryMedia, media } from "../src/db/schema";
 
 async function run() {
   console.log("🌱 Starting Manifest Seeder...");
@@ -25,12 +25,11 @@ async function run() {
     const isThumbnail = file.includes("thumb") || file.includes("selector");
 
     // Extract the slug or code from the URL 
-    // Assuming format: /images/models/<category>/<model_code>/...
     const parts = url.split("/");
     if (parts.length < 5) continue;
     
-    const categorySlug = parts[3]; // e.g., 'duplex'
-    const modelSlug = parts[4];    // e.g., '28-299'
+    const categorySlug = parts[3]; 
+    const modelSlug = parts[4];    
 
     // 3. Find the matching model in the database
     const [model] = await db
@@ -40,10 +39,15 @@ async function run() {
       .limit(1);
 
     if (model) {
-      // 4. Insert into house_images
-      await db.insert(houseImages).values({
-        houseId: model.id,
-        url: url,
+      // 4. Insert into the Central Media table FIRST!
+      const [insertedMedia] = await db.insert(media).values({
+        path: url
+      }).returning({ id: media.id });
+
+      // 5. Connect it via the Pivot Table
+      await db.insert(modelMedia).values({
+        modelId: model.id,
+        mediaId: insertedMedia.id,
         isHero: isHero,
         isThumbnail: isThumbnail,
         sortOrder: 0,

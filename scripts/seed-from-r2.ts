@@ -1,7 +1,7 @@
 import { execSync } from "child_process";
 import { eq } from "drizzle-orm";
 import { db } from "../src/db/db";
-import { houseModels, houseImages } from "../src/db/schema";
+import { houseModels, media, modelMedia } from "../src/db/schema";
 import dotenv from "dotenv";
 
 dotenv.config(); // Load variables from .env
@@ -37,12 +37,12 @@ async function run() {
   console.log(`Validating ${imageKeys.length} images for the database...`);
 
   // Clear existing images to avoid duplicates? (Uncomment if needed)
-  // await db.delete(houseImages);
+  // await db.delete(modelMedia);
+  // await db.delete(media);
   // console.log("Cleared old images from DB.");
 
   for (const key of imageKeys) {
     // Reconstruct the path as it will be accessed via the media utility
-    // The key is likely something like "images/models/duplex/28-299/hero.jpg"
     const url = `/${key}`; 
     const file = key.toLowerCase();
 
@@ -52,7 +52,6 @@ async function run() {
 
     // Extract slug (assuming structure: images/models/<category>/<model_slug>/...)
     const parts = key.split("/");
-    // Be flexible depending on your folder depth
     const modelSlugIndex = parts.indexOf("models") + 2; 
     
     if (modelSlugIndex < 2 || modelSlugIndex >= parts.length) {
@@ -69,17 +68,23 @@ async function run() {
       .limit(1);
 
     if (model) {
-      // Check if image already exists to avoid duplicates
-      const [existing] = await db
+      // Check if media already exists to avoid duplicates
+      const [existingMedia] = await db
         .select()
-        .from(houseImages)
-        .where(eq(houseImages.url, url))
+        .from(media)
+        .where(eq(media.path, url))
         .limit(1);
 
-      if (!existing) {
-        await db.insert(houseImages).values({
-          houseId: model.id,
-          url: url,
+      if (!existingMedia) {
+        // 1. Insert into Central Media
+        const [insertedMedia] = await db.insert(media).values({
+          path: url
+        }).returning({ id: media.id });
+
+        // 2. Link via Pivot Table
+        await db.insert(modelMedia).values({
+          modelId: model.id,
+          mediaId: insertedMedia.id,
           isHero: isHero,
           isThumbnail: isThumbnail,
           sortOrder: 0,

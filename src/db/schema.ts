@@ -20,18 +20,6 @@ export const houseCategories = boholzSchema.table("house_categories", {
   slug: varchar("slug").notNull(),
 });
 
-// Category Media (Added for category-level thumbnails/hero images)
-export const categoryMedia = boholzSchema.table("category_media", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  categoryId: uuid("category_id")
-    .references(() => houseCategories.id)
-    .notNull(),
-  url: text("url").notNull(),
-  isThumbnail: boolean("is_thumbnail").default(false),
-  isHero: boolean("is_hero").default(false),
-  sortOrder: integer("sort_order").default(0),
-});
-
 // House Models
 export const houseModels = boholzSchema.table("house_models", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -46,34 +34,13 @@ export const houseModels = boholzSchema.table("house_models", {
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
-// House Details (1:1 with house_models presumably)
+// House Details (1:1 with house_models)
 export const houseDetails = boholzSchema.table("house_details", {
-  id: uuid("id").primaryKey().notNull(), // Assuming this references house_models.id
+  id: uuid("id").primaryKey().notNull(), // References house_models.id
   levelCount: smallint("level_count"),
   bedroomCount: smallint("bedroom_count"),
   bathroomCount: smallint("bathroom_count"),
   familiesCount: smallint("families_count"),
-});
-
-// House Images
-export const houseImages = boholzSchema.table("house_images", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  houseId: uuid("house_id").references(() => houseModels.id),
-  url: text("url").notNull(),
-  isHero: boolean("is_hero").default(false),
-  isThumbnail: boolean("is_thumbnail").default(false),
-  sortOrder: integer("sort_order").default(0),
-});
-
-// Floor plans
-export const houseFloor = boholzSchema.table("house_floor", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  houseModel: uuid("house_model")
-    .references(() => houseModels.id)
-    .defaultRandom(),
-  title: varchar("title"),
-  order: smallint("order"),
-  imageUrl: text("image_url"),
 });
 
 // Agents
@@ -85,24 +52,6 @@ export const agents = boholzSchema.table("agents", {
   phoneNumber: varchar("phone_number"),
   email: varchar("email"),
   bio: text("bio"),
-});
-
-// Media (Shared table)
-export const media = boholzSchema.table("media", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  url: text("url").notNull(),
-  alt: text("alt"),
-  width: integer("width"),
-  height: integer("height"),
-  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
-});
-
-// Agent Media
-export const agentMedia = boholzSchema.table("agent_media", {
-  agentId: uuid("agent_id").notNull(),
-  mediaId: uuid("media_id").notNull(),
-  label: varchar("label"),
-  sortOrder: integer("sort_order").default(0),
 });
 
 // Showhouses
@@ -117,27 +66,78 @@ export const showhouses = boholzSchema.table("showhouses", {
   lng: numeric("lng"),
 });
 
-// Showhouse Agents (M:N)
+// =========================================================================
+// THE SINGLE SOURCE OF TRUTH FOR ALL MEDIA
+// =========================================================================
+
+export const media = boholzSchema.table("media", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  path: text("path").notNull(), // ONLY table that holds an image path
+  alt: text("alt"),
+  width: integer("width"),
+  height: integer("height"),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+});
+
+// =========================================================================
+// MEDIA PIVOT TABLES (Many-To-Many / Join Tables)
+// =========================================================================
+
+// Category Media
+export const categoryMedia = boholzSchema.table("category_media", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  categoryId: uuid("category_id").references(() => houseCategories.id).notNull(),
+  mediaId: uuid("media_id").references(() => media.id).notNull(),
+  isThumbnail: boolean("is_thumbnail").default(false),
+  isHero: boolean("is_hero").default(false),
+  sortOrder: integer("sort_order").default(0),
+});
+
+// Model Media (Renamed from house_images)
+export const modelMedia = boholzSchema.table("model_media", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  modelId: uuid("model_id").references(() => houseModels.id).notNull(),
+  mediaId: uuid("media_id").references(() => media.id).notNull(),
+  isHero: boolean("is_hero").default(false),
+  isThumbnail: boolean("is_thumbnail").default(false),
+  sortOrder: integer("sort_order").default(0),
+});
+
+// Floor Media (Renamed from house_floor for consistency)
+export const floorMedia = boholzSchema.table("floor_media", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  modelId: uuid("model_id").references(() => houseModels.id).defaultRandom(),
+  mediaId: uuid("media_id").references(() => media.id).notNull(),
+  title: varchar("title"),
+  sortOrder: smallint("sort_order"),
+});
+
+// Agent Media
+export const agentMedia = boholzSchema.table("agent_media", {
+  agentId: uuid("agent_id").references(() => agents.id).notNull(),
+  mediaId: uuid("media_id").references(() => media.id).notNull(),
+  label: varchar("label"),
+  sortOrder: integer("sort_order").default(0),
+});
+
+// Showhouse Agents (M:N - Unrelated to media, keeping it safe)
 export const showhouseAgents = boholzSchema.table("showhouse_agents", {
-  agentId: uuid("agent_id").notNull(),
-  showhouseId: uuid("showhouse_id").notNull(),
+  agentId: uuid("agent_id").references(() => agents.id).notNull(),
+  showhouseId: uuid("showhouse_id").references(() => showhouses.id).notNull(),
   isPrimary: boolean("is_primary").default(false),
   sortOrder: integer("sort_order").default(0),
 });
 
 // --- Relations ---
-export const houseCategoriesRelations = relations(
-  houseCategories,
-  ({ many }) => ({
-    media: many(categoryMedia),
-  }),
-);
+export const mediaRelations = relations(media, ({ many }) => ({
+  modelMedia: many(modelMedia),
+  categoryMedia: many(categoryMedia),
+  floorMedia: many(floorMedia),
+  agentMedia: many(agentMedia),
+}));
 
-export const categoryMediaRelations = relations(categoryMedia, ({ one }) => ({
-  category: one(houseCategories, {
-    fields: [categoryMedia.categoryId],
-    references: [houseCategories.id],
-  }),
+export const houseCategoriesRelations = relations(houseCategories, ({ many }) => ({
+  media: many(categoryMedia),
 }));
 
 export const houseModelsRelations = relations(houseModels, ({ many, one }) => ({
@@ -149,20 +149,40 @@ export const houseModelsRelations = relations(houseModels, ({ many, one }) => ({
     fields: [houseModels.id],
     references: [houseDetails.id],
   }),
-  images: many(houseImages),
-  floors: many(houseFloor),
+  media: many(modelMedia), // Changed from 'images' to 'media'
+  floorMedia: many(floorMedia), // Changed from 'floors' to 'floorMedia'
 }));
 
-export const houseImagesRelations = relations(houseImages, ({ one }) => ({
+// Pivot definitions mapping the joints back to the media table
+export const modelMediaRelations = relations(modelMedia, ({ one }) => ({
   model: one(houseModels, {
-    fields: [houseImages.houseId],
+    fields: [modelMedia.modelId],
     references: [houseModels.id],
   }),
+  media: one(media, {
+    fields: [modelMedia.mediaId],
+    references: [media.id],
+  })
 }));
 
-export const houseFloorRelations = relations(houseFloor, ({ one }) => ({
+export const categoryMediaRelations = relations(categoryMedia, ({ one }) => ({
+  category: one(houseCategories, {
+    fields: [categoryMedia.categoryId],
+    references: [houseCategories.id],
+  }),
+  media: one(media, {
+    fields: [categoryMedia.mediaId],
+    references: [media.id],
+  })
+}));
+
+export const floorMediaRelations = relations(floorMedia, ({ one }) => ({
   model: one(houseModels, {
-    fields: [houseFloor.houseModel],
+    fields: [floorMedia.modelId],
     references: [houseModels.id],
   }),
+  media: one(media, {
+    fields: [floorMedia.mediaId],
+    references: [media.id],
+  })
 }));
