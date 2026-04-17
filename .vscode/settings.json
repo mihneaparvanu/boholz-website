@@ -1,3 +1,14 @@
 {
-  "svg.preview.background": "editor"
+  "svg.preview.background": "editor",
+  "files.watcherExclude": {
+    "**/public/to-organize/**": true,
+    "**/public/sorted-assets/**": true
+  },
+  "files.exclude": {
+    "**/public/to-organize": true
+  },
+  "search.exclude": {
+    "**/public/to-organize/**": true,
+    "**/public/sorted-assets/**": true
+  }
 }
