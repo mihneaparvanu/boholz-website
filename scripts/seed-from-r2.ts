@@ -1,7 +1,13 @@
 import { execSync } from "child_process";
 import { eq, like } from "drizzle-orm";
 import { db } from "../src/db/db";
-import { houseModels, media, modelMedia } from "../src/db/schema";
+import {
+  houseModels,
+  houseCategories,
+  media,
+  modelMedia,
+  categoryMedia,
+} from "../src/db/schema";
 import dotenv from "dotenv";
 
 dotenv.config(); // Load variables from .env
@@ -112,6 +118,65 @@ async function run() {
   }
 
   console.log("🎉 R2 Sync to Database complete!");
+
+  // -------------------------------------------------------------------------
+  // CATEGORY THUMBNAILS
+  // R2 dirs use English slugs; DB categories use German slugs.
+  // -------------------------------------------------------------------------
+  const categoryThumbMap: Record<string, string> = {
+    "bungalow": "bungalow",
+    "city-villa": "stadtvilla",
+    "cube-house": "kubus",
+    "multi-generational": "generationenhaus",
+    "single-family": "einfamilienhaus",
+  };
+
+  console.log("\n🖼️  Seeding category thumbnails...");
+
+  for (const [r2Dir, dbSlug] of Object.entries(categoryThumbMap)) {
+    const key = `images/models/${r2Dir}/${r2Dir}-thumb.jpg`;
+    const url = `/${key}`;
+
+    const [category] = await db
+      .select({ id: houseCategories.id })
+      .from(houseCategories)
+      .where(eq(houseCategories.slug, dbSlug))
+      .limit(1);
+
+    if (!category) {
+      console.log(`⚠️ Category not found in DB for slug: ${dbSlug}`);
+      continue;
+    }
+
+    // Idempotent: skip if already seeded
+    const [existing] = await db
+      .select()
+      .from(media)
+      .where(eq(media.path, url))
+      .limit(1);
+
+    if (existing) {
+      console.log(`🔄 Already seeded: ${key}`);
+      continue;
+    }
+
+    const [inserted] = await db
+      .insert(media)
+      .values({ path: url })
+      .returning({ id: media.id });
+
+    await db.insert(categoryMedia).values({
+      categoryId: category.id,
+      mediaId: inserted.id,
+      isThumbnail: true,
+      isHero: false,
+      sortOrder: 0,
+    });
+
+    console.log(`✅ Linked ${key} → category "${dbSlug}"`);
+  }
+
+  console.log("🎉 Category thumbnails done!");
   process.exit(0);
 }
 

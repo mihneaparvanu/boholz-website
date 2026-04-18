@@ -3,6 +3,7 @@ export default {
   schema: "./src/db/schema.ts",
   out: "./drizzle",
   dialect: "postgresql",
+  schemaFilter: ["boholz"],
   dbCredentials: {
     url: process.env.DATABASE_URL!,
   },

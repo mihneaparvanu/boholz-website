@@ -12,6 +12,8 @@ const heroImage = computed(
     props.model.media.find((m) => m.isHero)?.media.path ??
     props.model.media[0]?.media.path,
 );
+
+const pricePlaceholder: string = "150.000 €"; // Placeholder, as price is not in the model type
 </script>
 
 <template>
@@ -31,7 +33,8 @@ const heroImage = computed(
         </div>
       </div>
       <div class="price-rooms">
-        <p>{{ model.roofPitch }}</p>
+        <p>{{ pricePlaceholder }}</p>
+        <p>{{ model.roofPitch }}°</p>
       </div>
     </div>
   </div>
@@ -59,16 +62,15 @@ const heroImage = computed(
 .content-wrapper {
   display: grid;
   grid-template-areas: "title-surface price-rooms";
-  gap: 1rem;
   align-items: center;
-  padding: var(--spacing-1) var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3);
 }
 
 .title-surface {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1rem;
+  gap: var(--spacing-1);
   grid-area: title-surface;
 
   .title {
@@ -79,7 +81,8 @@ const heroImage = computed(
 .price-rooms {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  align-items: end;
+  gap: var(--spacing-1);
   grid-area: price-rooms;
 }
 </style>
