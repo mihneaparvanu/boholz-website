@@ -20,6 +20,7 @@ const imageURL = computed(() => {
 </template>
 <style scoped>
 .house-model-circle {
+  cursor: pointer;
   --size: var(--fs-h2);
   display: flex;
   align-items: center;
@@ -29,5 +30,8 @@ const imageURL = computed(() => {
   height: var(--size);
   border: 2px solid var(--clr-border-primary);
   overflow: hidden;
+  &[data-is-selected="true"] {
+    border-color: var(--clr-accent-primary);
+  }
 }
 </style>

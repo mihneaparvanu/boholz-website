@@ -10,6 +10,10 @@ const props = defineProps<{
 }>();
 
 const selectedCategory = ref<HouseCategory | null>(props.categories[0] || null);
+
+const selectCategory = (category: HouseCategory) => {
+  selectedCategory.value = category;
+};
 </script>
 
 <template>
@@ -21,6 +25,8 @@ const selectedCategory = ref<HouseCategory | null>(props.categories[0] || null);
         v-for="category in categories"
         :key="category.slug"
         :category="category"
+        :data-is-selected="category.id === selectedCategory?.id"
+        @click="selectCategory(category)"
       />
     </div>
   </div>
@@ -35,7 +41,8 @@ const selectedCategory = ref<HouseCategory | null>(props.categories[0] || null);
 
   .category-thumbnails {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
   }
 }
 </style>

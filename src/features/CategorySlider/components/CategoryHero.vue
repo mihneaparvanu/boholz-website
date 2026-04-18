@@ -17,7 +17,7 @@ const imageURL = computed(() => {
 <template>
   <div class="content-wrapper">
     <div class="text-content">
-      <h2>{{ category.name }}</h2>
+      <h4>{{ category.name }}</h4>
       <p>{{ category.description }}</p>
     </div>
     <img :src="imageURL" :alt="category.name" class="model-image" />
@@ -34,6 +34,8 @@ const imageURL = computed(() => {
 
   .text-content {
     position: absolute;
+    padding: var(--spacing-4) 0;
+    color: var(--clr-surface-primary);
     text-align: center;
     max-width: 600px;
   }

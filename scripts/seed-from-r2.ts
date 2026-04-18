@@ -177,6 +177,60 @@ async function run() {
   }
 
   console.log("🎉 Category thumbnails done!");
+
+  // -------------------------------------------------------------------------
+  // CATEGORY HEROES
+  // Explicit map of known hero files at category root level.
+  // -------------------------------------------------------------------------
+  const categoryHeroMap: { r2Key: string; dbSlug: string }[] = [
+    { r2Key: "images/models/bungalow/bungalow-hero-1.webp", dbSlug: "bungalow" },
+    { r2Key: "images/models/single-family/single-family-hero-1.webp", dbSlug: "einfamilienhaus" },
+  ];
+
+  console.log("\n🦸  Seeding category heroes...");
+
+  for (const { r2Key, dbSlug } of categoryHeroMap) {
+    const url = `/${r2Key}`;
+
+    const [category] = await db
+      .select({ id: houseCategories.id })
+      .from(houseCategories)
+      .where(eq(houseCategories.slug, dbSlug))
+      .limit(1);
+
+    if (!category) {
+      console.log(`⚠️ Category not found in DB for slug: ${dbSlug}`);
+      continue;
+    }
+
+    const [existing] = await db
+      .select()
+      .from(media)
+      .where(eq(media.path, url))
+      .limit(1);
+
+    if (existing) {
+      console.log(`🔄 Already seeded: ${r2Key}`);
+      continue;
+    }
+
+    const [inserted] = await db
+      .insert(media)
+      .values({ path: url })
+      .returning({ id: media.id });
+
+    await db.insert(categoryMedia).values({
+      categoryId: category.id,
+      mediaId: inserted.id,
+      isThumbnail: false,
+      isHero: true,
+      sortOrder: 0,
+    });
+
+    console.log(`✅ Linked ${r2Key} → category "${dbSlug}" (hero)`);
+  }
+
+  console.log("🎉 Category heroes done!");
   process.exit(0);
 }
 
