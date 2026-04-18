@@ -78,16 +78,21 @@
   --clr-status-warning: var(--stone-alt);
   --clr-status-error: var(--terracotta);
 
-  /* Spacing  */
-  --spacing-0: 4px;
-  --spacing-1: 8px;
-  --spacing-2: 12px;
-  --spacing-3: 20px;
-  --spacing-4: 32px;
-  --spacing-5: 52px;
-  --spacing-6: 84px;
-  --spacing-7: 136px;
-  --spacing-8: 220px;
+  /* Spacing — fluid Fibonacci scale
+     One clamp drives the whole thing. All steps are Fibonacci × the unit.
+     unit: 3px @ 320px viewport → 5px @ 1440px viewport
+     spacing-4 (the workhorse padding): 24px → 40px (was fixed 32px)      */
+  --spacing-unit: clamp(3px, 0.2vw + 2.14px, 5px);
+
+  --spacing-0: var(--spacing-unit); /* 3→5px   */
+  --spacing-1: calc(var(--spacing-unit) * 2); /* 6→10px  */
+  --spacing-2: calc(var(--spacing-unit) * 3); /* 9→15px  */
+  --spacing-3: calc(var(--spacing-unit) * 5); /* 15→25px */
+  --spacing-4: calc(var(--spacing-unit) * 8); /* 24→40px */
+  --spacing-5: calc(var(--spacing-unit) * 13); /* 39→65px */
+  --spacing-6: calc(var(--spacing-unit) * 21); /* 63→105px */
+  --spacing-7: calc(var(--spacing-unit) * 34); /* 102→170px */
+  --spacing-8: calc(var(--spacing-unit) * 55); /* 165→275px */
 
   /* --- Typography --- */
 
@@ -113,6 +118,23 @@
   --fs-h3: calc(var(--fs-h4) * var(--fs-scale));
   --fs-h2: calc(var(--fs-h3) * var(--fs-scale));
   --fs-h1: calc(var(--fs-h2) * var(--fs-scale));
+
+  /* Responsive overrides — two variables recalibrate the whole system.
+
+     below-desktop (< 1024px): moderate compression for tablets + wide phones
+       --fs-scale 1.333→1.25: brings h1 from ~80px down to ~60px at 700px
+
+     mobile (< 500px): full compression for phones
+       --fs-scale 1.333→1.2: h1 ~47px at 375px viewport
+       --spacing-unit 3px→2px: spacing-4 drops from 24px to 16px           */
+  @media (--below-desktop) {
+    --fs-scale: 1.25;
+  }
+
+  @media (--mobile) {
+    --fs-scale: 1.2;
+    --spacing-unit: 2px;
+  }
 
   /* Size System (Shared Scale) */
   --sz-scale: var(--fs-scale);

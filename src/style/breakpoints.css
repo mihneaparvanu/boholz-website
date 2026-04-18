@@ -1,1 +1,46 @@
-@custom-media --mobile screen and (width < 768px);
+/* =========================================================================
+   BREAKPOINTS
+   Registered via postcss-global-data so @custom-media works everywhere,
+   including <style scoped> inside .vue files.
+
+   TWO KINDS of breakpoint:
+
+   1. RANGE breakpoints — apply only inside that window:
+        --mobile   (< 500px)
+        --tablet   (500px – 1023px)
+        --desktop  (1024px – 1439px)
+        --wide     (≥ 1440px)
+
+   2. "FROM" breakpoints — mobile-first stacking, apply from that size UP:
+        --from-tablet   (≥ 500px)   ← use this when you want tablet + desktop + wide
+        --from-desktop  (≥ 1024px)  ← use this when you want desktop + wide
+        --from-wide     (≥ 1440px)  ← alias for --wide, for naming consistency
+
+   Rule of thumb:
+     Want to change something for mobile only?    → @media (--mobile)
+     Want to change something from tablet upward? → @media (--from-tablet)
+     Want to change something only on tablet?     → @media (--tablet)
+   ========================================================================= */
+
+/* --- Range breakpoints --- */
+
+/* < 500px  — phones */
+@custom-media --mobile screen and (width < 500px);
+
+/* 500px – 1023px — tablets, landscape phones */
+@custom-media --tablet screen and (500px <= width < 1024px);
+
+/* 1024px – 1439px — laptops, desktops */
+@custom-media --desktop screen and (1024px <= width < 1440px);
+
+/* >= 1440px — large monitors */
+@custom-media --wide screen and (width >= 1440px);
+
+/* --- "From" (min-width) breakpoints — mobile-first stacking --- */
+
+@custom-media --from-tablet screen and (width >= 500px);
+@custom-media --from-desktop screen and (width >= 1024px);
+@custom-media --from-wide screen and (width >= 1440px);
+
+/* Convenience: anything narrower than desktop */
+@custom-media --below-desktop screen and (width < 1024px);

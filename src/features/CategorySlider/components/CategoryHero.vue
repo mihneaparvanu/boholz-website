@@ -30,11 +30,11 @@ const imageURL = computed(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: var(--spacing-4);
 
   .text-content {
     position: absolute;
-    padding: var(--spacing-4) 0;
+    padding: var(--spacing-2) 0;
     color: var(--clr-surface-primary);
     text-align: center;
     max-width: 600px;
@@ -42,7 +42,12 @@ const imageURL = computed(() => {
 
   .model-image {
     width: 100%;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
+
+    @media (--from-tablet) {
+      aspect-ratio: 16 / 9;
+    }
   }
 }
 </style>

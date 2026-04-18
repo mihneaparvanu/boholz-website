@@ -26,12 +26,16 @@ const imageURL = computed(() => {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  width: var(--size);
-  height: var(--size);
+  width: 100%;
+  aspect-ratio: 1/1;
   border: 2px solid var(--clr-border-primary);
   overflow: hidden;
   &[data-is-selected="true"] {
     border-color: var(--clr-accent-primary);
+  }
+
+  @media (--from-tablet) {
+    width: var(--size);
   }
 }
 </style>

@@ -1,7 +1,7 @@
 /* Wrapper grid layout paradigm. This is used to wrap the content of the page and provide a consistent grid layout. */
 
 .wrapper {
-  --padding-inline: 1.5rem;
+  --padding-inline: var(--spacing-5);
   --content-max-width: 1600px;
   --popout-max-width: 1800px;
 

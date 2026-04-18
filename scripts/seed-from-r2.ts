@@ -183,8 +183,14 @@ async function run() {
   // Explicit map of known hero files at category root level.
   // -------------------------------------------------------------------------
   const categoryHeroMap: { r2Key: string; dbSlug: string }[] = [
-    { r2Key: "images/models/bungalow/bungalow-hero-1.webp", dbSlug: "bungalow" },
-    { r2Key: "images/models/single-family/single-family-hero-1.webp", dbSlug: "einfamilienhaus" },
+    {
+      r2Key: "images/models/bungalow/bungalow-hero-1.webp",
+      dbSlug: "bungalow",
+    },
+    {
+      r2Key: "images/models/single-family/single-family-hero-1.webp",
+      dbSlug: "einfamilienhaus",
+    },
   ];
 
   console.log("\n🦸  Seeding category heroes...");

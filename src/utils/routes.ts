@@ -1,12 +1,24 @@
 export const ROUTES = {
   home: "/",
-  about: "/about",
-  houses: "/hauser",
-  services: "/services",
-  contact: "/contact",
-  projects: "/projects",
-  blog: "/blog",
-  careers: "/careers",
-  faq: "/faq",
-  model: (model: string, category: string) => `/hauser/${category}/${model}`,
-};
+  houses: "/houses",
+  house: (slug: string) => `/haus/${slug}`,
+  yourHouse: "deine-zuhause",
+  advantages: "versprechen",
+  aboutUS: "uber-uns",
+  contact: "kontakt",
+} as const;
+
+export interface NavRoute {
+  label: string;
+  path: string;
+}
+
+export const NAV_ROUTES: NavRoute[] = [
+  { label: "Häuser", path: ROUTES.houses },
+  { label: "Dein Zuhause", path: ROUTES.yourHouse },
+  { label: "Unser Versprechen", path: ROUTES.advantages },
+  { label: "Über Uns", path: ROUTES.aboutUS },
+  { label: "Kontakt", path: ROUTES.contact },
+];
+
+export default NAV_ROUTES;

@@ -41,8 +41,15 @@ const selectCategory = (category: HouseCategory) => {
 
   .category-thumbnails {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    justify-content: center;
     gap: var(--spacing-4);
+
+    @media (--mobile) {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
+      gap: var(--spacing-2);
+    }
   }
 }
 </style>
