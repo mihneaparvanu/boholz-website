@@ -1,13 +1,19 @@
 import type { InferSelectModel } from "drizzle-orm";
-import { houseModels, modelMedia, media } from "../db/schema";
+import { houseModels, houseDetails, modelMedia, media } from "../db/schema";
 
+// Raw table row types — one per table
 export type BaseHouseModel = InferSelectModel<typeof houseModels>;
+export type BaseHouseDetails = InferSelectModel<typeof houseDetails>;
 export type BaseModelMedia = InferSelectModel<typeof modelMedia>;
 export type BaseMedia = InferSelectModel<typeof media>;
 
-// Composed type that matches our specific DB Query in index.astro
+// The composed type that matches our db.query.houseModels.findMany({ with: { details, media } }) query.
+// Think of this as the "shape of one API response row".
 export type HouseModel = BaseHouseModel & {
-  media: (Pick<BaseModelMedia, "isHero"> & {
-    media: Pick<BaseMedia, "path">
+  // details is nullable — not every model has one yet
+  details: BaseHouseDetails | null;
+  // media is the pivot array; each pivot row carries the actual media record nested inside it
+  media: (Pick<BaseModelMedia, "isHero" | "isThumbnail" | "sortOrder"> & {
+    media: Pick<BaseMedia, "path" | "alt" | "width" | "height">;
   })[];
 };

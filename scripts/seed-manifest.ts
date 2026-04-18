@@ -2,11 +2,17 @@ import fs from "fs";
 import path from "path";
 import { eq } from "drizzle-orm";
 import { db } from "../src/db/db";
-import { houseModels, modelMedia, houseCategories, categoryMedia, media } from "../src/db/schema";
+import {
+  houseModels,
+  modelMedia,
+  houseCategories,
+  categoryMedia,
+  media,
+} from "../src/db/schema";
 
 async function run() {
   console.log("🌱 Starting Manifest Seeder...");
-  
+
   // 1. Read the manifest
   const manifestPath = path.resolve(process.cwd(), "public/manifest.json");
   const manifestRaw = fs.readFileSync(manifestPath, "utf-8");
@@ -24,12 +30,12 @@ async function run() {
     const isHero = file.includes("hero");
     const isThumbnail = file.includes("thumb") || file.includes("selector");
 
-    // Extract the slug or code from the URL 
+    // Extract the slug or code from the URL
     const parts = url.split("/");
     if (parts.length < 5) continue;
-    
-    const categorySlug = parts[3]; 
-    const modelSlug = parts[4];    
+
+    const categorySlug = parts[3];
+    const modelSlug = parts[4];
 
     // 3. Find the matching model in the database
     const [model] = await db
@@ -40,9 +46,12 @@ async function run() {
 
     if (model) {
       // 4. Insert into the Central Media table FIRST!
-      const [insertedMedia] = await db.insert(media).values({
-        path: url
-      }).returning({ id: media.id });
+      const [insertedMedia] = await db
+        .insert(media)
+        .values({
+          path: url,
+        })
+        .returning({ id: media.id });
 
       // 5. Connect it via the Pivot Table
       await db.insert(modelMedia).values({

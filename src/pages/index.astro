@@ -18,15 +18,20 @@ let models: HouseModel[] = [];
 
 
 try {
-    const [{ value }] = await db.select({ value: count() }).from(houseModels);
     const data = await db.query.houseModels.findMany({
+      // Drizzle's amazing Relational Query API
       with: {
-        images: {
-          columns: { url: true, isHero: true },
-          orderBy: [asc(houseImages.sortOrder)],
-        },
-      },
+        category: true, // Fetch the parent category automatically
+        media: {        // Fetch the pivot table (model_media)
+          with: {
+            media: true // Ask the pivot to also fetch the actual image path from the Media SSOT table!
+          },
+          // We can even sort nested queries:
+          orderBy: (modelMedia, { asc }) => [asc(modelMedia.sortOrder)]
+        }
+      }
     });
+
     models = (data as unknown as HouseModel[]) || [];
   } catch (error) {
     console.error("Error fetching house models:", error);

@@ -30,17 +30,27 @@ export const houseModels = boholzSchema.table("house_models", {
   roofPitch: integer("roof_pitch"),
   livingArea: numeric("living_area"),
   totalArea: numeric("total_area"),
+  price: numeric("price"),
   isFeatured: boolean("is_featured").default(false),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
 // House Details (1:1 with house_models)
 export const houseDetails = boholzSchema.table("house_details", {
-  id: uuid("id").primaryKey().notNull(), // References house_models.id
+  id: uuid("id")
+    .primaryKey()
+    .references(() => houseModels.id)
+    .notNull(),
   levelCount: smallint("level_count"),
   bedroomCount: smallint("bedroom_count"),
   bathroomCount: smallint("bathroom_count"),
   familiesCount: smallint("families_count"),
+  // Dimensions (in meters)
+  width: numeric("width"),
+  length: numeric("length"),
+  ridgeHeight: numeric("ridge_height"),
+  // Features
+  hasGarage: boolean("has_garage").default(false),
 });
 
 // Agents
@@ -86,8 +96,12 @@ export const media = boholzSchema.table("media", {
 // Category Media
 export const categoryMedia = boholzSchema.table("category_media", {
   id: uuid("id").primaryKey().defaultRandom(),
-  categoryId: uuid("category_id").references(() => houseCategories.id).notNull(),
-  mediaId: uuid("media_id").references(() => media.id).notNull(),
+  categoryId: uuid("category_id")
+    .references(() => houseCategories.id)
+    .notNull(),
+  mediaId: uuid("media_id")
+    .references(() => media.id)
+    .notNull(),
   isThumbnail: boolean("is_thumbnail").default(false),
   isHero: boolean("is_hero").default(false),
   sortOrder: integer("sort_order").default(0),
@@ -96,8 +110,12 @@ export const categoryMedia = boholzSchema.table("category_media", {
 // Model Media (Renamed from house_images)
 export const modelMedia = boholzSchema.table("model_media", {
   id: uuid("id").primaryKey().defaultRandom(),
-  modelId: uuid("model_id").references(() => houseModels.id).notNull(),
-  mediaId: uuid("media_id").references(() => media.id).notNull(),
+  modelId: uuid("model_id")
+    .references(() => houseModels.id)
+    .notNull(),
+  mediaId: uuid("media_id")
+    .references(() => media.id)
+    .notNull(),
   isHero: boolean("is_hero").default(false),
   isThumbnail: boolean("is_thumbnail").default(false),
   sortOrder: integer("sort_order").default(0),
@@ -106,24 +124,36 @@ export const modelMedia = boholzSchema.table("model_media", {
 // Floor Media (Renamed from house_floor for consistency)
 export const floorMedia = boholzSchema.table("floor_media", {
   id: uuid("id").primaryKey().defaultRandom(),
-  modelId: uuid("model_id").references(() => houseModels.id).defaultRandom(),
-  mediaId: uuid("media_id").references(() => media.id).notNull(),
+  modelId: uuid("model_id")
+    .references(() => houseModels.id)
+    .defaultRandom(),
+  mediaId: uuid("media_id")
+    .references(() => media.id)
+    .notNull(),
   title: varchar("title"),
   sortOrder: smallint("sort_order"),
 });
 
 // Agent Media
 export const agentMedia = boholzSchema.table("agent_media", {
-  agentId: uuid("agent_id").references(() => agents.id).notNull(),
-  mediaId: uuid("media_id").references(() => media.id).notNull(),
+  agentId: uuid("agent_id")
+    .references(() => agents.id)
+    .notNull(),
+  mediaId: uuid("media_id")
+    .references(() => media.id)
+    .notNull(),
   label: varchar("label"),
   sortOrder: integer("sort_order").default(0),
 });
 
 // Showhouse Agents (M:N - Unrelated to media, keeping it safe)
 export const showhouseAgents = boholzSchema.table("showhouse_agents", {
-  agentId: uuid("agent_id").references(() => agents.id).notNull(),
-  showhouseId: uuid("showhouse_id").references(() => showhouses.id).notNull(),
+  agentId: uuid("agent_id")
+    .references(() => agents.id)
+    .notNull(),
+  showhouseId: uuid("showhouse_id")
+    .references(() => showhouses.id)
+    .notNull(),
   isPrimary: boolean("is_primary").default(false),
   sortOrder: integer("sort_order").default(0),
 });
@@ -136,9 +166,12 @@ export const mediaRelations = relations(media, ({ many }) => ({
   agentMedia: many(agentMedia),
 }));
 
-export const houseCategoriesRelations = relations(houseCategories, ({ many }) => ({
-  media: many(categoryMedia),
-}));
+export const houseCategoriesRelations = relations(
+  houseCategories,
+  ({ many }) => ({
+    media: many(categoryMedia),
+  }),
+);
 
 export const houseModelsRelations = relations(houseModels, ({ many, one }) => ({
   category: one(houseCategories, {
@@ -162,7 +195,7 @@ export const modelMediaRelations = relations(modelMedia, ({ one }) => ({
   media: one(media, {
     fields: [modelMedia.mediaId],
     references: [media.id],
-  })
+  }),
 }));
 
 export const categoryMediaRelations = relations(categoryMedia, ({ one }) => ({
@@ -173,7 +206,7 @@ export const categoryMediaRelations = relations(categoryMedia, ({ one }) => ({
   media: one(media, {
     fields: [categoryMedia.mediaId],
     references: [media.id],
-  })
+  }),
 }));
 
 export const floorMediaRelations = relations(floorMedia, ({ one }) => ({
@@ -184,5 +217,5 @@ export const floorMediaRelations = relations(floorMedia, ({ one }) => ({
   media: one(media, {
     fields: [floorMedia.mediaId],
     references: [media.id],
-  })
+  }),
 }));

@@ -8,6 +8,20 @@
       "when": 1776454777090,
       "tag": "0000_lowly_warstar",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1776503860525,
+      "tag": "0001_cool_barracuda",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1776507013046,
+      "tag": "0002_steady_stardust",
+      "breakpoints": true
     }
   ]
 }

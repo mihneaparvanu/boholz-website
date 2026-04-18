@@ -1,0 +1,42 @@
+---
+import { db } from "../db/db";
+import type { HouseModel } from "../types/models";
+import Layout from "../layouts/Layout.astro";
+import ModelCard from "../features/ModelOverview/components/ModelCard.vue";
+
+let models: HouseModel[] = [];
+
+try {
+  const data = await db.query.houseModels.findMany({
+    with: {
+      media: {
+        with: { media: true },
+        orderBy: (modelMedia, { asc }) => [asc(modelMedia.sortOrder)],
+      },
+    },
+  });
+  models = data as unknown as HouseModel[];
+} catch (error) {
+  console.error("Error fetching house models:", error);
+}
+---
+
+<Layout title="Fertighäuser">
+    <div class="content-grid">
+      {models.map((model) => (
+        <ModelCard model={model} />
+      ))}
+    </div>
+</Layout>
+
+<style>
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-4);
+  row-gap: var(--spacing-4);
+  width: 100%;
+}
+
+</style>
