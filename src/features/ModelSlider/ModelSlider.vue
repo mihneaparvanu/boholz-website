@@ -2,8 +2,8 @@
 import { ref } from "vue";
 import type { HouseModel } from "../../types/models";
 
-import ModelThumbnail from "./components/ModelThumbnail.vue";
-import ModelHero from "./components/ModelHero.vue";
+import CategoryThumbnail from "../CategorySlider/components/CategoryThumbnail.vue";
+import CategoryHero from "../CategorySlider/components/CategoryHero.vue";
 
 const props = defineProps<{
   models: HouseModel[];
@@ -20,7 +20,7 @@ const selectedModel = ref<HouseModel | null>(props.models[0] || null);
       <ModelThumbnail
         v-for="model in props.models"
         :key="model.slug"
-        :model="model"
+        :category="model.category!"
       />
     </div>
   </div>

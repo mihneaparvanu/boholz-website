@@ -1,17 +1,26 @@
 <script setup lang="ts">
-import type { HouseModel } from "../../../types/models";
+import { computed } from "vue";
+import { getMediaURL } from "../../../utils/media";
+
+import type { HouseCategory } from "../../../types/models";
 
 const props = defineProps<{
-  model: HouseModel;
+  category: HouseCategory;
 }>();
+
+const imageURL = computed(() => {
+  const thumbnail = props.category.media.find((m) => m.isHero);
+  return getMediaURL(thumbnail?.media.path ?? "");
+});
 </script>
 
 <template>
   <div class="content-wrapper">
     <div class="text-content">
-      <h2>{{ model.title }}</h2>
-      <p>{{ model.livingArea }} sqm</p>
+      <h2>{{ category.name }}</h2>
+      <p>{{ category.description }}</p>
     </div>
+    <img :src="imageURL" :alt="category.name" class="model-image" />
   </div>
 </template>
 

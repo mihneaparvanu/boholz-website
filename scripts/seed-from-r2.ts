@@ -124,7 +124,7 @@ async function run() {
   // R2 dirs use English slugs; DB categories use German slugs.
   // -------------------------------------------------------------------------
   const categoryThumbMap: Record<string, string> = {
-    "bungalow": "bungalow",
+    bungalow: "bungalow",
     "city-villa": "stadtvilla",
     "cube-house": "kubus",
     "multi-generational": "generationenhaus",

@@ -2,39 +2,31 @@
 // Framework Components
 import { getMediaURL } from "../utils/media";
 import { db } from "../db/db";
-import { asc } from "drizzle-orm";
 
 // Layout
 import Layout from "../layouts/Layout.astro";
 import Section from "../layouts/Section.astro";
 
 // Components
-import ModelSlider from "../features/ModelSlider/ModelSlider.vue";
-import type { HouseModel } from "../types/models";
+import CategorySlider from "../features/CategorySlider/CategorySlider.vue";
+import type { HouseCategory } from "../types/models";
 import "../style/wrapper.css";
 
-let models: HouseModel[] = [];
-
+let categories: HouseCategory[] = [];
 
 try {
-    const data = await db.query.houseModels.findMany({
-      // Drizzle's amazing Relational Query API
-      with: {
-        category: true, // Fetch the parent category automatically
-        media: {        // Fetch the pivot table (model_media)
-          with: {
-            media: true // Ask the pivot to also fetch the actual image path from the Media SSOT table!
-          },
-          // We can even sort nested queries:
-          orderBy: (modelMedia, { asc }) => [asc(modelMedia.sortOrder)]
-        }
+  const data = await db.query.houseCategories.findMany({
+    with: {
+      media: {
+        with: { media: true }
       }
-    });
+    }
+  });
 
-    models = (data as unknown as HouseModel[]) || [];
-  } catch (error) {
-    console.error("Error fetching house models:", error);
-  }
+  categories = (data as unknown as HouseCategory[]) || [];
+} catch (error) {
+  console.error("Error fetching categories:", error);
+}
 ---
 
 <Layout title="Boholz Haus">
@@ -60,12 +52,15 @@ try {
         class="hero-img-bg"
       />
     </div>
-    <ModelSlider client:load models={models} />
+
+  
     <Section
       heading="Fertighäuser in Zimmermannsqualität für Menschen mit"
       highlightWord="Anspruch."
       subheading="Unsere barrierefreien Fertighäuser aus Holz vereinen höchste Energieeffizienz mit meisterhaftem Handwerk. So sparen Sie Energiekosten und gewinnen wertvolle Lebensqualität für die ganze Familie."
-    />
+    >
+      <CategorySlider client:load categories={categories} />
+    </Section>
     <Section
       heading="Ihr Vertrauen"
       highlightWord="fest verankert."
