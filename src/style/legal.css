@@ -1,0 +1,96 @@
+/* Legal pages — Datenschutz, Impressum, Cookies */
+
+.legal {
+  max-width: 48rem;
+  margin-inline: auto;
+  padding-block: var(--spacing-6) var(--spacing-8);
+}
+
+/* ── Headings ── */
+
+.legal h1 {
+  font-size: var(--fs-h2);
+  margin-block-end: var(--spacing-5);
+}
+
+.legal h2 {
+  font-size: var(--fs-h4);
+  margin-block-start: var(--spacing-5);
+  margin-block-end: var(--spacing-2);
+  padding-block-end: var(--spacing-0);
+  border-bottom: 1px solid var(--clr-border-secondary);
+}
+
+.legal h3 {
+  font-size: var(--fs-h5);
+  margin-block-start: var(--spacing-4);
+  margin-block-end: var(--spacing-1);
+}
+
+.legal h4 {
+  font-size: var(--fs-h6);
+  margin-block-start: var(--spacing-3);
+  margin-block-end: var(--spacing-1);
+}
+
+/* ── Body text ── */
+
+.legal p {
+  margin-block-end: var(--spacing-2);
+  color: var(--clr-content-secondary);
+}
+
+.legal strong {
+  font-weight: 500;
+}
+
+/* ── Links ── */
+
+.legal a {
+  color: var(--clr-accent-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  word-break: break-all;
+}
+
+.legal a:hover {
+  color: var(--clr-accent-secondary);
+}
+
+/* ── Lists ── */
+
+.legal ul {
+  padding-inline-start: var(--spacing-3);
+  margin-block-end: var(--spacing-2);
+  list-style: disc;
+}
+
+.legal li {
+  margin-block-end: var(--spacing-1);
+  color: var(--clr-content-secondary);
+}
+
+/* ── Tables (Cookie-Richtlinie) ── */
+
+.legal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: var(--spacing-2) var(--spacing-3);
+  font-size: var(--fs-small);
+}
+
+.legal th,
+.legal td {
+  text-align: left;
+  padding: var(--spacing-1) var(--spacing-2);
+  border: 1px solid var(--clr-border-secondary);
+}
+
+.legal th {
+  background-color: var(--clr-surface-secondary);
+  font-weight: 500;
+}
+
+.legal td {
+  color: var(--clr-content-secondary);
+}

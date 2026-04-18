@@ -27,7 +27,7 @@ const pricePlaceholder: string = "150.000 €"; // Placeholder, as price is not 
     <div v-else class="image image-placeholder" />
     <div class="content-wrapper">
       <div class="title-surface">
-        <h2 class="title">{{ model.title }}</h2>
+        <h3 class="title">{{ model.title }}</h3>
         <div class="surface-wrapper">
           <p>{{ model.livingArea }} m²</p>
         </div>

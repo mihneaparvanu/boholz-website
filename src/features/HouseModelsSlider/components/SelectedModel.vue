@@ -9,7 +9,7 @@ const props = defineProps<{
 <template>
   <div class="content-wrapper">
     <div class="text-content">
-      <h2>{{ model.title }}</h2>
+      <h3>{{ model.title }}</h3>
       <p>{{ model.livingArea }} sqm</p>
     </div>
   </div>

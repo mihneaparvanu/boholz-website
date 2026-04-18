@@ -1,0 +1,184 @@
+/* Content pages — Versprechen, Dein Zuhause, Über Uns, Kontakt */
+
+.content-page {
+  max-width: 52rem;
+  margin-inline: auto;
+  padding-block: var(--spacing-5) var(--spacing-8);
+}
+
+/* ── Hero heading ── */
+
+.content-page > h1 {
+  font-size: var(--fs-h1);
+  margin-block-end: var(--spacing-2);
+}
+
+.content-page > .page-intro {
+  font-size: var(--fs-h6);
+  color: var(--clr-content-secondary);
+  margin-block-end: var(--spacing-6);
+  max-width: 42rem;
+}
+
+/* ── Sections ── */
+
+.content-page section {
+  margin-block-end: var(--spacing-6);
+}
+
+.content-page section:last-child {
+  margin-block-end: 0;
+}
+
+.content-page h2 {
+  font-size: var(--fs-h3);
+  margin-block-end: var(--spacing-3);
+  padding-block-end: var(--spacing-1);
+  border-bottom: 1px solid var(--clr-border-secondary);
+}
+
+.content-page h3 {
+  font-size: var(--fs-h5);
+  margin-block-start: var(--spacing-4);
+  margin-block-end: var(--spacing-2);
+}
+
+.content-page h4 {
+  font-size: var(--fs-h6);
+  margin-block-start: var(--spacing-3);
+  margin-block-end: var(--spacing-1);
+}
+
+/* ── Body text ── */
+
+.content-page p {
+  margin-block-end: var(--spacing-2);
+  color: var(--clr-content-secondary);
+}
+
+.content-page strong {
+  font-weight: 500;
+  color: var(--clr-content-primary);
+}
+
+/* ── Links ── */
+
+.content-page a {
+  color: var(--clr-accent-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.content-page a:hover {
+  color: var(--clr-accent-secondary);
+}
+
+/* ── Lists ── */
+
+.content-page ul,
+.content-page ol {
+  margin-block-end: var(--spacing-2);
+  padding-inline-start: var(--spacing-3);
+  color: var(--clr-content-secondary);
+}
+
+.content-page li {
+  margin-block-end: var(--spacing-0);
+}
+
+.content-page li::marker {
+  color: var(--clr-accent-primary);
+}
+
+/* ── Feature grid (for highlights / benefits) ── */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--spacing-3);
+  margin-block: var(--spacing-3);
+}
+
+.feature-card {
+  padding: var(--spacing-3);
+  background: var(--clr-surface-secondary);
+  border-radius: var(--spacing-1);
+}
+
+.feature-card h4 {
+  margin-block-start: 0;
+  margin-block-end: var(--spacing-1);
+  color: var(--clr-content-primary);
+}
+
+.feature-card p {
+  margin-block-end: 0;
+  font-size: var(--fs-small);
+}
+
+/* ── Info box (address, contact details) ── */
+
+.info-box {
+  padding: var(--spacing-3);
+  background: var(--clr-surface-secondary);
+  border-radius: var(--spacing-1);
+  margin-block: var(--spacing-3);
+}
+
+.info-box p {
+  margin-block-end: var(--spacing-1);
+}
+
+.info-box p:last-child {
+  margin-block-end: 0;
+}
+
+/* ── Numbered steps ── */
+
+.steps {
+  counter-reset: step;
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.steps li {
+  counter-increment: step;
+  padding-inline-start: var(--spacing-4);
+  position: relative;
+  margin-block-end: var(--spacing-3);
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  font-weight: 500;
+  color: var(--clr-accent-primary);
+  font-size: var(--fs-h6);
+}
+
+/* ── CTA block ── */
+
+.cta-block {
+  display: flex;
+  gap: var(--spacing-2);
+  flex-wrap: wrap;
+  margin-block: var(--spacing-4);
+}
+
+.cta-block a {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-1) var(--spacing-3);
+  background: var(--clr-accent-primary);
+  color: var(--clr-surface-primary);
+  text-decoration: none;
+  border-radius: var(--spacing-0);
+  font-weight: 400;
+  transition: background 0.2s;
+}
+
+.cta-block a:hover {
+  background: var(--clr-accent-secondary);
+  color: var(--clr-surface-primary);
+}

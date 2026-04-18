@@ -17,7 +17,7 @@ const imageURL = computed(() => {
 <template>
   <div class="content-wrapper">
     <div class="text-content">
-      <h4>{{ category.name }}</h4>
+      <h3>{{ category.name }}</h3>
       <p>{{ category.description }}</p>
     </div>
     <img :src="imageURL" :alt="category.name" class="model-image" />
