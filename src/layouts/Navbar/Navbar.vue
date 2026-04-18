@@ -1,11 +1,15 @@
 <script setup lang="ts">
+import { ref } from "vue";
+
 import BoholzLogo from "../../components/BoholzLogo.vue";
 import NavbarSheet from "./NavbarSheet.vue";
-
 import NAV_ROUTES from "../../utils/routes";
+import { Menu } from "lucide-vue-next";
+
+const isSheetOpen = ref(false);
 </script>
 <template>
-  <nav class="navbar full-width">
+  <nav class="navbar">
     <div class="nav-content">
       <div class="logo-links">
         <a class="logo" href="/"> <BoholzLogo class="logo-svg" /></a>
@@ -17,20 +21,27 @@ import NAV_ROUTES from "../../utils/routes";
         </ul>
       </div>
       <div class="cta"></div>
+      <button class="sheet-trigger" @click="isSheetOpen = !isSheetOpen">
+        <Menu />
+      </button>
     </div>
-    <NavbarSheet :routes="NAV_ROUTES" />
+    <NavbarSheet :routes="NAV_ROUTES" :data-is-open="isSheetOpen" />
   </nav>
 </template>
 <style scoped>
 .navbar {
+  grid-column: full-width;
   position: sticky;
   top: 0;
   background-color: var(--clr-surface-primary);
+  display: grid;
+  grid-template-columns: subgrid;
 
   .nav-content {
+    grid-column: content;
     display: flex;
     align-items: center;
-    padding: 2rem var(--padding-inline);
+    padding-block: 2rem;
     justify-content: space-between;
 
     .logo-links {
@@ -51,9 +62,24 @@ import NAV_ROUTES from "../../utils/routes";
         display: flex;
       }
     }
+
+    .sheet-trigger {
+      color: var(--clr-content-secondary);
+      display: block;
+
+      @media (--from-desktop) {
+        display: none;
+      }
+    }
   }
 
   .navbar-sheet {
+    grid-column: content;
+
+    &[data-is-open="false"] {
+      display: none;
+    }
+
     @media (--from-desktop) {
       display: none;
     }

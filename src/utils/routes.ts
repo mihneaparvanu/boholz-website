@@ -2,10 +2,10 @@ export const ROUTES = {
   home: "/",
   houses: "/houses",
   house: (slug: string) => `/haus/${slug}`,
-  yourHouse: "deine-zuhause",
-  advantages: "versprechen",
-  aboutUS: "uber-uns",
-  contact: "kontakt",
+  yourHouse: "/dein-zuhause",
+  advantages: "/unser-versprechen",
+  aboutUS: "/uber-uns",
+  contact: "/kontakt",
 } as const;
 
 export interface NavRoute {

@@ -22,14 +22,14 @@ const { routes } = defineProps<{
 <style scoped>
 .navbar-sheet {
   width: 100%;
-  height: 60vh;
+  min-height: 20vh;
   background-color: var(--clr-surface-primary);
+  padding-block: 0 var(--spacing-4);
 
   .nav-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: var(--spacing-4);
     height: 100%;
   }
