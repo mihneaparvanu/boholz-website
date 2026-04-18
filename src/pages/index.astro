@@ -12,6 +12,7 @@ import Section from "../layouts/Section.astro";
 // Components
 import ModelSlider from "../features/ModelSlider/ModelSlider.vue";
 import type { HouseModel } from "../types/models";
+import "../style/wrapper.css";
 
 let models: HouseModel[] = [];
 
@@ -33,8 +34,7 @@ try {
 ---
 
 <Layout title="Boholz Haus">
-  <div class="page">
-    <div class="hero">
+    <div class="hero full-width">
       <div class="hero-inner">
         <div class="hero-content">
           <div class="hero-heading">
@@ -67,7 +67,6 @@ try {
       highlightWord="fest verankert."
       subheading="Wir bauen nicht nur Häuser, wir bauen Sicherheit. Mit zertifizierter Qualität aus Deutschland und Garantien, auf die Sie sich verlassen können."
     />
-  </div>
   </Layout>
 
   <style>

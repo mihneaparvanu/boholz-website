@@ -1,5 +1,5 @@
 import { execSync } from "child_process";
-import { eq } from "drizzle-orm";
+import { eq, like } from "drizzle-orm";
 import { db } from "../src/db/db";
 import { houseModels, media, modelMedia } from "../src/db/schema";
 import dotenv from "dotenv";
@@ -64,7 +64,7 @@ async function run() {
     const [model] = await db
       .select({ id: houseModels.id })
       .from(houseModels)
-      .where(eq(houseModels.slug, modelSlug))
+      .where(like(houseModels.slug, `%${modelSlug}%`))
       .limit(1);
 
     if (model) {

@@ -1,0 +1,26 @@
+/* Wrapper grid layout paradigm. This is used to wrap the content of the page and provide a consistent grid layout. */
+
+.wrapper {
+  --padding-inline: 1.5rem;
+  --content-max-width: 1600px;
+  --popout-max-width: 1800px;
+
+  display: grid;
+  grid-template-columns:
+    [full-width-start] minmax(var(--padding-inline), 1fr)
+    [content-start] minmax(0, var(--content-max-width)) [content-end]
+    minmax(var(--padding-inline), 1fr)
+    [full-width-end];
+}
+
+.wrapper > * {
+  grid-column: content;
+}
+
+.wrapper > .popout {
+  grid-column: popout;
+}
+
+.wrapper > .full-width {
+  grid-column: full-width;
+}
