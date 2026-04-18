@@ -23,7 +23,13 @@ const imageURL = computed(() => {
       <h3>{{ category.name }}</h3>
       <p>{{ category.description }}</p>
     </div>
-    <img :src="imageURL" :alt="category.name" :width="heroMedia?.media.width" :height="heroMedia?.media.height" class="model-image" />
+    <img
+      :src="imageURL"
+      :alt="category.name"
+      :width="heroMedia?.media.width"
+      :height="heroMedia?.media.height"
+      class="model-image"
+    />
   </div>
 </template>
 

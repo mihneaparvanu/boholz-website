@@ -18,7 +18,13 @@ const imageURL = computed(() => {
 </script>
 <template>
   <div class="house-model-circle">
-    <img :src="imageURL" :alt="category.name" :width="thumbnail?.media.width" :height="thumbnail?.media.height" class="model-image" />
+    <img
+      :src="imageURL"
+      :alt="category.name"
+      :width="thumbnail?.media.width"
+      :height="thumbnail?.media.height"
+      class="model-image"
+    />
   </div>
 </template>
 <style scoped>
