@@ -3,6 +3,7 @@ import { db } from "../db/db";
 import type { HouseModel } from "../types/models";
 import Layout from "../layouts/Layout.astro";
 import ModelCard from "../features/ModelOverview/components/ModelCard.vue";
+import { ROUTES } from "../utils/routes";
 
 let models: HouseModel[] = [];
 
@@ -25,7 +26,7 @@ try {
     <h1>Fertighäuser</h1>
     <div class="content-grid">
       {models.map((model) => (
-        <ModelCard model={model} />
+      <a href={ROUTES.house(model.slug)}> <ModelCard model={model} /></a>
       ))}
     </div>
 </Layout>

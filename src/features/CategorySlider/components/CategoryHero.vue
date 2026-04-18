@@ -8,9 +8,12 @@ const props = defineProps<{
   category: HouseCategory;
 }>();
 
+const heroMedia = computed(() => {
+  return props.category.media.find((m) => m.isHero);
+});
+
 const imageURL = computed(() => {
-  const thumbnail = props.category.media.find((m) => m.isHero);
-  return getMediaURL(thumbnail?.media.path ?? "");
+  return getMediaURL(heroMedia.value?.media.path ?? "");
 });
 </script>
 
@@ -20,7 +23,7 @@ const imageURL = computed(() => {
       <h3>{{ category.name }}</h3>
       <p>{{ category.description }}</p>
     </div>
-    <img :src="imageURL" :alt="category.name" class="model-image" />
+    <img :src="imageURL" :alt="category.name" :width="heroMedia?.media.width" :height="heroMedia?.media.height" class="model-image" />
   </div>
 </template>
 

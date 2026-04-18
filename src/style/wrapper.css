@@ -26,3 +26,17 @@
 .wrapper > .full-width {
   grid-column: full-width;
 }
+
+.subgrid {
+  grid-column: full-width;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+
+.subgrid > * {
+  grid-column: content;
+}
+
+.subgrid > .full-width {
+  grid-column: full-width;
+}

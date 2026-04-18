@@ -9,7 +9,7 @@ import { Menu } from "lucide-vue-next";
 const isSheetOpen = ref(false);
 </script>
 <template>
-  <nav class="navbar">
+  <nav class="navbar subgrid">
     <div class="nav-content">
       <div class="logo-links">
         <a class="logo" href="/"> <BoholzLogo class="logo-svg" /></a>
@@ -30,15 +30,14 @@ const isSheetOpen = ref(false);
 </template>
 <style scoped>
 .navbar {
-  grid-column: full-width;
   position: sticky;
   top: 0;
   background-color: var(--clr-surface-primary);
   display: grid;
   grid-template-columns: subgrid;
+  z-index: 10;
 
   .nav-content {
-    grid-column: content;
     display: flex;
     align-items: center;
     padding-block: 2rem;
@@ -74,8 +73,6 @@ const isSheetOpen = ref(false);
   }
 
   .navbar-sheet {
-    grid-column: content;
-
     &[data-is-open="false"] {
       display: none;
     }

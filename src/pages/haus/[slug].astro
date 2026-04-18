@@ -1,0 +1,84 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { db } from '../../db/db';
+import Layout from "../../layouts/Layout.astro";
+import { getMediaURL } from '../../utils/media';
+import HeroContent from '../haus/components/HeroContent.vue'
+import StatItem from '../haus/components/StatItem.vue';
+import { Scan, Grid2X2, BedDouble, ShowerHead } from 'lucide-vue-next';
+
+export const getStaticPaths = (async () => {
+const houseModels = await db.query.houseModels.findMany({
+    with: {
+        details: true, 
+        media: {
+            with: { media: true },
+            orderBy: (modelMedia, { asc }) => [asc(modelMedia.sortOrder)],
+        },
+    },
+})
+return houseModels.map((model) => ({
+    params: { slug: model.slug },
+    props: {
+        model,
+    },
+}));
+
+}) satisfies GetStaticPaths;
+
+
+const { model } = Astro.props;
+const details = model.details ?? {};
+const heroImage = model.media.find((m) => m.isHero)?.media;
+
+const area = model.livingArea ? `${parseFloat(model.livingArea)} m²` : '–';
+const rooms = details.levelCount ?? '–';
+const bedrooms = details.bedroomCount ?? '–';
+const bathrooms = details.bathroomCount ?? '–';
+
+---
+
+<Layout title={model.title + " – BoHolz Haus"}>
+<section class="hero subgrid">
+    <div class="hero-image full-width">
+        {heroImage && <img src={getMediaURL(heroImage.path)} alt={heroImage.alt} width={heroImage.width} height={heroImage.height} />}
+    </div>
+
+<HeroContent model={model} />
+
+<div class="items-grid">
+    <StatItem label='Fläche' value={area}> <Scan/> </StatItem>
+    <StatItem label='Zimmer' value={String(rooms)}> <Grid2X2/> </StatItem>
+    <StatItem label='Schlafzimmer' value={String(bedrooms)}> <BedDouble/> </StatItem>
+    <StatItem label='Badezimmer' value={String(bathrooms)}> <ShowerHead/> </StatItem>
+</div>
+
+</section>
+</Layout>
+
+
+<style>
+.hero {
+    display: grid;
+
+    .hero-image {
+    width: 100%;
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+    }
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+
+    .items-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+        gap: var(--spacing-3);
+        width: 100%;
+    }
+}
+</style>

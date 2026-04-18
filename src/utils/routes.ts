@@ -1,6 +1,6 @@
 export const ROUTES = {
   home: "/",
-  houses: "/houses",
+  houses: "/hauser",
   house: (slug: string) => `/haus/${slug}`,
   promise: "/unser-versprechen",
   yourHouse: "/dein-zuhause",

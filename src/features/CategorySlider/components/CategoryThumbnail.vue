@@ -8,14 +8,17 @@ const props = defineProps<{
   category: HouseCategory;
 }>();
 
+const thumbnail = computed(() => {
+  return props.category.media.find((m) => m.isThumbnail);
+});
+
 const imageURL = computed(() => {
-  const thumbnail = props.category.media.find((m) => m.isThumbnail);
-  return getMediaURL(thumbnail?.media.path ?? "");
+  return getMediaURL(thumbnail.value?.media.path ?? "");
 });
 </script>
 <template>
   <div class="house-model-circle">
-    <img :src="imageURL" :alt="category.name" class="model-image" />
+    <img :src="imageURL" :alt="category.name" :width="thumbnail?.media.width" :height="thumbnail?.media.height" class="model-image" />
   </div>
 </template>
 <style scoped>

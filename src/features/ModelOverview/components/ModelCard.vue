@@ -7,13 +7,15 @@ const props = defineProps<{
   model: HouseModel;
 }>();
 
-const heroImage = computed(
+const heroMediaItem = computed(
   () =>
-    props.model.media.find((m) => m.isHero)?.media.path ??
-    props.model.media[0]?.media.path,
+    props.model.media.find((m) => m.isHero)?.media ??
+    props.model.media[0]?.media,
 );
 
-const pricePlaceholder: string = "150.000 €"; // Placeholder, as price is not in the model type
+const heroImage = computed(() => heroMediaItem.value?.path);
+
+const pricePlaceholder: string = "150.000 €";
 </script>
 
 <template>
@@ -23,6 +25,8 @@ const pricePlaceholder: string = "150.000 €"; // Placeholder, as price is not 
       class="image"
       :src="getMediaURL(heroImage)"
       :alt="model.title"
+      :width="heroMediaItem?.width"
+      :height="heroMediaItem?.height"
     />
     <div v-else class="image image-placeholder" />
     <div class="content-wrapper">
@@ -74,6 +78,7 @@ const pricePlaceholder: string = "150.000 €"; // Placeholder, as price is not 
   grid-area: title-surface;
 
   .title {
+    font-weight: 400;
     font-size: var(--fs-body);
   }
 }
