@@ -10,6 +10,7 @@ let models: HouseModel[] = [];
 try {
   const data = await db.query.houseModels.findMany({
     with: {
+      category: true,
       media: {
         with: { media: true },
         orderBy: (modelMedia, { asc }) => [asc(modelMedia.sortOrder)],

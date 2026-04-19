@@ -5,6 +5,7 @@ import {
   modelMedia,
   houseCategories,
   categoryMedia,
+  floorMedia,
   media,
 } from "../db/schema";
 
@@ -15,6 +16,7 @@ export type BaseModelMedia = InferSelectModel<typeof modelMedia>;
 export type BaseMedia = InferSelectModel<typeof media>;
 export type BaseHouseCategory = InferSelectModel<typeof houseCategories>;
 export type BaseCategoryMedia = InferSelectModel<typeof categoryMedia>;
+export type BaseFloorMedia = InferSelectModel<typeof floorMedia>;
 
 export type HouseModel = BaseHouseModel & {
   // details is nullable — not every model has one yet
@@ -25,6 +27,12 @@ export type HouseModel = BaseHouseModel & {
   media: (Pick<BaseModelMedia, "isHero" | "isThumbnail" | "sortOrder"> & {
     media: Pick<BaseMedia, "path" | "alt" | "width" | "height">;
   })[];
+  // floor plans linked via floor_media pivot
+  floors: HouseFloor[];
+};
+
+export type HouseFloor = Pick<BaseFloorMedia, "title" | "sortOrder"> & {
+  media: Pick<BaseMedia, "path" | "alt" | "width" | "height">;
 };
 
 export type HouseCategory = BaseHouseCategory & {

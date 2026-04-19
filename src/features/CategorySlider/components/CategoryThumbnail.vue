@@ -34,7 +34,7 @@ const imageURL = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   width: 100%;
   aspect-ratio: 1/1;
   border: 2px solid var(--clr-border-primary);

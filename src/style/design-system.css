@@ -94,6 +94,13 @@
   --spacing-7: calc(var(--spacing-unit) * 34); /* 102→170px */
   --spacing-8: calc(var(--spacing-unit) * 55); /* 165→275px */
 
+  /* --- Border Radius --- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
   /* --- Typography --- */
 
   /* Fonts */

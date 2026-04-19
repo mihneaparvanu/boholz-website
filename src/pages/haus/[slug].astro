@@ -4,24 +4,26 @@ import type { GetStaticPaths } from 'astro';
 import { db } from '../../db/db';
 import Layout from "../../layouts/Layout.astro";
 import { getMediaURL } from '../../utils/media';
-import { formatSquareMeters } from '../../utils/format';
 
 import HeroContent from '../../features/HousePage/components/HeroContent.vue'
-import StatCard from '../../features/HousePage/components/StatCard.vue';
+import StatsGrid from '../../features/HousePage/components/StatsGrid.vue';
 import AccordionItem from '../../features/HousePage/components/AccordionItem.vue';
 import DetailsGrid from '../../features/HousePage/components/DetailsGrid.vue';
-
-import { Scan, Grid2X2, BedDouble, ShowerHead } from 'lucide-vue-next';
-
+import FloorDisplay from '../../features/HousePage/components/FloorDisplay.vue';
 
 
 export const getStaticPaths = (async () => {
 const houseModels = await db.query.houseModels.findMany({
     with: {
+        category: true,
         details: true, 
         media: {
             with: { media: true },
             orderBy: (modelMedia, { asc }) => [asc(modelMedia.sortOrder)],
+        },
+        floors: {
+            with: { media: true },
+            orderBy: (floor, { asc }) => [asc(floor.sortOrder)],
         },
     },
 })
@@ -31,19 +33,10 @@ return houseModels.map((model) => ({
         model,
     },
 }));
-
 }) satisfies GetStaticPaths;
 
-
 const { model } = Astro.props;
-const details = model.details ?? {};
 const heroImage = model.media.find((m) => m.isHero)?.media;
-
-const area = model.livingArea ? formatSquareMeters(model.livingArea) : '–';
-const rooms = details.levelCount ?? '–';
-const bedrooms = details.bedroomCount ?? '–';
-const bathrooms = details.bathroomCount ?? '–';
-
 
 ---
 
@@ -52,21 +45,18 @@ const bathrooms = details.bathroomCount ?? '–';
     <div class="hero-image full-width">
         {heroImage && <img src={getMediaURL(heroImage.path)} alt={heroImage.alt} width={heroImage.width} height={heroImage.height} />}
     </div>
-
 <HeroContent model={model} />
-
-<div class="items-grid">
-    <StatCard label='Fläche' value={area}> <Scan/> </StatCard>
-    <StatCard label='Zimmer' value={String(rooms)}> <Grid2X2/> </StatCard>
-    <StatCard label='Schlafzimmer' value={String(bedrooms)}> <BedDouble/> </StatCard>
-    <StatCard label='Badezimmer' value={String(bathrooms)}> <ShowerHead/> </StatCard>
-</div>
-
+<StatsGrid model={model} />
 <div class="features-list">
-   <AccordionItem class="details-grid" label='Details'>
+   <AccordionItem class="details-grid" label='Details' client:visible>
     <DetailsGrid model={model}/>
    </AccordionItem>
 </div>
+
+{model.floors.length > 0 && (
+    model.floors.map((floor) => (
+        <FloorDisplay floor={floor} />
+)))}
 
 </section>
 </Layout>
@@ -88,21 +78,11 @@ const bathrooms = details.bathroomCount ?? '–';
         object-fit: cover;
     }
 
-
-    .items-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(250px, 1fr));
-        gap: var(--spacing-3);
-        width: 100%;
-    }
-
     .features-list {
         display: flex;
         flex-direction: column;
         padding-block: var(--spacing-5);
         width: 100%;
     }
-
-   
 }
 </style>

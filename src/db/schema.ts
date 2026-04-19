@@ -32,6 +32,7 @@ export const houseModels = boholzSchema.table("house_models", {
   livingArea: numeric("living_area"),
   totalArea: numeric("total_area"),
   price: numeric("price"),
+  description: text("description"),
   isFeatured: boolean("is_featured").default(false),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
@@ -49,7 +50,7 @@ export const houseDetails = boholzSchema.table("house_details", {
   // Dimensions (in meters)
   width: numeric("width"),
   length: numeric("length"),
-  ridgeHeight: numeric("ridge_height"),
+  height: numeric("height"),
   // Features
   hasGarage: boolean("has_garage").default(false),
 });
@@ -183,8 +184,8 @@ export const houseModelsRelations = relations(houseModels, ({ many, one }) => ({
     fields: [houseModels.id],
     references: [houseDetails.id],
   }),
-  media: many(modelMedia), // Changed from 'images' to 'media'
-  floorMedia: many(floorMedia), // Changed from 'floors' to 'floorMedia'
+  media: many(modelMedia),
+  floors: many(floorMedia),
 }));
 
 // Pivot definitions mapping the joints back to the media table

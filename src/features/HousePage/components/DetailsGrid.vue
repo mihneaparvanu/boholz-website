@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DetailConfig } from "./house-page.types";
+import type { DisplayItemConfig } from "./house-page.types";
 import type { HouseModel } from "../../../types/models";
 import DetailRow from "./DetailRow.vue";
 import {
@@ -20,7 +20,7 @@ const props = defineProps<{
   model: HouseModel;
 }>();
 
-const detailConfig: DetailConfig[] = [
+const detailConfig: DisplayItemConfig[] = [
   {
     label: "Breite",
     icon: MoveHorizontal,
@@ -36,7 +36,7 @@ const detailConfig: DetailConfig[] = [
   {
     label: "Höhe",
     icon: MoveVertical,
-    resolve: (m) => m.details?.ridgeHeight,
+    resolve: (m) => m.details?.height,
     format: formatMeters,
   },
   { label: "Etagen", icon: Layers, resolve: (m) => m.details?.levelCount },

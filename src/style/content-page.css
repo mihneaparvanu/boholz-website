@@ -102,7 +102,7 @@
 .feature-card {
   padding: var(--spacing-3);
   background: var(--clr-surface-secondary);
-  border-radius: var(--spacing-1);
+  border-radius: var(--radius-md);
 }
 
 .feature-card h4 {
@@ -121,7 +121,7 @@
 .info-box {
   padding: var(--spacing-3);
   background: var(--clr-surface-secondary);
-  border-radius: var(--spacing-1);
+  border-radius: var(--radius-md);
   margin-block: var(--spacing-3);
 }
 
@@ -173,7 +173,7 @@
   background: var(--clr-accent-primary);
   color: var(--clr-surface-primary);
   text-decoration: none;
-  border-radius: var(--spacing-0);
+  border-radius: var(--radius-sm);
   font-weight: 400;
   transition: background 0.2s;
 }
