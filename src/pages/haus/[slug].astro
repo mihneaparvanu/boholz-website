@@ -3,9 +3,11 @@ import type { GetStaticPaths } from 'astro';
 import { db } from '../../db/db';
 import Layout from "../../layouts/Layout.astro";
 import { getMediaURL } from '../../utils/media';
-import HeroContent from '../haus/components/HeroContent.vue'
-import StatItem from '../haus/components/StatItem.vue';
+import HeroContent from '../../features/HousePage/components/HeroContent.vue'
+import StatCard from '../../features/HousePage/components/StatCard.vue';
+import AccordionItem from '../../features/HousePage/components/AccordionItem.vue';
 import { Scan, Grid2X2, BedDouble, ShowerHead } from 'lucide-vue-next';
+import DetailRow from '../../features/HousePage/components/DetailRow.vue';
 
 export const getStaticPaths = (async () => {
 const houseModels = await db.query.houseModels.findMany({
@@ -36,6 +38,16 @@ const rooms = details.levelCount ?? '–';
 const bedrooms = details.bedroomCount ?? '–';
 const bathrooms = details.bathroomCount ?? '–';
 
+
+const detailsDisplay = [
+    {label: "Breite", value: details.width},
+    {label: "Länge", value: details.length},
+    {label: "Höhe", value: details.ridgeHeight},
+    {label : "Dachneigung", value: model.roofPitch},
+    {label: "Garagen", value: details.hasGarage},
+];
+
+
 ---
 
 <Layout title={model.title + " – BoHolz Haus"}>
@@ -47,10 +59,19 @@ const bathrooms = details.bathroomCount ?? '–';
 <HeroContent model={model} />
 
 <div class="items-grid">
-    <StatItem label='Fläche' value={area}> <Scan/> </StatItem>
-    <StatItem label='Zimmer' value={String(rooms)}> <Grid2X2/> </StatItem>
-    <StatItem label='Schlafzimmer' value={String(bedrooms)}> <BedDouble/> </StatItem>
-    <StatItem label='Badezimmer' value={String(bathrooms)}> <ShowerHead/> </StatItem>
+    <StatCard label='Fläche' value={area}> <Scan/> </StatCard>
+    <StatCard label='Zimmer' value={String(rooms)}> <Grid2X2/> </StatCard>
+    <StatCard label='Schlafzimmer' value={String(bedrooms)}> <BedDouble/> </StatCard>
+    <StatCard label='Badezimmer' value={String(bathrooms)}> <ShowerHead/> </StatCard>
+</div>
+
+<div class="features-list">
+   <AccordionItem class="details-grid" label='Details'>
+{detailsDisplay.map((detail)=> (
+    <DetailRow label={detail.label} value={detail.value}/>
+))
+}
+   </AccordionItem>
 </div>
 
 </section>
@@ -79,6 +100,19 @@ const bathrooms = details.bathroomCount ?? '–';
         grid-template-columns: repeat(2, minmax(250px, 1fr));
         gap: var(--spacing-3);
         width: 100%;
+    }
+
+    .features-list {
+        display: flex;
+        flex-direction: column;
+        padding-block: var(--spacing-5);
+        width: 100%;
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-3);
     }
 }
 </style>
