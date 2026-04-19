@@ -1,0 +1,132 @@
+[
+  {
+    "category": "single-family",
+    "modelCode": "25-168-190",
+    "level": "ground",
+    "title": "Erdgeschoss",
+    "path": "images/models/single-family/25-168-190/floor-plans/single-family-25-168-190-floor-plan-ground-1000x717.webp",
+    "width": 1000,
+    "height": 717,
+    "sortOrder": 0
+  },
+  {
+    "category": "single-family",
+    "modelCode": "25-168-190",
+    "level": "attic",
+    "title": "Dachgeschoss",
+    "path": "images/models/single-family/25-168-190/floor-plans/single-family-25-168-190-floor-plan-attic-1000x750.webp",
+    "width": 1000,
+    "height": 750,
+    "sortOrder": 2
+  },
+  {
+    "category": "single-family",
+    "modelCode": "22-173-190",
+    "level": "ground",
+    "title": "Erdgeschoss",
+    "path": "images/models/single-family/22-173-190/floor-plans/single-family-22-173-190-floor-plan-ground-1000x634.webp",
+    "width": 1000,
+    "height": 634,
+    "sortOrder": 0
+  },
+  {
+    "category": "single-family",
+    "modelCode": "22-173-190",
+    "level": "attic",
+    "title": "Dachgeschoss",
+    "path": "images/models/single-family/22-173-190/floor-plans/single-family-22-173-190-floor-plan-attic-1000x651.webp",
+    "width": 1000,
+    "height": 651,
+    "sortOrder": 2
+  },
+  {
+    "category": "single-family",
+    "modelCode": "28-194-170",
+    "level": "ground",
+    "title": "Erdgeschoss",
+    "path": "images/models/single-family/28-194-170/floor-plans/single-family-28-194-170-floor-plan-ground-1912x1676.webp",
+    "width": 1912,
+    "height": 1676,
+    "sortOrder": 0
+  },
+  {
+    "category": "single-family",
+    "modelCode": "28-194-170",
+    "level": "attic",
+    "title": "Dachgeschoss",
+    "path": "images/models/single-family/28-194-170/floor-plans/single-family-28-194-170-floor-plan-attic-1948x1708.webp",
+    "width": 1948,
+    "height": 1708,
+    "sortOrder": 2
+  },
+  {
+    "category": "bungalow",
+    "modelCode": "22-134",
+    "level": "ground",
+    "title": "Erdgeschoss",
+    "path": "images/models/bungalow/22-134/floor-plans/bungalow-22-134-floor-plan-ground-2640x1509.webp",
+    "width": 2640,
+    "height": 1509,
+    "sortOrder": 0
+  },
+  {
+    "category": "cube-house",
+    "modelCode": "0-190",
+    "level": "ground",
+    "title": "Erdgeschoss",
+    "path": "images/models/cube-house/0-190/floor-plans/cube-house-0-190-floor-plan-ground-1000x713.webp",
+    "width": 1000,
+    "height": 713,
+    "sortOrder": 0
+  },
+  {
+    "category": "cube-house",
+    "modelCode": "0-190",
+    "level": "upper",
+    "title": "Obergeschoss",
+    "path": "images/models/cube-house/0-190/floor-plans/cube-house-0-190-floor-plan-upper-1000x717.webp",
+    "width": 1000,
+    "height": 717,
+    "sortOrder": 1
+  },
+  {
+    "category": "city-villa",
+    "modelCode": "22-166",
+    "level": "ground",
+    "title": "Erdgeschoss",
+    "path": "images/models/city-villa/22-166/floor-plans/city-villa-22-166-floor-plan-ground-1000x946.webp",
+    "width": 1000,
+    "height": 946,
+    "sortOrder": 0
+  },
+  {
+    "category": "city-villa",
+    "modelCode": "22-166",
+    "level": "upper",
+    "title": "Obergeschoss",
+    "path": "images/models/city-villa/22-166/floor-plans/city-villa-22-166-floor-plan-upper-1000x936.webp",
+    "width": 1000,
+    "height": 936,
+    "sortOrder": 1
+  },
+  {
+    "category": "city-villa",
+    "modelCode": "22-173",
+    "level": "ground",
+    "title": "Erdgeschoss",
+    "path": "images/models/city-villa/22-173/floor-plans/city-villa-22-173-floor-plan-ground-1468x1051.webp",
+    "width": 1468,
+    "height": 1051,
+    "sortOrder": 0
+  },
+  {
+    "category": "city-villa",
+    "modelCode": "22-173",
+    "level": "upper",
+    "title": "Obergeschoss",
+    "path": "images/models/city-villa/22-173/floor-plans/city-villa-22-173-floor-plan-upper-1977x1277.webp",
+    "width": 1977,
+    "height": 1277,
+    "sortOrder": 1
+  }
+]

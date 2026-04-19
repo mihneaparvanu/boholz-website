@@ -1,0 +1,164 @@
+[
+  {
+    "modelCode": "22-162-190",
+    "path": "/images/models/single-family/22-162-190/floor-plans/single-family-22-162-190-floor-plan-ground-1000x881.webp",
+    "alt": "Grundriss Erdgeschoss 22-162-190",
+    "width": 1000,
+    "height": 881,
+    "title": "Erdgeschoss",
+    "sortOrder": 0
+  },
+  {
+    "modelCode": "22-162-190",
+    "path": "/images/models/single-family/22-162-190/floor-plans/single-family-22-162-190-floor-plan-attic-1000x859.webp",
+    "alt": "Grundriss Dachgeschoss 22-162-190",
+    "width": 1000,
+    "height": 859,
+    "title": "Dachgeschoss",
+    "sortOrder": 1
+  },
+  {
+    "modelCode": "35-181-150",
+    "path": "/images/models/single-family/35-181-150/floor-plans/single-family-35-181-150-floor-plan-ground-1000x915.webp",
+    "alt": "Grundriss Erdgeschoss 35-181-150",
+    "width": 1000,
+    "height": 915,
+    "title": "Erdgeschoss",
+    "sortOrder": 0
+  },
+  {
+    "modelCode": "35-181-150",
+    "path": "/images/models/single-family/35-181-150/floor-plans/single-family-35-181-150-floor-plan-attic-1000x883.webp",
+    "alt": "Grundriss Dachgeschoss 35-181-150",
+    "width": 1000,
+    "height": 883,
+    "title": "Dachgeschoss",
+    "sortOrder": 1
+  },
+  {
+    "modelCode": "35-181-150",
+    "path": "/images/models/single-family/35-181-150/floor-plans/single-family-35-181-150-floor-plan-ground-alt-1000x929.webp",
+    "alt": "Grundriss Erdgeschoss (Alternativ) 35-181-150",
+    "width": 1000,
+    "height": 929,
+    "title": "Erdgeschoss (Alternativ)",
+    "sortOrder": 2
+  },
+  {
+    "modelCode": "38-128-125",
+    "path": "/images/models/single-family/38-128-125/floor-plans/single-family-38-128-125-floor-plan-ground-1000x1021.webp",
+    "alt": "Grundriss Erdgeschoss 38-128-125",
+    "width": 1000,
+    "height": 1021,
+    "title": "Erdgeschoss",
+    "sortOrder": 0
+  },
+  {
+    "modelCode": "38-128-125",
+    "path": "/images/models/single-family/38-128-125/floor-plans/single-family-38-128-125-floor-plan-attic-1000x987.webp",
+    "alt": "Grundriss Dachgeschoss 38-128-125",
+    "width": 1000,
+    "height": 987,
+    "title": "Dachgeschoss",
+    "sortOrder": 1
+  },
+  {
+    "modelCode": "38-138-125",
+    "path": "/images/models/single-family/38-138-125/floor-plans/single-family-38-138-125-floor-plan-ground-1000x967.webp",
+    "alt": "Grundriss Erdgeschoss 38-138-125",
+    "width": 1000,
+    "height": 967,
+    "title": "Erdgeschoss",
+    "sortOrder": 0
+  },
+  {
+    "modelCode": "38-138-125",
+    "path": "/images/models/single-family/38-138-125/floor-plans/single-family-38-138-125-floor-plan-attic-1000x1002.webp",
+    "alt": "Grundriss Dachgeschoss 38-138-125",
+    "width": 1000,
+    "height": 1002,
+    "title": "Dachgeschoss",
+    "sortOrder": 1
+  },
+  {
+    "modelCode": "38-138-125",
+    "path": "/images/models/single-family/38-138-125/floor-plans/single-family-38-138-125-floor-plan-ground-alt-1000x1095.webp",
+    "alt": "Grundriss Erdgeschoss (Alternativ) 38-138-125",
+    "width": 1000,
+    "height": 1095,
+    "title": "Erdgeschoss (Alternativ)",
+    "sortOrder": 2
+  },
+  {
+    "modelCode": "45-139-75",
+    "path": "/images/models/single-family/45-139-75/floor-plans/single-family-45-139-75-floor-plan-ground-1000x815.webp",
+    "alt": "Grundriss Erdgeschoss 45-139-75",
+    "width": 1000,
+    "height": 815,
+    "title": "Erdgeschoss",
+    "sortOrder": 0
+  },
+  {
+    "modelCode": "45-139-75",
+    "path": "/images/models/single-family/45-139-75/floor-plans/single-family-45-139-75-floor-plan-attic-1000x849.webp",
+    "alt": "Grundriss Dachgeschoss 45-139-75",
+    "width": 1000,
+    "height": 849,
+    "title": "Dachgeschoss",
+    "sortOrder": 1
+  },
+  {
+    "modelCode": "22-141-190",
+    "path": "/images/models/single-family/22-141-190/floor-plans/single-family-22-141-190-floor-plan-ground-1000x627.webp",
+    "alt": "Grundriss Erdgeschoss 22-141-190",
+    "width": 1000,
+    "height": 627,
+    "title": "Erdgeschoss",
+    "sortOrder": 0
+  },
+  {
+    "modelCode": "22-141-190",
+    "path": "/images/models/single-family/22-141-190/floor-plans/single-family-22-141-190-floor-plan-attic-1000x637.webp",
+    "alt": "Grundriss Dachgeschoss 22-141-190",
+    "width": 1000,
+    "height": 637,
+    "title": "Dachgeschoss",
+    "sortOrder": 1
+  },
+  {
+    "modelCode": "35-146-150",
+    "path": "/images/models/single-family/35-146-150/floor-plans/single-family-35-146-150-floor-plan-ground-1000x768.webp",
+    "alt": "Grundriss Erdgeschoss 35-146-150",
+    "width": 1000,
+    "height": 768,
+    "title": "Erdgeschoss",
+    "sortOrder": 0
+  },
+  {
+    "modelCode": "35-146-150",
+    "path": "/images/models/single-family/35-146-150/floor-plans/single-family-35-146-150-floor-plan-attic-1000x746.webp",
+    "alt": "Grundriss Dachgeschoss 35-146-150",
+    "width": 1000,
+    "height": 746,
+    "title": "Dachgeschoss",
+    "sortOrder": 1
+  },
+  {
+    "modelCode": "28-194-170",
+    "path": "/images/models/single-family/28-194-170/floor-plans/single-family-28-194-170-floor-plan-ground-alt-1916x1780.webp",
+    "alt": "Grundriss Erdgeschoss (Variante 2) 28-194-170",
+    "width": 1916,
+    "height": 1780,
+    "title": "Erdgeschoss (Variante 2)",
+    "sortOrder": 2
+  },
+  {
+    "modelCode": "22-173",
+    "path": "/images/models/city-villa/22-173/floor-plans/city-villa-22-173-floor-plan-ground-alt-1000x716.webp",
+    "alt": "Grundriss Erdgeschoss (Alternativ) 22-173",
+    "width": 1000,
+    "height": 716,
+    "title": "Erdgeschoss (Alternativ)",
+    "sortOrder": 2
+  }
+]

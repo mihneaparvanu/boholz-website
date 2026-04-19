@@ -1,0 +1,125 @@
+{
+  "0-142": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "0-145": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "0-166": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "0-278": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "0-283": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "145-0-0": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "166-22-0": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "169-25-190": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "172-0-0-1800": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "172-22-0-1800": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "18-140": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "18-145": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "18-845": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "21-349-225": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "22-117": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "22-141-190": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "22-149": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "22-152": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "22-157": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "22-162-190": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "22-166-190": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "22-187": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "22-282": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "28-264-160": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "28-299": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "28-314-190": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "35-146-150": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "35-151-150": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "35-181-150": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "38-115-125": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "38-119-125": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "38-128-125": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "38-132-125": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "38-138-125": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "38-144-125": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "38-238-125": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "45-139-75": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "45-147-75": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "dombuehl": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "house-east": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  },
+  "satteldorf-nord": {
+    "error": "Error code: 401 - {'error': {'code': 'unauthorized', 'message': 'Bad credentials', 'details': 'Bad credentials'}}"
+  }
+}
