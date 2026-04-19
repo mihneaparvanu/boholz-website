@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { House } from "lucide-vue-next";
 import type { HouseModel } from "../../../types/models";
+import { formatCurrency } from "../../../utils/format";
 
 const props = defineProps<{
   model: HouseModel;
@@ -19,7 +20,7 @@ const props = defineProps<{
     <div class="headline">
       <div class="heading-group">
         <h3>{{ model.title }}</h3>
-        <span>ab {{ Number(model.price).toLocaleString("de-DE") }} €</span>
+        <span>ab {{ formatCurrency(model.price ?? 0) }}</span>
       </div>
       <p>{{ model.category?.description }}</p>
     </div>

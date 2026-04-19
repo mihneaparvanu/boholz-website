@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { getMediaURL } from "../../../utils/media";
+import { formatSquareMeters, formatCurrency, formatDegrees } from "../../../utils/format";
 import type { HouseModel } from "../../../types/models";
 
 const props = defineProps<{
@@ -15,7 +16,7 @@ const heroMediaItem = computed(
 
 const heroImage = computed(() => heroMediaItem.value?.path);
 
-const pricePlaceholder: string = "150.000 €";
+const pricePlaceholder: string = formatCurrency(150000);
 </script>
 
 <template>
@@ -33,12 +34,12 @@ const pricePlaceholder: string = "150.000 €";
       <div class="title-surface">
         <h3 class="title">{{ model.title }}</h3>
         <div class="surface-wrapper">
-          <p>{{ model.livingArea }} m²</p>
+          <p>{{ formatSquareMeters(model.livingArea ?? 0) }}</p>
         </div>
       </div>
       <div class="price-rooms">
         <p>{{ pricePlaceholder }}</p>
-        <p>{{ model.roofPitch }}°</p>
+        <p>{{ formatDegrees(model.roofPitch ?? 0) }}</p>
       </div>
     </div>
   </div>

@@ -1,13 +1,19 @@
 ---
 import type { GetStaticPaths } from 'astro';
+
 import { db } from '../../db/db';
 import Layout from "../../layouts/Layout.astro";
 import { getMediaURL } from '../../utils/media';
+import { formatSquareMeters } from '../../utils/format';
+
 import HeroContent from '../../features/HousePage/components/HeroContent.vue'
 import StatCard from '../../features/HousePage/components/StatCard.vue';
 import AccordionItem from '../../features/HousePage/components/AccordionItem.vue';
+import DetailsGrid from '../../features/HousePage/components/DetailsGrid.vue';
+
 import { Scan, Grid2X2, BedDouble, ShowerHead } from 'lucide-vue-next';
-import DetailRow from '../../features/HousePage/components/DetailRow.vue';
+
+
 
 export const getStaticPaths = (async () => {
 const houseModels = await db.query.houseModels.findMany({
@@ -33,19 +39,10 @@ const { model } = Astro.props;
 const details = model.details ?? {};
 const heroImage = model.media.find((m) => m.isHero)?.media;
 
-const area = model.livingArea ? `${parseFloat(model.livingArea)} m²` : '–';
+const area = model.livingArea ? formatSquareMeters(model.livingArea) : '–';
 const rooms = details.levelCount ?? '–';
 const bedrooms = details.bedroomCount ?? '–';
 const bathrooms = details.bathroomCount ?? '–';
-
-
-const detailsDisplay = [
-    {label: "Breite", value: details.width},
-    {label: "Länge", value: details.length},
-    {label: "Höhe", value: details.ridgeHeight},
-    {label : "Dachneigung", value: model.roofPitch},
-    {label: "Garagen", value: details.hasGarage},
-];
 
 
 ---
@@ -67,10 +64,7 @@ const detailsDisplay = [
 
 <div class="features-list">
    <AccordionItem class="details-grid" label='Details'>
-{detailsDisplay.map((detail)=> (
-    <DetailRow label={detail.label} value={detail.value}/>
-))
-}
+    <DetailsGrid model={model}/>
    </AccordionItem>
 </div>
 
@@ -109,10 +103,6 @@ const detailsDisplay = [
         width: 100%;
     }
 
-    .details-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-3);
-    }
+   
 }
 </style>
