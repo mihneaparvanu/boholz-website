@@ -7,10 +7,6 @@ export interface DisplayItem {
   value: string;
 }
 
-/**
- * Config entry: maps a label + icon to a field on the model/details.
- * `resolve` pulls the raw value from the model; `format` turns it into a display string.
- */
 export interface DisplayItemConfig {
   label: string;
   icon: LucideIcon;

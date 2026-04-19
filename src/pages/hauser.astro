@@ -1,11 +1,11 @@
 ---
 import { db } from "../db/db";
-import type { HouseModel } from "../types/models";
+import type { HouseModel, HouseCategory } from "../types/models";
 import Layout from "../layouts/Layout.astro";
-import ModelCard from "../features/ModelOverview/components/ModelCard.vue";
-import { ROUTES } from "../utils/routes";
+import HousesPage from "../features/HousesPage/HousesPage.vue";
 
 let models: HouseModel[] = [];
+let categories: HouseCategory[] = [];
 
 try {
   const data = await db.query.houseModels.findMany({
@@ -17,29 +17,30 @@ try {
       },
     },
   });
+
+  const data2 = await db.query.houseCategories.findMany({
+    with: {
+      media: {
+        with: { media: true },
+        orderBy: (categoryMedia, { asc }) => [asc(categoryMedia.sortOrder)],
+      },
+    },
+  });
   models = data as unknown as HouseModel[];
+  categories = data2 as unknown as HouseCategory[];
 } catch (error) {
   console.error("Error fetching house models:", error);
 }
+
+
 ---
 
-<Layout title="Fertighäuser">
-    <h1>Fertighäuser</h1>
-    <div class="content-grid">
-      {models.map((model) => (
-      <a href={ROUTES.house(model.slug)}> <ModelCard model={model} /></a>
-      ))}
-    </div>
+<Layout title="Häuser – BoHolz Haus">
+<h1>Unsere Häuser</h1>
+   <HousesPage models={models} categories={categories} client:visible />
+    
 </Layout>
 
 <style>
-
-.content-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-4);
-  row-gap: var(--spacing-4);
-  width: 100%;
-}
 
 </style>

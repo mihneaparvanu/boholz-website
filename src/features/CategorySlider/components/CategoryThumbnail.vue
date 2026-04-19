@@ -39,6 +39,12 @@ const imageURL = computed(() => {
   aspect-ratio: 1/1;
   border: 2px solid var(--clr-border-primary);
   overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   &[data-is-selected="true"] {
     border-color: var(--clr-accent-primary);
   }
