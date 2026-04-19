@@ -53,6 +53,7 @@ const heroImage = computed(() => heroMediaItem.value?.path);
   flex-direction: column;
   height: 400px;
   border: 2px solid var(--clr-border-primary);
+  border-radius: var(--radius-md);
   overflow: hidden;
 }
 

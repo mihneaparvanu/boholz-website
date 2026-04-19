@@ -4,6 +4,15 @@ import { ref, computed } from "vue";
 import ModelCard from "../../features/ModelOverview/components/ModelCard.vue";
 import CategoryThumbnail from "../../features/CategorySlider/components/CategoryThumbnail.vue";
 import { ROUTES } from "../../utils/routes";
+import { numeric } from "drizzle-orm/pg-core";
+
+type SortOptions = "asc" | "desc";
+
+interface SortOption {
+  label: string;
+  key: keyof HouseModel;
+  direction: SortOptions;
+}
 
 const props = defineProps<{
   models: HouseModel[];
@@ -12,30 +21,63 @@ const props = defineProps<{
 
 let categories = props.categories;
 
+const sortOptions: SortOption[] = [
+  { label: "Fläche ↑", key: "livingArea", direction: "asc" },
+  { label: "Fläche ↓", key: "livingArea", direction: "desc" },
+  { label: "Preis ↑", key: "price", direction: "asc" },
+  { label: "Preis ↓", key: "price", direction: "desc" },
+];
 const selectedCategory = ref<HouseCategory | null>(categories[0] || null);
+
+const selectedSortIndex = ref(0);
+const selectedSortOption = computed(() => sortOptions[selectedSortIndex.value]);
 
 const selectCategory = (category: HouseCategory) => {
   selectedCategory.value = category;
 };
 
 const displayModels = computed(() => {
-  return props.models.filter((model) => {
+  const filtered = props.models.filter((model) => {
     return model.category?.id === selectedCategory.value?.id;
+  });
+  const { key, direction } = selectedSortOption.value;
+  return [...filtered].sort((a, b) => {
+    const aValue = a[key] ?? "";
+    const bValue = b[key] ?? "";
+    const comp = String(aValue).localeCompare(String(bValue), "de", {
+      numeric: true,
+    });
+    return direction === "asc" ? comp : -comp;
   });
 });
 </script>
 
 <template>
   <div class="houses-page-wrapper">
-    <div class="categories-wrapper">
-      <CategoryThumbnail
-        v-for="category in categories"
-        :key="category.id"
-        :category="category"
-        @click="selectCategory(category)"
-        :data-is-selected="category.id === selectedCategory?.id"
-      />
+    <div class="controls-wrapper">
+      <div class="categories-wrapper">
+        <CategoryThumbnail
+          v-for="category in categories"
+          :key="category.id"
+          :category="category"
+          @click="selectCategory(category)"
+          :data-is-selected="category.id === selectedCategory?.id"
+        />
+      </div>
+      <div class="filter-wrapper">
+        <span>Sortieren nach:</span>
+        <select v-model.number="selectedSortIndex">
+          <option
+            v-for="(option, index) in sortOptions"
+            :key="option.label"
+            :value="index"
+          >
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
     </div>
+
     <div class="content-grid">
       <a
         v-for="model in displayModels"
@@ -52,10 +94,21 @@ const displayModels = computed(() => {
 .houses-page-wrapper {
   grid-column: content;
 
-  .categories-wrapper {
+  .controls-wrapper {
     display: flex;
-    gap: var(--spacing-4);
-    padding-block: var(--spacing-4);
+    justify-content: space-between;
+    align-items: center;
+
+    .categories-wrapper {
+      display: flex;
+      gap: var(--spacing-4);
+      padding-block: var(--spacing-4);
+    }
+
+    .filter-wrapper {
+      display: flex;
+      gap: var(--spacing-1);
+    }
   }
 
   .content-grid {
