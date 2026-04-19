@@ -10,12 +10,12 @@ import Section from "../layouts/Section.astro";
 import CategorySlider from "../features/CategorySlider/CategorySlider.vue";
 import "../style/wrapper.css";
 
-import { getNavbarCategories, getCategories } from "../data/loaders";
+import { getCategories } from "../data/loaders";
 
-const [navbarCategories, categories] = await Promise.all([getNavbarCategories(), getCategories()]);
+const categories = await getCategories();
 ---
 
-<Layout title="Boholz Haus" categories={navbarCategories}>
+<Layout title="Boholz Haus" categories={categories}>
     <div class="hero full-width">
       <div class="hero-inner">
         <div class="hero-content">

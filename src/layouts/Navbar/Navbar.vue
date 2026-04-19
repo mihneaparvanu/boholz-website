@@ -1,28 +1,33 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 import BoholzLogo from "../../components/BoholzLogo.vue";
 import NavbarSheet from "./NavbarSheet.vue";
 import NavbarDrop from "./NavbarDrop.vue";
 import NAV_ROUTES from "../../utils/routes";
 import { Menu } from "lucide-vue-next";
-import type { NavbarCategory } from "../../data/loaders";
+import type { HouseCategory } from "../../types/models";
 
 const props = defineProps<{
-  categories: NavbarCategory[];
+  categories: HouseCategory[];
   currentPath: string;
 }>();
 
-const selectedCategory = ref<NavbarCategory | null>(null);
+const selectedCategory = ref<HouseCategory | null>(null);
 
-const selectCategory = (category: NavbarCategory) => {
+const selectCategory = (category: HouseCategory) => {
   selectedCategory.value = category;
 };
+
+const selectedHeroMedia = computed(
+  () => selectedCategory.value?.media.find((m) => m.isHero)?.media,
+);
+
 const isSheetOpen = ref(false);
 const isDropOpen = ref(false);
 </script>
 <template>
-  <nav class="navbar subgrid">
+  <nav class="navbar">
     <div class="nav-content">
       <div class="logo-links">
         <a class="logo" href="/"> <BoholzLogo class="logo-svg" /></a>
@@ -73,9 +78,9 @@ const isDropOpen = ref(false);
             </div>
             <div class="image-wrapper">
               <img
-                v-if="selectedCategory?.heroImage"
-                :src="selectedCategory.heroImage.path"
-                :alt="selectedCategory.heroImage.alt ?? selectedCategory.name"
+                v-if="selectedHeroMedia"
+                :src="selectedHeroMedia.path"
+                :alt="selectedHeroMedia.alt ?? selectedCategory?.name"
               />
             </div>
           </div>
@@ -87,9 +92,12 @@ const isDropOpen = ref(false);
 
 <style scoped>
 .navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
+  padding: var(--spacing-3) var(--spacing-5);
 
   .nav-content {
     background-color: var(--clr-surface-primary);
@@ -164,10 +172,19 @@ const isDropOpen = ref(false);
 
       .text-content {
         z-index: 1;
-        padding: var(--spacing-2) 0;
+        padding-inline-start: var(--spacing-4);
+        padding: var(--spacing-3);
+        color: var(--clr-surface-primary);
         .title {
           font-size: var(--fs-h6);
         }
+        width: 100%;
+        background: linear-gradient(
+          360deg,
+          rgba(0, 0, 0, 0.75) 0%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        backdrop-filter: blur(1px);
       }
 
       .image-wrapper {

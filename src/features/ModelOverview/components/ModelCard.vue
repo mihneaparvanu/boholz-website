@@ -6,6 +6,7 @@ import {
   formatDegrees,
 } from "../../../utils/format";
 import type { HouseModel } from "../../../types/models";
+import ImagePlaceholder from "../../../components/ImagePlaceholder.vue";
 
 const props = defineProps<{
   model: HouseModel;
@@ -28,8 +29,8 @@ const heroImage = computed(() => heroMediaItem.value?.path);
       :width="heroMediaItem?.width"
       :height="heroMediaItem?.height"
     />
-    <div v-else class="image image-placeholder">
-      <span class="placeholder-icon">?</span>
+    <div v-else class="image">
+      <ImagePlaceholder />
     </div>
     <div class="content-wrapper">
       <div class="title-surface">
@@ -60,19 +61,6 @@ const heroImage = computed(() => heroMediaItem.value?.path);
   width: 100%;
   height: 80%;
   object-fit: cover;
-
-  &.image-placeholder {
-    background-color: var(--clr-surface-tertiary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .placeholder-icon {
-      font-size: 4rem;
-      font-weight: 500;
-      color: var(--clr-content-tertiary);
-    }
-  }
 }
 
 .content-wrapper {
