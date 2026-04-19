@@ -1,9 +1,8 @@
 ---
 import type { GetStaticPaths } from 'astro';
 
-import { db } from '../../db/db';
 import Layout from "../../layouts/Layout.astro";
-import { getMediaURL } from '../../utils/media';
+import { getModels } from '../../data/loaders';
 
 import HeroContent from '../../features/HousePage/components/HeroContent.vue'
 import StatsGrid from '../../features/HousePage/components/StatsGrid.vue';
@@ -13,20 +12,7 @@ import FloorDisplay from '../../features/HousePage/components/FloorDisplay.vue';
 
 
 export const getStaticPaths = (async () => {
-const houseModels = await db.query.houseModels.findMany({
-    with: {
-        category: true,
-        details: true, 
-        media: {
-            with: { media: true },
-            orderBy: (modelMedia, { asc }) => [asc(modelMedia.sortOrder)],
-        },
-        floors: {
-            with: { media: true },
-            orderBy: (floor, { asc }) => [asc(floor.sortOrder)],
-        },
-    },
-})
+const houseModels = await getModels();
 return houseModels.map((model) => ({
     params: { slug: model.slug },
     props: {
@@ -43,7 +29,7 @@ const heroImage = model.media.find((m) => m.isHero)?.media;
 <Layout title={model.title + " – BoHolz Haus"}>
 <section class="hero subgrid">
     <div class="hero-image full-width">
-        {heroImage && <img src={getMediaURL(heroImage.path)} alt={heroImage.alt} width={heroImage.width} height={heroImage.height} />}
+        {heroImage && <img src={heroImage.path} alt={heroImage.alt} width={heroImage.width} height={heroImage.height} />}
     </div>
 <HeroContent model={model} />
 <StatsGrid model={model} />

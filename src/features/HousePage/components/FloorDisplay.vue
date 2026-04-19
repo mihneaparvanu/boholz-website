@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { HouseFloor } from "../../../types/models";
-import { getMediaURL } from "../../../utils/media";
 
 const props = defineProps<{
   floor: HouseFloor;
@@ -11,7 +10,7 @@ const props = defineProps<{
   <div class="floor-display">
     <h3>{{ floor.title }}</h3>
     <div class="image-wrapper">
-      <img :src="getMediaURL(floor.media.path)" :alt="floor.media.alt" />
+      <img :src="floor.media.path" :alt="floor.media.alt" />
     </div>
   </div>
 </template>

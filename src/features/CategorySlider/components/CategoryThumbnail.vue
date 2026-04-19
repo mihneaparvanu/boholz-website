@@ -2,7 +2,6 @@
 import { computed } from "vue";
 
 import type { HouseCategory } from "../../../types/models";
-import { getMediaURL } from "../../../utils/media";
 
 const props = defineProps<{
   category: HouseCategory;
@@ -13,7 +12,7 @@ const thumbnail = computed(() => {
 });
 
 const imageURL = computed(() => {
-  return getMediaURL(thumbnail.value?.media.path ?? "");
+  return thumbnail.value?.media.path ?? "";
 });
 </script>
 <template>

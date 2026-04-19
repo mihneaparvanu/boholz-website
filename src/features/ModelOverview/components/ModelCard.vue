@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { getMediaURL } from "../../../utils/media";
 import {
   formatSquareMeters,
   formatCurrency,
@@ -26,7 +25,7 @@ const heroImage = computed(() => heroMediaItem.value?.path);
     <img
       v-if="heroImage"
       class="image"
-      :src="getMediaURL(heroImage)"
+      :src="heroImage"
       :alt="model.title"
       :width="heroMediaItem?.width"
       :height="heroMediaItem?.height"

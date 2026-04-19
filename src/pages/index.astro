@@ -1,7 +1,6 @@
 ---
 // Framework Components
 import { getMediaURL } from "../utils/media";
-import { db } from "../db/db";
 
 // Layout
 import Layout from "../layouts/Layout.astro";
@@ -12,24 +11,12 @@ import CategorySlider from "../features/CategorySlider/CategorySlider.vue";
 import type { HouseCategory } from "../types/models";
 import "../style/wrapper.css";
 
-let categories: HouseCategory[] = [];
+import { getCategories } from "../data/loaders";
 
-try {
-  const data = await db.query.houseCategories.findMany({
-    with: {
-      media: {
-        with: { media: true }
-      }
-    }
-  });
-
-  categories = (data as unknown as HouseCategory[]) || [];
-} catch (error) {
-  console.error("Error fetching categories:", error);
-}
+const categories = await getCategories();
 ---
 
-<Layout title="Boholz Haus">
+<Layout title="Boholz Haus" categories={categories}>
     <div class="hero full-width">
       <div class="hero-inner">
         <div class="hero-content">

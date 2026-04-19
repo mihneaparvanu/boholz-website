@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { getMediaURL } from "../../../utils/media";
 
 import type { HouseCategory } from "../../../types/models";
 
@@ -13,7 +12,7 @@ const heroMedia = computed(() => {
 });
 
 const imageURL = computed(() => {
-  return getMediaURL(heroMedia.value?.media.path ?? "");
+  return heroMedia.value?.media.path ?? "";
 });
 </script>
 
