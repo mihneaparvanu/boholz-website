@@ -6,6 +6,9 @@ export const ROUTES = {
   yourHouse: "/dein-zuhause",
   aboutUS: "/uber-uns",
   contact: "/kontakt",
+  impressum: "/impressum",
+  datenschutz: "/datenschutz",
+  cookies: "/cookies",
 } as const;
 
 export interface NavRoute {

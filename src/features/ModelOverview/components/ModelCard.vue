@@ -12,9 +12,7 @@ const props = defineProps<{
 }>();
 
 const heroMediaItem = computed(
-  () =>
-    props.model.media.find((m) => m.isHero)?.media ??
-    props.model.media[0]?.media,
+  () => props.model.media.find((m) => m.isHero)?.media,
 );
 
 const heroImage = computed(() => heroMediaItem.value?.path);
@@ -30,7 +28,9 @@ const heroImage = computed(() => heroMediaItem.value?.path);
       :width="heroMediaItem?.width"
       :height="heroMediaItem?.height"
     />
-    <div v-else class="image image-placeholder" />
+    <div v-else class="image image-placeholder">
+      <span class="placeholder-icon">?</span>
+    </div>
     <div class="content-wrapper">
       <div class="title-surface">
         <h3 class="title">{{ model.title }}</h3>
@@ -62,7 +62,16 @@ const heroImage = computed(() => heroMediaItem.value?.path);
   object-fit: cover;
 
   &.image-placeholder {
-    background-color: var(--clr-surface-secondary);
+    background-color: var(--clr-surface-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .placeholder-icon {
+      font-size: 4rem;
+      font-weight: 500;
+      color: var(--clr-content-tertiary);
+    }
   }
 }
 
