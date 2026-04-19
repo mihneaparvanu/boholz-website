@@ -17,6 +17,7 @@ html {
   text-size-adjust: none;
   scroll-behavior: smooth;
   height: 100%;
+  scrollbar-gutter: stable;
 }
 
 body {

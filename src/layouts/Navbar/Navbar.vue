@@ -27,7 +27,7 @@ const isSheetOpen = ref(false);
 const isDropOpen = ref(false);
 </script>
 <template>
-  <nav class="navbar">
+  <nav class="navbar" :data-sheet-open="isSheetOpen">
     <div class="nav-content">
       <div class="logo-links">
         <a class="logo" href="/"> <BoholzLogo class="logo-svg" /></a>
@@ -62,7 +62,6 @@ const isDropOpen = ref(false);
               v-for="category in props.categories"
               :key="category.id"
               @mouseover="selectCategory(category)"
-              @mouseleave="selectedCategory = null"
             >
               <a :href="`/hauser?category=${category.slug}`">{{
                 category.name
@@ -71,7 +70,11 @@ const isDropOpen = ref(false);
           </ul>
         </template>
         <template #trailing>
-          <div v-if="selectedCategory" class="categories-showcase">
+          <a
+            v-if="selectedCategory"
+            class="categories-showcase"
+            :href="`/hauser?category=${selectedCategory.slug}`"
+          >
             <div class="text-content">
               <h3 class="title">{{ selectedCategory?.name }}</h3>
               <p>{{ `Entdecken Sie alle ${selectedCategory?.name}` }}</p>
@@ -83,7 +86,7 @@ const isDropOpen = ref(false);
                 :alt="selectedHeroMedia.alt ?? selectedCategory?.name"
               />
             </div>
-          </div>
+          </a>
         </template>
       </NavbarDrop>
     </div>
@@ -140,6 +143,11 @@ const isDropOpen = ref(false);
     }
   }
 
+  &[data-sheet-open="true"] .nav-content {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
   .navbar-sheet {
     &[data-is-open="false"] {
       display: none;
@@ -155,8 +163,13 @@ const isDropOpen = ref(false);
 
     .house-categories {
       display: flex;
+      width: fit-content;
       flex-direction: column;
       gap: var(--spacing-2);
+
+      li {
+        width: fit-content;
+      }
     }
 
     .categories-showcase {
@@ -169,6 +182,11 @@ const isDropOpen = ref(false);
       gap: var(--spacing-4);
       align-items: start;
       height: 100%;
+
+      &:hover,
+      &:focus {
+        opacity: 1;
+      }
 
       .text-content {
         z-index: 1;

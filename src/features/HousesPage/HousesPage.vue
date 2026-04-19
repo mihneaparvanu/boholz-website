@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { HouseModel, HouseCategory } from "../../types/models";
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import ModelCard from "../../features/ModelOverview/components/ModelCard.vue";
 import CategoryThumbnail from "../../features/CategorySlider/components/CategoryThumbnail.vue";
 import { ROUTES } from "../../utils/routes";
@@ -28,6 +28,15 @@ const sortOptions: SortOption[] = [
   { label: "Preis ↓", key: "price", direction: "desc" },
 ];
 const selectedCategory = ref<HouseCategory | null>(categories[0] || null);
+
+onMounted(() => {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get("category");
+  if (slug) {
+    const match = categories.find((c) => c.slug === slug);
+    if (match) selectedCategory.value = match;
+  }
+});
 
 const selectedSortIndex = ref(0);
 const selectedSortOption = computed(() => sortOptions[selectedSortIndex.value]);

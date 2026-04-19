@@ -22,9 +22,12 @@ const { routes } = defineProps<{
 <style scoped>
 .navbar-sheet {
   width: 100%;
-  min-height: 20vh;
+  min-height: 10vh;
   background-color: var(--clr-surface-primary);
-  padding-block: 0 var(--spacing-4);
+  padding-block: var(--spacing-2) var(--spacing-3);
+  padding-inline: var(--spacing-4);
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
 
   .nav-content {
     display: flex;

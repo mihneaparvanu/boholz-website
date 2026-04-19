@@ -9,12 +9,13 @@
 
 <style scoped>
 .drop-wrapper {
+  border: 2px solid var(--clr-border-primary);
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   padding: var(--spacing-4) var(--spacing-4);
   position: absolute;
   top: var(--spacing-4);
-  height: 400px;
+  height: 300px;
   left: 0;
   width: 100%;
   background-color: var(--clr-surface-primary);
