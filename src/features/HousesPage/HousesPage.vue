@@ -51,19 +51,19 @@ const displayModels = computed(() => {
 <style scoped>
 .houses-page-wrapper {
   grid-column: content;
-}
 
-.content-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-4);
-  row-gap: var(--spacing-4);
-  width: 100%;
-}
+  .categories-wrapper {
+    display: flex;
+    gap: var(--spacing-4);
+    padding-block: var(--spacing-4);
+  }
 
-.categories-wrapper {
-  display: flex;
-  gap: var(--spacing-4);
-  padding-bottom: var(--spacing-2);
+  .content-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-4);
+    row-gap: var(--spacing-4);
+    width: 100%;
+  }
 }
 </style>

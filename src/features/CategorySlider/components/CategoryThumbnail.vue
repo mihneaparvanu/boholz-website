@@ -17,40 +17,70 @@ const imageURL = computed(() => {
 });
 </script>
 <template>
-  <div class="house-model-circle">
-    <img
-      :src="imageURL"
-      :alt="category.name"
-      :width="thumbnail?.media.width"
-      :height="thumbnail?.media.height"
-      class="model-image"
-    />
+  <div class="category-thumbnail">
+    <div class="house-model-circle">
+      <img
+        :src="imageURL"
+        :alt="category.name"
+        :width="thumbnail?.media.width"
+        :height="thumbnail?.media.height"
+        class="model-image"
+      />
+    </div>
+    <div class="text-wrapper">
+      <span>{{ category.name }}</span>
+    </div>
   </div>
 </template>
 <style scoped>
-.house-model-circle {
-  cursor: pointer;
-  --size: var(--fs-h2);
+.category-thumbnail {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-full);
-  width: 100%;
-  aspect-ratio: 1/1;
-  border: 2px solid var(--clr-border-primary);
-  overflow: hidden;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  gap: var(--spacing-0);
+  cursor: pointer;
 
   &[data-is-selected="true"] {
-    border-color: var(--clr-accent-primary);
+    .house-model-circle {
+      border-color: var(--clr-accent-primary);
+    }
+
+    .text-wrapper span {
+      color: var(--clr-content-primary);
+    }
   }
 
-  @media (--from-tablet) {
-    width: var(--size);
+  .house-model-circle {
+    cursor: pointer;
+    --size: var(--fs-h2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 2px solid var(--clr-border-primary);
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (--from-tablet) {
+      width: var(--size);
+    }
+  }
+
+  .text-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    span {
+      font-size: var(--fs-small);
+      font-weight: 400;
+      color: var(--clr-content-tertiary);
+    }
   }
 }
 </style>
