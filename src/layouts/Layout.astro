@@ -4,16 +4,18 @@ import "../style/design-system.css"
 import "../style/wrapper.css"
 
 import Navbar from "./Navbar/Navbar.vue";
-import { getCategories } from "../data/loaders";
-import type { HouseCategory } from "../types/models";
+import Footer from "./Footer/Footer.astro";
+
+import { getNavbarCategories } from "../data/loaders";
+import type { NavbarCategory } from "../data/loaders";
 
 interface Props {
   title: string;
-  categories?: HouseCategory[];
+  categories?: NavbarCategory[];
 }
 
 const { title, categories: categoriesProp } = Astro.props;
-const categories = categoriesProp ?? await getCategories();
+const categories = categoriesProp ?? await getNavbarCategories();
 ---
 
 <html lang="de">
@@ -38,6 +40,7 @@ const categories = categoriesProp ?? await getCategories();
     <main class="wrapper">
       <Navbar client:load categories={categories}  currentPath={Astro.url.pathname}/>
       <slot />
+      <Footer />
     </main>
   </body>
 </html>

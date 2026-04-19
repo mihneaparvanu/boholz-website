@@ -1,0 +1,95 @@
+---
+import FacebookIcon from "../../icons/Facebook.svg";
+import InstagramIcon from "../../icons/Instagram.svg";
+import YoutubeIcon from "../../icons/Youtube.svg";
+import LinkedinIcon from "../../icons/Linkedin.svg";
+import { ROUTES } from "../../utils/routes";
+
+import Separator from "../../features/HousePage/components/Separator.vue";
+
+const currentYear = new Date().getFullYear();
+---
+<footer class="footer subgrid">
+<Separator/>
+<div class="footer-content">
+    <div class="links-grid">
+        <div class="links-list main"> <a href={ROUTES.contact}>Kontakt</a></div>
+     <div class="links-list privacy"><a href={ROUTES.impressum}>Impressum</a><a href={ROUTES.datenschutz}>Datenschutz</a><a href={ROUTES.cookies}>Cookies</a></div>
+
+    </div>
+<div class="trailing-wrapper">
+    <div class="copyright"> © {currentYear} BoHolz Haus GmbH. Alle Rechte vorbehalten.</div>
+    <div class="socials"> 
+        <a href="#"> <FacebookIcon /> </a>
+        <a href="#"> <InstagramIcon /> </a>
+        <a href="#"> <YoutubeIcon /> </a>
+        <a href="#"> <LinkedinIcon /> </a>
+            </div>
+</div>
+</div>
+</footer>
+
+
+<style>
+.footer {
+  padding-block: var(--spacing-6) var(--spacing-3);
+}
+
+.footer-content {
+    padding-block-start: var(--spacing-3);
+ display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.links-grid {
+  display: grid;
+  grid-template-areas: "main-links privacy-links";
+  gap: var(--spacing-2);
+  width: 50%;
+
+  .links-list {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+
+    &.main {
+      grid-area: main-links;
+       a {
+      font-weight: 500;
+    }
+    }
+
+    &.privacy {
+      grid-area: privacy-links;
+      a {
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+.trailing-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--spacing-3);
+  align-items: center;
+
+  .socials {
+    --size: var(--fs-body);
+     display: flex;
+    gap: var(--spacing-1);
+    svg {
+        color: var(--clr-content-tertiary);
+        width: var(--size);
+        height: var(--size);
+    }
+  }
+
+  @media (--from-desktop) {
+    flex-direction: row;
+     justify-content: space-between;
+  }
+}
+</style>

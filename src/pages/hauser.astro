@@ -1,13 +1,12 @@
 ---
-import type { HouseModel, HouseCategory } from "../types/models";
 import Layout from "../layouts/Layout.astro";
 import HousesPage from "../features/HousesPage/HousesPage.vue";
-import { getCategories, getModels } from "../data/loaders";
+import { getCategories, getModels, getNavbarCategories } from "../data/loaders";
 
-const [models, categories] = await Promise.all([getModels(), getCategories()]);
+const [models, categories, navbarCategories] = await Promise.all([getModels(), getCategories(), getNavbarCategories()]);
 ---
 
-<Layout title="Häuser – BoHolz Haus" categories={categories}>
+<Layout title="Häuser – BoHolz Haus" categories={navbarCategories}>
 <h1>Unsere Häuser</h1>
    <HousesPage models={models} categories={categories} client:visible />
     

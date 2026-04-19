@@ -6,16 +6,16 @@ import NavbarSheet from "./NavbarSheet.vue";
 import NavbarDrop from "./NavbarDrop.vue";
 import NAV_ROUTES from "../../utils/routes";
 import { Menu } from "lucide-vue-next";
-import type { HouseCategory } from "../../types/models";
+import type { NavbarCategory } from "../../data/loaders";
 
 const props = defineProps<{
-  categories: HouseCategory[];
+  categories: NavbarCategory[];
   currentPath: string;
 }>();
 
-const selectedCategory = ref<HouseCategory | null>(null);
+const selectedCategory = ref<NavbarCategory | null>(null);
 
-const selectCategory = (category: HouseCategory) => {
+const selectCategory = (category: NavbarCategory) => {
   selectedCategory.value = category;
 };
 const isSheetOpen = ref(false);
@@ -73,9 +73,9 @@ const isDropOpen = ref(false);
             </div>
             <div class="image-wrapper">
               <img
-                v-if="selectedCategory"
-                :src="selectedCategory?.media[0]?.media.path"
-                :alt="selectedCategory?.name"
+                v-if="selectedCategory?.heroImage"
+                :src="selectedCategory.heroImage.path"
+                :alt="selectedCategory.heroImage.alt ?? selectedCategory.name"
               />
             </div>
           </div>
@@ -88,7 +88,7 @@ const isDropOpen = ref(false);
 <style scoped>
 .navbar {
   position: sticky;
-  top: var(--spacing-4);
+  top: 0;
   z-index: 10;
 
   .nav-content {
