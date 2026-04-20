@@ -2,6 +2,9 @@
   "name": "boholz-haus-dev",
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 astro dev",
     "build": "astro build",
