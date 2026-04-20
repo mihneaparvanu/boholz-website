@@ -2,15 +2,23 @@ import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import * as schema from "./schema";
 
-const connectionString =
-  (typeof process !== "undefined" ? process.env.DATABASE_URL : undefined) ||
-  // @ts-ignore
-  (import.meta.env ? import.meta.env.DATABASE_URL : undefined);
+type DrizzleDb = ReturnType<typeof drizzle<typeof schema>>;
 
-if (!connectionString) {
-  throw new Error("DATABASE_URL is missing in environment variables");
+let _db: DrizzleDb | undefined;
+
+function createDb(): DrizzleDb {
+  const connectionString = process.env.DATABASE_URL;
+  if (!connectionString) {
+    throw new Error("DATABASE_URL is missing in environment variables");
+  }
+  const client = postgres(connectionString, { prepare: false });
+  return drizzle(client, { schema });
 }
 
-// Disable prepare for serverless or general robust connections
-const client = postgres(connectionString, { prepare: false });
-export const db = drizzle(client, { schema });
+// Lazy singleton — no connection is made at build time, only on first request
+export const db = new Proxy({} as DrizzleDb, {
+  get(_, key: string | symbol) {
+    if (!_db) _db = createDb();
+    return Reflect.get(_db, key);
+  },
+});
