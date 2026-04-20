@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { getModels } from '../../data/loaders';
+import { getModelBySlug } from '../../data/loaders';
 
 import HeroContent from '../../features/HousePage/components/HeroContent.vue'
 import StatsGrid from '../../features/HousePage/components/StatsGrid.vue';
@@ -8,14 +8,11 @@ import AccordionItem from '../../features/HousePage/components/AccordionItem.vue
 import DetailsGrid from '../../features/HousePage/components/DetailsGrid.vue';
 import FloorDisplay from '../../features/HousePage/components/FloorDisplay.vue';
 
-export async function getStaticPaths() {
-  const models = await getModels();
-  return models.map((m) => ({ params: { slug: m.slug }, props: { model: m } }));
-}
+const { slug } = Astro.params;
+const model = await getModelBySlug(slug!);
 
-const { model } = Astro.props;
+if (!model) return Astro.redirect('/hauser');
 
-const heroImage = model.media.find((m) => m.isHero)?.media;
 const heroImage = model.media.find((m) => m.isHero)?.media;
 
 ---

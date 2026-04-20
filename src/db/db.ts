@@ -11,7 +11,7 @@ function createDb(): DrizzleDb {
   if (!connectionString) {
     throw new Error("DATABASE_URL is missing in environment variables");
   }
-  const client = postgres(connectionString, { prepare: false });
+  const client = postgres(connectionString, { prepare: false, connect_timeout: 10 });
   return drizzle(client, { schema });
 }
 
