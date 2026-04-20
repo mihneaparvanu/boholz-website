@@ -47,7 +47,7 @@ const selectCategory = (category: HouseCategory) => {
 
     @media (--mobile) {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(4rem, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: var(--spacing-2);
     }
   }

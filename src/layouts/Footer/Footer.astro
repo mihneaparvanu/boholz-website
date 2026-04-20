@@ -48,6 +48,14 @@ const currentYear = new Date().getFullYear();
   gap: var(--spacing-2);
   width: 50%;
 
+  @media (--mobile) {
+    width: 100%;
+    grid-template-areas:
+      "main-links"
+      "privacy-links";
+    grid-template-columns: 1fr;
+  }
+
   .links-list {
     width: fit-content;
     display: flex;

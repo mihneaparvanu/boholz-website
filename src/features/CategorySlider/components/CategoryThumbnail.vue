@@ -75,10 +75,22 @@ const imageURL = computed(() => {
     display: flex;
     justify-content: center;
     width: 100%;
+    overflow: hidden;
     span {
       font-size: var(--fs-small);
       font-weight: 400;
       color: var(--clr-content-tertiary);
+      text-align: center;
+      word-break: break-word;
+      hyphens: auto;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+
+      @media (--mobile) {
+        font-size: 0.6rem;
+      }
     }
   }
 }

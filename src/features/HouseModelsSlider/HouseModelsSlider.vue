@@ -36,6 +36,8 @@ const selectedModel = ref<HouseModel | null>(props.models[0] || null);
   .model-thumbnails {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 </style>

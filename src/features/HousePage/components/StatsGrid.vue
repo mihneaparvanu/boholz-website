@@ -62,7 +62,7 @@ const stats = statsConfig
 <style scoped>
 .items-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-3);
   width: 100%;
 }

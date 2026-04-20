@@ -107,16 +107,34 @@ const displayModels = computed(() => {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: var(--spacing-3);
+
+    @media (--mobile) {
+      flex-direction: column;
+      align-items: stretch;
+    }
 
     .categories-wrapper {
-      display: flex;
-      gap: var(--spacing-4);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-2);
       padding-block: var(--spacing-4);
+
+      @media (--from-tablet) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--spacing-4);
+      }
     }
 
     .filter-wrapper {
       display: flex;
       gap: var(--spacing-1);
+      align-items: center;
+
+      @media (--mobile) {
+        justify-content: flex-end;
+      }
     }
   }
 
@@ -126,6 +144,14 @@ const displayModels = computed(() => {
     gap: var(--spacing-4);
     row-gap: var(--spacing-4);
     width: 100%;
+
+    @media (--tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (--mobile) {
+      grid-template-columns: 1fr;
+    }
   }
 }
 </style>
