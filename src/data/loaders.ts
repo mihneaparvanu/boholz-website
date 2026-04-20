@@ -1,6 +1,6 @@
 import { db } from "../db/db";
-import { not, inArray } from "drizzle-orm";
-import { houseCategories } from "../db/schema";
+import { not, inArray, eq } from "drizzle-orm";
+import { houseCategories, houseModels } from "../db/schema";
 import type { HouseCategory, HouseModel } from "../types/models";
 import { getMediaURL } from "../utils/media";
 
@@ -66,4 +66,35 @@ export async function getModels(): Promise<HouseModel[]> {
         : floor.media,
     })),
   }));
+}
+
+export async function getModelBySlug(slug: string): Promise<HouseModel | undefined> {
+  const data = await db.query.houseModels.findFirst({
+    where: eq(houseModels.slug, slug),
+    with: {
+      category: true,
+      details: true,
+      media: {
+        with: { media: true },
+        orderBy: (modelMedia, { asc }) => [asc(modelMedia.sortOrder)],
+      },
+      floors: {
+        with: { media: true },
+        orderBy: (floor, { asc }) => [asc(floor.sortOrder)],
+      },
+    },
+  });
+
+  if (!data) return undefined;
+
+  const [model] = resolveMediaPaths([data] as unknown as HouseModel[]);
+  return {
+    ...model,
+    floors: model.floors.map((floor) => ({
+      ...floor,
+      media: floor.media?.path
+        ? { ...floor.media, path: getMediaURL(floor.media.path) }
+        : floor.media,
+    })),
+  };
 }
