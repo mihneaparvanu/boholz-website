@@ -53,6 +53,9 @@ export const houseDetails = boholzSchema.table("house_details", {
   height: numeric("height"),
   // Features
   hasGarage: boolean("has_garage").default(false),
+  roofType: varchar("roof_type"),
+  // Kniestock height in cm; null = no kniestock
+  kniestock: smallint("kniestock"),
 });
 
 // Agents
@@ -160,12 +163,41 @@ export const showhouseAgents = boholzSchema.table("showhouse_agents", {
   sortOrder: integer("sort_order").default(0),
 });
 
+// =========================================================================
+// NEWS
+// =========================================================================
+
+export const news = boholzSchema.table("news", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  title: varchar("title").notNull(),
+  slug: varchar("slug").notNull(),
+  excerpt: text("excerpt"),
+  // Stored as Markdown
+  content: text("content"),
+  isPublished: boolean("is_published").default(false),
+  publishedAt: timestamp("published_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
+});
+
+export const newsMedia = boholzSchema.table("news_media", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  newsId: uuid("news_id")
+    .references(() => news.id)
+    .notNull(),
+  mediaId: uuid("media_id")
+    .references(() => media.id)
+    .notNull(),
+  isHero: boolean("is_hero").default(false),
+  sortOrder: integer("sort_order").default(0),
+});
+
 // --- Relations ---
 export const mediaRelations = relations(media, ({ many }) => ({
   modelMedia: many(modelMedia),
   categoryMedia: many(categoryMedia),
   floorMedia: many(floorMedia),
   agentMedia: many(agentMedia),
+  newsMedia: many(newsMedia),
 }));
 
 export const houseCategoriesRelations = relations(
@@ -218,6 +250,21 @@ export const floorMediaRelations = relations(floorMedia, ({ one }) => ({
   }),
   media: one(media, {
     fields: [floorMedia.mediaId],
+    references: [media.id],
+  }),
+}));
+
+export const newsRelations = relations(news, ({ many }) => ({
+  media: many(newsMedia),
+}));
+
+export const newsMediaRelations = relations(newsMedia, ({ one }) => ({
+  news: one(news, {
+    fields: [newsMedia.newsId],
+    references: [news.id],
+  }),
+  media: one(media, {
+    fields: [newsMedia.mediaId],
     references: [media.id],
   }),
 }));

@@ -7,6 +7,8 @@ import {
   categoryMedia,
   floorMedia,
   media,
+  news,
+  newsMedia,
 } from "../db/schema";
 
 // Raw table row types — one per table
@@ -17,6 +19,8 @@ export type BaseMedia = InferSelectModel<typeof media>;
 export type BaseHouseCategory = InferSelectModel<typeof houseCategories>;
 export type BaseCategoryMedia = InferSelectModel<typeof categoryMedia>;
 export type BaseFloorMedia = InferSelectModel<typeof floorMedia>;
+export type BaseNews = InferSelectModel<typeof news>;
+export type BaseNewsMedia = InferSelectModel<typeof newsMedia>;
 
 export type HouseModel = BaseHouseModel & {
   // details is nullable — not every model has one yet
@@ -37,6 +41,12 @@ export type HouseFloor = Pick<BaseFloorMedia, "title" | "sortOrder"> & {
 
 export type HouseCategory = BaseHouseCategory & {
   media: (Pick<BaseCategoryMedia, "isThumbnail" | "isHero"> & {
+    media: Pick<BaseMedia, "path" | "alt" | "width" | "height">;
+  })[];
+};
+
+export type NewsArticle = BaseNews & {
+  media: (Pick<BaseNewsMedia, "isHero" | "sortOrder"> & {
     media: Pick<BaseMedia, "path" | "alt" | "width" | "height">;
   })[];
 };

@@ -1,10 +1,19 @@
 import { db } from "../db/db";
 import { not, inArray, eq } from "drizzle-orm";
-import { houseCategories, houseModels } from "../db/schema";
-import type { HouseCategory, HouseModel } from "../types/models";
+import { houseCategories, houseModels, news } from "../db/schema";
+import type { HouseCategory, HouseModel, NewsArticle } from "../types/models";
 import { getMediaURL } from "../utils/media";
 
-const HIDDEN_CATEGORY_SLUGS = ["pultdachhaus", "doppelhaus"];
+const HIDDEN_CATEGORY_SLUGS = ["pultdachhaus"];
+
+// Virtual "Bestseller" category — not stored in DB; filtered client-side by model.isFeatured
+export const BESTSELLER_CATEGORY: HouseCategory = {
+  id: "00000000-0000-0000-0000-000000000001",
+  name: "Bestseller",
+  slug: "bestseller",
+  description: null,
+  media: [],
+};
 
 /** Resolve all nested media paths to full URLs so client components don't need env vars. */
 function resolveMediaPaths<
@@ -35,7 +44,9 @@ export async function getCategories(): Promise<HouseCategory[]> {
     },
   });
 
-  return resolveMediaPaths(data as unknown as HouseCategory[]);
+  const resolved = resolveMediaPaths(data as unknown as HouseCategory[]);
+  // Append virtual Bestseller at the end
+  return [...resolved, BESTSELLER_CATEGORY];
 }
 
 export async function getModels(): Promise<HouseModel[]> {
@@ -97,4 +108,35 @@ export async function getModelBySlug(slug: string): Promise<HouseModel | undefin
         : floor.media,
     })),
   };
+}
+
+export async function getNews(): Promise<NewsArticle[]> {
+  const data = await db.query.news.findMany({
+    where: eq(news.isPublished, true),
+    with: {
+      media: {
+        with: { media: true },
+        orderBy: (newsMedia, { asc }) => [asc(newsMedia.sortOrder)],
+      },
+    },
+    orderBy: (news, { desc }) => [desc(news.publishedAt)],
+  });
+
+  return resolveMediaPaths(data as unknown as NewsArticle[]);
+}
+
+export async function getNewsBySlug(slug: string): Promise<NewsArticle | undefined> {
+  const data = await db.query.news.findFirst({
+    where: eq(news.slug, slug),
+    with: {
+      media: {
+        with: { media: true },
+        orderBy: (newsMedia, { asc }) => [asc(newsMedia.sortOrder)],
+      },
+    },
+  });
+
+  if (!data) return undefined;
+  const [article] = resolveMediaPaths([data] as unknown as NewsArticle[]);
+  return article;
 }

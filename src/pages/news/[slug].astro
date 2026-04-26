@@ -1,0 +1,139 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getNewsBySlug, getCategories } from "../../data/loaders";
+import { ROUTES } from "../../utils/routes";
+import { marked } from "marked";
+
+const { slug } = Astro.params;
+const [article, categories] = await Promise.all([
+  getNewsBySlug(slug!),
+  getCategories(),
+]);
+
+if (!article) return Astro.redirect(ROUTES.news);
+
+const heroMedia = article.media.find((m) => m.isHero)?.media;
+
+const formattedDate = article.publishedAt
+  ? new Intl.DateTimeFormat("de-DE", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    }).format(new Date(article.publishedAt))
+  : null;
+
+const contentHtml = article.content ? await marked(article.content) : null;
+---
+
+<Layout title={`${article.title} – BoHolz Haus`} categories={categories}>
+  <article class="news-detail">
+    {
+      heroMedia && (
+        <div class="hero-image full-width">
+          <img
+            src={heroMedia.path}
+            alt={heroMedia.alt ?? article.title}
+            width={heroMedia.width ?? undefined}
+            height={heroMedia.height ?? undefined}
+          />
+        </div>
+      )
+    }
+
+    <header class="article-header">
+      <a href={ROUTES.news} class="back-link">← Alle News</a>
+      {formattedDate && <time class="date">{formattedDate}</time>}
+      <h1 class="title">{article.title}</h1>
+      {article.excerpt && <p class="excerpt">{article.excerpt}</p>}
+    </header>
+
+    {
+      contentHtml && (
+        <div class="article-content" set:html={contentHtml} />
+      )
+    }
+  </article>
+</Layout>
+
+<style>
+  .news-detail {
+    grid-column: content;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+    padding-block: var(--spacing-6);
+  }
+
+  .hero-image {
+    aspect-ratio: 21 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .article-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .back-link {
+    font-size: var(--fs-sm);
+    color: var(--clr-content-secondary);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--clr-content-primary);
+    }
+  }
+
+  .date {
+    font-size: var(--fs-sm);
+    color: var(--clr-content-tertiary);
+  }
+
+  .title {
+    font-size: var(--fs-h2);
+  }
+
+  .excerpt {
+    font-size: var(--fs-body);
+    color: var(--clr-content-secondary);
+    font-style: italic;
+  }
+
+  .article-content {
+    font-size: var(--fs-body);
+    line-height: 1.7;
+    max-width: 72ch;
+
+    :global(h2) {
+      font-size: var(--fs-h4);
+      margin-block: var(--spacing-4) var(--spacing-2);
+    }
+
+    :global(h3) {
+      font-size: var(--fs-h5);
+      margin-block: var(--spacing-3) var(--spacing-2);
+    }
+
+    :global(p) {
+      margin-block-end: var(--spacing-3);
+    }
+
+    :global(ul),
+    :global(ol) {
+      padding-inline-start: var(--spacing-4);
+      margin-block-end: var(--spacing-3);
+    }
+
+    :global(a) {
+      color: var(--clr-accent-primary);
+    }
+  }
+</style>
