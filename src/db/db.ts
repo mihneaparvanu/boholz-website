@@ -7,11 +7,18 @@ type DrizzleDb = ReturnType<typeof drizzle<typeof schema>>;
 let _db: DrizzleDb | undefined;
 
 function createDb(): DrizzleDb {
-  const connectionString = process.env.DATABASE_URL;
+  const connectionString =
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (typeof (import.meta as any).env !== "undefined"
+      ? (import.meta as any).env.DATABASE_URL
+      : undefined) ?? process.env.DATABASE_URL;
   if (!connectionString) {
     throw new Error("DATABASE_URL is missing in environment variables");
   }
-  const client = postgres(connectionString, { prepare: false, connect_timeout: 10 });
+  const client = postgres(connectionString, {
+    prepare: false,
+    connect_timeout: 10,
+  });
   return drizzle(client, { schema });
 }
 

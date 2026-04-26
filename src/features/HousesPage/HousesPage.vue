@@ -4,6 +4,7 @@ import { ref, computed, onMounted } from "vue";
 import ModelCard from "../../features/ModelOverview/components/ModelCard.vue";
 import CategoryThumbnail from "../../features/CategorySlider/components/CategoryThumbnail.vue";
 import { ROUTES } from "../../utils/routes";
+import FilterSortPane from "../../components/FilterSortPane.vue";
 import { numeric } from "drizzle-orm/pg-core";
 
 type SortOptions = "asc" | "desc";
@@ -41,6 +42,8 @@ onMounted(() => {
 const selectedSortIndex = ref(0);
 const selectedSortOption = computed(() => sortOptions[selectedSortIndex.value]);
 
+const isPaneOpen = ref(false);
+
 const selectCategory = (category: HouseCategory) => {
   selectedCategory.value = category;
 };
@@ -64,6 +67,7 @@ const displayModels = computed(() => {
 <template>
   <div class="houses-page-wrapper">
     <div class="controls-wrapper">
+      <FilterSortPane v-model:isOpen="isPaneOpen"></FilterSortPane>
       <div class="categories-wrapper">
         <CategoryThumbnail
           v-for="category in categories"
@@ -74,16 +78,7 @@ const displayModels = computed(() => {
         />
       </div>
       <div class="filter-wrapper">
-        <span>Sortieren nach:</span>
-        <select v-model.number="selectedSortIndex">
-          <option
-            v-for="(option, index) in sortOptions"
-            :key="option.label"
-            :value="index"
-          >
-            {{ option.label }}
-          </option>
-        </select>
+        <button @click="isPaneOpen = true">Filtern & Sortieren</button>
       </div>
     </div>
 
@@ -128,12 +123,21 @@ const displayModels = computed(() => {
     }
 
     .filter-wrapper {
-      display: flex;
-      gap: var(--spacing-1);
-      align-items: center;
+      button {
+        display: inline-flex;
+        align-items: center;
+        padding: var(--spacing-1) var(--spacing-3);
+        border: 2px solid var(--clr-accent-secondary);
+        color: var(--clr-accent-secondary);
+        text-decoration: none;
+        border-radius: var(--radius-sm);
+        font-weight: 400;
+        transition: background 0.2s;
+      }
 
-      @media (--mobile) {
-        justify-content: flex-end;
+      button :hover {
+        background: var(--clr-accent-secondary);
+        color: var(--clr-surface-primary);
       }
     }
   }

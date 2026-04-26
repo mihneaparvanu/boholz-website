@@ -79,7 +79,9 @@ export async function getModels(): Promise<HouseModel[]> {
   }));
 }
 
-export async function getModelBySlug(slug: string): Promise<HouseModel | undefined> {
+export async function getModelBySlug(
+  slug: string,
+): Promise<HouseModel | undefined> {
   const data = await db.query.houseModels.findFirst({
     where: eq(houseModels.slug, slug),
     with: {
@@ -125,7 +127,9 @@ export async function getNews(): Promise<NewsArticle[]> {
   return resolveMediaPaths(data as unknown as NewsArticle[]);
 }
 
-export async function getNewsBySlug(slug: string): Promise<NewsArticle | undefined> {
+export async function getNewsBySlug(
+  slug: string,
+): Promise<NewsArticle | undefined> {
   const data = await db.query.news.findFirst({
     where: eq(news.slug, slug),
     with: {

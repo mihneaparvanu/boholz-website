@@ -17,7 +17,7 @@ export const boholzSchema = pgSchema("boholz");
 export const houseCategories = boholzSchema.table("house_categories", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: varchar("name").notNull(),
-  slug: varchar("slug").notNull(),
+  slug: varchar("slug").notNull().unique(),
   description: text("description"),
 });
 

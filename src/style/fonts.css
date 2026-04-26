@@ -14,12 +14,7 @@
   font-weight: 300;
   font-style: normal;
 }
-@font-face {
-  font-family: "DIN";
-  src: url("/fonts/DIN/FF_DIN_Light_Italic_Expert.woff2") format("woff2");
-  font-weight: 300;
-  font-style: italic;
-}
+
 @font-face {
   font-family: "DIN";
   src: url("/fonts/DIN/din-regular.woff2") format("woff2");

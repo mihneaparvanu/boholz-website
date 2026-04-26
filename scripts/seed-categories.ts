@@ -36,10 +36,7 @@ async function main() {
   console.log("Seeding categories...");
 
   for (const category of CATEGORIES) {
-    await db
-      .insert(houseCategories)
-      .values(category)
-      .onConflictDoNothing();
+    await db.insert(houseCategories).values(category).onConflictDoNothing({ target: houseCategories.slug });
 
     console.log(`  ✓ ${category.name} (${category.slug})`);
   }
