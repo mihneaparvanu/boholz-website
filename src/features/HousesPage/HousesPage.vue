@@ -4,8 +4,7 @@ import { ref, computed, onMounted } from "vue";
 import ModelCard from "../../features/ModelOverview/components/ModelCard.vue";
 import CategoryThumbnail from "../../features/CategorySlider/components/CategoryThumbnail.vue";
 import { ROUTES } from "../../utils/routes";
-import FilterSortPane from "../../components/FilterSortPane.vue";
-import { numeric } from "drizzle-orm/pg-core";
+import FilterSortPane from "../../features/FilterSortPane/FilterSortPane.vue";
 
 type SortOptions = "asc" | "desc";
 

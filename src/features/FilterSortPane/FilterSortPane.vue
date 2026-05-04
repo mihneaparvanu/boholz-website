@@ -1,23 +1,10 @@
 <script setup lang="ts">
 import { X } from "lucide-vue-next";
+import { sortOptions } from "./models.ts";
+import OptionsButton from "./OptionsButton.vue";
 
 const isOpen = defineModel<boolean>("isOpen", { required: true });
-
-interface SortOption {
-  label: string;
-  value: string;
-}
-
-const sortOptions: SortOption[] = [
-  { label: "Fläche ↑", value: "livingArea_asc" },
-  { label: "Fläche ↓", value: "livingArea_desc" },
-  { label: "Preis ↑", value: "price_asc" },
-  { label: "Preis ↓", value: "price_desc" },
-  { label: "Schlafzimmer ↑", value: "bedrooms_asc" },
-  { label: "Schlafzimmer ↓", value: "bedrooms_desc" },
-  { label: "Etagen ↑", value: "floorCount_asc" },
-  { label: "Etagen ↓", value: "floorCount_desc" },
-];
+const sortOption = defineModel<string>("sortOption", { required: true });
 </script>
 
 <template>
@@ -33,15 +20,15 @@ const sortOptions: SortOption[] = [
           <div class="filter-options">
             <h5>Filtern</h5>
           </div>
+          <h5>Sortieren</h5>
           <div class="sort-options">
-            <h5>Sortieren</h5>
-            <div
+            <OptionsButton
               class="sort-option"
               v-for="option in sortOptions"
               :key="option.value"
+              :title="option.label"
             >
-              {{ option.label }}
-            </div>
+            </OptionsButton>
           </div>
         </div>
       </div>
@@ -77,6 +64,12 @@ const sortOptions: SortOption[] = [
     .close-action {
       display: flex;
       justify-content: end;
+    }
+
+    .sort-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-1);
     }
   }
 }
