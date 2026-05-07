@@ -17,9 +17,9 @@
 - **Standard:** Create a strictly typed schema in `src/db/schema.ts` that maps to the existing 18 house models.
 - **Precision:** Ensure the `media` table points to the new `sorted-assets/` folder structure.
 
-*Database Media Workflow Update:*
-We utilize a pivot table structure (`category_media`, `model_media`, etc.) joining to a single `media` table via Drizzle ORM. 
-**Important Issue Noted:** Doppelhaus and Mehrfamilienhaus are missing `isThumbnail: true` mappings in the `category_media` table, which causes their pictures not to render. The mapping needs to be added (both are either lacking thumbnail relationships or missing completely from the join table like Mehrfamilienhaus). 
+_Database Media Workflow Update:_
+We utilize a pivot table structure (`category_media`, `model_media`, etc.) joining to a single `media` table via Drizzle ORM.
+**Important Issue Noted:** Doppelhaus and Mehrfamilienhaus are missing `isThumbnail: true` mappings in the `category_media` table, which causes their pictures not to render. The mapping needs to be added (both are either lacking thumbnail relationships or missing completely from the join table like Mehrfamilienhaus).
 To query media manually in AWS CloudFlare R2, utilize standard S3 CLI configurations providing the Account ID endpoint to list the bucket contents and ensure the category pictures natively exist in remote storage.
 
 ### Phase 2: The UX Layer (Lenis + GSAP)
@@ -37,8 +37,8 @@ To query media manually in AWS CloudFlare R2, utilize standard S3 CLI configurat
 
 - **Public Assets URL:** Defined as `PUBLIC_ASSETS_URL` in `.env` mapped to a Cloudflare R2 Dev bucket.
 - **AWS CLI setup:** Since Cloudflare R2 is S3-compatible, point the AWS CLI (or SDK) endpoint URL directly to the R2 endpoint (`https://<ACCOUNT_ID>.r2.cloudflarestorage.com`) and use the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` from the dev `.env`.
-- **Database Modularity:** Separation of Database vs Media assets environments ensures we can swap buckets easily or use unmanaged CDNs if appropriate. 
-- **Workspace Cleanliness:** Temporary scripts created during development / database inspection (e.g., using `npx tsx`) must be immediately deleted after execution to maintain a clean directory structure. 
+- **Database Modularity:** Separation of Database vs Media assets environments ensures we can swap buckets easily or use unmanaged CDNs if appropriate.
+- **Workspace Cleanliness:** Temporary scripts created during development / database inspection (e.g., using `npx tsx`) must be immediately deleted after execution to maintain a clean directory structure.
 
 ## 4. Guiding Principles
 

@@ -107,11 +107,11 @@ Plaintext
 3. **Media Links:** Thumbnails in the app are controlled by the `category_media` and `model_media` linking tables via Drizzle, with boolean flags like `isThumbnail` and `isHero`. Verify these boolean flags if a house category or model fails to load images on the frontend.
 4. **AWS / S3 CLI Tools:** For media management, use the standard AWS CLI connecting via the endpoint URL to Cloudflare R2 (`https://<ACCOUNT_ID>.r2.cloudflarestorage.com`), utilizing the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` provided in the dev `.env` file.
 
-    Path Sanitization: Remove all WordPress-specific date folders (/2023/05/).
+   Path Sanitization: Remove all WordPress-specific date folders (/2023/05/).
 
-    Manifest Generation: Create a manifest.json at the root of /sorted-assets/ mapping every house slug to its image array for easy Drizzle/Postgres import.
+   Manifest Generation: Create a manifest.json at the root of /sorted-assets/ mapping every house slug to its image array for easy Drizzle/Postgres import.
 
-    ## 🧠 7. Autonomous Contributions & Heuristics
+   ## 🧠 7. Autonomous Contributions & Heuristics
 
 **Creative Liberty:** The agent is encouraged to act as a Senior Digital Asset Manager.
 
