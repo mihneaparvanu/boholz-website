@@ -4,7 +4,7 @@ import { ref, computed, onMounted } from "vue";
 import ModelCard from "../../features/ModelOverview/components/ModelCard.vue";
 import CategoryThumbnail from "../../features/CategorySlider/components/CategoryThumbnail.vue";
 import { ROUTES } from "../../utils/routes";
-import FilterSortPane from "../../features/FilterSortPane/FilterSortPane.vue";
+import FilterPanel from "../../features/FilterPanel/FilterPanel.vue";
 
 type SortOptions = "asc" | "desc";
 
@@ -66,7 +66,7 @@ const displayModels = computed(() => {
 <template>
   <div class="houses-page-wrapper">
     <div class="controls-wrapper">
-      <FilterSortPane v-model:isOpen="isPaneOpen"></FilterSortPane>
+      <FilterPanel v-model:isOpen="isPaneOpen"></FilterPanel>
       <div class="categories-wrapper">
         <CategoryThumbnail
           v-for="category in categories"

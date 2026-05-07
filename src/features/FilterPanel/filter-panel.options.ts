@@ -1,7 +1,4 @@
-interface SortOption {
-  label: string;
-  value: string;
-}
+import type { SortOption } from "./filter-panel.types";
 
 export const sortOptions: SortOption[] = [
   { label: "Fläche ↑", value: "livingArea_asc" },

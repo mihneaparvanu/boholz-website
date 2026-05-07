@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { X } from "lucide-vue-next";
-import { sortOptions } from "./models.ts";
+import { sortOptions } from "./filter-panel.options";
 import OptionsButton from "./OptionsButton.vue";
 
 const isOpen = defineModel<boolean>("isOpen", { required: true });
@@ -9,7 +9,7 @@ const sortOption = defineModel<string>("sortOption", { required: true });
 
 <template>
   <div class="page-wrapper" @click="isOpen = false" v-if="isOpen">
-    <div class="filter-sort-pane">
+    <div class="filter-panel">
       <div class="control-panel">
         <div class="close-action">
           <button @click="isOpen = false">
@@ -47,7 +47,7 @@ const sortOption = defineModel<string>("sortOption", { required: true });
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 15;
 }
-.filter-sort-pane {
+.filter-panel {
   display: flex;
   flex-direction: column;
   position: fixed;
