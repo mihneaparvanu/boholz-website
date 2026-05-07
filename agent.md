@@ -98,6 +98,15 @@ Plaintext
 
     Metadata: Strip all EXIF data (GPS, camera settings) but preserve ICC color profiles.
 
+---
+
+## 🛠 7. Development & Execution Rules for AI Agents
+
+1. **Workspace Hygiene:** **Any temporary scripts** (such as database query tests via `npx tsx`) created to inspect DB state or run one-off tasks **MUST be deleted** (`rm -f <script_name>`) immediately after their output is captured. Do not leave orphaned files like `test-db.ts` or `fix-db.js` in the codebase.
+2. **Database Queries:** The database is Postgres with Drizzle ORM. Use `npx tsx` and the `drizzle-orm/postgres-js` driver to execute ad-hoc scripts.
+3. **Media Links:** Thumbnails in the app are controlled by the `category_media` and `model_media` linking tables via Drizzle, with boolean flags like `isThumbnail` and `isHero`. Verify these boolean flags if a house category or model fails to load images on the frontend.
+4. **AWS / S3 CLI Tools:** For media management, use the standard AWS CLI connecting via the endpoint URL to Cloudflare R2 (`https://<ACCOUNT_ID>.r2.cloudflarestorage.com`), utilizing the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` provided in the dev `.env` file.
+
     Path Sanitization: Remove all WordPress-specific date folders (/2023/05/).
 
     Manifest Generation: Create a manifest.json at the root of /sorted-assets/ mapping every house slug to its image array for easy Drizzle/Postgres import.
