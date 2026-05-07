@@ -1,12 +1,43 @@
-import type { SortOption } from "./filter-panel.types";
+import type { SortField, SortOption } from "./filter-panel.types";
 
-export const sortOptions: SortOption[] = [
-  { label: "Fläche ↑", value: "livingArea_asc" },
-  { label: "Fläche ↓", value: "livingArea_desc" },
-  { label: "Preis ↑", value: "price_asc" },
-  { label: "Preis ↓", value: "price_desc" },
-  { label: "Schlafzimmer ↑", value: "bedrooms_asc" },
-  { label: "Schlafzimmer ↓", value: "bedrooms_desc" },
-  { label: "Etagen ↑", value: "floorCount_asc" },
-  { label: "Etagen ↓", value: "floorCount_desc" },
+export const sortFields: SortField[] = [
+  {
+    value: "livingArea",
+    label: "Flache",
+    resolveFromModel: (model) => model.livingArea,
+  },
+  {
+    value: "price",
+    label: "Preis",
+    resolveFromModel: (model) => model.livingArea,
+  },
+  {
+    value: "floorCount",
+    label: "Etagen",
+    resolveFromModel: (model) => model.livingArea,
+  },
+  {
+    value: "bedroomCount",
+    label: "Schlafzimmer",
+    resolveFromModel: (model) => model.livingArea,
+  },
 ];
+
+const generateSortOptions = (fields: SortField[]): SortOption[] => {
+  return fields.flatMap((field) => [
+    {
+      value: field.value,
+      label: field.label + " " + "↑",
+      resolveFromModel: field.resolveFromModel,
+      direction: "asc",
+    },
+    {
+      value: field.value,
+      label: field.label + " " + "↓",
+      resolveFromModel: field.resolveFromModel,
+      direction: "asc",
+    },
+  ]);
+};
+
+export const sortOptions = generateSortOptions(sortFields);

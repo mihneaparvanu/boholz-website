@@ -25,8 +25,9 @@ const sortOption = defineModel<string>("sortOption", { required: true });
             <OptionsButton
               class="sort-option"
               v-for="option in sortOptions"
-              :key="option.value"
+              :key="option.value + option.direction"
               :title="option.label"
+              @click="sortOption = option.value + option.direction"
             >
             </OptionsButton>
           </div>

@@ -6,28 +6,43 @@ import CategoryThumbnail from "../../features/CategorySlider/components/Category
 import { ROUTES } from "../../utils/routes";
 import FilterPanel from "../../features/FilterPanel/FilterPanel.vue";
 
-type SortOptions = "asc" | "desc";
-
-interface SortOption {
-  label: string;
-  key: keyof HouseModel;
-  direction: SortOptions;
-}
-
 const props = defineProps<{
   models: HouseModel[];
   categories: HouseCategory[];
 }>();
 
 let categories = props.categories;
-
-const sortOptions: SortOption[] = [
-  { label: "Fläche ↑", key: "livingArea", direction: "asc" },
-  { label: "Fläche ↓", key: "livingArea", direction: "desc" },
-  { label: "Preis ↑", key: "price", direction: "asc" },
-  { label: "Preis ↓", key: "price", direction: "desc" },
-];
 const selectedCategory = ref<HouseCategory | null>(categories[0] || null);
+const isPaneOpen = ref(false);
+const sortOption = ref("");
+
+const displayModels = computed(() => {
+  const filtered = props.models.filter((model) => {
+    return model.category?.id === selectedCategory.value?.id;
+  });
+  return filtered;
+});
+
+const selectCategory = (category: HouseCategory) => {
+  selectedCategory.value = category;
+};
+
+// const sortModels = (
+//   models: HouseModel[],
+//   sortValue: string | null,
+//   sortDirection: SortDirection,
+// ) => {
+//   let sortedModels: HouseModel[] = [];
+//   if (sortValue === null) {
+//     sortedModels = models.sort((a, b) => {
+//       a.livingArea?.localeCompare(b.livingArea, "de", { numeric: true });
+//     });
+//   }
+//   const sorted = [...models].sort((a, b) => {
+//     const aValue = a[sortValue];
+//   });
+//   return sortedModels;
+// };
 
 onMounted(() => {
   const params = new URLSearchParams(window.location.search);
@@ -37,36 +52,15 @@ onMounted(() => {
     if (match) selectedCategory.value = match;
   }
 });
-
-const selectedSortIndex = ref(0);
-const selectedSortOption = computed(() => sortOptions[selectedSortIndex.value]);
-
-const isPaneOpen = ref(false);
-
-const selectCategory = (category: HouseCategory) => {
-  selectedCategory.value = category;
-};
-
-const displayModels = computed(() => {
-  const filtered = props.models.filter((model) => {
-    return model.category?.id === selectedCategory.value?.id;
-  });
-  const { key, direction } = selectedSortOption.value;
-  return [...filtered].sort((a, b) => {
-    const aValue = a[key] ?? "";
-    const bValue = b[key] ?? "";
-    const comp = String(aValue).localeCompare(String(bValue), "de", {
-      numeric: true,
-    });
-    return direction === "asc" ? comp : -comp;
-  });
-});
 </script>
 
 <template>
   <div class="houses-page-wrapper">
     <div class="controls-wrapper">
-      <FilterPanel v-model:isOpen="isPaneOpen"></FilterPanel>
+      <FilterPanel
+        v-model:isOpen="isPaneOpen"
+        v-model:sortOption="sortOption"
+      ></FilterPanel>
       <div class="categories-wrapper">
         <CategoryThumbnail
           v-for="category in categories"
