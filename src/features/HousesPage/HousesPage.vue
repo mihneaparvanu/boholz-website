@@ -5,6 +5,7 @@ import ModelCard from "../../features/ModelOverview/components/ModelCard.vue";
 import CategoryThumbnail from "../../features/CategorySlider/components/CategoryThumbnail.vue";
 import { ROUTES } from "../../utils/routes";
 import FilterPanel from "../../features/FilterPanel/FilterPanel.vue";
+import type { SortOption } from "../FilterPanel/filter-panel.types";
 
 const props = defineProps<{
   models: HouseModel[];
@@ -14,35 +15,55 @@ const props = defineProps<{
 let categories = props.categories;
 const selectedCategory = ref<HouseCategory | null>(categories[0] || null);
 const isPaneOpen = ref(false);
-const sortOption = ref("");
+const sortOption = ref<SortOption | null>(null);
 
 const displayModels = computed(() => {
   const filtered = props.models.filter((model) => {
     return model.category?.id === selectedCategory.value?.id;
   });
-  return filtered;
+  return sortModels(filtered, sortOption.value);
 });
 
 const selectCategory = (category: HouseCategory) => {
   selectedCategory.value = category;
 };
 
-// const sortModels = (
-//   models: HouseModel[],
-//   sortValue: string | null,
-//   sortDirection: SortDirection,
-// ) => {
-//   let sortedModels: HouseModel[] = [];
-//   if (sortValue === null) {
-//     sortedModels = models.sort((a, b) => {
-//       a.livingArea?.localeCompare(b.livingArea, "de", { numeric: true });
-//     });
-//   }
-//   const sorted = [...models].sort((a, b) => {
-//     const aValue = a[sortValue];
-//   });
-//   return sortedModels;
-// };
+const sortModels = (models: HouseModel[], option: SortOption | null) => {
+  const defaultSorted = [...models].sort((a, b) => {
+    if (a.livingArea !== null && b.livingArea !== null) {
+      return a.livingArea?.localeCompare(b.livingArea, "de", { numeric: true });
+    } else {
+      return 0;
+    }
+  });
+
+  if (option === null) {
+    return defaultSorted;
+  }
+
+  return [...models].sort((a, b) => {
+    const aVal = option?.resolveFromModel(a);
+    const bVal = option?.resolveFromModel(b);
+
+    if (aVal === null && bVal !== null) {
+      return 1;
+    } else if (aVal !== null && bVal === null) {
+      return -1;
+    } else if (aVal === null && bVal === null) {
+      return 0;
+    }
+
+    const dirNum = option?.direction == "asc" ? 1 : -1;
+
+    if (typeof aVal === "string" && typeof bVal === "string") {
+      return dirNum * aVal.localeCompare(bVal, "de", { numeric: true });
+    }
+    if (typeof aVal === "number" && typeof bVal === "number") {
+      return dirNum * (aVal - bVal);
+    }
+    return 0;
+  });
+};
 
 onMounted(() => {
   const params = new URLSearchParams(window.location.search);

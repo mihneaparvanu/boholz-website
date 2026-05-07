@@ -9,17 +9,17 @@ export const sortFields: SortField[] = [
   {
     value: "price",
     label: "Preis",
-    resolveFromModel: (model) => model.livingArea,
+    resolveFromModel: (model) => model.price,
   },
   {
     value: "floorCount",
     label: "Etagen",
-    resolveFromModel: (model) => model.livingArea,
+    resolveFromModel: (model) => model.details?.levelCount ?? null,
   },
   {
     value: "bedroomCount",
     label: "Schlafzimmer",
-    resolveFromModel: (model) => model.livingArea,
+    resolveFromModel: (model) => model.details?.bedroomCount ?? null,
   },
 ];
 
@@ -35,7 +35,7 @@ const generateSortOptions = (fields: SortField[]): SortOption[] => {
       value: field.value,
       label: field.label + " " + "↓",
       resolveFromModel: field.resolveFromModel,
-      direction: "asc",
+      direction: "desc",
     },
   ]);
 };

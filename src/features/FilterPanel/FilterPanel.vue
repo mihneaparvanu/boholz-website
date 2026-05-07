@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { X } from "lucide-vue-next";
+import type { SortOption } from "./filter-panel.types";
 import { sortOptions } from "./filter-panel.options";
 import OptionsButton from "./OptionsButton.vue";
 
 const isOpen = defineModel<boolean>("isOpen", { required: true });
-const sortOption = defineModel<string>("sortOption", { required: true });
+const sortOption = defineModel<SortOption | null>("sortOption", {
+  required: true,
+});
 </script>
 
 <template>
@@ -27,7 +30,7 @@ const sortOption = defineModel<string>("sortOption", { required: true });
               v-for="option in sortOptions"
               :key="option.value + option.direction"
               :title="option.label"
-              @click="sortOption = option.value + option.direction"
+              @click="sortOption = option"
             >
             </OptionsButton>
           </div>
