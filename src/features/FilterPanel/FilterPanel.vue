@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { X } from "lucide-vue-next";
-import type { SortOption } from "./filter-panel.types";
-import { sortOptions } from "./filter-panel.options";
+import { FilterOption, type SortOption } from "./filter-panel.types";
+import { sortOptions, filterOptions } from "./filter-panel.options";
 import OptionsButton from "./OptionsButton.vue";
 
 const isOpen = defineModel<boolean>("isOpen", { required: true });
 const sortOption = defineModel<SortOption | null>("sortOption", {
+  required: true,
+});
+const fOpt = defineModel<FilterOption | null>("fOpt", {
+  required: true,
+});
+const fVal = defineModel<number | null>("fVal", {
   required: true,
 });
 </script>
@@ -20,8 +26,20 @@ const sortOption = defineModel<SortOption | null>("sortOption", {
           </button>
         </div>
         <div class="filter-sort">
-          <div class="filter-options">
-            <h5>Filtern</h5>
+          <div class="filter-options" v-for="option in filterOptions">
+            <h5>{{ option.label }}</h5>
+            <div class="filter-options" @click="fOpt = option">
+              <OptionsButton
+                v-if="option.kind === `boolean`"
+                :title="option.label"
+              ></OptionsButton>
+              <OptionsButton
+                v-if="option.kind === `count`"
+                v-for="value in option.values"
+                @click="fVal = value"
+                :title="value.toString()"
+              ></OptionsButton>
+            </div>
           </div>
           <h5>Sortieren</h5>
           <div class="sort-options">
@@ -35,8 +53,8 @@ const sortOption = defineModel<SortOption | null>("sortOption", {
             </OptionsButton>
           </div>
         </div>
+        <div class="buttons"></div>
       </div>
-      <div class="buttons"></div>
     </div>
   </div>
 </template>

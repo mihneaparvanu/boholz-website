@@ -43,6 +43,13 @@
       "when": 1777237839511,
       "tag": "0005_famous_liz_osborn",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1778198192883,
+      "tag": "0006_barrier_free_children_room",
+      "breakpoints": true
     }
   ]
 }

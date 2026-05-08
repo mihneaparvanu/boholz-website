@@ -5,7 +5,11 @@ import ModelCard from "../../features/ModelOverview/components/ModelCard.vue";
 import CategoryThumbnail from "../../features/CategorySlider/components/CategoryThumbnail.vue";
 import { ROUTES } from "../../utils/routes";
 import FilterPanel from "../../features/FilterPanel/FilterPanel.vue";
-import type { SortOption } from "../FilterPanel/filter-panel.types";
+import {
+  type SortOption,
+  type FilterOption,
+  type ActiveFilter,
+} from "../FilterPanel/filter-panel.types";
 
 const props = defineProps<{
   models: HouseModel[];
@@ -16,6 +20,7 @@ let categories = props.categories;
 const selectedCategory = ref<HouseCategory | null>(categories[0] || null);
 const isPaneOpen = ref(false);
 const sortOption = ref<SortOption | null>(null);
+const fOpt = ref<ActiveFilter | null>(null);
 
 const displayModels = computed(() => {
   const filtered = props.models.filter((model) => {
@@ -26,6 +31,31 @@ const displayModels = computed(() => {
 
 const selectCategory = (category: HouseCategory) => {
   selectedCategory.value = category;
+};
+
+const filterModels = (
+  models: HouseModel[],
+  f: ActiveFilter<boolean> | null,
+  fVal: number,
+) => {
+  if (f === null) {
+    return models;
+  }
+
+  if (f.kind === "boolean") {
+    [...models].filter((m) => {
+      let value = f.resolve(m);
+      return value;
+    });
+  } else if (f.kind === "count") {
+    [...models].filter((m) => {
+      let value = f.resolve(m);
+      if (value === null) {
+        return false;
+      }
+      return value > fVal;
+    });
+  }
 };
 
 const sortModels = (models: HouseModel[], option: SortOption | null) => {
@@ -42,8 +72,8 @@ const sortModels = (models: HouseModel[], option: SortOption | null) => {
   }
 
   return [...models].sort((a, b) => {
-    const aVal = option?.resolveFromModel(a);
-    const bVal = option?.resolveFromModel(b);
+    const aVal = option?.resolve(a);
+    const bVal = option?.resolve(b);
 
     if (aVal === null && bVal !== null) {
       return 1;
@@ -81,6 +111,8 @@ onMounted(() => {
       <FilterPanel
         v-model:isOpen="isPaneOpen"
         v-model:sortOption="sortOption"
+        v-model:fOpt="filterOption"
+        v-model:fVal="filterValue"
       ></FilterPanel>
       <div class="categories-wrapper">
         <CategoryThumbnail

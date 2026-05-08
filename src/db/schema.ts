@@ -56,6 +56,10 @@ export const houseDetails = boholzSchema.table("house_details", {
   roofType: varchar("roof_type"),
   // Kniestock height in cm; null = no kniestock
   kniestock: smallint("kniestock"),
+  // Accessibility
+  isBarrierFree: boolean("is_barrier_free").default(false),
+  // Children's room (true = at least one dedicated children's room)
+  hasChildrenRoom: boolean("has_children_room").default(false),
 });
 
 // Agents

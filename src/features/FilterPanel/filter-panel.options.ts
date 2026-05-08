@@ -1,25 +1,34 @@
-import type { SortField, SortOption } from "./filter-panel.types";
+import type { HouseModel } from "../../types/models";
+import type {
+  SortField,
+  SortOption,
+  BooleanFilter,
+  EnumFilter,
+  CountFilter,
+  FilterOption,
+} from "./filter-panel.types";
 
+// Sorting
 export const sortFields: SortField[] = [
   {
     value: "livingArea",
     label: "Flache",
-    resolveFromModel: (model) => model.livingArea,
+    resolve: (m) => m.livingArea,
   },
   {
     value: "price",
     label: "Preis",
-    resolveFromModel: (model) => model.price,
+    resolve: (m) => m.price,
   },
   {
     value: "floorCount",
     label: "Etagen",
-    resolveFromModel: (model) => model.details?.levelCount ?? null,
+    resolve: (m) => m.details?.levelCount ?? null,
   },
   {
     value: "bedroomCount",
     label: "Schlafzimmer",
-    resolveFromModel: (model) => model.details?.bedroomCount ?? null,
+    resolve: (m) => m.details?.bedroomCount ?? null,
   },
 ];
 
@@ -28,16 +37,39 @@ const generateSortOptions = (fields: SortField[]): SortOption[] => {
     {
       value: field.value,
       label: field.label + " " + "↑",
-      resolveFromModel: field.resolveFromModel,
+      resolve: field.resolve,
       direction: "asc",
     },
     {
       value: field.value,
       label: field.label + " " + "↓",
-      resolveFromModel: field.resolveFromModel,
+      resolve: field.resolve,
       direction: "desc",
     },
   ]);
 };
 
 export const sortOptions = generateSortOptions(sortFields);
+
+// Filtering
+const hasGarage: BooleanFilter = {
+  kind: "boolean",
+  label: "Garage",
+  resolve: (m) => m.details?.hasGarage ?? null,
+};
+
+const bedroomNumber: CountFilter = {
+  kind: "count",
+  label: "Schlafzimmer",
+  values: [1, 2, 3],
+  resolve: (m) => m.details?.bedroomCount || null,
+};
+
+const bathroomCount: CountFilter = {
+  kind: "count",
+  label: "Badezimmer",
+  values: [1, 2],
+  resolve: (m) => m.details?.bathroomCount || null,
+};
+
+export const filterOptions: FilterOption[] = [hasGarage, bedroomNumber];
