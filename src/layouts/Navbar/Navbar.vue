@@ -27,7 +27,7 @@ const isSheetOpen = ref(false);
 const isDropOpen = ref(false);
 </script>
 <template>
-  <nav class="navbar" :data-sheet-open="isSheetOpen">
+  <nav class="navbar wrapper">
     <div class="nav-content">
       <div class="logo-links">
         <a class="logo" href="/"> <BoholzLogo class="logo-svg" /></a>
@@ -97,16 +97,18 @@ const isDropOpen = ref(false);
 .navbar {
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
+  left: 0;
   z-index: 10;
   padding: var(--spacing-3) var(--spacing-5);
 
   .nav-content {
+    grid-column: content;
     background-color: var(--clr-surface-primary);
     display: flex;
     align-items: center;
-    padding: var(--spacing-3) var(--spacing-4);
+    height: var(--spacing-6);
+    padding: 0 var(--spacing-4);
     border-radius: var(--radius-lg);
     justify-content: space-between;
 
@@ -159,6 +161,7 @@ const isDropOpen = ref(false);
   }
 
   .drop-container {
+    grid-column: content;
     position: relative;
 
     .house-categories {
