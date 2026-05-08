@@ -7,7 +7,6 @@ import { ROUTES } from "../../utils/routes";
 import FilterPanel from "../../features/FilterPanel/FilterPanel.vue";
 import {
   type SortOption,
-  type FilterOption,
   type ActiveFilter,
 } from "../FilterPanel/filter-panel.types";
 
@@ -19,43 +18,35 @@ const props = defineProps<{
 let categories = props.categories;
 const selectedCategory = ref<HouseCategory | null>(categories[0] || null);
 const isPaneOpen = ref(false);
-const sortOption = ref<SortOption | null>(null);
-const fOpt = ref<ActiveFilter | null>(null);
+const sort = ref<SortOption | null>(null);
+const filter = ref<ActiveFilter | null>(null);
 
 const displayModels = computed(() => {
   const filtered = props.models.filter((model) => {
     return model.category?.id === selectedCategory.value?.id;
   });
-  return sortModels(filtered, sortOption.value);
+  const filterApplied = filterModels(filtered, filter.value);
+  return sortModels(filterApplied, sort.value);
 });
 
 const selectCategory = (category: HouseCategory) => {
   selectedCategory.value = category;
 };
 
-const filterModels = (
-  models: HouseModel[],
-  f: ActiveFilter<boolean> | null,
-  fVal: number,
-) => {
-  if (f === null) {
-    return models;
-  }
+const filterModels = (models: HouseModel[], f: ActiveFilter | null) => {
+  if (f === null) return models;
 
-  if (f.kind === "boolean") {
-    [...models].filter((m) => {
-      let value = f.resolve(m);
-      return value;
-    });
-  } else if (f.kind === "count") {
-    [...models].filter((m) => {
-      let value = f.resolve(m);
-      if (value === null) {
-        return false;
-      }
-      return value > fVal;
+  if (f.option.kind === "boolean") {
+    return [...models].filter((m) => f.option.resolve(m) === true);
+  } else if (f.option.kind === "count") {
+    const threshold = f.value as number;
+    return [...models].filter((m) => {
+      const val = f.option.resolve(m);
+      if (val === null || typeof val !== "number") return false;
+      return val >= threshold;
     });
   }
+  return models;
 };
 
 const sortModels = (models: HouseModel[], option: SortOption | null) => {
@@ -110,9 +101,8 @@ onMounted(() => {
     <div class="controls-wrapper">
       <FilterPanel
         v-model:isOpen="isPaneOpen"
-        v-model:sortOption="sortOption"
-        v-model:fOpt="filterOption"
-        v-model:fVal="filterValue"
+        v-model:sort="sort"
+        v-model:filter="filter"
       ></FilterPanel>
       <div class="categories-wrapper">
         <CategoryThumbnail

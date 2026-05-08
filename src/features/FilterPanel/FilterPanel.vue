@@ -1,19 +1,23 @@
 <script setup lang="ts">
 import { X } from "lucide-vue-next";
-import { FilterOption, type SortOption } from "./filter-panel.types";
+import {
+  type ActiveFilter,
+  type FilterOption,
+  type SortOption,
+} from "./filter-panel.types";
 import { sortOptions, filterOptions } from "./filter-panel.options";
 import OptionsButton from "./OptionsButton.vue";
 
 const isOpen = defineModel<boolean>("isOpen", { required: true });
-const sortOption = defineModel<SortOption | null>("sortOption", {
-  required: true,
-});
-const fOpt = defineModel<FilterOption | null>("fOpt", {
-  required: true,
-});
-const fVal = defineModel<number | null>("fVal", {
-  required: true,
-});
+const sort = defineModel<SortOption | null>("sort", { required: true });
+const filter = defineModel<ActiveFilter | null>("filter", { required: true });
+
+const selectFilter = (
+  option: FilterOption,
+  value: boolean | number | string,
+) => {
+  filter.value = { option, value } as ActiveFilter;
+};
 </script>
 
 <template>
@@ -28,16 +32,18 @@ const fVal = defineModel<number | null>("fVal", {
         <div class="filter-sort">
           <div class="filter-options" v-for="option in filterOptions">
             <h5>{{ option.label }}</h5>
-            <div class="filter-options" @click="fOpt = option">
+            <div class="filter-options">
               <OptionsButton
-                v-if="option.kind === `boolean`"
+                v-if="option.kind === 'boolean'"
                 :title="option.label"
+                @click="selectFilter(option, true)"
               ></OptionsButton>
               <OptionsButton
-                v-if="option.kind === `count`"
-                v-for="value in option.values"
-                @click="fVal = value"
-                :title="value.toString()"
+                v-if="option.kind === 'count'"
+                v-for="val in option.values"
+                :key="val"
+                :title="val.toString()"
+                @click="selectFilter(option, val)"
               ></OptionsButton>
             </div>
           </div>
@@ -48,7 +54,7 @@ const fVal = defineModel<number | null>("fVal", {
               v-for="option in sortOptions"
               :key="option.value + option.direction"
               :title="option.label"
-              @click="sortOption = option"
+              @click="sort = option"
             >
             </OptionsButton>
           </div>

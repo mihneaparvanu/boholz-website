@@ -7,7 +7,8 @@
 - **Database:** Postgres 18 (External via Dokploy)
 - **ORM:** Drizzle ORM
 - **Animation:** GSAP + Lenis (Smooth Scroll)
-- **Styling:** Vanilla & PostCSS
+- **Styling:** Vanilla Extract (CSS-in-TypeScript, zero runtime) + PostCSS for global resets/base
+- **Component Primitives:** Reka UI (Vue port of Radix UI — headless, fully accessible)
 
 ## 2. Core Implementation Phases
 
@@ -46,3 +47,25 @@ To query media manually in AWS CloudFlare R2, utilize standard S3 CLI configurat
 - **Performance:** Optimize for Largest Contentful Paint (LCP). Use the sorted WebP assets.
 - **Aesthetics:** Maintain the high-precision German engineering aesthetic in the UI components.
   SVG Protocol: All logos and icons must be implemented as functional components.
+
+## 5. Styling Architecture (Vanilla Extract)
+
+All component styles are written in `.css.ts` files co-located with their component.
+
+**File convention:**
+
+- `src/style/theme.css.ts` — token contract (`createThemeContract`) + default theme (`createTheme`)
+- `ComponentName/ComponentName.css.ts` — component styles using `recipe()` or `style()`
+- `.vue` files import **only the resulting class name strings** from `.css.ts` files — never write inline styles or hardcode values
+
+**Rules:**
+
+- Never hardcode a color, spacing, or radius value that exists in `theme.css.ts`. Always use `vars`.
+- All variant logic lives in `recipe()` — never conditional class strings in template logic.
+- Extract component props types with `RecipeVariants<typeof myRecipe>`.
+
+**Reka UI (headless component primitives):**
+
+- Use Reka UI for any interactive element that requires accessibility: dialogs, dropdowns, checkboxes, sliders, navigation.
+- Reka provides behavior only — all visual styling is done via Vanilla Extract.
+- Import from `reka-ui`. See: https://reka-ui.com

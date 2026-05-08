@@ -36,7 +36,7 @@ export type CountFilter = {
 export type FilterOption = BooleanFilter | EnumFilter | CountFilter;
 
 //prettier-ignore
-type ValueFor<F> = 
+type ValueFor<F> =
     F extends BooleanFilter ? boolean :
     F extends CountFilter   ? number  :
     F extends EnumFilter    ? string  :
