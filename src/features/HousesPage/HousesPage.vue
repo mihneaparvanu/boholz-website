@@ -9,6 +9,7 @@ import FilterPanel from "../../features/FilterPanel/FilterPanel.vue";
 import {
   type SortOption,
   type ActiveFilter,
+  type FilterState,
 } from "../FilterPanel/filter-panel.types";
 import { sortOptions } from "../FilterPanel/filter-panel.options";
 
@@ -19,23 +20,44 @@ const props = defineProps<{
 
 let categories = props.categories;
 const selectedCategory = ref<HouseCategory | null>(categories[0] || null);
-const isPaneOpen = ref(false);
-const filter = ref<ActiveFilter | null>(null);
-const sortValue = ref<string | null>(null);
-const sort = computed<SortOption | null>(
-  () => sortOptions.find((o) => o.value === sortValue.value) ?? null,
+const isPanelOpen = ref(false);
+const activeSort = ref<string | null>(null);
+const filterState = ref<FilterState>({ status: "inactive" });
+
+const activeSortOption = computed<SortOption | null>(
+  () => sortOptions.find((o) => o.value === activeSort.value) ?? null,
 );
 
-const displayModels = computed(() => {
-  const categoryModels = props.models.filter((model) => {
-    return model.category?.id === selectedCategory.value?.id;
-  });
-  const filteredModels = filterModels(categoryModels, filter.value);
-  return sortModels(filteredModels, sort.value);
+const categoryModels = props.models.filter((model) => {
+  return model.category?.id === selectedCategory.value?.id;
 });
 
-const selectCategory = (category: HouseCategory) => {
+const displayModels = computed(() => {
+  switch (filterState.value.status) {
+    case "inactive":
+    case "pending":
+      return sortModels(categoryModels, activeSortOption.value);
+    case "confirmed":
+      return sortModels(
+        filterModels(categoryModels, filterState.value.filter),
+        activeSortOption.value,
+      );
+    default:
+      return sortModels(categoryModels, activeSortOption.value);
+  }
+});
+
+const modelsCount = computed(() => {
+  if (filterState.value.status !== "pending") return displayModels.value.length;
+  return filterModels(categoryModels, filterState.value.filter).length;
+});
+
+const handleCategorySelect = (category: HouseCategory) => {
   selectedCategory.value = category;
+};
+
+const handleFilterConfirmed = () => {
+  isPanelOpen.value = false;
 };
 
 const filterModels = (
@@ -113,24 +135,26 @@ onMounted(() => {
   <div class="houses-page-wrapper">
     <div class="controls-wrapper">
       <FilterPanel
-        v-model:isOpen="isPaneOpen"
-        v-model:filter="filter"
+        :modelsCount="modelsCount"
+        @filter-confirmed="handleFilterConfirmed"
+        v-model:isOpen="isPanelOpen"
+        v-model:filterState="filterState"
       ></FilterPanel>
       <div class="categories-wrapper">
         <CategoryThumbnail
           v-for="category in categories"
           :key="category.id"
           :category="category"
-          @click="selectCategory(category)"
+          @click="handleCategorySelect(category)"
           :data-is-selected="category.id === selectedCategory?.id"
         />
       </div>
       <div class="filter-buttons-wrapper">
         <SortButton
-          v-model:sort="sortValue"
+          v-model:sort="activeSort"
           :options="sortOptions"
         ></SortButton>
-        <button @click="isPaneOpen = true">Filtern</button>
+        <button @click="isPanelOpen = true">Filtern</button>
       </div>
     </div>
 

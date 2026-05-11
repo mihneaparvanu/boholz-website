@@ -1,27 +1,47 @@
 <script setup lang="ts">
+import { computed, ref } from "vue";
 import { X } from "lucide-vue-next";
 import {
   type ActiveFilter,
   type FilterOption,
-  type SortOption,
+  type FilterState,
 } from "./filter-panel.types";
-import { sortOptions, filterOptions } from "./filter-panel.options";
+import { filterOptions } from "./filter-panel.options";
 import OptionsButton from "./OptionsButton.vue";
 
-const isOpen = defineModel<boolean>("isOpen", { required: true });
-const filter = defineModel<ActiveFilter | null>("filter", { required: true });
+const props = defineProps<{ modelsCount: number }>();
 
-const selectFilter = (
+const emit = defineEmits<{
+  "filter-confirmed": [];
+}>();
+
+const filterState = defineModel<FilterState>("filterState", { required: true });
+const isOpen = defineModel<boolean>("isOpen", { required: true });
+
+const handleOptionSelect = (
   option: FilterOption,
   value: boolean | number | string,
 ) => {
-  filter.value = { option, value } as ActiveFilter;
+  filterState.value = {
+    status: "pending",
+    filter: { option, value } as ActiveFilter,
+  };
+};
+
+const handleFilterConfirmed = () => {
+  if (filterState.value.status !== "pending") return;
+  filterState.value = { status: "confirmed", filter: filterState.value.filter };
+  emit("filter-confirmed");
+};
+
+const handleReset = () => {
+  filterState.value = { status: "inactive" };
 };
 </script>
 
 <template>
   <div class="page-wrapper" @click="isOpen = false" v-if="isOpen">
-    <div class="filter-panel">
+    <div class="filter-panel" @click.stop="">
       <div class="control-panel">
         <div class="close-action">
           <button @click="isOpen = false">
@@ -34,7 +54,7 @@ const selectFilter = (
             <OptionsButton
               v-if="option.kind === 'boolean'"
               :title="option.label"
-              @click="selectFilter(option, true)"
+              @click="handleOptionSelect(option, true)"
             ></OptionsButton>
             <div class="filter-option-values">
               <OptionsButton
@@ -42,21 +62,29 @@ const selectFilter = (
                 v-for="val in option.values"
                 :key="val"
                 :title="val.toString()"
-                @click="selectFilter(option, val)"
+                @click="handleOptionSelect(option, val)"
               ></OptionsButton>
               <OptionsButton
                 v-if="option.kind === 'enum'"
                 v-for="opt in option.options"
                 :key="opt"
                 :title="opt.toString()"
-                @click="selectFilter(option, opt)"
+                @click="handleOptionSelect(option, opt)"
               ></OptionsButton>
             </div>
           </div>
         </div>
       </div>
       <div class="trailing-buttons">
-        <button @click="filter = null">Alle löschen</button>
+        <button @click="handleReset">Alle löschen</button>
+        <button @click="handleFilterConfirmed" class="confirm-btn">
+          <span class="label"> Entdecken </span>
+          <div class="count-box">
+            <Transition name="count">
+              <span class="count" :key="modelsCount">{{ modelsCount }}</span>
+            </Transition>
+          </div>
+        </button>
       </div>
     </div>
   </div>
@@ -113,11 +141,23 @@ const selectFilter = (
   .trailing-buttons {
     --margin: var(--spacing-4);
     margin-block: 0 var(--margin);
-    margin-inline: var(--margin) 0;
+    margin-inline: var(--margin) var(--margin);
     display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+
+    @media (--from-wide) {
+      flex-direction: row;
+    }
+
     button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-1);
       height: var(--control-height-md);
-      padding: 0 var(--spacing-3);
+      padding: 0 var(--spacing-5);
       border: 1px solid var(--clr-accent-secondary);
       color: var(--clr-accent-secondary);
       border-radius: var(--radius-sm);
@@ -125,7 +165,56 @@ const selectFilter = (
       font-weight: 400;
       cursor: pointer;
       white-space: nowrap;
-      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+
+      &.confirm-btn {
+        background-color: var(--clr-accent-primary);
+        color: var(--clr-surface-primary);
+      }
+    }
+
+    .count-box {
+      --transition: 0.5s;
+      position: relative;
+      height: 100%;
+      display: flex;
+      width: 2ch;
+      margin-inline-end: var(--spacing-2);
+    }
+    .count {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      height: fit-content;
+      text-align: center;
+    }
+    .count-enter-from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    .count-enter-active {
+      transition:
+        opacity var(--transition),
+        transform var(--transition);
+    }
+    .count-enter-to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .count-leave-from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .count-leave-active {
+      transition:
+        opacity var(--transition),
+        transform var(--transition);
+    }
+    .count-leave-to {
+      opacity: 0;
+      transform: translateY(-8px);
     }
   }
 }
