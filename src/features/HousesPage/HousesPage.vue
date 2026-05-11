@@ -54,7 +54,7 @@ const displayModels = computed(() => {
 });
 
 const modelsCount = computed(() => {
-  return filteredModels.value.length ?? 0;
+  return filteredModels.value.length;
 });
 
 const handleCategorySelect = (category: HouseCategory) => {
