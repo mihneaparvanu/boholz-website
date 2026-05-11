@@ -12,7 +12,6 @@ import {
   type FilterState,
 } from "../FilterPanel/filter-panel.types";
 import { sortOptions } from "../FilterPanel/filter-panel.options";
-import mod from "astro/zod";
 
 const props = defineProps<{
   models: HouseModel[];
@@ -29,31 +28,32 @@ const activeSortOption = computed<SortOption | null>(
   () => sortOptions.find((o) => o.value === activeSort.value) ?? null,
 );
 
-const categoryModels = props.models.filter(
-  (model) => model.category?.id === selectedCategory.value?.id,
+const categoryModels = computed<HouseModel[]>(() =>
+  props.models.filter((m) => m.category?.id === selectedCategory.value?.id),
 );
 
 const applyFilters = (filters: ActiveFilter[], models: HouseModel[]) =>
   filters.reduce((models, filter) => filterModels(models, filter), models);
 
 const filteredModels = computed<HouseModel[]>(() =>
-  applyFilters(filterState.value.filters, categoryModels),
+  filterState.value.status === "inactive"
+    ? categoryModels.value
+    : applyFilters(filterState.value.filters, categoryModels.value),
 );
 
 const displayModels = computed(() => {
   switch (filterState.value.status) {
     case "inactive":
     case "pending":
-      return sortModels(categoryModels, activeSortOption.value);
+      return sortModels(categoryModels.value, activeSortOption.value);
     case "confirmed":
       return sortModels(filteredModels.value, activeSortOption.value);
     default:
-      return sortModels(categoryModels, activeSortOption.value);
+      return sortModels(categoryModels.value, activeSortOption.value);
   }
 });
 
 const modelsCount = computed(() => {
-  if (filterState.value.status !== "pending") return displayModels.value.length;
   return filteredModels.value.length ?? 0;
 });
 
