@@ -12,6 +12,7 @@ import {
   type FilterState,
 } from "../FilterPanel/filter-panel.types";
 import { sortOptions } from "../FilterPanel/filter-panel.options";
+import mod from "astro/zod";
 
 const props = defineProps<{
   models: HouseModel[];
@@ -22,15 +23,22 @@ let categories = props.categories;
 const selectedCategory = ref<HouseCategory | null>(categories[0] || null);
 const isPanelOpen = ref(false);
 const activeSort = ref<string | null>(null);
-const filterState = ref<FilterState>({ status: "inactive" });
+const filterState = ref<FilterState>({ status: "inactive", filters: [] });
 
 const activeSortOption = computed<SortOption | null>(
   () => sortOptions.find((o) => o.value === activeSort.value) ?? null,
 );
 
-const categoryModels = props.models.filter((model) => {
-  return model.category?.id === selectedCategory.value?.id;
-});
+const categoryModels = props.models.filter(
+  (model) => model.category?.id === selectedCategory.value?.id,
+);
+
+const applyFilters = (filters: ActiveFilter[], models: HouseModel[]) =>
+  filters.reduce((models, filter) => filterModels(models, filter), models);
+
+const filteredModels = computed<HouseModel[]>(() =>
+  applyFilters(filterState.value.filters, categoryModels),
+);
 
 const displayModels = computed(() => {
   switch (filterState.value.status) {
@@ -38,10 +46,7 @@ const displayModels = computed(() => {
     case "pending":
       return sortModels(categoryModels, activeSortOption.value);
     case "confirmed":
-      return sortModels(
-        filterModels(categoryModels, filterState.value.filter),
-        activeSortOption.value,
-      );
+      return sortModels(filteredModels.value, activeSortOption.value);
     default:
       return sortModels(categoryModels, activeSortOption.value);
   }
@@ -49,7 +54,7 @@ const displayModels = computed(() => {
 
 const modelsCount = computed(() => {
   if (filterState.value.status !== "pending") return displayModels.value.length;
-  return filterModels(categoryModels, filterState.value.filter).length;
+  return filteredModels.value.length ?? 0;
 });
 
 const handleCategorySelect = (category: HouseCategory) => {

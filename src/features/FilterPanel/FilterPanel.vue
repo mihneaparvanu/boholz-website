@@ -18,24 +18,36 @@ const emit = defineEmits<{
 const filterState = defineModel<FilterState>("filterState", { required: true });
 const isOpen = defineModel<boolean>("isOpen", { required: true });
 
+const appendFilter = (filter: ActiveFilter, filters: ActiveFilter[]) => {
+  const isDuplicate = filters.find((f) => f.value === filter.value);
+
+  if (isDuplicate) return filters;
+  return [...filters, filter];
+};
+
 const handleOptionSelect = (
   option: FilterOption,
   value: boolean | number | string,
 ) => {
+  const selectedFilter = { option, value } as ActiveFilter;
   filterState.value = {
     status: "pending",
-    filter: { option, value } as ActiveFilter,
+    filters: appendFilter(selectedFilter, filterState.value.filters),
   };
+  console.log(filterState.value);
 };
 
 const handleFilterConfirmed = () => {
   if (filterState.value.status !== "pending") return;
-  filterState.value = { status: "confirmed", filter: filterState.value.filter };
+  filterState.value = {
+    status: "confirmed",
+    filters: filterState.value.filters,
+  };
   emit("filter-confirmed");
 };
 
 const handleReset = () => {
-  filterState.value = { status: "inactive" };
+  filterState.value = { status: "inactive", filters: [] };
 };
 </script>
 

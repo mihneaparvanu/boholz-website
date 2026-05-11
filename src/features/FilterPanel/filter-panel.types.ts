@@ -36,9 +36,9 @@ export type CountFilter = {
 export type FilterOption = BooleanFilter | EnumFilter | CountFilter;
 
 export type FilterState =
-  | { status: "inactive" }
-  | { status: "pending"; filter: ActiveFilter }
-  | { status: "confirmed"; filter: ActiveFilter };
+  | { status: "inactive"; filters: ActiveFilter[] }
+  | { status: "pending"; filters: ActiveFilter[] }
+  | { status: "confirmed"; filters: ActiveFilter[] };
 
 //prettier-ignore
 type ValueFor<F> =
