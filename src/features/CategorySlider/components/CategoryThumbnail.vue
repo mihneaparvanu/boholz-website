@@ -51,12 +51,12 @@ const imageURL = computed(() => {
 
   .house-model-circle {
     cursor: pointer;
-    --size: var(--fs-h2);
+    --size: var(--fs-h1);
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-full);
-    width: 100%;
+    width: var(--size);
     aspect-ratio: 1/1;
     border: 2px solid var(--clr-border-primary);
     overflow: hidden;
@@ -64,10 +64,6 @@ const imageURL = computed(() => {
       width: 100%;
       height: 100%;
       object-fit: cover;
-    }
-
-    @media (--from-tablet) {
-      width: var(--size);
     }
   }
 

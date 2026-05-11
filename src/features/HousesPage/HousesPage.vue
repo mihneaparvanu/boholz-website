@@ -12,6 +12,7 @@ import {
   type FilterState,
 } from "../FilterPanel/filter-panel.types";
 import { sortOptions } from "../FilterPanel/filter-panel.options";
+import { BESTSELLER_CATEGORY_ID } from "../../data/constants";
 
 const props = defineProps<{
   models: HouseModel[];
@@ -28,9 +29,14 @@ const activeSortOption = computed<SortOption | null>(
   () => sortOptions.find((o) => o.value === activeSort.value) ?? null,
 );
 
-const categoryModels = computed<HouseModel[]>(() =>
-  props.models.filter((m) => m.category?.id === selectedCategory.value?.id),
-);
+const categoryModels = computed<HouseModel[]>(() => {
+  if (selectedCategory.value?.id === BESTSELLER_CATEGORY_ID) {
+    return props.models.filter((m) => m.isFeatured);
+  }
+  return props.models.filter(
+    (m) => m.category?.id === selectedCategory.value?.id,
+  );
+});
 
 const applyFilters = (filters: ActiveFilter[], models: HouseModel[]) =>
   filters.reduce((models, filter) => filterModels(models, filter), models);
@@ -181,26 +187,29 @@ onMounted(() => {
 
   .controls-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    gap: var(--spacing-3);
+    align-items: start;
+    gap: var(--spacing-1);
+    padding-block: var(--spacing-3);
 
-    @media (--mobile) {
-      flex-direction: column;
+    @media (--from-wide) {
+      flex-direction: row;
       align-items: stretch;
     }
 
     .categories-wrapper {
+      width: 100%;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--spacing-2);
-      padding-block: var(--spacing-4);
+      gap: var(--spacing-4);
+      grid-template-columns: repeat(2, 1fr);
 
       @media (--from-tablet) {
         display: flex;
-        flex-wrap: wrap;
-        gap: var(--spacing-4);
+        gap: var(--spacing-3);
       }
+
+      padding-block: var(--spacing-4);
     }
 
     .filter-buttons-wrapper {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+import { Motion, AnimatePresence } from "motion-v";
 import { X } from "lucide-vue-next";
 import {
   type ActiveFilter,
@@ -34,7 +35,6 @@ const handleOptionSelect = (
     status: "pending",
     filters: appendFilter(selectedFilter, filterState.value.filters),
   };
-  console.log(filterState.value);
 };
 
 const handleFilterConfirmed = () => {
@@ -92,9 +92,17 @@ const handleReset = () => {
         <button @click="handleFilterConfirmed" class="confirm-btn">
           <span class="label"> Entdecken </span>
           <div class="count-box">
-            <Transition name="count">
-              <span class="count" :key="modelsCount">{{ modelsCount }}</span>
-            </Transition>
+            <AnimatePresence mode="wait">
+              <Motion
+                :key="modelsCount"
+                :initial="{ opacity: 0, y: 8 }"
+                :animate="{ opacity: 1, y: 0 }"
+                :exit="{ opacity: 0, y: -8 }"
+                :transition="{ duration: 0.25 }"
+                class="count"
+                >{{ modelsCount }}</Motion
+              >
+            </AnimatePresence>
           </div>
         </button>
       </div>
@@ -187,7 +195,6 @@ const handleReset = () => {
     }
 
     .count-box {
-      --transition: 0.5s;
       position: relative;
       height: 100%;
       display: flex;
@@ -200,33 +207,6 @@ const handleReset = () => {
       margin: auto;
       height: fit-content;
       text-align: center;
-    }
-    .count-enter-from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    .count-enter-active {
-      transition:
-        opacity var(--transition),
-        transform var(--transition);
-    }
-    .count-enter-to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .count-leave-from {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .count-leave-active {
-      transition:
-        opacity var(--transition),
-        transform var(--transition);
-    }
-    .count-leave-to {
-      opacity: 0;
-      transform: translateY(-8px);
     }
   }
 }

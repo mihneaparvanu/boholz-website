@@ -3,8 +3,10 @@ import { not, inArray, eq } from "drizzle-orm";
 import { houseCategories, houseModels, news } from "../db/schema";
 import type { HouseCategory, HouseModel, NewsArticle } from "../types/models";
 import { getMediaURL } from "../utils/media";
+import { BESTSELLER_CATEGORY_ID } from "./constants";
+export { BESTSELLER_CATEGORY_ID } from "./constants";
 
-const HIDDEN_CATEGORY_SLUGS = ["pultdachhaus"];
+const HIDDEN_CATEGORY_SLUGS: string[] = [];
 
 // Virtual "Bestseller" category — not stored in DB; filtered client-side by model.isFeatured
 export const BESTSELLER_CATEGORY: HouseCategory = {
