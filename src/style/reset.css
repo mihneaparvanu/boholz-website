@@ -26,6 +26,8 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
+  /* scrollbar-gutter: stable is on html — prevent Reka from adding padding-right compensation */
+  padding-right: 0 !important;
 }
 
 img,

@@ -35,13 +35,13 @@ export const sortFields: SortField[] = [
 const generateSortOptions = (fields: SortField[]): SortOption[] => {
   return fields.flatMap((field) => [
     {
-      value: field.value,
+      value: `${field.value}-asc`,
       label: field.label + " " + "↑",
       resolve: field.resolve,
       direction: "asc",
     },
     {
-      value: field.value,
+      value: `${field.value}-desc`,
       label: field.label + " " + "↓",
       resolve: field.resolve,
       direction: "desc",
@@ -72,4 +72,23 @@ const bathroomCount: CountFilter = {
   resolve: (m) => m.details?.bathroomCount || null,
 };
 
-export const filterOptions: FilterOption[] = [hasGarage, bedroomNumber];
+const hasKniestock: BooleanFilter = {
+  kind: "boolean",
+  label: "Kniestock",
+  resolve: (m) => (m.details != null ? m.details.kniestock != null : null),
+};
+
+const roofType: EnumFilter = {
+  kind: "enum",
+  label: "Dachtyp",
+  options: ["Satteldach", "Walmdach", "Flachdach", "Pultdach"],
+  resolve: (m) => m.details?.roofType ?? null,
+};
+
+export const filterOptions: FilterOption[] = [
+  hasGarage,
+  hasKniestock,
+  roofType,
+  bedroomNumber,
+  bathroomCount,
+];

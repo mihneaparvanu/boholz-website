@@ -10,6 +10,7 @@ import {
   type SortOption,
   type ActiveFilter,
 } from "../FilterPanel/filter-panel.types";
+import { sortOptions } from "../FilterPanel/filter-panel.options";
 
 const props = defineProps<{
   models: HouseModel[];
@@ -19,35 +20,46 @@ const props = defineProps<{
 let categories = props.categories;
 const selectedCategory = ref<HouseCategory | null>(categories[0] || null);
 const isPaneOpen = ref(false);
-const sort = ref<SortOption | null>(null);
 const filter = ref<ActiveFilter | null>(null);
+const sortValue = ref<string | null>(null);
+const sort = computed<SortOption | null>(
+  () => sortOptions.find((o) => o.value === sortValue.value) ?? null,
+);
 
 const displayModels = computed(() => {
-  const filtered = props.models.filter((model) => {
+  const categoryModels = props.models.filter((model) => {
     return model.category?.id === selectedCategory.value?.id;
   });
-  const filterApplied = filterModels(filtered, filter.value);
-  return sortModels(filterApplied, sort.value);
+  const filteredModels = filterModels(categoryModels, filter.value);
+  return sortModels(filteredModels, sort.value);
 });
 
 const selectCategory = (category: HouseCategory) => {
   selectedCategory.value = category;
 };
 
-const filterModels = (models: HouseModel[], f: ActiveFilter | null) => {
-  if (f === null) return models;
-
-  if (f.option.kind === "boolean") {
-    return [...models].filter((m) => f.option.resolve(m) === true);
-  } else if (f.option.kind === "count") {
-    const threshold = f.value as number;
-    return [...models].filter((m) => {
-      const val = f.option.resolve(m);
-      if (val === null || typeof val !== "number") return false;
-      return val >= threshold;
-    });
+const filterModels = (
+  models: HouseModel[],
+  f: ActiveFilter | null,
+): HouseModel[] => {
+  if (f === null) {
+    return models;
   }
-  return models;
+  const { option, value } = f;
+
+  switch (option.kind) {
+    case "boolean":
+      return models.filter((m) => option.resolve(m) === true);
+    case "count":
+      return models.filter((m) => {
+        const resolved = option.resolve(m);
+        return resolved !== null && resolved >= (value as number);
+      });
+    case "enum":
+      return models.filter((m) => option.resolve(m) === (value as string));
+    default:
+      return models;
+  }
 };
 
 const sortModels = (models: HouseModel[], option: SortOption | null) => {
@@ -102,7 +114,6 @@ onMounted(() => {
     <div class="controls-wrapper">
       <FilterPanel
         v-model:isOpen="isPaneOpen"
-        v-model:sort="sort"
         v-model:filter="filter"
       ></FilterPanel>
       <div class="categories-wrapper">
@@ -114,9 +125,12 @@ onMounted(() => {
           :data-is-selected="category.id === selectedCategory?.id"
         />
       </div>
-      <div class="filter-wrapper">
-        <SortButton></SortButton>
-        <button @click="isPaneOpen = true">Filtern & Sortieren</button>
+      <div class="filter-buttons-wrapper">
+        <SortButton
+          v-model:sort="sortValue"
+          :options="sortOptions"
+        ></SortButton>
+        <button @click="isPaneOpen = true">Filtern</button>
       </div>
     </div>
 
@@ -160,22 +174,28 @@ onMounted(() => {
       }
     }
 
-    .filter-wrapper {
+    .filter-buttons-wrapper {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-2);
       button {
+        all: unset;
+        box-sizing: border-box;
         display: inline-flex;
         align-items: center;
-        padding: var(--spacing-1) var(--spacing-3);
-        border: 2px solid var(--clr-accent-secondary);
+        height: var(--control-height-md);
+        padding: 0 var(--spacing-3);
+        border: 1px solid var(--clr-accent-secondary);
         color: var(--clr-accent-secondary);
-        text-decoration: none;
         border-radius: var(--radius-sm);
+        font: inherit;
         font-weight: 400;
+        cursor: pointer;
+        white-space: nowrap;
         transition: background 0.2s;
       }
-
-      button :hover {
-        background: var(--clr-accent-secondary);
-        color: var(--clr-surface-primary);
+      button:hover {
+        background: var(--clr-surface-secondary);
       }
     }
   }

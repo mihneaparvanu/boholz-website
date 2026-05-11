@@ -50,6 +50,10 @@
 
   /* Semantics */
 
+  /* Overlay */
+  --clr-overlay: rgba(0, 0, 0, 0.2);
+  --clr-overlay-strong: rgba(0, 0, 0, 0.5);
+
   /* Surface */
   --clr-surface-primary: var(--neutral-gray-900);
   --clr-surface-secondary: var(--neutral-gray-800);
@@ -94,6 +98,16 @@
   --spacing-7: calc(var(--spacing-unit) * 34); /* 102→170px */
   --spacing-8: calc(var(--spacing-unit) * 55); /* 165→275px */
 
+  /* --- Control Heights — fluid, same unit as spacing, non-Fibonacci multipliers
+     (Fibonacci is for gaps/padding; controls need their own rhythm)
+     At midpoint viewport (~880px) unit ≈ 4px, matching Apple HIG hit targets:
+     sm: 7×  → 21→35px  (compact secondary controls)
+     md: 9×  → 27→45px  (default buttons, selects, inputs)
+     lg: 13× → 39→65px  (primary CTAs — same multiplier as spacing-5)     */
+  --control-height-sm: calc(var(--spacing-unit) * 7);
+  --control-height-md: calc(var(--spacing-unit) * 9);
+  --control-height-lg: calc(var(--spacing-unit) * 13);
+
   /* --- Border Radius --- */
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -118,7 +132,7 @@
   --fs-scale: 1.33333;
 
   --fs-small: calc(var(--fs-body) / var(--fs-scale));
-  --fs-body: clamp(0.7rem, var(--fs-base) + 0.5vw, 1.25rem);
+  --fs-body: clamp(0.75rem, var(--fs-base) + 0.35vw, 1.05rem);
   --fs-h6: calc(var(--fs-body) * var(--fs-scale));
   --fs-h5: calc(var(--fs-h6) * var(--fs-scale));
   --fs-h4: calc(var(--fs-h5) * var(--fs-scale));

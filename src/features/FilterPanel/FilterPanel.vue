@@ -9,7 +9,6 @@ import { sortOptions, filterOptions } from "./filter-panel.options";
 import OptionsButton from "./OptionsButton.vue";
 
 const isOpen = defineModel<boolean>("isOpen", { required: true });
-const sort = defineModel<SortOption | null>("sort", { required: true });
 const filter = defineModel<ActiveFilter | null>("filter", { required: true });
 
 const selectFilter = (
@@ -29,15 +28,15 @@ const selectFilter = (
             <X />
           </button>
         </div>
-        <div class="filter-sort">
-          <div class="filter-options" v-for="option in filterOptions">
+        <div class="filter-options">
+          <div class="filter-option" v-for="option in filterOptions">
             <h5>{{ option.label }}</h5>
-            <div class="filter-options">
-              <OptionsButton
-                v-if="option.kind === 'boolean'"
-                :title="option.label"
-                @click="selectFilter(option, true)"
-              ></OptionsButton>
+            <OptionsButton
+              v-if="option.kind === 'boolean'"
+              :title="option.label"
+              @click="selectFilter(option, true)"
+            ></OptionsButton>
+            <div class="filter-option-values">
               <OptionsButton
                 v-if="option.kind === 'count'"
                 v-for="val in option.values"
@@ -45,21 +44,19 @@ const selectFilter = (
                 :title="val.toString()"
                 @click="selectFilter(option, val)"
               ></OptionsButton>
+              <OptionsButton
+                v-if="option.kind === 'enum'"
+                v-for="opt in option.options"
+                :key="opt"
+                :title="opt.toString()"
+                @click="selectFilter(option, opt)"
+              ></OptionsButton>
             </div>
           </div>
-          <h5>Sortieren</h5>
-          <div class="sort-options">
-            <OptionsButton
-              class="sort-option"
-              v-for="option in sortOptions"
-              :key="option.value + option.direction"
-              :title="option.label"
-              @click="sort = option"
-            >
-            </OptionsButton>
-          </div>
         </div>
-        <div class="buttons"></div>
+      </div>
+      <div class="trailing-buttons">
+        <button @click="filter = null">Alle löschen</button>
       </div>
     </div>
   </div>
@@ -72,7 +69,7 @@ const selectFilter = (
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: var(--clr-overlay);
   z-index: 15;
 }
 .filter-panel {
@@ -94,10 +91,41 @@ const selectFilter = (
       justify-content: end;
     }
 
-    .sort-options {
+    .filter-options {
       display: flex;
       flex-direction: column;
-      gap: var(--spacing-1);
+      gap: var(--spacing-3);
+
+      .filter-option {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-1);
+
+        .filter-option-values {
+          display: flex;
+          gap: var(--spacing-1);
+          flex-wrap: wrap;
+        }
+      }
+    }
+  }
+
+  .trailing-buttons {
+    --margin: var(--spacing-4);
+    margin-block: 0 var(--margin);
+    margin-inline: var(--margin) 0;
+    display: flex;
+    button {
+      height: var(--control-height-md);
+      padding: 0 var(--spacing-3);
+      border: 1px solid var(--clr-accent-secondary);
+      color: var(--clr-accent-secondary);
+      border-radius: var(--radius-sm);
+      font: inherit;
+      font-weight: 400;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
     }
   }
 }

@@ -8,21 +8,21 @@ Reka Select is a **controlled compound component**. There is no single `<Select 
 
 ## The pieces
 
-| Component | What it does |
-|---|---|
-| `SelectRoot` | Owns the open/value state. The brain. |
-| `SelectTrigger` | The button the user clicks to open the dropdown. |
-| `SelectValue` | Renders the currently selected label inside the trigger. |
-| `SelectIcon` | Optional chevron/icon slot inside the trigger. |
-| `SelectPortal` | Teleports the dropdown out of your DOM tree (avoids z-index/overflow issues). |
-| `SelectContent` | The dropdown panel itself. |
-| `SelectViewport` | Scroll container inside the panel. |
-| `SelectItem` | One option row. Carries the `value`. |
-| `SelectItemText` | The visible label of an item. |
-| `SelectItemIndicator` | The checkmark shown when an item is selected. |
-| `SelectLabel` | Non-selectable heading inside a group. |
-| `SelectGroup` | Groups items under a label. |
-| `SelectSeparator` | A visual dividing line. |
+| Component             | What it does                                                                  |
+| --------------------- | ----------------------------------------------------------------------------- |
+| `SelectRoot`          | Owns the open/value state. The brain.                                         |
+| `SelectTrigger`       | The button the user clicks to open the dropdown.                              |
+| `SelectValue`         | Renders the currently selected label inside the trigger.                      |
+| `SelectIcon`          | Optional chevron/icon slot inside the trigger.                                |
+| `SelectPortal`        | Teleports the dropdown out of your DOM tree (avoids z-index/overflow issues). |
+| `SelectContent`       | The dropdown panel itself.                                                    |
+| `SelectViewport`      | Scroll container inside the panel.                                            |
+| `SelectItem`          | One option row. Carries the `value`.                                          |
+| `SelectItemText`      | The visible label of an item.                                                 |
+| `SelectItemIndicator` | The checkmark shown when an item is selected.                                 |
+| `SelectLabel`         | Non-selectable heading inside a group.                                        |
+| `SelectGroup`         | Groups items under a label.                                                   |
+| `SelectSeparator`     | A visual dividing line.                                                       |
 
 ---
 
@@ -94,18 +94,26 @@ You'll almost always want to drive the items from outside the component:
 ```ts
 // In the parent or a constants file
 const sortOptions = [
-  { value: "price-asc",  label: "Price: low → high" },
+  { value: "price-asc", label: "Price: low → high" },
   { value: "price-desc", label: "Price: high → low" },
-  { value: "newest",     label: "Newest first" },
+  { value: "newest", label: "Newest first" },
 ];
 ```
 
 ```vue
 <!-- SortButton.vue -->
 <script setup lang="ts">
-import { SelectRoot, SelectTrigger, SelectValue, SelectPortal,
-         SelectContent, SelectViewport, SelectItem, SelectItemText,
-         SelectItemIndicator } from "reka-ui";
+import {
+  SelectRoot,
+  SelectTrigger,
+  SelectValue,
+  SelectPortal,
+  SelectContent,
+  SelectViewport,
+  SelectItem,
+  SelectItemText,
+  SelectItemIndicator,
+} from "reka-ui";
 
 interface Option {
   value: string;
@@ -175,14 +183,14 @@ const model = defineModel<string>();
 
 ## Key prop reference
 
-| Prop | On | Type | What it does |
-|---|---|---|---|
-| `v-model` / `modelValue` | `SelectRoot` | `string` | The selected value |
-| `defaultValue` | `SelectRoot` | `string` | Initial value, uncontrolled |
-| `disabled` | `SelectRoot` | `boolean` | Disables the whole select |
-| `placeholder` | `SelectValue` | `string` | Text when nothing selected |
-| `value` | `SelectItem` | `string` | The data key for this option |
-| `disabled` | `SelectItem` | `boolean` | Makes one option unselectable |
+| Prop                     | On            | Type      | What it does                  |
+| ------------------------ | ------------- | --------- | ----------------------------- |
+| `v-model` / `modelValue` | `SelectRoot`  | `string`  | The selected value            |
+| `defaultValue`           | `SelectRoot`  | `string`  | Initial value, uncontrolled   |
+| `disabled`               | `SelectRoot`  | `boolean` | Disables the whole select     |
+| `placeholder`            | `SelectValue` | `string`  | Text when nothing selected    |
+| `value`                  | `SelectItem`  | `string`  | The data key for this option  |
+| `disabled`               | `SelectItem`  | `boolean` | Makes one option unselectable |
 
 ---
 
