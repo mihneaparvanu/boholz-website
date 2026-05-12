@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { getMediaURL } from "../utils/media";
 import "../style/content-page.css";
 ---
 
@@ -10,10 +11,26 @@ import "../style/content-page.css";
       Nachhaltigkeit, Qualität und Ihr Traumhaus aus einer Hand. Erfahren Sie,
       warum BoHolz-Haus Ihr idealer Partner für den Fertighausbau ist.
     </p>
+    <img
+      class="page-hero"
+      src={getMediaURL("/images/pages/unser-versprechen/hero-gruende.jpg")}
+      alt="16 gute Gründe für ein BoHolz Fertighaus"
+      loading="eager"
+      width="2000"
+      height="776"
+    />
 
     <!-- Qualität -->
     <section>
       <h2>Qualität &amp; Zufriedenheit</h2>
+      <img
+        class="section-image"
+        src={getMediaURL("/images/pages/unser-versprechen/qualitaet.jpg")}
+        alt="Qualität und Zufriedenheit"
+        loading="lazy"
+        width="500"
+        height="300"
+      />
       <p>
         Unser oberstes Ziel ist die Zufriedenheit unserer Kunden. Dicht gefolgt
         von unserem hohen Qualitätsstandard, den wir Ihnen bieten können. Wir
@@ -52,6 +69,14 @@ import "../style/content-page.css";
     <!-- 16 gute Gründe -->
     <section>
       <h2>16 gute Gründe für ein BoHolz Fertighaus</h2>
+      <img
+        class="section-image"
+        src={getMediaURL("/images/pages/unser-versprechen/16-gruende.jpg")}
+        alt="16 gute Gründe"
+        loading="lazy"
+        width="500"
+        height="300"
+      />
       <ol>
         <li>Nachhaltige diffusionsoffene ausgedämmte Außenwände mit Holzfaserdämmplatte für sommerlichen Hitzeschutz und besten Wohnkomfort</li>
         <li>Hochwertiger Wandaufbau für Effizienzhaus KfW 40 und KfW 55</li>
@@ -75,6 +100,14 @@ import "../style/content-page.css";
     <!-- Nachhaltigkeit -->
     <section>
       <h2>Nachhaltigkeit</h2>
+      <img
+        class="section-image"
+        src={getMediaURL("/images/pages/unser-versprechen/nachhaltigkeit.jpg")}
+        alt="Nachhaltigkeit beim Hausbau"
+        loading="lazy"
+        width="500"
+        height="300"
+      />
       <p>
         Bei BoHolz Haus verbinden wir Ihre Wohnträume mit aktivem Umweltschutz.
         Unsere individuellen Fertighäuser aus Holz sind nicht nur Ihr
@@ -143,6 +176,14 @@ import "../style/content-page.css";
     <!-- Wandaufbau -->
     <section>
       <h2>Der Wandaufbau</h2>
+      <img
+        class="section-image"
+        src={getMediaURL("/images/pages/unser-versprechen/wandaufbau.jpg")}
+        alt="Der BoHolz Wandaufbau"
+        loading="lazy"
+        width="500"
+        height="300"
+      />
       <p>
         Die größten Energieverluste eines Hauses treten über seine äußere Hülle
         auf. BoHolz Haus setzt bei allen seinen Häusern konsequent auf Holz als

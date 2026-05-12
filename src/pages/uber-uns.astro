@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { getMediaURL } from "../utils/media";
 import "../style/content-page.css";
 ---
 
@@ -10,6 +11,14 @@ import "../style/content-page.css";
       Zwei starke Partner, gemeinsame Werte und ein Ziel – Ihr individuelles
       Traumhaus.
     </p>
+    <img
+      class="page-hero"
+      src={getMediaURL("/images/pages/uber-uns/hero-werte.png")}
+      alt="BoHolz Haus – unsere Werte"
+      loading="eager"
+      width="1600"
+      height="700"
+    />
 
     <!-- Zwei starke Partner -->
     <section>
@@ -69,6 +78,30 @@ import "../style/content-page.css";
         jeden Bauvorhabens. Aus diesem Grund beruhen alle unsere Häuser auf der
         zukunftsweisenden Holzbauweise.
       </p>
+
+      <div class="value-grid">
+        <img
+          src={getMediaURL("/images/pages/uber-uns/value-1.jpg")}
+          alt="Individuelle Planung"
+          loading="lazy"
+          width="800"
+          height="500"
+        />
+        <img
+          src={getMediaURL("/images/pages/uber-uns/value-2.jpg")}
+          alt="Nachhaltige Holzbauweise"
+          loading="lazy"
+          width="800"
+          height="500"
+        />
+        <img
+          src={getMediaURL("/images/pages/uber-uns/value-3.jpg")}
+          alt="Persönliche Beratung"
+          loading="lazy"
+          width="800"
+          height="500"
+        />
+      </div>
 
       <h3>Wer wir sind</h3>
       <p>

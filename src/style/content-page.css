@@ -6,6 +6,43 @@
   padding-block: var(--spacing-5) var(--spacing-8);
 }
 
+/* ── Page hero image ── */
+
+.content-page .page-hero {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 7;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-block-end: var(--spacing-4);
+}
+
+/* ── Section image (illustrates a single section) ── */
+
+.content-page .section-image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  margin-block: var(--spacing-3);
+}
+
+/* ── Value grid (uber-uns: 3 image boxes) ── */
+
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--spacing-3);
+  margin-block: var(--spacing-3);
+}
+
+.value-grid img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
 /* ── Hero heading ── */
 
 .content-page > h1 {

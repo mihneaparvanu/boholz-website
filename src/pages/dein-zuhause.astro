@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { getMediaURL } from "../utils/media";
 import "../style/content-page.css";
 ---
 
@@ -10,6 +11,14 @@ import "../style/content-page.css";
       Von der ersten Idee bis zur Schlüsselübergabe – so entsteht Ihr
       individuelles BoHolz Fertighaus.
     </p>
+    <img
+      class="page-hero"
+      src={getMediaURL("/images/pages/dein-zuhause/hero-bauen.jpg")}
+      alt="Bauen mit BoHolz Haus"
+      loading="eager"
+      width="2000"
+      height="776"
+    />
 
     <!-- Der Ablauf / Prozess -->
     <section>
@@ -109,6 +118,14 @@ import "../style/content-page.css";
     <!-- Finanzierung & Förderung -->
     <section>
       <h2>Finanzierung &amp; Förderung</h2>
+      <img
+        class="section-image"
+        src={getMediaURL("/images/pages/dein-zuhause/foerderung.jpg")}
+        alt="Finanzierung und Förderung"
+        loading="lazy"
+        width="500"
+        height="300"
+      />
       <p>
         Staatliche Förderungen durch die Kreditanstalt für Wiederaufbau (KfW)
         sind eine attraktive Möglichkeit, Ihren Hausbau finanziell zu
@@ -146,6 +163,14 @@ import "../style/content-page.css";
     <!-- Ausbaustufen -->
     <section>
       <h2>Ausbaustufen</h2>
+      <img
+        class="section-image"
+        src={getMediaURL("/images/pages/dein-zuhause/ausbaustufen.jpg")}
+        alt="Ausbaustufen"
+        loading="lazy"
+        width="500"
+        height="300"
+      />
       <p>
         Jeder Bauherr ist anders. Wählen Sie die Ausbaustufe, die am besten zu
         Ihren Fähigkeiten und Ihrem Budget passt.
