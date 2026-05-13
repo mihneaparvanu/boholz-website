@@ -77,7 +77,7 @@ const formattedDate = computed(() => {
 }
 
 .date {
-  font-size: var(--fs-sm);
+  font-size: var(--fs-body-sm);
   color: var(--clr-content-tertiary);
 }
 

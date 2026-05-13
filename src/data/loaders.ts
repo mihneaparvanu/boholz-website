@@ -5,7 +5,7 @@ import type {
   HouseCategory,
   HouseModel,
   NewsArticle,
-  Showhouses,
+  Showhouse,
 } from "../types/models";
 import { getMediaURL } from "../utils/media";
 export { BESTSELLER_CATEGORY_ID } from "./constants";
@@ -151,7 +151,7 @@ export async function getNewsBySlug(
   return article;
 }
 
-export async function getShowhouses(): Promise<Showhouses[]> {
+export async function getShowhouses(): Promise<Showhouse[]> {
   const data = await db.query.showhouses.findMany({});
   return data;
 }

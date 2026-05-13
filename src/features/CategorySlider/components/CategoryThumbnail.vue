@@ -73,7 +73,7 @@ const imageURL = computed(() => {
     width: 100%;
     overflow: hidden;
     span {
-      font-size: var(--fs-small);
+      font-size: var(--fs-body-sm);
       font-weight: 400;
       color: var(--clr-content-tertiary);
       text-align: center;

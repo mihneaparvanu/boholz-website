@@ -108,11 +108,15 @@
   --control-height-md: calc(var(--spacing-unit) * 9);
   --control-height-lg: calc(var(--spacing-unit) * 13);
 
-  /* --- Border Radius --- */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  /* --- Border Radius — derived from spacing unit so radius scales with spacing
+     sm: 1×  →  3→5px
+     md: 2×  →  6→10px
+     lg: 3×  →  9→15px
+     xl: 5×  → 15→25px  (Fibonacci step, matches spacing-2/3 rhythm)   */
+  --radius-sm: calc(var(--spacing-unit) * 1);
+  --radius-md: calc(var(--spacing-unit) * 2);
+  --radius-lg: calc(var(--spacing-unit) * 3);
+  --radius-xl: calc(var(--spacing-unit) * 5);
   --radius-full: 9999px;
 
   /* --- Typography --- */
@@ -131,8 +135,9 @@
   --fs-base: 0.875rem;
   --fs-scale: 1.33333;
 
-  --fs-small: calc(var(--fs-body) / var(--fs-scale));
+  --fs-body-sm: calc(var(--fs-body) / var(--fs-scale));
   --fs-body: clamp(0.75rem, var(--fs-base) + 0.35vw, 1.05rem);
+  --fs-body-lg: calc(var(--fs-body) * 1.15);
   --fs-h6: calc(var(--fs-body) * var(--fs-scale));
   --fs-h5: calc(var(--fs-h6) * var(--fs-scale));
   --fs-h4: calc(var(--fs-h5) * var(--fs-scale));

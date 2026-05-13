@@ -150,7 +150,7 @@
 
 .feature-card p {
   margin-block-end: 0;
-  font-size: var(--fs-small);
+  font-size: var(--fs-body-sm);
 }
 
 /* ── Info box (address, contact details) ── */

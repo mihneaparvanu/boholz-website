@@ -22,7 +22,7 @@ export type BaseCategoryMedia = InferSelectModel<typeof categoryMedia>;
 export type BaseFloorMedia = InferSelectModel<typeof floorMedia>;
 export type BaseNews = InferSelectModel<typeof news>;
 export type BaseNewsMedia = InferSelectModel<typeof newsMedia>;
-export type Showhouses = InferSelectModel<typeof showhouses>;
+export type Showhouse = InferSelectModel<typeof showhouses>;
 
 export type HouseModel = BaseHouseModel & {
   // details is nullable — not every model has one yet

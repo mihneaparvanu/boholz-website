@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { NavRoute } from "../../utils/routes";
-import NavbarSheetItem from "./NavbarSheetItem.vue";
+import NavbarMobileMenuItem from "./NavbarMobileMenuItem.vue";
 
 const { routes } = defineProps<{
   routes: NavRoute[];
@@ -8,19 +8,25 @@ const { routes } = defineProps<{
 </script>
 
 <template>
-  <div class="navbar-sheet">
+  <div class="navbar-mobile-menu">
     <ul class="nav-content">
-      <NavbarSheetItem
+      <NavbarMobileMenuItem
         v-for="route in routes"
         :key="route.path"
         :route="route"
       />
     </ul>
+
+    <button class="cta">Beratung finden</button>
   </div>
 </template>
 
 <style scoped>
-.navbar-sheet {
+.navbar-mobile-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: var(--spacing-6);
   width: 100%;
   min-height: 10vh;
   background-color: var(--clr-surface-primary);
@@ -34,7 +40,14 @@ const { routes } = defineProps<{
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-4);
-    height: 100%;
+  }
+
+  .cta {
+    background-color: var(--clr-accent-primary);
+    color: var(--clr-surface-primary);
+    padding: var(--spacing-1);
+    font-weight: 500;
+    border-radius: var(--radius-sm);
   }
 }
 </style>

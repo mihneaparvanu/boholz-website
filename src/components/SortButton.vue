@@ -90,7 +90,7 @@ const sort = defineModel<string | null>("sort");
 }
 
 .select-item {
-  font-size: var(--fs-small);
+  font-size: var(--fs-body-sm);
   line-height: 1;
   color: var(--clr-content-primary);
   border-radius: var(--radius-sm);

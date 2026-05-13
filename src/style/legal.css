@@ -76,7 +76,7 @@
   width: 100%;
   border-collapse: collapse;
   margin-block: var(--spacing-2) var(--spacing-3);
-  font-size: var(--fs-small);
+  font-size: var(--fs-body-sm);
 }
 
 .legal th,

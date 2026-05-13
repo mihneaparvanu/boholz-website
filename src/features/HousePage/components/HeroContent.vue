@@ -48,7 +48,7 @@ const props = defineProps<{
 
     span {
       text-transform: uppercase;
-      font-size: var(--fs-small);
+      font-size: var(--fs-body-sm);
       color: var(--clr-content-secondary);
       font-weight: 500;
     }
