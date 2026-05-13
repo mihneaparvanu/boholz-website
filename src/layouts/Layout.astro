@@ -6,8 +6,9 @@ import "../style/wrapper.css"
 import Navbar from "./Navbar/Navbar.vue";
 import Footer from "./Footer/Footer.astro";
 
-import { getCategories } from "../data/loaders";
+import { getCategories, getShowhouses } from "../data/loaders";
 import type { HouseCategory } from "../types/models";
+import { showhouses } from "../db/schema";
 
 interface Props {
   title: string;
@@ -16,6 +17,7 @@ interface Props {
 
 const { title, categories: categoriesProp } = Astro.props;
 const categories = categoriesProp ?? await getCategories();
+const showhouses = getShowhouses();
 ---
 
 <html lang="de">

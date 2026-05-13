@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import { Motion, AnimatePresence } from "motion-v";
 
 import BoholzLogo from "../../components/BoholzLogo.vue";
 import NavbarSheet from "./NavbarSheet.vue";
@@ -13,10 +14,14 @@ const props = defineProps<{
   currentPath: string;
 }>();
 
-const selectedCategory = ref<HouseCategory | null>(null);
+const selectedCategory = ref<HouseCategory>(props.categories[0]);
 
 const selectCategory = (category: HouseCategory) => {
   selectedCategory.value = category;
+};
+
+const resetCategory = () => {
+  selectedCategory.value = props.categories[0];
 };
 
 const selectedHeroMedia = computed(
@@ -25,6 +30,22 @@ const selectedHeroMedia = computed(
 
 const isSheetOpen = ref(false);
 const isDropOpen = ref(false);
+let closeTimer: ReturnType<typeof setTimeout> | null = null;
+
+const openDrop = () => {
+  if (closeTimer) {
+    clearTimeout(closeTimer);
+    closeTimer = null;
+  }
+  isDropOpen.value = true;
+};
+
+const scheduleDrop = () => {
+  closeTimer = setTimeout(() => {
+    isDropOpen.value = false;
+    resetCategory();
+  }, 150);
+};
 </script>
 <template>
   <nav class="navbar wrapper">
@@ -36,10 +57,10 @@ const isDropOpen = ref(false);
           <li
             v-for="route in NAV_ROUTES"
             :key="route.path"
-            @mouseover="
+            @mouseenter="
               route.path === '/hauser' && props.currentPath !== '/hauser'
-                ? (isDropOpen = true)
-                : (isDropOpen = false)
+                ? openDrop()
+                : scheduleDrop()
             "
           >
             <a :href="route.path" :data-is-current="currentPath === route.path"
@@ -54,41 +75,64 @@ const isDropOpen = ref(false);
       </button>
     </div>
     <NavbarSheet :routes="NAV_ROUTES" :data-is-open="isSheetOpen" />
-    <div class="drop-container" @mouseleave="isDropOpen = false">
-      <NavbarDrop v-if="isDropOpen">
-        <template #leading>
-          <ul class="house-categories">
-            <li
-              v-for="category in props.categories"
-              :key="category.id"
-              @mouseover="selectCategory(category)"
-            >
-              <a :href="`/hauser?category=${category.slug}`">{{
-                category.name
-              }}</a>
-            </li>
-          </ul>
-        </template>
-        <template #trailing>
-          <a
-            v-if="selectedCategory"
-            class="categories-showcase"
-            :href="`/hauser?category=${selectedCategory.slug}`"
-          >
-            <div class="text-content">
-              <h3 class="title">{{ selectedCategory?.name }}</h3>
-              <p>{{ `Entdecken Sie alle ${selectedCategory?.name}` }}</p>
-            </div>
-            <div class="image-wrapper">
-              <img
-                v-if="selectedHeroMedia"
-                :src="selectedHeroMedia.path"
-                :alt="selectedHeroMedia.alt ?? selectedCategory?.name"
-              />
-            </div>
-          </a>
-        </template>
-      </NavbarDrop>
+    <div
+      class="drop-container"
+      @mouseenter="openDrop"
+      @mouseleave="scheduleDrop"
+    >
+      <AnimatePresence>
+        <Motion
+          v-if="isDropOpen"
+          tag="div"
+          :initial="{ opacity: 0, y: -3 }"
+          :animate="{ opacity: 1, y: 0 }"
+          :exit="{ opacity: 0, y: -3 }"
+          :transition="{ duration: 0.2, ease: 'easeOut' }"
+        >
+          <NavbarDrop>
+            <template #leading>
+              <ul class="house-categories">
+                <li
+                  v-for="category in props.categories"
+                  :key="category.id"
+                  @mouseenter="selectCategory(category)"
+                >
+                  <a :href="`/hauser?category=${category.slug}`">{{
+                    category.name
+                  }}</a>
+                </li>
+              </ul>
+              <TitleLinks
+            /></template>
+            <template #trailing>
+              <AnimatePresence mode="wait">
+                <Motion
+                  :key="selectedCategory.id"
+                  tag="a"
+                  class="categories-showcase"
+                  :href="`/hauser?category=${selectedCategory.slug}`"
+                  :initial="{ opacity: 0 }"
+                  :animate="{ opacity: 1 }"
+                  :exit="{ opacity: 0 }"
+                  :transition="{ duration: 0.15 }"
+                >
+                  <div class="text-content">
+                    <h3 class="title">{{ selectedCategory.name }}</h3>
+                    <p>{{ `Entdecken Sie alle ${selectedCategory.name}` }}</p>
+                  </div>
+                  <div class="image-wrapper">
+                    <img
+                      v-if="selectedHeroMedia"
+                      :src="selectedHeroMedia.path"
+                      :alt="selectedHeroMedia.alt ?? selectedCategory.name"
+                    />
+                  </div>
+                </Motion>
+              </AnimatePresence>
+            </template>
+          </NavbarDrop>
+        </Motion>
+      </AnimatePresence>
     </div>
   </nav>
 </template>

@@ -1,9 +1,13 @@
 import { db } from "../db/db";
 import { not, inArray, eq } from "drizzle-orm";
 import { houseCategories, houseModels, news } from "../db/schema";
-import type { HouseCategory, HouseModel, NewsArticle } from "../types/models";
+import type {
+  HouseCategory,
+  HouseModel,
+  NewsArticle,
+  Showhouses,
+} from "../types/models";
 import { getMediaURL } from "../utils/media";
-import { BESTSELLER_CATEGORY_ID } from "./constants";
 export { BESTSELLER_CATEGORY_ID } from "./constants";
 
 const HIDDEN_CATEGORY_SLUGS: string[] = [];
@@ -145,4 +149,9 @@ export async function getNewsBySlug(
   if (!data) return undefined;
   const [article] = resolveMediaPaths([data] as unknown as NewsArticle[]);
   return article;
+}
+
+export async function getShowhouses(): Promise<Showhouses[]> {
+  const data = await db.query.showhouses.findMany({});
+  return data;
 }
