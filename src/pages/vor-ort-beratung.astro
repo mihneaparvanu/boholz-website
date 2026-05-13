@@ -1,0 +1,14 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../layouts/Section.astro";
+import LocationsMap from "../features/Locations/LocationsMap.vue";
+---
+<Layout title="Vor Ort Beratung">
+  <Section heading="Vor Ort Beratung" subheading="Beratung" />
+  <div class="map-wrapper">
+    <LocationsMap client:only="vue" />
+  </div>
+</Layout>
+
+<style>
+</style>

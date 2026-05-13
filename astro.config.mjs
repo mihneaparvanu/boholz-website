@@ -11,5 +11,10 @@ export default defineConfig({
   adapter: node({ mode: "standalone" }),
   vite: {
     plugins: [vanillaExtractPlugin()],
+    ssr: {
+      // maplibre-gl uses browser-only APIs (window, Worker, WebGL).
+      // noExternal forces Vite to bundle it rather than handing it to Node.
+      noExternal: ["maplibre-gl"],
+    },
   },
 });

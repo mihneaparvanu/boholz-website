@@ -44,15 +44,15 @@ The map library calculates which tiles are currently visible (based on viewport 
 
 #### Raster vs Vector tiles
 
-| | Raster tiles | Vector tiles |
-|---|---|---|
-| Format | PNG/JPEG | PBF (Protobuf) |
-| Styling | Fixed, baked into the image | Dynamic, applied client-side |
-| Custom colors | ✗ Can't change | ✓ Full control |
-| Retina / HiDPI | Needs separate @2x tiles | Scales perfectly |
-| Offline | Easy to cache | Needs font/sprite assets too |
-| Bundle overhead | Near zero (library is tiny) | Larger (WebGL renderer) |
-| Best library | Leaflet | MapLibre GL JS |
+|                 | Raster tiles                | Vector tiles                 |
+| --------------- | --------------------------- | ---------------------------- |
+| Format          | PNG/JPEG                    | PBF (Protobuf)               |
+| Styling         | Fixed, baked into the image | Dynamic, applied client-side |
+| Custom colors   | ✗ Can't change              | ✓ Full control               |
+| Retina / HiDPI  | Needs separate @2x tiles    | Scales perfectly             |
+| Offline         | Easy to cache               | Needs font/sprite assets too |
+| Bundle overhead | Near zero (library is tiny) | Larger (WebGL renderer)      |
+| Best library    | Leaflet                     | MapLibre GL JS               |
 
 ### 1.3 Markers and Overlays
 
@@ -83,13 +83,13 @@ The library handles all three conversions for you.
 
 You never need to host tiles yourself for a project like this. Good free options:
 
-| Provider | License | Notes |
-|---|---|---|
-| **OpenStreetMap** | ODbL (attribution required) | Default, no key needed |
-| **Carto (Voyager/Positron)** | Free tier | Beautiful minimal styles, no API key for basic use |
-| **Stadia Maps** | Free tier (no key for low traffic) | Stamen-style tiles (watercolor, toner, terrain) |
-| **MapTiler** | Free tier (100k req/month) | Hosts OpenMapTiles vector tiles — best for MapLibre |
-| **Protomaps** | Apache 2 / free self-host | Single-file planet PMTiles, can self-host on CDN |
+| Provider                     | License                            | Notes                                               |
+| ---------------------------- | ---------------------------------- | --------------------------------------------------- |
+| **OpenStreetMap**            | ODbL (attribution required)        | Default, no key needed                              |
+| **Carto (Voyager/Positron)** | Free tier                          | Beautiful minimal styles, no API key for basic use  |
+| **Stadia Maps**              | Free tier (no key for low traffic) | Stamen-style tiles (watercolor, toner, terrain)     |
+| **MapTiler**                 | Free tier (100k req/month)         | Hosts OpenMapTiles vector tiles — best for MapLibre |
+| **Protomaps**                | Apache 2 / free self-host          | Single-file planet PMTiles, can self-host on CDN    |
 
 ---
 
@@ -158,7 +158,8 @@ MapLibre GL JS is the open-source fork of Mapbox GL JS v1 (Apache 2 license). It
 
 ```ts
 // Example MapLibre style using MapTiler's free OpenStreetMap style
-const MAP_STYLE = "https://api.maptiler.com/maps/streets/style.json?key=YOUR_KEY";
+const MAP_STYLE =
+  "https://api.maptiler.com/maps/streets/style.json?key=YOUR_KEY";
 
 // Or a self-contained minimal style pointing at OSM raster tiles:
 const RASTER_STYLE = {
@@ -226,20 +227,21 @@ const props = defineProps<{
 
 ### 3.4 Decision Matrix for BoHolz
 
-| | Leaflet | MapLibre GL JS |
-|---|---|---|
-| Bundle size | ✅ 42 KB | ⚠️ 250 KB |
-| DX simplicity | ✅ Excellent | ✅ Good |
-| Custom marker styling | ✅ Any HTML | ✅ Any HTML |
-| Custom map color palette | ✗ Not possible | ✅ Full style spec |
-| SSR/Astro compatible | ✅ (client:only) | ✅ (client:only) |
-| Free tiles, no API key | ✅ OSM | ✅ OSM raster |
-| Retina displays | ⚠️ Needs @2x tiles | ✅ Native |
-| Performance (100+ markers) | ✅ Good | ✅ Excellent |
+|                            | Leaflet            | MapLibre GL JS     |
+| -------------------------- | ------------------ | ------------------ |
+| Bundle size                | ✅ 42 KB           | ⚠️ 250 KB          |
+| DX simplicity              | ✅ Excellent       | ✅ Good            |
+| Custom marker styling      | ✅ Any HTML        | ✅ Any HTML        |
+| Custom map color palette   | ✗ Not possible     | ✅ Full style spec |
+| SSR/Astro compatible       | ✅ (client:only)   | ✅ (client:only)   |
+| Free tiles, no API key     | ✅ OSM             | ✅ OSM raster      |
+| Retina displays            | ⚠️ Needs @2x tiles | ✅ Native          |
+| Performance (100+ markers) | ✅ Good            | ✅ Excellent       |
 
 **Recommendation: MapLibre GL JS + `vue-maplibre-gl`**
 
 The extra ~200 KB is worth it for BoHolz because:
+
 - You can match the exact brand palette (`--boholz-blau`, `--pastell-bg`) in the vector tile style
 - You get crisp rendering on any screen density
 - Custom HTML markers are first-class
@@ -309,7 +311,12 @@ src/features/ShowhousesMap/
 ```vue
 <script setup lang="ts">
 import { ref } from "vue";
-import { MglMap, MglMarker, MglPopup, MglNavigationControl } from "vue-maplibre-gl";
+import {
+  MglMap,
+  MglMarker,
+  MglPopup,
+  MglNavigationControl,
+} from "vue-maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { Showhouses } from "../../types/models";
@@ -492,13 +499,13 @@ const emit = defineEmits<{ close: [] }>();
 
 ## 5. SSR / Astro Gotchas
 
-| Issue | Cause | Fix |
-|---|---|---|
-| `window is not defined` | MapLibre calls `window` at import time | Always use `client:only="vue"` |
-| Marker icons broken | Leaflet resolves icon paths at runtime | Use `@vue-leaflet/vue-leaflet` which patches this automatically |
-| Map renders 0×0 | Parent has no height | Set explicit `height` on the map container **and** its parents |
-| Map appears grey / missing tiles | CORS or tile URL wrong | Check network tab; use OSM template exactly as shown |
-| Double `!important` CSS clash | MapLibre CSS conflicts with reset | Import maplibre CSS **before** your own stylesheets, or scope to `.map` |
+| Issue                            | Cause                                  | Fix                                                                     |
+| -------------------------------- | -------------------------------------- | ----------------------------------------------------------------------- |
+| `window is not defined`          | MapLibre calls `window` at import time | Always use `client:only="vue"`                                          |
+| Marker icons broken              | Leaflet resolves icon paths at runtime | Use `@vue-leaflet/vue-leaflet` which patches this automatically         |
+| Map renders 0×0                  | Parent has no height                   | Set explicit `height` on the map container **and** its parents          |
+| Map appears grey / missing tiles | CORS or tile URL wrong                 | Check network tab; use OSM template exactly as shown                    |
+| Double `!important` CSS clash    | MapLibre CSS conflicts with reset      | Import maplibre CSS **before** your own stylesheets, or scope to `.map` |
 
 ---
 
@@ -511,8 +518,9 @@ const mapStyle = `https://api.maptiler.com/maps/streets/style.json?key=${import.
 ```
 
 Then fork the style in the MapTiler Studio and:
+
 - Set water color → `var(--pastell-petrol)` equivalent
-- Set land color → `var(--pastell-bg)` equivalent  
+- Set land color → `var(--pastell-bg)` equivalent
 - Set roads → `var(--warm-gray-600)`
 - Remove unnecessary label layers
 
@@ -535,14 +543,14 @@ The result is a map that looks like it was designed specifically for BoHolz.
 
 ## 8. Key Numbers to Remember
 
-| Fact | Value |
-|---|---|
-| MapLibre GL JS gzipped | ~250 KB |
-| Leaflet gzipped | ~42 KB |
-| OSM tile request limit | Unlimited for low-traffic sites (fair use) |
-| MapTiler free tier | 100,000 tile requests / month |
-| Germany bounding box | SW: 47.3°N 5.9°E — NE: 55.1°N 15.0°E |
-| Germany center (approx.) | 51.17°N, 10.45°E |
-| Good default zoom for Germany | 5.5–6 |
-| Zoom for city level | 12–13 |
-| Zoom for building level | 17–18 |
+| Fact                          | Value                                      |
+| ----------------------------- | ------------------------------------------ |
+| MapLibre GL JS gzipped        | ~250 KB                                    |
+| Leaflet gzipped               | ~42 KB                                     |
+| OSM tile request limit        | Unlimited for low-traffic sites (fair use) |
+| MapTiler free tier            | 100,000 tile requests / month              |
+| Germany bounding box          | SW: 47.3°N 5.9°E — NE: 55.1°N 15.0°E       |
+| Germany center (approx.)      | 51.17°N, 10.45°E                           |
+| Good default zoom for Germany | 5.5–6                                      |
+| Zoom for city level           | 12–13                                      |
+| Zoom for building level       | 17–18                                      |
