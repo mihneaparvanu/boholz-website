@@ -1,13 +1,13 @@
 ---
-import "../style/reset.css";
-import "../style/design-system.css"
-import "../style/wrapper.css"
+import "@/style/reset.css";
+import "@/style/design-system.css"
+import "@/style/wrapper.css"
 
 import Navbar from "./Navbar/Navbar.vue";
 import Footer from "./Footer/Footer.astro";
 
-import { getCategories, getLocations } from "../data/loaders";
-import type { HouseCategory } from "../types/models";
+import { getCategories, getLocations } from "@/data/loaders";
+import type { HouseCategory } from "@/types/models";
 
 interface Props {
   title: string;

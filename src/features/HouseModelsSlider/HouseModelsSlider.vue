@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { HouseModel } from "../../types/models";
+import type { HouseModel } from "@/types/models";
 
 import HouseModelSelector from "./components/HouseModelSelector.vue";
 import SelectedModel from "./components/SelectedModel.vue";

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { HouseCategory } from "../../types/models";
+import type { HouseCategory } from "@/types/models";
 
 import CategoryThumbnail from "./components/CategoryThumbnail.vue";
 import CategoryHero from "./components/CategoryHero.vue";

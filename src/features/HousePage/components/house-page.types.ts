@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-vue-next";
-import type { HouseModel } from "../../../types/models";
+import type { HouseModel } from "@/types/models";
 
 export interface DisplayItem {
   label: string;

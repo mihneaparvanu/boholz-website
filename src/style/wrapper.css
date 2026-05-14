@@ -15,15 +15,21 @@
     [full-width-end];
 }
 
-.wrapper > * {
+/* Direct children get the content column by default.
+   `astro-island` is display: contents (see reset.css), but CSS selectors still
+   see it in the DOM tree — so we explicitly reach through it for grid placement. */
+.wrapper > *,
+.wrapper > astro-island > * {
   grid-column: content;
 }
 
-.wrapper > .popout {
+.wrapper > .popout,
+.wrapper > astro-island > .popout {
   grid-column: popout;
 }
 
-.wrapper > .full-width {
+.wrapper > .full-width,
+.wrapper > astro-island > .full-width {
   grid-column: full-width;
 }
 

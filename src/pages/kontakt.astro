@@ -1,10 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Section from "../layouts/Section.astro";
-import "../style/content-page.css";
-import ContactForm from "../features/ContactForms/ContactForm.vue";
-import LocationsMap from "../features/Locations/LocationsMap.vue";
-import { getLocations } from "../data/loaders";
+import Layout from "@/layouts/Layout.astro";
+import Section from "@/layouts/Section.astro";
+import "@/style/content-page.css";
+import ContactForm from "@/features/ContactForms/ContactForm.vue";
+import LocationsMap from "@/features/Locations/LocationsMap.vue";
+import { getLocations } from "@/data/loaders";
 
 const locations = await getLocations({ exceptKind: "showhouse" });
 ---

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Location } from "../types/models";
+import type { Location } from "@/layouts/types/models";
 
 const { showhouses } = defineProps<{
   showhouses: Location[];

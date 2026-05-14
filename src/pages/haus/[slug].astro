@@ -1,12 +1,12 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { getModelBySlug } from '../../data/loaders';
+import Layout from "@/layouts/Layout.astro";
+import { getModelBySlug } from '@/data/loaders';
 
-import HeroContent from '../../features/HousePage/components/HeroContent.vue'
-import StatsGrid from '../../features/HousePage/components/StatsGrid.vue';
-import AccordionItem from '../../features/HousePage/components/AccordionItem.vue';
-import DetailsGrid from '../../features/HousePage/components/DetailsGrid.vue';
-import FloorDisplay from '../../features/HousePage/components/FloorDisplay.vue';
+import HeroContent from '@/features/HousePage/components/HeroContent.vue'
+import StatsGrid from '@/features/HousePage/components/StatsGrid.vue';
+import AccordionItem from '@/features/HousePage/components/AccordionItem.vue';
+import DetailsGrid from '@/features/HousePage/components/DetailsGrid.vue';
+import FloorDisplay from '@/features/HousePage/components/FloorDisplay.vue';
 
 const { slug } = Astro.params;
 const model = await getModelBySlug(slug!);

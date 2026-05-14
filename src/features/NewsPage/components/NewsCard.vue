@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import type { NewsArticle } from "../../../types/models";
-import { ROUTES } from "../../../utils/routes";
-import ImagePlaceholder from "../../../components/ui/ImagePlaceholder.vue";
+import type { NewsArticle } from "@/types/models";
+import { ROUTES } from "@/utils/routes";
+import ImagePlaceholder from "@/components/ui/ImagePlaceholder.vue";
 
 const props = defineProps<{
   article: NewsArticle;

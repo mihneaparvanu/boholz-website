@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import type { HouseCategory } from "../../../types/models";
+import type { HouseCategory } from "@/types/models";
 
 const props = defineProps<{
   category: HouseCategory;

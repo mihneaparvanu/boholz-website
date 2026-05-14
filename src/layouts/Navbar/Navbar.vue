@@ -2,12 +2,12 @@
 import { ref } from "vue";
 import { Motion, AnimatePresence } from "motion-v";
 
-import BoholzLogo from "../../components/brand/BoholzLogo.vue";
+import BoholzLogo from "@/components/brand/BoholzLogo.vue";
 import NavbarMobileMenu from "./NavbarMobileMenu.vue";
 import NavbarDrop from "./NavbarDrop.vue";
-import NAV_ROUTES from "../../utils/routes";
+import NAV_ROUTES from "@/utils/routes";
 import { Menu } from "lucide-vue-next";
-import type { HouseCategory, Location } from "../../types/models";
+import type { HouseCategory, Location } from "@/types/models";
 
 const props = defineProps<{
   categories: HouseCategory[];

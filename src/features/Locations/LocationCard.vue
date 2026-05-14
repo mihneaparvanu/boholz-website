@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { X, Phone, Mail } from "lucide-vue-next";
-import type { LocationWithAgents } from "../../types/models";
+import type { LocationWithAgents } from "@/types/models";
 
 defineProps<{ location: LocationWithAgents }>();
 defineEmits<{ close: [] }>();

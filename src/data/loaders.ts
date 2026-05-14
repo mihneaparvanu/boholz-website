@@ -1,14 +1,17 @@
-import { db } from "../db/db";
+import { media } from "./../db/schema";
+import { db } from "@/db/db";
 import { not, inArray, eq } from "drizzle-orm";
-import { houseCategories, houseModels, news } from "../db/schema";
+import { houseCategories, houseModels, news } from "@/db/schema";
 import type {
   HouseCategory,
   HouseModel,
   Location,
   LocationWithAgents,
   NewsArticle,
-} from "../types/models";
-import { getMediaURL } from "../utils/media";
+} from "@/types/models";
+import { getMediaURL } from "@/utils/media";
+import { m } from "motion-v";
+import { title } from "node:process";
 export { BESTSELLER_CATEGORY_ID } from "./constants";
 
 const HIDDEN_CATEGORY_SLUGS: string[] = [];
@@ -152,13 +155,6 @@ export async function getNewsBySlug(
   return article;
 }
 
-/**
- * Load locations (offices, headquarters, showhouses) with their assigned agents.
- *
- *   getLocations()                     → every location
- *   getLocations({ kind: "showhouse" }) → just Musterhäuser
- *   getLocations({ exceptKind: "showhouse" }) → offices + headquarters (for the map)
- */
 export async function getLocations(opts?: {
   kind?: Location["kind"];
   exceptKind?: Location["kind"];
@@ -178,4 +174,29 @@ export async function getLocations(opts?: {
     orderBy: (l, { asc }) => [asc(l.title)],
   });
   return rows as LocationWithAgents[];
+}
+
+export async function getHeroModels(limit = 6) {
+  const rows = await db.query.houseModels.findMany({
+    where(m, { eq }) {
+      eq(m.isFeatured, true);
+    },
+    orderBy: (m, { asc }) => asc(m.title),
+    limit,
+    with: {
+      media: {
+        where: (mm, { eq }) => eq(mm.isHero, true),
+        limit: 1,
+        with: {
+          media: true,
+        },
+      },
+    },
+  });
+  return rows.map((m) => ({
+    id: m.id,
+    slug: m.slug,
+    title: m.title,
+    heroImgURL: m.media[0] ? getMediaURL(m.media[0].media.path) : null,
+  }));
 }

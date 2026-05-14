@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { Motion, AnimatePresence } from "motion-v";
-import type { HouseCategory, Location } from "../../types/models";
-import { ROUTES } from "../../utils/routes";
-import { BESTSELLER_CATEGORY_ID } from "../../data/constants";
+import type { HouseCategory, Location } from "@/types/models";
+import { ROUTES } from "@/utils/routes";
+import { BESTSELLER_CATEGORY_ID } from "@/data/constants";
 import TitleLinks from "./TitleLinks.vue";
 
 const props = defineProps<{

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Scan, Grid2X2, BedDouble, ShowerHead } from "lucide-vue-next";
 import type { DisplayItemConfig } from "./house-page.types";
-import type { HouseModel } from "../../../types/models";
+import type { HouseModel } from "@/types/models";
 import StatCard from "./StatCard.vue";
-import { formatSquareMeters } from "../../../utils/format";
+import { formatSquareMeters } from "@/utils/format";
 
 const props = defineProps<{
   model: HouseModel;

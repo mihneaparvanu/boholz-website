@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import type { HouseModel, HouseCategory } from "../../types/models";
+import type { HouseModel, HouseCategory } from "@/types/models";
 import { ref, computed, onMounted } from "vue";
-import ModelCard from "../../features/ModelOverview/components/ModelCard.vue";
-import CategoryThumbnail from "../../features/CategorySlider/components/CategoryThumbnail.vue";
-import SortButton from "../../components/ui/SortButton.vue";
-import { ROUTES } from "../../utils/routes";
-import FilterPanel from "../../features/FilterPanel/FilterPanel.vue";
+import ModelCard from "@/features/ModelOverview/components/ModelCard.vue";
+import CategoryThumbnail from "@/features/CategorySlider/components/CategoryThumbnail.vue";
+import SortButton from "@/components/ui/SortButton.vue";
+import { ROUTES } from "@/utils/routes";
+import FilterPanel from "@/features/FilterPanel/FilterPanel.vue";
 import {
   type SortOption,
   type ActiveFilter,
   type FilterState,
-} from "../FilterPanel/filter-panel.types";
-import { sortOptions } from "../FilterPanel/filter-panel.options";
-import { BESTSELLER_CATEGORY_ID } from "../../data/constants";
+} from "@/features/FilterPanel/filter-panel.types";
+import { sortOptions } from "@/features/FilterPanel/filter-panel.options";
+import { BESTSELLER_CATEGORY_ID } from "@/data/constants";
 
 const props = defineProps<{
   models: HouseModel[];

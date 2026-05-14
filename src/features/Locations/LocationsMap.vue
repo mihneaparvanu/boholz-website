@@ -4,7 +4,7 @@ import { MglMap, MglNavigationControl } from "@indoorequal/vue-maplibre-gl";
 import type { StyleSpecification } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import type { LocationWithAgents } from "../../types/models";
+import type { LocationWithAgents } from "@/types/models";
 import LocationCard from "./LocationCard.vue";
 import LocationMarker from "./LocationMarker.vue";
 import { getBrandedStyle, GERMANY_CENTER, GERMANY_ZOOM } from "./mapStyle";

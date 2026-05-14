@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import type { HouseCategory } from "../../../types/models";
+import type { HouseCategory } from "@/types/models";
 
 const props = defineProps<{
   category: HouseCategory;
@@ -42,7 +42,7 @@ const imageURL = computed(() => {
 
   .text-content {
     position: absolute;
-    padding: var(--spacing-2) 0;
+    margin-block: var(--spacing-4) 0;
     color: var(--clr-surface-primary);
     text-align: center;
     max-width: 600px;
@@ -52,6 +52,7 @@ const imageURL = computed(() => {
     width: 100%;
     aspect-ratio: 3 / 4;
     object-fit: cover;
+    border-radius: var(--radius-lg);
 
     @media (--from-tablet) {
       aspect-ratio: 16 / 9;

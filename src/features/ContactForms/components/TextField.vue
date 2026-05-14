@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { type TextField } from "../types/contact.types";
-import "../../../style/form.css";
+import { type TextField } from "@/features/ContactForms/types/contact.types";
+import "@/style/form.css";
 defineProps<{ field: TextField }>();
 const model = defineModel<string>();
 </script>

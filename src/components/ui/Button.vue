@@ -33,7 +33,9 @@ withDefaults(
   >
     <span v-if="$slots.leading" class="btn-icon"><slot name="leading" /></span>
     <span class="btn-label"><slot /></span>
-    <span v-if="$slots.trailing" class="btn-icon"><slot name="trailing" /></span>
+    <span v-if="$slots.trailing" class="btn-icon"
+      ><slot name="trailing"
+    /></span>
   </component>
 </template>
 
@@ -60,7 +62,8 @@ withDefaults(
 
 .btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--clr-accent-primary) 28%, transparent);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--clr-accent-primary) 28%, transparent);
 }
 
 .btn:active:not([disabled], [aria-disabled="true"]) {
@@ -129,7 +132,11 @@ withDefaults(
 .btn[data-variant="secondary"]:hover:not([disabled], [aria-disabled="true"]) {
   color: var(--clr-accent-secondary);
   border-color: var(--clr-accent-secondary);
-  background: color-mix(in srgb, var(--clr-accent-primary) 6%, var(--clr-surface-primary));
+  background: color-mix(
+    in srgb,
+    var(--clr-accent-primary) 6%,
+    var(--clr-surface-primary)
+  );
 }
 
 .btn[data-variant="ghost"] {

@@ -1,8 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Section from "../layouts/Section.astro";
-import LocationsMap from "../features/Locations/LocationsMap.vue";
-import { getLocations } from "../data/loaders";
+import Layout from "@/layouts/Layout.astro";
+import Section from "@/layouts/Section.astro";
+import LocationsMap from "@/features/Locations/LocationsMap.vue";
+import { getLocations } from "@/data/loaders";
 
 // Map shows offices + headquarters — Musterhäuser have their own dedicated pages.
 const locations = await getLocations({ exceptKind: "showhouse" });

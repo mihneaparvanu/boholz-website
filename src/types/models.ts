@@ -12,7 +12,7 @@ import {
   locations,
   locationAgents,
   agents,
-} from "../db/schema";
+} from "@/db/schema";
 
 // Raw table row types — one per table
 export type BaseHouseModel = InferSelectModel<typeof houseModels>;

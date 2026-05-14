@@ -1,4 +1,4 @@
-import type { FormSection } from "../types/contact.types";
+import type { FormSection } from "@/features/ContactForms/types/contact.types";
 
 export const contactFormSections: FormSection[] = [
   {

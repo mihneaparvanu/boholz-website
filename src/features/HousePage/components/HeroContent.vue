@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { House } from "lucide-vue-next";
-import type { HouseModel } from "../../../types/models";
-import { formatCurrency } from "../../../utils/format";
+import type { HouseModel } from "@/types/models";
+import { formatCurrency } from "@/utils/format";
 
 const props = defineProps<{
   model: HouseModel;

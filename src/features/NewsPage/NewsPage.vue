@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NewsArticle } from "../../types/models";
+import type { NewsArticle } from "@/types/models";
 import NewsCard from "./components/NewsCard.vue";
 
 const props = defineProps<{

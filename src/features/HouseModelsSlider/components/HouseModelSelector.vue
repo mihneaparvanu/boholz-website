@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { HouseModel } from "../../../types/models";
+import type { HouseModel } from "@/types/models";
 
 const props = defineProps<{
   model: HouseModel;

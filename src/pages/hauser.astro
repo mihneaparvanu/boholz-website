@@ -1,8 +1,8 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import HousesPage from "../features/HousesPage/HousesPage.vue";
-import { getCategories, getModels } from "../data/loaders";
-import { BESTSELLER_CATEGORY_ID } from "../data/constants";
+import Layout from "@/layouts/Layout.astro";
+import HousesPage from "@/features/HousesPage/HousesPage.vue";
+import { getCategories, getModels } from "@/data/loaders";
+import { BESTSELLER_CATEGORY_ID } from "@/data/constants";
 
 const [models, categories] = await Promise.all([getModels(), getCategories()]);
 

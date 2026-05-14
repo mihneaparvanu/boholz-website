@@ -1,4 +1,4 @@
-import type { HouseModel } from "../../types/models";
+import type { HouseModel } from "@/types/models";
 import type {
   SortField,
   SortOption,

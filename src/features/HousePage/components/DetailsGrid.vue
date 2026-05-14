@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { DisplayItemConfig } from "./house-page.types";
-import type { HouseModel } from "../../../types/models";
+import type { HouseModel } from "@/types/models";
 import DetailRow from "./DetailRow.vue";
 import {
   formatMeters,
   formatDegrees,
   formatBoolean,
-} from "../../../utils/format";
+} from "@/utils/format";
 import {
   MoveVertical,
   MoveHorizontal,

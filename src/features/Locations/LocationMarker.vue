@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { MglMarker } from "@indoorequal/vue-maplibre-gl";
-import type { LocationWithAgents } from "../../types/models";
+import type { LocationWithAgents } from "@/types/models";
 
 const props = defineProps<{ location: LocationWithAgents; active: boolean }>();
 defineEmits<{ select: [] }>();
