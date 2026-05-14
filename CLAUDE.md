@@ -65,7 +65,12 @@ Animation: GSAP (in-viewport reveals) + Lenis (smooth scroll). Keep easings mini
 ## Conventions specific to this repo
 
 - **Workspace hygiene:** ad-hoc `npx tsx` scripts created to inspect or fix DB state must be deleted (`rm -f`) once their output is captured. Do not leave `test-db.ts`, `fix-foo.ts`, etc. behind. The kept scripts live in `scripts/` (`inspect-db.ts`, `seed-showhouses.ts`).
-- **TypeScript:** no `any`. Derive row types via `InferSelectModel<typeof table>` (see `src/types/models.ts` for the established pattern of base types + enriched composite types).
+- **TypeScript:** no `any`. Three-layer model hierarchy (see `types-masterclass.md` for the full reasoning):
+  1. **Entity types** — inferred via `InferSelectModel<typeof table>`, live in `src/types/models.ts`. One per DB table. Never hand-written.
+  2. **Composite types** — entity + relations (e.g. `HouseModel & { media: Media[] }`). Named at the project level when reused; declared at the feature level otherwise.
+  3. **View models** — per-feature display shapes derived via `Pick` / `Omit` / `Awaited<ReturnType<typeof loader>>[number]`. Co-located in `src/features/<Feature>/types.ts`. Loaders' return shape *is* the view model — derive, don't duplicate.
+
+  Rule: **name a type when its name communicates intent that the structure doesn't.** Use `Pick`/`Omit`/`Partial`/`Record` aggressively; let TS infer one-off local shapes. Brand IDs (`Brand<string, "UserId">`) only where confusing two ID types would be a real bug. Zod schemas at trust boundaries (forms, API, env); not for internal data.
 - **German umlauts in identifiers:** replace `ü → ue`, `ö → oe`, `ä → ae`, `ß → ss` in slugs and asset filenames.
 - **Image assets:** prefer WebP; minimum 1200px on shortest side; strip EXIF GPS but preserve ICC color profiles. Naming pattern when creating/renaming assets: `{category}_{house-slug}_{type}_{dimensions}.{ext}` (see `agent.md` for the full asset pipeline).
 - **SVGs:** logos and icons are implemented as components, not raw `<img>` references.
@@ -74,5 +79,6 @@ Animation: GSAP (in-viewport reveals) + Lenis (smooth scroll). Keep easings mini
 
 - `development.md` — fuller tech-stack brief and styling rules
 - `agent.md` — asset pipeline (WordPress export → sorted R2 library), house categories, naming standard
+- `types-masterclass.md` — comprehensive TS type-modeling guide (vs Swift/SwiftUI). Read once when working on type-heavy refactors; the conventions above are the TL;DR.
 - `maps-masterclass.md`, `reka-select.md`, `fouc-layout-masterclass.md` — deeper notes on specific subsystems
 - `drizzle/` — generated SQL migrations; the schema source is `src/db/schema.ts`

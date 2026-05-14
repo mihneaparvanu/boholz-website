@@ -1,23 +1,19 @@
 <script setup lang="ts">
 import { useIntervalFn } from "@vueuse/core";
 import { ref, computed } from "vue";
-import type { HouseModel } from "@/types/models";
-
-type HeroModel = Pick<HouseModel, "id" | "slug" | "title"> & {
-  heroImgURL: string | null;
-};
+import type { HeroSlide } from "@/types/home.types";
 
 const props = defineProps<{
-  models: HeroModel[];
+  slides: HeroSlide[];
 }>();
 
 const index = ref(0);
 
 useIntervalFn(() => {
-  index.value = (index.value + 1) % props.models.length;
+  index.value = (index.value + 1) % props.slides.length;
 }, 3000);
 
-const model = computed(() => props.models[index.value]);
+const slide = computed(() => props.slides[index.value]);
 </script>
 
 <template>
@@ -27,15 +23,17 @@ const model = computed(() => props.models[index.value]);
         <h1>Einfach einkommen.</h1>
         <h2>Ihr Zuhause, meisterhaft vollendet.</h2>
       </div>
-      <div class="footer">
-        <div class="proof"></div>
+      <div class="bottom">
+        <div class="proof">
+          <span>Bewährte Spitzenqualität</span>
+        </div>
         <div class="action">
-          <button type="button">{{ model.title }}</button>
+          <button type="button">{{ slide.title }}</button>
         </div>
       </div>
     </div>
     <img
-      :src="model.heroImgURL ?? undefined"
+      :src="slide.heroImgURL ?? undefined"
       alt="Stadtvilla in einem Bergtal bei Sonnenuntergang"
       width="1200"
       height="800"
@@ -97,5 +95,11 @@ const model = computed(() => props.models[index.value]);
 
 .action button:hover {
   background-color: var(--clr-surface-secondary);
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 </style>

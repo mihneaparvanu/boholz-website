@@ -2,43 +2,32 @@
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/layouts/Section.astro";
 
-import Hero from "@/features/HomePage/Hero.vue";
-import CategoriesShowcase from "@/features/HomePage/CategoriesShowcase.vue";
-import TrustBadges from "@/features/HomePage/TrustBadges.vue";
-import OverviewGrid from "@/features/HomePage/OverviewGrid.vue";
+import Hero from "@/features/Home/Hero.vue";
+import CategoriesShowcase from "@/features/Home/CategoriesShowcase.vue";
+import TrustBadges from "@/features/Home/TrustBadges.vue";
+import OverviewGrid from "@/features/Home/OverviewGrid.vue";
+
+import { homeSections } from "@/features/Home/home.content";
 
 import { getCategories } from "@/data/loaders";
-import { getHeroModels } from "../data/loaders";
+import { getHeroSlides } from "../data/loaders";
 
 const categories = await getCategories();
-const heroModels = await getHeroModels(6);
+const heroSlides = await getHeroSlides(6);
 ---
 
 <Layout title="Boholz Haus" categories={categories}>
 
-  <Hero client:load models={heroModels}/>
- 
-  <Section
-    heading="Fertighäuser in Zimmermannsqualität für Menschen mit"
-    highlightWord="Anspruch."
-    subheading="Unsere barrierefreien Fertighäuser aus Holz vereinen höchste Energieeffizienz mit meisterhaftem Handwerk. So sparen Sie Energiekosten und gewinnen wertvolle Lebensqualität für die ganze Familie."
-  >
+  <Hero client:load slides={heroSlides} />
+  <Section {...homeSections.categories}>
     <CategoriesShowcase categories={categories} />
   </Section>
 
-  <Section
-    heading="Ihr Vertrauen"
-    highlightWord="fest verankert."
-    subheading="Wir bauen nicht nur Häuser, wir bauen Sicherheit. Mit zertifizierter Qualität aus Deutschland und Garantien, auf die Sie sich verlassen können."
-  >
+  <Section {...homeSections.trust}>
     <TrustBadges />
   </Section>
 
-  <Section
-    heading="Besser gebaut. Schneller geliefert."
-    highlightWord="Sorgenfrei gelebt."
-    subheading="BoHolz vereint meisterhafte Präzision mit höchster Energieeffizienz. Für Sie bedeutet das: schneller Einzug, erstklassige Lebensqualität und dauerhaft niedrige Energiekosten."
-  >
+  <Section {...homeSections.overview}>
     <OverviewGrid />
   </Section>
 </Layout>

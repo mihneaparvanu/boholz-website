@@ -9,6 +9,7 @@ import type {
   LocationWithAgents,
   NewsArticle,
 } from "@/types/models";
+import type { HeroSlide } from "@/types/home.types";
 import { getMediaURL } from "@/utils/media";
 import { m } from "motion-v";
 import { title } from "node:process";
@@ -176,11 +177,9 @@ export async function getLocations(opts?: {
   return rows as LocationWithAgents[];
 }
 
-export async function getHeroModels(limit = 6) {
+export async function getHeroSlides(limit = 6): Promise<HeroSlide[]> {
   const rows = await db.query.houseModels.findMany({
-    where(m, { eq }) {
-      eq(m.isFeatured, true);
-    },
+    where: (m, { eq }) => eq(m.isFeatured, true),
     orderBy: (m, { asc }) => asc(m.title),
     limit,
     with: {

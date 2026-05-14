@@ -1,9 +1,7 @@
 ---
-interface Props {
-  heading?: string;
-  highlightWord?: string;
-  subheading?: string;
-}
+import type { SectionContent } from "./section.types";
+
+type Props = SectionContent;
 
 const { heading, subheading, highlightWord } = Astro.props;
 ---
