@@ -14,7 +14,7 @@ export default defineConfig({
     ssr: {
       // maplibre-gl uses browser-only APIs (window, Worker, WebGL).
       // noExternal forces Vite to bundle it rather than handing it to Node.
-      noExternal: ["maplibre-gl"],
+      noExternal: ["maplibre-gl", "@indoorequal/vue-maplibre-gl"],
     },
   },
 });

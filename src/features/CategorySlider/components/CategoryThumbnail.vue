@@ -51,7 +51,7 @@ const imageURL = computed(() => {
 
   .house-model-circle {
     cursor: pointer;
-    --size: var(--fs-h1);
+    --size: var(--fs-h2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,7 +85,7 @@ const imageURL = computed(() => {
       -webkit-box-orient: vertical;
 
       @media (--mobile) {
-        font-size: 0.6rem;
+        font-size: calc(var(--fs-body-sm) / var(--fs-scale));
       }
     }
   }

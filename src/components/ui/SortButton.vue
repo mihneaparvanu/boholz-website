@@ -12,7 +12,7 @@ import {
 
 import { LucideChevronDown } from "lucide-vue-next";
 
-import { type SortOption } from "../features/FilterPanel/filter-panel.types";
+import { type SortOption } from "../../features/FilterPanel/filter-panel.types";
 
 const props = defineProps<{ options: SortOption[] }>();
 const sort = defineModel<string | null>("sort");

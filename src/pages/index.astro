@@ -1,6 +1,9 @@
 ---
 // Framework Components
 import { getMediaURL } from "../utils/media";
+import { LucideInfo, LucideShieldCheck, LucideLeaf, LucideAward } from "lucide-vue-next";
+
+import Card from "../components/ui/Card.vue";
 
 // Layout
 import Layout from "../layouts/Layout.astro";
@@ -13,6 +16,12 @@ import "../style/wrapper.css";
 import { getCategories } from "../data/loaders";
 
 const categories = await getCategories();
+
+const trustCards = [
+  { icon: LucideShieldCheck, title: "100% Made in Germany", value: "25" },
+  { icon: LucideAward, title: "Zertifizierte Qualität", value: "12" },
+  { icon: LucideLeaf, title: "Nachhaltig & CO₂-neutral", value: "100" },
+];
 ---
 
 <Layout title="Boholz Haus" categories={categories}>
@@ -25,7 +34,9 @@ const categories = await getCategories();
           </div>
           <div class="hero-end-group">
             <div class="hero-proof"></div>
-            <div class="hero-action"></div>
+            <div class="hero-action">
+              <button>Stadtvilla 22-157</button>
+            </div>
           </div>
         </div>
       </div>
@@ -39,24 +50,41 @@ const categories = await getCategories();
       />
     </div>
 
-  
     <Section
       heading="Fertighäuser in Zimmermannsqualität für Menschen mit"
       highlightWord="Anspruch."
       subheading="Unsere barrierefreien Fertighäuser aus Holz vereinen höchste Energieeffizienz mit meisterhaftem Handwerk. So sparen Sie Energiekosten und gewinnen wertvolle Lebensqualität für die ganze Familie."
     >
       <CategorySlider client:load categories={categories} />
+      <div class="cat-text-group">
+      <p>Ab <span class="price">200.000€ </span> zzgl. Überführung.</p>
+       <p>Attraktive Finanzierungsmöglichkeiten. <span class="icon"><LucideInfo/></span></p>
+      </div>
+
     </Section>
     <Section
       heading="Ihr Vertrauen"
       highlightWord="fest verankert."
       subheading="Wir bauen nicht nur Häuser, wir bauen Sicherheit. Mit zertifizierter Qualität aus Deutschland und Garantien, auf die Sie sich verlassen können."
+    >
+    <div class="cards-wrapper">
+      {trustCards.map((c) => (
+        <Card title={c.title} value={c.value} icon={c.icon} />
+      ))}
+    </div>
+
+  </Section>
+    <Section
+      heading="Besser gebaut. Schneller geliefert."
+      highlightWord="Sorgenfrei gelebt."
+      subheading="BoHolz vereint meisterhafte Präzision mit höchster Energieeffizienz. Für Sie bedeutet das: schneller Einzug, erstklassige Lebensqualität und dauerhaft niedrige Energiekosten."
     />
   </Layout>
 
   <style>
     .hero {
       height: 100dvh;
+      margin-top: calc(-1 * (var(--navbar-height) + var(--navbar-offset) * 2));
       position: relative;
       color: var(--clr-surface-primary);
     }
@@ -91,6 +119,53 @@ const categories = await getCategories();
       height: 100%;
       object-fit: cover;
       z-index: -1;
+    }
+
+    .hero-action button {
+      height: var(--control-height-md);
+      padding-inline: var(--spacing-3);
+      background-color: var(--clr-surface-primary);
+      color: var(--clr-accent-secondary);
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+      transition:
+        background 160ms ease,
+        transform 160ms ease;
+    }
+
+    .hero-action button:hover {
+      background-color: var(--clr-surface-secondary);
+    }
+
+    .cat-text-group {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-0);
+
+      span {
+        display: inline-block;
+      }
+
+      .price {
+        color: var(--clr-content-secondary);
+        font-weight: 500;
+      }
+
+      span.icon {
+        width: var(--fs-body-lg);
+        height: var(--fs-body-lg);
+        color: var(--clr-content-secondary);
+        vertical-align: middle;
+        cursor: help;
+      }
+    }
+
+    .cards-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      gap: var(--spacing-3);
+      width: 100%;
     }
   </style>
 

@@ -3,7 +3,7 @@ import type { HouseModel, HouseCategory } from "../../types/models";
 import { ref, computed, onMounted } from "vue";
 import ModelCard from "../../features/ModelOverview/components/ModelCard.vue";
 import CategoryThumbnail from "../../features/CategorySlider/components/CategoryThumbnail.vue";
-import SortButton from "../../components/SortButton.vue";
+import SortButton from "../../components/ui/SortButton.vue";
 import { ROUTES } from "../../utils/routes";
 import FilterPanel from "../../features/FilterPanel/FilterPanel.vue";
 import {

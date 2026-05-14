@@ -9,7 +9,9 @@ import {
   media,
   news,
   newsMedia,
-  showhouses,
+  locations,
+  locationAgents,
+  agents,
 } from "../db/schema";
 
 // Raw table row types — one per table
@@ -22,7 +24,16 @@ export type BaseCategoryMedia = InferSelectModel<typeof categoryMedia>;
 export type BaseFloorMedia = InferSelectModel<typeof floorMedia>;
 export type BaseNews = InferSelectModel<typeof news>;
 export type BaseNewsMedia = InferSelectModel<typeof newsMedia>;
-export type Showhouse = InferSelectModel<typeof showhouses>;
+export type Location = InferSelectModel<typeof locations>;
+export type Agent = InferSelectModel<typeof agents>;
+export type BaseLocationAgent = InferSelectModel<typeof locationAgents>;
+
+// Location with its joined agents (via location_agents pivot, ordered by sortOrder).
+export type LocationWithAgents = Location & {
+  agents: (Pick<BaseLocationAgent, "isPrimary" | "sortOrder"> & {
+    agent: Agent;
+  })[];
+};
 
 export type HouseModel = BaseHouseModel & {
   // details is nullable — not every model has one yet

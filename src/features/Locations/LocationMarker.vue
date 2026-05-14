@@ -1,22 +1,38 @@
 <script setup lang="ts">
-defineProps<{ active?: boolean }>();
+import { computed } from "vue";
+import { MglMarker } from "@indoorequal/vue-maplibre-gl";
+import type { LocationWithAgents } from "../../types/models";
+
+const props = defineProps<{ location: LocationWithAgents; active: boolean }>();
+defineEmits<{ select: [] }>();
+
+// Drizzle returns numeric as string; <MglMarker> wants [lng, lat] numbers.
+const coordinates = computed<[number, number]>(() => [
+  Number(props.location.lng),
+  Number(props.location.lat),
+]);
 </script>
 
 <template>
-  <button
-    class="pin"
-    :class="{ 'pin--active': active }"
-    type="button"
-    aria-label="Standort anzeigen"
-  >
-    <svg width="28" height="36" viewBox="0 0 32 40" aria-hidden="true">
-      <path
-        class="pin__body"
-        d="M16 0C7.163 0 0 7.163 0 16c0 10 16 24 16 24S32 26 32 16C32 7.163 24.837 0 16 0z"
-      />
-      <circle class="pin__dot" cx="16" cy="16" r="5.5" />
-    </svg>
-  </button>
+  <MglMarker :coordinates="coordinates" anchor="bottom">
+    <template #marker>
+      <button
+        type="button"
+        class="pin"
+        :class="{ 'pin--active': active }"
+        :aria-label="`Standort ${location.title}`"
+        @click.stop="$emit('select')"
+      >
+        <svg width="28" height="36" viewBox="0 0 32 40" aria-hidden="true">
+          <path
+            class="pin__body"
+            d="M16 0C7.163 0 0 7.163 0 16c0 10 16 24 16 24S32 26 32 16C32 7.163 24.837 0 16 0z"
+          />
+          <circle class="pin__dot" cx="16" cy="16" r="5.5" />
+        </svg>
+      </button>
+    </template>
+  </MglMarker>
 </template>
 
 <style scoped>

@@ -2,13 +2,60 @@
 import Layout from "../layouts/Layout.astro";
 import Section from "../layouts/Section.astro";
 import LocationsMap from "../features/Locations/LocationsMap.vue";
+import { getLocations } from "../data/loaders";
+
+// Map shows offices + headquarters — Musterhäuser have their own dedicated pages.
+const locations = await getLocations({ exceptKind: "showhouse" });
 ---
+
 <Layout title="Vor Ort Beratung">
-  <Section heading="Vor Ort Beratung" subheading="Beratung" />
+  <Section heading="Vor Ort Beratung" subheading="Besuchen Sie uns persönlich und entdecken Sie die vielfältigen Möglichkeiten, die wir Ihnen bieten können. Gerne stehen wir Ihnen auch außerhalb der regulären Öffnungszeiten zur Verfügung. ">
   <div class="map-wrapper">
-    <LocationsMap client:only="vue" />
+    <LocationsMap client:only="vue" locations={locations} />
+
+    <!-- Vor-Ort-Beratung -->
+    <section>
+
+      <h3>Musterhäuser</h3>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>Musterhaus Bad Vilbel</h4>
+          <p>Besuchen Sie unser Ausstellungshaus in der Fertighauswelt Bad Vilbel (Hessen).</p>
+        </div>
+        <div class="feature-card">
+          <h4>Musterhaus Fellbach</h4>
+          <p>Höhenstraße – Platz 36, 70736 Fellbach (Baden-Württemberg).</p>
+        </div>
+      </div>
+
+      <h3>Vertriebsbüros</h3>
+
+      <h4>Baden-Württemberg</h4>
+      <ul>
+        <li>Vertriebsbüro Wenkheim – Lindenstraße 6, 97956 Wenkheim</li>
+        <li>Vertriebsbüro Horb-Nordstetten – Axel-Lipp-Straße 20, 72160 Horb-Nordstetten</li>
+        <li>Vertriebsbüro Schwäbisch Gmünd – Liegnitzerweg 4, 73527 Schwäbisch Gmünd</li>
+        <li>Vertriebsbüro Villingen-Schwenningen – Zwergsteigstraße 4, 78048 Villingen-Schwenningen</li>
+        <li>Vertriebsbüro Rielasingen-Worblingen – Konrad-Zuse-Str. 4, 78239 Rielasingen-Worblingen</li>
+        <li>Vertriebsbüro Schwarzwald – Martinstraße 42, 79848 Bonndorf im Schwarzwald</li>
+      </ul>
+
+      <h4>Bayern</h4>
+      <ul>
+        <li>Vertriebsbüro Hammelburg – Zum Bauholz 3, 97762 Hammelburg</li>
+        <li>Zentrale – Ostring 1, 97688 Bad Kissingen</li>
+        <li>Vertriebsbüro München – Tangastraße 31, 81827 München</li>
+        <li>Vertriebsbüro Werneck – Bühler Ring, Vasbühl, 97440 Werneck</li>
+      </ul>
+    </section>
   </div>
+   </Section>
 </Layout>
 
 <style>
+  .map-wrapper {
+   width: 100%;
+    margin-block-end: var(--spacing-7);
+  }
 </style>

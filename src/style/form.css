@@ -1,0 +1,49 @@
+/* Form primitives — shared by ContactForms field components.
+   Tokens only; focus uses outline-offset for visible ring against panel bg. */
+
+.field {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  font-size: var(--fs-body);
+}
+
+.field > label,
+.field > legend {
+  color: var(--clr-content-secondary);
+  font-weight: 400;
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"] {
+  height: var(--control-height-md);
+  padding: 0 var(--spacing-2);
+  border: 1px solid var(--clr-border-secondary);
+  border-radius: var(--radius-sm);
+  background: var(--clr-surface-primary);
+  color: var(--clr-content-primary);
+  font: inherit;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.field input::placeholder {
+  color: var(--clr-content-quaternary);
+}
+
+.field input:hover {
+  border-color: var(--clr-border-tertiary);
+}
+
+.field input:focus-visible {
+  outline: none;
+  border-color: var(--clr-accent-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--clr-accent-primary) 22%, transparent);
+}
+
+.field input:user-invalid {
+  border-color: var(--clr-status-error);
+}

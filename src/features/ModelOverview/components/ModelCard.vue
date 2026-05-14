@@ -6,7 +6,7 @@ import {
   formatDegrees,
 } from "../../../utils/format";
 import type { HouseModel } from "../../../types/models";
-import ImagePlaceholder from "../../../components/ImagePlaceholder.vue";
+import ImagePlaceholder from "../../../components/ui/ImagePlaceholder.vue";
 
 const props = defineProps<{
   model: HouseModel;

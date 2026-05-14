@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk '/function.*install|const install/,/^}/' /Users/mihnea/Developer/BoHolz/apps/boholz-web-front/node_modules/vue-maplibre-gl/dist/vue-maplibre-gl.js)",
+      "Bash(awk '/ct\\\\s*=\\\\s*\\\\{/,/^\\\\};/' node_modules/vue-maplibre-gl/dist/vue-maplibre-gl.js)",
+      "Bash(awk '/function Re/,/^}/' node_modules/vue-maplibre-gl/dist/vue-maplibre-gl.js)",
+      "Bash(awk '/Re\\\\s*=\\\\s*g\\\\\\(/,/^}\\\\\\)/' node_modules/vue-maplibre-gl/dist/vue-maplibre-gl.js)",
+      "Bash(npm view *)",
+      "Bash(npm install *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:4321)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_resize",
+      "Bash(npx playwright *)",
+      "Bash(npx -y @playwright/mcp@latest --help)",
+      "Bash(brew list *)",
+      "Bash(cp /tmp/snap.mjs ./snap-temp.mjs)",
+      "Bash(node ./snap-temp.mjs http://localhost:4321 ./snap-home.png)",
+      "Bash(node ./snap-temp.mjs http://localhost:4321/news ./snap-news.png)",
+      "Bash(node ./snap-temp.mjs http://localhost:4321/hauser ./snap-hauser.png)",
+      "Bash(node ./snap-temp.mjs http://localhost:4321/kontakt ./snap-kontakt.png)",
+      "Bash(node ./snap-temp.mjs http://localhost:4321/uber-uns ./snap-uber.png)",
+      "Bash(node ./snap-temp.mjs http://localhost:4321/dein-zuhause ./snap-dein.png)",
+      "Bash(node ./snap-debug.mjs http://localhost:4321/ ./snap-home-debug.png)",
+      "Bash(node ./snap-debug.mjs http://localhost:4321/ ./snap-home-after.png)",
+      "Bash(node ./snap-debug.mjs http://localhost:4321/kontakt ./snap-kontakt-after.png)",
+      "Bash(node ./snap-debug.mjs http://localhost:4321/news ./snap-news-after.png)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "playwright"
+  ]
+}

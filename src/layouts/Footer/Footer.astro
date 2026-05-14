@@ -10,23 +10,29 @@ import Separator from "../../features/HousePage/components/Separator.vue";
 const currentYear = new Date().getFullYear();
 ---
 <footer class="footer subgrid">
-<Separator/>
-<div class="footer-content">
-    <div class="links-grid">
-        <div class="links-list main"> <a href={ROUTES.contact}>Kontakt</a></div>
-     <div class="links-list privacy"><a href={ROUTES.impressum}>Impressum</a><a href={ROUTES.datenschutz}>Datenschutz</a><a href={ROUTES.cookies}>Cookies</a></div>
+  <Separator />
+  <div class="footer-content">
+    <nav class="links-grid" aria-label="Footer">
+      <div class="links-list main">
+        <a href={ROUTES.contact}>Kontakt</a>
+      </div>
+      <div class="links-list privacy">
+        <a href={ROUTES.impressum}>Impressum</a>
+        <a href={ROUTES.datenschutz}>Datenschutz</a>
+        <a href={ROUTES.cookies}>Cookies</a>
+      </div>
+    </nav>
 
+    <div class="trailing-wrapper">
+      <p class="copyright">© {currentYear} BoHolz Haus GmbH. Alle Rechte vorbehalten.</p>
+      <ul class="socials" aria-label="Soziale Netzwerke">
+        <li><a href="#" aria-label="Facebook"><FacebookIcon aria-hidden="true" /></a></li>
+        <li><a href="#" aria-label="Instagram"><InstagramIcon aria-hidden="true" /></a></li>
+        <li><a href="#" aria-label="YouTube"><YoutubeIcon aria-hidden="true" /></a></li>
+        <li><a href="#" aria-label="LinkedIn"><LinkedinIcon aria-hidden="true" /></a></li>
+      </ul>
     </div>
-<div class="trailing-wrapper">
-    <div class="copyright"> © {currentYear} BoHolz Haus GmbH. Alle Rechte vorbehalten.</div>
-    <div class="socials"> 
-        <a href="#"> <FacebookIcon /> </a>
-        <a href="#"> <InstagramIcon /> </a>
-        <a href="#"> <YoutubeIcon /> </a>
-        <a href="#"> <LinkedinIcon /> </a>
-            </div>
-</div>
-</div>
+  </div>
 </footer>
 
 
@@ -45,7 +51,7 @@ const currentYear = new Date().getFullYear();
 .links-grid {
   display: grid;
   grid-template-areas: "main-links privacy-links";
-  gap: var(--spacing-2);
+  gap: var(--spacing-4);
   width: 50%;
 
   @media (--mobile) {
@@ -62,17 +68,26 @@ const currentYear = new Date().getFullYear();
     flex-direction: column;
     gap: var(--spacing-1);
 
+    a {
+      transition: color 160ms ease;
+    }
+    a:hover {
+      opacity: 1;
+      color: var(--clr-accent-secondary);
+    }
+
     &.main {
       grid-area: main-links;
-       a {
-      font-weight: 500;
-    }
+      a {
+        font-weight: 500;
+      }
     }
 
     &.privacy {
       grid-area: privacy-links;
       a {
         font-weight: 400;
+        color: var(--clr-content-secondary);
       }
     }
   }
@@ -84,20 +99,42 @@ const currentYear = new Date().getFullYear();
   gap: var(--spacing-3);
   align-items: center;
 
+  .copyright {
+    color: var(--clr-content-tertiary);
+    font-size: var(--fs-body-sm);
+    margin: 0;
+  }
+
   .socials {
     --size: var(--fs-body);
-     display: flex;
-    gap: var(--spacing-1);
+    display: flex;
+    gap: var(--spacing-2);
+
+    a {
+      display: grid;
+      place-items: center;
+      width: var(--control-height-sm);
+      height: var(--control-height-sm);
+      border-radius: var(--radius-sm);
+      color: var(--clr-content-tertiary);
+      transition: color 160ms ease, background 160ms ease;
+    }
+
+    a:hover {
+      opacity: 1;
+      color: var(--clr-content-primary);
+      background: var(--clr-surface-secondary);
+    }
+
     svg {
-        color: var(--clr-content-tertiary);
-        width: var(--size);
-        height: var(--size);
+      width: var(--size);
+      height: var(--size);
     }
   }
 
   @media (--from-desktop) {
     flex-direction: row;
-     justify-content: space-between;
+    justify-content: space-between;
   }
 }
 </style>

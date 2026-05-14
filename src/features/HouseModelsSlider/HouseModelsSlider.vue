@@ -31,11 +31,11 @@ const selectedModel = ref<HouseModel | null>(props.models[0] || null);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4rem;
+  gap: var(--spacing-5);
 
   .model-thumbnails {
     display: flex;
-    gap: 1rem;
+    gap: var(--spacing-2);
     flex-wrap: wrap;
     justify-content: center;
   }

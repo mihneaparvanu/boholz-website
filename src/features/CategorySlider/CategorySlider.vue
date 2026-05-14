@@ -37,13 +37,13 @@ const selectCategory = (category: HouseCategory) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4rem;
+  gap: var(--spacing-4);
 
   .category-thumbnails {
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
-    gap: var(--spacing-4);
+    gap: var(--spacing-2);
 
     @media (--mobile) {
       display: grid;

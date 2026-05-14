@@ -8,7 +8,7 @@ const { routes } = defineProps<{
 </script>
 
 <template>
-  <div class="navbar-mobile-menu">
+  <div class="navbar-mobile-menu" role="dialog" aria-label="Navigation">
     <ul class="nav-content">
       <NavbarMobileMenuItem
         v-for="route in routes"
@@ -17,7 +17,7 @@ const { routes } = defineProps<{
       />
     </ul>
 
-    <button class="cta">Beratung finden</button>
+    <button type="button" class="cta">Beratung finden</button>
   </div>
 </template>
 
@@ -45,9 +45,20 @@ const { routes } = defineProps<{
   .cta {
     background-color: var(--clr-accent-primary);
     color: var(--clr-surface-primary);
-    padding: var(--spacing-1);
+    height: var(--control-height-md);
+    padding-inline: var(--spacing-3);
     font-weight: 500;
     border-radius: var(--radius-sm);
+    transition: background 160ms ease;
+
+    &:hover {
+      background-color: var(--clr-accent-secondary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--clr-accent-secondary);
+      outline-offset: 2px;
+    }
   }
 }
 </style>

@@ -21,12 +21,12 @@ const props = defineProps<{
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: var(--spacing-4);
 
   .text-content {
     position: absolute;
     text-align: center;
-    max-width: 600px;
+    max-width: 38rem;
   }
 
   .model-image {

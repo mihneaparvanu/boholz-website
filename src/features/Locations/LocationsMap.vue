@@ -1,40 +1,98 @@
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, useTemplateRef } from "vue";
-import maplibregl, { Map as MaplibreMap } from "maplibre-gl";
+import { computed, ref, shallowRef } from "vue";
+import { MglMap, MglNavigationControl } from "@indoorequal/vue-maplibre-gl";
+import type { StyleSpecification } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
-const container = useTemplateRef<HTMLDivElement>("container");
-let map: MaplibreMap | null = null;
+import type { LocationWithAgents } from "../../types/models";
+import LocationCard from "./LocationCard.vue";
+import LocationMarker from "./LocationMarker.vue";
+import { getBrandedStyle, GERMANY_CENTER, GERMANY_ZOOM } from "./mapStyle";
 
-onMounted(() => {
-  if (!container.value) return;
+const props = defineProps<{ locations: LocationWithAgents[] }>();
 
-  map = new maplibregl.Map({
-    container: container.value,
-    style: "https://tiles.openfreemap.org/styles/positron",
-    center: [10.4515, 51.1657], // [lng, lat] — Germany centroid
-    zoom: 5.5,
-  });
+// `numeric` columns come back as `string | null` from Drizzle — drop nulls and
+// coerce to numbers so MapLibre can use the coordinates.
+const validLocations = computed(() =>
+  props.locations.filter((l) => l.lat !== null && l.lng !== null),
+);
 
-  map.addControl(new maplibregl.NavigationControl(), "top-right");
-});
+// Fetched once, then handed to <MglMap> as a static prop. shallowRef avoids
+// deep-reactivity over a large style JSON.
+const mapStyle = shallowRef<StyleSpecification | null>(null);
+getBrandedStyle().then((s) => (mapStyle.value = s));
 
-onBeforeUnmount(() => {
-  map?.remove();
-  map = null;
-});
+const selected = ref<LocationWithAgents | null>(null);
 </script>
 
 <template>
-  <!-- The container needs an explicit height. MapLibre reads offsetHeight
-       at construction time and creates the WebGL canvas to match. -->
-  <div ref="container" class="map" />
+  <div class="map-wrapper">
+    <MglMap
+      v-if="mapStyle"
+      :map-style="mapStyle"
+      :center="GERMANY_CENTER"
+      :zoom="GERMANY_ZOOM"
+      :attribution-control="{ compact: true }"
+    >
+      <MglNavigationControl position="top-right" :show-compass="false" />
+
+      <LocationMarker
+        v-for="loc in validLocations"
+        :key="loc.id"
+        :location="loc"
+        :active="selected?.id === loc.id"
+        @select="selected = loc"
+      />
+    </MglMap>
+
+    <Transition name="card">
+      <LocationCard
+        v-if="selected"
+        :location="selected"
+        @close="selected = null"
+      />
+    </Transition>
+  </div>
 </template>
 
 <style scoped>
-.map {
+.map-wrapper {
+  position: relative;
   width: 100%;
   height: 70vh;
   min-height: 480px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--clr-border-secondary);
+}
+
+.map-wrapper :deep(.maplibregl-map) {
+  width: 100%;
+  height: 100%;
+}
+
+.map-wrapper :deep(.maplibregl-ctrl-group) {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--clr-border-secondary);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.map-wrapper :deep(.maplibregl-ctrl-attrib) {
+  background: var(--clr-surface-primary);
+  color: var(--clr-content-tertiary);
+  font-size: var(--fs-body-sm);
+}
+
+.card-enter-active,
+.card-leave-active {
+  transition:
+    opacity 180ms ease,
+    translate 180ms ease;
+}
+
+.card-enter-from,
+.card-leave-to {
+  opacity: 0;
+  translate: 0 12px;
 }
 </style>

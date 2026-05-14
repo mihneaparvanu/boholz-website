@@ -183,6 +183,7 @@
   --ls-heading: -0.05em;
 
   --navbar-height: var(--spacing-6);
+  --navbar-offset: var(--spacing-3);
 }
 
 body {

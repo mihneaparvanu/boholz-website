@@ -6,7 +6,7 @@ import "../style/wrapper.css"
 import Navbar from "./Navbar/Navbar.vue";
 import Footer from "./Footer/Footer.astro";
 
-import { getCategories, getShowhouses } from "../data/loaders";
+import { getCategories, getLocations } from "../data/loaders";
 import type { HouseCategory } from "../types/models";
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
 
 const { title, categories: categoriesProp } = Astro.props;
 const categories = categoriesProp ?? await getCategories();
-const showhouses = await getShowhouses();
+const showhouses = await getLocations({ kind: "showhouse" });
 ---
   <head>
     <meta charset="utf-8" />
@@ -47,6 +47,6 @@ const showhouses = await getShowhouses();
 
 <style>
   main {
-    padding-top: var(--navbar-height);
+    padding-top: calc(var(--navbar-height) + var(--navbar-offset) * 2);
   }
 </style>

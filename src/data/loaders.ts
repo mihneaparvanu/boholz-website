@@ -4,8 +4,9 @@ import { houseCategories, houseModels, news } from "../db/schema";
 import type {
   HouseCategory,
   HouseModel,
+  Location,
+  LocationWithAgents,
   NewsArticle,
-  Showhouse,
 } from "../types/models";
 import { getMediaURL } from "../utils/media";
 export { BESTSELLER_CATEGORY_ID } from "./constants";
@@ -151,7 +152,30 @@ export async function getNewsBySlug(
   return article;
 }
 
-export async function getShowhouses(): Promise<Showhouse[]> {
-  const data = await db.query.showhouses.findMany({});
-  return data;
+/**
+ * Load locations (offices, headquarters, showhouses) with their assigned agents.
+ *
+ *   getLocations()                     → every location
+ *   getLocations({ kind: "showhouse" }) → just Musterhäuser
+ *   getLocations({ exceptKind: "showhouse" }) → offices + headquarters (for the map)
+ */
+export async function getLocations(opts?: {
+  kind?: Location["kind"];
+  exceptKind?: Location["kind"];
+}): Promise<LocationWithAgents[]> {
+  const rows = await db.query.locations.findMany({
+    where: opts?.kind
+      ? (l, { eq }) => eq(l.kind, opts.kind!)
+      : opts?.exceptKind
+        ? (l, { ne }) => ne(l.kind, opts.exceptKind!)
+        : undefined,
+    with: {
+      agents: {
+        with: { agent: true },
+        orderBy: (la, { asc }) => [asc(la.sortOrder)],
+      },
+    },
+    orderBy: (l, { asc }) => [asc(l.title)],
+  });
+  return rows as LocationWithAgents[];
 }

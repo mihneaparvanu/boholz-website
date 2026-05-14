@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Showhouse } from "../types/models";
+import type { Location } from "../types/models";
 
 const { showhouses } = defineProps<{
-  showhouses: Showhouse[];
+  showhouses: Location[];
 }>();
 </script>
 

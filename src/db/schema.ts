@@ -73,14 +73,21 @@ export const agents = boholzSchema.table("agents", {
   bio: text("bio"),
 });
 
-// Showhouses
-export const showhouses = boholzSchema.table("showhouses", {
+// Locations — physical sites visible on the map.
+//   kind = "office"        Vertriebsbüro (regional sales office)
+//   kind = "headquarters"  Zentrale
+//   kind = "showhouse"     Musterhaus
+export const locations = boholzSchema.table("locations", {
   id: uuid("id").primaryKey().defaultRandom(),
   title: varchar("title").notNull(),
   slug: varchar("slug").notNull(),
+  kind: varchar("kind").notNull().default("office"),
   address: text("address"),
+  postalCode: varchar("postal_code"),
   city: varchar("city"),
   country: varchar("country").default("Germany"),
+  phone: varchar("phone"),
+  email: varchar("email"),
   lat: numeric("lat"),
   lng: numeric("lng"),
 });
@@ -155,13 +162,13 @@ export const agentMedia = boholzSchema.table("agent_media", {
   sortOrder: integer("sort_order").default(0),
 });
 
-// Showhouse Agents (M:N - Unrelated to media, keeping it safe)
-export const showhouseAgents = boholzSchema.table("showhouse_agents", {
+// Location ↔ Agents (M:N)
+export const locationAgents = boholzSchema.table("location_agents", {
   agentId: uuid("agent_id")
     .references(() => agents.id)
     .notNull(),
-  showhouseId: uuid("showhouse_id")
-    .references(() => showhouses.id)
+  locationId: uuid("location_id")
+    .references(() => locations.id)
     .notNull(),
   isPrimary: boolean("is_primary").default(false),
   sortOrder: integer("sort_order").default(0),
@@ -269,6 +276,37 @@ export const newsMediaRelations = relations(newsMedia, ({ one }) => ({
   }),
   media: one(media, {
     fields: [newsMedia.mediaId],
+    references: [media.id],
+  }),
+}));
+
+export const locationsRelations = relations(locations, ({ many }) => ({
+  agents: many(locationAgents),
+}));
+
+export const agentsRelations = relations(agents, ({ many }) => ({
+  locations: many(locationAgents),
+  media: many(agentMedia),
+}));
+
+export const locationAgentsRelations = relations(locationAgents, ({ one }) => ({
+  location: one(locations, {
+    fields: [locationAgents.locationId],
+    references: [locations.id],
+  }),
+  agent: one(agents, {
+    fields: [locationAgents.agentId],
+    references: [agents.id],
+  }),
+}));
+
+export const agentMediaRelations = relations(agentMedia, ({ one }) => ({
+  agent: one(agents, {
+    fields: [agentMedia.agentId],
+    references: [agents.id],
+  }),
+  media: one(media, {
+    fields: [agentMedia.mediaId],
     references: [media.id],
   }),
 }));

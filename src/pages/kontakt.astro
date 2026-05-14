@@ -1,6 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Section from "../layouts/Section.astro";
 import "../style/content-page.css";
+import ContactForm from "../features/ContactForms/ContactForm.vue";
+import LocationsMap from "../features/Locations/LocationsMap.vue";
+import { getLocations } from "../data/loaders";
+
+const locations = await getLocations({ exceptKind: "showhouse" });
 ---
 
 <Layout title="Kontakt – BoHolz Haus">
@@ -42,48 +48,8 @@ import "../style/content-page.css";
       </div>
     </section>
 
-    <!-- Vor-Ort-Beratung -->
-    <section>
-      <h2>Vor-Ort-Beratung</h2>
-      <p>
-        Besuchen Sie uns persönlich und entdecken Sie die vielfältigen
-        Möglichkeiten, die wir Ihnen bieten können. Gerne stehen wir Ihnen
-        auch außerhalb der regulären Öffnungszeiten zur Verfügung.
-      </p>
-
-      <h3>Musterhäuser</h3>
-
-      <div class="feature-grid">
-        <div class="feature-card">
-          <h4>Musterhaus Bad Vilbel</h4>
-          <p>Besuchen Sie unser Ausstellungshaus in der Fertighauswelt Bad Vilbel (Hessen).</p>
-        </div>
-        <div class="feature-card">
-          <h4>Musterhaus Fellbach</h4>
-          <p>Höhenstraße – Platz 36, 70736 Fellbach (Baden-Württemberg).</p>
-        </div>
-      </div>
-
-      <h3>Vertriebsbüros</h3>
-
-      <h4>Baden-Württemberg</h4>
-      <ul>
-        <li>Vertriebsbüro Wenkheim – Lindenstraße 6, 97956 Wenkheim</li>
-        <li>Vertriebsbüro Horb-Nordstetten – Axel-Lipp-Straße 20, 72160 Horb-Nordstetten</li>
-        <li>Vertriebsbüro Schwäbisch Gmünd – Liegnitzerweg 4, 73527 Schwäbisch Gmünd</li>
-        <li>Vertriebsbüro Villingen-Schwenningen – Zwergsteigstraße 4, 78048 Villingen-Schwenningen</li>
-        <li>Vertriebsbüro Rielasingen-Worblingen – Konrad-Zuse-Str. 4, 78239 Rielasingen-Worblingen</li>
-        <li>Vertriebsbüro Schwarzwald – Martinstraße 42, 79848 Bonndorf im Schwarzwald</li>
-      </ul>
-
-      <h4>Bayern</h4>
-      <ul>
-        <li>Vertriebsbüro Hammelburg – Zum Bauholz 3, 97762 Hammelburg</li>
-        <li>Zentrale – Ostring 1, 97688 Bad Kissingen</li>
-        <li>Vertriebsbüro München – Tangastraße 31, 81827 München</li>
-        <li>Vertriebsbüro Werneck – Bühler Ring, Vasbühl, 97440 Werneck</li>
-      </ul>
-    </section>
+    
+    <ContactForm></ContactForm>
 
     <!-- Hauskatalog -->
     <section>
@@ -115,4 +81,20 @@ import "../style/content-page.css";
       <a href="mailto:info@boholz-haus.de">E-Mail schreiben</a>
     </div>
   </article>
+
+  <Section
+    heading="Besuchen Sie uns"
+    highlightWord="vor Ort."
+    subheading="Persönliche Beratung in unseren Vertriebsbüros, Musterhäusern und der Zentrale in Bad Kissingen. Wählen Sie einen Standort, um Details und Ansprechpartner zu sehen."
+  >
+    <div class="kontakt-map">
+      <LocationsMap client:only="vue" locations={locations} />
+    </div>
+  </Section>
 </Layout>
+
+<style>
+  .kontakt-map {
+    width: 100%;
+  }
+</style>
