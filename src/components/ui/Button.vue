@@ -122,6 +122,7 @@ withDefaults(
 .btn[data-variant="primary"]:hover:not([disabled], [aria-disabled="true"]) {
   background: var(--clr-accent-secondary);
   border-color: var(--clr-accent-secondary);
+  color: var(--clr-surface-primary);
 }
 
 .btn[data-variant="secondary"] {
