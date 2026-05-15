@@ -159,7 +159,7 @@
 
   @media (--mobile) {
     --fs-scale: 1.2;
-    --spacing-unit: 2px;
+    --spacing-unit: 3px;
   }
 
   /* Size System (Shared Scale) */
@@ -241,9 +241,12 @@ h6 {
 
 @media (--mobile) {
   :root {
-    --spacing-5: 32px;
-    --spacing-6: 52px;
-    --spacing-7: 84px;
-    --spacing-8: 136px;
+    --spacing-5: 40px;
+    --spacing-6: 64px;
+    --spacing-7: 96px;
+    --spacing-8: 144px;
+    --navbar-height: 64px;
+    --control-height-md: 44px;
+    --control-height-lg: 52px;
   }
 }

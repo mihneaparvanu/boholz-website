@@ -85,7 +85,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
         aria-controls="navbar-mobile-menu"
         @click="isSheetOpen = !isSheetOpen"
       >
-        <Menu aria-hidden="true" />
+        <Menu :size="28" aria-hidden="true" />
       </button>
     </Motion>
     <NavbarMobileMenu
@@ -149,6 +149,10 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
     .logo {
       width: var(--sz-3xl);
+
+      @media (--below-desktop) {
+        width: 44px;
+      }
     }
 
     .links {
