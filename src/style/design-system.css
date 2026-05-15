@@ -241,6 +241,7 @@ h6 {
 
 @media (--mobile) {
   :root {
+    --padding-inline: 20px;
     --spacing-5: 40px;
     --spacing-6: 64px;
     --spacing-7: 96px;

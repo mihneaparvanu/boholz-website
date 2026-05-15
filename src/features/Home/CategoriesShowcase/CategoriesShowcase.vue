@@ -1,16 +1,23 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { LucideInfo } from "lucide-vue-next";
 import type { HouseCategory } from "@/types/models";
+import { BESTSELLER_CATEGORY_ID } from "@/data/constants";
 import CategorySlider from "@/features/CategorySlider/CategorySlider.vue";
 
-defineProps<{
+const props = defineProps<{
   categories: HouseCategory[];
 }>();
+
+// Bestseller is a virtual aggregate category — exclude it from the home showcase.
+const visibleCategories = computed(() =>
+  props.categories.filter((c) => c.id !== BESTSELLER_CATEGORY_ID),
+);
 </script>
 
 <template>
   <div class="showcase">
-    <CategorySlider :categories="categories" />
+    <CategorySlider :categories="visibleCategories" />
     <div class="info">
       <p>Ab <span class="price">200.000€ </span> zzgl. Überführung.</p>
       <p>

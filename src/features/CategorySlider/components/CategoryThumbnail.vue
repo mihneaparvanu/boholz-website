@@ -36,7 +36,7 @@ const imageURL = computed(() => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-0);
+  gap: var(--spacing-1);
   cursor: pointer;
 
   &[data-is-selected="true"] {
@@ -60,6 +60,11 @@ const imageURL = computed(() => {
     aspect-ratio: 1/1;
     border: 2px solid var(--clr-border-primary);
     overflow: hidden;
+
+    @media (--below-desktop) {
+      --size: 84px;
+    }
+
     img {
       width: 100%;
       height: 100%;
@@ -84,8 +89,8 @@ const imageURL = computed(() => {
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
 
-      @media (--mobile) {
-        font-size: calc(var(--fs-body-sm) / var(--fs-scale));
+      @media (--below-desktop) {
+        font-size: var(--fs-body);
       }
     }
   }

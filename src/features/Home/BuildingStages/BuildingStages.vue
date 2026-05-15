@@ -153,6 +153,25 @@ const EASE = [0.22, 1, 0.36, 1];
   .showcase {
     grid-template-columns: 1fr;
   }
+
+  .options {
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+  }
+
+  .hero .frame {
+    height: 80dvh;
+  }
+}
+
+@media (--mobile) {
+  .hero .frame {
+    height: 75dvh;
+  }
+
+  .cell {
+    min-height: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -13,7 +13,8 @@ defineProps<{
         <h4>{{ q.question }}</h4>
         <span class="chevron" aria-hidden="true">+</span>
       </summary>
-      <p>{{ q.answer }}</p>
+      <!-- Trusted internal content sourced from src/content/qa.ts -->
+      <div class="answer" v-html="q.answer" />
     </details>
   </li>
 </template>
@@ -58,5 +59,39 @@ p {
   margin: 0 0 var(--spacing-3);
   color: var(--clr-content-secondary);
   max-width: 60ch;
+}
+
+.answer {
+  color: var(--clr-content-secondary);
+  max-width: 60ch;
+  padding-bottom: var(--spacing-2);
+
+  :deep(p) {
+    margin: 0 0 var(--spacing-2);
+  }
+
+  :deep(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  :deep(ul) {
+    margin: 0 0 var(--spacing-2);
+    padding-left: var(--spacing-3);
+    list-style: disc;
+  }
+
+  :deep(li) {
+    margin-bottom: var(--spacing-0);
+  }
+
+  :deep(strong) {
+    color: var(--clr-content-primary);
+    font-weight: 500;
+  }
+
+  :deep(a) {
+    color: var(--clr-accent-primary);
+    text-decoration: underline;
+  }
 }
 </style>
