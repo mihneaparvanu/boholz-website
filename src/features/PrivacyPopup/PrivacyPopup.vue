@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { ref } from "vue";
+
+const popupVisible = ref(false);
 import Button from "@/components/ui/Button.vue";
 </script>
 
 <template>
-  <div class="popup">
+  <div v-if="popupVisible" class="popup">
     <div class="text">
       <h4 class="title">Cookies &amp; Privatsphäre</h4>
       <p class="disclaimer">

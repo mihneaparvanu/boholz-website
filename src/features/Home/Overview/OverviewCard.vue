@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { OverviewCardData } from "./home.types";
+import type { OverviewCardData } from "./overview.types";
 
 defineProps<{
   data: OverviewCardData;

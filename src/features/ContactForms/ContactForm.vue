@@ -19,14 +19,14 @@ const fieldComponents: Record<FormField["type"], unknown> = {
 </script>
 
 <template>
-  <form class="contact-form" novalidate>
+  <form novalidate>
     <section
       v-for="s in contactFormSections"
       :key="s.id"
-      class="contact-form__section"
+      class="group"
       :aria-labelledby="s.heading ? `section-${s.id}` : undefined"
     >
-      <h3 v-if="s.heading" :id="`section-${s.id}`" class="contact-form__heading">
+      <h3 v-if="s.heading" :id="`section-${s.id}`" class="heading">
         {{ s.heading }}
       </h3>
 
@@ -39,34 +39,32 @@ const fieldComponents: Record<FormField["type"], unknown> = {
       />
     </section>
 
-    <button type="submit" class="contact-form__submit">
-      Jetzt Katalog anfordern
-    </button>
+    <button type="submit" class="submit">Jetzt Katalog anfordern</button>
   </form>
 </template>
 
 <style scoped>
-.contact-form {
+form {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-5);
   margin-block: var(--spacing-5);
 }
 
-.contact-form__section {
+.group {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-3);
 }
 
-.contact-form__heading {
+.heading {
   font-size: var(--fs-h5);
   margin: 0;
   font-weight: 500;
   color: var(--clr-content-primary);
 }
 
-.contact-form__submit {
+.submit {
   height: var(--control-height-lg);
   padding-inline: var(--spacing-4);
   background: var(--clr-accent-primary);
@@ -81,16 +79,17 @@ const fieldComponents: Record<FormField["type"], unknown> = {
     box-shadow 160ms ease;
 }
 
-.contact-form__submit:hover {
+.submit:hover {
   background: var(--clr-accent-secondary);
 }
 
-.contact-form__submit:focus-visible {
+.submit:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--clr-accent-primary) 30%, transparent);
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--clr-accent-primary) 30%, transparent);
 }
 
-.contact-form__submit:active {
+.submit:active {
   transform: translateY(1px);
 }
 </style>

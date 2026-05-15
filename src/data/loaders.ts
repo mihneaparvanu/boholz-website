@@ -9,7 +9,7 @@ import type {
   LocationWithAgents,
   NewsArticle,
 } from "@/types/models";
-import type { HeroSlide } from "@/features/Home/home.types";
+import type { HeroSlide } from "@/features/Home/Hero/hero.types";
 import { getMediaURL } from "@/utils/media";
 import { m } from "motion-v";
 import { title } from "node:process";

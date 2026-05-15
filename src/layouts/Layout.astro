@@ -41,9 +41,7 @@ const showhouses = await getLocations({ kind: "showhouse" });
     <main class="wrapper">
        <PrivacyPopup/>
       <slot />
-     
       <Footer />
-      
     </main>
   </body>
 </html>
@@ -53,6 +51,4 @@ const showhouses = await getLocations({ kind: "showhouse" });
   main {
     padding-top: calc(var(--navbar-height) + var(--navbar-offset) * 2);
   }
-
-
 </style>

@@ -46,10 +46,20 @@ File-based via `src/pages/`. German-language slugs (e.g. `hauser.astro`, `vor-or
 `src/features/<Feature>/` for self-contained, mostly-Vue feature areas (e.g. `Locations`, `HousePage`, `HousesPage`, `CategorySlider`, `FilterPanel`, `NewsPage`). `src/layouts/Navbar` and `src/layouts/Footer` are likewise feature-shaped.
 
 `src/components/` holds cross-feature primitives, grouped by intent:
+
 - `components/ui/` — reusable UI atoms (`Card`, `SortButton`, `ImagePlaceholder`). No business logic, no feature coupling.
 - `components/brand/` — brand-specific marks (`BoholzLogo`).
 
 Single-caller components live next to their consumer (e.g. `TitleLinks` in `layouts/Navbar/`), not under `components/`. Promote to `components/ui/` only when a second feature needs it.
+
+### Content / data placement
+
+Two scopes — pick the smaller one that still fits.
+
+- **Feature-local**: only one feature reads it → live next to the component as `<feature>.content.ts` and `<feature>.types.ts` (e.g. `features/Home/home.content.ts`, `features/Home/building-stages.content.ts`).
+- **Shared / domain-level**: two or more features (or a future page) will read the same data → `src/content/<topic>.ts` with the types declared in the same file (e.g. `content/qa.ts` exports `Question`, `QuestionCategory`, `qaCategories`). When this content eventually moves to the DB, the file becomes the seed shape.
+
+DB entity types stay in `src/types/models.ts`. Don't pre-emptively split content into `models/` + `data/` folders — types live next to the data they describe.
 
 ### Styling
 
@@ -57,6 +67,22 @@ Two layered systems — do not mix them inside one file:
 
 1. **Global CSS** in `src/style/` (`reset.css`, `design-system.css`, `wrapper.css`, `fonts.css`, `breakpoints.css`, `content-page.css`, `legal.css`). The design tokens — colors, typography scale — live as CSS custom properties in `design-system.css`. Use these tokens directly in `.astro` / `.vue` `<style>` blocks for page-level styling.
 2. **Vanilla Extract** (`.css.ts` files, co-located with the component) for component styling per `development.md`. Use `recipe()` for variants and extract prop types with `RecipeVariants<typeof myRecipe>`. Never hardcode a token value that exists in the theme contract.
+
+**No BEM, ever.** Class names must be short, semantic, local — `.head`, `.title`, `.cell`, `.muted`, `.active`. Never `.card__head`, `.card__title--muted`, `.cell--hero`. Vue `<style scoped>` and Vanilla Extract already give you the namespacing — the _file_ is the namespace. Repeating the component name inside class names is dead weight. Modifiers are separate classes (`class="pin active"`, not `class="pin pin--active"`) toggled with `:class="{ active }"`. Style state via attributes (`[data-state="open"]`) or chained selectors (`.pin.active .body`), never via `--modifier` suffixes.
+
+**Breakpoints — always use the `@custom-media` tokens from `src/style/breakpoints.css`.** Never hardcode pixel values in `@media` queries. The tokens are registered globally via `postcss-global-data` and work inside `<style scoped>` blocks.
+
+| When you want…                 | Use                        |
+| ------------------------------ | -------------------------- |
+| Mobile only (< 500px)          | `@media (--mobile)`        |
+| Tablet only (500–1023px)       | `@media (--tablet)`        |
+| Desktop only (1024–1439px)     | `@media (--desktop)`       |
+| Wide only (≥ 1440px)           | `@media (--wide)`          |
+| Tablet and up                  | `@media (--from-tablet)`   |
+| Desktop and up                 | `@media (--from-desktop)`  |
+| Anything narrower than desktop | `@media (--below-desktop)` |
+
+If a layout needs a breakpoint not covered by these tokens, **add a new `@custom-media` to `breakpoints.css`** rather than inlining a pixel value. The point is one source of truth — refactoring breakpoints should be a one-file change.
 
 For accessible interactive primitives (dialogs, dropdowns, navigation menus, etc.) use **Reka UI** (`reka-ui`) for behavior and style it with Vanilla Extract — Reka is headless and ships no visuals.
 
@@ -68,9 +94,10 @@ Animation: GSAP (in-viewport reveals) + Lenis (smooth scroll). Keep easings mini
 - **TypeScript:** no `any`. Three-layer model hierarchy (see `types-masterclass.md` for the full reasoning):
   1. **Entity types** — inferred via `InferSelectModel<typeof table>`, live in `src/types/models.ts`. One per DB table. Never hand-written.
   2. **Composite types** — entity + relations (e.g. `HouseModel & { media: Media[] }`). Named at the project level when reused; declared at the feature level otherwise.
-  3. **View models** — per-feature display shapes derived via `Pick` / `Omit` / `Awaited<ReturnType<typeof loader>>[number]`. Co-located in `src/features/<Feature>/types.ts`. Loaders' return shape *is* the view model — derive, don't duplicate.
+  3. **View models** — per-feature display shapes derived via `Pick` / `Omit` / `Awaited<ReturnType<typeof loader>>[number]`. Co-located in `src/features/<Feature>/types.ts`. Loaders' return shape _is_ the view model — derive, don't duplicate.
 
   Rule: **name a type when its name communicates intent that the structure doesn't.** Use `Pick`/`Omit`/`Partial`/`Record` aggressively; let TS infer one-off local shapes. Brand IDs (`Brand<string, "UserId">`) only where confusing two ID types would be a real bug. Zod schemas at trust boundaries (forms, API, env); not for internal data.
+
 - **German umlauts in identifiers:** replace `ü → ue`, `ö → oe`, `ä → ae`, `ß → ss` in slugs and asset filenames.
 - **Image assets:** prefer WebP; minimum 1200px on shortest side; strip EXIF GPS but preserve ICC color profiles. Naming pattern when creating/renaming assets: `{category}_{house-slug}_{type}_{dimensions}.{ext}` (see `agent.md` for the full asset pipeline).
 - **SVGs:** logos and icons are implemented as components, not raw `<img>` references.

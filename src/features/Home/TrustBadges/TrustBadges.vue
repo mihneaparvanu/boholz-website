@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import Card from "@/components/ui/Card.vue";
-import {
-  LucideHammer,
-  LucideShieldCheck,
-  LucideCalendar,
-} from "lucide-vue-next";
+import type { TrustBadge } from "./trust-badges.content";
 
-const badges = [
-  { icon: LucideHammer, title: "100% Made in Germany", value: 25 },
-  { icon: LucideCalendar, title: "Monate Festpreisgarantie", value: 18 },
-  { icon: LucideShieldCheck, title: "Jahre Gewährleistung", value: 5 },
-];
+defineProps<{
+  badges: TrustBadge[];
+}>();
 </script>
 
 <template>

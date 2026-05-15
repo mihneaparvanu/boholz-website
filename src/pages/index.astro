@@ -2,17 +2,21 @@
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/layouts/Section.astro";
 
-import Hero from "@/features/Home/Hero.vue";
-import CategoriesShowcase from "@/features/Home/CategoriesShowcase.vue";
-import TrustBadges from "@/features/Home/TrustBadges.vue";
-import OverviewGrid from "@/features/Home/OverviewGrid.vue";
-import BuildingStages from "@/features/Home/BuildingStages.vue";
+import Hero from "@/features/Home/Hero/Hero.vue";
+import CategoriesShowcase from "@/features/Home/CategoriesShowcase/CategoriesShowcase.vue";
+import TrustBadges from "@/features/Home/TrustBadges/TrustBadges.vue";
+import Overview from "@/features/Home/Overview/Overview.vue";
+import BuildingStages from "@/features/Home/BuildingStages/BuildingStages.vue";
+import Faq from "@/features/Home/Faq/Faq.vue";
+import CatalogCard from "@/features/CatalogCard/CatalogCard.vue"
 
 import { homeSections } from "@/features/Home/home.content";
-import { buildingStages } from "@/features/Home/building-stages.content";
+import { buildingStages } from "@/features/Home/BuildingStages/building-stages.content";
+import { overviewCards } from "@/features/Home/Overview/overview.content";
+import { trustBadges } from "@/features/Home/TrustBadges/trust-badges.content";
+import { qaCategories } from "@/content/qa";
 
-import { getCategories } from "@/data/loaders";
-import { getHeroSlides } from "../data/loaders";
+import { getCategories, getHeroSlides } from "@/data/loaders";
 
 const categories = await getCategories();
 const heroSlides = await getHeroSlides(6);
@@ -26,16 +30,20 @@ const heroSlides = await getHeroSlides(6);
   </Section>
 
   <Section {...homeSections.trust}>
-    <TrustBadges client:visible />
+    <TrustBadges client:visible badges={trustBadges} />
   </Section>
 
   <Section {...homeSections.overview}>
-    <OverviewGrid />
+    <Overview cards={overviewCards} />
   </Section>
 
   <Section {...homeSections.finishes}>
     <BuildingStages client:visible stages={buildingStages} />
   </Section>
 
-  <Section {...homeSections.qa} />
+  <Section {...homeSections.qa}>
+    <Faq client:visible categories={qaCategories} />
+  </Section>
+
+  <CatalogCard/>
 </Layout>

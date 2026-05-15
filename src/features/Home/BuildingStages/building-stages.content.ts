@@ -1,4 +1,4 @@
-import type { BuildingStage } from "./home.types";
+import type { BuildingStage } from "./building-stages.types";
 
 export const buildingStages: BuildingStage[] = [
   {
