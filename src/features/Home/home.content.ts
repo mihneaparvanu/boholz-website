@@ -19,4 +19,17 @@ export const homeSections = {
     subheading:
       "BoHolz vereint meisterhafte Präzision mit höchster Energieeffizienz. Für Sie bedeutet das: schneller Einzug, erstklassige Lebensqualität und dauerhaft niedrige Energiekosten.",
   },
+  finishes: {
+    heading: "Ihr Traumhaus.",
+    highlightWord: "Ihr Weg.",
+    subheading:
+      "Ein Hausbau ist eine ganz persönliche Reise. Wir bieten Ihnen vier flexible Ausbaustufen – vom Ausbauhaus bis zur schlüsselfertigen Übergabe. So behalten Sie die volle Kontrolle über Ihr Projekt, Ihren Zeitplan und Ihr Budget.",
+  },
+  qa: {
+    heading: "Klarheit schafft",
+    highlightWord: "Vertrauen.",
+    subheading:
+      "Mit BoHolz haben Sie bereits die Antwort auf die Frage nach Ihrem Traumhaus gefunden. Für alle weiteren Details – von der Bauweise bis zur Finanzierung – haben wir hier das Wichtigste übersichtlich für Sie zusammengefasst.",
+  },
 } as const satisfies Record<string, SectionContent>;
+

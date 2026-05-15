@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useIntervalFn } from "@vueuse/core";
 import { ref, computed } from "vue";
-import type { HeroSlide } from "@/types/home.types";
+import type { HeroSlide } from "./home.types";
 import Button from "@/components/ui/Button.vue";
 import { ArrowRight } from "lucide-vue-next";
 

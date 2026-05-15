@@ -6,8 +6,10 @@ import Hero from "@/features/Home/Hero.vue";
 import CategoriesShowcase from "@/features/Home/CategoriesShowcase.vue";
 import TrustBadges from "@/features/Home/TrustBadges.vue";
 import OverviewGrid from "@/features/Home/OverviewGrid.vue";
+import BuildingStages from "@/features/Home/BuildingStages.vue";
 
 import { homeSections } from "@/features/Home/home.content";
+import { buildingStages } from "@/features/Home/building-stages.content";
 
 import { getCategories } from "@/data/loaders";
 import { getHeroSlides } from "../data/loaders";
@@ -24,10 +26,16 @@ const heroSlides = await getHeroSlides(6);
   </Section>
 
   <Section {...homeSections.trust}>
-    <TrustBadges />
+    <TrustBadges client:visible />
   </Section>
 
   <Section {...homeSections.overview}>
     <OverviewGrid />
   </Section>
+
+  <Section {...homeSections.finishes}>
+    <BuildingStages client:visible stages={buildingStages} />
+  </Section>
+
+  <Section {...homeSections.qa} />
 </Layout>

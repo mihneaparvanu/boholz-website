@@ -1,17 +1,59 @@
 <script setup lang="ts">
+import { computed, ref, watch } from "vue";
 import type { Component } from "vue";
+import {
+  useTransition,
+  useIntersectionObserver,
+  TransitionPresets,
+} from "@vueuse/core";
 
-defineProps<{
+const props = defineProps<{
   title: string;
   value?: string | number;
   icon?: Component;
 }>();
+
+const isNumeric = computed(() => typeof props.value === "number");
+
+// Source ref the transition tracks. Starts at 0; bumped to target when in view.
+const source = ref(0);
+const output = useTransition(source, {
+  duration: 1600,
+  transition: TransitionPresets.easeOutCubic,
+});
+
+// Display string: animated number when numeric, otherwise raw value.
+const displayValue = computed(() =>
+  isNumeric.value ? Math.round(output.value).toString() : (props.value ?? ""),
+);
+
+// Trigger when the card scrolls into view (once).
+const cardEl = ref<HTMLElement | null>(null);
+const { stop } = useIntersectionObserver(
+  cardEl,
+  ([entry]) => {
+    if (!entry?.isIntersecting) return;
+    if (isNumeric.value) source.value = props.value as number;
+    stop();
+  },
+  { threshold: 0.4 },
+);
+
+// If the prop value changes after the first reveal, keep the animation honest.
+watch(
+  () => props.value,
+  (v) => {
+    if (typeof v === "number" && source.value !== 0) source.value = v;
+  },
+);
 </script>
 
 <template>
-  <article class="card">
+  <article ref="cardEl" class="card">
     <component v-if="icon" :is="icon" class="card-icon" aria-hidden="true" />
-    <span v-if="value !== undefined" class="card-value">{{ value }}</span>
+    <span v-if="value !== undefined" class="card-value">{{
+      displayValue
+    }}</span>
     <h4 class="card-title">{{ title }}</h4>
   </article>
 </template>
