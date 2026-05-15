@@ -200,7 +200,9 @@ const EASE = [0.22, 1, 0.36, 1] as const;
       width: var(--control-height-md);
       height: var(--control-height-md);
       border-radius: var(--radius-sm);
-      transition: background 160ms ease, color 160ms ease;
+      transition:
+        background 160ms ease,
+        color 160ms ease;
 
       &:hover {
         background: var(--clr-surface-secondary);

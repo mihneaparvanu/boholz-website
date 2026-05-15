@@ -4,6 +4,9 @@ import InstagramIcon from "@/icons/Instagram.svg";
 import YoutubeIcon from "@/icons/Youtube.svg";
 import LinkedinIcon from "@/icons/Linkedin.svg";
 import { ROUTES } from "@/utils/routes";
+import { FOOTER_NAV } from "./footer.content";
+
+import PrivacyBtn from "@/components/ui/PrivacyBtn.vue";
 
 import Separator from "@/features/HousePage/components/Separator.vue";
 
@@ -14,12 +17,17 @@ const currentYear = new Date().getFullYear();
   <div class="footer-content">
     <nav class="links-grid" aria-label="Footer">
       <div class="links-list main">
-        <a href={ROUTES.contact}>Kontakt</a>
+      {
+        FOOTER_NAV.map((l) => (
+          <a href={l.path}>{l.label}</a>
+        ))
+      }
       </div>
       <div class="links-list privacy">
         <a href={ROUTES.impressum}>Impressum</a>
         <a href={ROUTES.datenschutz}>Datenschutz</a>
         <a href={ROUTES.cookies}>Cookies</a>
+        <a href=""><span><PrivacyBtn /></span>Ihre Privatsphäre-Einstellungen</a>
       </div>
     </nav>
 
@@ -88,6 +96,10 @@ const currentYear = new Date().getFullYear();
       a {
         font-weight: 400;
         color: var(--clr-content-secondary);
+
+        span {
+          padding-inline-end: var(--spacing-0);
+        }
       }
     }
   }

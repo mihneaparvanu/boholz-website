@@ -5,6 +5,7 @@ import "@/style/wrapper.css"
 
 import Navbar from "./Navbar/Navbar.vue";
 import Footer from "./Footer/Footer.astro";
+import PrivacyPopup from "@/features/PrivacyPopup/PrivacyPopup.vue";
 
 import { getCategories, getLocations } from "@/data/loaders";
 import type { HouseCategory } from "@/types/models";
@@ -38,8 +39,11 @@ const showhouses = await getLocations({ kind: "showhouse" });
   <body>
     <Navbar client:load categories={categories} showhouses={showhouses} currentPath={Astro.url.pathname}/>
     <main class="wrapper">
+       <PrivacyPopup/>
       <slot />
+     
       <Footer />
+      
     </main>
   </body>
 </html>
@@ -49,4 +53,6 @@ const showhouses = await getLocations({ kind: "showhouse" });
   main {
     padding-top: calc(var(--navbar-height) + var(--navbar-offset) * 2);
   }
+
+
 </style>

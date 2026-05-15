@@ -54,7 +54,7 @@ withDefaults(
   user-select: none;
   transition:
     background 160ms ease,
-    color 160ms ease,
+    color 300ms ease,
     border-color 160ms ease,
     box-shadow 160ms ease,
     transform 80ms ease;

@@ -4,7 +4,7 @@ import "@/style/design-system.css";
 import "@/style/wrapper.css";
 import Button from "@/components/ui/Button.vue";
 import IconButton from "@/components/ui/IconButton.vue";
-import Switch from "@/components/ui/Switch.vue";
+import PrivacyBtn from "@/components/ui/PrivacyBtn.vue";
 import { ArrowRight, Download, Home, Layers, Phone } from "lucide-vue-next";
 ---
 
@@ -89,13 +89,12 @@ import { ArrowRight, Download, Home, Layers, Phone } from "lucide-vue-next";
       </section>
 
       <section class="preview-section">
-        <h2>Switch</h2>
-        <p class="hint">Reka-backed: full keyboard support, ARIA wired automatically.</p>
+        <h2>Privacy badge</h2>
+        <p class="hint">Inline SVG, color via CSS <code>color</code> (currentColor).</p>
         <div class="col">
-          <Switch label="Ihre Privatsphäre-Einstellungen" modelValue={true} client:load />
-          <Switch label="Newsletter abonnieren" client:load />
-          <Switch label="Deaktiviert (an)" modelValue={true} disabled client:load />
-          <Switch label="Deaktiviert (aus)" disabled client:load />
+          <PrivacyBtn />
+          <PrivacyBtn size={48} />
+          <span style="color: var(--clr-content-tertiary)"><PrivacyBtn /></span>
         </div>
       </section>
     </article>
