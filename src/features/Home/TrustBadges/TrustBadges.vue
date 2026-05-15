@@ -14,6 +14,7 @@ defineProps<{
       :key="b.title"
       :title="b.title"
       :value="b.value"
+      :suffix="b.suffix"
       :icon="b.icon"
     />
   </div>

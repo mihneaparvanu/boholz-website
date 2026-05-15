@@ -9,10 +9,11 @@ export interface TrustBadge {
   icon: Component;
   title: string;
   value: number;
+  suffix?: string;
 }
 
 export const trustBadges: TrustBadge[] = [
-  { icon: LucideHammer, title: "100% Made in Germany", value: 25 },
+  { icon: LucideHammer, title: "Made in Germany", value: 100, suffix: "%" },
   { icon: LucideCalendar, title: "Monate Festpreisgarantie", value: 18 },
   { icon: LucideShieldCheck, title: "Jahre Gewährleistung", value: 5 },
 ];

@@ -10,6 +10,7 @@ import {
 const props = defineProps<{
   title: string;
   value?: string | number;
+  suffix?: string;
   icon?: Component;
 }>();
 
@@ -51,9 +52,11 @@ watch(
 <template>
   <article ref="cardEl" class="card">
     <component v-if="icon" :is="icon" class="card-icon" aria-hidden="true" />
-    <span v-if="value !== undefined" class="card-value">{{
-      displayValue
-    }}</span>
+    <span v-if="value !== undefined" class="card-value"
+      >{{ displayValue }}<span v-if="suffix" class="card-suffix">{{
+        suffix
+      }}</span></span
+    >
     <h4 class="card-title">{{ title }}</h4>
   </article>
 </template>
