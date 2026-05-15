@@ -64,6 +64,11 @@ const selected = ref<LocationWithAgents | null>(null);
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--clr-border-secondary);
+
+  @media (--mobile) {
+    height: 60vh;
+    min-height: 320px;
+  }
 }
 
 .map-wrapper :deep(.maplibregl-map) {

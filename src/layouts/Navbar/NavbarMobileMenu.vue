@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { NavLink } from "../nav.types";
 import NavbarMobileMenuItem from "./NavbarMobileMenuItem.vue";
+import Button from "@/components/ui/Button.vue";
+import { ROUTES } from "@/utils/routes";
 
 const { routes } = defineProps<{
   routes: NavLink[];
@@ -17,7 +19,9 @@ const { routes } = defineProps<{
       />
     </ul>
 
-    <button type="button" class="cta">Beratung finden</button>
+    <Button variant="primary" size="md" :href="ROUTES.contact"
+      >Beratung finden</Button
+    >
   </div>
 </template>
 
@@ -40,25 +44,6 @@ const { routes } = defineProps<{
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-4);
-  }
-
-  .cta {
-    background-color: var(--clr-accent-primary);
-    color: var(--clr-surface-primary);
-    height: var(--control-height-md);
-    padding-inline: var(--spacing-3);
-    font-weight: 500;
-    border-radius: var(--radius-sm);
-    transition: background 160ms ease;
-
-    &:hover {
-      background-color: var(--clr-accent-secondary);
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--clr-accent-secondary);
-      outline-offset: 2px;
-    }
   }
 }
 </style>

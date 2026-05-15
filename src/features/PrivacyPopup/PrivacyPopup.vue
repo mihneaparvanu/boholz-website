@@ -40,6 +40,10 @@ import Button from "@/components/ui/Button.vue";
   border-radius: var(--radius-md);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   z-index: 10;
+
+  @media (--below-desktop) {
+    max-width: none;
+  }
 }
 
 .text {
@@ -63,5 +67,6 @@ import Button from "@/components/ui/Button.vue";
 .btns {
   display: flex;
   gap: var(--spacing-3);
+  flex-wrap: wrap;
 }
 </style>

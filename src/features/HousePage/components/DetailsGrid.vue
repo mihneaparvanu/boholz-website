@@ -87,5 +87,9 @@ const details = detailConfig
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-3);
+
+  @media (--mobile) {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

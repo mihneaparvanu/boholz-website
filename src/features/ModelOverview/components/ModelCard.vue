@@ -55,12 +55,21 @@ const heroImage = computed(() => heroMediaItem.value?.path);
   border: 2px solid var(--clr-border-primary);
   border-radius: var(--radius-md);
   overflow: hidden;
+
+  @media (--mobile) {
+    height: auto;
+  }
 }
 
 .image {
   width: 100%;
   height: 80%;
   object-fit: cover;
+
+  @media (--mobile) {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
 }
 
 .content-wrapper {

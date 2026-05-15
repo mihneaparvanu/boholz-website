@@ -107,6 +107,10 @@ const ctaLinks = [
   width: 100%;
   background-color: var(--clr-surface-primary);
   border-radius: var(--panel-b-radius);
+
+  @media (--below-desktop) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .drop-panel-nav {
@@ -115,6 +119,10 @@ const ctaLinks = [
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-0);
   font-size: var(--fs-body-lg);
+
+  @media (--mobile) {
+    grid-template-columns: 1fr;
+  }
 
   .links {
     display: flex;

@@ -3,9 +3,11 @@ import { ref } from "vue";
 import { Motion, AnimatePresence } from "motion-v";
 
 import BoholzLogo from "@/components/brand/BoholzLogo.vue";
+import Button from "@/components/ui/Button.vue";
 import NavbarMobileMenu from "./NavbarMobileMenu.vue";
 import NavbarDrop from "./NavbarDrop.vue";
 import { PRIMARY_NAV } from "./navbar.content";
+import { ROUTES } from "@/utils/routes";
 import { Menu } from "lucide-vue-next";
 import type { HouseCategory, Location } from "@/types/models";
 
@@ -70,7 +72,11 @@ const EASE = [0.22, 1, 0.36, 1] as const;
           </Motion>
         </ul>
       </div>
-      <div class="cta"></div>
+      <div class="cta">
+        <Button variant="primary" size="md" :href="ROUTES.contact"
+          >Beratung anfragen</Button
+        >
+      </div>
       <button
         type="button"
         class="sheet-trigger"
@@ -216,6 +222,14 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
       @media (--from-desktop) {
         display: none;
+      }
+    }
+
+    .cta {
+      display: none;
+
+      @media (--from-desktop) {
+        display: flex;
       }
     }
   }

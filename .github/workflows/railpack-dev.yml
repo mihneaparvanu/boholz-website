@@ -1,0 +1,36 @@
+name: Railpack build (dev)
+
+on:
+  push:
+    branches: [dev]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build image with Railpack
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Install Railpack CLI
+        run: |
+          curl -sSL https://railpack.com/install.sh | bash
+          echo "$HOME/.railpack/bin" >> "$GITHUB_PATH"
+
+      - name: Show detected build plan
+        run: railpack plan .
+
+      - name: Build image
+        run: railpack build . --name boholz-frontend:dev-${{ github.sha }}
+
+      - name: Image summary
+        run: docker image ls boholz-frontend

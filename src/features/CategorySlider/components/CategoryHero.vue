@@ -46,6 +46,11 @@ const imageURL = computed(() => {
     color: var(--clr-surface-primary);
     text-align: center;
     max-width: 600px;
+
+    @media (--mobile) {
+      max-width: 100%;
+      padding-inline: var(--spacing-3);
+    }
   }
 
   .model-image {

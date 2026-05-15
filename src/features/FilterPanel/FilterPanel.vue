@@ -125,11 +125,19 @@ const handleReset = () => {
   flex-direction: column;
   position: fixed;
   right: 0;
-  width: 30%;
+  width: 100%;
   height: 100vh;
   background-color: var(--clr-surface-primary);
   justify-content: space-between;
   z-index: 20;
+
+  @media (--from-tablet) {
+    width: 60%;
+  }
+
+  @media (--from-desktop) {
+    width: 30%;
+  }
 
   .control-panel {
     padding: var(--spacing-4);
