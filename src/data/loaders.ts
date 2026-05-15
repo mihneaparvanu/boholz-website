@@ -1,4 +1,3 @@
-import { media } from "./../db/schema";
 import { db } from "@/db/db";
 import { not, inArray, eq } from "drizzle-orm";
 import { houseCategories, houseModels, news } from "@/db/schema";
@@ -11,8 +10,6 @@ import type {
 } from "@/types/models";
 import type { HeroSlide } from "@/features/Home/Hero/hero.types";
 import { getMediaURL } from "@/utils/media";
-import { m } from "motion-v";
-import { title } from "node:process";
 export { BESTSELLER_CATEGORY_ID } from "./constants";
 
 const HIDDEN_CATEGORY_SLUGS: string[] = [];
