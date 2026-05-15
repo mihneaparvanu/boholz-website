@@ -32,4 +32,3 @@ export const homeSections = {
       "Mit BoHolz haben Sie bereits die Antwort auf die Frage nach Ihrem Traumhaus gefunden. Für alle weiteren Details – von der Bauweise bis zur Finanzierung – haben wir hier das Wichtigste übersichtlich für Sie zusammengefasst.",
   },
 } as const satisfies Record<string, SectionContent>;
-

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { NavRoute } from "@/utils/routes";
+import type { NavLink } from "../nav.types";
 import { ChevronRight } from "lucide-vue-next";
 
 const props = defineProps<{
-  route: NavRoute;
+  route: NavLink;
 }>();
 </script>
 

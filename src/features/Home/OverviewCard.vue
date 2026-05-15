@@ -11,7 +11,6 @@ defineProps<{
     <div class="text">
       <h3>{{ data.heading }}</h3>
       <p v-if="data.subheading">{{ data.subheading }}</p>
-      
     </div>
     <div v-if="data.image" class="img-wrapper">
       <img

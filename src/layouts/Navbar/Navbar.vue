@@ -5,7 +5,7 @@ import { Motion, AnimatePresence } from "motion-v";
 import BoholzLogo from "@/components/brand/BoholzLogo.vue";
 import NavbarMobileMenu from "./NavbarMobileMenu.vue";
 import NavbarDrop from "./NavbarDrop.vue";
-import NAV_ROUTES from "@/utils/routes";
+import { PRIMARY_NAV } from "./navbar.content";
 import { Menu } from "lucide-vue-next";
 import type { HouseCategory, Location } from "@/types/models";
 
@@ -52,7 +52,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
         <ul class="links">
           <Motion
-            v-for="(route, i) in NAV_ROUTES"
+            v-for="(route, i) in PRIMARY_NAV"
             :key="route.path"
             tag="li"
             :initial="{ opacity: 0, y: -6 }"
@@ -84,7 +84,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
     </Motion>
     <NavbarMobileMenu
       id="navbar-mobile-menu"
-      :routes="NAV_ROUTES"
+      :routes="PRIMARY_NAV"
       :data-is-open="isSheetOpen"
     />
     <AnimatePresence>

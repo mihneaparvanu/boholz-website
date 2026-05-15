@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { NavRoute } from "@/utils/routes";
+import type { NavLink } from "../nav.types";
 import NavbarMobileMenuItem from "./NavbarMobileMenuItem.vue";
 
 const { routes } = defineProps<{
-  routes: NavRoute[];
+  routes: NavLink[];
 }>();
 </script>
 

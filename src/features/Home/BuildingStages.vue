@@ -10,7 +10,8 @@ const props = defineProps<{
 const selectedSlug = ref(props.stages.at(-1)?.slug ?? "");
 
 const selected = computed(
-  () => props.stages.find((s) => s.slug === selectedSlug.value) ?? props.stages[0],
+  () =>
+    props.stages.find((s) => s.slug === selectedSlug.value) ?? props.stages[0],
 );
 </script>
 
