@@ -26,7 +26,7 @@ const heroSlides = await getHeroSlides(6);
 
   <Hero client:load slides={heroSlides} />
   <Section {...homeSections.categories}>
-    <CategoriesShowcase categories={categories} />
+    <CategoriesShowcase client:visible categories={categories} />
   </Section>
 
   <Section {...homeSections.trust}>
@@ -45,5 +45,5 @@ const heroSlides = await getHeroSlides(6);
     <Faq client:visible categories={qaCategories} />
   </Section>
 
-  <CatalogCard/>
+ <!-- <CatalogCard/>  -->
 </Layout>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Motion, AnimatePresence } from "motion-v";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder.vue";
 import type { BuildingStage } from "./building-stages.types";
 
@@ -8,6 +9,10 @@ const props = defineProps<{
 }>();
 
 const selected = ref<BuildingStage>(props.stages[0]);
+
+// Strong, decelerating ease — quartic out. Matches the precision feel:
+// fast settle, no overshoot, no bounce. Same family used in NavbarDrop.
+const EASE = [0.22, 1, 0.36, 1];
 </script>
 
 <template>
@@ -28,13 +33,35 @@ const selected = ref<BuildingStage>(props.stages[0]);
 
       <div class="showcase">
         <figure class="cell hero">
-          <img
-            v-if="selected?.imageURL"
-            :src="selected.imageURL"
-            :alt="selected.title"
-          />
-          <ImagePlaceholder v-else />
-          <figcaption>{{ selected?.description }}</figcaption>
+          <div class="frame">
+            <AnimatePresence mode="popLayout">
+              <Motion
+                v-if="selected?.imageURL"
+                :key="selected.slug"
+                as="img"
+                :src="selected.imageURL"
+                :alt="selected.title"
+                :initial="{ opacity: 0 }"
+                :animate="{ opacity: 1 }"
+                :exit="{ opacity: 0 }"
+                :transition="{ duration: 0.65, ease: EASE }"
+              />
+            </AnimatePresence>
+            <ImagePlaceholder v-if="!selected?.imageURL" />
+          </div>
+
+          <AnimatePresence mode="wait">
+            <Motion
+              :key="selected.slug + '-caption'"
+              as="figcaption"
+              :initial="{ opacity: 0, y: 6 }"
+              :animate="{ opacity: 1, y: 0 }"
+              :exit="{ opacity: 0, y: -4 }"
+              :transition="{ duration: 0.45, ease: EASE, delay: 0.08 }"
+            >
+              {{ selected?.description }}
+            </Motion>
+          </AnimatePresence>
         </figure>
 
         <div class="cell">
@@ -52,7 +79,7 @@ const selected = ref<BuildingStage>(props.stages[0]);
 .slider {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-6);
+  gap: var(--spacing-4);
 }
 
 .options {
@@ -65,7 +92,7 @@ const selected = ref<BuildingStage>(props.stages[0]);
   cursor: pointer;
   font-size: var(--fs-h6);
   color: var(--clr-content-secondary);
-  transition: color 150ms ease;
+  transition: color 200ms ease;
 }
 
 .options h3:hover,
@@ -81,7 +108,9 @@ const selected = ref<BuildingStage>(props.stages[0]);
 
 .cell {
   display: flex;
-  min-height: 220px;
+  flex-direction: column;
+  align-items: center;
+  min-height: 400px;
 }
 
 .cell > * {
@@ -97,10 +126,22 @@ const selected = ref<BuildingStage>(props.stages[0]);
   margin: 0;
 }
 
-.hero img {
+.hero .frame {
+  position: relative;
   width: 100%;
-  height: 320px;
+  height: 70dvh;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--clr-surface-secondary);
+}
+
+.frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  will-change: transform, opacity;
 }
 
 .hero figcaption {
@@ -111,6 +152,12 @@ const selected = ref<BuildingStage>(props.stages[0]);
 @media (--below-desktop) {
   .showcase {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .frame img {
+    will-change: auto;
   }
 }
 </style>

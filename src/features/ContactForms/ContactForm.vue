@@ -5,6 +5,7 @@ import { type FormField } from "./types/contact.types";
 import { emptyContactForm } from "./data/contact.zod";
 import TextField from "./components/TextField.vue";
 import RadioField from "./components/RadioField.vue";
+import ConsentField from "./components/ConsentField.vue";
 
 const state = reactive({ ...emptyContactForm });
 
@@ -14,13 +15,13 @@ const fieldComponents: Record<FormField["type"], unknown> = {
   tel: TextField,
   radio: RadioField,
   "checkbox-group": RadioField,
-  consent: RadioField,
+  consent: ConsentField,
 };
 </script>
 
 <template>
   <form novalidate>
-    <section
+    <div
       v-for="s in contactFormSections"
       :key="s.id"
       class="group"
@@ -37,7 +38,7 @@ const fieldComponents: Record<FormField["type"], unknown> = {
         :field="f"
         v-model="state[f.name]"
       />
-    </section>
+    </div>
 
     <button type="submit" class="submit">Jetzt Katalog anfordern</button>
   </form>
@@ -47,14 +48,13 @@ const fieldComponents: Record<FormField["type"], unknown> = {
 form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-5);
-  margin-block: var(--spacing-5);
+  gap: var(--spacing-4);
 }
 
 .group {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-3);
+  gap: var(--spacing-2);
 }
 
 .heading {
@@ -65,8 +65,10 @@ form {
 }
 
 .submit {
-  height: var(--control-height-lg);
-  padding-inline: var(--spacing-4);
+  align-self: flex-start;
+  height: var(--control-height-md);
+  padding-inline: var(--spacing-3);
+  margin-block-start: var(--spacing-1);
   background: var(--clr-accent-primary);
   color: var(--clr-surface-primary);
   border: none;
@@ -76,7 +78,8 @@ form {
   cursor: pointer;
   transition:
     background 160ms ease,
-    box-shadow 160ms ease;
+    box-shadow 160ms ease,
+    transform 80ms ease;
 }
 
 .submit:hover {

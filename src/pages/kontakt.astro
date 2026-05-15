@@ -17,68 +17,42 @@ const locations = await getLocations({ exceptKind: "showhouse" });
       persönlich vor Ort – wir sind für Sie da.
     </p>
 
-    <!-- Kontakt -->
-    <section>
-      <h2>Kontakt aufnehmen</h2>
-      <p>
-        Sie können uns telefonisch erreichen oder per E-Mail anschreiben.
-        Das persönliche Gespräch kann nichts ersetzen. Wenn Sie Fragen zum
-        Hausbau haben, einen Hausbau planen oder sich einfach über unsere
-        Leistungen informieren möchten, nehmen Sie gerne Kontakt mit uns auf.
-      </p>
-
-      <div class="info-box">
-        <p><strong>BoHolz-Haus GmbH</strong></p>
-        <p>Ostring 1<br />97688 Bad Kissingen</p>
+    <div class="contact-grid">
+      <section class="info">
+        <h2>Direkt erreichbar</h2>
         <p>
-          Telefon: <a href="tel:+49971785557150">0971/78 55 57 15</a><br />
-          E-Mail: <a href="mailto:info@boholz-haus.de">info@boholz-haus.de</a>
+          Sie können uns telefonisch erreichen oder per E-Mail anschreiben.
+          Das persönliche Gespräch kann nichts ersetzen.
         </p>
-        <p><strong>Öffnungszeiten:</strong></p>
+
+        <div class="info-box">
+          <p><strong>BoHolz-Haus GmbH</strong></p>
+          <p>Ostring 1<br />97688 Bad Kissingen</p>
+          <p>
+            Telefon: <a href="tel:+49971785557150">0971/78 55 57 15</a><br />
+            E-Mail: <a href="mailto:info@boholz-haus.de">info@boholz-haus.de</a>
+          </p>
+          <p><strong>Öffnungszeiten</strong></p>
+          <p>
+            Mo – Fr: 08:00 – 17:00 Uhr<br />
+            Sa &amp; So: Geschlossen
+          </p>
+          <p>
+            <em>
+              An gesetzlichen Feiertagen können Öffnungszeiten abweichen.
+            </em>
+          </p>
+        </div>
+      </section>
+
+      <section class="form">
+        <h2>Hauskatalog anfordern</h2>
         <p>
-          Montag – Freitag: 08:00 – 17:00 Uhr<br />
-          Samstag &amp; Sonntag: Geschlossen
+          Erzählen Sie uns kurz, wie Sie wohnen möchten – wir senden Ihnen den
+          passenden Katalog kostenfrei zu.
         </p>
-        <p>
-          <em>
-            An gesetzlichen Feiertagen können unsere Öffnungszeiten von den
-            angegebenen abweichen.
-          </em>
-        </p>
-      </div>
-    </section>
-
-    
-    <ContactForm></ContactForm>
-
-    <!-- Hauskatalog -->
-    <section>
-      <h2>Hauskatalog</h2>
-      <p>
-        Bestellen Sie unseren kostenlosen Hauskatalog mit allen Informationen zu
-        unseren Fertighäusern:
-      </p>
-      <ul>
-        <li>Einfamilienhaus</li>
-        <li>Bungalow</li>
-        <li>Doppelhaus</li>
-        <li>Mehrfamilienhaus</li>
-        <li>Stadtvilla</li>
-        <li>Haus mit Homeoffice</li>
-        <li>Haus mit Einliegerwohnung</li>
-        <li>Haus mit Garage oder Carport</li>
-        <li>Modernste Haus- und Energietechnik</li>
-        <li>Nachhaltigkeit und vieles mehr</li>
-      </ul>
-
-      <div class="cta-block">
-        <a href="mailto:info@boholz-haus.de">Katalog per E-Mail anfordern</a>
-      </div>
-    </section>
-
-    <div class="cta-block">
-      <a href="tel:+49971785557150">Jetzt anrufen</a>
-      <a href="mailto:info@boholz-haus.de">E-Mail schreiben</a>
+        <ContactForm client:visible />
+      </section>
     </div>
   </article>
 
@@ -94,6 +68,26 @@ const locations = await getLocations({ exceptKind: "showhouse" });
 </Layout>
 
 <style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-5);
+  }
+
+  /* Reset oversized inherited section margin inside the contact grid —
+     the grid gap governs spacing here, not stacked margins. */
+  .contact-grid > section {
+    margin-block-end: 0;
+  }
+
+  @media (--from-desktop) {
+    .contact-grid {
+      grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+      gap: var(--spacing-5);
+      align-items: start;
+    }
+  }
+
   .kontakt-map {
     width: 100%;
   }

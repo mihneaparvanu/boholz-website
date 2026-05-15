@@ -1,0 +1,2 @@
+- [R2 Bucket State and URL Convention](project_r2_state.md) — R2 public URL, confirmed live paths, key prefix convention
+- [Missing and Placeholder Images Inventory](project_missing_images.md) — null/empty image slots and unuploaded local brand files as of 2026-05-15 audit

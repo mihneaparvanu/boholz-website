@@ -1,4 +1,7 @@
 import type { BuildingStage } from "./building-stages.types";
+import { getMediaURL } from "@/utils/media";
+
+const baseMediaURL = getMediaURL("/images/stages");
 
 export const buildingStages: BuildingStage[] = [
   {
@@ -6,27 +9,27 @@ export const buildingStages: BuildingStage[] = [
     title: "Ausbauhaus",
     description:
       "Sie möchten selbst Hand anlegen? Wir liefern den Rohbau wetterfest und winddicht – Sie übernehmen den Innenausbau in Ihrem Tempo und sparen dabei spürbar Kosten.",
-    imageURL: null,
+    imageURL: `${baseMediaURL}/shell.webp`,
   },
   {
     slug: "technikfertig",
     title: "Technikfertig",
     description:
       "Wir installieren die komplette Haustechnik – Heizung, Sanitär, Elektrik. Sie gestalten Wände, Böden und Oberflächen ganz nach Ihrem persönlichen Geschmack.",
-    imageURL: null,
+    imageURL: `${baseMediaURL}/utility-ready.webp`,
   },
   {
     slug: "fast-fertig",
     title: "Fast Fertig",
     description:
       "Nahezu bezugsfertig – nur die letzten Feinheiten wie Bodenbeläge und Wandgestaltung bleiben Ihnen überlassen. Eine ausgewogene Balance aus Eigenleistung und Komfort.",
-    imageURL: null,
+    imageURL: `${baseMediaURL}/nearly-complete.webp`,
   },
   {
     slug: "schluesselfertig",
     title: "Schlüsselfertig",
     description:
       "Vom ersten Entwurf bis zum Einzug – wir übernehmen alles. Sie wählen die Einweihungsparty, wir bauen den Rest. Ihr BoHolz Haus wird schlüsselfertig und komplett bezugsfertig übergeben.",
-    imageURL: null,
+    imageURL: `${baseMediaURL}/turnkey.webp`,
   },
 ];
