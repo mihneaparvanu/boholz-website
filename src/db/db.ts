@@ -7,11 +7,17 @@ type DrizzleDb = ReturnType<typeof drizzle<typeof schema>>;
 let _db: DrizzleDb | undefined;
 
 function createDb(): DrizzleDb {
+  // Prefer the runtime Node env so values supplied via Docker `--env-file`
+  // (or any other runtime mechanism) win over anything Vite may have inlined
+  // from `import.meta.env` at build time. The `import.meta.env` branch is
+  // kept as a fallback for environments where `process.env` is not populated
+  // (e.g. some build-time loaders).
   const connectionString =
+    process.env.DATABASE_URL ??
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (typeof (import.meta as any).env !== "undefined"
       ? (import.meta as any).env.DATABASE_URL
-      : undefined) ?? process.env.DATABASE_URL;
+      : undefined);
   if (!connectionString) {
     throw new Error("DATABASE_URL is missing in environment variables");
   }
