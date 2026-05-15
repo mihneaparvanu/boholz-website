@@ -2,11 +2,7 @@
 import type { DisplayItemConfig } from "./house-page.types";
 import type { HouseModel } from "@/types/models";
 import DetailRow from "./DetailRow.vue";
-import {
-  formatMeters,
-  formatDegrees,
-  formatBoolean,
-} from "@/utils/format";
+import { formatMeters, formatDegrees, formatBoolean } from "@/utils/format";
 import {
   MoveVertical,
   MoveHorizontal,
