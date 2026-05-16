@@ -14,7 +14,7 @@ const index = ref(0);
 
 useIntervalFn(() => {
   index.value = (index.value + 1) % props.slides.length;
-}, 3000);
+}, 5000);
 
 const slide = computed(() => props.slides[index.value]);
 
@@ -84,8 +84,12 @@ const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
 .hero {
   position: relative;
   height: 100dvh;
-  margin-top: calc(-1 * (var(--navbar-height) + var(--navbar-offset) * 2));
-  color: var(--clr-surface-primary);
+  /* Pull the hero up under the sticky navbar; the absolute background
+     image fills the whole box (incl. behind the navbar), while padding-top
+     keeps the headline + CTA below the bar. */
+  margin-top: calc(-1 * var(--navbar-height));
+  padding-top: var(--navbar-height);
+  color: var(--clr-pure-white);
 }
 
 .layout {
@@ -115,17 +119,6 @@ const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
   object-fit: cover;
   background-color: var(--clr-content-secondary);
   z-index: -1;
-  /* subtle ken-burns while a slide is on screen */
-  animation: ken-burns 8s ease-out forwards;
-}
-
-@keyframes ken-burns {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.06);
-  }
 }
 
 /* <Transition name="crossfade"> hooks */
@@ -145,13 +138,59 @@ const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
 .bottom {
   display: flex;
   justify-content: space-between;
+  align-items: end;
   width: 100%;
 
-  proof {
+  .proof {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+
     span {
       text-transform: uppercase;
+      font-size: var(--fs-small, 0.75rem);
+      letter-spacing: 0.08em;
+      opacity: 0.85;
     }
   }
+
+  .badges {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    color: currentColor;
+  }
+
+  .badge {
+    height: 28px;
+    width: auto;
+    aspect-ratio: var(--badge-aspect, auto);
+    color: inherit;
+    fill: currentColor;
+  }
+  .badge :where(use, path) {
+    fill: currentColor;
+  }
+
+  /* per-symbol aspect ratios so the SVG reserves the right horizontal slot */
+  .badge:nth-child(1) {
+    aspect-ratio: 34.7 / 31.7;
+  } /* iso       */
+  .badge:nth-child(2) {
+    aspect-ratio: 29.4 / 31.7;
+  } /* bdf       */
+  .badge:nth-child(3) {
+    aspect-ratio: 43.9 / 31.7;
+  } /* gdf       */
+  .badge:nth-child(4) {
+    aspect-ratio: 29.1 / 31.7;
+  } /* qdf       */
+  .badge:nth-child(5) {
+    aspect-ratio: 23.9 / 31.7;
+  } /* gdf-shield*/
+  .badge:nth-child(6) {
+    aspect-ratio: 44.85 / 31.7;
+  } /* ral       */
 
   .action button {
     height: var(--control-height-md);

@@ -16,11 +16,11 @@ if (!model) return Astro.redirect('/hauser');
 const heroImage = model.media.find((m) => m.isHero)?.media;
 
 ---
-
+//
 <Layout title={model.title + " – BoHolz Haus"}>
 <section class="hero subgrid">
     <div class="hero-image full-width">
-        {heroImage && <img src={heroImage.path} alt={heroImage.alt} width={heroImage.width} height={heroImage.height} style={`view-transition-name: hero-img-${slug}`} />}
+        {heroImage && <img src={heroImage.path} alt={heroImage.alt} width={heroImage.width} height={heroImage.height} />}
     </div>
 <HeroContent model={model} />
 <StatsGrid model={model} />

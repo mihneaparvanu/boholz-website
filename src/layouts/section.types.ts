@@ -1,5 +1,6 @@
 export interface SectionContent {
-  heading: string;
-  highlightWord?: string;
+  heading1: string;
+  heading2?: string;
+  highlight?: string;
   subheading?: string;
 }

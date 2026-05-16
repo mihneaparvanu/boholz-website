@@ -3,16 +3,34 @@ import type { SectionContent } from "./section.types";
 
 type Props = SectionContent;
 
-const { heading, subheading, highlightWord } = Astro.props;
+const { heading1, heading2, highlight, subheading } = Astro.props;
 ---
 
 <section class="section">
   <div class="heading-group">
-    <h2>{heading} <span>{highlightWord}</span></h2>
-    <p>{subheading}</p>
+    <div class="headings">
+      {
+        heading2 ? (
+          <>
+            <h2>{heading1}</h2>
+            <h2>
+              {heading2}
+              {highlight && <span class="highlight"> {highlight}</span>}
+            </h2>
+          </>
+        ) : (
+          <h2>
+            {heading1}
+            {highlight && <span class="highlight"> {highlight}</span>}
+          </h2>
+        )
+      }
+    </div>
+    {subheading && <p>{subheading}</p>}
   </div>
   <slot />
 </section>
+
 <style>
   .section {
     display: flex;
@@ -29,23 +47,30 @@ const { heading, subheading, highlightWord } = Astro.props;
     gap: var(--spacing-3);
     text-align: center;
     width: 100%;
-    max-width: 78rem;
+    max-width: 90ch;
     margin-inline: auto;
+  }
 
-    h2 {
-      font-weight: 500;
-    }
+  .headings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    span {
-      font-family: var(--font-secondary);
-      font-style: italic;
-      font-weight: 500;
-    }
+  .headings h2 {
+    font-weight: 500;
+  }
 
-    p {
-      color: var(--clr-content-secondary);
-      max-width: 56rem;
-      font-weight: 400;
-    }
+  .highlight {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .heading-group p {
+    color: var(--clr-content-secondary);
+    max-width: 56rem;
+    font-weight: 400;
   }
 </style>
+

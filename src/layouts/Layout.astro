@@ -18,46 +18,35 @@ import type { HouseCategory } from "@/types/models";
 interface Props {
   title: string;
   categories?: HouseCategory[];
+  isHero?: boolean;
 }
 
-const { title, categories: categoriesProp } = Astro.props;
-const categories = categoriesProp ?? await getCategories();
+const { title, categories: categoriesProp, isHero = false } = Astro.props;
+const categories = categoriesProp ?? (await getCategories());
 const showhouses = await getLocations({ kind: "showhouse" });
 ---
 
-<html lang="de">
+<html lang="de" data-hero={isHero ? "true" : "false"}>
   <head>
     <meta charset="utf-8" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/favicon.svg"
-    />
-    <link
-      rel="icon"
-      href="/favicon.ico"
-    />
-    <meta
-      name="viewport"
-      content="width=device-width"
-    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
     <ClientRouter />
   </head>
   <body>
     <Fragment set:html={qualityBadgesSprite} />
-    <Navbar client:load categories={categories} showhouses={showhouses} currentPath={Astro.url.pathname}/>
+    <Navbar
+      client:load
+      transition:persist="navbar"
+      categories={categories}
+      showhouses={showhouses}
+    />
     <main class="wrapper">
-       <PrivacyPopup/>
+      <PrivacyPopup />
       <slot />
       <Footer />
     </main>
   </body>
 </html>
-
-
-<style>
-  main {
-    padding-top: calc(var(--navbar-height) + var(--navbar-offset) * 2);
-  }
-</style>

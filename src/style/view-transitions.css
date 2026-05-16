@@ -48,6 +48,16 @@
   object-fit: fill;
 }
 
+/* The navbar is `transition:persist`ed in Layout.astro and carries
+   `view-transition-name: site-nav`. With persist, the same DOM node sits
+   on both sides of the swap; this rule is belt-and-braces to make sure
+   the browser never animates it as part of any crossfade. */
+::view-transition-group(site-nav),
+::view-transition-old(site-nav),
+::view-transition-new(site-nav) {
+  animation: none !important;
+}
+
 /* Honour the user's motion preference: collapse the transition. Astro
    still navigates; the browser just runs a 1ms cross-cut instead of an
    animated morph. */
