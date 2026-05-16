@@ -18,7 +18,7 @@ narrative lives in `design-audit/2026-05-16/EXECUTION-LOG.md` and
 | **Phase 2.0** — SectionNavigator + scrollSpy + 5 named tokens | ✓ Complete |
 | **Phase 2.0b** — Contrast fix (`--cold-gray-350`, content-tier remap) | ✓ Complete |
 | **Phase 2.1** — Component kit (13 net-new + 3 token-swap polish on existing sections) | ✓ Complete |
-| **Phase 2.2** — Polish-pass API extensions (PageHero variant, CTA eyebrow, Section tone) | ⏸ **Deferred — awaiting user green-light** |
+| **Phase 2.2** — Polish-pass API extensions + comprehensive taste pass | ✓ **Complete (Batch 3, 2026-05-17 evening)** |
 | **Phase 3** — Page assembly (the four landing pages + the homepage) | ⏸ **Owned by the static-pages-team stream, not this one** |
 | **URGENT** — Homepage mobile redesign | 📌 Diagnostic + restructure proposal written; implementation gated on Phase 3 |
 
@@ -48,31 +48,27 @@ Sandbox: `src/pages/sandbox/components.astro`
 
 **Polish-pass A — `PageHero.astro` gets `variant?: 'image' | 'type'`**
 - Need: Pure typographic hero for pages with no good imagery (campaign pages)
-- Homepage need: NO (homepage stays photographic)
-- Recommendation: defer until a page actually needs it; cheap to add later
+- Status: Still deferred — not needed for homepage; add when a campaign page actually wants it.
 
-**Polish-pass B — `CTASection.astro` gets `eyebrow?: string`**
-- Need: Rhythm parity with `EyebrowHeadingLede` and rest of the system
-- Homepage need: YES (closing CTA loses rhythm without it)
-- Recommendation: **Approve and ship as a small polish pass**
+**Polish-pass B — `CTASection.astro` gets `eyebrow?: string`** — ✓ **Shipped Batch 3**.
+**Polish-pass C — `Section.astro` gets `tone?: 'primary' | 'secondary'`** — ✓ **Shipped Batch 3** with `.full-width` grid escape.
 
-**Polish-pass C — `Section.astro` gets `tone?: 'primary' | 'secondary'`**
-- Need: Alternating section backgrounds (PLAN §1.4 pattern 12)
-- Implementation cost: medium — requires `.full-width` grid escape from `.wrapper`
-- Homepage need: YES (the homepage's six sections will feel uniformly flat without alternating tones)
-- Recommendation: **Approve and ship as part of the same polish pass as B**
-
-Approving B+C re-engages the ui-designer-savant stream for one focused pass
-on those two files. The static-pages team should wait for B+C to land
-**before** starting homepage assembly to avoid retro-fitting.
+See Batch 3 in `design-audit/2026-05-16/EXECUTION-LOG.md` for the
+comprehensive polish-pass changelog: SectionNavigator alignment + tracking
+tightened, Button mobile padding-block restructured (min-height +
+padding-block), eyebrow → heading rhythm boosted system-wide
+(`--spacing-3` → effective `--spacing-4` via margin-block-end on the
+eyebrow), StepCard head re-aligned (baseline → center), Badge asymmetric
+padding gated by `:has(.icon)`, FAQ trigger `min-height: 44px`, sandbox
+VideoPlaceholder kebab→camelCase fixes.
 
 ## Re-engagement triggers for this agent (ui-designer-savant)
 
 See [[coordination-with-pages-team]]. Re-engage when:
-- User green-lights polish-pass B and/or C
 - Pages team surfaces an 18-pattern toolkit gap (PLAN §1.4)
 - New component need emerges from real content
 - Contrast or a11y regressions appear in assembled pages
+- A page actually needs PageHero `variant: 'type'`
 - Phase 3 cleanup: converge `FAQAccordion` with feature-local `HousePage/AccordionItem`
 
 ## Hand-offs the next session should remember

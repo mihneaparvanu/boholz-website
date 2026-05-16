@@ -23,7 +23,7 @@ const {
 const Heading = level;
 ---
 
-<header class="ehl" data-align={align}>
+<header class="ehl" data-align={align} data-has-eyebrow={Boolean(eyebrow)}>
   {eyebrow && (
     <Eyebrow>
       {Astro.slots.has("eyebrow-icon") && (
@@ -45,8 +45,18 @@ const Heading = level;
   .ehl {
     display: flex;
     flex-direction: column;
+    /* Default rhythm — heading ↔ lede sit close. */
     gap: var(--spacing-3);
     max-width: 70ch;
+  }
+
+  /* Eyebrow → heading rhythm is wider than heading → lede. The eyebrow's
+     small-caps tracking needs room to feel un-cramped; the lede following
+     the heading does not. We target the first-child (Eyebrow renders a
+     <p class="eyebrow">) via :global() because Astro's scoped CSS would
+     otherwise add a data-attribute that doesn't reach the child component. */
+  .ehl[data-has-eyebrow="true"] > :global(.eyebrow) {
+    margin-block-end: calc(var(--spacing-4) - var(--spacing-3));
   }
 
   .ehl[data-align="center"] {

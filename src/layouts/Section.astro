@@ -1,34 +1,60 @@
 ---
 import type { SectionContent } from "./section.types";
 
-type Props = SectionContent;
+type Tone = "primary" | "secondary";
 
-const { heading1, heading2, highlight, subheading } = Astro.props;
+type Props = SectionContent & {
+  /**
+   * `primary` (default) renders the section in the content column of the
+   * page wrapper — back-compat.
+   *
+   * `secondary` flips the surface to `--clr-surface-secondary` and escapes
+   * the wrapper grid via `.full-width` so the tinted background goes
+   * edge-to-edge. Internal content re-pads to the wrapper's
+   * `--padding-inline`, then centres up to `--content-max-width`.
+   *
+   * Use to alternate section backgrounds within a long page.
+   */
+  tone?: Tone;
+};
+
+const {
+  heading1,
+  heading2,
+  highlight,
+  subheading,
+  tone = "primary",
+} = Astro.props;
+
+const isSecondary = tone === "secondary";
+const wrapperClass = isSecondary ? "section full-width" : "section";
 ---
 
-<section class="section">
-  <div class="heading-group">
-    <div class="headings">
-      {
-        heading2 ? (
-          <>
-            <h2>{heading1}</h2>
+<section class={wrapperClass} data-tone={tone}>
+  <div class="inner">
+    <div class="heading-group">
+      <div class="headings">
+        {
+          heading2 ? (
+            <>
+              <h2>{heading1}</h2>
+              <h2>
+                {heading2}
+                {highlight && <span class="highlight"> {highlight}</span>}
+              </h2>
+            </>
+          ) : (
             <h2>
-              {heading2}
+              {heading1}
               {highlight && <span class="highlight"> {highlight}</span>}
             </h2>
-          </>
-        ) : (
-          <h2>
-            {heading1}
-            {highlight && <span class="highlight"> {highlight}</span>}
-          </h2>
-        )
-      }
+          )
+        }
+      </div>
+      {subheading && <p>{subheading}</p>}
     </div>
-    {subheading && <p>{subheading}</p>}
+    <slot />
   </div>
-  <slot />
 </section>
 
 <style>
@@ -38,6 +64,30 @@ const { heading1, heading2, highlight, subheading } = Astro.props;
     align-items: center;
     padding-block: var(--spacing-6);
     gap: var(--spacing-5);
+  }
+
+  /* Secondary-tone section escapes the wrapper grid to span full-width,
+     then re-pads internally — alternating section backgrounds. */
+  .section[data-tone="secondary"] {
+    background: var(--clr-surface-secondary);
+    padding-inline: var(--padding-inline);
+    /* The section now owns its own edge padding; .inner re-centres. */
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-5);
+    width: 100%;
+    /* Primary tone inherits the wrapper's content column, so the inner
+       can stretch freely. Secondary tone is full-width, so we cap the
+       inner at the same content max-width and re-centre. */
+  }
+
+  .section[data-tone="secondary"] .inner {
+    max-width: var(--content-max-width);
+    margin-inline: auto;
   }
 
   .heading-group {
@@ -73,4 +123,3 @@ const { heading1, heading2, highlight, subheading } = Astro.props;
     font-weight: var(--font-weight-regular);
   }
 </style>
-

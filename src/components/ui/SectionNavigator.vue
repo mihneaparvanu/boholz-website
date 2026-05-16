@@ -230,25 +230,35 @@ watch(railVisible, (visible) => {
 .overview {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-3);
-  padding-block: var(--spacing-4);
+  /* Larger gap between the section heading and the first row — the
+     small-caps tracking on `.head` needs room to breathe. */
+  gap: var(--spacing-4);
+  padding-block: var(--spacing-5);
   border-block: 1px solid var(--clr-border-secondary);
 }
 
 .head {
+  /* Aligned to the text column of each item below: items have a 14px icon
+     plus a spacing-2 column gap before the text. Indenting the head by the
+     same amount lines its left edge up with the labels and eyebrows. */
+  margin: 0;
+  margin-inline-start: calc(14px + var(--spacing-2));
   font-size: var(--fs-body-sm);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-eyebrow);
+  /* Slightly tighter tracking than --tracking-eyebrow — body-sm is small
+     enough that 0.12em starts looking loose. */
+  letter-spacing: 0.08em;
   font-weight: var(--font-weight-medium);
   color: var(--clr-content-tertiary);
-  margin: 0;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr;
   column-gap: var(--spacing-5);
-  row-gap: var(--spacing-1);
+  /* Looser item-to-item rhythm — the items themselves padded tightly,
+     so the rhythm comes from row-gap. */
+  row-gap: var(--spacing-2);
   margin: 0;
   padding: 0;
 }
@@ -266,9 +276,12 @@ watch(railVisible, (visible) => {
   column-gap: var(--spacing-2);
   /* Slightly less padding on the icon side — the leading 14px ArrowDown
      already sits inside its own visual box. */
-  padding-block: var(--spacing-1);
+  padding-block: var(--spacing-2);
   padding-inline: var(--spacing-1) var(--spacing-2);
   margin-inline: calc(-1 * var(--spacing-1));
+  /* Tap-target floor for mobile — single-line items can otherwise drop
+     below 44px. Two-line items (with eyebrow) naturally exceed it. */
+  min-height: 44px;
   border-radius: var(--radius-md);
   color: var(--clr-content-primary);
   text-decoration: none;
@@ -285,13 +298,17 @@ watch(railVisible, (visible) => {
 .text {
   display: flex;
   flex-direction: column;
+  /* Tight vertical rhythm inside the two-line item — eyebrow→label hug. */
+  gap: calc(var(--spacing-0) * 0.5);
   min-width: 0;
 }
 
 .eyebrow {
-  font-size: calc(var(--fs-body-sm) * 0.92);
+  font-size: calc(var(--fs-body-sm) * 0.88);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-eyebrow);
+  /* Tighter than --tracking-eyebrow — at body-sm × 0.88 (≈11–13px),
+     0.12em looks loose; 0.06em reads precise. */
+  letter-spacing: 0.06em;
   color: var(--clr-content-tertiary);
   font-weight: var(--font-weight-medium);
   line-height: 1.2;
@@ -401,7 +418,10 @@ watch(railVisible, (visible) => {
 .pill {
   display: inline-flex;
   align-items: center;
-  height: var(--control-height-sm);
+  /* Min-height instead of fixed height — gives the pill room to grow on
+     mobile where the tap-target floor is the binding constraint. */
+  min-height: var(--control-height-sm);
+  padding-block: var(--spacing-1);
   padding-inline: var(--spacing-2);
   border-radius: var(--radius-full);
   font-size: var(--fs-body-sm);
@@ -414,6 +434,16 @@ watch(railVisible, (visible) => {
   transition:
     color 160ms ease,
     background-color 160ms ease;
+}
+
+@media (--mobile) {
+  .pill {
+    /* Tap target floor — 36px is the practical minimum for a sticky-rail
+       pill where pills sit in a horizontal scroller; vertical room is
+       limited by the rail's height. */
+    min-height: 36px;
+    padding-inline: var(--spacing-3);
+  }
 }
 
 .pill:hover {

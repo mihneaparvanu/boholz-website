@@ -54,7 +54,9 @@ const IconComponent = computed(() =>
 
 .head {
   display: flex;
-  align-items: baseline;
+  /* Center-align — the italic serif numeral and the Lucide icon have
+     different metrics; baseline alignment ends up looking offset. */
+  align-items: center;
   justify-content: space-between;
   gap: var(--spacing-2);
   margin-block-end: var(--spacing-1);

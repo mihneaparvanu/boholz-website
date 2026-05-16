@@ -89,9 +89,15 @@ withDefaults(
   line-height: 1;
 }
 
-/* ── Sizes ───────────────────────────────────────── */
+/* ── Sizes ─────────────────────────────────────────
+   Use min-height for the tap-target floor, and padding-block for the
+   visual breathing room. This way the button breathes properly when
+   font-size grows (mobile uses larger fs-body relative to its viewport)
+   and never feels squashed. min-height stays as the floor for short
+   labels. */
 .btn[data-size="sm"] {
-  height: var(--control-height-sm);
+  min-height: var(--control-height-sm);
+  padding-block: var(--spacing-1);
   padding-inline: var(--spacing-2);
   font-size: var(--fs-body-sm);
   border-radius: var(--radius-sm);
@@ -99,18 +105,35 @@ withDefaults(
 }
 
 .btn[data-size="md"] {
-  height: var(--control-height-md);
+  min-height: var(--control-height-md);
+  padding-block: var(--spacing-2);
   padding-inline: var(--spacing-3);
   font-size: var(--fs-body);
   border-radius: var(--radius-md);
 }
 
 .btn[data-size="lg"] {
-  height: var(--control-height-lg);
+  min-height: var(--control-height-lg);
+  padding-block: var(--spacing-3);
   padding-inline: var(--spacing-4);
   font-size: var(--fs-body-lg);
   border-radius: var(--radius-lg);
   gap: var(--spacing-3);
+}
+
+/* Mobile: tap-target floor + a touch more padding-block so the label
+   doesn't sit pinned to the top/bottom of the larger min-height. */
+@media (--mobile) {
+  .btn[data-size="sm"] {
+    min-height: 40px;
+    padding-block: var(--spacing-1);
+  }
+  .btn[data-size="md"] {
+    padding-block: var(--spacing-2);
+  }
+  .btn[data-size="lg"] {
+    padding-block: var(--spacing-3);
+  }
 }
 
 /* ── Variants ────────────────────────────────────── */

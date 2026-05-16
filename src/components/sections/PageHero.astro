@@ -112,6 +112,10 @@ const hasImage = Boolean(image);
     font-size: var(--fs-body-sm);
     font-weight: var(--font-weight-medium);
     color: var(--clr-content-secondary);
+    margin: 0;
+    /* Lift the eyebrow→h1 gap above the surrounding spacing-3 rhythm — the
+       small-caps tracking needs room. Adds to the parent's flex `gap`. */
+    margin-block-end: calc(var(--spacing-4) - var(--spacing-3));
   }
 
   .hero[data-has-image="true"] .eyebrow {

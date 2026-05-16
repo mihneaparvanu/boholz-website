@@ -368,8 +368,8 @@ const comparison = {
         <Eyebrow>16:9 — Standard Werksrundgang</Eyebrow>
         <VideoPlaceholder
           client:load
-          slot-id="versprechen-werksrundgang"
-          aspect-ratio="16/9"
+          slotId="versprechen-werksrundgang"
+          aspectRatio="16/9"
           label="Werksrundgang"
           caption="Bald verfügbar — drei Minuten durch die Fertigung."
         />
@@ -377,8 +377,8 @@ const comparison = {
         <Eyebrow>21:9 — Cinematic Hero</Eyebrow>
         <VideoPlaceholder
           client:load
-          slot-id="campaign-bungalow-hero"
-          aspect-ratio="21/9"
+          slotId="campaign-bungalow-hero"
+          aspectRatio="21/9"
           variant="film"
           label="Bungalow-Kampagne"
         />
@@ -388,8 +388,8 @@ const comparison = {
             <Eyebrow>1:1 — Square</Eyebrow>
             <VideoPlaceholder
               client:load
-              slot-id="news-square"
-              aspect-ratio="1/1"
+              slotId="news-square"
+              aspectRatio="1/1"
               variant="video"
               label="News-Reel"
             />
@@ -398,8 +398,8 @@ const comparison = {
             <Eyebrow>4:5 — Portrait</Eyebrow>
             <VideoPlaceholder
               client:load
-              slot-id="testimonial-portrait"
-              aspect-ratio="4/5"
+              slotId="testimonial-portrait"
+              aspectRatio="4/5"
               label="Testimonial"
             />
           </div>
@@ -439,6 +439,8 @@ const comparison = {
     color: var(--clr-content-tertiary);
     font-weight: var(--font-weight-medium);
     margin: 0;
+    /* Match the system rhythm: eyebrow→h1 wider than h1→lede. */
+    margin-block-end: calc(var(--spacing-4) - var(--spacing-3));
   }
 
   .page-hero h1 {

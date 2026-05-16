@@ -45,12 +45,22 @@ const { variant = "default", size = "md" } = Astro.props;
   .badge[data-size="sm"] {
     height: calc(var(--control-height-sm) * 0.78);
     font-size: calc(var(--fs-body-sm) * 0.94);
+    padding-inline: var(--spacing-2);
+  }
+
+  /* Asymmetric padding only when a leading icon is present — otherwise the
+     start side is intentionally tighter so the icon hugs the edge. */
+  .badge[data-size="sm"]:has(.icon) {
     padding-inline: var(--spacing-1) var(--spacing-2);
   }
 
   .badge[data-size="md"] {
     height: var(--control-height-sm);
     font-size: var(--fs-body-sm);
+  }
+
+  .badge[data-size="md"]:has(.icon) {
+    padding-inline: var(--spacing-1) var(--spacing-2);
   }
 
   /* Variants */

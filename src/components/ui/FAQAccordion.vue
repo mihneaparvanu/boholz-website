@@ -83,6 +83,8 @@ withDefaults(
   /* Asymmetric — the trailing indicator is small; less padding on its side. */
   padding-block: var(--spacing-3);
   padding-inline: 0;
+  /* Tap-target floor so the row never falls below 44px on mobile. */
+  min-height: 44px;
   background: transparent;
   border: 0;
   text-align: start;

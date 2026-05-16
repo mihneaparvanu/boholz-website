@@ -534,3 +534,225 @@ render locally — the `getCategories()` block from this session won't apply).
 - `project-homepage-mobile-redesign-priority` — added earlier this session by the homepage-analysis agent
 
 Closure stamped 2026-05-17. Ship is mid-passage.
+
+---
+
+# Batch 3 — Polish pass (2026-05-17, evening)
+
+**Scope:** Comprehensive kit polish — three user-flagged issues, two approved
+API extensions, plus a self-audit sweep at 1440×900 and 390×844.
+
+## User-flagged fixes
+
+### 1. SectionNavigator — alignment + tracking
+
+**File:** `src/components/ui/SectionNavigator.vue`
+
+Issues called out: "Text is not aligned, not centered", "Too spaced out",
+overall loose feel.
+
+| Change | Before | After |
+| --- | --- | --- |
+| `.head` margin-inline-start | `0` (sat at the grid edge while items started at `14px + spacing-2`) | `calc(14px + var(--spacing-2))` — header now lines up with each row's text column |
+| `.head` letter-spacing | `var(--tracking-eyebrow)` (0.12em) | `0.08em` — tighter for the body-sm size; 0.12em looks loose on small caps below 13px |
+| `.overview` padding-block | `var(--spacing-4)` | `var(--spacing-5)` — more breathing for the block itself |
+| `.overview` gap (head → grid) | `var(--spacing-3)` | `var(--spacing-4)` — wider gap to let the head sit as its own line |
+| `.grid` row-gap | `var(--spacing-1)` (6–10px) | `var(--spacing-2)` (9–15px) — looser item-to-item rhythm |
+| `.item` padding-block | `var(--spacing-1)` | `var(--spacing-2)` |
+| `.item` min-height | none | `44px` — tap-target floor |
+| `.text` gap (eyebrow → label) | `0` (no explicit gap) | `calc(var(--spacing-0) * 0.5)` — tight visual rhythm inside the two-line item |
+| `.eyebrow` font-size | `calc(var(--fs-body-sm) * 0.92)` | `calc(var(--fs-body-sm) * 0.88)` — slightly smaller so it doesn't compete with the label |
+| `.eyebrow` letter-spacing | `var(--tracking-eyebrow)` (0.12em) | `0.06em` — at ~11–13px the 0.12em was visibly loose |
+| `.pill` height | fixed `var(--control-height-sm)` (21px on mobile) | `min-height: var(--control-height-sm)` + `padding-block: var(--spacing-1)`; on mobile bumped to `36px` min-height + `--spacing-3` padding-inline (tap-target floor) |
+
+### 2. Button — mobile padding-block
+
+**File:** `src/components/ui/Button.vue`
+
+Issue: "buttons on mobile are squashed" — sizes had `height` + `padding-inline`
+only, no explicit `padding-block`. The hard-fixed mobile heights gave no
+visual breathing relative to the label font-size. Refactored to
+`min-height` + explicit `padding-block`:
+
+| Size | Before (height-only) | After (min-height + padding-block) | Mobile measured h |
+| --- | --- | --- | --- |
+| sm | `--control-height-sm` (21px) | `min-height: --control-height-sm`, `padding-block: --spacing-1`; mobile `min-height: 40px` | 40px (was 21px) |
+| md | `--control-height-md` (45px desktop, 44px mobile) | `min-height: --control-height-md`, `padding-block: --spacing-2` | 44px (now properly proportioned to label) |
+| lg | `--control-height-lg` (65px desktop, 52px mobile) | `min-height: --control-height-lg`, `padding-block: --spacing-3` | 52px |
+
+Net: every size now breathes correctly at every viewport. Mobile SM jumped
+from 21px → 40px (was below tap-target floor).
+
+### 3. Eyebrow rhythm — "way more padding"
+
+**Files:** `EyebrowHeadingLede.astro`, `PageHero.astro`,
+`CTASection.astro` (new), `sandbox/components.astro`
+
+Issue: the eyebrow → heading gap felt cramped everywhere it appeared. The
+parent's flex `gap` was `--spacing-3` (15→25px) which is correct for
+heading → lede but tight for eyebrow → heading (the small-caps tracking
+visually hugs the next line).
+
+Solution applied wherever Eyebrow + heading + lede are composed: keep the
+parent `gap: --spacing-3` for the heading → lede rhythm, but add
+`margin-block-end: calc(--spacing-4 - --spacing-3)` to the eyebrow
+itself — this composes with the flex gap so the effective eyebrow → next
+distance becomes `--spacing-4` (24→40px) while heading → lede stays at
+`--spacing-3`.
+
+Eyebrow padding-block-end effective change: 15px → 24px on mobile,
+25px → 40px on desktop. (= "way more padding".)
+
+Applied at:
+- `EyebrowHeadingLede.astro` via `:global(.eyebrow)` child selector
+- `PageHero.astro` directly on `.eyebrow` rule
+- `CTASection.astro` directly on `.eyebrow` rule (newly added — see below)
+- `sandbox/components.astro` `.page-eyebrow`
+
+## Polish-pass props (both approved)
+
+### CTASection — `eyebrow?: string`
+
+**File:** `src/components/sections/CTASection.astro`
+
+Added optional `eyebrow` prop that renders an in-line small-caps label
+above the H2. Matches the system rhythm:
+`margin-block-end: calc(--spacing-4 - --spacing-3)` over the flex gap.
+
+Dark-tone variants (`accent`, `image`) override the eyebrow color to
+`--clr-pure-white-soft` for legibility over photographs / saturated fills.
+
+### Section — `tone?: 'primary' | 'secondary'`
+
+**File:** `src/layouts/Section.astro`
+
+Added optional `tone` prop. `primary` (default) is back-compat — section
+renders in the wrapper's content column. `secondary` flips:
+
+- Adds `.full-width` class to escape the wrapper grid (per `wrapper.css`)
+- Background flips to `--clr-surface-secondary`
+- Inner content re-pads with `padding-inline: var(--padding-inline)`
+- Inner content re-centres up to `--content-max-width`
+
+This is PLAN §1.4 pattern 12 (alternating section backgrounds). Implements
+the proposal verbatim from the closure docs.
+
+## Self-audit fixes
+
+### StepCard — head alignment
+
+**File:** `src/components/ui/StepCard.vue`
+
+Italic-serif numeral (`01`, `02`…) was set to `align-items: baseline` with
+the trailing Lucide icon. The two glyphs have different metrics, so
+baseline alignment ended up looking offset. Switched to `align-items: center` —
+icon now sits at the visual mid-point of the numeral.
+
+### Badge — asymmetric padding only with icon
+
+**File:** `src/components/ui/Badge.astro`
+
+`data-size="sm"` had asymmetric `padding-inline: --spacing-1 --spacing-2`
+unconditionally. With no leading icon, the start padding looked tighter
+than the end. Now symmetric by default; asymmetric only when `.icon` is
+present via `:has(.icon)`. Applied the same `:has` rule to `md` to keep the
+behaviour consistent across sizes.
+
+### FAQAccordion — tap target floor
+
+**File:** `src/components/ui/FAQAccordion.vue`
+
+`.trigger` had `padding-block: --spacing-3` and an implicit height that
+could fall below 44px on mobile for short questions. Added explicit
+`min-height: 44px`.
+
+## Tokens added to `design-system.css`
+
+**None.** Every change uses existing tokens (`--spacing-*`, `--radius-*`,
+`--tracking-eyebrow`, `--font-weight-*`, the surface and content tiers).
+
+Two **inline literals** introduced — both deliberate one-offs:
+- `.head` letter-spacing `0.08em` (tighter than tracking-eyebrow's 0.12em
+  because the head sits at body-sm; the eyebrow token is calibrated for
+  the eyebrow component, not for an in-component title)
+- `.eyebrow` letter-spacing `0.06em` (at body-sm × 0.88 ≈ 11–13px, 0.12em
+  looks loose)
+
+Neither merits a system token yet — they're both calibrated to a single
+component's small-caps. If a second component needs sub-eyebrow tracking,
+codify `--tracking-eyebrow-sm: 0.08em` and `--tracking-eyebrow-xs: 0.06em`.
+
+## Files touched
+
+| Path | Change |
+| --- | --- |
+| `src/components/ui/SectionNavigator.vue` | Alignment, tracking, padding, tap targets |
+| `src/components/ui/Button.vue` | min-height + padding-block refactor; mobile size overrides |
+| `src/components/ui/Eyebrow.astro` | No change (after rollback — see below) |
+| `src/components/ui/EyebrowHeadingLede.astro` | `:global(.eyebrow)` child margin for eyebrow → heading rhythm |
+| `src/components/ui/StepCard.vue` | `.head` align-items: baseline → center |
+| `src/components/ui/Badge.astro` | Asymmetric padding only when icon present |
+| `src/components/ui/FAQAccordion.vue` | `min-height: 44px` on trigger |
+| `src/components/sections/PageHero.astro` | Eyebrow margin-block-end |
+| `src/components/sections/CTASection.astro` | Added `eyebrow?` prop + rhythm |
+| `src/layouts/Section.astro` | Added `tone?` prop with `.full-width` grid escape |
+| `src/pages/sandbox/components.astro` | `.page-eyebrow` margin-block-end; fixed pre-existing kebab → camelCase prop bug on VideoPlaceholder calls |
+
+## Verification
+
+### Render
+
+- Both sandboxes (`/sandbox/components`, `/sandbox/section-navigator`)
+  render clean at desktop 1440×900 and mobile 390×844.
+- `npx astro check`: **0 errors** (was 4 pre-existing kebab→camelCase
+  errors in sandbox VideoPlaceholder calls — fixed in this pass per
+  [[feedback_astro_vue_prop_syntax]]).
+- Button measurements at mobile 390×844 (in-browser
+  `getBoundingClientRect`):
+  - SM h=40px (was 21px) · MD h=44px · LG h=52px
+
+### Contrast (in-browser, WCAG 2.1 sRGB)
+
+| Pair | Ratio | Notes |
+| --- | --- | --- |
+| SectionNav head (`--clr-content-tertiary` on `--clr-surface-primary`) | 5.70:1 | AA Normal Text ✓ — slightly improved over prior 5.07 (background colour math) |
+| SectionNav inactive row label (primary content / surface) | 16.96:1 | AAA |
+| SectionNav active row (primary content / 9% accent tint over surface) | ~14:1 effective once composited | AAA |
+
+No contrast regressions; the polish was structural (spacing, alignment,
+tap targets) and didn't change foreground/background pairings.
+
+### Reduced motion
+
+Untouched — no new motion paths introduced. VideoPlaceholder, FAQ
+keyframes, and SectionNavigator progress-bar continue to honor
+`prefers-reduced-motion`.
+
+## Decisions not taken
+
+- **Did not add new tokens for sub-eyebrow tracking** (0.08em, 0.06em).
+  Both are one-off calibrations inside SectionNavigator. If a second
+  component needs them, codify then.
+- **Did not change Eyebrow.astro itself.** Tried briefly to give Eyebrow a
+  default `margin-block-end` so all consumers get rhythm-for-free; reverted
+  because (a) flex `gap` parents would collapse it anyway, (b) it adds
+  implicit margin to inline composition contexts where the consumer doesn't
+  want it. Better to make the rhythm explicit in the composition.
+- **Did not surface a new `Section` token.** `--clr-surface-secondary`
+  already exists and is exactly the alternating-tone shade we needed.
+- **PageHero `variant: 'type'`** — still deferred (not part of B + C).
+
+## Screenshots
+
+`design-audit/2026-05-16/screenshots/built/aggregate/` (overwritten):
+- `desktop-full.png`, `mobile-full.png` — full pages
+- Per-section crops: `{desktop,mobile}-{buttons,eyebrows,ehl,callouts,stats,stepcards,badges,page-hero}.png`
+
+`design-audit/2026-05-16/screenshots/built/section-navigator/` (overwritten):
+- `desktop-full.png`, `mobile-full.png`
+- `desktop-overview-detail.png`, `mobile-overview-detail.png` — focused on the overview block (alignment + tracking)
+- `desktop-top.png`, `mobile-top.png` — viewport-top state
+
+Batch 3 closure: every user-flagged issue addressed with measured deltas,
+both approved API extensions shipped, four self-surfaced taste issues
+fixed, 0 type errors, 0 contrast regressions.
