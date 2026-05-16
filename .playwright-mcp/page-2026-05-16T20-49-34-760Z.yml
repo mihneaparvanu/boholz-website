@@ -1,0 +1,267 @@
+- generic [ref=e3]:
+  - navigation [ref=e8]:
+    - link "Danwood" [ref=e11] [cursor=pointer]:
+      - /url: /
+      - img "Danwood" [ref=e14]
+    - button "Menu" [ref=e17] [cursor=pointer]:
+      - generic [ref=e18]: Menu
+      - img [ref=e21]
+  - generic [ref=e23]:
+    - banner [ref=e24]:
+      - list [ref=e29]:
+        - listitem [ref=e30]:
+          - generic [ref=e34]:
+            - heading "Customised, turn-key homes with the highest standards of energy efficiency" [level=2] [ref=e35]
+            - link "See our house designs See our house designs" [ref=e38] [cursor=pointer]:
+              - /url: /house-designs/all-house-designs
+              - generic [ref=e40]: See our house designs See our house designs
+              - img [ref=e43]
+        - listitem [ref=e45]:
+          - generic [ref=e49]:
+            - generic [ref=e51]: Interior designs
+            - heading "Ready-made interior designs prepared by Danwood architects" [level=2] [ref=e52]
+            - link "Find out more Find out more" [ref=e55] [cursor=pointer]:
+              - /url: /turn-key-finish
+              - generic [ref=e57]: Find out more Find out more
+              - img [ref=e60]
+        - listitem [ref=e62]:
+          - generic [ref=e66]:
+            - generic [ref=e68]:
+              - img [ref=e71]
+              - text: S-Linie
+            - 'heading "S-Line: Superior designs, same value for money!" [level=2] [ref=e73]'
+            - link "Check more Check more" [ref=e76] [cursor=pointer]:
+              - /url: /ranges/s-line
+              - generic [ref=e78]: Check more Check more
+              - img [ref=e81]
+        - listitem [ref=e83]:
+          - generic [ref=e87]:
+            - generic [ref=e89]:
+              - img [ref=e92]
+              - text: Vision
+            - 'heading "Vision by Danwood: Scandinavian-style turn-key homes" [level=2] [ref=e94]'
+            - link "Check more Check more" [ref=e97] [cursor=pointer]:
+              - /url: /ranges/vision
+              - generic [ref=e99]: Check more Check more
+              - img [ref=e102]
+        - listitem [ref=e104]:
+          - generic [ref=e108]:
+            - generic [ref=e110]:
+              - img [ref=e113]
+              - text: NEXT Holiday
+            - 'heading "Relax in style: Vacation in a modern modular holiday home" [level=2] [ref=e115]'
+            - link "Check more Check more" [ref=e118] [cursor=pointer]:
+              - /url: /ranges/next-holiday
+              - generic [ref=e120]: Check more Check more
+              - img [ref=e123]
+    - heading "Danwood prefabrikkerte hus" [level=1] [ref=e130]
+    - main [ref=e131]:
+      - generic [ref=e132]:
+        - generic [ref=e138]:
+          - generic [ref=e140]:
+            - img [ref=e143]
+            - generic [ref=e146]:
+              - heading "Turnkey finish" [level=4] [ref=e148]
+              - paragraph [ref=e149]: Get inspired by our proposals for finishing and interior design
+          - generic [ref=e151]:
+            - img [ref=e154]
+            - generic [ref=e156]:
+              - heading "A fixed price guarantee" [level=4] [ref=e158]
+              - paragraph [ref=e159]: up to 18 months
+          - generic [ref=e161]:
+            - img [ref=e164]
+            - generic [ref=e166]:
+              - heading "Energy efficiency" [level=4] [ref=e168]
+              - paragraph [ref=e169]: Green living and low energy bills are guaranteed with Danwood home
+          - generic [ref=e171]:
+            - img [ref=e174]
+            - generic [ref=e176]:
+              - heading "30 years’ construction warranty" [level=4] [ref=e178]
+              - paragraph [ref=e179]: on all Danwood houses
+        - generic [ref=e180]:
+          - heading "Browse categories" [level=2] [ref=e188]
+          - generic [ref=e191]:
+            - generic [ref=e196]:
+              - button "Bungalows" [ref=e197] [cursor=pointer]:
+                - img [ref=e200]
+                - paragraph [ref=e205]: Bungalows
+              - button "1.5-storey houses" [ref=e206] [cursor=pointer]:
+                - img [ref=e209]
+                - paragraph [ref=e214]: 1.5-storey houses
+              - button "2-storey houses" [ref=e215] [cursor=pointer]:
+                - img [ref=e218]
+                - paragraph [ref=e224]: 2-storey houses
+              - button "Semi-detached and terraced houses" [ref=e225] [cursor=pointer]:
+                - img [ref=e228]
+                - paragraph [ref=e237]: Semi-detached and terraced houses
+              - button "Two-family houses" [ref=e238] [cursor=pointer]:
+                - img [ref=e241]
+                - paragraph [ref=e247]: Two-family houses
+              - button "Holiday homes" [ref=e248] [cursor=pointer]:
+                - img [ref=e251]
+                - paragraph [ref=e256]: Holiday homes
+            - link "See all See all" [ref=e259] [cursor=pointer]:
+              - /url: /house-designs/bungalows
+              - generic [ref=e261]: See all See all
+        - generic [ref=e262]:
+          - heading "Discover all the house ranges" [level=2] [ref=e270]
+          - generic [ref=e275]:
+            - group [ref=e277]:
+              - button [disabled]:
+                - generic:
+                  - img
+              - generic [ref=e281]:
+                - radio "Today" [checked] [ref=e282] [cursor=pointer]
+                - radio "S-Line" [ref=e283] [cursor=pointer]
+                - radio "Vision" [ref=e284] [cursor=pointer]
+                - radio "NEXT Holiday" [ref=e285] [cursor=pointer]
+              - button [disabled]:
+                - generic:
+                  - img
+            - generic [ref=e289]:
+              - generic [ref=e291]:
+                - img [ref=e294]
+                - text: Today
+              - heading "Various home concepts for modern living" [level=3] [ref=e296]
+              - paragraph [ref=e297]: From bungalows to multi-generational homes – flexible planning, sustainably built, and suitable for every phase of life.
+              - link "Discover the house ranges Discover the house ranges" [ref=e300] [cursor=pointer]:
+                - /url: /ranges/today
+                - generic [ref=e302]: Discover the house ranges Discover the house ranges
+                - img [ref=e305]
+        - generic [ref=e315]:
+          - heading "Ready-made interior designs prepared by Danwood architects" [level=2] [ref=e317]:
+            - generic [ref=e318]: Ready-made interior designs prepared by Danwood architects
+          - link "Check more Check more" [ref=e321] [cursor=pointer]:
+            - /url: /turn-key-finish
+            - generic [ref=e323]: Check more Check more
+            - img [ref=e326]
+        - generic [ref=e328]:
+          - heading "Discover the benefits of a Danwood home" [level=2] [ref=e336]
+          - list [ref=e340]:
+            - listitem [ref=e341]:
+              - 'link "With Danwood houses it''s easy: build climate-friendly for our children''s future." [ref=e343] [cursor=pointer]':
+                - /url: /energy-efficiency
+                - generic [ref=e345]:
+                  - generic [ref=e346]:
+                    - heading "With Danwood houses it's easy:" [level=3] [ref=e347]
+                    - paragraph [ref=e348]: build climate-friendly for our children's future.
+                  - img [ref=e352]
+            - listitem [ref=e354]:
+              - link "home with smart home functionalities Smart living - with intelligent technology from Danwood Make your Danwood house a smart house" [ref=e356] [cursor=pointer]:
+                - /url: /smart-house
+                - img "home with smart home functionalities" [ref=e358]
+                - generic [ref=e359]:
+                  - generic [ref=e360]:
+                    - heading "Smart living - with intelligent technology from Danwood" [level=3] [ref=e361]
+                    - paragraph [ref=e362]: Make your Danwood house a smart house
+                  - img [ref=e366]
+        - generic [ref=e368]:
+          - generic [ref=e374]:
+            - heading "Houses created with passion and respect for tradition" [level=2] [ref=e376]
+            - paragraph [ref=e378]: The numbers speak for themselves.
+          - generic [ref=e383]:
+            - link "140+ house designs" [ref=e385] [cursor=pointer]:
+              - /url: /house-designs
+              - generic [ref=e386]: 140+
+              - generic [ref=e387]: house designs
+            - link "18.000 realisations" [ref=e389] [cursor=pointer]:
+              - /url: /customers-homes
+              - generic [ref=e390]: "18.000"
+              - generic [ref=e391]: realisations
+            - link "30 years on the market" [ref=e393] [cursor=pointer]:
+              - /url: /about-dan-wood
+              - generic [ref=e394]: "30"
+              - generic [ref=e395]: years on the market
+            - link "1.600 specialists employed" [ref=e397] [cursor=pointer]:
+              - /url: /about-dan-wood
+              - generic [ref=e398]: "1.600"
+              - generic [ref=e399]: specialists employed
+    - generic [ref=e405]:
+      - generic [ref=e407]:
+        - heading "The trust we have built over the years" [level=2] [ref=e409]:
+          - generic [ref=e410]: The trust we have built over the years
+        - link "See our house designs See our house designs" [ref=e413] [cursor=pointer]:
+          - /url: /house-designs/all-house-designs
+          - generic [ref=e415]: See our house designs See our house designs
+          - img [ref=e418]
+      - generic [ref=e421]:
+        - heading "Experience it live" [level=3] [ref=e422]
+        - list [ref=e423]:
+          - listitem [ref=e424]:
+            - link "Come & Meet Us" [ref=e425] [cursor=pointer]:
+              - /url: /come-and-meet-us
+              - generic [ref=e426]: Come & Meet Us
+              - img [ref=e429]
+          - listitem [ref=e431]:
+            - link "Open days" [ref=e432] [cursor=pointer]:
+              - /url: /come-and-meet-us/open-days
+              - generic [ref=e433]: Open days
+              - img [ref=e436]
+      - generic [ref=e441]:
+        - img [ref=e443]
+        - blockquote [ref=e445]:
+          - paragraph [ref=e446]: Friends and family think it’s a beautiful house. We’re very lucky to have such a beautiful home to share with our grandchildren and family. Yes, it’s our forever home, definitely.
+        - paragraph [ref=e448]:
+          - generic [ref=e449]: Bill and Jess
+  - contentinfo [ref=e454]:
+    - generic [ref=e456]:
+      - generic [ref=e457]:
+        - list [ref=e459]:
+          - listitem [ref=e460]:
+            - link "Danwood house designs" [ref=e461] [cursor=pointer]:
+              - /url: /house-designs
+              - generic [ref=e462]: Danwood house designs
+          - listitem [ref=e463]:
+            - link "About Danwood" [ref=e464] [cursor=pointer]:
+              - /url: /about-dan-wood
+              - generic [ref=e465]: About Danwood
+          - listitem [ref=e466]:
+            - link "Turnkey finish" [ref=e467] [cursor=pointer]:
+              - /url: /turn-key-finish
+              - generic [ref=e468]: Turnkey finish
+        - list [ref=e470]:
+          - listitem [ref=e471]:
+            - link "Contact" [ref=e472] [cursor=pointer]:
+              - /url: /contact
+              - generic [ref=e473]: Contact
+          - listitem [ref=e474]:
+            - link "All house ranges" [ref=e475] [cursor=pointer]:
+              - /url: /ranges
+              - generic [ref=e476]: All house ranges
+          - listitem [ref=e477]:
+            - link "FAQ" [ref=e478] [cursor=pointer]:
+              - /url: /faq
+              - generic [ref=e479]: FAQ
+      - list [ref=e483]:
+        - listitem [ref=e484]
+        - listitem [ref=e486]
+        - listitem [ref=e488]
+        - listitem [ref=e490]
+        - listitem [ref=e492]
+      - generic [ref=e494]:
+        - list [ref=e496]:
+          - listitem [ref=e497]:
+            - link "Privacy policy" [ref=e498] [cursor=pointer]:
+              - /url: /privacy-policy-and-cookies
+              - generic [ref=e499]: Privacy policy
+          - listitem [ref=e500]:
+            - link "Sitemap" [ref=e501] [cursor=pointer]:
+              - /url: /sitemap
+              - generic [ref=e502]: Sitemap
+          - listitem [ref=e503]:
+            - button "Norge (NO)" [ref=e504]:
+              - generic [ref=e505]: Norge (NO)
+              - img [ref=e508]
+        - list [ref=e511]:
+          - listitem [ref=e512]:
+            - link "Facebook" [ref=e513] [cursor=pointer]:
+              - /url: https://www.facebook.com/sallydanwood/
+              - img [ref=e516]
+          - listitem [ref=e518]:
+            - link "Instagram" [ref=e519] [cursor=pointer]:
+              - /url: https://www.instagram.com/danwoodsengland/
+              - img [ref=e522]
+          - listitem [ref=e526]:
+            - link "YouTube" [ref=e527] [cursor=pointer]:
+              - /url: https://www.youtube.com/channel/UCQbOi83FYqNW3ENORUi2Q9w
+              - img [ref=e530]

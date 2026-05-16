@@ -1,0 +1,58 @@
+[      54ms] [ERROR] Failed to load resource: the server responded with a status of 504 (Outdated Optimize Dep) @ http://localhost:4321/@id/astro/runtime/client/dev-toolbar/entrypoint.js:0
+[      79ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[      81ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[    1047ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[    1049ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[    1052ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[    6722ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[    6724ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[   20601ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[   20604ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[   20608ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[   65207ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[   65209ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[   74655ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[   74657ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[   74661ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[  122347ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[  122354ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[  128383ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224
+[  128386ms] [WARNING] [Vue warn]: Extraneous non-props attributes (data-astro-cid-itlfasqk) were passed to component but could not be automatically inherited because component renders fragment or text or teleport root nodes. 
+  at <SectionNavigator sections= [Object, Object, Object, Object, Object, Object, Object] stickyOffset=64 data-astro-cid-itlfasqk=true > 
+  at <App> @ http://localhost:4321/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=d85c258a:2224

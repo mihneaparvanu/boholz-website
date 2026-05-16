@@ -1,218 +1,443 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { getMediaURL } from "@/utils/media";
-import "@/style/content-page.css";
+
+import PageHero from "@/components/sections/PageHero.astro";
+import CTASection from "@/components/sections/CTASection.astro";
+import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
+import DefinitionList from "@/components/ui/DefinitionList.astro";
+import type { DefinitionItem } from "@/components/ui/DefinitionList.astro";
+
+import SectionNavigator from "@/components/ui/SectionNavigator.vue";
+import type { Section } from "@/components/ui/SectionNavigator.vue";
+import StepCard from "@/components/ui/StepCard.vue";
+import IconList from "@/components/ui/IconList.vue";
+import type { IconListItem } from "@/components/ui/IconList.vue";
+import Callout from "@/components/ui/Callout.vue";
+import VideoPlaceholder from "@/components/ui/VideoPlaceholder.vue";
+
+const sections: Section[] = [
+  { id: "ablauf",       eyebrow: "01", label: "Der Ablauf" },
+  { id: "architektur",  eyebrow: "02", label: "Architektur" },
+  { id: "smart-home",   eyebrow: "03", label: "Smart Home" },
+  { id: "finanzierung", eyebrow: "04", label: "Finanzierung" },
+  { id: "ausbaustufen", eyebrow: "05", label: "Ausbaustufen" },
+];
+
+const smartHomeFeatures: IconListItem[] = [
+  {
+    icon: "smartphone-nfc",
+    label: "Intuitive Steuerung",
+    description:
+      "Steuern Sie Ihr BoHolz-Haus bequem über Tablet oder Wandpanel mit einer benutzerfreundlichen Oberfläche.",
+  },
+  {
+    icon: "thermometer",
+    label: "Individueller Komfort",
+    description:
+      "Regulieren Sie Raumtemperaturen individuell, steuern Sie Rollläden und sehen Sie, wer an der Haustür klingelt.",
+  },
+  {
+    icon: "shield",
+    label: "Erhöhte Sicherheit",
+    description:
+      "Mit integrierten Sicherheitssystemen behalten Sie die Kontrolle über Ihr Zuhause, auch wenn Sie nicht da sind.",
+  },
+  {
+    icon: "sparkles",
+    label: "Maßgeschneidert",
+    description:
+      "Von Beleuchtungssteuerung bis Gartenbewässerung — wir entwickeln ein individuelles Konzept für Ihr intelligentes Zuhause.",
+  },
+];
+
+const ausbaustufen: DefinitionItem[] = [
+  {
+    term: "1. Ausbauhaus",
+    description:
+      "Sind Sie handwerklich begabt und möchten Ihre ganz eigene Note in Ihr Haus einfließen lassen? Sie erhalten einen Rohbau einschließlich Dacheindeckung, sämtlichen Spenglerarbeiten sowie dem Fassadenputz, eingebauter Haustüre, Fenster inklusive Rollläden und Außenfensterbänken.",
+  },
+  {
+    term: "2. Technikfertig",
+    description:
+      "Zusätzlich zum Ausbauhaus: Elektroinstallation inkl. Schalterprogramm, Sanitär-Rohinstallation, Estrich, Dämmung und Beplankung der Decken und Dachschrägen. Das gewählte Heizsystem ist komplett eingebaut und wird mit Ihnen in Betrieb genommen.",
+  },
+  {
+    term: "3. Fast fertig",
+    description:
+      "Bad und WC sind nach Ihren Vorgaben gefliest und mit den ausgesuchten Sanitärobjekten bestückt. Zudem liefern und montieren wir Ihre Innentreppe.",
+  },
+  {
+    term: "4. Schlüsselfertig",
+    description:
+      "Bei dieser Ausbaustufe müssen Sie nur noch einziehen und Ihre Möbel und Küche mitbringen. BoHolz-Haus kümmert sich um Innentüren, Innenfensterbänke, Bodenbeläge sowie sämtliche Tapezier- und Malerarbeiten. Die Raufasertapeten erhalten einen weißen Deckanstrich, sämtliche Spachtelarbeiten in Qualitätsstandard II.",
+  },
+];
+
+const heroImage = getMediaURL("/images/pages/dein-zuhause/hero-bauen.jpg");
+const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
 ---
 
 <Layout title="Dein Zuhause – BoHolz Haus">
-  <article class="content-page">
-    <h1>Dein Zuhause</h1>
-    <p class="page-intro">
-      Von der ersten Idee bis zur Schlüsselübergabe – so entsteht Ihr
-      individuelles BoHolz Fertighaus.
-    </p>
-    <img
-      class="page-hero"
-      src={getMediaURL("/images/pages/dein-zuhause/hero-bauen.jpg")}
-      alt="Bauen mit BoHolz Haus"
-      loading="eager"
-      width="2000"
-      height="776"
+  <div class="full-width">
+    <PageHero
+      eyebrow="Dein Zuhause"
+      title="Von der ersten Idee bis zur"
+      highlight="Schlüsselübergabe."
+      subtitle="So entsteht Ihr individuelles BoHolz Fertighaus — gegliedert in klare Phasen, begleitet von einem festen Ansprechpartner."
+      image={heroImage}
+      imageAlt="Bauen mit BoHolz Haus"
+      align="left"
+    />
+  </div>
+
+  <SectionNavigator client:load sections={sections} />
+
+  <!-- 02 · Ablauf ───────────────────────────────────────── -->
+  <section id="ablauf" class="block" data-section-heading>
+    <EyebrowHeadingLede
+      eyebrow="01 · Der Ablauf"
+      heading="In drei Phasen ins"
+      highlight="eigene Zuhause."
+      lede="In übersichtliche Schritte gegliedert, mit klaren Deadlines und einem Ansprechpartner, der Sie von Anfang bis Ende begleitet."
     />
 
-    <!-- Der Ablauf / Prozess -->
-    <section>
-      <h2>Der Ablauf</h2>
+    <div class="cards three">
+      <StepCard
+        client:visible
+        step={1}
+        title="Der Grundstein wird gelegt"
+        icon="compass"
+        description="Planung, Grundstück, Finanzierung — wir legen die Basis für Ihr Projekt."
+      >
+        <ul class="lined">
+          <li>Planen Ihres Traumhauses mit unseren Bauberatern</li>
+          <li>Hilfestellung bei der Grundstückssuche</li>
+          <li>Sicherung der Finanzierung</li>
+          <li>Abschluss des Hausvertrages</li>
+        </ul>
+      </StepCard>
+
+      <StepCard
+        client:visible
+        step={2}
+        title="Träume in Realität verwandeln"
+        icon="pencil"
+        description="Architektur, Bauantrag und Bemusterung — Ihr Haus nimmt Form an."
+      >
+        <ul class="lined">
+          <li>Ihr Baubegleiter steht zu Ihrer Verfügung</li>
+          <li>Vorlage der Baufinanzierung</li>
+          <li>Kauf des Grundstücks ist erfolgt</li>
+          <li>Planungsgespräch mit Architektinnen und Architekten</li>
+          <li>Erstellung und Einreichung des Bauantrages</li>
+          <li>Vorlage der Baugenehmigung</li>
+          <li>Bemusterung mit Ausstattung und Haustechnik</li>
+          <li>Planung der Baustelleneinrichtung und Produktion</li>
+        </ul>
+      </StepCard>
+
+      <StepCard
+        client:visible
+        step={3}
+        title="Die heiße Bauphase beginnt"
+        icon="hammer"
+        description="Vom Keller bis zur Schlüsselübergabe — Vorfertigung, Montage, Innenausbau."
+      >
+        <ul class="lined">
+          <li>Schaffung der Bauvoraussetzungen</li>
+          <li>Beginn der Fertigung des Hauses</li>
+          <li>Bau des Kellers oder der Bodenplatte</li>
+          <li>Aufbau des Hauses durch das Montageteam</li>
+          <li>Richtfest</li>
+          <li>Innenausbau und Haustechnik</li>
+          <li>Hausübergabe</li>
+        </ul>
+      </StepCard>
+    </div>
+  </section>
+
+  <!-- 03 · Architektur ───────────────────────────────────── -->
+  <section id="architektur" class="block" data-section-heading>
+    <EyebrowHeadingLede
+      eyebrow="02 · Architektur"
+      heading="Jedes Haus erzählt seine"
+      highlight="eigene Geschichte."
+      lede="Von der Grundrissgestaltung bis zur Fassadenauswahl — bei uns haben Sie die Freiheit, Ihren Hausentwurf mit eigenen Ideen und Gestaltungswünschen zu individualisieren."
+    />
+
+    <div class="prose">
       <p>
-        In nur wenigen Schritten verwirklichen Sie Ihren Traum vom Eigenheim mit
-        BoHolz-Haus. Der Weg zu Ihrem persönlichen Traumhaus ist in
-        übersichtliche Unterpunkte gegliedert, die mit entsprechenden Deadlines
-        und Fristen verbunden sind. Von Anfang bis Ende werden Sie von
-        BoHolz-Haus begleitet und unterstützt.
-      </p>
-
-      <h3>Phase 1: Der Grundstein wird gelegt</h3>
-      <ul>
-        <li>Planen Ihres Traumhauses mit unseren Bauberatern</li>
-        <li>Hilfestellung bei der Grundstückssuche</li>
-        <li>Sicherung der Finanzierung</li>
-        <li>Abschluss des Hausvertrages</li>
-      </ul>
-
-      <h3>Phase 2: Träume in Realität verwandeln</h3>
-      <ul>
-        <li>Ihr Baubegleiter steht zu Ihrer Verfügung</li>
-        <li>Vorlage der Baufinanzierung</li>
-        <li>Kauf des Grundstücks ist erfolgt</li>
-        <li>Planungsgespräch mit Architektinnen und Architekten</li>
-        <li>Erstellung und Einreichung des Bauantrages beim zuständigen Bauamt</li>
-        <li>Vorlage der Baugenehmigung</li>
-        <li>Bemusterung mit Ausstattung und Haustechnik</li>
-        <li>Planung der Baustelleneinrichtung und Produktion</li>
-      </ul>
-
-      <h3>Phase 3: Die heiße Bauphase beginnt</h3>
-      <ul>
-        <li>Schaffung der Bauvoraussetzungen</li>
-        <li>Beginn der Fertigung des Hauses</li>
-        <li>Bau des Kellers oder der Bodenplatte</li>
-        <li>Aufbau des Hauses durch das Montageteam</li>
-        <li>Richtfest</li>
-        <li>Innenausbau und Haustechnik</li>
-        <li>Hausübergabe</li>
-      </ul>
-    </section>
-
-    <!-- Architektur -->
-    <section>
-      <h2>Individuelle Architektur</h2>
-      <p>
-        Jedes Haus erzählt seine eigene Geschichte. Bei BoHolz Fertighaus haben
-        Sie die Möglichkeit, Ihren Hausentwurf mit Ihren eigenen Ideen und
-        Gestaltungswünschen zu individualisieren.
-      </p>
-      <p>
-        Von der Grundrissgestaltung bis zur Fassadenauswahl – bei uns haben Sie
-        die maximale Freiheit, Ihr Traumhaus zu erschaffen. Ob Sie von einem
-        offenen Wohnbereich träumen, ein separates Homeoffice, eine
-        Einliegerwohnung oder eine großzügige Terrasse wünschen – wir setzen
+        Ob Sie von einem offenen Wohnbereich träumen, ein separates Homeoffice,
+        eine Einliegerwohnung oder eine großzügige Terrasse wünschen — wir setzen
         Ihre Vorstellungen um.
       </p>
       <p>
         In Zusammenarbeit mit der renommierten Keitel-Haus GmbH in Rot am
         See-Brettheim, dem Geburtsort und der Produktionsstätte jedes
         BoHolz-Hauses, bieten wir Ihnen die perfekte Partnerschaft zweier
-        starker Unternehmen. Diese Kooperation garantiert Ihnen höchste
+        starker Unternehmen. Diese Kooperation garantiert höchste
         Qualitätsstandards und jahrzehntelange Erfahrung im Fertighausbau.
       </p>
-    </section>
-
-    <!-- Smart Home -->
-    <section>
-      <h2>Smart Home</h2>
-      <p>
-        Tauchen Sie ein in den ultimativen Komfort mit einer Smart Home
-        Installation, die perfekt auf Ihre Bedürfnisse zugeschnitten ist.
-      </p>
-
-      <div class="feature-grid">
-        <div class="feature-card">
-          <h4>Intuitive Steuerung</h4>
-          <p>Steuern Sie Ihr BoHolz-Haus bequem über Tablet oder Wandpanel mit einer benutzerfreundlichen Oberfläche.</p>
-        </div>
-        <div class="feature-card">
-          <h4>Individueller Komfort</h4>
-          <p>Regulieren Sie Raumtemperaturen individuell, steuern Sie Rollläden und sehen Sie, wer an der Haustür klingelt.</p>
-        </div>
-        <div class="feature-card">
-          <h4>Erhöhte Sicherheit</h4>
-          <p>Mit integrierten Sicherheitssystemen behalten Sie die Kontrolle über Ihr Zuhause, auch wenn Sie nicht da sind.</p>
-        </div>
-        <div class="feature-card">
-          <h4>Maßgeschneidert</h4>
-          <p>Von Beleuchtungssteuerung bis Gartenbewässerung – wir entwickeln ein individuelles Konzept für Ihr intelligentes Zuhause.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Finanzierung & Förderung -->
-    <section>
-      <h2>Finanzierung &amp; Förderung</h2>
-      <img
-        class="section-image"
-        src={getMediaURL("/images/pages/dein-zuhause/foerderung.jpg")}
-        alt="Finanzierung und Förderung"
-        loading="lazy"
-        width="500"
-        height="300"
-      />
-      <p>
-        Staatliche Förderungen durch die Kreditanstalt für Wiederaufbau (KfW)
-        sind eine attraktive Möglichkeit, Ihren Hausbau finanziell zu
-        unterstützen.
-      </p>
-
-      <h3>KfW-Wohneigentumsprogramm (Kredit 124)</h3>
-      <p>
-        Förderkredit bis zu 100.000 Euro für alle, die Wohnraum kaufen oder
-        bauen und selbst darin wohnen wollen. Gut kombinierbar mit anderen
-        KfW-Förderprodukten.
-      </p>
-
-      <h3>Klimafreundlicher Neubau (Kredit 297/298)</h3>
-      <p>
-        Förderkredit für energieeffizientes und nachhaltiges Bauen – bis zu
-        150.000 Euro je Wohneinheit, mit bis zu 35 Jahre Laufzeit und bis zu
-        10 Jahre Zinsbindung.
-      </p>
-
-      <h3>Wohneigentum für Familien (Kredit 300)</h3>
-      <p>
-        Für Familien mit Kindern und Alleinerziehende mit niedrigem bis mittlerem
-        Einkommen. Kredithöchstbeträge von 170.000 bis 270.000 Euro für
-        klimafreundlichen Neubau.
-      </p>
-
-      <p>
-        <strong>Hinweis:</strong> Die Zinskonditionen orientieren sich am
-        Kapitalmarkt und werden laufend angepasst. Ein Rechtsanspruch auf die
-        Förderung besteht nicht.
-      </p>
-    </section>
-
-    <!-- Ausbaustufen -->
-    <section>
-      <h2>Ausbaustufen</h2>
-      <img
-        class="section-image"
-        src={getMediaURL("/images/pages/dein-zuhause/ausbaustufen.jpg")}
-        alt="Ausbaustufen"
-        loading="lazy"
-        width="500"
-        height="300"
-      />
-      <p>
-        Jeder Bauherr ist anders. Wählen Sie die Ausbaustufe, die am besten zu
-        Ihren Fähigkeiten und Ihrem Budget passt.
-      </p>
-
-      <h3>1. Ausbauhaus</h3>
-      <p>
-        Sind Sie handwerklich begabt und möchten Ihre ganz eigene Note in Ihr
-        Haus einfließen lassen? Sie erhalten einen Rohbau einschließlich
-        Dacheindeckung, sämtlichen Spenglerarbeiten sowie dem Fassadenputz,
-        eingebauter Haustüre, Fenster inklusive Rollläden und
-        Außenfensterbänken.
-      </p>
-
-      <h3>2. Technikfertig</h3>
-      <p>
-        Zusätzlich zum Ausbauhaus: Elektroinstallation inkl. Schalterprogramm,
-        Sanitär-Rohinstallation, Estrich, Dämmung und Beplankung der Decken und
-        Dachschrägen. Das gewählte Heizsystem ist komplett eingebaut und wird mit
-        Ihnen in Betrieb genommen.
-      </p>
-
-      <h3>3. Fast fertig</h3>
-      <p>
-        Bad und WC sind nach Ihren Vorgaben gefliest und mit den ausgesuchten
-        Sanitärobjekten bestückt. Zudem liefern und montieren wir Ihre
-        Innentreppe.
-      </p>
-
-      <h3>4. Schlüsselfertig</h3>
-      <p>
-        Bei dieser Ausbaustufe müssen Sie nur noch einziehen und Ihre Möbel und
-        Küche mitbringen. BoHolz-Haus kümmert sich um Innentüren,
-        Innenfensterbänke, Bodenbeläge sowie sämtliche Tapezier- und
-        Malerarbeiten. Die Raufasertapeten erhalten einen weißen Deckanstrich,
-        sämtliche Spachtelarbeiten in Qualitätsstandard II.
-      </p>
-    </section>
-
-    <div class="cta-block">
-      <a href="/kontakt">Beratung vereinbaren</a>
-      <a href="/kontakt">Katalog bestellen</a>
     </div>
-  </article>
+  </section>
+
+  <!-- 04 · Smart Home ────────────────────────────────────── -->
+  <section id="smart-home" class="block" data-section-heading>
+    <EyebrowHeadingLede
+      eyebrow="03 · Smart Home"
+      heading="Komfort, auf Ihre Bedürfnisse"
+      highlight="zugeschnitten."
+      lede="Tauchen Sie ein in den ultimativen Komfort einer Smart-Home-Installation, die ab Werk mitgeplant und sauber integriert wird."
+    />
+
+    <IconList client:visible items={smartHomeFeatures} columns={2} />
+  </section>
+
+  <!-- 05 · Finanzierung & Förderung ─────────────────────── -->
+  <section id="finanzierung" class="block" data-section-heading>
+    <EyebrowHeadingLede
+      eyebrow="04 · Finanzierung"
+      heading="Staatliche Förderungen,"
+      highlight="klar erklärt."
+      lede="Förderkredite der Kreditanstalt für Wiederaufbau (KfW) sind eine attraktive Möglichkeit, Ihren Hausbau finanziell zu unterstützen — gut kombinierbar untereinander."
+    />
+
+    <div class="cards three">
+      <StepCard
+        client:visible
+        step={1}
+        title="Wohneigentumsprogramm"
+        icon="home"
+        description="Förderkredit bis zu 100.000 € für alle, die Wohnraum kaufen oder bauen und selbst darin wohnen wollen. Gut kombinierbar mit anderen KfW-Förderprodukten."
+      >
+        <p class="meta">Kredit 124</p>
+      </StepCard>
+
+      <StepCard
+        client:visible
+        step={2}
+        title="Klimafreundlicher Neubau"
+        icon="leaf"
+        description="Förderkredit für energieeffizientes und nachhaltiges Bauen — bis zu 150.000 € je Wohneinheit, bis zu 35 Jahre Laufzeit und bis zu 10 Jahre Zinsbindung."
+      >
+        <p class="meta">Kredit 297 / 298</p>
+      </StepCard>
+
+      <StepCard
+        client:visible
+        step={3}
+        title="Wohneigentum für Familien"
+        icon="heart-handshake"
+        description="Für Familien mit Kindern und Alleinerziehende mit niedrigem bis mittlerem Einkommen. Kredithöchstbeträge von 170.000 € bis 270.000 € für klimafreundlichen Neubau."
+      >
+        <p class="meta">Kredit 300</p>
+      </StepCard>
+    </div>
+
+    <div class="callout-slot">
+      <Callout client:visible tone="note" title="Hinweis zur Förderung">
+        <p>
+          Die Zinskonditionen orientieren sich am Kapitalmarkt und werden
+          laufend angepasst. Ein Rechtsanspruch auf die Förderung besteht nicht.
+        </p>
+      </Callout>
+    </div>
+  </section>
+
+  <!-- 06 · Ausbaustufen ──────────────────────────────────── -->
+  <section id="ausbaustufen" class="block" data-section-heading>
+    <EyebrowHeadingLede
+      eyebrow="05 · Ausbaustufen"
+      heading="Wählen Sie, wie weit"
+      highlight="wir gehen."
+      lede="Jeder Bauherr ist anders. Wählen Sie die Ausbaustufe, die am besten zu Ihren Fähigkeiten und Ihrem Budget passt — vom Rohbau bis schlüsselfertig."
+    />
+
+    <DefinitionList items={ausbaustufen} />
+  </section>
+
+  <!-- 07 · Video placeholder ─────────────────────────────── -->
+  <section class="block">
+    <VideoPlaceholder
+      client:visible
+      slotId="dein-zuhause-zeitraffer"
+      variant="film"
+      aspectRatio="21/9"
+      label="Zeitraffer · Vom Werk auf die Baustelle"
+      caption="Bewegtbild folgt — Aufbau eines BoHolz-Hauses in unter 60 Sekunden."
+    />
+  </section>
+
+  <!-- 08 · CTA ────────────────────────────────────────────── -->
+  <div class="full-width">
+    <CTASection
+      title="Bereit für Ihr"
+      highlight="BoHolz-Zuhause?"
+      subtitle="Sprechen Sie mit unseren Bauberatern oder fordern Sie den Katalog an — unverbindlich und kostenfrei."
+      image={ctaImage}
+      imageAlt="Persönliche Beratung zum BoHolz-Hausbau"
+    >
+      <a slot="actions" class="cta-link primary" href="/kontakt">
+        Beratung vereinbaren
+      </a>
+      <a slot="actions" class="cta-link ghost" href="/kontakt">
+        Katalog bestellen
+      </a>
+    </CTASection>
+  </div>
 </Layout>
+
+<style>
+  /* ── Page rhythm ──
+     Sections stack with generous vertical breathing. The wrapper grid
+     already centres each `<section>` in the content column; we just add
+     consistent block padding so the SectionNavigator's scroll-spy
+     activation lands cleanly on each heading. */
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5);
+    padding-block: var(--spacing-6);
+    scroll-margin-block-start: var(--navbar-height);
+  }
+
+  /* First content section after the inline navigator needs less top air. */
+  .block:first-of-type {
+    padding-block-start: var(--spacing-5);
+  }
+
+  /* ── Card row ── */
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+
+  @media (--from-tablet) {
+    .cards.three {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (--from-desktop) {
+    .cards.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+    }
+  }
+
+  /* ── Prose: paragraph stack inside an Architektur-style section ── */
+  .prose {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    max-width: 64ch;
+    color: var(--clr-content-secondary);
+    line-height: var(--lh-body);
+  }
+
+  .prose p {
+    margin: 0;
+  }
+
+  /* ── Lists inside StepCards (Phase 1/2/3 detail bullets) ── */
+  .lined {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-secondary);
+    line-height: var(--lh-body);
+  }
+
+  /* Hairline bullet — quieter than ::marker, scales with the card. */
+  .lined li {
+    position: relative;
+    padding-inline-start: var(--spacing-3);
+  }
+
+  .lined li::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0.7em;
+    width: var(--spacing-1);
+    height: 1px;
+    background: var(--clr-border-tertiary);
+  }
+
+  /* KfW programme code sits as a quiet eyebrow under the description. */
+  .meta {
+    margin: 0;
+    font-size: var(--fs-body-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--clr-content-tertiary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Callout sits flush with the cards above (its own block-padding inside) */
+  .callout-slot {
+    max-width: 56rem;
+  }
+
+  /* ── CTA inline links ──
+     CTASection ships layout + tone but no buttons. Primary accent on the
+     larger CTA surface per the project rule; ghost for the secondary
+     action so a single accent reads clearly. */
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--control-height-md);
+    padding-inline: var(--spacing-4) var(--spacing-3);
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--fs-body);
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease,
+      border-color 160ms ease;
+  }
+
+  .cta-link.primary {
+    background: var(--clr-accent-primary);
+    color: var(--clr-pure-white);
+  }
+
+  .cta-link.primary:hover {
+    background: var(--clr-accent-secondary);
+    opacity: 1;
+  }
+
+  .cta-link.ghost {
+    background: transparent;
+    color: var(--clr-pure-white);
+    border-color: var(--clr-pure-white-soft);
+  }
+
+  .cta-link.ghost:hover {
+    background: var(--clr-pure-white);
+    color: var(--clr-content-primary);
+    opacity: 1;
+  }
+
+  .cta-link:focus-visible {
+    outline: 2px solid var(--clr-pure-white);
+    outline-offset: 2px;
+  }
+
+  /* ── Mobile rhythm ── */
+  @media (--mobile) {
+    .block {
+      gap: var(--spacing-4);
+      padding-block: var(--spacing-5);
+    }
+  }
+</style>

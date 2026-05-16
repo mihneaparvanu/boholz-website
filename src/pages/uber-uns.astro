@@ -1,126 +1,367 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { getMediaURL } from "@/utils/media";
-import "@/style/content-page.css";
+
+import PageHero from "@/components/sections/PageHero.astro";
+import CTASection from "@/components/sections/CTASection.astro";
+import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
+import PullQuote from "@/components/ui/PullQuote.astro";
+import Divider from "@/components/ui/Divider.astro";
+import StatBlock from "@/components/ui/StatBlock.vue";
+import IconList from "@/components/ui/IconList.vue";
+import Button from "@/components/ui/Button.vue";
+import { HeartHandshake, Compass, Sparkles } from "lucide-vue-next";
+
+const whatWeDoItems = [
+  {
+    icon: "users" as const,
+    label: "Persönliche Bauberatung",
+    description:
+      "Vom ersten Entwurf bis zum unterschriebenen Vertrag begleitet Sie ein erfahrener Hausberater — persönlich, präzise, ohne Umwege.",
+  },
+  {
+    icon: "map-pin" as const,
+    label: "Hilfe bei der Grundstückssuche",
+    description:
+      "Wir unterstützen bei der Suche nach dem passenden Bauplatz in Ihrer Region.",
+  },
+  {
+    icon: "coins" as const,
+    label: "Sicherung der Finanzierung",
+    description:
+      "Begleitung bei Förderprogrammen, KfW-Konzepten und der passenden Bankenlösung.",
+  },
+  {
+    icon: "key-round" as const,
+    label: "Abschluss des Hausvertrags",
+    description:
+      "Klare Konditionen, transparente Leistungsbeschreibung, ein Ansprechpartner durchgängig.",
+  },
+];
 ---
 
 <Layout title="Über Uns – BoHolz Haus">
-  <article class="content-page">
-    <h1>Über Uns</h1>
-    <p class="page-intro">
-      Zwei starke Partner, gemeinsame Werte und ein Ziel – Ihr individuelles
-      Traumhaus.
-    </p>
-    <img
-      class="page-hero"
-      src={getMediaURL("/images/pages/uber-uns/hero-werte.png")}
-      alt="BoHolz Haus – unsere Werte"
-      loading="eager"
-      width="1600"
-      height="700"
+  <PageHero
+    eyebrow="Über uns"
+    title="Zwei Familienunternehmen."
+    highlight="Ein Maßstab."
+    subtitle="Ihr Haus, exakt nach Maß — geplant in Bad Kissingen, gebaut in Rot am See."
+    image={getMediaURL("/images/pages/uber-uns/hero-werte.png")}
+    imageAlt="BoHolz Haus — unsere Werte"
+    align="center"
+  />
+
+  <!-- 02 — Zwei starke Partner -->
+  <Divider index={2} label="Partner" />
+
+  <section id="partner" class="section">
+    <EyebrowHeadingLede
+      eyebrow="Zwei starke Partner"
+      heading="Vertrieb mit Haltung,"
+      highlight="Produktion mit Erfahrung."
+      lede="BoHolz-Haus ist die Vertriebsgesellschaft, Keitel Haus der Produzent. Was Sie unterschreiben, hat ein Gesicht — und 90 Jahre Holzbau hinter sich."
+    >
+      <Fragment slot="eyebrow-icon">
+        <HeartHandshake :size={14} :stroke-width={2} />
+      </Fragment>
+    </EyebrowHeadingLede>
+
+    <div class="prose">
+      <p class="lead">
+        <i class="open">Wir sind die Vertriebsgesellschaft hinter Ihrem
+        BoHolz-Haus.</i> Vom ersten Entwurf bis zum unterschriebenen Vertrag
+        begleitet Sie ein erfahrener Hausberater — persönlich, präzise, ohne
+        Umwege. Unser Partner Keitel Haus baut seit über 90 Jahren in Holz: ein
+        Familienunternehmen aus Rot am See-Brettheim, das den Baustoff kennt
+        wie wenige andere.
+      </p>
+
+      <p>
+        Vom Einfamilien- bis zum Generationenhaus, vom Wohn-Arbeits-Hybrid bis
+        zur Erweiterung — gemeinsam realisieren wir jedes Projekt nach Maß.
+      </p>
+    </div>
+  </section>
+
+  <!-- 03 — Stats -->
+  <section class="stats" aria-label="BoHolz in Zahlen">
+    <StatBlock
+      value="90+"
+      label="Jahre Holzbau"
+      caption="Erfahrung unseres Partners Keitel Haus aus Rot am See-Brettheim."
+      icon="award"
+      client:visible
     />
+    <StatBlock
+      value="2"
+      label="Familienunternehmen"
+      caption="Vertrieb und Produktion aus einer Hand — von Bad Kissingen bis Baden-Württemberg."
+      icon="heart-handshake"
+      client:visible
+    />
+    <StatBlock
+      value="100%"
+      label="Holz"
+      caption="Jedes BoHolz-Haus wird in Holz gebaut. Keine Stilfrage, ein Bekenntnis."
+      icon="tree-deciduous"
+      client:visible
+    />
+  </section>
 
-    <!-- Zwei starke Partner -->
-    <section>
-      <h2>Zwei starke Partner</h2>
+  <!-- 04 — Unsere Werte -->
+  <Divider index={4} label="Werte" />
 
-      <h3>Ihr Premium Vertriebspartner BoHolz-Haus</h3>
-      <p>
-        Als Vertriebsgesellschaft hat BoHolz Haus höchste Ansprüche an Qualität
-        und Nachhaltigkeit beim Hausbau. Deshalb beraten und begleiten wir Sie
-        umfassend zu allen Fragen und Wünschen rund um Ihr individuelles
-        Traumhaus. Unsere erfahrenen Hausberater sorgen dafür, dass von der
-        Planung Ihres BoHolz Fertighauses bis zum Abschluss Ihres Hausvertrags
-        alles zu Ihrer vollsten Zufriedenheit abläuft.
-      </p>
-      <ul>
-        <li>Planen Ihres Traumhauses mit unseren Bauberatern</li>
-        <li>Hilfestellung bei der Grundstückssuche</li>
-        <li>Sicherung der Finanzierung</li>
-        <li>Abschluss des Hausvertrages</li>
-      </ul>
+  <section id="werte" class="section">
+    <EyebrowHeadingLede
+      eyebrow="Unsere Werte"
+      heading="Planung für Sie —"
+      highlight="nicht für eine Zielgruppe."
+      lede="Ein Haus ist eine Entscheidung fürs Leben. Deshalb planen wir nach Ihren Maßen, Ihren Gewohnheiten, Ihrer Lebenslage."
+    >
+      <Fragment slot="eyebrow-icon">
+        <Compass :size={14} :stroke-width={2} />
+      </Fragment>
+    </EyebrowHeadingLede>
 
-      <h3>Unser starker Partner Keitel Haus</h3>
+    <div class="prose">
       <p>
-        Keitel Haus ist ein renommiertes Familienunternehmen mit Sitz in 74585
-        Rot am See-Brettheim. Seit über 90 Jahren widmet sich Keitel-Haus intensiv
-        dem nachhaltigen Baustoff Holz und nutzt dessen Vorzüge täglich im
-        qualitativ hochwertigen Fertighausbau.
+        Jedes BoHolz-Haus wird in Holz gebaut. Das ist keine Stilfrage, sondern
+        ein Bekenntnis zur Nachhaltigkeit. Wir sind in Bad Kissingen zuhause,
+        am Rand der bayerischen Rhön. Wer hier lebt, sucht keinen anderen
+        Baustoff als Holz — robust, atmungsaktiv, im Alter schöner als am
+        ersten Tag.
       </p>
-      <p>
-        Keitel Haus plant und realisiert maßgeschneiderte Wohnprojekte, vom
-        Einfamilien- bis zum Generationenhaus. Auch spezielle Wünsche wie
-        Kombinationen von Wohn- und Arbeitsbereichen oder individuelle
-        Erweiterungen setzt Keitel Haus mit seinem Partner BoHolz Haus gerne um.
-      </p>
-      <p>
-        Als Familienunternehmen mit 90-jähriger Geschichte legt Keitel Haus
-        großen Wert auf eine Unternehmenskultur, die auf festen Prinzipien
-        beruht: <strong>Qualität geht vor Quantität, Individualität vor
-        Standardlösungen, umfassende Beratung vor Überredung.</strong>
-      </p>
-    </section>
+    </div>
+  </section>
 
-    <!-- Unsere Werte -->
-    <section>
-      <h2>Unsere Werte</h2>
-      <p>
-        Anforderungen an das eigene Zuhause sind Entscheidungen, die wir für
-        unser Leben treffen. Deshalb ist uns von BoHolz-Haus sehr daran gelegen,
-        Ihnen ein individuelles Haus ganz nach Ihren eigenen Wünschen und
-        Vorstellungen, aber auch genau nach Ihren Bedürfnissen und
-        Lebenssituationen zu erstellen.
-      </p>
-      <p>
-        Wir nehmen exakt Maß und passen genau an. Individuell auf Sie
-        zugeschnitten entwerfen wir Wohnträume, in denen es sich nachhaltig
-        leben lässt. Nachhaltigkeit ist für uns ein bedeutender Aspekt eines
-        jeden Bauvorhabens. Aus diesem Grund beruhen alle unsere Häuser auf der
-        zukunftsweisenden Holzbauweise.
-      </p>
+  <!-- 05 — Value image triptych -->
+  <section class="values-grid full-width" aria-label="Unsere Werte in Bildern">
+    <figure>
+      <img
+        src={getMediaURL("/images/pages/uber-uns/value-1.jpg")}
+        alt="Individuelle Planung — jedes Haus exakt nach Maß"
+        loading="lazy"
+        width="800"
+        height="500"
+      />
+    </figure>
+    <figure>
+      <img
+        src={getMediaURL("/images/pages/uber-uns/value-2.jpg")}
+        alt="Nachhaltige Holzbauweise — natürlich, atmungsaktiv, langlebig"
+        loading="lazy"
+        width="800"
+        height="500"
+      />
+    </figure>
+    <figure>
+      <img
+        src={getMediaURL("/images/pages/uber-uns/value-3.jpg")}
+        alt="Persönliche Beratung — ein Ansprechpartner durchgängig"
+        loading="lazy"
+        width="800"
+        height="500"
+      />
+    </figure>
+  </section>
 
-      <div class="value-grid">
-        <img
-          src={getMediaURL("/images/pages/uber-uns/value-1.jpg")}
-          alt="Individuelle Planung"
-          loading="lazy"
-          width="800"
-          height="500"
-        />
-        <img
-          src={getMediaURL("/images/pages/uber-uns/value-2.jpg")}
-          alt="Nachhaltige Holzbauweise"
-          loading="lazy"
-          width="800"
-          height="500"
-        />
-        <img
-          src={getMediaURL("/images/pages/uber-uns/value-3.jpg")}
-          alt="Persönliche Beratung"
-          loading="lazy"
-          width="800"
-          height="500"
-        />
-      </div>
+  <!-- 06 — Pull quote -->
+  <section class="quote-section">
+    <PullQuote
+      quote="Qualität vor Quantität. Individualität vor Standard. Beratung vor Überredung."
+      author="BoHolz-Haus & Keitel Haus"
+      role="Drei Prinzipien, an denen sich alles misst"
+      align="center"
+    />
+  </section>
 
-      <h3>Wer wir sind</h3>
-      <p>
-        Unser Zuhause haben wir in der bayerischen Rhön in der traumhaft
-        gelegenen Kurstadt Bad Kissingen. Der tiefen Verbundenheit zur Natur ist
-        es zu verdanken, dass unser verwendeter Rohstoff kein anderer als Holz
-        sein kann. Holz ist seit jeher der ideale Hausbaupartner – durch seine
-        Witterungsbeständigkeit umsorgt und schützt er uns vor Wind und Wetter.
-      </p>
+  <!-- 07 — Was wir tun -->
+  <Divider index={7} label="Was wir tun" />
 
-      <h3>Was wir tun</h3>
-      <p>
-        Viele Familien, Paare, Singles und auch Senioren entscheiden sich für den
-        Bau einer Immobilie. Wir von BoHolz-Haus machen Ihre Vorstellungen zu
-        Realität. Individuell geplante und auf Sie zugeschnittene Hausentwürfe,
-        um Ihren Bedürfnissen gerecht zu werden. Im Zusammenspiel mit der
-        Keitel-Haus GmbH bieten wir Ihnen ein Komplettpaket aus Kompetenz,
-        Wissen und Erfahrung.
-      </p>
-    </section>
-  </article>
+  <section id="was-wir-tun" class="section">
+    <EyebrowHeadingLede
+      eyebrow="Was wir tun"
+      heading="Vier Schritte zu Ihrem"
+      highlight="BoHolz-Haus."
+      lede="Familien, Paare, Singles, Senioren — wir planen für die, die bauen. Mit Keitel Haus an unserer Seite bringen wir Kompetenz, Erfahrung und ein durchdachtes Komplettpaket auf Ihren Bauplatz."
+    >
+      <Fragment slot="eyebrow-icon">
+        <Sparkles :size={14} :stroke-width={2} />
+      </Fragment>
+    </EyebrowHeadingLede>
+
+    <div class="list-wrap">
+      <IconList items={whatWeDoItems} columns={2} client:visible />
+    </div>
+  </section>
+
+  <!-- 08 — CTA -->
+  <CTASection
+    title="Lernen wir uns"
+    highlight="kennen."
+    subtitle="Ein Erstgespräch — unverbindlich, kostenfrei. Persönlich in Bad Kissingen oder in einem unserer Vertriebsbüros."
+  >
+    <Fragment slot="actions">
+      <Button variant="primary" size="lg" href="/kontakt" client:visible>
+        Beratung vereinbaren
+      </Button>
+      <Button
+        variant="secondary"
+        size="lg"
+        href="/vor-ort-beratung"
+        client:visible
+      >
+        Standort finden
+      </Button>
+    </Fragment>
+  </CTASection>
 </Layout>
+
+<style>
+  /* ============================================================
+     Section rhythm.
+     Pages composed in `<main class="wrapper">` — direct children
+     land in the `content` grid column unless they declare
+     `.full-width`. We give every content `section` a generous
+     block padding so the page reads as a sequence of paced
+     beats rather than a wall of text.
+     ============================================================ */
+  .section {
+    padding-block: var(--spacing-5);
+  }
+
+  /* Prose column — kept narrow so editorial copy holds a
+     comfortable measure independent of the wrapper width. */
+  .prose {
+    max-width: 70ch;
+    margin-block-start: var(--spacing-4);
+    color: var(--clr-content-secondary);
+  }
+
+  .prose p {
+    margin: 0;
+  }
+
+  .prose p + p {
+    margin-block-start: var(--spacing-3);
+  }
+
+  /* ── Lead paragraph: editorial drop-cap from tablet up.
+        On mobile, no drop-cap (it cramps the column); instead the
+        opening sentence reads in italic Instrument-Serif
+        (`<i class="open">`) to mark the manifesto-ish entry. ── */
+  .prose .lead {
+    color: var(--clr-content-primary);
+    font-size: var(--fs-body-lg);
+    line-height: var(--lh-body);
+  }
+
+  .prose .lead .open {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+    color: var(--clr-content-primary);
+  }
+
+  @media (--from-tablet) {
+    /* Drop-cap kicks in at tablet — one editorial flourish per page.
+       The italic Instrument-Serif initial drops three lines into the
+       paragraph; we keep optical adjustments narrow (padding-inline-end
+       slightly less than spacing-2 reads better at the cap's optical
+       weight) — comment in case a future polish pass wants to tune. */
+    .prose .lead {
+      /* Reset the lead back to body-size at tablet so the drop-cap
+         doesn't fight an already-enlarged paragraph. */
+      font-size: var(--fs-body);
+    }
+
+    .prose .lead .open {
+      /* On tablet+, the italic opening is no longer the only marker —
+         the drop-cap carries the editorial weight — so the inline
+         italic sits in the body colour instead of competing. */
+      font-family: var(--font-secondary);
+      color: var(--clr-content-primary);
+    }
+
+    .prose .lead::first-letter {
+      font-family: var(--font-secondary);
+      font-style: italic;
+      font-weight: var(--font-weight-regular);
+      font-size: 4.5em;
+      line-height: 1;
+      float: inline-start;
+      padding-inline-end: var(--spacing-2);
+      padding-block-start: 0.05em;
+      color: var(--clr-content-primary);
+    }
+  }
+
+  /* ============================================================
+     Stats row — three StatBlocks under the partner section.
+     Stacked on mobile, three-up from tablet.
+     ============================================================ */
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+    padding-block: var(--spacing-5);
+  }
+
+  @media (--from-tablet) {
+    .stats {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--spacing-5);
+    }
+  }
+
+  /* ============================================================
+     Value triptych — full-width image row.
+     `.full-width` escapes the wrapper's content column so the
+     images bleed to the page padding edges; the inner grid
+     re-establishes consistent column gaps.
+     ============================================================ */
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2);
+    padding-block: var(--spacing-5);
+    padding-inline: var(--padding-inline);
+  }
+
+  @media (--from-tablet) {
+    .values-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--spacing-3);
+    }
+  }
+
+  .values-grid figure {
+    margin: 0;
+  }
+
+  .values-grid img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 8 / 5;
+    object-fit: cover;
+    /* Inner radius slightly smaller than section-level
+       cards (no outer container here, so radius-lg reads as
+       the editorial-image standard). */
+    border-radius: var(--radius-lg);
+    display: block;
+  }
+
+  /* ============================================================
+     PullQuote section — narrows visually, breathing block padding
+     so the quote lands as its own beat between sections.
+     ============================================================ */
+  .quote-section {
+    padding-block: var(--spacing-6);
+  }
+
+  /* IconList wrap — adds breathing room between the eyebrow
+     header and the list itself. */
+  .list-wrap {
+    margin-block-start: var(--spacing-4);
+  }
+</style>

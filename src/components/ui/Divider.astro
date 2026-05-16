@@ -1,0 +1,66 @@
+---
+interface Props {
+  /** Section index — rendered zero-padded ("01", "02"…). */
+  index?: number;
+  /** Optional label rendered after the index. */
+  label?: string;
+}
+
+const { index, label } = Astro.props;
+const indexStr =
+  index !== undefined ? String(index).padStart(2, "0") : undefined;
+---
+
+<div
+  class="divider"
+  role="separator"
+  aria-label={label ? `Abschnitt ${indexStr ?? ""} ${label}`.trim() : undefined}
+>
+  {indexStr && <span class="num">{indexStr}</span>}
+  {label && <span class="label">{label}</span>}
+  <span class="rule" aria-hidden="true"></span>
+</div>
+
+<style>
+  .divider {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    column-gap: var(--spacing-2);
+    color: var(--clr-content-tertiary);
+    padding-block: var(--spacing-3);
+  }
+
+  /* When index is omitted, collapse its column so layout doesn't pull. */
+  .divider:not(:has(.num)) {
+    grid-template-columns: auto 1fr;
+  }
+  .divider:not(:has(.label)):not(:has(.num)) {
+    grid-template-columns: 1fr;
+  }
+
+  .num {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-size: var(--fs-h5);
+    line-height: 1;
+    color: var(--clr-content-secondary);
+    font-feature-settings: "tnum";
+  }
+
+  .label {
+    font-size: var(--fs-body-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-secondary);
+    line-height: 1.2;
+  }
+
+  .rule {
+    display: block;
+    height: 1px;
+    background: var(--clr-border-secondary);
+    align-self: center;
+  }
+</style>

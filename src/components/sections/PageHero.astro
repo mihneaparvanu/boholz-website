@@ -1,0 +1,158 @@
+---
+interface Props {
+  title: string;
+  highlight?: string;
+  subtitle?: string;
+  image?: string;
+  imageAlt?: string;
+  align?: "left" | "center";
+  eyebrow?: string;
+}
+
+const {
+  title,
+  highlight,
+  subtitle,
+  image,
+  imageAlt = "",
+  align = "center",
+  eyebrow,
+} = Astro.props;
+
+const hasImage = Boolean(image);
+---
+
+<section class="hero" data-align={align} data-has-image={hasImage}>
+  {
+    hasImage && (
+      <div class="bg">
+        <img src={image} alt={imageAlt} loading="eager" />
+        <div class="scrim" />
+      </div>
+    )
+  }
+
+  <div class="inner">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1>
+      {title}
+      {highlight && <span class="highlight"> {highlight}</span>}
+    </h1>
+    {subtitle && <p class="subtitle">{subtitle}</p>}
+    {
+      Astro.slots.has("actions") && (
+        <div class="actions">
+          <slot name="actions" />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    padding-block: var(--spacing-7) var(--spacing-6);
+    padding-inline: var(--padding-inline, var(--spacing-4));
+    min-height: clamp(280px, 36vh, 480px);
+  }
+
+  .hero[data-align="center"] .inner {
+    text-align: center;
+    margin-inline: auto;
+    align-items: center;
+  }
+
+  .hero[data-align="left"] .inner {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .hero[data-has-image="true"] {
+    color: var(--clr-pure-white);
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      var(--clr-overlay) 0%,
+      var(--clr-overlay-strong) 100%
+    );
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    max-width: 64rem;
+    width: 100%;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-secondary);
+  }
+
+  .hero[data-has-image="true"] .eyebrow {
+    color: var(--clr-pure-white-soft);
+  }
+
+  h1 {
+    font-weight: var(--font-weight-regular);
+    margin: 0;
+  }
+
+  .highlight {
+    font-family: var(--font-secondary);
+    font-style: italic;
+  }
+
+  .subtitle {
+    font-size: var(--fs-body-lg);
+    color: var(--clr-content-secondary);
+    max-width: 56rem;
+  }
+
+  .hero[data-has-image="true"] .subtitle {
+    color: var(--clr-pure-white-soft);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-2);
+  }
+
+  .hero[data-align="center"] .actions {
+    justify-content: center;
+  }
+
+  @media (--mobile) {
+    .hero {
+      min-height: clamp(220px, 40vh, 360px);
+      padding-block: var(--spacing-6) var(--spacing-5);
+    }
+  }
+</style>

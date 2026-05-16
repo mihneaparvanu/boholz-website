@@ -1,0 +1,53 @@
+---
+import type { HTMLTag } from "astro/types";
+
+interface Props {
+  /** Semantic element. Default is `<p>` (Eyebrow is a label paragraph). */
+  as?: Extract<HTMLTag, "p" | "span" | "div" | "h2" | "h3" | "h4">;
+  /** Override default `--clr-content-tertiary` with another design-token colour. */
+  tone?: "tertiary" | "secondary" | "accent";
+}
+
+const { as = "p", tone = "tertiary" } = Astro.props;
+const Tag = as;
+---
+
+<Tag class="eyebrow" data-tone={tone}>
+  {Astro.slots.has("icon") && (
+    <span class="icon" aria-hidden="true">
+      <slot name="icon" />
+    </span>
+  )}
+  <slot />
+</Tag>
+
+<style>
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .icon {
+    display: inline-grid;
+    place-items: center;
+  }
+
+  .eyebrow[data-tone="tertiary"] {
+    color: var(--clr-content-tertiary);
+  }
+
+  .eyebrow[data-tone="secondary"] {
+    color: var(--clr-content-secondary);
+  }
+
+  .eyebrow[data-tone="accent"] {
+    color: var(--clr-accent-secondary);
+  }
+</style>

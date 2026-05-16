@@ -1,0 +1,81 @@
+---
+import Eyebrow from "./Eyebrow.astro";
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  /** Optional italic-serif highlight appended to the heading. */
+  highlight?: string;
+  lede?: string;
+  align?: "start" | "center";
+  level?: "h1" | "h2";
+}
+
+const {
+  eyebrow,
+  heading,
+  highlight,
+  lede,
+  align = "start",
+  level = "h2",
+} = Astro.props;
+
+const Heading = level;
+---
+
+<header class="ehl" data-align={align}>
+  {eyebrow && (
+    <Eyebrow>
+      {Astro.slots.has("eyebrow-icon") && (
+        <Fragment slot="icon">
+          <slot name="eyebrow-icon" />
+        </Fragment>
+      )}
+      {eyebrow}
+    </Eyebrow>
+  )}
+  <Heading class="heading">
+    {heading}
+    {highlight && <span class="highlight"> {highlight}</span>}
+  </Heading>
+  {lede && <p class="lede">{lede}</p>}
+</header>
+
+<style>
+  .ehl {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    max-width: 70ch;
+  }
+
+  .ehl[data-align="center"] {
+    align-items: center;
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .heading {
+    margin: 0;
+    font-weight: var(--font-weight-regular);
+    letter-spacing: var(--ls-heading);
+  }
+
+  .highlight {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+  }
+
+  .lede {
+    font-size: var(--fs-body-lg);
+    color: var(--clr-content-secondary);
+    max-width: 60ch;
+    margin: 0;
+    line-height: var(--lh-body);
+  }
+
+  .ehl[data-align="center"] .lede {
+    margin-inline: auto;
+  }
+</style>

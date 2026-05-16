@@ -1,0 +1,77 @@
+---
+type Variant = "default" | "outline" | "accent";
+type Size = "sm" | "md";
+
+interface Props {
+  variant?: Variant;
+  size?: Size;
+}
+
+const { variant = "default", size = "md" } = Astro.props;
+---
+
+<span class="badge" data-variant={variant} data-size={size}>
+  {Astro.slots.has("icon") && (
+    <span class="icon" aria-hidden="true">
+      <slot name="icon" />
+    </span>
+  )}
+  <slot />
+</span>
+
+<style>
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    border: 1px solid transparent;
+    border-radius: var(--radius-full);
+    white-space: nowrap;
+    /* Leading icon gets less inline-start padding — asymmetric for content. */
+    padding-inline: var(--spacing-2);
+  }
+
+  .icon {
+    display: inline-grid;
+    place-items: center;
+    /* Pull the icon slightly inward so the start padding reads tighter when an
+       icon leads — keeps the badge compact without changing the box width. */
+    margin-inline-start: calc(var(--spacing-1) * -0.5);
+  }
+
+  /* Sizes */
+  .badge[data-size="sm"] {
+    height: calc(var(--control-height-sm) * 0.78);
+    font-size: calc(var(--fs-body-sm) * 0.94);
+    padding-inline: var(--spacing-1) var(--spacing-2);
+  }
+
+  .badge[data-size="md"] {
+    height: var(--control-height-sm);
+    font-size: var(--fs-body-sm);
+  }
+
+  /* Variants */
+  .badge[data-variant="default"] {
+    background: var(--clr-surface-secondary);
+    color: var(--clr-content-secondary);
+    border-color: transparent;
+  }
+
+  .badge[data-variant="outline"] {
+    background: transparent;
+    color: var(--clr-content-secondary);
+    border-color: var(--clr-border-secondary);
+  }
+
+  /* Accent badge — small element ⇒ secondary accent per the project rule.
+     White text on solid accent-secondary holds 7.46:1 (AAA); the tinted
+     variant fails AA at 2.8:1, so we use solid fill instead. */
+  .badge[data-variant="accent"] {
+    background: var(--clr-accent-secondary);
+    color: var(--clr-pure-white);
+    border-color: var(--clr-accent-secondary);
+  }
+</style>

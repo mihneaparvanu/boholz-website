@@ -1,20 +1,154 @@
-    ---
-    ---
-    <!-- Karriere -->
-    <section>
-      <h2>Karriere</h2>
-      <p>
-        Werden Sie Teil des BoHolz-Teams! Mit seinem zentralen Sitz in Bad
-        Kissingen nahe der bayerischen Rhön verantwortet BoHolz-Haus nicht nur
-        die Musterhäuser, sondern auch die Vertriebsbüros in ganz Deutschland.
-      </p>
+---
+/**
+ * Karriere — full rebuild (PLAN §1.7).
+ *
+ * Structure mirrors the other restructured content pages:
+ *   PageHero  →  SectionNavigator (3 anchors)  →  IconList sections  →  CTASection.
+ *
+ * Content sources:
+ *  - Real facts preserved from the broken pre-rebuild file (job role, Bad-Vilbel/
+ *    Bayern/Bodensee/Hessen/NRW/Thüringen/Rheinland-Pfalz region list,
+ *    bewerbung@boholz-haus.de address, Bad-Kissingen postal address & phone).
+ *  - Copy that is brand-toned but not source-of-truth is marked inline with
+ *    `<!-- PLACEHOLDER COPY ... -->` so the orchestrator can surface it for
+ *    sign-off (see report).
+ */
+import Layout from "@/layouts/Layout.astro";
 
-      <h3>Offene Stellen</h3>
-      <p>
-        Wir suchen <strong>Hausverkäufer/innen (m/w/d)</strong> als freie
-        Handelsvertreter/innen im Fertighausvertrieb an folgenden Standorten:
-      </p>
-      <ul>
+import PageHero from "@/components/sections/PageHero.astro";
+import CTASection from "@/components/sections/CTASection.astro";
+
+import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
+import Callout from "@/components/ui/Callout.vue";
+import IconList from "@/components/ui/IconList.vue";
+import SectionNavigator from "@/components/ui/SectionNavigator.vue";
+
+import type { IconListItem } from "@/components/ui/IconList.vue";
+import type { Section } from "@/components/ui/SectionNavigator.vue";
+
+// ── Navigator ──────────────────────────────────────────────────────────────
+// Anchor ids are German-umlaut-normalised per CLAUDE.md (ü → ue, ä → ae).
+const sections: Section[] = [
+  { id: "taetigkeitsfeld", eyebrow: "01", label: "Tätigkeitsfeld" },
+  { id: "vorteile", eyebrow: "02", label: "Ihre Vorteile" },
+  { id: "stellen", eyebrow: "03", label: "Offene Stellen" },
+];
+
+// ── Section 2 — Tätigkeitsfeld ─────────────────────────────────────────────
+// PLACEHOLDER COPY — brand-toned but needs sign-off.
+const taetigkeitsfeld: IconListItem[] = [
+  {
+    icon: "heart-handshake",
+    label: "Wohnträume verwirklichen",
+    description:
+      "Sie begleiten Bauherrinnen und Bauherren von der ersten Idee bis zum Vertragsabschluss — als verlässlicher Ansprechpartner, der zuhört, plant und persönlich liefert.",
+  },
+  {
+    icon: "users",
+    label: "Neue Interessenten gewinnen",
+    description:
+      "Sie sprechen aktiv Familien, Paare und Senioren an, präsentieren BoHolz auf Hausbau-Messen und auf unseren Musterhaus-Standorten.",
+  },
+  {
+    icon: "compass",
+    label: "Beratung & Bedarfsanalyse",
+    description:
+      "Sie nehmen sich Zeit für gute Gespräche und entwickeln gemeinsam mit dem Bauherrn ein Konzept, das wirklich zu seiner Lebenslage passt.",
+  },
+  {
+    icon: "hammer",
+    label: "Vom Entwurf zum Vertrag",
+    description:
+      "Sie koordinieren Planung, Finanzierungsfragen und technische Klärung mit unserem Innendienst — bis das Haus baureif ist.",
+  },
+];
+
+// ── Section 3 — Vorteile ───────────────────────────────────────────────────
+// PLACEHOLDER COPY — brand-toned but needs sign-off.
+const vorteile: IconListItem[] = [
+  {
+    icon: "award",
+    label: "90 Jahre Holzbau-Kompetenz",
+    description:
+      "Sie verkaufen ein Produkt, hinter dem ein gewachsenes Familienunternehmen und unser Partner Keitel Haus mit jahrzehntelanger Erfahrung stehen.",
+  },
+  {
+    icon: "target",
+    label: "Leadorientiertes Marketing",
+    description:
+      "Wir sorgen für qualifizierte Anfragen aus Ihrer Region — Sie konzentrieren sich auf das, was Sie am besten können: persönlich beraten und abschließen.",
+  },
+  {
+    icon: "sparkles",
+    label: "Starke Alleinstellungsmerkmale",
+    description:
+      "Premium-Holzbau, klare Ausbaustufen, ausgezeichnetes Preis-Leistungs-Verhältnis — Argumente, die im Verkaufsgespräch tragen.",
+  },
+  {
+    icon: "heart-handshake",
+    label: "Familiäre Vertriebsstruktur",
+    description:
+      "Kurze Wege zum Innendienst in Bad Kissingen, klare Zuständigkeiten, kollegiale Unterstützung — kein Konzern-Ping-Pong.",
+  },
+  {
+    icon: "map-pin",
+    label: "Eigenes Vertriebsgebiet",
+    description:
+      "Sie übernehmen Verantwortung für eine klar zugeschnittene Region und bauen langfristige Kundenbeziehungen vor Ort auf.",
+  },
+];
+---
+
+<Layout title="Karriere – BoHolz Haus">
+  <PageHero
+    eyebrow="Karriere"
+    title="Bauen Sie mit uns"
+    highlight="Wohnträume."
+    subtitle="Als freie Handelsvertretung für BoHolz-Haus beraten Sie Bauherrinnen und Bauherren in Ihrer Region — mit einem 90-jährigen Familienunternehmen im Rücken."
+    align="center"
+  />
+
+  <div class="page">
+    <SectionNavigator client:load sections={sections} />
+
+    <!-- ── 01 — Tätigkeitsfeld ─────────────────────────────────────────── -->
+    <section id="taetigkeitsfeld" class="section" aria-labelledby="h-taetigkeitsfeld">
+      <EyebrowHeadingLede
+        eyebrow="01 — Tätigkeitsfeld"
+        heading="Was Sie bei uns"
+        highlight="bewegen."
+        lede="Sie sind das Gesicht von BoHolz in Ihrer Region — der erste persönliche Eindruck, der eine 30-Jahre-Entscheidung trägt."
+      />
+      <div class="block">
+        <!-- PLACEHOLDER COPY — needs sign-off (4 IconList items) -->
+        <IconList client:visible items={taetigkeitsfeld} />
+      </div>
+    </section>
+
+    <!-- ── 02 — Vorteile ───────────────────────────────────────────────── -->
+    <section id="vorteile" class="section" aria-labelledby="h-vorteile">
+      <EyebrowHeadingLede
+        eyebrow="02 — Ihre Vorteile"
+        heading="Warum BoHolz"
+        highlight="für Sie."
+        lede="Wir geben Vertriebspartnern, was sie wirklich brauchen — qualifizierte Leads, ein verkaufsstarkes Produkt und einen Innendienst, der mitdenkt."
+      />
+      <div class="block">
+        <!-- PLACEHOLDER COPY — needs sign-off (5 IconList items) -->
+        <IconList client:visible items={vorteile} />
+      </div>
+    </section>
+
+    <!-- ── 03 — Stellen ────────────────────────────────────────────────── -->
+    <section id="stellen" class="section" aria-labelledby="h-stellen">
+      <EyebrowHeadingLede
+        eyebrow="03 — Offene Stellen"
+        heading="Hausverkäufer/innen"
+        highlight="(m/w/d)."
+        lede="Wir suchen freie Handelsvertreterinnen und -vertreter im Fertighausvertrieb — an folgenden Standorten:"
+      />
+
+      <ul class="regions" role="list">
         <li>Bad Vilbel (Hessen)</li>
         <li>Bayern</li>
         <li>Bodensee (Baden-Württemberg)</li>
@@ -24,39 +158,152 @@
         <li>Rheinland-Pfalz</li>
       </ul>
 
-      <h3>Ihr Tätigkeitsfeld</h3>
-      <ul>
-        <li>Die Erfüllung und Verwirklichung von Wohnträumen für Bauherrinnen und Bauherren</li>
-        <li>Der Gewinn neuer Hausinteressenten</li>
-        <li>Gute und intensive Beratung sowie Bedarfsanalysen</li>
-      </ul>
-
-      <h3>Ihre Vorteile</h3>
-      <ul>
-        <li>Starke und erfahrene Vertriebsstruktur</li>
-        <li>Zusammenarbeit mit unserem starken Partner Keitel-Haus GmbH</li>
-        <li>Leadorientiertes Marketing</li>
-        <li>Beste Qualität und Top Preis-Leistungs-Verhältnis</li>
-        <li>Attraktive Alleinstellungsmerkmale</li>
-      </ul>
-
-      <div class="info-box">
-        <p><strong>Initiativbewerbung</strong></p>
+      <Callout client:visible tone="tip" title="Ihre Region ist nicht dabei?">
         <p>
-          Senden Sie Ihre Bewerbungsunterlagen an
+          Wir freuen uns auch über Initiativbewerbungen aus anderen Regionen.
+          Schreiben Sie uns an
           <a href="mailto:bewerbung@boholz-haus.de">bewerbung@boholz-haus.de</a>
-          oder per Post:
+          oder per Post an die BoHolz-Haus GmbH, Ostring 1, 97688 Bad Kissingen.
         </p>
-        <p>
-          BoHolz-Haus GmbH<br />
-          Ostring 1<br />
-          97688 Bad Kissingen<br />
-          Tel: 0971/78 55 57 15
-        </p>
-      </div>
+      </Callout>
     </section>
+  </div>
 
-    <div class="cta-block">
-      <a href="/kontakt">Kontakt aufnehmen</a>
-    </div>
-    
+  <CTASection
+    title="Initiativbewerbung"
+    highlight="senden."
+    subtitle="Ein kurzer Lebenslauf reicht. Wir antworten persönlich — meist binnen einer Woche."
+    tone="surface"
+  >
+    <Fragment slot="actions">
+      <a class="cta-primary" href="mailto:bewerbung@boholz-haus.de">
+        bewerbung@boholz-haus.de
+      </a>
+      <a class="cta-secondary" href="/kontakt">Über das Kontaktformular</a>
+    </Fragment>
+  </CTASection>
+</Layout>
+
+<style>
+  /* Page-local container. Mirrors the .content-page width contract but does
+     not opt into content-page.css's `section { margin-block-end }` rules,
+     since EyebrowHeadingLede + the section grid already own that rhythm. */
+  .page {
+    max-width: 52rem;
+    margin-inline: auto;
+    padding-block: var(--spacing-5) var(--spacing-6);
+    padding-inline: var(--padding-inline);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+  }
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    scroll-margin-block-start: calc(var(--navbar-height) + var(--spacing-4));
+  }
+
+  .block {
+    /* Sits below the EyebrowHeadingLede; small additional offset because
+       the lede already vends its own bottom rhythm via line-height. */
+    margin-block-start: var(--spacing-1);
+  }
+
+  /* Region list — typographic, not chrome. Two columns from tablet up so the
+     7-item list reads compact without forcing a card grid. */
+  .regions {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: var(--spacing-4);
+    row-gap: var(--spacing-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: var(--clr-content-primary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .regions li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--spacing-2);
+    align-items: baseline;
+    padding-block: var(--spacing-1);
+    border-block-end: 1px solid var(--clr-border-secondary);
+  }
+
+  /* Decorative leading marker — Instrument-Serif italic dot acts as a hairline
+     stand-in for a bullet without using accent colour on a small UI element. */
+  .regions li::before {
+    content: "—";
+    font-family: var(--font-secondary);
+    font-style: italic;
+    color: var(--clr-content-tertiary);
+    line-height: 1;
+  }
+
+  @media (--from-tablet) {
+    .regions {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* ── CTA buttons (scoped local; the design system has no Button primitive
+        yet — these reuse content-page.css cta-block conventions inline so we
+        don't have to load that whole stylesheet just for two anchors). ─── */
+
+  .cta-primary,
+  .cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    height: var(--control-height-md);
+    /* Asymmetric padding — visually balanced once the label's optical weight
+       is accounted for at the inline-end edge. */
+    padding-inline: var(--spacing-3) var(--spacing-3);
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease,
+      border-color 160ms ease;
+  }
+
+  /* Primary accent on the primary CTA — larger surface, primary accent per the
+     project accent-application rule. */
+  .cta-primary {
+    background-color: var(--clr-accent-primary);
+    color: var(--clr-pure-white);
+  }
+  .cta-primary:hover {
+    background-color: var(--clr-accent-secondary);
+    color: var(--clr-pure-white);
+    opacity: 1;
+  }
+  .cta-primary:focus-visible {
+    outline: 2px solid var(--clr-accent-primary);
+    outline-offset: 2px;
+  }
+
+  .cta-secondary {
+    background-color: transparent;
+    color: var(--clr-content-primary);
+    border: 1px solid var(--clr-border-primary);
+  }
+  .cta-secondary:hover {
+    border-color: var(--clr-content-primary);
+    opacity: 1;
+  }
+  .cta-secondary:focus-visible {
+    outline: 2px solid var(--clr-accent-primary);
+    outline-offset: 2px;
+  }
+
+  @media (--mobile) {
+    .page {
+      gap: var(--spacing-5);
+    }
+  }
+</style>

@@ -1,0 +1,71 @@
+---
+export type DefinitionItem = {
+  term: string;
+  description: string;
+};
+
+interface Props {
+  items: DefinitionItem[];
+  /**
+   * Two-column grid from `--from-tablet` (default) or never (stacked on every
+   * viewport). Stacked is useful inside narrow content slots.
+   */
+  layout?: "grid" | "stacked";
+}
+
+const { items, layout = "grid" } = Astro.props;
+---
+
+<dl class="dl" data-layout={layout}>
+  {
+    items.map(({ term, description }) => (
+      <div class="row">
+        <dt class="term">{term}</dt>
+        <dd class="desc">{description}</dd>
+      </div>
+    ))
+  }
+</dl>
+
+<style>
+  .dl {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: var(--spacing-1);
+    padding-block: var(--spacing-3);
+    border-block-end: 1px solid var(--clr-border-secondary);
+  }
+
+  .row:last-child {
+    border-block-end: 0;
+  }
+
+  .term {
+    margin: 0;
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-primary);
+    line-height: var(--lh-heading);
+  }
+
+  .desc {
+    margin: 0;
+    color: var(--clr-content-secondary);
+    line-height: var(--lh-body);
+    max-width: 60ch;
+  }
+
+  @media (--from-tablet) {
+    .dl[data-layout="grid"] .row {
+      grid-template-columns: minmax(8rem, 14rem) 1fr;
+      column-gap: var(--spacing-4);
+      align-items: baseline;
+    }
+  }
+</style>

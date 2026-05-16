@@ -1,0 +1,7 @@
+- [Style system tokens](style-system-tokens.md) — full inventory of src/style/ (colors, spacing, type, radii, breakpoints, gaps, icon stroke/size conventions, Astro↔Vue icon prop pattern)
+- [Accent application rule](feedback_accent_application.md) — primary accent on larger elements, secondary on smaller elements
+- [Coordination with pages team](coordination-with-pages-team.md) — frozen vs joint surfaces when a parallel page-assembly stream is running; re-engagement triggers
+- [Astro→Vue prop syntax](feedback_astro_vue_prop_syntax.md) — use `prop={value}` not `:prop="value"`; kebab attributes don't map to camelCase Vue props
+- [Homepage mobile redesign priority](project_homepage-mobile-redesign-priority.md) — user-flagged top priority 2026-05-17; outranks campaign pages; full brief in HOMEPAGE-MOBILE-ANALYSIS.md
+- [Design work state](project_design-work-state.md) — read-on-resume crib sheet: phase status, frozen surface, open decisions, pick-up checklist
+- [Skip verification screenshots](feedback_skip-verification-screenshots.md) — user prefers no Playwright/screenshot loop; build → ship; a11y-contrast-auditor still OK

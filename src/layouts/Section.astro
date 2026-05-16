@@ -58,19 +58,19 @@ const { heading1, heading2, highlight, subheading } = Astro.props;
   }
 
   .headings h2 {
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   .highlight {
     font-family: var(--font-secondary);
     font-style: italic;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   .heading-group p {
     color: var(--clr-content-secondary);
     max-width: 56rem;
-    font-weight: 400;
+    font-weight: var(--font-weight-regular);
   }
 </style>
 

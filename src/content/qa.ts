@@ -34,13 +34,15 @@ export const qaCategories: QuestionCategory[] = [
       },
       {
         id: "unterschied-massivhaus",
-        question: "Wie unterscheidet sich ein BoHolz Haus von einem Massivhaus?",
+        question:
+          "Wie unterscheidet sich ein BoHolz Haus von einem Massivhaus?",
         answer:
           "<p>Kürzere Bauzeit, höhere Energieeffizienz und geringere Kosten bei gleicher Qualität und Langlebigkeit.</p>",
       },
       {
         id: "vorteile-vs-steinhaus",
-        question: "Welche Vorteile haben Fertighäuser im Vergleich zu Steinhäusern?",
+        question:
+          "Welche Vorteile haben Fertighäuser im Vergleich zu Steinhäusern?",
         answer:
           "<ul><li><strong>Energieeffizienz:</strong> Dank innovativer Bauweise und hochwertiger Dämmung helfen Fertighäuser, Energiekosten zu senken.</li><li><strong>Kosteneffizienz:</strong> Geringere Unterhaltskosten und eine schnellere Bauzeit reduzieren die Gesamtausgaben.</li><li><strong>Zeitersparnis:</strong> Die verkürzte Bauphase spart nicht nur Miete, sondern auch Bereitstellungszinsen.</li><li><strong>Finanzielle Vorteile:</strong> Viele Banken bieten mittlerweile günstigere Finanzierungskonditionen für Fertighäuser an.</li><li><strong>Fördermöglichkeiten:</strong> Fertighäuser qualifizieren sich häufiger für höhere staatliche Förderungen.</li></ul>",
       },
@@ -76,7 +78,8 @@ export const qaCategories: QuestionCategory[] = [
       },
       {
         id: "werk-besichtigen",
-        question: "Kann ich das Werk besichtigen, in dem mein Fertighaus entsteht?",
+        question:
+          "Kann ich das Werk besichtigen, in dem mein Fertighaus entsteht?",
         answer:
           "<p>Ja, mit unseren Kunden vereinbaren wir regelmäßige Werksführungen bei unserem starken Partner Keitel-Haus in 74585 Rot am See-Brettheim (bei Rothenburg o.d. Tauber). Gerne können Sie auf Wunsch auch persönliche Einzeltermine vereinbaren.</p>",
       },

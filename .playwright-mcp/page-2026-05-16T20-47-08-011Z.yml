@@ -1,0 +1,425 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - list [ref=e4]:
+      - listitem [ref=e5]:
+        - link "Plan" [ref=e6] [cursor=pointer]:
+          - /url: plan
+      - listitem [ref=e7]:
+        - link "Book" [ref=e8] [cursor=pointer]:
+          - /url: book
+      - listitem [ref=e9]:
+        - link "Fly" [ref=e10] [cursor=pointer]:
+          - /url: experience
+      - listitem [ref=e11]:
+        - link "Koru" [ref=e12] [cursor=pointer]:
+          - /url: /koru
+      - listitem [ref=e13]:
+        - link "Help" [ref=e14] [cursor=pointer]:
+          - /url: help-and-contact
+    - navigation "navigation" [ref=e20]:
+      - link "Long haul experience" [ref=e23] [cursor=pointer]:
+        - /url: the-long-haul-experience
+      - button "show more menus" [ref=e25] [cursor=pointer]:
+        - generic [ref=e26]: More
+        - img [ref=e27]
+  - main [ref=e30]:
+    - generic [ref=e40]:
+      - heading "Economy Skynest™" [level=1] [ref=e41]
+      - generic [ref=e42]:
+        - generic [ref=e43]: COMING SOON
+        - button "Next section" [ref=e44] [cursor=pointer]:
+          - img [ref=e46]
+    - main [ref=e48]:
+      - generic [ref=e55]:
+        - paragraph [ref=e56]: On this page
+        - generic [ref=e57]:
+          - generic [ref=e58]:
+            - link "What is Skynest?" [ref=e59] [cursor=pointer]:
+              - /url: /economy-skynest#skynest
+              - img [ref=e60]
+              - generic [ref=e62]: What is Skynest?
+            - link "How Skynest works" [ref=e63] [cursor=pointer]:
+              - /url: /economy-skynest#facts
+              - img [ref=e64]
+              - generic [ref=e66]: How Skynest works
+            - link "Skynest amenities" [ref=e67] [cursor=pointer]:
+              - /url: /economy-skynest#amenities
+              - img [ref=e68]
+              - generic [ref=e70]: Skynest amenities
+          - generic [ref=e71]:
+            - link "Explore the Skynest" [ref=e72] [cursor=pointer]:
+              - /url: /economy-skynest#explore
+              - img [ref=e73]
+              - generic [ref=e75]: Explore the Skynest
+            - link "Accessing the Skynest" [ref=e76] [cursor=pointer]:
+              - /url: /economy-skynest#access
+              - img [ref=e77]
+              - generic [ref=e79]: Accessing the Skynest
+            - link "More about Skynest" [ref=e80] [cursor=pointer]:
+              - /url: /economy-skynest#more
+              - img [ref=e81]
+              - generic [ref=e83]: More about Skynest
+      - generic [ref=e89]:
+        - generic [ref=e90]:
+          - generic [ref=e91]:
+            - generic [ref=e92]: COMING SOON
+            - heading "Economy Skynest™ Your own nest in the sky" [level=2] [ref=e93]:
+              - text: Economy Skynest™
+              - img [ref=e94]
+              - text: Your own nest in the sky
+            - generic [ref=e96]:
+              - paragraph [ref=e98]: Economy Skynest™ is the world's first sleep pods in the sky.
+              - generic [ref=e100]:
+                - paragraph [ref=e101]: Skynest features six individual lie-flat nests designed for Economy and Premium Economy passengers. Book a four-hour session to leave your seat behind, recharge mid-journey, and enjoy a quiet, private space to rest.
+                - paragraph [ref=e102]:
+                  - strong [ref=e103]: "Nest dimensions:"
+                  - text: Each nest is around 203cm (6.6 feet/ 80 inches) in length, and width at the shoulder is around 64cm (25 inches), tapering to around 41cm (16 inches) at the feet.
+                - paragraph [ref=e104]:
+                  - strong [ref=e105]: Coming soon exclusively to select ultra long-haul flights between New York and Auckland. On sale 18 May, travel from November 2026.
+          - paragraph [ref=e107]:
+            - text: Skynest is located between the Economy and Premium Economy cabins onboard our
+            - link "Boeing 787-9 V5 aircraft" [ref=e108] [cursor=pointer]:
+              - /url: /seat-map-boeing-787-9-5
+            - text: .
+        - img "Economy Skynest nesters in the Skynest" [ref=e111]
+      - complementary "How Skynest works" [ref=e115]:
+        - generic [ref=e116]:
+          - heading "How Skynest works" [level=2] [ref=e117]
+          - generic [ref=e119]:
+            - generic [ref=e120]:
+              - heading "Skynest is an add-on" [level=3] [ref=e121]
+              - generic [ref=e122]: You can book a four-hour Skynest session in addition to your Economy or Premium Economy seat. Sessions are planned outside meal service and one session can be booked per passenger, per flight. For all-flight comfort, explore our other options.
+              - link "Your experience options" [ref=e124] [cursor=pointer]:
+                - /url: /economy-skynest#comfort
+            - generic [ref=e125]:
+              - heading "Who can book Skynest?" [level=3] [ref=e126]
+              - generic [ref=e127]: Skynest is available to Economy and Premium Economy passengers aged 15 years and older. Depending on your travel group, you may want to check out our other comfort options such as Skycouch™.
+              - link "Compare Skynest and Skycouch" [ref=e129] [cursor=pointer]:
+                - /url: /economy-skynest#comparison
+            - generic [ref=e130]:
+              - heading "Accessing the Skynest" [level=3] [ref=e131]
+              - generic [ref=e132]: You'll need to get in and out of the nest on your own, which may involve bending, kneeling, crawling, or climbing. Top and middle nests are elevated, while bottom nests are at floor level and may be easier to access.
+              - link "More about accessing Skynest" [ref=e134] [cursor=pointer]:
+                - /url: /economy-skynest#access
+            - generic [ref=e135]:
+              - heading "Booking Skynest" [level=3] [ref=e136]
+              - generic [ref=e137]: Skynest will be available on our Boeing 787-9 V5 aircraft, on select ultra long-haul flights between New York and Auckland. On sale 18 May, travel from November 2026.
+              - generic:
+                - link:
+                  - /url: https://flightbookings.airnewzealand.com/vbook/actions/ext-search?searchType=flexible&searchLegs%5B0%5D.originPoint=**ORIGINCODE**&tripType=return&adults=1
+      - generic [ref=e144]:
+        - heading "Rest in your own nest A little slice of calm in the sky" [level=2] [ref=e146]:
+          - text: Rest in your own nest
+          - img [ref=e147]
+          - text: A little slice of calm in the sky
+        - generic [ref=e149]:
+          - img "Economy Skynest bunk-style sleep pods with individual compartments and lighting" [ref=e152]
+          - generic [ref=e155]: Settle in - your Skynest is fitted with a full-size pillow, crisp sheets, and a blanket, all refreshed between each session.
+        - generic [ref=e156]:
+          - img "Economy Skynest Nestcessities amenity kit provided for passenger comfort" [ref=e159]
+          - generic [ref=e162]: A complimentary Nestcessities amenity kit provides an eye mask, ear plugs, socks, toothbrush and toothpaste, and Aotea hand cream.
+      - generic [ref=e167]:
+        - img "Nesting Guide" [ref=e171]
+        - generic [ref=e173]:
+          - heading "Nesting Guide" [level=2] [ref=e174]
+          - generic [ref=e175]:
+            - heading "Your Skynest experience guide" [level=3] [ref=e176]
+            - paragraph [ref=e177]: From what to pack and how to settle into your nest, to what you can expect onboard during your session and tips on etiquette from our Nestiquette, here's everything you need to know to make the most of your Skynest session.
+          - link "Nesting Guide" [ref=e179] [cursor=pointer]:
+            - /url: /economy-skynest-nesting-guide
+      - generic [ref=e188]:
+        - generic [ref=e190]:
+          - heading "Explore the Skynest" [level=2] [ref=e191]
+          - paragraph [ref=e193]: "Each Skynest session is designed to offer a true break during your journey. Here's what's included:"
+        - list [ref=e197]:
+          - listitem [ref=e198]:
+            - generic [ref=e200]:
+              - img "Economy Skynest privacy curtain closed by flight attendant" [ref=e204]
+              - generic [ref=e206]:
+                - heading "Privacy curtain" [level=3] [ref=e207]:
+                  - generic [ref=e208]: Privacy curtain
+                  - img [ref=e209]
+                - generic [ref=e211]: Each nest has a mesh curtain to give you a sense of your own space. The Skynest has its own curtain too.
+          - listitem [ref=e212]:
+            - generic [ref=e214]:
+              - img "Passenger using reading light with ambient lighting inside Economy Skynest sleep pod" [ref=e218]
+              - generic [ref=e220]:
+                - heading "Lighting" [level=3] [ref=e221]:
+                  - generic [ref=e222]: Lighting
+                  - img [ref=e223]
+                - generic [ref=e225]: Ambient nest lighting designed for rest, along with a reading light if you need it.
+          - listitem [ref=e226]:
+            - generic [ref=e228]:
+              - img "Passenger placing personal items into storage compartment inside Economy Skynest sleep pod" [ref=e232]
+              - generic [ref=e234]:
+                - heading "Personal stowage" [level=3] [ref=e235]:
+                  - generic [ref=e236]: Personal stowage
+                  - img [ref=e237]
+                - generic [ref=e239]: There's space for small personal items at the head of the nest, and a strap at the end for shoes if you bring them.
+          - listitem [ref=e240]:
+            - generic [ref=e242]:
+              - img "Passenger charging a phone using USB-A and USB-C ports inside Economy Skynest sleep pod" [ref=e246]
+              - generic [ref=e248]:
+                - heading "USB charging outlets" [level=3] [ref=e249]:
+                  - generic [ref=e250]: USB charging outlets
+                  - img [ref=e251]
+                - generic [ref=e253]: Both USB-A and USB-C to keep your devices powered while you rest and recharge.
+          - listitem [ref=e254]:
+            - generic [ref=e256]:
+              - img "Passenger resting comfortably inside Economy Skynest sleep pod with airflow ventilation" [ref=e260]
+              - generic [ref=e262]:
+                - heading "Ventilation outlet" [level=3] [ref=e263]:
+                  - generic [ref=e264]: Ventilation outlet
+                  - img [ref=e265]
+                - generic [ref=e267]: Designed to keep air flowing and maintain comfort throughout your session.
+          - listitem [ref=e268]:
+            - generic [ref=e270]:
+              - img "Passenger with fastened seatbelt inside Economy Skynest sleep pod" [ref=e274]
+              - generic [ref=e276]:
+                - heading "Seatbelt" [level=3] [ref=e277]:
+                  - generic [ref=e278]: Seatbelt
+                  - img [ref=e279]
+                - generic [ref=e281]: Keep your seatbelt fastened over your blanket so you can rest undisturbed, even if the seatbelt sign comes on.
+          - listitem [ref=e282]:
+            - generic [ref=e284]:
+              - img "Cabin crew assisting passenger inside Economy Skynest sleep pod" [ref=e288]
+              - generic [ref=e290]:
+                - heading "Crew support" [level=3] [ref=e291]:
+                  - generic [ref=e292]: Crew support
+                  - img [ref=e293]
+                - generic [ref=e295]: A call button is within easy reach if you need anything from our cabin crew while you're nesting.
+      - generic [ref=e302]:
+        - heading "Skynest access Requires bending, kneeling, crawling, or climbing into the space" [level=2] [ref=e304]:
+          - text: Skynest access
+          - img [ref=e305]
+          - text: Requires bending, kneeling, crawling, or climbing into the space
+        - generic [ref=e307]:
+          - img "Passenger climbing into top sleep pod of Economy Skynest using central steps and handrails" [ref=e310]
+          - generic [ref=e311]:
+            - generic [ref=e313]: Top nests (Nests 1 and 2) are accessed from small central steps, similar to a ladder, before climbing in. There are hand rails for stability. Top nests are approximately 1.6m (65 inches) from the ground.
+            - link "Watch how the top nests are accessed" [ref=e314] [cursor=pointer]:
+              - /url: /economy-skynest-nesting-guide#top-access
+              - generic [ref=e315]: Watch how the top nests are accessed
+              - img [ref=e316]
+        - generic [ref=e318]:
+          - img "Passenger entering middle Economy Skynest sleep pod from central steps" [ref=e321]
+          - generic [ref=e322]:
+            - generic [ref=e324]: Middle nests (Nests 3 and 4) can generally be accessed while standing. You can sit on it and shuffle in, or get in with some help from a step on the ladder. Middle nests are approximately 1m (36 inches) from the ground.
+            - link "Watch how the middle nests are accessed" [ref=e325] [cursor=pointer]:
+              - /url: /economy-skynest-nesting-guide#middle-access
+              - generic [ref=e326]: Watch how the middle nests are accessed
+              - img [ref=e327]
+        - generic [ref=e329]:
+          - img "Passenger getting into the bottom Economy Skynest sleep pod" [ref=e332]
+          - generic [ref=e333]:
+            - generic [ref=e335]: Bottom nests (Nests 5 and 6) are at ground level, so require bending down to enter the nest. Bottom nests are approximately 10cm (4 inches) from the ground.
+            - link "Watch how the bottom nests are accessed" [ref=e336] [cursor=pointer]:
+              - /url: /economy-skynest-nesting-guide#bottom-access
+              - generic [ref=e337]: Watch how the bottom nests are accessed
+              - img [ref=e338]
+      - generic [ref=e347]:
+        - heading "Travelling with children" [level=2] [ref=e348]
+        - paragraph [ref=e349]: If you're travelling with children, please note that children under 12 years old must be accompanied in the cabin at all times by someone 15 years or older. If there are two adults in your travelling party, then one adult can use Skynest while the other stays in the cabin with the child.
+        - heading "Special assistance" [level=2] [ref=e350]
+        - paragraph [ref=e351]: Passengers requiring special assistance are welcome to book Skynest. As everyone's needs are different, it may not be the right fit for every passenger. To use the Skynest safely, you'll need to be able to get in and out of your nest independently, or with the help of your own safety assistant if you're travelling with one.
+        - paragraph [ref=e352]: Our cabin crew are here to help you feel comfortable and informed. While they are unable to provide physical assistance, lifting, or transfer support, they will provide a briefing regarding the features of the Skynest. Rest assured that our cabin crew will carry out regular checks of the Skynest throughout the session.
+        - paragraph [ref=e353]: For passengers looking for easier access, the bottom nests (Nests 5 and 6) and middle nests (Nests 3 and 4) are generally more accessible than the top nests (Nests 1 and 2), and may be the best option when available.
+        - paragraph [ref=e354]:
+          - text: You can learn more about
+          - link "flying with a wheelchair" [ref=e355] [cursor=pointer]:
+            - /url: /special-assistance-service-people-flying-with-wheelchairs
+          - text: ","
+          - link "support for blind or low vision passengers" [ref=e356] [cursor=pointer]:
+            - /url: /special-assistance-blind-and-visually-impaired
+          - text: ", or"
+          - link "flying with a service dog" [ref=e357] [cursor=pointer]:
+            - /url: /special-assistance-flying-service-dog
+          - text: . If you have any questions before you fly, please get in touch with our team.
+        - paragraph [ref=e358]
+      - generic [ref=e365]:
+        - paragraph [ref=e366]
+        - paragraph [ref=e367]
+      - generic [ref=e369]:
+        - heading "Skynest or Skycouch? Choose your comfort." [level=2] [ref=e370]
+        - generic [ref=e371]:
+          - heading "What is it?" [level=3] [ref=e373]
+          - generic [ref=e374]:
+            - strong [ref=e376]: Skynest
+            - paragraph
+            - paragraph [ref=e377]: Skynest is a lie-flat experience in a dedicated part of the Economy cabin, available for Economy and Premium Economy passengers. There are six nests available for six nesters at a time.
+            - paragraph
+            - strong [ref=e379]: Skycouch
+            - paragraph
+            - paragraph [ref=e380]: Skycouch is a row of Economy seats that convert to a lie-flat couch space. Enjoy Skycouch solo, in a pair, or with family.
+            - paragraph
+            - separator [ref=e381]
+        - generic [ref=e382]:
+          - heading "How it works" [level=3] [ref=e384]
+          - generic [ref=e385]:
+            - strong [ref=e387]: Skynest
+            - paragraph
+            - paragraph [ref=e388]: Skynest is your own lie-flat space to enjoy for a four-hour session. You'll be away from your seat for that time to recharge in comfort and enjoy a world of your own.
+            - paragraph
+            - strong [ref=e390]: Skycouch
+            - paragraph [ref=e391]: Skycouch seats are like standard Economy seats, but with adjustable leg rests. Raise them halfway for a relaxed recline, or all the way up to create a lie-flat couch space.
+            - separator [ref=e392]
+        - generic [ref=e393]:
+          - heading "Benefits" [level=3] [ref=e395]
+          - generic [ref=e396]:
+            - strong [ref=e398]: Skynest
+            - paragraph [ref=e399]: Skynest provides a break from your seat. It's a great way to break up your journey and have the ability to lie flat in your own calm space for four hours.
+            - strong [ref=e401]: Skycouch
+            - paragraph [ref=e402]: Skycouch provides additional space to spread out in a seat that's yours for the entire journey. It's a great option if you want a more flexible space for a young child or infant, or even for yourself.
+            - separator [ref=e403]
+        - generic [ref=e404]:
+          - heading "Amenities" [level=3] [ref=e406]
+          - generic [ref=e407]:
+            - strong [ref=e409]: Skynest
+            - paragraph
+            - paragraph [ref=e410]: Skynest comes fitted with fresh linen, a blanket and pillow for your session. You'll also receive a complimentary Nestcessities amenity kit complete with earplugs and eye mask.
+            - paragraph
+            - strong [ref=e412]: Skycouch
+            - paragraph [ref=e413]: Skycouch comes with extra bedding, a seat liner and Skycouch kit with an adult/child loop and cuddle belt so you can stretch out safely and enjoy your space in comfort.
+            - separator [ref=e414]
+        - generic [ref=e415]:
+          - heading "Things to know" [level=3] [ref=e417]
+          - generic [ref=e418]:
+            - strong [ref=e420]: Skynest
+            - paragraph
+            - paragraph [ref=e421]: Skynest access requires getting in and out of the nest on your own, which may involve bending, kneeling, crawling, or climbing to enter and orientate yourself around within the space.
+            - paragraph [ref=e422]: Nesters must be at least 15 years old or older.
+            - paragraph
+            - strong [ref=e424]: Skycouch
+            - paragraph
+            - paragraph [ref=e425]: Skycouch is a lie-flat couch experience rather than a bed. It's a great option if travelling with kids and infants.
+            - paragraph
+            - separator [ref=e426]
+        - generic [ref=e427]:
+          - heading "Measurements" [level=3] [ref=e429]
+          - generic [ref=e430]:
+            - strong [ref=e432]: Skynest
+            - paragraph [ref=e433]: 2-metre (6ft 5") x 58cm (23") at widest point
+            - strong [ref=e435]: Skycouch
+            - paragraph [ref=e436]: 1.55m (5ft 1") long x 74cm (29") wide
+            - separator [ref=e437]
+        - generic [ref=e438]:
+          - heading "Availability" [level=3] [ref=e440]
+          - generic [ref=e441]:
+            - strong [ref=e443]: Skynest
+            - paragraph
+            - paragraph [ref=e444]: Skynest is located between the Economy and Premium Economy cabins onboard our Boeing 787-9 V5 aircraft.
+            - paragraph
+            - strong [ref=e446]: Skycouch
+            - paragraph [ref=e447]: Skycouch seats are located in some rows within the Economy cabin of our Boeing 777-300ER and 787-9 aircraft. Skycouch is not offered on 777-367ER aircraft.
+            - separator [ref=e448]
+      - complementary "Other experience options" [ref=e452]:
+        - generic [ref=e453]:
+          - heading "Other experience options" [level=2] [ref=e454]
+          - generic [ref=e456]:
+            - generic [ref=e457]:
+              - generic [ref=e461]:
+                - link "Premium Economy":
+                  - /url: /long-haul-premium-economy
+                  - img "Premium Economy"
+              - generic [ref=e463]:
+                - heading "Premium Economy" [level=3] [ref=e464]
+                - generic [ref=e465]: Upgrade to enjoy premium seating, generous legroom, delicious cuisine and inflight entertainment. Easy boarding with premium check-in and luxury onboard amenities.
+                - generic [ref=e466]: Premium cabin option
+                - link "Explore Premium Economy" [ref=e468] [cursor=pointer]:
+                  - /url: /long-haul-premium-economy
+            - generic [ref=e469]:
+              - generic [ref=e473]:
+                - link "Economy Skycouch™":
+                  - /url: /economy-skycouch
+                  - img "Economy Skycouch™"
+              - generic [ref=e475]:
+                - heading "Economy Skycouch™" [level=3] [ref=e476]
+                - generic [ref=e477]: An innovative seating arrangement that turns your row of Economy seats into a couch space that's yours for the journey. It's a great option for families or couples, or enjoy it all for yourself.
+                - generic [ref=e478]: Economy comfort option
+                - link "More about Economy Skycouch" [ref=e480] [cursor=pointer]:
+                  - /url: /economy-skycouch
+            - generic [ref=e481]:
+              - generic [ref=e485]:
+                - link "Economy Stretch":
+                  - /url: /economy-stretch
+                  - img "Economy Stretch"
+              - generic [ref=e487]:
+                - heading "Economy Stretch" [level=3] [ref=e488]
+                - generic [ref=e489]: Located in a dedicated area at the front of the Economy cabin, Economy Stretch offers more legroom for added comfort throughout your flight. Simply seat select when you book.
+                - generic [ref=e490]: Economy comfort option
+                - link "More about Economy Stretch" [ref=e492] [cursor=pointer]:
+                  - /url: /economy-stretch
+  - generic [ref=e496]:
+    - contentinfo [ref=e498]:
+      - generic [ref=e499]:
+        - img "Air New Zealand" [ref=e501]
+        - generic [ref=e506]:
+          - generic [ref=e508]:
+            - generic [ref=e509]:
+              - generic [ref=e510]: United States
+              - text: USD
+            - link "Change region" [ref=e513] [cursor=pointer]:
+              - /url: /gateway
+          - generic [ref=e515]:
+            - link "About Air New Zealand" [ref=e517] [cursor=pointer]:
+              - /url: /about-air-new-zealand
+            - link "Operating fleet" [ref=e519] [cursor=pointer]:
+              - /url: fleet
+            - link "Company profile" [ref=e521] [cursor=pointer]:
+              - /url: corporate-profile
+            - link "Sustainability" [ref=e523] [cursor=pointer]:
+              - /url: sustainability
+            - link "Suppliers" [ref=e525] [cursor=pointer]:
+              - /url: suppliers
+            - link "Modern Slavery statement" [ref=e527] [cursor=pointer]:
+              - /url: https://p-airnz.com/cms/assets/PDFs/air-new-zealand-modern-slavery-act-statement-2023.pdf?redirectedfrom=modern-slavery-statement
+            - link "Working at Air New Zealand" [ref=e529] [cursor=pointer]:
+              - /url: https://careers.airnewzealand.co.nz/working-here?redirectedfrom=working-at-air-new-zealand
+          - generic [ref=e531]:
+            - link "Investor centre" [ref=e533] [cursor=pointer]:
+              - /url: /investor-centre
+            - link "NZX Waivers" [ref=e535] [cursor=pointer]:
+              - /url: nzx-waivers
+          - generic [ref=e537]:
+            - link "Careers" [ref=e539] [cursor=pointer]:
+              - /url: https://careers.airnewzealand.co.nz/?source=CO
+            - link "Media releases" [ref=e541] [cursor=pointer]:
+              - /url: https://www.airnewzealandnewsroom.com/
+            - link "Cargo" [ref=e543] [cursor=pointer]:
+              - /url: https://www.airnewzealandcargo.com?redirectedfrom=air-new-zealand-cargo
+            - link "Engineering & maintenance" [ref=e545] [cursor=pointer]:
+              - /url: /engineering-and-maintenance
+            - link "Legal Terms and Conditions" [ref=e547] [cursor=pointer]:
+              - /url: /legal-terms-and-conditions
+            - link "Privacy centre" [ref=e549] [cursor=pointer]:
+              - /url: /privacy
+            - link "Cyber security hub" [ref=e551] [cursor=pointer]:
+              - /url: /cyber-security
+            - link "Multi-Factor Authentication" [ref=e553] [cursor=pointer]:
+              - /url: manage-multi-factor-authentication
+            - link "Vulnerability disclosure policy" [ref=e555] [cursor=pointer]:
+              - /url: cyber-security-vulnerability-disclosure-policy
+      - generic [ref=e556]:
+        - generic [ref=e558]:
+          - link "Facebook" [ref=e559] [cursor=pointer]:
+            - /url: https://www.facebook.com/AirNewZealand/
+            - img "Facebook" [ref=e560]
+          - link "Twitter" [ref=e561] [cursor=pointer]:
+            - /url: https://twitter.com/FlyAirNZ
+            - img "Twitter" [ref=e562]
+          - link "YouTube" [ref=e563] [cursor=pointer]:
+            - /url: https://www.youtube.com/c/airnz
+            - img "YouTube" [ref=e564]
+          - link "Instagram" [ref=e565] [cursor=pointer]:
+            - /url: https://www.instagram.com/airnz/
+            - img "Instagram" [ref=e566]
+          - link "TikTok" [ref=e567] [cursor=pointer]:
+            - /url: https://www.tiktok.com/@airnz?lang=en
+            - img "TikTok" [ref=e568]
+        - link "A Star Alliance member" [ref=e569] [cursor=pointer]:
+          - /url: https://www.staralliance.com/en/
+          - img "A Star Alliance member" [ref=e570]
+        - generic [ref=e577]:
+          - text: Copyright © 2026
+          - generic [ref=e578]: Air New Zealand Limited
+    - generic [ref=e582] [cursor=pointer]: Cookie preferences

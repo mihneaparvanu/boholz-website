@@ -1,0 +1,192 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - link "BoHolz Haus – Startseite" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img [ref=e7]
+      - button "Menü öffnen" [ref=e23]:
+        - img [ref=e24]
+  - main [ref=e25]:
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - heading "Einfach einkommen." [level=1] [ref=e30]
+          - heading "Ihr Zuhause, meisterhaft vollendet." [level=2] [ref=e31]
+        - generic [ref=e32]:
+          - generic [ref=e33]: Bewährte Spitzenqualität
+          - button "Bestseller Family 150" [ref=e35] [cursor=pointer]:
+            - generic [ref=e36]: Bestseller Family 150
+            - img [ref=e38]
+      - img "Bestseller Family 150" [ref=e40]
+    - generic [ref=e41]:
+      - generic [ref=e42]:
+        - heading "Fertighäuser in Zimmermannsqualität für Menschen mit Anspruch." [level=2] [ref=e43]
+        - paragraph [ref=e44]: Unsere barrierefreien Fertighäuser aus Holz vereinen höchste Energieeffizienz mit meisterhaftem Handwerk. So sparen Sie Energiekosten und gewinnen wertvolle Lebensqualität für die ganze Familie.
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - generic [ref=e48]:
+            - generic [ref=e49]:
+              - heading "Einfamilienhaus" [level=3] [ref=e50]
+              - paragraph
+            - img "Einfamilienhaus" [ref=e51]
+          - generic [ref=e52]:
+            - generic [ref=e53] [cursor=pointer]:
+              - img "Einfamilienhaus" [ref=e55]
+              - generic [ref=e57]: Einfamilienhaus
+            - generic [ref=e58] [cursor=pointer]:
+              - img "Stadtvilla" [ref=e60]
+              - generic [ref=e62]: Stadtvilla
+            - generic [ref=e63] [cursor=pointer]:
+              - img "Generationenhaus" [ref=e65]
+              - generic [ref=e67]: Generationenhaus
+            - generic [ref=e68] [cursor=pointer]:
+              - img "Pultdachhaus" [ref=e70]
+              - generic [ref=e72]: Pultdachhaus
+            - generic [ref=e73] [cursor=pointer]:
+              - img "Doppelhaus" [ref=e75]
+              - generic [ref=e77]: Doppelhaus
+            - generic [ref=e78] [cursor=pointer]:
+              - img "Kubus" [ref=e80]
+              - generic [ref=e82]: Kubus
+            - generic [ref=e83] [cursor=pointer]:
+              - img "Bungalow" [ref=e85]
+              - generic [ref=e87]: Bungalow
+        - generic [ref=e88]:
+          - paragraph [ref=e89]:
+            - text: Ab
+            - generic [ref=e90]: 200.000€
+            - text: zzgl. Überführung.
+          - paragraph [ref=e91]:
+            - text: Attraktive Finanzierungsmöglichkeiten.
+            - img [ref=e93]
+    - generic [ref=e95]:
+      - generic [ref=e96]:
+        - heading "Ihr Vertrauen fest verankert." [level=2] [ref=e97]
+        - paragraph [ref=e98]: Wir bauen nicht nur Häuser, wir bauen Sicherheit. Mit zertifizierter Qualität aus Deutschland und Garantien, auf die Sie sich verlassen können.
+      - generic [ref=e100]:
+        - article [ref=e101]:
+          - img [ref=e102]
+          - generic [ref=e106]: "0"
+          - heading "100% Made in Germany" [level=4] [ref=e107]
+        - article [ref=e108]:
+          - img [ref=e109]
+          - generic [ref=e111]: "0"
+          - heading "Monate Festpreisgarantie" [level=4] [ref=e112]
+        - article [ref=e113]:
+          - img [ref=e114]
+          - generic [ref=e117]: "0"
+          - heading "Jahre Gewährleistung" [level=4] [ref=e118]
+    - generic [ref=e119]:
+      - generic [ref=e120]:
+        - heading "Besser gebaut. Schneller geliefert. Sorgenfrei gelebt." [level=2] [ref=e121]
+        - paragraph [ref=e122]: "BoHolz vereint meisterhafte Präzision mit höchster Energieeffizienz. Für Sie bedeutet das: schneller Einzug, erstklassige Lebensqualität und dauerhaft niedrige Energiekosten."
+      - generic [ref=e123]:
+        - generic [ref=e125]:
+          - heading "Höchste Bauqualität" [level=3] [ref=e126]
+          - paragraph [ref=e127]: Unsere Wände bestehen aus massivem Kreuzlagenholz – ohne Folien, ohne Styropor. Diese diffusionsoffene Bauweise reguliert die Luftfeuchtigkeit natürlich und bietet gleichzeitig hervorragenden Schallschutz. Ein Haus, gebaut für Generationen.
+        - generic [ref=e129]:
+          - heading "Echtes Holz" [level=3] [ref=e130]
+          - paragraph [ref=e131]: Unsere Wände bestehen aus massivem Kreuzlagenholz – ohne Folien, ohne Styropor. Diese diffusionsoffene Bauweise reguliert die Luftfeuchtigkeit natürlich und bietet gleichzeitig hervorragenden Schallschutz. Ein Haus, gebaut für Generationen.
+        - generic [ref=e133]:
+          - heading "Energieeffizienz" [level=3] [ref=e134]
+          - paragraph [ref=e135]: Unsere Wände bestehen aus massivem Kreuzlagenholz – ohne Folien, ohne Styropor. Diese diffusionsoffene Bauweise reguliert die Luftfeuchtigkeit natürlich und bietet gleichzeitig hervorragenden Schallschutz. Ein Haus, gebaut für Generationen.
+        - generic [ref=e137]:
+          - heading "Individuelle Planung" [level=3] [ref=e138]
+          - paragraph [ref=e139]: Unsere Wände bestehen aus massivem Kreuzlagenholz – ohne Folien, ohne Styropor. Diese diffusionsoffene Bauweise reguliert die Luftfeuchtigkeit natürlich und bietet gleichzeitig hervorragenden Schallschutz. Ein Haus, gebaut für Generationen.
+        - generic [ref=e141]:
+          - heading "Smart Living" [level=3] [ref=e142]
+          - paragraph [ref=e143]: Unsere Wände bestehen aus massivem Kreuzlagenholz – ohne Folien, ohne Styropor. Diese diffusionsoffene Bauweise reguliert die Luftfeuchtigkeit natürlich und bietet gleichzeitig hervorragenden Schallschutz. Ein Haus, gebaut für Generationen.
+    - generic [ref=e144]:
+      - generic [ref=e145]:
+        - heading "Ihr Traumhaus. Ihr Weg." [level=2] [ref=e146]
+        - paragraph [ref=e147]: Ein Hausbau ist eine ganz persönliche Reise. Wir bieten Ihnen vier flexible Ausbaustufen – vom Ausbauhaus bis zur schlüsselfertigen Übergabe. So behalten Sie die volle Kontrolle über Ihr Projekt, Ihren Zeitplan und Ihr Budget.
+      - generic [ref=e150]:
+        - tablist [ref=e151]:
+          - tab "Ausbauhaus" [selected] [ref=e152] [cursor=pointer]
+          - tab "Technikfertig" [ref=e153] [cursor=pointer]
+          - tab "Fast Fertig" [ref=e154] [cursor=pointer]
+          - tab "Schlüsselfertig" [ref=e155] [cursor=pointer]
+        - generic [ref=e156]:
+          - figure "Sie möchten selbst Hand anlegen? Wir liefern den Rohbau wetterfest und winddicht – Sie übernehmen den Innenausbau in Ihrem Tempo und sparen dabei spürbar Kosten." [ref=e157]:
+            - img "Ausbauhaus" [ref=e159]
+            - generic [ref=e160]: Sie möchten selbst Hand anlegen? Wir liefern den Rohbau wetterfest und winddicht – Sie übernehmen den Innenausbau in Ihrem Tempo und sparen dabei spürbar Kosten.
+          - generic [ref=e163]: "?"
+          - generic [ref=e166]: "?"
+    - generic [ref=e167]:
+      - generic [ref=e168]:
+        - heading "Klarheit schafft Vertrauen." [level=2] [ref=e169]
+        - paragraph [ref=e170]: Mit BoHolz haben Sie bereits die Antwort auf die Frage nach Ihrem Traumhaus gefunden. Für alle weiteren Details – von der Bauweise bis zur Finanzierung – haben wir hier das Wichtigste übersichtlich für Sie zusammengefasst.
+      - generic [ref=e172]:
+        - tablist [ref=e173]:
+          - tab "Planung & Bestellung" [selected] [ref=e174] [cursor=pointer]
+          - tab "Bauphase" [ref=e175] [cursor=pointer]
+          - tab "Garantien & Qualität" [ref=e176] [cursor=pointer]
+          - tab "Finanzierung" [ref=e177] [cursor=pointer]
+        - list [ref=e178]:
+          - listitem [ref=e179]:
+            - group [ref=e180]:
+              - generic "Wie lange dauert der gesamte Prozess vom Erstgespräch bis zum Einzug?" [ref=e181] [cursor=pointer]:
+                - heading "Wie lange dauert der gesamte Prozess vom Erstgespräch bis zum Einzug?" [level=4] [ref=e182]
+                - generic [ref=e183]: +
+          - listitem [ref=e184]:
+            - group [ref=e185]:
+              - generic "Kann ich Grundriss und Ausstattung individuell anpassen?" [ref=e186] [cursor=pointer]:
+                - heading "Kann ich Grundriss und Ausstattung individuell anpassen?" [level=4] [ref=e187]
+                - generic [ref=e188]: +
+          - listitem [ref=e189]:
+            - group [ref=e190]:
+              - generic "Brauche ich ein Grundstück, bevor ich anfrage?" [ref=e191] [cursor=pointer]:
+                - heading "Brauche ich ein Grundstück, bevor ich anfrage?" [level=4] [ref=e192]
+                - generic [ref=e193]: +
+    - generic [ref=e196]:
+      - navigation "Footer" [ref=e197]:
+        - generic [ref=e198]:
+          - link "Kontakt" [ref=e199] [cursor=pointer]:
+            - /url: /kontakt
+          - link "Vor-Ort-Beratung" [ref=e200] [cursor=pointer]:
+            - /url: vor-ort-beratung
+          - link "Uber Uns" [ref=e201] [cursor=pointer]:
+            - /url: /uber-uns
+        - generic [ref=e202]:
+          - link "Impressum" [ref=e203] [cursor=pointer]:
+            - /url: /impressum
+          - link "Datenschutz" [ref=e204] [cursor=pointer]:
+            - /url: /datenschutz
+          - link "Cookies" [ref=e205] [cursor=pointer]:
+            - /url: /cookies
+          - link "Ihre Privatsphäre-Einstellungen" [ref=e206] [cursor=pointer]:
+            - /url: ""
+            - img [ref=e208]
+            - text: Ihre Privatsphäre-Einstellungen
+      - generic [ref=e212]:
+        - paragraph [ref=e213]: © 2026 BoHolz Haus GmbH. Alle Rechte vorbehalten.
+        - list "Soziale Netzwerke" [ref=e214]:
+          - listitem [ref=e215]:
+            - link "Facebook" [ref=e216] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e217]
+          - listitem [ref=e219]:
+            - link "Instagram" [ref=e220] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e221]
+          - listitem [ref=e223]:
+            - link "YouTube" [ref=e224] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e225]
+          - listitem [ref=e227]:
+            - link "LinkedIn" [ref=e228] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e229]
+  - generic [ref=e233]:
+    - button "Menu" [ref=e234]:
+      - img [ref=e236]
+      - generic: Menu
+    - button "Inspect" [ref=e240]:
+      - img [ref=e242]
+      - generic: Inspect
+    - button "Audit" [ref=e244]:
+      - img [ref=e246]
+      - generic: Audit
+    - button "Settings" [ref=e249]:
+      - img [ref=e251]
+      - generic: Settings

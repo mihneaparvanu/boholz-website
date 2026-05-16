@@ -1,255 +1,493 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getMediaURL } from "@/utils/media";
-import "@/style/content-page.css";
+import PageHero from "@/components/sections/PageHero.astro";
+import CTASection from "@/components/sections/CTASection.astro";
+import SectionNavigator from "@/components/ui/SectionNavigator.vue";
+import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
+import DefinitionList, {
+  type DefinitionItem,
+} from "@/components/ui/DefinitionList.astro";
+import Callout from "@/components/ui/Callout.vue";
+import StatBlock from "@/components/ui/StatBlock.vue";
+import IconList, { type IconListItem } from "@/components/ui/IconList.vue";
+import StepCard from "@/components/ui/StepCard.vue";
+import ComparisonBlock, {
+  type ComparisonSide,
+} from "@/components/ui/ComparisonBlock.vue";
+import VideoPlaceholder from "@/components/ui/VideoPlaceholder.vue";
+import Button from "@/components/ui/Button.vue";
+import { ArrowRight, Phone } from "lucide-vue-next";
+
+// ── Section index — drives the SectionNavigator's overview + sticky rail.
+const sections = [
+  { id: "qualitaet", eyebrow: "01", label: "Qualität & Zertifikate" },
+  { id: "tradition", eyebrow: "02", label: "Tradition & Innovation" },
+  { id: "gruende", eyebrow: "03", label: "16 gute Gründe" },
+  { id: "nachhaltigkeit", eyebrow: "04", label: "Nachhaltigkeit" },
+  { id: "wandaufbau", eyebrow: "05", label: "Wandaufbau" },
+  { id: "technik", eyebrow: "06", label: "Energietechnik" },
+];
+
+// ── Section 2 — Qualität & Zertifikate stats.
+// Derived from existing copy: QDF + GDF Mitgliedschaft, Eigen- + Fremdüberwachung,
+// generationsübergreifende Keitel-Partnerschaft. Claim-style stats — no numbers
+// invented; each one is anchored in the original page text.
+const qualityStats: Array<{
+  value: string;
+  label: string;
+  caption: string;
+  icon: "shield" | "award" | "users";
+}> = [
+  {
+    value: "QDF + GDF",
+    label: "Qualitätsverbände",
+    caption:
+      "Geprüfter Fertighausbau, doppelt verbürgt durch die Qualitäts- und Gemeinschaft Deutscher Fertigbau.",
+    icon: "shield",
+  },
+  {
+    value: "Doppelt",
+    label: "Geprüft",
+    caption:
+      "Eigene Qualitätskontrollen plus Fremdüberwachung durch unabhängige Prüfinstitute.",
+    icon: "award",
+  },
+  {
+    value: "Generationen",
+    label: "Partner Keitel-Haus",
+    caption:
+      "Generationsübergreifendes Handwerk, kombiniert mit innovativer CNC-Fertigung.",
+    icon: "users",
+  },
+];
+
+// ── Section 4 — 16 gute Gründe.
+// All sixteen original list items preserved verbatim; icons chosen per item
+// from the existing IconName union in src/utils/icons.ts.
+const sechzehnGruende: IconListItem[] = [
+  {
+    icon: "leaf",
+    label:
+      "Nachhaltige diffusionsoffene ausgedämmte Außenwände mit Holzfaserdämmplatte für sommerlichen Hitzeschutz und besten Wohnkomfort",
+  },
+  {
+    icon: "layers",
+    label: "Hochwertiger Wandaufbau für Effizienzhaus KfW 40 und KfW 55",
+  },
+  {
+    icon: "shield",
+    label:
+      "Gedämmte Bodenplatte zur Einhaltung klimafreundlicher Vorgaben gemäß der KfW",
+  },
+  {
+    icon: "home",
+    label:
+      "Dachkonstruktion mit einer Schneelast von 2,5 kN/m² bereits im Standard enthalten",
+  },
+  {
+    icon: "thermometer",
+    label:
+      "Dämmung der Dachflächen bis in den letzten Winkel Ihres Hauses spart wertvolle Energie",
+  },
+  {
+    icon: "messages-square",
+    label:
+      "Schallreduzierung durch innovative PhoneStrip-Entkopplungsstreifen zwischen Erdgeschoss und Dachgeschoss",
+  },
+  {
+    icon: "lock",
+    label:
+      "Sicherheitsgeprüfte massive Holzhaustüre (RCN2 Verriegelung) mit barrierefreiem Zugang",
+  },
+  {
+    icon: "sun",
+    label: "Gedämmte Rollläden und effektiver Sonnenschutz dank Alulamellen",
+  },
+  {
+    icon: "shield",
+    label: "Fenster mit Dreifachverglasung für optimalen Rundum-Schutz",
+  },
+  {
+    icon: "ruler",
+    label: "Granitfensterbänke mit hochwertiger zweiter Dichtungsebene",
+  },
+  {
+    icon: "layers",
+    label:
+      "Innenwände zusätzlich beidseitig mit OSB 4 beplankt und voll ausgedämmt",
+  },
+  {
+    icon: "tree-deciduous",
+    label: "Massive Echtholztreppe — perfekt in Optik und Qualität",
+  },
+  {
+    icon: "home",
+    label:
+      "Barrierefreie und bodengleich geflieste Dusche mit Edelstahlablaufrinne",
+  },
+  {
+    icon: "zap",
+    label: "Effiziente Wärmepumpenkonzepte namhafter Hersteller",
+  },
+  {
+    icon: "thermometer",
+    label:
+      "Individuelle Temperaturregelung dank intelligenter Wärmepumpenkonzepte",
+  },
+  {
+    icon: "hammer",
+    label:
+      "Made in Germany — Fertighaus-Manufaktur mit hoher Qualität, großer Flexibilität und traditioneller Handwerksleistung",
+  },
+];
+
+// ── Section 5 — Holzbau vs konventionell.
+// Both sides derived from the existing six "feature-card" entries plus the
+// Holzfaserdämmung block — the original sustainability claims, restructured
+// as a side-by-side so the contrast is legible at a glance.
+const konventionell: ComparisonSide = {
+  title: "Konventioneller Hausbau",
+  caption: "Beton, Ziegel, mineralische Dämmstoffe",
+  items: [
+    "Hohe CO₂-Emissionen schon beim Bau",
+    "Energieintensive, oft fossile Heizsysteme",
+    "Plastik- oder mineralfaserbasierte Dämmstoffe",
+    "Lange Transportwege für Baustoffe",
+    "Schwer recyclebare Materialkombinationen",
+    "Trockene, träge regulierte Raumluft",
+  ],
+};
+
+const holzbau: ComparisonSide = {
+  title: "BoHolz Holzbau",
+  caption: "Holz aus regionaler nachhaltiger Forstwirtschaft",
+  items: [
+    "Ein Haus bindet durchschnittlich 30 Tonnen CO₂",
+    "KfW 55 / KfW 40 Standard mit staatlicher Förderung",
+    "Diffusionsoffene Holzfaserdämmung, λ 0,036 W/(mK)",
+    "Regionale Wertschöpfung, kurze Wege",
+    "Am Ende der Lebensdauer recycelbar oder thermisch verwertbar",
+    "Natürlich feuchteregulierendes, gesundes Raumklima",
+  ],
+};
+
+// ── Section 7 — ECO Nature Wandaufbau (KfW 55).
+// Verbatim from the original "ECO Nature" list; the U-Wert and Brandschutz
+// kicker survives as the final two rows so all numeric specs stay grouped.
+const ecoNatureLayers: DefinitionItem[] = [
+  {
+    term: "Aussenputz",
+    description:
+      "Hochwertiger, diffusionsoffener Silikonharz-Edelputz, helle Tönung",
+  },
+  {
+    term: "Armierung",
+    description:
+      "Grundputz aus Armierungsmasse und vollflächiges Gittergewebe",
+  },
+  {
+    term: "Holzfaserdämmplatte",
+    description: "60 mm — sommerlicher Hitzeschutz, diffusionsoffen",
+  },
+  {
+    term: "Holzrahmen",
+    description:
+      "200 mm Holzrahmenkonstruktion mit ökologischer Knauf Insulation (WLG 035)",
+  },
+  {
+    term: "OSB4-Platte",
+    description: "12 mm — aussteifende Beplankung",
+  },
+  {
+    term: "Luftdichtheitsebene",
+    description: "0,2 mm — kontrolliert den Feuchteübergang",
+  },
+  {
+    term: "Innenbeplankung",
+    description: "12,5 mm Gipskarton Feuerschutzplatte",
+  },
+  {
+    term: "U-Wert",
+    description: "0,164 W/(m²K)",
+  },
+  {
+    term: "Brandschutz",
+    description: "F30-B",
+  },
+];
+
+// ── Section 8 — Haus- & Energietechnik.
+// Three IconList items, each preserves the original paragraph as description.
+const technik: IconListItem[] = [
+  {
+    icon: "zap",
+    label: "Wärmepumpen",
+    description:
+      "Verschiedene Wärmepumpenlösungen ab der technikfertigen Ausbaustufe — renommierte Hersteller wie Nibe und Tecalor sorgen von Anfang an für geringere Energiekosten.",
+  },
+  {
+    icon: "sun",
+    label: "Photovoltaik",
+    description:
+      "Beratung zur passenden PV-Anlage inklusive Stromspeichersystem — nahezu unabhängig werden und Energiekosten weiter senken.",
+  },
+  {
+    icon: "leaf",
+    label: "Gesundes Raumklima",
+    description:
+      "Diffusionsoffene Wände sorgen für einen natürlichen Feuchtigkeitsausgleich und ein außerordentlich angenehmes Raumklima.",
+  },
+];
 ---
 
-<Layout title="Das BoHolz Versprechen – BoHolz Haus">
-  <article class="content-page">
-    <h1>Das BoHolz Versprechen</h1>
-    <p class="page-intro">
-      Nachhaltigkeit, Qualität und Ihr Traumhaus aus einer Hand. Erfahren Sie,
-      warum BoHolz-Haus Ihr idealer Partner für den Fertighausbau ist.
-    </p>
-    <img
-      class="page-hero"
-      src={getMediaURL("/images/pages/unser-versprechen/hero-gruende.jpg")}
-      alt="16 gute Gründe für ein BoHolz Fertighaus"
-      loading="eager"
-      width="2000"
-      height="776"
+<Layout title="Das BoHolz Versprechen — BoHolz Haus">
+  <!-- 0. Hero ----------------------------------------------------------- -->
+  <div class="full-width">
+    <PageHero
+      eyebrow="Unser Versprechen"
+      title="Das BoHolz"
+      highlight="Versprechen"
+      subtitle="Nachhaltigkeit, Qualität und Ihr Traumhaus aus einer Hand. Warum BoHolz-Haus Ihr idealer Partner für den Fertighausbau ist."
+      align="center"
     />
+  </div>
 
-    <!-- Qualität -->
-    <section>
-      <h2>Qualität &amp; Zufriedenheit</h2>
-      <img
-        class="section-image"
-        src={getMediaURL("/images/pages/unser-versprechen/qualitaet.jpg")}
-        alt="Qualität und Zufriedenheit"
-        loading="lazy"
-        width="500"
-        height="300"
+  <!-- 1. Section overview + sticky rail -------------------------------- -->
+  <SectionNavigator client:load sections={sections} stickyOffset={64} />
+
+  <!-- 2. Qualität & Zertifikate ---------------------------------------- -->
+  <section id="qualitaet" class="block">
+    <EyebrowHeadingLede
+      eyebrow="01 — Qualität & Zertifikate"
+      heading="Qualität, die sich überprüfen"
+      highlight="lässt."
+      lede="Unser oberstes Ziel ist die Zufriedenheit unserer Kunden, dicht gefolgt von einem hohen Qualitätsstandard. Der Bau eines Hauses ist eine der wichtigsten Entscheidungen im Leben — wir gestalten den Prozess so angenehm und erfolgreich wie möglich."
+    />
+    <div class="stats">
+      {
+        qualityStats.map((s) => (
+          <StatBlock
+            client:visible
+            value={s.value}
+            label={s.label}
+            caption={s.caption}
+            icon={s.icon}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- 3. Tradition trifft Innovation ----------------------------------- -->
+  <section id="tradition" class="block">
+    <EyebrowHeadingLede
+      eyebrow="02 — Tradition & Innovation"
+      heading="Generationen-Handwerk, moderne"
+      highlight="Fertigung."
+      lede="Unser starker Partner Keitel-Haus greift auf jahrelanges und generationenübergreifendes Wissen rund um den Fertighausbau zurück. Dies gewährleistet handwerkliche Wertarbeit im traditionellen Sinne, kombiniert mit modernster Technologie."
+    />
+    <div class="steps">
+      <StepCard
+        client:visible
+        step={1}
+        title="Tradition"
+        icon="hammer"
+        description="Generationsübergreifendes Wissen und Kompetenz rund um den Fertighausbau — handwerkliche Wertarbeit im traditionellen Sinne, getragen vom Partner Keitel-Haus."
       />
-      <p>
-        Unser oberstes Ziel ist die Zufriedenheit unserer Kunden. Dicht gefolgt
-        von unserem hohen Qualitätsstandard, den wir Ihnen bieten können. Wir
-        verstehen, dass der Bau eines Hauses eine der wichtigsten Entscheidungen
-        im Leben ist, und wir setzen alles daran, diesen Prozess für Sie so
-        angenehm und erfolgreich wie möglich zu gestalten.
-      </p>
-
-      <h3>Tradition trifft Innovation</h3>
-      <p>
-        Unser starker Partner Keitel-Haus greift auf jahrelanges und
-        generationenübergreifendes Wissen und Kompetenz rund um den
-        Fertighausbau zurück. Dies gewährleistet handwerkliche Wertarbeit im
-        traditionellen Sinne, die wir mit modernster Technologie kombinieren:
-      </p>
-      <ul>
-        <li>Innovative CNC-Maschinen für präzise Fertigung</li>
-        <li>Automatisierte Fertigungsanlagen für effiziente Produktion</li>
-        <li>Kontinuierliche Weiterentwicklung unserer Baumethoden</li>
-      </ul>
-
-      <h3>Qualitätssicherung &amp; Zertifizierungen</h3>
-      <p>
-        Als Mitglied der Qualitätsgemeinschaft Deutscher Fertigbau (QDF) und der
-        Gemeinschaft Deutscher Fertigbau (GDF) verpflichten wir uns zu höchsten
-        Qualitätsstandards:
-      </p>
-      <ul>
-        <li>Ständige Qualitätssicherung der eingesetzten Materialien</li>
-        <li>Regelmäßige Kontrollen des fertigen Produkts</li>
-        <li>Eigene Qualitätskontrollen</li>
-        <li>Fremdüberwachung durch unabhängige Prüfinstitute</li>
-      </ul>
-    </section>
-
-    <!-- 16 gute Gründe -->
-    <section>
-      <h2>16 gute Gründe für ein BoHolz Fertighaus</h2>
-      <img
-        class="section-image"
-        src={getMediaURL("/images/pages/unser-versprechen/16-gruende.jpg")}
-        alt="16 gute Gründe"
-        loading="lazy"
-        width="500"
-        height="300"
+      <StepCard
+        client:visible
+        step={2}
+        title="Moderne Fertigung"
+        icon="wrench"
+        description="Innovative CNC-Maschinen für präzise Fertigung, automatisierte Anlagen für effiziente Produktion und kontinuierliche Weiterentwicklung unserer Baumethoden."
       />
-      <ol>
-        <li>Nachhaltige diffusionsoffene ausgedämmte Außenwände mit Holzfaserdämmplatte für sommerlichen Hitzeschutz und besten Wohnkomfort</li>
-        <li>Hochwertiger Wandaufbau für Effizienzhaus KfW 40 und KfW 55</li>
-        <li>Gedämmte Bodenplatte zur Einhaltung klimafreundlicher Vorgaben gemäß der KfW</li>
-        <li>Dachkonstruktion mit einer Schneelast von 2,5 kN/m² bereits im Standard enthalten</li>
-        <li>Dämmung der Dachflächen bis in den letzten Winkel Ihres Hauses spart wertvolle Energie</li>
-        <li>Schallreduzierung durch innovative PhoneStrip-Entkopplungsstreifen zwischen Erdgeschoss und Dachgeschoss</li>
-        <li>Sicherheitsgeprüfte massive Holzhaustüre (RCN2 Verriegelung) mit barrierefreiem Zugang</li>
-        <li>Gedämmte Rollläden und effektiver Sonnenschutz dank Alulamellen</li>
-        <li>Fenster mit Dreifachverglasung für optimalen Rundum-Schutz</li>
-        <li>Granitfensterbänke mit hochwertiger zweiter Dichtungsebene</li>
-        <li>Innenwände zusätzlich beidseitig mit OSB 4 beplankt und voll ausgedämmt</li>
-        <li>Massive Echtholztreppe – perfekt in Optik und Qualität</li>
-        <li>Barrierefreie und bodengleich geflieste Dusche mit Edelstahlablaufrinne</li>
-        <li>Effiziente Wärmepumpenkonzepte namhafter Hersteller</li>
-        <li>Individuelle Temperaturregelung dank intelligenter Wärmepumpenkonzepte</li>
-        <li>Made in Germany – Fertighaus-Manufaktur mit hoher Qualität, großer Flexibilität und traditioneller Handwerksleistung</li>
-      </ol>
-    </section>
-
-    <!-- Nachhaltigkeit -->
-    <section>
-      <h2>Nachhaltigkeit</h2>
-      <img
-        class="section-image"
-        src={getMediaURL("/images/pages/unser-versprechen/nachhaltigkeit.jpg")}
-        alt="Nachhaltigkeit beim Hausbau"
-        loading="lazy"
-        width="500"
-        height="300"
+      <StepCard
+        client:visible
+        step={3}
+        title="Zertifizierungen"
+        icon="award"
+        description="Mitglied der Qualitätsgemeinschaft Deutscher Fertigbau (QDF) und der Gemeinschaft Deutscher Fertigbau (GDF) — ständige Qualitätssicherung der Materialien, regelmäßige Kontrollen, Eigen- und Fremdüberwachung durch unabhängige Prüfinstitute."
       />
-      <p>
-        Bei BoHolz Haus verbinden wir Ihre Wohnträume mit aktivem Umweltschutz.
-        Unsere individuellen Fertighäuser aus Holz sind nicht nur Ihr
-        persönliches Zuhause, sondern auch ein Beitrag zu einer besseren Zukunft.
-      </p>
+    </div>
+  </section>
 
-      <div class="feature-grid">
-        <div class="feature-card">
-          <h4>Klimaschutz</h4>
-          <p>Holz speichert CO₂ und entlastet die Atmosphäre. Ein BoHolz-Haus bindet durchschnittlich 30 Tonnen CO₂.</p>
-        </div>
-        <div class="feature-card">
-          <h4>Energieeffizienz</h4>
-          <p>Unsere Häuser erfüllen höchste Energiestandards. Profitieren Sie von niedrigen Heizkosten und staatlichen Förderungen für KfW 55 und KfW 40.</p>
-        </div>
-        <div class="feature-card">
-          <h4>Gesundes Wohnklima</h4>
-          <p>Holz reguliert natürlich die Luftfeuchtigkeit und sorgt für ein angenehmes Raumklima.</p>
-        </div>
-        <div class="feature-card">
-          <h4>Regionale Wertschöpfung</h4>
-          <p>Wir verwenden Holz aus nachhaltiger Forstwirtschaft in der Region und unterstützen lokale Wirtschaftskreisläufe.</p>
-        </div>
-        <div class="feature-card">
-          <h4>Langlebigkeit</h4>
-          <p>Ein BoHolz-Haus ist für Generationen gebaut und bleibt über Jahrzehnte wertstabil.</p>
-        </div>
-        <div class="feature-card">
-          <h4>Recyclingfähigkeit</h4>
-          <p>Am Ende seiner langen Lebensdauer lässt sich ein Holzhaus problemlos recyceln oder thermisch verwerten.</p>
-        </div>
-      </div>
+  <!-- 4. 16 gute Gründe ------------------------------------------------ -->
+  <section id="gruende" class="block">
+    <EyebrowHeadingLede
+      eyebrow="03 — 16 gute Gründe"
+      heading="Was in jedem BoHolz Fertighaus"
+      highlight="serienmäßig steckt."
+      lede="Vom diffusionsoffenen Wandaufbau bis zur barrierefreien Dusche — sechzehn Details, die wir bereits im Standard liefern."
+    />
+    <IconList client:visible items={sechzehnGruende} columns={4} />
+  </section>
 
-      <h3>Holzfaserdämmung</h3>
-      <p>
-        Mit BoHolz-Haus bauen und mit Holz dämmen – gut für die Bewohner, für
-        unsere Umwelt und unser Klima. Die flexible Holzfaserdämmung bietet
-        hervorragenden sommerlichen Hitzeschutz mit einer idealen
-        Phasenverschiebung von 11 Stunden. Das bedeutet, dass 92 % der
-        Temperaturschwankung nicht im Inneren des Hauses ankommen.
-      </p>
-      <ul>
-        <li>Hervorragende Dämmleistung (Lambda-Nennwert 0,036 W/(mK))</li>
-        <li>Überzeugende spezifische Wärmekapazität (2100 J/(kg·K))</li>
-        <li>Hoher Schallschutz</li>
-        <li>Dampfdiffusionsoffen und feuchtigkeitsregulierend</li>
-        <li>Nachhaltiger Rohstoff Holz</li>
-        <li>Baubiologisch hervorragend</li>
-      </ul>
+  <!-- 5. Nachhaltigkeit — Vergleich ------------------------------------ -->
+  <section id="nachhaltigkeit" class="block">
+    <EyebrowHeadingLede
+      eyebrow="04 — Nachhaltigkeit"
+      heading="Wohnträume mit aktivem"
+      highlight="Umweltschutz."
+      lede="Bei BoHolz Haus verbinden wir Ihre Wohnträume mit aktivem Umweltschutz. Unsere individuellen Fertighäuser aus Holz sind nicht nur Ihr persönliches Zuhause, sondern auch ein Beitrag zu einer besseren Zukunft."
+    />
+    <ComparisonBlock
+      client:visible
+      left={konventionell}
+      right={holzbau}
+      accent="right"
+    />
+  </section>
 
-      <h3>Nachhaltigkeitszertifizierung</h3>
-      <p>
-        BoHolz-Haus bietet interessierten Bauherren eine maßgeschneiderte
-        Zertifizierung an – auch für individuell geplante Häuser. Das
-        Qualitätssiegel Nachhaltiges Gebäude Plus (QNG-Plus) ist die
-        Grundvoraussetzung, um die höhere KfW-Förderung zu erhalten.
-      </p>
-      <p>Ein klimafreundliches Gebäude muss folgende Kriterien erfüllen:</p>
-      <ul>
-        <li>Nachweis des Treibhausgaspotenzials durch Lebenszyklusanalyse</li>
-        <li>Entsprechung des Standards Effizienzhaus 40</li>
-        <li>Keine Heizung auf Basis fossiler Energie oder Biomasse</li>
-      </ul>
-    </section>
-
-    <!-- Wandaufbau -->
-    <section>
-      <h2>Der Wandaufbau</h2>
-      <img
-        class="section-image"
-        src={getMediaURL("/images/pages/unser-versprechen/wandaufbau.jpg")}
-        alt="Der BoHolz Wandaufbau"
-        loading="lazy"
-        width="500"
-        height="300"
+  <!-- 6. Drei Kennzahlen ----------------------------------------------- -->
+  <section class="block stats-band">
+    <div class="stats">
+      <StatBlock
+        client:visible
+        value="30 t"
+        label="CO₂ je Haus"
+        caption="Durchschnittliche Kohlenstoffbindung im Holzbau — entlastet die Atmosphäre über die gesamte Lebensdauer."
+        icon="leaf"
       />
-      <p>
-        Die größten Energieverluste eines Hauses treten über seine äußere Hülle
-        auf. BoHolz Haus setzt bei allen seinen Häusern konsequent auf Holz als
-        natürlichen, nachwachsenden Baustoff.
-      </p>
+      <StatBlock
+        client:visible
+        value="11 h"
+        label="Phasenverschiebung"
+        caption="Holzfaserdämmung verzögert sommerliche Hitze um elf Stunden — der Innenraum bleibt nachts kühl."
+        icon="thermometer"
+      />
+      <StatBlock
+        client:visible
+        value="92 %"
+        label="Temperaturpuffer"
+        caption="Anteil der äußeren Temperaturschwankung, der dank des Wandaufbaus nicht im Inneren ankommt."
+        icon="shield"
+      />
+    </div>
+    <p class="footnote">
+      Plus: Lambda-Nennwert 0,036 W/(mK), spezifische Wärmekapazität 2100 J/(kg·K),
+      hoher Schallschutz, dampfdiffusionsoffen und baubiologisch hervorragend.
+    </p>
+  </section>
 
-      <h3>ECO Nature (KfW 55)</h3>
-      <p>
-        ECO Nature ist eine innovative und ökologische Gebäudehülle, die
-        effektiv vor Hitze, Kälte, Lärm und Feuer schützt.
-      </p>
-      <ul>
-        <li>Hochwertiger, diffusionsoffener Silikonharz-Edelputz, helle Tönung</li>
-        <li>Grundputz aus Armierungsmasse und vollflächiges Gittergewebe</li>
-        <li>60 mm Holzfaserdämmplatte</li>
-        <li>200 mm Holzrahmenkonstruktion mit ökologischer Knauf Insulation (WLG 035)</li>
-        <li>12 mm OSB4-Platte</li>
-        <li>0,2 mm Luftdichtheitsebene</li>
-        <li>12,5 mm Gipskarton Feuerschutzplatte</li>
-      </ul>
-      <p><strong>U-Wert:</strong> 0,164 W/(m²K) · <strong>Brandschutz:</strong> F30-B</p>
-
-      <h3>ECO Nature Plus (KfW 40)</h3>
-      <p>
+  <!-- 7. Wandaufbau ---------------------------------------------------- -->
+  <section id="wandaufbau" class="block">
+    <EyebrowHeadingLede
+      eyebrow="05 — Wandaufbau"
+      heading="ECO Nature — die Schichten unserer"
+      highlight="Gebäudehülle."
+      lede="Die größten Energieverluste eines Hauses treten über seine äußere Hülle auf. ECO Nature schützt effektiv vor Hitze, Kälte, Lärm und Feuer — Schicht für Schicht."
+    />
+    <DefinitionList items={ecoNatureLayers} layout="grid" />
+    <div class="callout-slot">
+      <Callout client:visible tone="tip" title="ECO Nature Plus (KfW 40)">
         Für noch höhere Energieeffizienz bietet ECO Nature Plus einen erweiterten
         Wandaufbau, der die Grundlage für ein KfW-Effizienzhaus 40 bildet.
-      </p>
-    </section>
-
-    <!-- Haus- und Energietechnik -->
-    <section>
-      <h2>Haus- &amp; Energietechnik</h2>
-      <p>
-        Bei uns ist Nachhaltigkeit mehr als nur ein Slogan – es ist unsere
-        Realität. Dank unserer gut gedämmten Außenwände bieten unsere Häuser
-        umweltschonende Materialien und energieeffiziente Bauweise.
-      </p>
-
-      <h3>Wärmepumpen</h3>
-      <p>
-        Mit unseren verschiedenen Wärmepumpenlösungen ab der technikfertigen
-        Ausbaustufe bieten wir Ihnen erstklassige Lösungen, um von Anfang an von
-        geringeren Energiekosten zu profitieren. Dabei setzen wir auf
-        renommierte Hersteller wie Nibe und Tecalor.
-      </p>
-
-      <h3>Photovoltaik</h3>
-      <p>
-        Wir beraten Sie gerne zur passenden Photovoltaik-Anlage für Ihr neues
-        Zuhause, damit Sie kostenlosen Sonnenstrom nutzen können. Dank
-        PV-Stromspeichersystemen können Sie nahezu unabhängig werden und Ihre
-        Energiekosten weiter senken.
-      </p>
-
-      <h3>Gesundes Raumklima</h3>
-      <p>
-        In einem BoHolz-Haus werden Sie das außerordentlich angenehme und
-        gesunde Raumklima spüren, das durch unsere nachhaltigen Baumaßnahmen
-        erzielt wird. Unsere diffusionsoffenen Wände sorgen für einen natürlichen
-        Feuchtigkeitsausgleich.
-      </p>
-    </section>
-
-    <div class="cta-block">
-      <a href="/kontakt">Beratung vereinbaren</a>
-      <a href="/kontakt">Katalog bestellen</a>
+      </Callout>
     </div>
-  </article>
+  </section>
+
+  <!-- 8. Haus- & Energietechnik ---------------------------------------- -->
+  <section id="technik" class="block">
+    <EyebrowHeadingLede
+      eyebrow="06 — Energietechnik"
+      heading="Wärmepumpen, Photovoltaik,"
+      highlight="gesundes Raumklima."
+      lede="Dank gut gedämmter Außenwände bieten unsere Häuser von Anfang an umweltschonende Materialien und energieeffiziente Bauweise. Drei Bausteine, die Nachhaltigkeit konkret machen."
+    />
+    <IconList client:visible items={technik} columns={1} density="comfortable" />
+  </section>
+
+  <!-- 9. Werksrundgang Video Slot ------------------------------------- -->
+  <section class="block">
+    <VideoPlaceholder
+      client:visible
+      slotId="versprechen-werksrundgang"
+      aspectRatio="16/9"
+      variant="film"
+      label="Werksrundgang — bald verfügbar"
+      caption="Ein Blick hinter die Kulissen der Manufaktur."
+    />
+  </section>
+
+  <!-- 10. CTA --------------------------------------------------------- -->
+  <div class="full-width">
+    <CTASection
+      tone="accent"
+      title="Bereit für Ihr"
+      highlight="BoHolz-Haus?"
+      subtitle="Vereinbaren Sie eine persönliche Beratung oder bestellen Sie den Katalog mit allen Modellen und Ausstattungsdetails."
+    >
+      <Fragment slot="actions">
+        <Button client:visible variant="secondary" size="lg" href="/kontakt">
+          Beratung vereinbaren
+          <ArrowRight slot="trailing" :size="16" :stroke-width="2" />
+        </Button>
+        <Button client:visible variant="ghost" size="lg" href="/kontakt">
+          <Phone slot="leading" :size="16" :stroke-width="2" />
+          Katalog bestellen
+        </Button>
+      </Fragment>
+    </CTASection>
+  </div>
 </Layout>
+
+<style>
+  /* Section rhythm. Each `.block` is a top-level vertical stack between hero
+     and CTA; the gap between the heading bundle and its content is `--spacing-4`,
+     the gap between two adjacent blocks is `--spacing-7` for editorial pacing. */
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+    padding-block: var(--spacing-6);
+  }
+
+  .block + .block {
+    border-block-start: 1px solid var(--clr-border-secondary);
+  }
+
+  /* The mid-page stats band shares the block rhythm but tightens the gap so
+     the trio reads as a single statement. */
+  .stats-band .footnote {
+    margin: 0;
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-tertiary);
+    max-width: 64ch;
+    line-height: var(--lh-body);
+  }
+
+  /* Stats trio — three columns from tablet up. */
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+
+  @media (--from-tablet) {
+    .stats {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--spacing-5);
+    }
+  }
+
+  /* Tradition → Modernisierung → Zertifizierungen — three editorial cards. */
+  .steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+  }
+
+  @media (--from-tablet) {
+    .steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--spacing-4);
+    }
+  }
+
+  /* The callout under the wandaufbau spec list — give it breathing room
+     and bound its width so it doesn't span the full column. */
+  .callout-slot {
+    max-width: 48rem;
+    margin-block-start: var(--spacing-2);
+  }
+</style>

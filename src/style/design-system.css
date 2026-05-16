@@ -41,6 +41,7 @@
   --cold-gray-100: rgba(21, 25, 28, 1);
   --cold-gray-200: rgba(54, 60, 64, 1);
   --cold-gray-300: rgba(76, 84, 89, 1);
+  --cold-gray-350: rgba(94, 102, 108, 1);
   --cold-gray-400: rgba(126, 135, 140, 1);
   --cold-gray-500: rgba(158, 164, 168, 1);
   --cold-gray-600: rgba(186, 189, 191, 1);
@@ -66,11 +67,14 @@
   --clr-pure-white: #ffffff;
   --clr-pure-white-soft: rgba(255, 255, 255, 0.85);
 
-  /* Content */
+  /* Content
+     primary/secondary/tertiary: all pass AA text (4.5:1+) on every surface.
+     quaternary: UI-only tier (3:1+ on all surfaces) — dividers, disabled
+     states, decorative-only; NEVER body text. */
   --clr-content-primary: var(--neutral-gray-100);
   --clr-content-secondary: var(--cold-gray-300);
-  --clr-content-tertiary: var(--cold-gray-400);
-  --clr-content-quaternary: var(--cold-gray-500);
+  --clr-content-tertiary: var(--cold-gray-350);
+  --clr-content-quaternary: var(--cold-gray-400);
 
   /* Border */
   --clr-border-primary: var(--cold-gray-800);
@@ -187,6 +191,15 @@
 
   /* Letter Spacing */
   --ls-heading: -0.05em;
+  /* Eyebrow / small-caps label tracking — used by SectionNavigator and the
+     §1.4 Eyebrow pattern. Mirrors the inline value already in PageHero.astro. */
+  --tracking-eyebrow: 0.12em;
+
+  /* Font weights — naming the inline numbers used across the system. */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
 
   --navbar-height: var(--spacing-6);
 }
@@ -213,11 +226,11 @@ h1 {
 }
 
 h2 {
-  font-size: var(--fs-h2);
+  font-size: var(--fs-h3);
 }
 
 h3 {
-  font-size: var(--fs-h3);
+  font-size: var(--fs-h5);
 }
 
 h1,
@@ -227,7 +240,7 @@ h3 {
 }
 
 h4 {
-  font-size: var(--fs-h4);
+  font-size: var(--fs-h6);
 }
 
 h5 {

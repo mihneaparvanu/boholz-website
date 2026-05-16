@@ -1,61 +1,488 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Section from "@/layouts/Section.astro";
 import LocationsMap from "@/features/Locations/LocationsMap.vue";
+import PageHero from "@/components/sections/PageHero.astro";
+import CTASection from "@/components/sections/CTASection.astro";
+import SectionNavigator from "@/components/ui/SectionNavigator.vue";
+import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
+import VideoPlaceholder from "@/components/ui/VideoPlaceholder.vue";
+import { Building2, Home, MapPin } from "lucide-vue-next";
 import { getLocations } from "@/data/loaders";
 
 // Map shows offices + headquarters — Musterhäuser have their own dedicated pages.
 const locations = await getLocations({ exceptKind: "showhouse" });
+
+// SectionNavigator — anchors are umlaut-free per project convention.
+const sections = [
+  { id: "karte", eyebrow: "01", label: "Karte" },
+  { id: "musterhaeuser", eyebrow: "02", label: "Musterhäuser" },
+  { id: "bueros-bw", eyebrow: "03", label: "Büros Baden-Württemberg" },
+  { id: "bueros-by", eyebrow: "04", label: "Büros Bayern" },
+];
+
+type Showhouse = {
+  slug: string;
+  name: string;
+  address: string;
+  state: string;
+};
+
+const musterhaeuser: Showhouse[] = [
+  {
+    slug: "bad-vilbel",
+    name: "Musterhaus Bad Vilbel",
+    address:
+      "Besuchen Sie unser Ausstellungshaus in der Fertighauswelt Bad Vilbel.",
+    state: "Hessen",
+  },
+  {
+    slug: "fellbach",
+    name: "Musterhaus Fellbach",
+    address: "Höhenstraße – Platz 36, 70736 Fellbach.",
+    state: "Baden-Württemberg",
+  },
+];
+
+type Buero = {
+  name: string;
+  address: string;
+};
+
+// Source-of-truth data preserved verbatim from the previous page.
+// No phone/email is published per office at this level — only the central HQ
+// (Bad Kissingen) has those, and the canonical place for them is kontakt.astro.
+// We provide a Google-Maps "Standort öffnen" link per office; the LocationsMap
+// above already exposes the full marker-card detail.
+const buerosBW: Buero[] = [
+  {
+    name: "Vertriebsbüro Wenkheim",
+    address: "Lindenstraße 6, 97956 Wenkheim",
+  },
+  {
+    name: "Vertriebsbüro Horb-Nordstetten",
+    address: "Axel-Lipp-Straße 20, 72160 Horb-Nordstetten",
+  },
+  {
+    name: "Vertriebsbüro Schwäbisch Gmünd",
+    address: "Liegnitzerweg 4, 73527 Schwäbisch Gmünd",
+  },
+  {
+    name: "Vertriebsbüro Villingen-Schwenningen",
+    address: "Zwergsteigstraße 4, 78048 Villingen-Schwenningen",
+  },
+  {
+    name: "Vertriebsbüro Rielasingen-Worblingen",
+    address: "Konrad-Zuse-Str. 4, 78239 Rielasingen-Worblingen",
+  },
+  {
+    name: "Vertriebsbüro Schwarzwald",
+    address: "Martinstraße 42, 79848 Bonndorf im Schwarzwald",
+  },
+];
+
+const buerosBY: Buero[] = [
+  {
+    name: "Vertriebsbüro Hammelburg",
+    address: "Zum Bauholz 3, 97762 Hammelburg",
+  },
+  {
+    name: "Zentrale Bad Kissingen",
+    address: "Ostring 1, 97688 Bad Kissingen",
+  },
+  {
+    name: "Vertriebsbüro München",
+    address: "Tangastraße 31, 81827 München",
+  },
+  {
+    name: "Vertriebsbüro Werneck",
+    address: "Bühler Ring, Vasbühl, 97440 Werneck",
+  },
+];
+
+const mapsURL = (address: string): string =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 ---
 
-<Layout title="Vor Ort Beratung">
-  <Section heading1="Vor Ort Beratung" subheading="Besuchen Sie uns persönlich und entdecken Sie die vielfältigen Möglichkeiten, die wir Ihnen bieten können. Gerne stehen wir Ihnen auch außerhalb der regulären Öffnungszeiten zur Verfügung. ">
-  <div class="map-wrapper">
-    <LocationsMap client:only="vue" locations={locations} />
+<Layout title="Vor-Ort-Beratung – BoHolz Haus">
+  <PageHero
+    eyebrow="Karte & Standorte"
+    title="Vor Ort"
+    highlight="Beratung."
+    subtitle="Holz, Pläne, Beratung — auf Wunsch ein Termin außerhalb der Öffnungszeiten. Drei Musterhäuser, zehn Vertriebsbüros, eine Zentrale in Bad Kissingen."
+    align="center"
+  />
 
-    <!-- Vor-Ort-Beratung -->
-    <section>
+  <SectionNavigator client:load sections={sections} stickyOffset={64} />
 
-      <h3>Musterhäuser</h3>
+  <!-- 02. Karte -->
+  <section id="karte" class="page-section">
+    <EyebrowHeadingLede
+      eyebrow="Karte"
+      heading="Alle Standorte auf"
+      highlight="einen Blick."
+      lede="Klicken Sie auf einen Marker, um die Adresse und die Ansprechpartner des jeweiligen Standorts einzublenden."
+    >
+      <Fragment slot="eyebrow-icon">
+        <MapPin :size={14} :stroke-width={2} />
+      </Fragment>
+    </EyebrowHeadingLede>
 
-      <div class="feature-grid">
-        <div class="feature-card">
-          <h4>Musterhaus Bad Vilbel</h4>
-          <p>Besuchen Sie unser Ausstellungshaus in der Fertighauswelt Bad Vilbel (Hessen).</p>
-        </div>
-        <div class="feature-card">
-          <h4>Musterhaus Fellbach</h4>
-          <p>Höhenstraße – Platz 36, 70736 Fellbach (Baden-Württemberg).</p>
-        </div>
-      </div>
+    <div class="map-frame">
+      <LocationsMap client:only="vue" locations={locations} />
+    </div>
+  </section>
 
-      <h3>Vertriebsbüros</h3>
+  <!-- 03. Musterhäuser -->
+  <section id="musterhaeuser" class="page-section">
+    <EyebrowHeadingLede
+      eyebrow="Musterhäuser"
+      heading="Drei Häuser zum"
+      highlight="Anfassen."
+      lede="Spüren Sie Materialien, Wandstärken und Lichtführung vor Ort. Bildmaterial folgt — bis dahin ein Platzhalter."
+    >
+      <Fragment slot="eyebrow-icon">
+        <Home :size={14} :stroke-width={2} />
+      </Fragment>
+    </EyebrowHeadingLede>
 
-      <h4>Baden-Württemberg</h4>
-      <ul>
-        <li>Vertriebsbüro Wenkheim – Lindenstraße 6, 97956 Wenkheim</li>
-        <li>Vertriebsbüro Horb-Nordstetten – Axel-Lipp-Straße 20, 72160 Horb-Nordstetten</li>
-        <li>Vertriebsbüro Schwäbisch Gmünd – Liegnitzerweg 4, 73527 Schwäbisch Gmünd</li>
-        <li>Vertriebsbüro Villingen-Schwenningen – Zwergsteigstraße 4, 78048 Villingen-Schwenningen</li>
-        <li>Vertriebsbüro Rielasingen-Worblingen – Konrad-Zuse-Str. 4, 78239 Rielasingen-Worblingen</li>
-        <li>Vertriebsbüro Schwarzwald – Martinstraße 42, 79848 Bonndorf im Schwarzwald</li>
-      </ul>
+    <div class="card-grid musterhaus-grid">
+      {
+        musterhaeuser.map((h) => (
+          <article class="musterhaus">
+            <VideoPlaceholder
+              client:visible
+              slotId={`musterhaus-${h.slug}`}
+              aspectRatio="16/9"
+              variant="film"
+              label="Bildmaterial folgt"
+            />
+            <header class="head">
+              <h3 class="name">{h.name}</h3>
+              <p class="region">{h.state}</p>
+            </header>
+            <p class="body">{h.address}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
 
-      <h4>Bayern</h4>
-      <ul>
-        <li>Vertriebsbüro Hammelburg – Zum Bauholz 3, 97762 Hammelburg</li>
-        <li>Zentrale – Ostring 1, 97688 Bad Kissingen</li>
-        <li>Vertriebsbüro München – Tangastraße 31, 81827 München</li>
-        <li>Vertriebsbüro Werneck – Bühler Ring, Vasbühl, 97440 Werneck</li>
-      </ul>
-    </section>
-  </div>
-   </Section>
+  <!-- 04. Vertriebsbüros Baden-Württemberg -->
+  <section id="bueros-bw" class="page-section">
+    <EyebrowHeadingLede
+      eyebrow="Vertriebsbüros · Baden-Württemberg"
+      heading="Sechs Standorte"
+      highlight="im Süden."
+      lede="Von Bonndorf im Schwarzwald bis Schwäbisch Gmünd — Beratung in Wohnortnähe."
+    >
+      <Fragment slot="eyebrow-icon">
+        <Building2 :size={14} :stroke-width={2} />
+      </Fragment>
+    </EyebrowHeadingLede>
+
+    <ul class="card-grid office-grid" role="list">
+      {
+        buerosBW.map((o) => (
+          <li>
+            <article class="office">
+              <span class="office-icon" aria-hidden="true">
+                <Building2 :size={18} :stroke-width={1.75} />
+              </span>
+              <h3 class="office-name">{o.name}</h3>
+              <p class="office-address">
+                <span class="address-glyph" aria-hidden="true">
+                  <MapPin :size={14} :stroke-width={1.75} />
+                </span>
+                <span>{o.address}</span>
+              </p>
+              <a
+                class="office-link"
+                href={mapsURL(o.address)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Standort öffnen
+                <span class="arrow" aria-hidden="true">→</span>
+              </a>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <!-- 05. Vertriebsbüros Bayern -->
+  <section id="bueros-by" class="page-section">
+    <EyebrowHeadingLede
+      eyebrow="Vertriebsbüros · Bayern"
+      heading="Vier Standorte rund um die"
+      highlight="Zentrale."
+      lede="Hammelburg, Werneck, München — und die Zentrale in Bad Kissingen, in der alle Fäden zusammenlaufen."
+    >
+      <Fragment slot="eyebrow-icon">
+        <Building2 :size={14} :stroke-width={2} />
+      </Fragment>
+    </EyebrowHeadingLede>
+
+    <ul class="card-grid office-grid" role="list">
+      {
+        buerosBY.map((o) => (
+          <li>
+            <article class="office">
+              <span class="office-icon" aria-hidden="true">
+                <Building2 :size={18} :stroke-width={1.75} />
+              </span>
+              <h3 class="office-name">{o.name}</h3>
+              <p class="office-address">
+                <span class="address-glyph" aria-hidden="true">
+                  <MapPin :size={14} :stroke-width={1.75} />
+                </span>
+                <span>{o.address}</span>
+              </p>
+              <a
+                class="office-link"
+                href={mapsURL(o.address)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Standort öffnen
+                <span class="arrow" aria-hidden="true">→</span>
+              </a>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <CTASection
+    tone="surface"
+    title="Termin vereinbaren —"
+    highlight="auf Wunsch außerhalb der Öffnungszeiten."
+    subtitle="Schreiben Sie uns kurz, wann es Ihnen passt. Wir melden uns meist binnen 24 Stunden."
+  >
+    <a slot="actions" class="cta-btn primary" href="/kontakt">
+      Beratung anfragen
+    </a>
+    <a slot="actions" class="cta-btn ghost" href="tel:+49971785557150">
+      0971 / 78 55 57 15
+    </a>
+  </CTASection>
 </Layout>
 
 <style>
-  .map-wrapper {
-   width: 100%;
-    margin-block-end: var(--spacing-7);
+  /* ---------- Section rhythm ----------
+     Each top-level section gets generous vertical breathing room and a hairline
+     divider — matches the SectionNavigator sandbox pattern. */
+  .page-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5);
+    padding-block: var(--spacing-6);
+    border-block-start: 1px solid var(--clr-border-secondary);
+  }
+
+  .page-section:first-of-type {
+    border-block-start: none;
+  }
+
+  /* ---------- Map ----------
+     LocationsMap's internal wrapper is 70vh tall and clips its corners — we
+     just give it the column it lives in. No extra chrome around the map. */
+  .map-frame {
+    width: 100%;
+  }
+
+  /* ---------- Card grids ----------
+     One responsive grid pattern shared by Musterhäuser and Vertriebsbüros. */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  @media (--from-tablet) {
+    .card-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (--from-desktop) {
+    .office-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  /* ---------- Musterhaus card ----------
+     Placeholder leads, then a compact head + body. Outer radius lg → matches
+     the VideoPlaceholder it contains; padding 4 → 2 gap reads as text only. */
+  .musterhaus {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .musterhaus .head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-0);
+  }
+
+  .musterhaus .name {
+    margin: 0;
+    font-size: var(--fs-h5);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+  }
+
+  .musterhaus .region {
+    margin: 0;
+    font-size: var(--fs-body-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--clr-content-tertiary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .musterhaus .body {
+    margin: 0;
+    color: var(--clr-content-secondary);
+    line-height: var(--lh-body);
+  }
+
+  /* ---------- Office card ----------
+     Each card: building glyph, name, address-with-pin, "Standort öffnen" link.
+     Surface-secondary background, secondary-border, lg radius. The link sits
+     against the bottom of the card via auto-margin-top on the flex column so
+     uneven addresses don't push the affordance around. */
+  .office {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    height: 100%;
+    padding: var(--spacing-4);
+    background: var(--clr-surface-secondary);
+    border: 1px solid var(--clr-border-secondary);
+    border-radius: var(--radius-lg);
+  }
+
+  .office-icon {
+    display: inline-grid;
+    place-items: center;
+    color: var(--clr-content-tertiary);
+  }
+
+  .office-name {
+    margin: 0;
+    font-size: var(--fs-h6);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+  }
+
+  .office-address {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    column-gap: var(--spacing-1);
+    margin: 0;
+    color: var(--clr-content-secondary);
+    font-size: var(--fs-body-sm);
+    line-height: var(--lh-body);
+  }
+
+  .address-glyph {
+    display: inline-grid;
+    place-items: center;
+    /* Optical alignment with first line of address text. */
+    padding-block-start: 0.2em;
+    color: var(--clr-content-tertiary);
+  }
+
+  .office-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    margin-block-start: auto;
+    padding-block-start: var(--spacing-2);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-primary);
+    text-decoration: none;
+    transition:
+      color 160ms ease,
+      gap 160ms ease;
+  }
+
+  .office-link .arrow {
+    transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .office-link:hover {
+    color: var(--clr-accent-secondary);
+    opacity: 1;
+  }
+
+  .office-link:hover .arrow {
+    transform: translateX(2px);
+  }
+
+  .office-link:focus-visible {
+    outline: 2px solid var(--clr-accent-primary);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* ---------- CTA buttons (page-local) ----------
+     Two affordances inside CTASection's `actions` slot. Primary uses the
+     primary accent — it's a page-level CTA on a large surface, per the
+     project accent rule. Ghost is text-only, for the secondary phone link. */
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--control-height-md);
+    padding-inline: var(--spacing-3);
+    border-radius: var(--radius-md);
+    font-size: var(--fs-body);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    text-decoration: none;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .cta-btn.primary {
+    background: var(--clr-accent-primary);
+    color: var(--clr-pure-white);
+    border: 1px solid var(--clr-accent-primary);
+  }
+
+  .cta-btn.primary:hover {
+    background: var(--clr-accent-secondary);
+    border-color: var(--clr-accent-secondary);
+    opacity: 1;
+  }
+
+  .cta-btn.ghost {
+    background: transparent;
+    color: var(--clr-content-primary);
+    border: 1px solid var(--clr-border-tertiary);
+  }
+
+  .cta-btn.ghost:hover {
+    border-color: var(--clr-content-primary);
+    opacity: 1;
+  }
+
+  .cta-btn:focus-visible {
+    outline: 2px solid var(--clr-accent-primary);
+    outline-offset: 2px;
   }
 </style>

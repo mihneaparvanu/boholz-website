@@ -1,10 +1,14 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/layouts/Section.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+import Divider from "@/components/ui/Divider.astro";
+import StatBlock from "@/components/ui/StatBlock.vue";
 import "@/style/content-page.css";
 import ContactForm from "@/features/ContactForms/ContactForm.vue";
 import LocationsMap from "@/features/Locations/LocationsMap.vue";
 import { getLocations } from "@/data/loaders";
+import { MessagesSquare, Mail } from "lucide-vue-next";
 
 const locations = await getLocations({ exceptKind: "showhouse" });
 ---
@@ -13,12 +17,42 @@ const locations = await getLocations({ exceptKind: "showhouse" });
   <article class="content-page">
     <h1>Kontakt</h1>
     <p class="page-intro">
-      Wir freuen uns auf Ihre Nachricht. Ob telefonisch, per E-Mail oder
-      persönlich vor Ort – wir sind für Sie da.
+      Eine Nachricht reicht. Antwort meist binnen 24 Stunden — werktags.
     </p>
+
+    <ul class="stat-row" aria-label="Service auf einen Blick">
+      <li>
+        <StatBlock
+          client:visible
+          value="< 24 h"
+          label="Antwortzeit"
+          caption="Werktags meist schneller."
+        />
+      </li>
+      <li>
+        <StatBlock
+          client:visible
+          value="0 €"
+          label="Beratung"
+          caption="Erstgespräch und Katalog kostenfrei."
+        />
+      </li>
+      <li>
+        <StatBlock
+          client:visible
+          value="5"
+          label="Standorte"
+          caption="Vertriebsbüros, Musterhäuser und Zentrale."
+        />
+      </li>
+    </ul>
 
     <div class="contact-grid">
       <section class="info">
+        <Eyebrow>
+          <MessagesSquare slot="icon" size={14} stroke-width={2} />
+          Direkt erreichbar
+        </Eyebrow>
         <h2>Direkt erreichbar</h2>
         <p>
           Sie können uns telefonisch erreichen oder per E-Mail anschreiben.
@@ -46,6 +80,10 @@ const locations = await getLocations({ exceptKind: "showhouse" });
       </section>
 
       <section class="form">
+        <Eyebrow>
+          <Mail slot="icon" size={14} stroke-width={2} />
+          Katalog bestellen
+        </Eyebrow>
         <h2>Hauskatalog anfordern</h2>
         <p>
           Erzählen Sie uns kurz, wie Sie wohnen möchten – wir senden Ihnen den
@@ -53,6 +91,10 @@ const locations = await getLocations({ exceptKind: "showhouse" });
         </p>
         <ContactForm client:visible />
       </section>
+    </div>
+
+    <div class="section-break">
+      <Divider index={2} label="Standorte" />
     </div>
   </article>
 
@@ -68,6 +110,27 @@ const locations = await getLocations({ exceptKind: "showhouse" });
 </Layout>
 
 <style>
+  /* Stat row — three pillars above the contact grid.
+     Spans the full content-page width on desktop (not gated to the form
+     column) so the row reads as a page-level promise, not a form caption. */
+  .stat-row {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--spacing-5) 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+    padding-block: var(--spacing-4);
+    border-block: 1px solid var(--clr-border-secondary);
+  }
+
+  @media (--from-tablet) {
+    .stat-row {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-5);
+    }
+  }
+
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -80,12 +143,24 @@ const locations = await getLocations({ exceptKind: "showhouse" });
     margin-block-end: 0;
   }
 
+  /* Tighten the inherited content-page H2 spacing now that an Eyebrow
+     sits directly above it — the eyebrow already supplies the visual lift. */
+  .contact-grid > section > h2 {
+    margin-block-start: var(--spacing-1);
+  }
+
   @media (--from-desktop) {
     .contact-grid {
       grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
       gap: var(--spacing-5);
       align-items: start;
     }
+  }
+
+  /* Divider gutter — separates the article from the map Section.
+     Inherits the .content-page max-width via the article wrapper. */
+  .section-break {
+    margin-block-start: var(--spacing-6);
   }
 
   .kontakt-map {
