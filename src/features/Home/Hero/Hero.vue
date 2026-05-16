@@ -4,6 +4,7 @@ import { ref, computed } from "vue";
 import type { HeroSlide } from "./hero.types";
 import Button from "@/components/ui/Button.vue";
 import { ArrowRight } from "lucide-vue-next";
+import { ROUTES } from "@/utils/routes";
 
 const props = defineProps<{
   slides: HeroSlide[];
@@ -16,6 +17,14 @@ useIntervalFn(() => {
 }, 3000);
 
 const slide = computed(() => props.slides[index.value]);
+
+// View-transition name for the morph into /haus/[slug].
+// Bound via the current slide's slug — slugs are globally unique, so the
+// leaving image (kept briefly in the DOM by <Transition name="crossfade">)
+// and the entering image always carry *different* names. No collision is
+// possible, and Astro's ClientRouter captures the entering image as the
+// shared element when the CTA is clicked.
+const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
 </script>
 
 <template>
@@ -28,9 +37,29 @@ const slide = computed(() => props.slides[index.value]);
       <div class="bottom">
         <div class="proof">
           <span>Bewährte Spitzenqualität</span>
+          <div class="badges" aria-label="Qualitätssiegel">
+            <svg class="badge" aria-hidden="true">
+              <use href="#badge-iso" />
+            </svg>
+            <svg class="badge" aria-hidden="true">
+              <use href="#badge-bdf" />
+            </svg>
+            <svg class="badge" aria-hidden="true">
+              <use href="#badge-gdf" />
+            </svg>
+            <svg class="badge" aria-hidden="true">
+              <use href="#badge-qdf" />
+            </svg>
+            <svg class="badge" aria-hidden="true">
+              <use href="#badge-gdf-shield" />
+            </svg>
+            <svg class="badge" aria-hidden="true">
+              <use href="#badge-ral" />
+            </svg>
+          </div>
         </div>
         <div class="action">
-          <Button>
+          <Button :href="ROUTES.house(slide.slug)">
             {{ slide.title }}
             <template #trailing> <ArrowRight /> </template>
           </Button>
@@ -42,6 +71,7 @@ const slide = computed(() => props.slides[index.value]);
         :key="slide.id"
         :src="slide.heroImgURL ?? undefined"
         :alt="slide.title"
+        :style="{ viewTransitionName: heroImgName }"
         width="1200"
         height="800"
         class="background full-width"

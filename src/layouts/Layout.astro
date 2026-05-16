@@ -1,7 +1,12 @@
 ---
 import "@/style/reset.css";
-import "@/style/design-system.css"
-import "@/style/wrapper.css"
+import "@/style/design-system.css";
+import "@/style/wrapper.css";
+import "@/style/view-transitions.css";
+
+import { ClientRouter } from "astro:transitions";
+
+import qualityBadgesSprite from "@/icons/qualityBadges.svg?raw";
 
 import Navbar from "./Navbar/Navbar.vue";
 import Footer from "./Footer/Footer.astro";
@@ -19,6 +24,8 @@ const { title, categories: categoriesProp } = Astro.props;
 const categories = categoriesProp ?? await getCategories();
 const showhouses = await getLocations({ kind: "showhouse" });
 ---
+
+<html lang="de">
   <head>
     <meta charset="utf-8" />
     <link
@@ -35,8 +42,10 @@ const showhouses = await getLocations({ kind: "showhouse" });
       content="width=device-width"
     />
     <title>{title}</title>
+    <ClientRouter />
   </head>
   <body>
+    <Fragment set:html={qualityBadgesSprite} />
     <Navbar client:load categories={categories} showhouses={showhouses} currentPath={Astro.url.pathname}/>
     <main class="wrapper">
        <PrivacyPopup/>
