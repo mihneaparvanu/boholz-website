@@ -1,6 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import HomeSection from "@/features/Home/HomeSection.astro";
+import Section from "@/layouts/Section.astro";
 import CTASection from "@/components/sections/CTASection.astro";
 
 import Hero from "@/features/Home/Hero/Hero.vue";
@@ -34,7 +34,7 @@ const navSections = [
   homeSections.contact,
 ].map((s) => ({ id: s.id, label: s.navLabel, eyebrow: s.eyebrow }));
 
-// Drop `navLabel` before forwarding to <HomeSection> — it's a rail-only field.
+// Drop `navLabel` before forwarding to <Section> — it's a rail-only field.
 const { categories: cat, trust, overview, finishes, qa, contact } = homeSections;
 const sectionProps = {
   categories: (({ navLabel, ...rest }) => rest)(cat),
@@ -52,25 +52,25 @@ const sectionProps = {
   <!-- Inline overview + sticky rail — wires the page's six anchors. -->
   <SectionNavigator client:load sections={navSections} />
 
-  <HomeSection {...sectionProps.categories} tone="primary">
+  <Section {...sectionProps.categories} tone="primary">
     <CategoriesShowcase client:visible categories={categories} />
-  </HomeSection>
+  </Section>
 
-  <HomeSection {...sectionProps.trust} tone="secondary">
+  <Section {...sectionProps.trust} tone="secondary">
     <TrustBadges client:visible badges={trustBadges} />
-  </HomeSection>
+  </Section>
 
-  <HomeSection {...sectionProps.overview} tone="primary">
+  <Section {...sectionProps.overview} tone="primary">
     <Overview client:visible featured={featuredCard} pillars={overviewPillars} />
-  </HomeSection>
+  </Section>
 
-  <HomeSection {...sectionProps.finishes} tone="secondary">
+  <Section {...sectionProps.finishes} tone="secondary">
     <BuildingStages client:visible stages={buildingStages} />
-  </HomeSection>
+  </Section>
 
-  <HomeSection {...sectionProps.qa} tone="primary">
+  <Section {...sectionProps.qa} tone="primary">
     <Faq client:visible categories={qaCategories} />
-  </HomeSection>
+  </Section>
 
   <!-- Closing CTA — kit CTASection. Its `surface` tone already uses
        `--clr-surface-secondary` so the section reads as the alternating

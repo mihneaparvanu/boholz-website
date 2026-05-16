@@ -76,7 +76,10 @@ const scrollToSection = (id: string, e?: Event): void => {
   const el = document.getElementById(id);
   if (!el) return;
   const top =
-    el.getBoundingClientRect().top + window.scrollY - activationOffset.value + 1;
+    el.getBoundingClientRect().top +
+    window.scrollY -
+    activationOffset.value +
+    1;
   window.scrollTo({
     top,
     behavior: reduced.value ? "auto" : "smooth",
@@ -107,8 +110,7 @@ const centerPillInRail = (id: string): void => {
     `[data-pill-id="${CSS.escape(id)}"]`,
   );
   if (!pills || !pill) return;
-  const target =
-    pill.offsetLeft - pills.clientWidth / 2 + pill.offsetWidth / 2;
+  const target = pill.offsetLeft - pills.clientWidth / 2 + pill.offsetWidth / 2;
   pills.scrollTo({
     left: Math.max(0, target),
     behavior: reduced.value ? "auto" : "smooth",
@@ -159,11 +161,7 @@ watch(railVisible, (visible) => {
 
 <template>
   <!-- Inline overview: at top of content; full section list with eyebrow + label -->
-  <nav
-    ref="overviewRef"
-    class="overview"
-    aria-label="Auf dieser Seite"
-  >
+  <nav ref="overviewRef" class="overview" aria-label="Auf dieser Seite">
     <p class="head">Auf dieser Seite</p>
     <ul class="grid" role="list">
       <li v-for="s in sections" :key="s.id">
@@ -230,26 +228,33 @@ watch(railVisible, (visible) => {
 .overview {
   display: flex;
   flex-direction: column;
-  /* Larger gap between the section heading and the first row — the
-     small-caps tracking on `.head` needs room to breathe. */
-  gap: var(--spacing-4);
+  /* Generous gap between the eyebrow head and the first row — small-caps
+     at body-sm needs real breathing room. */
+  gap: var(--spacing-5);
   padding-block: var(--spacing-5);
   border-block: 1px solid var(--clr-border-secondary);
 }
 
 .head {
-  /* Aligned to the text column of each item below: items have a 14px icon
-     plus a spacing-2 column gap before the text. Indenting the head by the
-     same amount lines its left edge up with the labels and eyebrows. */
   margin: 0;
-  margin-inline-start: calc(14px + var(--spacing-2));
   font-size: var(--fs-body-sm);
   text-transform: uppercase;
-  /* Slightly tighter tracking than --tracking-eyebrow — body-sm is small
-     enough that 0.12em starts looking loose. */
-  letter-spacing: 0.08em;
+  /* Tighter tracking — at body-sm the prior 0.08em read loose;
+     0.04em keeps the small-caps rhythm without the gaps shouting. */
+  letter-spacing: 0.04em;
   font-weight: var(--font-weight-medium);
   color: var(--clr-content-tertiary);
+  /* Mobile: centred over the single-column grid. Desktop: aligned to the
+     text column (14px icon + spacing-2 gutter) so the head sits flush
+     with the labels below. */
+  text-align: center;
+}
+
+@media (--from-tablet) {
+  .head {
+    text-align: start;
+    margin-inline-start: calc(14px + var(--spacing-2));
+  }
 }
 
 .grid {
@@ -307,8 +312,9 @@ watch(railVisible, (visible) => {
   font-size: calc(var(--fs-body-sm) * 0.88);
   text-transform: uppercase;
   /* Tighter than --tracking-eyebrow — at body-sm × 0.88 (≈11–13px),
-     0.12em looks loose; 0.06em reads precise. */
-  letter-spacing: 0.06em;
+     even 0.06em reads loose; 0.03em keeps the small-caps signal
+     without spacing the letters into separate words. */
+  letter-spacing: 0.03em;
   color: var(--clr-content-tertiary);
   font-weight: var(--font-weight-medium);
   line-height: 1.2;

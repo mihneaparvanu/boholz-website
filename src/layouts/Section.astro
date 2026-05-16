@@ -1,9 +1,20 @@
 ---
 import type { SectionContent } from "./section.types";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
 
 type Tone = "primary" | "secondary";
 
 type Props = SectionContent & {
+  /**
+   * Optional anchor id rendered on the outer `<section>` element. Use when a
+   * sticky rail or deep-link target needs to scroll to this section.
+   */
+  id?: string;
+  /**
+   * Optional small-caps label rendered above the headings via the kit
+   * `<Eyebrow>` component. Composes with the heading rhythm.
+   */
+  eyebrow?: string;
   /**
    * `primary` (default) renders the section in the content column of the
    * page wrapper — back-compat.
@@ -19,6 +30,8 @@ type Props = SectionContent & {
 };
 
 const {
+  id,
+  eyebrow,
   heading1,
   heading2,
   highlight,
@@ -30,9 +43,10 @@ const isSecondary = tone === "secondary";
 const wrapperClass = isSecondary ? "section full-width" : "section";
 ---
 
-<section class={wrapperClass} data-tone={tone}>
+<section id={id} class={wrapperClass} data-tone={tone}>
   <div class="inner">
     <div class="heading-group">
+      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
       <div class="headings">
         {
           heading2 ? (
@@ -64,6 +78,9 @@ const wrapperClass = isSecondary ? "section full-width" : "section";
     align-items: center;
     padding-block: var(--spacing-6);
     gap: var(--spacing-5);
+    /* Scroll-margin so deep-link / nav-rail jumps don't tuck the heading
+       under the sticky navbar + rail. */
+    scroll-margin-block-start: calc(var(--navbar-height) + var(--spacing-4));
   }
 
   /* Secondary-tone section escapes the wrapper grid to span full-width,
@@ -99,6 +116,13 @@ const wrapperClass = isSecondary ? "section full-width" : "section";
     width: 100%;
     max-width: 90ch;
     margin-inline: auto;
+  }
+
+  /* Eyebrow → heading rhythm — composes with the .heading-group flex
+     gap (spacing-3) to give ~spacing-6 of breathing room. Polish wave 1
+     bumped this generously — small-caps demands real space below it. */
+  .heading-group :global(.eyebrow) {
+    margin-block-end: var(--spacing-3);
   }
 
   .headings {

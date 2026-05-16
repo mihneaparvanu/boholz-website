@@ -121,18 +121,25 @@ withDefaults(
   gap: var(--spacing-3);
 }
 
-/* Mobile: tap-target floor + a touch more padding-block so the label
-   doesn't sit pinned to the top/bottom of the larger min-height. */
+/* Mobile: bump padding-block one step per size so the label has real
+   breathing room. We also drop the min-height floors — padding alone now
+   pushes every size above the 44px tap target, and keeping min-height was
+   pinning short labels to the top/bottom of the box (the "squashed" look). */
 @media (--mobile) {
   .btn[data-size="sm"] {
-    min-height: 40px;
-    padding-block: var(--spacing-1);
+    min-height: 0;
+    padding-block: var(--spacing-2);
+    padding-inline: var(--spacing-3);
   }
   .btn[data-size="md"] {
-    padding-block: var(--spacing-2);
+    min-height: 0;
+    padding-block: var(--spacing-3);
+    padding-inline: var(--spacing-4);
   }
   .btn[data-size="lg"] {
-    padding-block: var(--spacing-3);
+    min-height: 0;
+    padding-block: var(--spacing-4);
+    padding-inline: var(--spacing-5);
   }
 }
 

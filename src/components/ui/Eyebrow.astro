@@ -31,7 +31,11 @@ const Tag = as;
     text-transform: uppercase;
     letter-spacing: var(--tracking-eyebrow);
     line-height: 1.2;
-    margin: 0;
+    /* Asymmetric padding rule: the eyebrow always wants generous space
+       below it (it labels the heading that follows). Top is owned by
+       whoever placed the eyebrow. EyebrowHeadingLede overrides this with
+       its own flex gap rhythm; standalone consumers get sensible default. */
+    margin: 0 0 var(--spacing-3) 0;
   }
 
   .icon {

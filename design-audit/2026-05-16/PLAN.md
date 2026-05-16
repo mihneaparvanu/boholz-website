@@ -10,7 +10,7 @@ site-wide on-page navigator and an information-density toolkit, restructure the 
 ## 0. Preflight — what was read
 
 - `CLAUDE.md` — full project conventions (Astro SSR + Vue islands, Vanilla CSS via `src/style/`
-  global tokens *or* Vanilla Extract co-located; **no BEM**; `@custom-media` breakpoint tokens;
+  global tokens _or_ Vanilla Extract co-located; **no BEM**; `@custom-media` breakpoint tokens;
   Reka UI for headless behaviour; GSAP + Lenis already in repo; German umlaut → ASCII).
 - `src/style/` — `reset.css`, `design-system.css`, `breakpoints.css`, `fonts.css`,
   `wrapper.css`, `view-transitions.css`, `content-page.css`, `legal.css`, `form.css`.
@@ -68,7 +68,7 @@ delivered — critical gap.**
    the active TOC chip, the four "Ihre Vorteile" cards (each in a different pastel), the brown
    centre band, the avatar pills, the testimonial strip, the footer CTA strip, the footer
    itself. Every section is on a different background. The eye has no anchor; nothing reads as
-   *the* primary action. `src/style/design-system.css` defines a single
+   _the_ primary action. `src/style/design-system.css` defines a single
    `--clr-accent-primary` (`--boholz-blau-alt`) — the comp does not use it once.
 2. **Shadows are not earned (Commandment 6).** Cards in "Ihre Vorteile" and "Für wen geeignet?"
    are flat with no elevation rationale — they look like sticker-pasted blocks. No `--shadow-*`
@@ -90,7 +90,8 @@ delivered — critical gap.**
    This is real-estate-listing aesthetic, not premium-manufacturer.
 
 **What is salvageable**
-- The page contains the right *content beats* (value props, house typologies, audience fit,
+
+- The page contains the right _content beats_ (value props, house typologies, audience fit,
   KfW/quality story, FAQ, contact). The IA is broadly correct.
 - The "Für wen geeignet?" list (Familien / Senioren / Mehrgenerationen / Investoren) — icon-led
   rows — is the closest thing to my proposed Information Density toolkit and can be lifted
@@ -98,7 +99,7 @@ delivered — critical gap.**
 - The "16 gute Gründe" numerical hook is strong.
 
 **The "premium gap"**
-The comp is *cluttered*. Nothing breathes. Premium reads as confidence and restraint —
+The comp is _cluttered_. Nothing breathes. Premium reads as confidence and restraint —
 generous whitespace, one accent doing one job, monochrome neutrals carrying the visual weight
 and serif italics earning attention through scarcity. The comp does the opposite: every
 section is given its own colour to signify "we tried."
@@ -145,6 +146,7 @@ and can be reused for the accessibility/lifecycle narrative.
 ---
 
 ### Aggregate verdict
+
 **Two reworks of the IA, one rewrite of the visual language.** Do not extend this template.
 The content beats are usable; the layout, palette, typography, and component library are not.
 
@@ -156,8 +158,8 @@ The content beats are usable; the layout, palette, typography, and component lib
 
 **Live URL:** `https://www.airnewzealand.com/economy-skynest`
 **Screenshots:** `./screenshots/references/airnz/`
-  (`airnz-mobile-fold.png`, `airnz-mobile-toc.png`, `airnz-mobile-full.png`,
-   `airnz-desktop-fold.png`, `airnz-desktop-full.png`)
+(`airnz-mobile-fold.png`, `airnz-mobile-toc.png`, `airnz-mobile-full.png`,
+`airnz-desktop-fold.png`, `airnz-desktop-full.png`)
 
 #### The TOC component (`.cms-in-page-nav` / `.pw-InPageNav`)
 
@@ -165,15 +167,15 @@ The most important finding: **it is not a sticky sidebar. It is a static "On thi
 that sits between the hero and the first content section.** This makes it cheap, accessible by
 default, and surprisingly elegant. Anatomy (mobile 390 px, computed values):
 
-| Part        | Value                                                                |
-| ----------- | -------------------------------------------------------------------- |
-| Container   | block, no bg, no border, full content width                          |
-| Prefix      | `<p class="...prefix">On this page</p>` — 17 px, weight 700, black, mb 6 px |
-| Layout      | flex column on mobile, **flex row with 2 sub-sections on desktop** (~420 px each) |
-| Item        | `<a>` 17 px / weight 400, color `#008392` (teal accent), 25.5 px line-height |
-| Icon        | inline 16 px down-arrow SVG, left of label, 24 px padding-left used as gutter |
-| Item state  | **No active highlighting.** No scroll-spy. Native `:target` + `scroll-behavior: smooth`. |
-| Item count  | 6 items, grouped into 2 visual sections of 3                          |
+| Part       | Value                                                                                    |
+| ---------- | ---------------------------------------------------------------------------------------- |
+| Container  | block, no bg, no border, full content width                                              |
+| Prefix     | `<p class="...prefix">On this page</p>` — 17 px, weight 700, black, mb 6 px              |
+| Layout     | flex column on mobile, **flex row with 2 sub-sections on desktop** (~420 px each)        |
+| Item       | `<a>` 17 px / weight 400, color `#008392` (teal accent), 25.5 px line-height             |
+| Icon       | inline 16 px down-arrow SVG, left of label, 24 px padding-left used as gutter            |
+| Item state | **No active highlighting.** No scroll-spy. Native `:target` + `scroll-behavior: smooth`. |
+| Item count | 6 items, grouped into 2 visual sections of 3                                             |
 
 It does not animate. It does not stick. It is honest about being a wayfinder. The
 sophistication is in: (a) the consistent leading icon establishing rhythm, (b) the visual
@@ -195,17 +197,17 @@ nest (with 7 amenity H3s) → access requirements → travelling with children.
 
 #### Type system mapping vs `src/style/`
 
-| Air NZ                              | px      | BoHolz `style/`                       |
-| ----------------------------------- | ------- | ------------------------------------- |
-| H1 hero                             | 41/61.5 | `--fs-h1` (≈ 50 px at mobile midpoint — close) |
-| H2 section heading                  | 24/28.8 | `--fs-h3` (≈ 24 px at 500 px viewport — exact match) |
-| H3 sub-block                        | 20/24   | `--fs-h5` (≈ 19 px at 500 px viewport — close) |
-| Body                                | 17/25.5 | `--fs-body` (clamps 16→17 px — match) |
-| TOC item                            | 17/25.5 | `--fs-body`                            |
-| TOC prefix "On this page"           | 17/700  | `--fs-body` at weight 700              |
+| Air NZ                    | px      | BoHolz `style/`                                      |
+| ------------------------- | ------- | ---------------------------------------------------- |
+| H1 hero                   | 41/61.5 | `--fs-h1` (≈ 50 px at mobile midpoint — close)       |
+| H2 section heading        | 24/28.8 | `--fs-h3` (≈ 24 px at 500 px viewport — exact match) |
+| H3 sub-block              | 20/24   | `--fs-h5` (≈ 19 px at 500 px viewport — close)       |
+| Body                      | 17/25.5 | `--fs-body` (clamps 16→17 px — match)                |
+| TOC item                  | 17/25.5 | `--fs-body`                                          |
+| TOC prefix "On this page" | 17/700  | `--fs-body` at weight 700                            |
 
 **Gap:** Air NZ uses one font (their custom sans) — they get away with weight contrast (400
-vs 700) instead of family contrast. We have *better* leverage: DIN sans + Instrument Serif
+vs 700) instead of family contrast. We have _better_ leverage: DIN sans + Instrument Serif
 italic for accent. Use it.
 
 #### Spacing
@@ -234,12 +236,12 @@ italic for accent. Use it.
 
 #### The "premium signal" in one paragraph
 
-Air NZ projects premium by *refusing the visual tropes of a category in transition*. Most
+Air NZ projects premium by _refusing the visual tropes of a category in transition_. Most
 airlines use motion to feel modern. Air NZ uses **white space and confident typography**.
 There is one accent colour, doing one job. Lifestyle photography is high-craft and sparing —
 each shot is paid for by the empty space around it. The TOC is the only "feature
 component" on the page and it is the simplest thing in the world: a heading, six links, two
-columns at desktop. The page does not perform — it just *tells you what you came to find*.
+columns at desktop. The page does not perform — it just _tells you what you came to find_.
 This is what we are stealing.
 
 ---
@@ -253,12 +255,12 @@ This is what we are stealing.
 
 1. **Horizontal pill TOC pattern.** `Projects · Information · Plans · Interiors · Range` —
    a segmented-button bar that sticks under the navbar on scroll. Dark theme: `#38383d` base
-   pill, `#6f6f77` active pill (a *lighter* gray for active — counterintuitive but it works
+   pill, `#6f6f77` active pill (a _lighter_ gray for active — counterintuitive but it works
    against the dark base), 16 px / weight 500 labels, 50 px height. **This is the mobile
    pattern I'm proposing as Variant 2 below.** Horizontal scroll with a right chevron
    indicator when items overflow.
 2. **Stat-card mini-grid.** 2 × 2 grid of stat cards under the hero — Area / Storeys /
-   Bedrooms / Bathrooms — each with a Lucide-style icon, a label, a value. This is a *direct*
+   Bedrooms / Bathrooms — each with a Lucide-style icon, a label, a value. This is a _direct_
    answer to the "limited media" problem: numbers + icons replace photos.
 3. **Accordion content sections.** Below the stat grid, the long-form content (Details,
    Description, Scope of work, Room list) is collapsed by default in accordions. The whole
@@ -267,9 +269,10 @@ This is what we are stealing.
    padding-block. Maintains rhythm without colour.
 
 #### What is specific to DanWood and we should NOT copy
+
 - Dark TOC in a light-theme page reads as a leftover dark mode rather than a decision.
 - Their breadcrumb-on-product-page is too small (12 px) and looks like an oversight.
-- Their photography is *very* clean Scandinavian — we have a different audience (German
+- Their photography is _very_ clean Scandinavian — we have a different audience (German
   Mittelstand) and the cosier Bavarian / Rhön visual the BoHolz brand actually has should
   drive our photo direction.
 
@@ -292,16 +295,16 @@ visual/behavioural. I have a strong preference (Variant 2), explained at the end
 ```ts
 // One section descriptor.
 type SectionLink = {
-  id: string;          // anchor id, German-umlaut-normalised slug
-  label: string;       // visible label (German)
+  id: string; // anchor id, German-umlaut-normalised slug
+  label: string; // visible label (German)
   icon?: keyof typeof LucideIcons; // optional override; default = ArrowDown
 };
 
 // Props for <SectionNavigator>
 type Props = {
   sections: SectionLink[];
-  variant?: 'sidebar' | 'pill-row' | 'inline-grid'; // see below
-  showProgress?: boolean;  // default true on sidebar, false elsewhere
+  variant?: "sidebar" | "pill-row" | "inline-grid"; // see below
+  showProgress?: boolean; // default true on sidebar, false elsewhere
 };
 ```
 
@@ -319,6 +322,7 @@ rule already in `reset.css`.
 Mirrors Air NZ exactly but in our type/colour system.
 
 **Desktop sketch (≥ 1024 px)**
+
 ```
 ┌────────────────────────────────────────────────────────────────┐
 │  AUF DIESER SEITE                                              │
@@ -328,9 +332,11 @@ Mirrors Air NZ exactly but in our type/colour system.
 │  ↓  Qualität & Zertifikate   ↓  Haus- & Energietechnik         │
 └────────────────────────────────────────────────────────────────┘
 ```
+
 Two-column flex layout, ~50/50 split, items stacked vertically per column.
 
 **Mobile sketch (390 px)**
+
 ```
 ┌──────────────────────────────────────┐
 │  AUF DIESER SEITE                    │
@@ -343,6 +349,7 @@ Two-column flex layout, ~50/50 split, items stacked vertically per column.
 │  ↓  Haus- & Energietechnik           │
 └──────────────────────────────────────┘
 ```
+
 Single column, full width inside `.wrapper` content column.
 
 **Motion behaviour.** None. Native smooth-scroll on click. Hover: link colour fades from
@@ -357,11 +364,13 @@ the top/bottom rule), `--spacing-2`, `--spacing-3`, `--spacing-4`, `--spacing-5`
 **Lucide icons used** — `ArrowDown` (one icon, leading every item; 14 px / size sm).
 
 **Pros**
+
 - Cheapest to build. Zero scroll-state. Zero scroll-spy bugs. Most accessible by default.
 - Cannot collide with the sticky navbar.
 - Pixel-faithful to the reference you specifically called out.
 
 **Cons**
+
 - Once the user scrolls past it, it is gone. They cannot re-jump without scrolling back to
   the top.
 - No active-section feedback — the user does not know "where am I" mid-page.
@@ -376,10 +385,11 @@ patient. Lowest-risk option.
 ### Variant 2 — **"Sticky pill rail (DanWood-inspired) with inline overview"** ← my recommendation
 
 **Description.** Two coordinated parts:
+
 1. **Inline overview block** at the top of the page (Variant 1's exact static layout) so the
    page has a clear "table of contents" moment before content starts.
 2. **A sticky horizontal pill rail** that appears under the navbar after the user scrolls
-   past the hero, providing always-on jump access *and* active-section feedback.
+   past the hero, providing always-on jump access _and_ active-section feedback.
 
 This is the "AirNZ + DanWood" hybrid. The inline block gives the calm "here is your map"
 moment; the pill rail gives continuous wayfinding without a sidebar (which would compete
@@ -388,6 +398,7 @@ with the centred content max-width of 1600 px the wrapper already enforces).
 **Desktop sketch (≥ 1024 px)**
 
 Top of page (after hero):
+
 ```
 ┌────────────────────────────────────────────────────────────────┐
 │  AUF DIESER SEITE                                              │
@@ -398,12 +409,14 @@ Top of page (after hero):
 ```
 
 Mid-scroll (sticky, slides down from under navbar):
+
 ```
 ┌──────────────────────────────────────────────────────────────────┐
 │  Versprechen · 16 Gründe · ‹Qualität› · Nachhaltigkeit · Wand…  → │   ← progress strip below
 │ ════════════ 60% ────────────────────────────────────────────── │
 └──────────────────────────────────────────────────────────────────┘
 ```
+
 - Pills are text-only (no icons in the rail; the inline block carries the icons).
 - Active pill: `background: var(--clr-surface-secondary)`, text in
   `--clr-content-primary`. Inactive: `transparent`, text in `--clr-content-tertiary`.
@@ -415,18 +428,21 @@ Mid-scroll (sticky, slides down from under navbar):
 Top of page (inline overview) — identical to Variant 1's mobile sketch.
 
 Sticky rail when scrolled:
+
 ```
 ┌────────────────────────────────────────────┐
 │ ‹Qualität› · Nachhaltigk… · Wandaufb… ▸    │   ← horizontally scrollable
 │ ════════ 45% ───────────────────────────── │
 └────────────────────────────────────────────┘
 ```
+
 - Horizontal scroll with `scroll-snap-type: x mandatory`.
 - When the user clicks a pill, the rail auto-scrolls the active pill into view
   (`scrollIntoView({ inline: 'center', behavior: 'smooth' })`).
 - A subtle right-edge fade mask (`mask-image: linear-gradient(...)`) signals overflow.
 
 **Motion behaviour**
+
 - Sticky rail: enters from `y: -100%` to `y: 0` when the inline block leaves the viewport.
   Spring `stiffness: 350, damping: 30` via `motion-v`.
 - Progress bar: `motion-v` animates `scaleX` driven by a reactive computed
@@ -448,6 +464,7 @@ moment), Linear/Vercel docs (progress strip).
 indicator on mobile rail), nothing in the pills themselves.
 
 **Pros**
+
 - Two patterns in one: calm top-of-page moment + persistent wayfinder.
 - Active state + progress bar give the "I know where I am" feedback Variant 1 lacks.
 - The sticky rail solves the "user scrolls past the TOC and is stranded" problem.
@@ -457,6 +474,7 @@ indicator on mobile rail), nothing in the pills themselves.
   declare sections once.
 
 **Cons**
+
 - More moving parts → more to get right (sticky offset, scroll-spy debounce, scroll-into-view
   on the rail).
 - The progress bar is a "you might not need it" — I default it ON but it can be a prop.
@@ -465,7 +483,7 @@ indicator on mobile rail), nothing in the pills themselves.
 
 **When to pick this.** This is the right pick if you want the site to feel like a current
 top-tier product page (Linear docs, Vercel docs, modern Apple support pages). It is the
-*signature* version of the brief.
+_signature_ version of the brief.
 
 ---
 
@@ -476,6 +494,7 @@ numbered (01, 02, 03…) section labels. On mobile, the sidebar collapses to a "
 disclosure" block at the top: tap "Auf dieser Seite (6)" → list expands.
 
 **Desktop sketch (≥ 1024 px)**
+
 ```
 ┌──────────────────┬──────────────────────────────────────────────┐
 │                  │                                              │
@@ -488,18 +507,22 @@ disclosure" block at the top: tap "Auf dieser Seite (6)" → list expands.
 │                  │                                              │
 └──────────────────┴──────────────────────────────────────────────┘
 ```
+
 Sticky `top: calc(var(--navbar-height) + var(--spacing-4))`. Active row: number colour
 flips to `--clr-accent-primary` and the row gets a `border-inline-start: 2px solid`.
 
 **Mobile sketch (390 px)**
+
 ```
 ┌──────────────────────────────────────┐
 │  Auf dieser Seite (6)            ▾   │   ← disclosure summary
 └──────────────────────────────────────┘
 ```
+
 Tap → reveals Variant 1's mobile list inline.
 
 **Motion behaviour**
+
 - Sidebar number transitions (active state): 200 ms colour + 240 ms `motion-v` width on the
   border-inline-start (0 → 2 px).
 - Mobile disclosure: `motion-v` animate `height: auto` with a layout transition; 280 ms.
@@ -513,11 +536,13 @@ we want them to be the "premium fingerprint" detail.
 **Lucide icons used** — `ChevronDown` on the mobile disclosure trigger.
 
 **Pros**
+
 - Highest information density on desktop — six sections always visible.
 - Number-on-the-left is a typographic move that reads very editorial when done well.
 - Desktop sidebar is a well-worn paradigm; users know what to do with it.
 
 **Cons**
+
 - Eats horizontal real estate on a brand site where photography needs room to breathe.
 - Mobile disclosure adds a tap before the user sees the map of the page. One extra
   interaction. Variants 1 and 2 don't ask for it.
@@ -542,7 +567,7 @@ that.
 
 ## 1.4 — Information density toolkit
 
-Catalogue of patterns to break text-heavy mobile content. Each pattern is *only* tokens from
+Catalogue of patterns to break text-heavy mobile content. Each pattern is _only_ tokens from
 `src/style/` and Lucide icons. Patterns are independently composable.
 
 ### 1. Eyebrow + Heading + Lede
@@ -574,7 +599,7 @@ Described in §1.3 — listed here as a first-class pattern because pages may in
 
 - **What it does.** Replaces an image with a number doing the heavy lifting.
 - **When to use.** Anywhere a claim has a number behind it (`30 Tonnen CO₂`, `16 gute
-  Gründe`, `KfW 40`, `90 Jahre Erfahrung`, `2.350 EUR/m²`).
+Gründe`, `KfW 40`, `90 Jahre Erfahrung`, `2.350 EUR/m²`).
 - **Recipe.**
   `value`: `font-size: var(--fs-h2); font-weight: 300; font-family: var(--font-primary); letter-spacing: var(--ls-heading); line-height: 1;`
   `unit`: `font-size: var(--fs-h5); color: var(--clr-content-secondary);` — inline after value
@@ -625,7 +650,7 @@ Described in §1.3 — listed here as a first-class pattern because pages may in
 - **What it does.** Lets the brand's tone of voice break the rhythm. A single sentence in
   Instrument Serif italic.
 - **When to use.** Once or twice per page, between two heavy text sections. Use BoHolz copy
-  *or* a real customer testimonial when we have one.
+  _or_ a real customer testimonial when we have one.
 - **Recipe.**
   `font-family: var(--font-secondary); font-style: italic; font-size: var(--fs-h4); line-height: 1.3; color: var(--clr-content-primary); max-width: 36rem;`
   Attribution: body-sm, content-tertiary, weight 400.
@@ -665,7 +690,7 @@ Described in §1.3 — listed here as a first-class pattern because pages may in
 - **When to use.** Ausbaustufen names + descriptions, KfW product names + summaries,
   Wandaufbau material specs.
 - **Recipe.**
-  Native `<dl>`. Mobile: `<dt>` on its own line, weight 500;  `<dd>` indented `--spacing-3`
+  Native `<dl>`. Mobile: `<dt>` on its own line, weight 500; `<dd>` indented `--spacing-3`
   with `color: var(--clr-content-secondary);`.
   From `--from-tablet`: `display: grid; grid-template-columns: minmax(8rem, 14rem) 1fr; column-gap: var(--spacing-4);` with `border-block-end: 1px solid var(--clr-border-secondary)` between rows.
 
@@ -694,11 +719,11 @@ Described in §1.3 — listed here as a first-class pattern because pages may in
 - **What it does.** Surface alternates `--clr-surface-primary` ↔ `--clr-surface-secondary`
   every other section to break the visual rhythm without using colour.
 - **When to use.** Long pages (`unser-versprechen.astro`, `dein-zuhause.astro`). Use
-  *sparingly* — not every other section; every 2nd or 3rd. Otherwise it stripes.
+  _sparingly_ — not every other section; every 2nd or 3rd. Otherwise it stripes.
 - **Recipe.**
   Astro `Section.astro` gets a `tone?: 'primary' | 'secondary'` prop. Section becomes a
   `.full-width` grid child to break the wrapper centring, with `padding-inline:
-  var(--padding-inline)` internally to recreate the gutter.
+var(--padding-inline)` internally to recreate the gutter.
 
 ### 13. Sidebar callouts (Note / Pro tip / Important)
 
@@ -758,7 +783,7 @@ Described in §1.3 — listed here as a first-class pattern because pages may in
 
 ### 18. Progress indicator
 
-- **What it does.** Either the SectionNavigator's progress strip *or* a per-section "Step X
+- **What it does.** Either the SectionNavigator's progress strip _or_ a per-section "Step X
   of Y" eyebrow on numbered-step content.
 - **When to use.** Long Ablauf pages, multi-step forms.
 - **Recipe.** Component-internal to SectionNavigator (Variant 2). The standalone "Step 2 of
@@ -770,21 +795,21 @@ Described in §1.3 — listed here as a first-class pattern because pages may in
 
 Working entirely inside `src/style/design-system.css`'s existing scale.
 
-| Role             | Token combination                                                                       | Casing / treatment                                  | Example use                          |
-| ---------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------- | ------------------------------------ |
-| Eyebrow / label  | `--fs-body-sm`, weight 500, `text-transform: uppercase`, `letter-spacing: 0.12em`       | Always paired with a heading; never alone           | "Nachhaltigkeit" above an H2          |
+| Role             | Token combination                                                                       | Casing / treatment                                              | Example use                            |
+| ---------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------- | -------------------------------------- |
+| Eyebrow / label  | `--fs-body-sm`, weight 500, `text-transform: uppercase`, `letter-spacing: 0.12em`       | Always paired with a heading; never alone                       | "Nachhaltigkeit" above an H2           |
 | Display H1       | `--fs-h1`, weight **300** (light), `var(--ls-heading)`, line-height `var(--lh-heading)` | Mixed case; key noun in `<span class="highlight">` italic serif | Page hero on `unser-versprechen.astro` |
-| Display H1 (XL)  | inline `clamp(2.5rem, 8vw, 5.5rem)` weight 300                                          | Typographic hero variant (see toolkit pattern 15)   | Campaign-page heroes                  |
-| Section H2       | `--fs-h2`, weight 500, `var(--ls-heading)`, line-height `var(--lh-heading)`             | Use `Section.astro`'s existing two-line split pattern | Each major section                   |
-| Sub-heading H3   | `--fs-h3`, weight 400, `var(--ls-heading)`                                              | Use sparingly — one or two per section              | Inside `unser-versprechen` sub-blocks |
-| Tertiary H4      | `--fs-h4`, weight 500, `var(--ls-heading)`                                              |                                                     | Card titles, accordion triggers       |
-| Lede / intro     | `--fs-body-lg`, weight 300, `color: var(--clr-content-secondary)`, `max-width: 56rem`   |                                                     | Below H1 / H2                         |
-| Body             | `--fs-body`, weight 300, `line-height: var(--lh-body)`                                  | Default                                             | Paragraphs                            |
-| Caption / micro  | `--fs-body-sm`, weight 400, `color: var(--clr-content-tertiary)`                        | Optional `letter-spacing: 0.04em`                   | Image captions, badge labels          |
-| Pull quote       | `--fs-h4`, `font-family: var(--font-secondary)`, italic, weight 400, `line-height: 1.3` |                                                     | Toolkit pattern 6                     |
-| Stat value       | `--fs-h2`, weight 300, `line-height: 1`, `var(--ls-heading)`                            | Tabular figures via `font-variant-numeric: tabular-nums` | Toolkit pattern 3                  |
-| Drop cap initial | `4.5em` of `--fs-body`, `font-family: var(--font-secondary)`                            | Editorial — `uber-uns.astro` lead paragraph         | Toolkit pattern 16                    |
-| Highlight span   | `font-family: var(--font-secondary)`, italic, weight 400                                | Already used in `PageHero.astro`, `Section.astro`   | Hero / section headings               |
+| Display H1 (XL)  | inline `clamp(2.5rem, 8vw, 5.5rem)` weight 300                                          | Typographic hero variant (see toolkit pattern 15)               | Campaign-page heroes                   |
+| Section H2       | `--fs-h2`, weight 500, `var(--ls-heading)`, line-height `var(--lh-heading)`             | Use `Section.astro`'s existing two-line split pattern           | Each major section                     |
+| Sub-heading H3   | `--fs-h3`, weight 400, `var(--ls-heading)`                                              | Use sparingly — one or two per section                          | Inside `unser-versprechen` sub-blocks  |
+| Tertiary H4      | `--fs-h4`, weight 500, `var(--ls-heading)`                                              |                                                                 | Card titles, accordion triggers        |
+| Lede / intro     | `--fs-body-lg`, weight 300, `color: var(--clr-content-secondary)`, `max-width: 56rem`   |                                                                 | Below H1 / H2                          |
+| Body             | `--fs-body`, weight 300, `line-height: var(--lh-body)`                                  | Default                                                         | Paragraphs                             |
+| Caption / micro  | `--fs-body-sm`, weight 400, `color: var(--clr-content-tertiary)`                        | Optional `letter-spacing: 0.04em`                               | Image captions, badge labels           |
+| Pull quote       | `--fs-h4`, `font-family: var(--font-secondary)`, italic, weight 400, `line-height: 1.3` |                                                                 | Toolkit pattern 6                      |
+| Stat value       | `--fs-h2`, weight 300, `line-height: 1`, `var(--ls-heading)`                            | Tabular figures via `font-variant-numeric: tabular-nums`        | Toolkit pattern 3                      |
+| Drop cap initial | `4.5em` of `--fs-body`, `font-family: var(--font-secondary)`                            | Editorial — `uber-uns.astro` lead paragraph                     | Toolkit pattern 16                     |
+| Highlight span   | `font-family: var(--font-secondary)`, italic, weight 400                                | Already used in `PageHero.astro`, `Section.astro`               | Hero / section headings                |
 
 ### Tokens missing from `style/` — proposed additions
 
@@ -810,36 +835,36 @@ Working in `lucide-vue-next 1.0.0`. Default stroke width 2, default size 16 px (
 
 ### Functional icons (UI controls)
 
-| Where                                            | Icon                                |
-| ------------------------------------------------ | ----------------------------------- |
-| Section navigator inline overview                | `ArrowDown` (14 px)                 |
-| Section navigator pill rail overflow indicator   | `ChevronRight` (16 px)              |
-| Accordion expand / collapse                      | `ChevronDown` (rotates 180°)        |
-| Button leading "Beratung vereinbaren"            | `CalendarCheck` (16 px)             |
-| Button leading "Katalog bestellen"               | `BookOpen` (16 px)                  |
-| Button trailing primary CTA                      | `ArrowRight` (16 px)                |
-| External link                                    | `ArrowUpRight` (14 px)              |
-| Map / location                                   | `MapPin` (16 px)                    |
-| Phone, email                                     | `Phone`, `Mail` (16 px)             |
-| Close / dismiss                                  | `X` (16 px)                         |
-| Search (if/when added)                           | `Search` (16 px)                    |
+| Where                                          | Icon                         |
+| ---------------------------------------------- | ---------------------------- |
+| Section navigator inline overview              | `ArrowDown` (14 px)          |
+| Section navigator pill rail overflow indicator | `ChevronRight` (16 px)       |
+| Accordion expand / collapse                    | `ChevronDown` (rotates 180°) |
+| Button leading "Beratung vereinbaren"          | `CalendarCheck` (16 px)      |
+| Button leading "Katalog bestellen"             | `BookOpen` (16 px)           |
+| Button trailing primary CTA                    | `ArrowRight` (16 px)         |
+| External link                                  | `ArrowUpRight` (14 px)       |
+| Map / location                                 | `MapPin` (16 px)             |
+| Phone, email                                   | `Phone`, `Mail` (16 px)      |
+| Close / dismiss                                | `X` (16 px)                  |
+| Search (if/when added)                         | `Search` (16 px)             |
 
 ### Anchor icons (decorative-functional, on list items / section headings)
 
-| Topic                          | Icon                          |
-| ------------------------------ | ----------------------------- |
-| Nachhaltigkeit, Holz, Klima    | `Leaf`, `TreeDeciduous`       |
-| Qualität, Zertifikate          | `Award`, `Shield`             |
-| Energie, KfW, Effizienz        | `Zap`, `Sun`                  |
-| Sicherheit, Schlüssel          | `KeyRound`, `Lock`            |
-| Familien, Mehrgenerationen     | `Users`, `HeartHandshake`     |
-| Senioren, Barrierefrei         | `Accessibility`               |
-| Investoren, Vermietung         | `TrendingUp`, `Coins`         |
-| Hausbau, Phasen                | `Hammer`, `HardHat`, `Compass`|
-| Planung, Architektur           | `Ruler`, `Pencil`             |
-| Smart Home                     | `SmartphoneNfc`, `Wifi`       |
-| Wärmepumpe, PV                 | `Thermometer`, `Sun`          |
-| Kontakt, Beratung              | `MessagesSquare`              |
+| Topic                       | Icon                           |
+| --------------------------- | ------------------------------ |
+| Nachhaltigkeit, Holz, Klima | `Leaf`, `TreeDeciduous`        |
+| Qualität, Zertifikate       | `Award`, `Shield`              |
+| Energie, KfW, Effizienz     | `Zap`, `Sun`                   |
+| Sicherheit, Schlüssel       | `KeyRound`, `Lock`             |
+| Familien, Mehrgenerationen  | `Users`, `HeartHandshake`      |
+| Senioren, Barrierefrei      | `Accessibility`                |
+| Investoren, Vermietung      | `TrendingUp`, `Coins`          |
+| Hausbau, Phasen             | `Hammer`, `HardHat`, `Compass` |
+| Planung, Architektur        | `Ruler`, `Pencil`              |
+| Smart Home                  | `SmartphoneNfc`, `Wifi`        |
+| Wärmepumpe, PV              | `Thermometer`, `Sun`           |
+| Kontakt, Beratung           | `MessagesSquare`               |
 
 ### Status icons (sparing)
 
@@ -856,14 +881,14 @@ that lack imagery (Wandaufbau, Haus- & Energietechnik).
 
 ### Per-page icon mapping
 
-| Page                       | Icons in section anchors                                                           |
-| -------------------------- | ---------------------------------------------------------------------------------- |
-| `uber-uns.astro`           | `HeartHandshake` (Partner), `Compass` (Werte), `Building2` (Wer wir sind)          |
-| `unser-versprechen.astro`  | `Shield` (Qualität), `Award` (16 Gründe), `Leaf` (Nachhaltigkeit), `Layers` (Wandaufbau), `Zap` (Energietechnik) |
-| `dein-zuhause.astro`       | `Compass` (Ablauf), `Pencil` (Architektur), `Wifi` (Smart Home), `Coins` (Finanzierung), `Hammer` (Ausbaustufen) |
-| `vor-ort-beratung.astro`   | `MapPin` (Standorte), `Home` (Musterhäuser), `Building2` (Vertriebsbüros)          |
-| `kontakt.astro`            | `MessagesSquare` (Direkt erreichbar), `Mail` (Katalog), `MapPin` (Vor Ort)         |
-| `karriere.astro`           | `Briefcase` (Stellen), `Target` (Tätigkeitsfeld), `Sparkles` (Vorteile)            |
+| Page                      | Icons in section anchors                                                                                         |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `uber-uns.astro`          | `HeartHandshake` (Partner), `Compass` (Werte), `Building2` (Wer wir sind)                                        |
+| `unser-versprechen.astro` | `Shield` (Qualität), `Award` (16 Gründe), `Leaf` (Nachhaltigkeit), `Layers` (Wandaufbau), `Zap` (Energietechnik) |
+| `dein-zuhause.astro`      | `Compass` (Ablauf), `Pencil` (Architektur), `Wifi` (Smart Home), `Coins` (Finanzierung), `Hammer` (Ausbaustufen) |
+| `vor-ort-beratung.astro`  | `MapPin` (Standorte), `Home` (Musterhäuser), `Building2` (Vertriebsbüros)                                        |
+| `kontakt.astro`           | `MessagesSquare` (Direkt erreichbar), `Mail` (Katalog), `MapPin` (Vor Ort)                                       |
+| `karriere.astro`          | `Briefcase` (Stellen), `Target` (Tätigkeitsfeld), `Sparkles` (Vorteile)                                          |
 
 ---
 
@@ -880,6 +905,7 @@ I treat the **six existing static pages** plus the brief's planned campaign page
 500–1000 words of unbroken text on mobile.
 
 **Problems**
+
 - The 16-gute-Gründe list is a 16-item `<ol>` rendered as bullets — content gold buried as
   chrome.
 - Nachhaltigkeit has 4 sub-sections back-to-back with no visual break.
@@ -888,19 +914,19 @@ I treat the **six existing static pages** plus the brief's planned campaign page
 
 **New structure**
 
-| Section | Pattern (from §1.4)                      | Anchor id      | Notes                                                                                 |
-| ------- | ---------------------------------------- | -------------- | ------------------------------------------------------------------------------------- |
-| 0       | `PageHero.astro`                          | —              | Typographic hero variant: "Das BoHolz Versprechen" with "Versprechen" in italic serif |
-| 1       | **SectionNavigator inline + sticky rail** | —              | First content after hero                                                              |
-| 2       | EyebrowHeadingLede + StatBlocks (3×)      | `qualitaet`    | "90 Jahre Erfahrung · QDF/GDF · KfW 40/55"                                            |
-| 3       | EyebrowHeadingLede + StepCards (3 phases) | `tradition`    | Tradition → Modernisierung → Zertifizierungen                                          |
-| 4       | EyebrowHeadingLede + IconList (16 items) | `gruende`      | The 16 reasons as icon-prefixed list, 4 col desktop / 1 col mobile                    |
-| 5       | EyebrowHeadingLede + Comparison           | `nachhaltigkeit` | Holzbau vs konventionell, 2-column comparison                                       |
-| 6       | StatBlocks                                | —              | "30 t CO₂ je Haus · 11 h Phasenverschiebung · 92 % Temperaturpuffer"                   |
-| 7       | EyebrowHeadingLede + DefinitionList       | `wandaufbau`   | Material specs in `<dl>` (ECO Nature / ECO Nature Plus)                               |
-| 8       | EyebrowHeadingLede + IconList             | `technik`      | Wärmepumpen / PV / Raumklima                                                          |
-| 9       | **VideoPlaceholder** (`data-video-slot="versprechen-werksrundgang"`) | — | Aspect 16:9, hint "Werksrundgang — bald verfügbar" |
-| 10      | CTASection (existing component, accent tone) | —          | Beratung vereinbaren · Katalog bestellen                                              |
+| Section | Pattern (from §1.4)                                                  | Anchor id        | Notes                                                                                 |
+| ------- | -------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------- |
+| 0       | `PageHero.astro`                                                     | —                | Typographic hero variant: "Das BoHolz Versprechen" with "Versprechen" in italic serif |
+| 1       | **SectionNavigator inline + sticky rail**                            | —                | First content after hero                                                              |
+| 2       | EyebrowHeadingLede + StatBlocks (3×)                                 | `qualitaet`      | "90 Jahre Erfahrung · QDF/GDF · KfW 40/55"                                            |
+| 3       | EyebrowHeadingLede + StepCards (3 phases)                            | `tradition`      | Tradition → Modernisierung → Zertifizierungen                                         |
+| 4       | EyebrowHeadingLede + IconList (16 items)                             | `gruende`        | The 16 reasons as icon-prefixed list, 4 col desktop / 1 col mobile                    |
+| 5       | EyebrowHeadingLede + Comparison                                      | `nachhaltigkeit` | Holzbau vs konventionell, 2-column comparison                                         |
+| 6       | StatBlocks                                                           | —                | "30 t CO₂ je Haus · 11 h Phasenverschiebung · 92 % Temperaturpuffer"                  |
+| 7       | EyebrowHeadingLede + DefinitionList                                  | `wandaufbau`     | Material specs in `<dl>` (ECO Nature / ECO Nature Plus)                               |
+| 8       | EyebrowHeadingLede + IconList                                        | `technik`        | Wärmepumpen / PV / Raumklima                                                          |
+| 9       | **VideoPlaceholder** (`data-video-slot="versprechen-werksrundgang"`) | —                | Aspect 16:9, hint "Werksrundgang — bald verfügbar"                                    |
+| 10      | CTASection (existing component, accent tone)                         | —                | Beratung vereinbaren · Katalog bestellen                                              |
 
 **Video placeholder locations.** 1 placeholder after section 8.
 **Components needed.** SectionNavigator, EyebrowHeadingLede, StatBlocks, IconList, Comparison,
@@ -917,24 +943,25 @@ exists.
 Förderung / Ausbaustufen). Phases 1–3 are rendered as three back-to-back H3 + `<ul>` blocks.
 
 **Problems**
+
 - The three Ablauf phases are a perfect Numbered Step Cards story and are not used as such.
 - The four Ausbaustufen are a perfect Definition List + numbered cards combo.
 - The KfW product summaries are a perfect Card grid.
 
 **New structure**
 
-| Section | Pattern                                   | Anchor id     |
-| ------- | ----------------------------------------- | ------------- |
-| 0       | PageHero (existing image)                  | —             |
-| 1       | SectionNavigator (5 items)                | —             |
-| 2       | EyebrowHeadingLede + StepCards (3 phases) | `ablauf`      |
-| 3       | EyebrowHeadingLede + body                  | `architektur` |
-| 4       | EyebrowHeadingLede + IconList (4 features) | `smart-home`  |
-| 5       | EyebrowHeadingLede + StepCards (KfW programs) | `finanzierung` |
-| 5b      | Callout (`Info`, finance disclaimer)       | —             |
-| 6       | EyebrowHeadingLede + Numbered DL (4 stages) | `ausbaustufen` |
-| 7       | VideoPlaceholder (`data-video-slot="dein-zuhause-zeitraffer"`) | — |
-| 8       | CTASection (image tone)                    | —             |
+| Section | Pattern                                                        | Anchor id      |
+| ------- | -------------------------------------------------------------- | -------------- |
+| 0       | PageHero (existing image)                                      | —              |
+| 1       | SectionNavigator (5 items)                                     | —              |
+| 2       | EyebrowHeadingLede + StepCards (3 phases)                      | `ablauf`       |
+| 3       | EyebrowHeadingLede + body                                      | `architektur`  |
+| 4       | EyebrowHeadingLede + IconList (4 features)                     | `smart-home`   |
+| 5       | EyebrowHeadingLede + StepCards (KfW programs)                  | `finanzierung` |
+| 5b      | Callout (`Info`, finance disclaimer)                           | —              |
+| 6       | EyebrowHeadingLede + Numbered DL (4 stages)                    | `ausbaustufen` |
+| 7       | VideoPlaceholder (`data-video-slot="dein-zuhause-zeitraffer"`) | —              |
+| 8       | CTASection (image tone)                                        | —              |
 
 ---
 
@@ -943,23 +970,24 @@ Förderung / Ausbaustufen). Phases 1–3 are rendered as three back-to-back H3 +
 **Current.** H1 + 2 sections (Zwei starke Partner / Unsere Werte). Some image grid usage.
 
 **Problems**
+
 - The page is short — only 3 main sections. SectionNavigator may be optional here.
 - The opening paragraph is a perfect candidate for the drop-cap + quote-led-paragraph
   treatment.
 
 **New structure**
 
-| Section | Pattern                                | Anchor id |
-| ------- | -------------------------------------- | --------- |
-| 0       | PageHero                                | —         |
-| 1       | (no navigator — page is short)         | —         |
-| 2       | EyebrowHeadingLede with drop-cap        | `partner` |
-| 3       | StatBlocks (90 Jahre · Bavarian HQ · …) | —         |
-| 4       | EyebrowHeadingLede + body              | `werte`   |
-| 5       | Existing value-grid (kept, polished)    | —         |
-| 6       | PullQuote ("Qualität geht vor Quantität…") | —     |
+| Section | Pattern                                       | Anchor id     |
+| ------- | --------------------------------------------- | ------------- |
+| 0       | PageHero                                      | —             |
+| 1       | (no navigator — page is short)                | —             |
+| 2       | EyebrowHeadingLede with drop-cap              | `partner`     |
+| 3       | StatBlocks (90 Jahre · Bavarian HQ · …)       | —             |
+| 4       | EyebrowHeadingLede + body                     | `werte`       |
+| 5       | Existing value-grid (kept, polished)          | —             |
+| 6       | PullQuote ("Qualität geht vor Quantität…")    | —             |
 | 7       | EyebrowHeadingLede + IconList ("Was wir tun") | `was-wir-tun` |
-| 8       | CTASection                              | —         |
+| 8       | CTASection                                    | —             |
 
 **Mobile considerations.** Drop-cap only applies from `--from-tablet` (mobile gives it a
 heavier weight instead).
@@ -971,6 +999,7 @@ heavier weight instead).
 **Current.** Map + feature-grid for Musterhäuser + ul-lists for Vertriebsbüros.
 
 **Problems**
+
 - The list of Vertriebsbüros reads as an admin export. Each location deserves a small card
   with icons (MapPin, Phone) and a "Standort öffnen" link.
 - Musterhäuser deserve photos; if we don't have them yet, VideoPlaceholder slot per
@@ -978,21 +1007,22 @@ heavier weight instead).
 
 **New structure**
 
-| Section | Pattern                                       | Anchor id        |
-| ------- | --------------------------------------------- | ---------------- |
-| 0       | PageHero (no image — typographic variant)     | —                |
-| 1       | SectionNavigator (4 items)                    | —                |
-| 2       | LocationsMap (existing)                       | `karte`          |
-| 3       | EyebrowHeadingLede + Card grid (Musterhäuser)  | `musterhaeuser`  |
-| 4       | EyebrowHeadingLede + IconList Cards (Büros BW) | `bueros-bw`      |
-| 5       | EyebrowHeadingLede + IconList Cards (Büros BY) | `bueros-by`      |
-| 6       | CTASection                                     | —                |
+| Section | Pattern                                        | Anchor id       |
+| ------- | ---------------------------------------------- | --------------- |
+| 0       | PageHero (no image — typographic variant)      | —               |
+| 1       | SectionNavigator (4 items)                     | —               |
+| 2       | LocationsMap (existing)                        | `karte`         |
+| 3       | EyebrowHeadingLede + Card grid (Musterhäuser)  | `musterhaeuser` |
+| 4       | EyebrowHeadingLede + IconList Cards (Büros BW) | `bueros-bw`     |
+| 5       | EyebrowHeadingLede + IconList Cards (Büros BY) | `bueros-by`     |
+| 6       | CTASection                                     | —               |
 
 ---
 
 ### `kontakt.astro`
 
 **Current** is already passable; the form column + info column grid works. Adds:
+
 - Eyebrow on each H2.
 - StatBlocks above the form ("Antwortzeit < 24 h · Beratung kostenfrei · 5 Standorte").
 - Section divider before the LocationsMap.
@@ -1020,23 +1050,23 @@ question 3 below.
 
 ## 1.8 — Component inventory
 
-| Type        | Component                  | Complexity | Reuse | Build priority (1=first) |
-| ----------- | -------------------------- | ---------- | ----- | ------------------------ |
-| Foundation  | `SectionNavigator.vue`     | High       | 6+    | **1**                    |
-| Foundation  | `VideoPlaceholder.vue`     | Low        | 6+    | **2**                    |
-| Foundation  | `Eyebrow.astro` (or `.vue`)| Trivial    | 12+   | 2                        |
-| Primitive   | `Badge.astro`              | Trivial    | 8+    | 3                        |
-| Primitive   | `Callout.astro`            | Low        | 4+    | 3                        |
-| Primitive   | `Divider.astro`            | Trivial    | 4+    | 3                        |
-| Composition | `EyebrowHeadingLede.astro` | Low        | 12+   | 3                        |
-| Composition | `StatBlock.astro` + `StatGrid.astro` | Low | 6+ | 3                        |
-| Composition | `IconList.astro`           | Low        | 8+    | 3                        |
-| Composition | `StepCards.astro`          | Medium     | 4+    | 4                        |
-| Composition | `DefinitionList.astro`     | Low        | 4+    | 4                        |
-| Composition | `Comparison.astro`         | Medium     | 2+    | 4                        |
-| Composition | `PullQuote.astro`          | Trivial    | 4+    | 4                        |
-| Composition | `Accordion*.vue` (Reka)    | Medium     | 4+    | 4                        |
-| Page sections | Polish pass on `PageHero.astro`, `CTASection.astro`, `Section.astro` (add `tone` prop) | Low | n/a | 5 |
+| Type          | Component                                                                              | Complexity | Reuse | Build priority (1=first) |
+| ------------- | -------------------------------------------------------------------------------------- | ---------- | ----- | ------------------------ |
+| Foundation    | `SectionNavigator.vue`                                                                 | High       | 6+    | **1**                    |
+| Foundation    | `VideoPlaceholder.vue`                                                                 | Low        | 6+    | **2**                    |
+| Foundation    | `Eyebrow.astro` (or `.vue`)                                                            | Trivial    | 12+   | 2                        |
+| Primitive     | `Badge.astro`                                                                          | Trivial    | 8+    | 3                        |
+| Primitive     | `Callout.astro`                                                                        | Low        | 4+    | 3                        |
+| Primitive     | `Divider.astro`                                                                        | Trivial    | 4+    | 3                        |
+| Composition   | `EyebrowHeadingLede.astro`                                                             | Low        | 12+   | 3                        |
+| Composition   | `StatBlock.astro` + `StatGrid.astro`                                                   | Low        | 6+    | 3                        |
+| Composition   | `IconList.astro`                                                                       | Low        | 8+    | 3                        |
+| Composition   | `StepCards.astro`                                                                      | Medium     | 4+    | 4                        |
+| Composition   | `DefinitionList.astro`                                                                 | Low        | 4+    | 4                        |
+| Composition   | `Comparison.astro`                                                                     | Medium     | 2+    | 4                        |
+| Composition   | `PullQuote.astro`                                                                      | Trivial    | 4+    | 4                        |
+| Composition   | `Accordion*.vue` (Reka)                                                                | Medium     | 4+    | 4                        |
+| Page sections | Polish pass on `PageHero.astro`, `CTASection.astro`, `Section.astro` (add `tone` prop) | Low        | n/a   | 5                        |
 
 Total new components: **≈ 14.** Reuses 2 existing (`PageHero`, `CTASection`, `Section`).
 
@@ -1085,14 +1115,14 @@ Total new components: **≈ 14.** Reuses 2 existing (`PageHero`, `CTASection`, `
    we are unlikely to drive paid traffic to them at this stage.
 
 4. **Accent colour usage.** `--clr-accent-primary` is `--boholz-blau-alt` (`#0a78c2`) — a
-   confident, slightly cool blue. Are you happy keeping this as the *one* accent across the
+   confident, slightly cool blue. Are you happy keeping this as the _one_ accent across the
    site, or do the campaign pages get their own muted accent (the comps tried this with sage
    / pastel / teal)? My take: one accent, full stop. Audience differentiation through
    imagery + copy, not palette.
 
 5. **Sticky rail behaviour on hero pages.** The `Layout.astro` `data-hero="true"` attribute
    exists — should the SectionNavigator's sticky rail wait until the hero is fully off-screen
-   *and* the navbar has transitioned from transparent to solid? (I'll default to "wait for
+   _and_ the navbar has transitioned from transparent to solid? (I'll default to "wait for
    both"; flag if you want simpler.)
 
 ---
@@ -1132,15 +1162,15 @@ implementation; this section is the brief for them. **Full long-form diagnostic:
 
 (See [`HOMEPAGE-MOBILE-ANALYSIS.md` §4.1](./HOMEPAGE-MOBILE-ANALYSIS.md#41--section-by-section-change-table) for the full table with kit components, Lucide icons, and nav entries per section.)
 
-| # | Current | → | Proposed (mobile) |
-| - | ------- | - | ----------------- |
-| 1 | `Hero` (full-bleed photo) | → | Keep. Fix: `flex-direction: column` on `.bottom` at `(--mobile)`; drop badges 6→4; add `ChevronDown` scroll cue |
-| 2 | `CategoriesShowcase` | → | Add `Eyebrow` "Katalog"; wire or remove the dead `LucideInfo` hint; expose `id="katalog"` |
-| 3 | `TrustBadges` (3 Cards) | → | **3 `StatBlock`s** (same icons, same values, denser); `Eyebrow` "Vertrauen" |
-| 4 | `Overview` (5 LOREM Cards) | → | **1 featured `OverviewCard` + 4 `IconList` rows** with real one-line copy; `Eyebrow` "Auszeichnung" |
-| 5 | `BuildingStages` | → | Keep 4-stage tab UX but: Reka `TabsRoot` for a11y, cap hero at 50dvh mobile, drop empty cells, add `VideoPlaceholder` slot, `Eyebrow` "Ausbaustufen" |
-| 6 | `Faq` | → | Pill-row category nav on mobile; swap `FaqItem.vue` → kit `FAQAccordion`; `Eyebrow` "Fragen" |
-| 7 | *(new)* | → | Closing `CTASection` linking to `/kontakt` or `/vor-ort-beratung` |
+| #   | Current                    | →   | Proposed (mobile)                                                                                                                                    |
+| --- | -------------------------- | --- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `Hero` (full-bleed photo)  | →   | Keep. Fix: `flex-direction: column` on `.bottom` at `(--mobile)`; drop badges 6→4; add `ChevronDown` scroll cue                                      |
+| 2   | `CategoriesShowcase`       | →   | Add `Eyebrow` "Katalog"; wire or remove the dead `LucideInfo` hint; expose `id="katalog"`                                                            |
+| 3   | `TrustBadges` (3 Cards)    | →   | **3 `StatBlock`s** (same icons, same values, denser); `Eyebrow` "Vertrauen"                                                                          |
+| 4   | `Overview` (5 LOREM Cards) | →   | **1 featured `OverviewCard` + 4 `IconList` rows** with real one-line copy; `Eyebrow` "Auszeichnung"                                                  |
+| 5   | `BuildingStages`           | →   | Keep 4-stage tab UX but: Reka `TabsRoot` for a11y, cap hero at 50dvh mobile, drop empty cells, add `VideoPlaceholder` slot, `Eyebrow` "Ausbaustufen" |
+| 6   | `Faq`                      | →   | Pill-row category nav on mobile; swap `FaqItem.vue` → kit `FAQAccordion`; `Eyebrow` "Fragen"                                                         |
+| 7   | _(new)_                    | →   | Closing `CTASection` linking to `/kontakt` or `/vor-ort-beratung`                                                                                    |
 
 ### Proposed mobile section order (SectionNavigator pill list)
 
@@ -1159,11 +1189,11 @@ mobile horizontal-scroll spec without strain.
 
 ### Dependencies (deferred polish-pass props)
 
-| Prop | Component | Blocking this redesign? |
-| ---- | --------- | ----------------------- |
-| `variant: 'type'` | `PageHero.astro` | **No** — homepage hero stays photographic |
-| `eyebrow?: string` | `CTASection.astro` | **Soft** — closing CTA loses eyebrow rhythm without it |
-| `tone: 'primary' \| 'secondary'` | `Section.astro` | **Soft** — would break the six-uniform-Section vertical rhythm |
+| Prop                             | Component          | Blocking this redesign?                                        |
+| -------------------------------- | ------------------ | -------------------------------------------------------------- |
+| `variant: 'type'`                | `PageHero.astro`   | **No** — homepage hero stays photographic                      |
+| `eyebrow?: string`               | `CTASection.astro` | **Soft** — closing CTA loses eyebrow rhythm without it         |
+| `tone: 'primary' \| 'secondary'` | `Section.astro`    | **Soft** — would break the six-uniform-Section vertical rhythm |
 
 **Hard blockers: zero.** The static-pages team can ship without either prop; the result is
 noticeably stronger with both. Recommended: land `CTASection.eyebrow` and `Section.tone`
@@ -1172,15 +1202,15 @@ before page assembly. They're cheap and they pay back across this redesign plus
 
 ### Estimated complexity & sequencing
 
-| Step | Complexity | Why |
-| ---- | ---------- | --- |
-| 1. SectionNavigator wiring + Eyebrows everywhere | Low | Cheapest, biggest immediate "the page has structure" signal |
-| 2. TrustBadges → StatBlocks | Medium | Single-section swap, high visual win |
-| 3. Overview restructure + LOREM → real copy | Medium | Highest content-debt fix; copy is the slow part |
-| 4. BuildingStages a11y + height fixes | Medium-High | Reka tab swap is the work |
-| 5. Faq pill-row + FAQAccordion swap | Medium | Cleanup pass |
-| 6. Closing CTASection | Low | Existing component |
-| 7. Hero mobile flex fix + badge trim | Low | ~15-line patch, anytime |
+| Step                                             | Complexity  | Why                                                         |
+| ------------------------------------------------ | ----------- | ----------------------------------------------------------- |
+| 1. SectionNavigator wiring + Eyebrows everywhere | Low         | Cheapest, biggest immediate "the page has structure" signal |
+| 2. TrustBadges → StatBlocks                      | Medium      | Single-section swap, high visual win                        |
+| 3. Overview restructure + LOREM → real copy      | Medium      | Highest content-debt fix; copy is the slow part             |
+| 4. BuildingStages a11y + height fixes            | Medium-High | Reka tab swap is the work                                   |
+| 5. Faq pill-row + FAQAccordion swap              | Medium      | Cleanup pass                                                |
+| 6. Closing CTASection                            | Low         | Existing component                                          |
+| 7. Hero mobile flex fix + badge trim             | Low         | ~15-line patch, anytime                                     |
 
 Whole restructure is **~2–3 focused days** of static-pages work — the kit and design system
 do the heavy lifting.

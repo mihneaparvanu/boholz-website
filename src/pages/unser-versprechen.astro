@@ -279,7 +279,8 @@ const technik: IconListItem[] = [
   </section>
 
   <!-- 3. Tradition trifft Innovation ----------------------------------- -->
-  <section id="tradition" class="block">
+  <div class="band full-width">
+   <section id="tradition" class="block band-inner">
     <EyebrowHeadingLede
       eyebrow="02 — Tradition & Innovation"
       heading="Generationen-Handwerk, moderne"
@@ -309,7 +310,8 @@ const technik: IconListItem[] = [
         description="Mitglied der Qualitätsgemeinschaft Deutscher Fertigbau (QDF) und der Gemeinschaft Deutscher Fertigbau (GDF) — ständige Qualitätssicherung der Materialien, regelmäßige Kontrollen, Eigen- und Fremdüberwachung durch unabhängige Prüfinstitute."
       />
     </div>
-  </section>
+   </section>
+  </div>
 
   <!-- 4. 16 gute Gründe ------------------------------------------------ -->
   <section id="gruende" class="block">
@@ -323,7 +325,8 @@ const technik: IconListItem[] = [
   </section>
 
   <!-- 5. Nachhaltigkeit — Vergleich ------------------------------------ -->
-  <section id="nachhaltigkeit" class="block">
+  <div class="band full-width">
+   <section id="nachhaltigkeit" class="block band-inner">
     <EyebrowHeadingLede
       eyebrow="04 — Nachhaltigkeit"
       heading="Wohnträume mit aktivem"
@@ -336,7 +339,8 @@ const technik: IconListItem[] = [
       right={holzbau}
       accent="right"
     />
-  </section>
+   </section>
+  </div>
 
   <!-- 6. Drei Kennzahlen ----------------------------------------------- -->
   <section class="block stats-band">
@@ -370,7 +374,8 @@ const technik: IconListItem[] = [
   </section>
 
   <!-- 7. Wandaufbau ---------------------------------------------------- -->
-  <section id="wandaufbau" class="block">
+  <div class="band full-width">
+   <section id="wandaufbau" class="block band-inner">
     <EyebrowHeadingLede
       eyebrow="05 — Wandaufbau"
       heading="ECO Nature — die Schichten unserer"
@@ -384,7 +389,8 @@ const technik: IconListItem[] = [
         Wandaufbau, der die Grundlage für ein KfW-Effizienzhaus 40 bildet.
       </Callout>
     </div>
-  </section>
+   </section>
+  </div>
 
   <!-- 8. Haus- & Energietechnik ---------------------------------------- -->
   <section id="technik" class="block">
@@ -398,7 +404,8 @@ const technik: IconListItem[] = [
   </section>
 
   <!-- 9. Werksrundgang Video Slot ------------------------------------- -->
-  <section class="block">
+  <div class="band full-width">
+   <section class="block band-inner">
     <VideoPlaceholder
       client:visible
       slotId="versprechen-werksrundgang"
@@ -407,7 +414,8 @@ const technik: IconListItem[] = [
       label="Werksrundgang — bald verfügbar"
       caption="Ein Blick hinter die Kulissen der Manufaktur."
     />
-  </section>
+   </section>
+  </div>
 
   <!-- 10. CTA --------------------------------------------------------- -->
   <div class="full-width">
@@ -434,7 +442,7 @@ const technik: IconListItem[] = [
 <style>
   /* Section rhythm. Each `.block` is a top-level vertical stack between hero
      and CTA; the gap between the heading bundle and its content is `--spacing-4`,
-     the gap between two adjacent blocks is `--spacing-7` for editorial pacing. */
+     the padding-block paces adjacent blocks. */
   .block {
     display: flex;
     flex-direction: column;
@@ -442,8 +450,19 @@ const technik: IconListItem[] = [
     padding-block: var(--spacing-6);
   }
 
-  .block + .block {
-    border-block-start: 1px solid var(--clr-border-secondary);
+  /* Alternating-tone band — wraps every other section in a tinted full-width
+     surface, mirroring the homepage cadence (`Section.astro` data-tone pattern).
+     The outer `.band.full-width` escapes the page wrapper grid; `.band-inner`
+     re-caps the content width and re-centres. */
+  .band {
+    background: var(--clr-surface-secondary);
+    padding-inline: var(--padding-inline);
+  }
+
+  .band-inner {
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    width: 100%;
   }
 
   /* The mid-page stats band shares the block rhythm but tightens the gap so

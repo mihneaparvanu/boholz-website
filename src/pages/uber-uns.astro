@@ -108,31 +108,33 @@ const whatWeDoItems = [
     />
   </section>
 
-  <!-- 04 — Unsere Werte -->
+  <!-- 04 — Unsere Werte (alternating tone — secondary band) -->
   <Divider index={4} label="Werte" />
 
-  <section id="werte" class="section">
-    <EyebrowHeadingLede
-      eyebrow="Unsere Werte"
-      heading="Planung für Sie —"
-      highlight="nicht für eine Zielgruppe."
-      lede="Ein Haus ist eine Entscheidung fürs Leben. Deshalb planen wir nach Ihren Maßen, Ihren Gewohnheiten, Ihrer Lebenslage."
-    >
-      <Fragment slot="eyebrow-icon">
-        <Compass :size={14} :stroke-width={2} />
-      </Fragment>
-    </EyebrowHeadingLede>
+  <div class="band full-width">
+    <section id="werte" class="section band-inner">
+      <EyebrowHeadingLede
+        eyebrow="Unsere Werte"
+        heading="Planung für Sie —"
+        highlight="nicht für eine Zielgruppe."
+        lede="Ein Haus ist eine Entscheidung fürs Leben. Deshalb planen wir nach Ihren Maßen, Ihren Gewohnheiten, Ihrer Lebenslage."
+      >
+        <Fragment slot="eyebrow-icon">
+          <Compass :size={14} :stroke-width={2} />
+        </Fragment>
+      </EyebrowHeadingLede>
 
-    <div class="prose">
-      <p>
-        Jedes BoHolz-Haus wird in Holz gebaut. Das ist keine Stilfrage, sondern
-        ein Bekenntnis zur Nachhaltigkeit. Wir sind in Bad Kissingen zuhause,
-        am Rand der bayerischen Rhön. Wer hier lebt, sucht keinen anderen
-        Baustoff als Holz — robust, atmungsaktiv, im Alter schöner als am
-        ersten Tag.
-      </p>
-    </div>
-  </section>
+      <div class="prose">
+        <p>
+          Jedes BoHolz-Haus wird in Holz gebaut. Das ist keine Stilfrage, sondern
+          ein Bekenntnis zur Nachhaltigkeit. Wir sind in Bad Kissingen zuhause,
+          am Rand der bayerischen Rhön. Wer hier lebt, sucht keinen anderen
+          Baustoff als Holz — robust, atmungsaktiv, im Alter schöner als am
+          ersten Tag.
+        </p>
+      </div>
+    </section>
+  </div>
 
   <!-- 05 — Value image triptych -->
   <section class="values-grid full-width" aria-label="Unsere Werte in Bildern">
@@ -175,25 +177,27 @@ const whatWeDoItems = [
     />
   </section>
 
-  <!-- 07 — Was wir tun -->
+  <!-- 07 — Was wir tun (alternating tone — secondary band) -->
   <Divider index={7} label="Was wir tun" />
 
-  <section id="was-wir-tun" class="section">
-    <EyebrowHeadingLede
-      eyebrow="Was wir tun"
-      heading="Vier Schritte zu Ihrem"
-      highlight="BoHolz-Haus."
-      lede="Familien, Paare, Singles, Senioren — wir planen für die, die bauen. Mit Keitel Haus an unserer Seite bringen wir Kompetenz, Erfahrung und ein durchdachtes Komplettpaket auf Ihren Bauplatz."
-    >
-      <Fragment slot="eyebrow-icon">
-        <Sparkles :size={14} :stroke-width={2} />
-      </Fragment>
-    </EyebrowHeadingLede>
+  <div class="band full-width">
+    <section id="was-wir-tun" class="section band-inner">
+      <EyebrowHeadingLede
+        eyebrow="Was wir tun"
+        heading="Vier Schritte zu Ihrem"
+        highlight="BoHolz-Haus."
+        lede="Familien, Paare, Singles, Senioren — wir planen für die, die bauen. Mit Keitel Haus an unserer Seite bringen wir Kompetenz, Erfahrung und ein durchdachtes Komplettpaket auf Ihren Bauplatz."
+      >
+        <Fragment slot="eyebrow-icon">
+          <Sparkles :size={14} :stroke-width={2} />
+        </Fragment>
+      </EyebrowHeadingLede>
 
-    <div class="list-wrap">
-      <IconList items={whatWeDoItems} columns={2} client:visible />
-    </div>
-  </section>
+      <div class="list-wrap">
+        <IconList items={whatWeDoItems} columns={2} client:visible />
+      </div>
+    </section>
+  </div>
 
   <!-- 08 — CTA -->
   <CTASection
@@ -228,6 +232,21 @@ const whatWeDoItems = [
      ============================================================ */
   .section {
     padding-block: var(--spacing-5);
+  }
+
+  /* Alternating-tone band — wraps every other content section in a tinted
+     full-width surface. `.band.full-width` escapes the wrapper grid;
+     `.band-inner` re-caps the content width and re-centres. Mirrors the
+     cadence used on `unser-versprechen.astro`. */
+  .band {
+    background: var(--clr-surface-secondary);
+    padding-inline: var(--padding-inline);
+  }
+
+  .band-inner {
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    width: 100%;
   }
 
   /* Prose column — kept narrow so editorial copy holds a

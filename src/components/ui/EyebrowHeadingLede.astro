@@ -50,13 +50,12 @@ const Heading = level;
     max-width: 70ch;
   }
 
-  /* Eyebrow → heading rhythm is wider than heading → lede. The eyebrow's
-     small-caps tracking needs room to feel un-cramped; the lede following
-     the heading does not. We target the first-child (Eyebrow renders a
-     <p class="eyebrow">) via :global() because Astro's scoped CSS would
-     otherwise add a data-attribute that doesn't reach the child component. */
+  /* Eyebrow → heading rhythm is wider than heading → lede. Composes with
+     the .ehl flex gap (spacing-3) to give ~spacing-6 of breathing room.
+     Polish wave 1 bumped this generously — the small-caps tracking
+     needs real space, not a hairline. */
   .ehl[data-has-eyebrow="true"] > :global(.eyebrow) {
-    margin-block-end: calc(var(--spacing-4) - var(--spacing-3));
+    margin-block-end: var(--spacing-3);
   }
 
   .ehl[data-align="center"] {
