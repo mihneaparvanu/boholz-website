@@ -1,0 +1,71 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   View Transitions
+   ─────────────────────────────────────────────────────────────────────────
+   Astro's ClientRouter drives same-origin navigation through the browser's
+   View Transitions API. We tune two pseudo-element groups:
+
+   1. Named morph groups (currently `hero-img-<slug>`) — the focal motion
+      that ties the homepage hero to the /haus/[slug] detail hero. Slightly
+      longer duration with a precise, single-direction easing — no
+      overshoot, no settle. "Precision, not bounce."
+
+   2. The root crossfade — everything *without* a view-transition-name.
+      Kept short so the unnamed surface is settled by the time the eye
+      finishes following the shared element.
+
+   Authoring order matters: `*` is the universal selector and matches
+   *every* named group **including** `root`, so the `root` rules come last
+   and win on cascade order at equal specificity.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* Default for any named morph group (hero-img-*, plus future shared
+   elements). Snapshots of <img> tags are raster captures — `object-fit:
+   cover` keeps the interpolated rect reading as one continuous object
+   rather than two ghosts crossfading at different aspect ratios. */
+::view-transition-group(*) {
+  animation-duration: 520ms;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+::view-transition-old(*),
+::view-transition-new(*) {
+  animation-duration: 520ms;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+  object-fit: cover;
+}
+
+/* Root crossfade — faster, lets the morph lead the eye. Declared after `*`
+   so cascade order makes these win for the `root` group specifically. */
+::view-transition-group(root) {
+  animation-duration: 280ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 280ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  object-fit: fill;
+}
+
+/* The navbar is `transition:persist`ed in Layout.astro and carries
+   `view-transition-name: site-nav`. With persist, the same DOM node sits
+   on both sides of the swap; this rule is belt-and-braces to make sure
+   the browser never animates it as part of any crossfade. */
+::view-transition-group(site-nav),
+::view-transition-old(site-nav),
+::view-transition-new(site-nav) {
+  animation: none !important;
+}
+
+/* Honour the user's motion preference: collapse the transition. Astro
+   still navigates; the browser just runs a 1ms cross-cut instead of an
+   animated morph. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+  }
+}

@@ -9,7 +9,7 @@ const locations = await getLocations({ exceptKind: "showhouse" });
 ---
 
 <Layout title="Vor Ort Beratung">
-  <Section heading="Vor Ort Beratung" subheading="Besuchen Sie uns persönlich und entdecken Sie die vielfältigen Möglichkeiten, die wir Ihnen bieten können. Gerne stehen wir Ihnen auch außerhalb der regulären Öffnungszeiten zur Verfügung. ">
+  <Section heading1="Vor Ort Beratung" subheading="Besuchen Sie uns persönlich und entdecken Sie die vielfältigen Möglichkeiten, die wir Ihnen bieten können. Gerne stehen wir Ihnen auch außerhalb der regulären Öffnungszeiten zur Verfügung. ">
   <div class="map-wrapper">
     <LocationsMap client:only="vue" locations={locations} />
 
