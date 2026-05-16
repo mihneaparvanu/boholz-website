@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { LucideInfo } from "lucide-vue-next";
 import type { HouseCategory } from "@/types/models";
 import { BESTSELLER_CATEGORY_ID } from "@/data/constants";
 import CategorySlider from "@/features/CategorySlider/CategorySlider.vue";
@@ -19,11 +18,8 @@ const visibleCategories = computed(() =>
   <div class="showcase">
     <CategorySlider :categories="visibleCategories" />
     <div class="info">
-      <p>Ab <span class="price">200.000€ </span> zzgl. Überführung.</p>
-      <p>
-        Attraktive Finanzierungsmöglichkeiten.
-        <span class="hint"><LucideInfo /></span>
-      </p>
+      <p>Ab <span class="price">200.000€</span> zzgl. Überführung.</p>
+      <p>Attraktive Finanzierungsmöglichkeiten.</p>
     </div>
   </div>
 </template>
@@ -48,14 +44,5 @@ const visibleCategories = computed(() =>
   display: inline-block;
   color: var(--clr-content-secondary);
   font-weight: 500;
-}
-
-.hint {
-  display: inline-block;
-  width: var(--fs-body-lg);
-  height: var(--fs-body-lg);
-  color: var(--clr-content-secondary);
-  vertical-align: middle;
-  cursor: help;
 }
 </style>

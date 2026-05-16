@@ -54,7 +54,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 </script>
 
 <template>
-  <ul class="links">
+  <ul class="primary-nav">
     <li
       v-for="route in routes"
       :key="route.path"
@@ -84,7 +84,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 </template>
 
 <style scoped>
-.links {
+.primary-nav {
   display: flex;
   gap: var(--spacing-3);
   align-items: center;

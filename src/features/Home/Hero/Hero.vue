@@ -3,7 +3,7 @@ import { useIntervalFn } from "@vueuse/core";
 import { ref, computed } from "vue";
 import type { HeroSlide } from "./hero.types";
 import Button from "@/components/ui/Button.vue";
-import { ArrowRight } from "lucide-vue-next";
+import { ArrowRight, ChevronDown } from "lucide-vue-next";
 import { ROUTES } from "@/utils/routes";
 
 const props = defineProps<{
@@ -63,6 +63,12 @@ const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
             {{ slide.title }}
             <template #trailing> <ArrowRight /> </template>
           </Button>
+          <ChevronDown
+            class="scroll-cue"
+            :size="16"
+            :stroke-width="2"
+            aria-hidden="true"
+          />
         </div>
       </div>
     </div>
@@ -192,6 +198,13 @@ const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
     aspect-ratio: 44.85 / 31.7;
   } /* ral       */
 
+  .action {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    gap: var(--spacing-2);
+  }
+
   .action button {
     height: var(--control-height-md);
     padding-inline: var(--spacing-3);
@@ -206,6 +219,49 @@ const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
 
   .action button:hover {
     background-color: var(--clr-surface-secondary);
+  }
+
+  /* Scroll-cue under the CTA — quiet, sub-CTA tier, hints at depth below
+     the 100dvh photographic hero. */
+  .scroll-cue {
+    color: var(--clr-pure-white);
+    opacity: 0.7;
+    animation: scroll-cue-bounce 2400ms ease-in-out infinite;
+  }
+}
+
+@keyframes scroll-cue-bounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(3px);
+    opacity: 0.95;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue {
+    animation: none;
+  }
+}
+
+/* Mobile: stack proof above action so the badge row stops colliding with
+   the CTA at 390px. Cap badges at 4 — the brand carries with iso/bdf/gdf/ral. */
+@media (--mobile) {
+  .bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-3);
+  }
+
+  .bottom .action {
+    align-items: flex-start;
+  }
+
+  .bottom .badges :nth-child(n + 5) {
+    display: none;
   }
 }
 </style>

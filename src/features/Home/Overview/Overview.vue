@@ -1,37 +1,43 @@
 <script setup lang="ts">
 import OverviewCard from "./OverviewCard.vue";
+import IconList, { type IconListItem } from "@/components/ui/IconList.vue";
 import type { OverviewCardData } from "./overview.types";
+import type { OverviewPillar } from "./overview.content";
 
-defineProps<{
-  cards: OverviewCardData[];
+const props = defineProps<{
+  featured: OverviewCardData;
+  pillars: OverviewPillar[];
 }>();
+
+// Map pillars to the kit IconList's row shape (label/description/icon).
+const items: IconListItem[] = props.pillars.map((p) => ({
+  icon: p.icon,
+  label: p.label,
+  description: p.description,
+}));
 </script>
 
 <template>
-  <div class="grid">
-    <OverviewCard
-      v-for="card in cards"
-      :key="card.heading"
-      :data="card"
-      :class="{ main: card.featured }"
-    />
+  <div class="stack">
+    <OverviewCard :data="featured" class="featured" />
+    <IconList :items="items" density="comfortable" :columns="2" />
   </div>
 </template>
 
 <style scoped>
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--spacing-2);
+.stack {
+  display: flex;
+  flex-direction: column;
+  /* Wide gap between the featured card and the IconList — the two layers
+     read as distinct rhythm tiers, not as repeated rows. */
+  gap: var(--spacing-5);
+  width: 100%;
 }
 
-.main {
-  grid-column: 1 / -1;
-}
-
-@media (--below-desktop) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+.featured {
+  /* Featured card stretches full content width — pulls visual weight to
+     the lead claim before the IconList drops the eye into the four
+     supporting pillars below. */
+  width: 100%;
 }
 </style>

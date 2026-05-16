@@ -1,0 +1,143 @@
+---
+/**
+ * Homepage-local section primitive. Composes the kit's heading rhythm with
+ * an in-section eyebrow + id anchor + alternating tone — three things the
+ * kit `<Section>` doesn't expose together.
+ *
+ * Why local instead of extending the kit: `<Section>` is on the frozen
+ * surface (see coordination-with-pages-team memory). It owns the heading
+ * rhythm authoritatively; this component just adds a small-caps label
+ * above it and wires the anchor id. Tokens are reused verbatim — no new
+ * tokens are introduced.
+ */
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+
+type Tone = "primary" | "secondary";
+
+interface Props {
+  id: string;
+  eyebrow: string;
+  heading1: string;
+  heading2?: string;
+  highlight?: string;
+  subheading?: string;
+  tone?: Tone;
+}
+
+const {
+  id,
+  eyebrow,
+  heading1,
+  heading2,
+  highlight,
+  subheading,
+  tone = "primary",
+} = Astro.props;
+
+const isSecondary = tone === "secondary";
+const wrapperClass = isSecondary ? "section full-width" : "section";
+---
+
+<section id={id} class={wrapperClass} data-tone={tone}>
+  <div class="inner">
+    <div class="heading-group">
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <div class="headings">
+        {
+          heading2 ? (
+            <>
+              <h2>{heading1}</h2>
+              <h2>
+                {heading2}
+                {highlight && <span class="highlight"> {highlight}</span>}
+              </h2>
+            </>
+          ) : (
+            <h2>
+              {heading1}
+              {highlight && <span class="highlight"> {highlight}</span>}
+            </h2>
+          )
+        }
+      </div>
+      {subheading && <p class="lede">{subheading}</p>}
+    </div>
+    <slot />
+  </div>
+</section>
+
+<style>
+  /* Mirrors src/layouts/Section.astro — same tokens, same spacing rhythm.
+     Diverges only to (a) host the eyebrow with proper rhythm and (b)
+     accept the anchor id directly on the outer element so SectionNavigator
+     scroll-spy resolves cleanly. */
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: var(--spacing-6);
+    gap: var(--spacing-5);
+    /* Scroll-margin so deep-link / nav-rail jumps don't tuck the heading
+       under the sticky navbar + rail. */
+    scroll-margin-block-start: calc(var(--navbar-height) + var(--spacing-4));
+  }
+
+  .section[data-tone="secondary"] {
+    background: var(--clr-surface-secondary);
+    padding-inline: var(--padding-inline);
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-5);
+    width: 100%;
+  }
+
+  .section[data-tone="secondary"] .inner {
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+  }
+
+  .heading-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-3);
+    text-align: center;
+    width: 100%;
+    max-width: 90ch;
+    margin-inline: auto;
+  }
+
+  /* Eyebrow → heading rhythm — composes with the flex gap above to give
+     the effective `--spacing-4` distance that the rest of the kit uses.
+     Mirrors PageHero / CTASection / EyebrowHeadingLede polish-pass C. */
+  .heading-group :global(.eyebrow) {
+    margin-block-end: calc(var(--spacing-4) - var(--spacing-3));
+  }
+
+  .headings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .headings h2 {
+    font-weight: var(--font-weight-medium);
+  }
+
+  .highlight {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: var(--font-weight-medium);
+  }
+
+  .lede {
+    color: var(--clr-content-secondary);
+    max-width: 56rem;
+    font-weight: var(--font-weight-regular);
+    margin: 0;
+  }
+</style>

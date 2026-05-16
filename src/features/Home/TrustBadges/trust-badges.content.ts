@@ -1,19 +1,37 @@
-import {
-  LucideHammer,
-  LucideShieldCheck,
-  LucideCalendar,
-} from "lucide-vue-next";
-import type { Component } from "vue";
+import type { IconName } from "@/utils/icons";
 
+/**
+ * Trust proof points rendered as `<StatBlock>` rows.
+ * Icons are passed by name (cross-island prop pattern) and resolved
+ * inside the Vue island via `getIcon()`.
+ */
 export interface TrustBadge {
-  icon: Component;
-  title: string;
-  value: number;
-  suffix?: string;
+  icon: IconName;
+  /** Big number / value. String so units like "100%" work. */
+  value: string;
+  /** Short label under the value. */
+  label: string;
+  /** Optional explainer below the label. */
+  caption?: string;
 }
 
 export const trustBadges: TrustBadge[] = [
-  { icon: LucideHammer, title: "Made in Germany", value: 100, suffix: "%" },
-  { icon: LucideCalendar, title: "Monate Festpreisgarantie", value: 18 },
-  { icon: LucideShieldCheck, title: "Jahre Gewährleistung", value: 5 },
+  {
+    icon: "hammer",
+    value: "100%",
+    label: "Made in Germany",
+    caption: "Vorgefertigt im Werk, montiert vom Boholz-Team.",
+  },
+  {
+    icon: "calendar-check",
+    value: "18",
+    label: "Monate Festpreis",
+    caption: "Garantiert keine Nachforderungen während der Bauzeit.",
+  },
+  {
+    icon: "shield",
+    value: "5",
+    label: "Jahre Gewährleistung",
+    caption: "Vertraglich gesichert auf Konstruktion und Material.",
+  },
 ];

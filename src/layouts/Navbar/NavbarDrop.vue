@@ -128,6 +128,7 @@ const ctaLinks = [
     display: flex;
     width: fit-content;
     flex-direction: column;
+    align-items: start;
     gap: var(--spacing-2);
 
     li {

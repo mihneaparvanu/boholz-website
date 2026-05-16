@@ -19,8 +19,8 @@ narrative lives in `design-audit/2026-05-16/EXECUTION-LOG.md` and
 | **Phase 2.0b** — Contrast fix (`--cold-gray-350`, content-tier remap) | ✓ Complete |
 | **Phase 2.1** — Component kit (13 net-new + 3 token-swap polish on existing sections) | ✓ Complete |
 | **Phase 2.2** — Polish-pass API extensions + comprehensive taste pass | ✓ **Complete (Batch 3, 2026-05-17 evening)** |
-| **Phase 3** — Page assembly (the four landing pages + the homepage) | ⏸ **Owned by the static-pages-team stream, not this one** |
-| **URGENT** — Homepage mobile redesign | 📌 Diagnostic + restructure proposal written; implementation gated on Phase 3 |
+| **Phase 3** — Page assembly (the four landing pages + the homepage) | 🔄 In progress — Wave 2a (homepage) ✓ complete 2026-05-17 |
+| **URGENT** — Homepage mobile redesign | ✓ **Shipped (Wave 2a, 2026-05-17).** Full restructure executed against HOMEPAGE-MOBILE-ANALYSIS.md spec; see HOMEPAGE-REDESIGN-EXECUTION.md for the file-by-file change log + deviations + real copy strings. 0 astro-check errors. |
 
 ## Frozen surface (do not modify without coordination)
 
@@ -78,6 +78,8 @@ See [[coordination-with-pages-team]]. Re-engage when:
 3. **Accent rule encoded** — see [[feedback_accent_application]].
 4. **Content tier rule encoded** — `--clr-content-tertiary` is text-safe (5:1+), `--clr-content-quaternary` is UI-only (3:1).
 5. **Sandbox at `/sandbox/components`** is the canonical visual spec for the kit.
+6. **Homepage uses a local `HomeSection.astro`** (eyebrow + anchor id + tone) instead of the kit `<Section>` — kit Section is untouched, but other static pages may want the same pattern. If three pages independently need eyebrow-on-Section, lift HomeSection to the kit as `Section.eyebrow?` polish-pass D.
+7. **Homepage Faq uses a local `FaqAccordion.vue`** (Reka + v-html for `qa.ts` HTML bodies) instead of kit `<FAQAccordion>` (text-only). Convergence already tracked as a Phase 3 cleanup item; HousePage's own accordion is the other half.
 
 ## Key files for re-entry
 

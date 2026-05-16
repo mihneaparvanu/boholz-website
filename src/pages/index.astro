@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Section from "@/layouts/Section.astro";
+import HomeSection from "@/features/Home/HomeSection.astro";
+import CTASection from "@/components/sections/CTASection.astro";
 
 import Hero from "@/features/Home/Hero/Hero.vue";
 import CategoriesShowcase from "@/features/Home/CategoriesShowcase/CategoriesShowcase.vue";
@@ -8,11 +9,12 @@ import TrustBadges from "@/features/Home/TrustBadges/TrustBadges.vue";
 import Overview from "@/features/Home/Overview/Overview.vue";
 import BuildingStages from "@/features/Home/BuildingStages/BuildingStages.vue";
 import Faq from "@/features/Home/Faq/Faq.vue";
-import CatalogCard from "@/features/CatalogCard/CatalogCard.vue"
+import SectionNavigator from "@/components/ui/SectionNavigator.vue";
+import Button from "@/components/ui/Button.vue";
 
 import { homeSections } from "@/features/Home/home.content";
 import { buildingStages } from "@/features/Home/BuildingStages/building-stages.content";
-import { overviewCards } from "@/features/Home/Overview/overview.content";
+import { featuredCard, overviewPillars } from "@/features/Home/Overview/overview.content";
 import { trustBadges } from "@/features/Home/TrustBadges/trust-badges.content";
 import { qaCategories } from "@/content/qa";
 
@@ -20,30 +22,73 @@ import { getCategories, getHeroSlides } from "@/data/loaders";
 
 const categories = await getCategories();
 const heroSlides = await getHeroSlides(6);
+
+// Build the SectionNavigator rail in order. Hero is intentionally NOT in
+// the rail — the rail only enters once the hero has scrolled away.
+const navSections = [
+  homeSections.categories,
+  homeSections.trust,
+  homeSections.overview,
+  homeSections.finishes,
+  homeSections.qa,
+  homeSections.contact,
+].map((s) => ({ id: s.id, label: s.navLabel, eyebrow: s.eyebrow }));
+
+// Drop `navLabel` before forwarding to <HomeSection> — it's a rail-only field.
+const { categories: cat, trust, overview, finishes, qa, contact } = homeSections;
+const sectionProps = {
+  categories: (({ navLabel, ...rest }) => rest)(cat),
+  trust: (({ navLabel, ...rest }) => rest)(trust),
+  overview: (({ navLabel, ...rest }) => rest)(overview),
+  finishes: (({ navLabel, ...rest }) => rest)(finishes),
+  qa: (({ navLabel, ...rest }) => rest)(qa),
+  contact: (({ navLabel, ...rest }) => rest)(contact),
+};
 ---
 
 <Layout title="Boholz Haus" categories={categories} isHero>
-
   <Hero client:load slides={heroSlides} />
-  <Section {...homeSections.categories}>
+
+  <!-- Inline overview + sticky rail — wires the page's six anchors. -->
+  <SectionNavigator client:load sections={navSections} />
+
+  <HomeSection {...sectionProps.categories} tone="primary">
     <CategoriesShowcase client:visible categories={categories} />
-  </Section>
+  </HomeSection>
 
-  <Section {...homeSections.trust}>
+  <HomeSection {...sectionProps.trust} tone="secondary">
     <TrustBadges client:visible badges={trustBadges} />
-  </Section>
+  </HomeSection>
 
-  <Section {...homeSections.overview}>
-    <Overview cards={overviewCards} />
-  </Section>
+  <HomeSection {...sectionProps.overview} tone="primary">
+    <Overview client:visible featured={featuredCard} pillars={overviewPillars} />
+  </HomeSection>
 
-  <Section {...homeSections.finishes}>
+  <HomeSection {...sectionProps.finishes} tone="secondary">
     <BuildingStages client:visible stages={buildingStages} />
-  </Section>
+  </HomeSection>
 
-  <Section {...homeSections.qa}>
+  <HomeSection {...sectionProps.qa} tone="primary">
     <Faq client:visible categories={qaCategories} />
-  </Section>
+  </HomeSection>
 
- <!-- <CatalogCard/>  -->
+  <!-- Closing CTA — kit CTASection. Its `surface` tone already uses
+       `--clr-surface-secondary` so the section reads as the alternating
+       tone after the FAQ above. The wrapping div hosts the scroll anchor. -->
+  <div id={sectionProps.contact.id}>
+    <CTASection
+      eyebrow={sectionProps.contact.eyebrow}
+      title={`${sectionProps.contact.heading1} ${sectionProps.contact.heading2}`}
+      highlight={sectionProps.contact.highlight}
+      subtitle={sectionProps.contact.subheading}
+      tone="surface"
+    >
+      <Button slot="actions" client:load variant="primary" size="md" href="/vor-ort-beratung">
+        Vor-Ort-Beratung
+      </Button>
+      <Button slot="actions" client:load variant="secondary" size="md" href="/kontakt">
+        Kontaktformular
+      </Button>
+    </CTASection>
+  </div>
 </Layout>
