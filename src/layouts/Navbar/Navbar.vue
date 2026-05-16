@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import type { HouseCategory, Location } from "@/types/models";
 
 import NavbarDesktopTransparent from "./NavbarDesktopTransparent.vue";
@@ -54,8 +55,10 @@ const DesktopVariant = computed(() =>
   position: sticky;
   top: 0;
   z-index: 10;
-.shell {
-  height: 100%;
+  .shell {
+    padding-block: var(--spacing-3);
+    height: 100%;
+  }
 }
 
 .mobile {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "tertiary" | "ghost";
 type Size = "sm" | "md" | "lg";
 
 withDefaults(
@@ -128,16 +128,19 @@ withDefaults(
 .btn[data-variant="secondary"] {
   background: var(--clr-surface-primary);
   color: var(--clr-accent-primary);
-  border-color: var(--clr-accent-primary);
 }
 .btn[data-variant="secondary"]:hover:not([disabled], [aria-disabled="true"]) {
   color: var(--clr-accent-secondary);
+}
+
+.btn[data-variant="tertiary"] {
+  background: var(--clr-surface-primary);
+  color: var(--clr-content-secondary);
+  border-color: var(--clr-border-secondary);
+}
+.btn[data-variant="tertiary"]:hover:not([disabled], [aria-disabled="true"]) {
+  color: var(--clr-accent-secondary);
   border-color: var(--clr-accent-secondary);
-  background: color-mix(
-    in srgb,
-    var(--clr-accent-primary) 6%,
-    var(--clr-surface-primary)
-  );
 }
 
 .btn[data-variant="ghost"] {
