@@ -60,6 +60,12 @@
   --clr-surface-tertiary: var(--cold-gray-900);
   --clr-surface-quaternary: var(--pastell-bg);
 
+  /* Pure white — for text/logo/border on photographic or dark overlays.
+     `--clr-surface-primary` is a warm off-white (#FCFCFC); use this when
+     you need true #FFFFFF for legibility over imagery. */
+  --clr-pure-white: #ffffff;
+  --clr-pure-white-soft: rgba(255, 255, 255, 0.85);
+
   /* Content */
   --clr-content-primary: var(--neutral-gray-100);
   --clr-content-secondary: var(--cold-gray-300);
@@ -183,7 +189,6 @@
   --ls-heading: -0.05em;
 
   --navbar-height: var(--spacing-6);
-  --navbar-offset: var(--spacing-3);
 }
 
 body {

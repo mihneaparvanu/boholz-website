@@ -1,7 +1,12 @@
 import { ROUTES } from "@/utils/routes";
 import type { NavLink } from "../nav.types";
 
-/** Top-level navigation shown in the desktop navbar and mobile menu. */
+export const TRANSPARENT_NAV: NavLink[] = [
+  { label: "Häuser", path: ROUTES.houses },
+  { label: "Dein Zuhause", path: ROUTES.yourHouse },
+  { label: "Das BoHolz Versprechen", path: ROUTES.promise },
+];
+
 export const PRIMARY_NAV: NavLink[] = [
   { label: "Häuser", path: ROUTES.houses },
   { label: "Das BoHolz Versprechen", path: ROUTES.promise },
