@@ -65,19 +65,22 @@ const DesktopVariant = computed(() =>
   height: var(--navbar-height);
 }
 
-.navbar[data-variant="transparent"] {
-  background: transparent;
-}
-.navbar[data-variant="solid"] {
+/* Mobile is always solid — never transparent. The cross-fade between
+   transparent and solid as the user scrolled past the hero felt jarring
+   on phones. Default below, then desktop opts into the transparent state
+   when over a hero. */
+.navbar {
   background: var(--clr-surface-primary);
 }
 
-/* Mobile is always solid — the variant attribute still drives the desktop
-   component swap, but the cross-fade between transparent and solid as the
-   user scrolled past the hero felt jarring on phones. Override regardless
-   of data-variant. */
-@media (--below-desktop) {
-  .navbar {
+/* Desktop honours `data-variant`. The transparent state lives only at
+   desktop+ — scope the rule inside the media query so its specificity
+   doesn't leak below `--from-desktop`. */
+@media (--from-desktop) {
+  .navbar[data-variant="transparent"] {
+    background: transparent;
+  }
+  .navbar[data-variant="solid"] {
     background: var(--clr-surface-primary);
   }
 }
