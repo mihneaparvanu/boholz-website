@@ -159,4 +159,15 @@ const hasImage = Boolean(image);
       padding-block: var(--spacing-6) var(--spacing-5);
     }
   }
+
+  /* Landscape phones — 36-40vh of a ~390px-tall viewport eats the screen
+     and pushes the headline/CTA below the fold. Cap with svh (stable
+     when the URL bar toggles) and trim the generous spacing-7 padding
+     so headline + lede + actions all fit above the fold. */
+  @media (--short) {
+    .hero {
+      min-height: clamp(220px, 80svh, 360px);
+      padding-block: var(--spacing-4) var(--spacing-3);
+    }
+  }
 </style>

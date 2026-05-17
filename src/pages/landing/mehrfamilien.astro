@@ -411,19 +411,4 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     width: 100%;
     margin-inline: auto;
   }
-
-  /* ── Landscape-phone PageHero override ──
-     PageHero's default `padding-block: --spacing-7 --spacing-6` plus
-     `min-height: clamp(280px, 36vh, 480px)` adds up to ~570px on a
-     390-tall landscape viewport — the whole headline is below the
-     fold. The kit primitive is frozen, so we reach in from this page
-     (and its two siblings) via `:global()` and clamp the height +
-     padding under `--short`. If a 4th landing page adopts the same
-     archetype, copy this block. */
-  .full-width :global(.hero) {
-    @media (--short) {
-      min-height: clamp(220px, 80svh, 360px);
-      padding-block: var(--spacing-4) var(--spacing-3);
-    }
-  }
 </style>
