@@ -154,23 +154,20 @@ const slide = computed(() => props.slides[index.value]);
     display: inline-block;
   }
   &:deep(.btn) {
-    /* Lock the rendered height so a one-line label of any length keeps
-       a stable vertical box across the slide rotation. Matches the md
-       control height so the resting shape doesn't change visually. */
-    min-height: var(--control-height-md);
     /* Desktop keeps the prior full-width button (visually a deliberate
-       block CTA in the lower-left of the hero). */
+       block CTA in the lower-left of the hero). Height is stable
+       because Button's padding-block + nowrap label produce a
+       deterministic box at this font-size. */
     width: 100%;
   }
-  /* Below desktop: constrain the button so it sizes to its content with
-     a thumb-friendly floor instead of stretching edge-to-edge (which
-     read more like a banner than a CTA). Crossfades between slides with
-     different title lengths now grow/shrink the *button*, not the
-     whole layout column. */
+  /* Below desktop: lock the button width with a clamp so slide-to-slide
+     label-length differences (the label is the slide title — variable
+     length) don't grow/shrink the button. The label's nowrap+ellipsis
+     above caps any overflow. Floor 220px keeps thumb-friendly, ceiling
+     360px keeps the CTA from reading as a banner. */
   @media (--below-desktop) {
     &:deep(.btn) {
-      width: auto;
-      min-width: clamp(220px, 60vw, 360px);
+      width: clamp(220px, 60vw, 360px);
     }
   }
   @media (--from-desktop) {
