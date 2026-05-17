@@ -3,113 +3,272 @@ import FacebookIcon from "@/icons/Facebook.svg";
 import InstagramIcon from "@/icons/Instagram.svg";
 import YoutubeIcon from "@/icons/Youtube.svg";
 import LinkedinIcon from "@/icons/Linkedin.svg";
+
 import { ROUTES } from "@/utils/routes";
-import { FOOTER_NAV } from "./footer.content";
+import { FOOTER_NAV, FOOTER_CERTIFICATIONS } from "./footer.content";
 
+import BoholzLogo from "@/components/brand/BoholzLogo.vue";
 import PrivacyBtn from "@/components/ui/PrivacyBtn.vue";
-
 import Separator from "@/features/HousePage/components/Separator.vue";
 
 const currentYear = new Date().getFullYear();
 ---
+
 <footer class="footer subgrid">
   <Separator />
-  <div class="footer-content">
-    <nav class="links-grid" aria-label="Footer">
-      <div class="links-list main">
-      {
-        FOOTER_NAV.map((l) => (
-          <a href={l.path}>{l.label}</a>
-        ))
-      }
-      </div>
-      <div class="links-list privacy">
-        <a href={ROUTES.impressum}>Impressum</a>
-        <a href={ROUTES.datenschutz}>Datenschutz</a>
-        <a href={ROUTES.cookies}>Cookies</a>
-        <a href=""><span><PrivacyBtn /></span>Ihre Privatsphäre-Einstellungen</a>
-      </div>
+
+  <div class="content">
+    <a class="logo" href={ROUTES.home} aria-label="BoHolz Haus – Startseite">
+      <BoholzLogo tone="brand" aria-hidden="true" />
+    </a>
+
+    <nav class="nav" aria-label="Footer">
+      <ul class="list main">
+        {
+          FOOTER_NAV.map((l) => (
+            <li>
+              <a href={l.path}>{l.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <ul class="list privacy">
+        <li><a href={ROUTES.impressum}>Impressum</a></li>
+        <li><a href={ROUTES.datenschutz}>Datenschutz</a></li>
+        <li><a href={ROUTES.cookies}>Cookies</a></li>
+        <li>
+          <a href="">
+            <span class="privacy-icon"><PrivacyBtn /></span>
+            Ihre Privatsphäre-Einstellungen
+          </a>
+        </li>
+      </ul>
     </nav>
 
-    <div class="trailing-wrapper">
-      <p class="copyright">© {currentYear} BoHolz Haus GmbH. Alle Rechte vorbehalten.</p>
+    <section class="certs" aria-labelledby="certs-label">
+      <span class="eyebrow" id="certs-label">Geprüfte Qualität</span>
+      <ul class="badges">
+        {
+          FOOTER_CERTIFICATIONS.map((c) => (
+            <li>
+              <svg
+                class="badge"
+                style={`aspect-ratio: ${c.aspect};`}
+                role="img"
+                aria-label={c.label}
+              >
+                <use href={`#${c.id}`} />
+              </svg>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <div class="trailing">
+      <p class="copyright">
+        © {currentYear} BoHolz Haus GmbH. Alle Rechte vorbehalten.
+      </p>
       <ul class="socials" aria-label="Soziale Netzwerke">
-        <li><a href="#" aria-label="Facebook"><FacebookIcon aria-hidden="true" /></a></li>
-        <li><a href="#" aria-label="Instagram"><InstagramIcon aria-hidden="true" /></a></li>
-        <li><a href="#" aria-label="YouTube"><YoutubeIcon aria-hidden="true" /></a></li>
-        <li><a href="#" aria-label="LinkedIn"><LinkedinIcon aria-hidden="true" /></a></li>
+        <li>
+          <a href="#" aria-label="Facebook"
+            ><FacebookIcon aria-hidden="true" /></a
+          >
+        </li>
+        <li>
+          <a href="#" aria-label="Instagram"
+            ><InstagramIcon aria-hidden="true" /></a
+          >
+        </li>
+        <li>
+          <a href="#" aria-label="YouTube"
+            ><YoutubeIcon aria-hidden="true" /></a
+          >
+        </li>
+        <li>
+          <a href="#" aria-label="LinkedIn"
+            ><LinkedinIcon aria-hidden="true" /></a
+          >
+        </li>
       </ul>
     </div>
   </div>
 </footer>
 
-
 <style>
-.footer {
-  padding-block: var(--spacing-6) var(--spacing-3);
-}
-
-.footer-content {
-    padding-block-start: var(--spacing-3);
- display: flex;
-  flex-direction: column;
-  gap: var(--spacing-5);
-}
-
-.links-grid {
-  display: grid;
-  grid-template-areas: "main-links privacy-links";
-  gap: var(--spacing-4);
-  width: 50%;
-
-  @media (--mobile) {
-    width: 100%;
-    grid-template-areas:
-      "main-links"
-      "privacy-links";
-    grid-template-columns: 1fr;
+  .footer {
+    padding-block: var(--spacing-6) var(--spacing-3);
   }
 
-  .links-list {
-    width: fit-content;
+  .content {
+    padding-block-start: var(--spacing-4);
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "logo"
+      "nav"
+      "certs"
+      "trailing";
+    row-gap: var(--spacing-5);
+    column-gap: var(--spacing-5);
+  }
+
+  @media (--from-desktop) {
+    .content {
+      grid-template-columns: minmax(auto, 1fr) auto;
+      grid-template-areas:
+        "logo nav"
+        "certs certs"
+        "trailing trailing";
+      row-gap: var(--spacing-5);
+      column-gap: var(--spacing-5);
+      align-items: start;
+    }
+  }
+
+  /* --- Logo ----------------------------------------------------------- */
+
+  .logo {
+    grid-area: logo;
+    display: inline-flex;
+    width: clamp(72px, 8vw, 96px);
+    color: inherit;
+    transition: opacity 160ms ease;
+  }
+  .logo:hover {
+    opacity: 0.85;
+  }
+
+  /* --- Nav ----------------------------------------------------------- */
+
+  .nav {
+    grid-area: nav;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+
+  @media (--from-tablet) {
+    .nav {
+      grid-template-columns: repeat(2, minmax(0, max-content));
+      gap: var(--spacing-5);
+    }
+  }
+
+  @media (--from-desktop) {
+    .nav {
+      justify-content: end;
+      column-gap: var(--spacing-6);
+    }
+  }
+
+  .list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-1);
+  }
 
-    a {
-      transition: color 160ms ease;
+  .list a {
+    transition: color 160ms ease;
+  }
+  .list a:hover {
+    color: var(--clr-accent-secondary);
+    opacity: 1;
+  }
+  .list a:focus-visible {
+    outline: 2px solid var(--clr-accent-primary);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  .list.main a {
+    font-weight: var(--font-weight-medium);
+  }
+
+  .list.privacy a {
+    font-weight: var(--font-weight-regular);
+    color: var(--clr-content-secondary);
+  }
+
+  .privacy-icon {
+    padding-inline-end: var(--spacing-0);
+  }
+
+  /* --- Certifications row -------------------------------------------- */
+
+  .certs {
+    grid-area: certs;
+    padding-block-start: var(--spacing-4);
+    border-block-start: 1px solid var(--clr-border-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .eyebrow {
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-tertiary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+  }
+
+  .badges {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: var(--spacing-5);
+    row-gap: var(--spacing-3);
+  }
+
+  .badges li {
+    display: inline-flex;
+  }
+
+  .badge {
+    height: 32px;
+    width: auto;
+    color: var(--clr-content-tertiary);
+    fill: currentColor;
+    transition: color 200ms ease;
+  }
+  .badge :where(use, path) {
+    fill: currentColor;
+  }
+
+  /* Quiet by default, deepen slightly on hover/focus to confirm interactivity
+     would be available if we ever wire each badge to a detail page. */
+  .badges li:hover .badge {
+    color: var(--clr-content-secondary);
+  }
+
+  @media (--from-desktop) {
+    .badge {
+      height: 36px;
     }
-    a:hover {
-      opacity: 1;
-      color: var(--clr-accent-secondary);
-    }
-
-    &.main {
-      grid-area: main-links;
-      a {
-        font-weight: 500;
-      }
-    }
-
-    &.privacy {
-      grid-area: privacy-links;
-      a {
-        font-weight: 400;
-        color: var(--clr-content-secondary);
-
-        span {
-          padding-inline-end: var(--spacing-0);
-        }
-      }
+    .badges {
+      column-gap: var(--spacing-5);
     }
   }
-}
 
-.trailing-wrapper {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: var(--spacing-3);
-  align-items: center;
+  /* --- Trailing: copyright + socials --------------------------------- */
+
+  .trailing {
+    grid-area: trailing;
+    padding-block-start: var(--spacing-3);
+    border-block-start: 1px solid var(--clr-border-secondary);
+    display: flex;
+    flex-direction: column-reverse;
+    gap: var(--spacing-3);
+    align-items: center;
+  }
 
   .copyright {
     color: var(--clr-content-tertiary);
@@ -118,35 +277,44 @@ const currentYear = new Date().getFullYear();
   }
 
   .socials {
-    --size: var(--fs-body);
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     gap: var(--spacing-2);
+  }
 
-    a {
-      display: grid;
-      place-items: center;
-      width: var(--control-height-sm);
-      height: var(--control-height-sm);
-      border-radius: var(--radius-sm);
-      color: var(--clr-content-tertiary);
-      transition: color 160ms ease, background 160ms ease;
-    }
+  .socials a {
+    display: grid;
+    place-items: center;
+    width: var(--control-height-sm);
+    height: var(--control-height-sm);
+    border-radius: var(--radius-sm);
+    color: var(--clr-content-tertiary);
+    transition:
+      color 160ms ease,
+      background 160ms ease;
+  }
 
-    a:hover {
-      opacity: 1;
-      color: var(--clr-content-primary);
-      background: var(--clr-surface-secondary);
-    }
+  .socials a:hover {
+    color: var(--clr-content-primary);
+    background: var(--clr-surface-secondary);
+    opacity: 1;
+  }
+  .socials a:focus-visible {
+    outline: 2px solid var(--clr-accent-primary);
+    outline-offset: 2px;
+  }
 
-    svg {
-      width: var(--size);
-      height: var(--size);
-    }
+  .socials svg {
+    width: var(--fs-body);
+    height: var(--fs-body);
   }
 
   @media (--from-desktop) {
-    flex-direction: row;
-    justify-content: space-between;
+    .trailing {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
-}
 </style>

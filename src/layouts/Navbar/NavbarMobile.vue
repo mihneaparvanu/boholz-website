@@ -48,7 +48,7 @@ onUnmounted(() => {
     </div>
 
     <div class="actions">
-      <Button :href="ROUTES.contact" variant="primary" size="sm" class="cta">
+      <Button :href="ROUTES.contact" variant="primary" size="md" class="cta">
         Katalog
       </Button>
 

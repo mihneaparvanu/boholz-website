@@ -1,0 +1,267 @@
+- generic [active] [ref=e1]:
+  - text:               
+  - generic [ref=e3]:
+    - generic [ref=e6] [cursor=pointer]: 
+    - link "Mobile logo" [ref=e8] [cursor=pointer]:
+      - /url: https://boholz-haus.de/
+      - img "Mobile logo" [ref=e9]
+  - generic [ref=e10]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - text:  
+          - heading "BoHolz Musterhaus Fellbach" [level=1] [ref=e19]
+          - generic [ref=e20]: Höhenstraße - Platz 36, 70736 Fellbach
+        - list [ref=e22]:
+          - listitem [ref=e23] [cursor=pointer]:
+            - generic [ref=e25]: 
+      - generic [ref=e26]:
+        - generic [ref=e28]:
+          - link:
+            - /url: "#"
+          - text:        
+        - text:   
+    - generic [ref=e33]:
+      - generic [ref=e34]:
+        - heading "Unser Musterhaus in Fellbach!" [level=3] [ref=e35]
+        - paragraph [ref=e38]: Besuchen Sie unser Musterhaus nahe Stuttgart und lassen Sie sich vom Charme des verglasten Wintergartens und der lichtdurchfluteten Galerie begeistern. Besonders hervorzuheben ist die sichtbare Holzbalkendecke, die Ihrem Zuhause ein ganz neues Wohngefühl verleiht. Erfahren Sie vor Ort mehr über unsere Qualitätsstandards und die vielfältigen Möglichkeiten, um Ihr Bauprojekt zu realisieren. Unser kompetentes Team in Fellbach steht Ihnen gerne zur Verfügung und freut sich auf Ihren Besuch.
+        - paragraph [ref=e39]:
+          - strong [ref=e40]: Addresse
+          - text: Höhenstraße – Platz 36 – 70736 Fellbach
+        - paragraph [ref=e41]:
+          - text: "Tel:"
+          - link "0711 / 90 12 03 79" [ref=e42] [cursor=pointer]:
+            - /url: tel:++4971190120379
+            - strong [ref=e43]: 0711 / 90 12 03 79
+          - text: "E-Mail:"
+          - link "musterhaus-fellbach@boholz-haus.de" [ref=e45] [cursor=pointer]:
+            - /url: mailto:musterhaus-fellbach@boholz-haus.de
+      - heading "Vertrieb" [level=2] [ref=e46]
+      - generic [ref=e47]:
+        - list [ref=e49]:
+          - listitem [ref=e50]: Beratung und Verkauf
+          - listitem [ref=e51]:
+            - generic [ref=e52]: 
+            - text: István Aszalós
+          - listitem [ref=e53]:
+            - generic [ref=e54]: 
+            - link "0171 28 93 414" [ref=e55] [cursor=pointer]:
+              - /url: tel:01712893414
+          - listitem
+          - listitem [ref=e56]:
+            - link "i.aszalos@boholz-haus.de" [ref=e57] [cursor=pointer]:
+              - /url: mailto:i.aszalos@boholz-haus.de
+        - list [ref=e59]:
+          - listitem [ref=e60]: Gebietsverkaufsleiter
+          - listitem [ref=e61]:
+            - generic [ref=e62]: 
+            - text: Dieter Wissmann
+          - listitem [ref=e63]:
+            - generic [ref=e64]: 
+            - link "+49 171 / 12 80 274" [ref=e65] [cursor=pointer]:
+              - /url: tel:+491711280274
+          - listitem [ref=e66]:
+            - generic [ref=e67]: 
+            - link "+49 711 / 90 12 03 79" [ref=e68] [cursor=pointer]:
+              - /url: tel:+4971190120379
+          - listitem [ref=e69]:
+            - link "d.wissmann@boholz-haus.de" [ref=e70] [cursor=pointer]:
+              - /url: mailto:d.wissmann@boholz-haus.de
+        - list [ref=e72]:
+          - listitem [ref=e73]: Beratung und Verkauf
+          - listitem [ref=e74]:
+            - generic [ref=e75]: 
+            - text: Hagen Kober
+          - listitem [ref=e76]:
+            - generic [ref=e77]: 
+            - link "+49 163 / 379 02 68" [ref=e78] [cursor=pointer]:
+              - /url: tel:+491633790268
+          - listitem
+          - listitem [ref=e79]:
+            - link "h.kober@boholz-haus.de" [ref=e80] [cursor=pointer]:
+              - /url: mailto:h.kober@boholz-haus.de
+        - list [ref=e82]:
+          - listitem [ref=e83]: Beratung und Verkauf
+          - listitem [ref=e84]:
+            - generic [ref=e85]: 
+            - text: Michael Dittrich
+          - listitem [ref=e86]:
+            - generic [ref=e87]: 
+            - link "+49 176 / 62 12 65 25" [ref=e88] [cursor=pointer]:
+              - /url: tel:+4917662126525
+          - listitem [ref=e89]:
+            - generic [ref=e90]: 
+            - link "+49 711 / 90 12 03 79" [ref=e91] [cursor=pointer]:
+              - /url: tel:+4971190120379
+          - listitem [ref=e92]:
+            - link "m.dittrich@boholz-haus.de" [ref=e93] [cursor=pointer]:
+              - /url: mailto:m.dittrich@boholz-haus.de
+      - generic [ref=e96]:
+        - figure [ref=e98]:
+          - link "fellbach2" [ref=e99] [cursor=pointer]:
+            - /url: https://boholz-haus.de/wp-content/uploads/2024/01/fellbach2.jpg
+            - img "fellbach2" [ref=e100]
+        - figure [ref=e102]:
+          - link "image00002" [ref=e103] [cursor=pointer]:
+            - /url: https://boholz-haus.de/wp-content/uploads/2020/01/image00002.jpg
+            - img "image00002" [ref=e104]
+        - figure [ref=e106]:
+          - link "image00006" [ref=e107] [cursor=pointer]:
+            - /url: https://boholz-haus.de/wp-content/uploads/2020/01/image00006.jpg
+            - img "image00006" [ref=e108]
+        - figure [ref=e110]:
+          - link "image00007" [ref=e111] [cursor=pointer]:
+            - /url: https://boholz-haus.de/wp-content/uploads/2020/01/image00007.jpg
+            - img "image00007" [ref=e112]
+        - figure [ref=e114]:
+          - link "image00010" [ref=e115] [cursor=pointer]:
+            - /url: https://boholz-haus.de/wp-content/uploads/2020/01/image00010.jpg
+            - img "image00010" [ref=e116]
+        - figure [ref=e118]:
+          - link "image00016" [ref=e119] [cursor=pointer]:
+            - /url: https://boholz-haus.de/wp-content/uploads/2020/01/image00016.jpg
+            - img "image00016" [ref=e120]
+        - figure [ref=e122]:
+          - link "image00019" [ref=e123] [cursor=pointer]:
+            - /url: https://boholz-haus.de/wp-content/uploads/2020/01/image00019.jpg
+            - img "image00019" [ref=e124]
+        - figure [ref=e126]:
+          - link "image00027" [ref=e127] [cursor=pointer]:
+            - /url: https://boholz-haus.de/wp-content/uploads/2020/01/image00027.jpg
+            - img "image00027" [ref=e128]
+        - figure [ref=e130]:
+          - link "image00033" [ref=e131] [cursor=pointer]:
+            - /url: https://boholz-haus.de/wp-content/uploads/2020/01/image00033.jpg
+            - img "image00033" [ref=e132]
+        - figure [ref=e134]:
+          - link "image00038" [ref=e135] [cursor=pointer]:
+            - /url: https://boholz-haus.de/wp-content/uploads/2020/01/image00038.jpg
+            - img "image00038" [ref=e136]
+      - generic [ref=e137]:
+        - generic [ref=e139]:
+          - strong [ref=e140]: "Adresse:"
+          - text: Höhenstraße 21 - Platz 36 , 70736 Fellbach, Baden Württemberg Deutschland
+        - generic [ref=e141]:
+          - generic:
+            - generic [ref=e146]:
+              - button "Zoom in" [ref=e147] [cursor=pointer]: +
+              - button "Zoom out" [ref=e148] [cursor=pointer]: −
+            - generic [ref=e149]:
+              - link "Leaflet" [ref=e150] [cursor=pointer]:
+                - /url: http://leafletjs.com
+              - text: "| ©"
+              - link "OpenStreetMap" [ref=e151] [cursor=pointer]:
+                - /url: https://www.openstreetmap.org/copyright
+              - text: contributors
+      - generic [ref=e155]:
+        - heading "Wollen Sie mehr zu unserem Ausstellungshaus wissen oder uns besuchen?" [level=2] [ref=e156]
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - status
+            - list
+          - form "Kontaktformular" [ref=e159]:
+            - generic [ref=e160]:
+              - generic [ref=e161]:
+                - paragraph [ref=e163]:
+                  - generic [ref=e164]: "Versandweg:"
+                  - generic [ref=e166]:
+                    - generic [ref=e167]:
+                      - checkbox [ref=e168]
+                      - text: per E-Mail
+                    - generic [ref=e169]:
+                      - checkbox [ref=e170]
+                      - text: per Post
+                - paragraph [ref=e172]:
+                  - generic [ref=e173]: Anrede*
+                  - combobox [ref=e175]:
+                    - option "Familie" [selected]
+                    - option "Herr"
+                    - option "Frau"
+              - generic [ref=e177]:
+                - paragraph [ref=e179]:
+                  - generic [ref=e180]: Vorname*
+                  - textbox "Vorname" [ref=e182]
+                - paragraph [ref=e184]:
+                  - generic [ref=e185]: Nachname*
+                  - textbox "Nachname" [ref=e187]
+              - generic [ref=e188]:
+                - paragraph [ref=e190]:
+                  - generic [ref=e191]: Telefon*
+                  - textbox "Telefon" [ref=e193]
+                - paragraph [ref=e195]:
+                  - generic [ref=e196]: Email*
+                  - textbox "Email" [ref=e198]
+              - paragraph
+              - paragraph [ref=e201]:
+                - textbox "Ihre Mitteilung an uns" [ref=e203]
+              - generic [ref=e204]:
+                - paragraph [ref=e206]:
+                  - text: "Optionale Angaben:"
+                  - text: Diese Informationen helfen uns Ihr Anliegen effizienter und schneller zu bearbeiten
+                - list [ref=e208]:
+                  - listitem [ref=e209]:
+                    - paragraph [ref=e210]:
+                      - textbox "PLZ/Wunschbaugebiet*" [ref=e212]
+                  - listitem [ref=e213]:
+                    - paragraph [ref=e214]:
+                      - combobox [ref=e216]:
+                        - 'option "Grundstück: keine Angaben" [selected]'
+                        - option "Ich habe bereits ein Grundstück"
+                        - option "Ich bin auf der Suche nach einem Grundstück"
+                        - option "Ich brauche Unterstützung bei der Grundstückssuche"
+                  - listitem [ref=e217]:
+                    - paragraph [ref=e218]:
+                      - generic [ref=e221]:
+                        - checkbox [ref=e222]
+                        - text: Beratungstermin erwünscht
+                  - listitem [ref=e223]:
+                    - paragraph [ref=e224]:
+                      - generic [ref=e227]:
+                        - checkbox [ref=e228]
+                        - text: Rückruf erwünscht
+                  - listitem [ref=e229]:
+                    - paragraph [ref=e230]:
+                      - generic [ref=e233]:
+                        - checkbox [ref=e234]
+                        - text: Es besteht bereits Kontakt zu einem BoHolz-Hause-Berater
+                  - listitem [ref=e235]:
+                    - paragraph [ref=e236]:
+                      - generic [ref=e239]:
+                        - checkbox [ref=e240]
+                        - text: Katalog anfordern
+              - paragraph [ref=e243]:
+                - generic [ref=e247]:
+                  - checkbox "*Ich bin mit der Verarbeitung und Nutzung meiner Daten gemäß Einwilligungserklärung einverstanden." [ref=e248]
+                  - generic [ref=e249]:
+                    - text: "*Ich bin mit der Verarbeitung und Nutzung meiner Daten gemäß"
+                    - link "Einwilligungserklärung" [ref=e250] [cursor=pointer]:
+                      - /url: /einwilligungerklaerung/
+                    - text: einverstanden.
+              - paragraph [ref=e253]:
+                - button "Senden" [disabled] [ref=e254]
+              - paragraph [ref=e257]: "* Pflichtfelder"
+      - generic: 
+  - contentinfo [ref=e258]:
+    - generic [ref=e261]:
+      - paragraph [ref=e264]: BoHolz-Haus 2025
+      - list [ref=e268]:
+        - listitem [ref=e269]:
+          - link "Datenschutzerklärung" [ref=e270] [cursor=pointer]:
+            - /url: https://boholz-haus.de/datenschutz/
+        - listitem [ref=e271]:
+          - link "Impressum" [ref=e272] [cursor=pointer]:
+            - /url: https://boholz-haus.de/impressum/
+        - listitem [ref=e273]:
+          - link "Einwilligungerklärung" [ref=e274] [cursor=pointer]:
+            - /url: https://boholz-haus.de/einwilligungerklaerung/
+  - generic [ref=e276]:
+    - heading "Wir setzen Cookies auf unserer Webseite ein." [level=5] [ref=e277]
+    - generic [ref=e278]:
+      - text: Wir verwenden Cookies auf dieser Seite. Funktionale Cookies setzen wir ein, damit unserer Website bei Ihrem Besuch richtig und fehlerfrei funktioniert. Auf diese Cookies können wir nicht verzichten.
+      - text: Darüber hinaus verwenden wir nach Ihrer aktiven Zustimmung Google Analytics, um mehr über Besucherzahlen und Aktivitäten auf unserer Webseite zu erfahren und nutzen diese Information, um BoHolz-Haus.de für Sie nutzerfreundlicher zu gestalten.
+      - link "Datenschutzerklärung" [ref=e279] [cursor=pointer]:
+        - /url: /datenschutz
+      - button "Alle Akzeptieren" [ref=e280] [cursor=pointer]
+      - button "Alle Ablehnen" [ref=e281] [cursor=pointer]
+      - button "Einstellungen" [ref=e282] [cursor=pointer]
+  - text: Mehr anzeigen Deaktiviert
