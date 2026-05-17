@@ -10,13 +10,31 @@ const props = defineProps<{
   slides: HeroSlide[];
 }>();
 
-const index = ref(0);
+/* Two-IMG ping-pong crossfade. The previous Vue <Transition> approach
+   keyed off slide.id replaced the IMG element on every rotation; on iOS
+   Safari that left orphaned IMGs accumulating in the DOM with stale
+   layout (some sized to the content column, some full-width) — the user
+   saw the hero "shifting" after the first slide.
+   We keep two persistent IMGs and only swap which is opaque. Zero DOM
+   churn, no <Transition> wrapper, no per-slide layout recompute. */
+const idx = ref(0);
+const slotA = ref<HeroSlide | null>(props.slides[0] ?? null);
+const slotB = ref<HeroSlide | null>(null);
+const activeIsA = ref(true);
 
 useIntervalFn(() => {
-  index.value = (index.value + 1) % props.slides.length;
+  idx.value = (idx.value + 1) % props.slides.length;
+  const next = props.slides[idx.value];
+  if (activeIsA.value) {
+    slotB.value = next;
+    activeIsA.value = false;
+  } else {
+    slotA.value = next;
+    activeIsA.value = true;
+  }
 }, 5000);
 
-const slide = computed(() => props.slides[index.value]);
+const slide = computed(() => props.slides[idx.value]);
 </script>
 
 <template>
@@ -38,16 +56,24 @@ const slide = computed(() => props.slides[index.value]);
         </Button>
       </div>
     </div>
-    <Transition name="crossfade">
-      <img
-        :key="slide.id"
-        :src="slide.heroImgURL ?? undefined"
-        :alt="slide.title"
-        width="1200"
-        height="800"
-        class="background full-width"
-      />
-    </Transition>
+    <img
+      v-if="slotA"
+      :src="slotA.heroImgURL ?? undefined"
+      :alt="slotA.title"
+      width="1200"
+      height="800"
+      class="background full-width"
+      :data-active="activeIsA || undefined"
+    />
+    <img
+      v-if="slotB"
+      :src="slotB.heroImgURL ?? undefined"
+      :alt="slotB.title"
+      width="1200"
+      height="800"
+      class="background full-width"
+      :data-active="!activeIsA || undefined"
+    />
     <div class="tint-overlay full-width"></div>
   </section>
 </template>
@@ -120,6 +146,10 @@ const slide = computed(() => props.slides[index.value]);
   }
 }
 
+/* Two stacked .background IMGs persist for the page's lifetime; the
+   one with [data-active] is opaque, the other is invisible. Swapping
+   the attribute drives the crossfade purely via CSS — no element
+   replacement, no Transition wrapper, no orphaned DOM nodes. */
 .background {
   position: absolute;
   inset: 0;
@@ -128,20 +158,18 @@ const slide = computed(() => props.slides[index.value]);
   object-fit: cover;
   background-color: var(--clr-content-secondary);
   z-index: -1;
-}
-
-/* <Transition name="crossfade"> hooks */
-.crossfade-enter-active,
-.crossfade-leave-active {
+  opacity: 0;
   transition: opacity 800ms ease;
 }
-.crossfade-enter-from,
-.crossfade-leave-to {
-  opacity: 0;
+
+.background[data-active] {
+  opacity: 1;
 }
-/* keep both images stacked during the swap */
-.crossfade-leave-active {
-  position: absolute;
+
+@media (prefers-reduced-motion: reduce) {
+  .background {
+    transition: opacity 1ms;
+  }
 }
 
 .action {
