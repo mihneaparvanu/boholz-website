@@ -41,6 +41,15 @@ type NewsWithoutCoverSeed = {
 
 const NEWS_WITH_COVER: NewsCoverSeed[] = [
   {
+    newsSlug: "foerdertoepfe",
+    cover: {
+      path: "/images/news/foerdertoepfe/cover.webp",
+      alt: "KfW-Förderung",
+      width: 600,
+      height: 440,
+    },
+  },
+  {
     newsSlug: "april-samstag-13-06-2026-werksfuehrung-bei-keitel-haus",
     cover: {
       path: "/images/news/april-samstag-13-06-2026-werksfuehrung-bei-keitel-haus/cover.webp",

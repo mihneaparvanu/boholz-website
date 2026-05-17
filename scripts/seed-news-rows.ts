@@ -23,9 +23,10 @@ const POSTS_PATH = new URL(
   import.meta.url,
 );
 
-// The 5 user-approved slugs from CANDIDATES.md (foerdertoepfe was unticked
-// and is intentionally excluded).
+// All 6 news slugs on the live WP site. Seeds everything so the BoHolz
+// news page is fully DB-driven (no split between content files and DB).
 const APPROVED_SLUGS = new Set([
+  "foerdertoepfe",
   "april-samstag-13-06-2026-werksfuehrung-bei-keitel-haus",
   "mai-samstag-02-05-2026-werksfuehrung-bei-keitel-haus",
   "april-2026-stelltermin-in-steinheim-a-d-murr",
