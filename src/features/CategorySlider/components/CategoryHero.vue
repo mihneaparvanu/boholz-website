@@ -59,6 +59,11 @@ const imageURL = computed(() => {
 
   .model-image {
     width: 100%;
+    /* height: auto is required to override the <img height="…"> HTML
+       attribute, which the browser treats as a presentational hint and
+       otherwise defeats `aspect-ratio` (image was rendering at its
+       intrinsic 1080px height instead of the aspected box). */
+    height: auto;
     /*
      * Mobile default: 5/4 — slightly taller than landscape so the façade
      * has presence, but no longer the portrait tower the 3/4 crop produced.
