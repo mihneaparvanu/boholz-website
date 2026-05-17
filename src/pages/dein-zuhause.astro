@@ -15,6 +15,10 @@ import Callout from "@/components/ui/Callout.vue";
 import VideoPlaceholder from "@/components/ui/VideoPlaceholder.vue";
 import BuildingStagesCarousel from "@/features/Home/BuildingStages/BuildingStagesCarousel.vue";
 import { buildingStages } from "@/features/Home/BuildingStages/building-stages.content";
+import {
+  buildPhases,
+  bauphasenHeroImageURL,
+} from "@/features/Bauphasen/bauphasen.content";
 
 const sections: Section[] = [
   { id: "ablauf",       eyebrow: "01", label: "Der Ablauf" },
@@ -52,7 +56,7 @@ const smartHomeFeatures: IconListItem[] = [
 ];
 
 
-const heroImage = getMediaURL("/images/pages/dein-zuhause/hero-bauen.jpg");
+const heroImage = bauphasenHeroImageURL;
 const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
 ---
 
@@ -81,57 +85,84 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     />
 
     <div class="cards three">
-      <StepCard
-        client:visible
-        step={1}
-        title="Der Grundstein wird gelegt"
-        icon="compass"
-        description="Planung, Grundstück, Finanzierung — wir legen die Basis für Ihr Projekt."
-      >
-        <ul class="lined">
-          <li>Planen Ihres Traumhauses mit unseren Bauberatern</li>
-          <li>Hilfestellung bei der Grundstückssuche</li>
-          <li>Sicherung der Finanzierung</li>
-          <li>Abschluss des Hausvertrages</li>
-        </ul>
-      </StepCard>
+      <article id={`phase-${buildPhases[0].slug}`} class="phase">
+        <figure class="phase-frame">
+          <img
+            src={buildPhases[0].imageURL}
+            alt={buildPhases[0].title}
+            loading="lazy"
+          />
+        </figure>
+        <StepCard
+          client:visible
+          step={1}
+          title="Der Grundstein wird gelegt"
+          icon="compass"
+          description="Planung, Grundstück, Finanzierung — wir legen die Basis für Ihr Projekt."
+        >
+          <ul class="lined">
+            <li>Planen Ihres Traumhauses mit unseren Bauberatern</li>
+            <li>Hilfestellung bei der Grundstückssuche</li>
+            <li>Sicherung der Finanzierung</li>
+            <li>Abschluss des Hausvertrages</li>
+          </ul>
+        </StepCard>
+      </article>
 
-      <StepCard
-        client:visible
-        step={2}
-        title="Träume in Realität verwandeln"
-        icon="pencil"
-        description="Architektur, Bauantrag und Bemusterung — Ihr Haus nimmt Form an."
-      >
-        <ul class="lined">
-          <li>Ihr Baubegleiter steht zu Ihrer Verfügung</li>
-          <li>Vorlage der Baufinanzierung</li>
-          <li>Kauf des Grundstücks ist erfolgt</li>
-          <li>Planungsgespräch mit Architektinnen und Architekten</li>
-          <li>Erstellung und Einreichung des Bauantrages</li>
-          <li>Vorlage der Baugenehmigung</li>
-          <li>Bemusterung mit Ausstattung und Haustechnik</li>
-          <li>Planung der Baustelleneinrichtung und Produktion</li>
-        </ul>
-      </StepCard>
+      <article id={`phase-${buildPhases[1].slug}`} class="phase">
+        <figure class="phase-frame">
+          <img
+            src={buildPhases[1].imageURL}
+            alt={buildPhases[1].title}
+            loading="lazy"
+          />
+        </figure>
+        <StepCard
+          client:visible
+          step={2}
+          title="Träume in Realität verwandeln"
+          icon="pencil"
+          description="Architektur, Bauantrag und Bemusterung — Ihr Haus nimmt Form an."
+        >
+          <ul class="lined">
+            <li>Ihr Baubegleiter steht zu Ihrer Verfügung</li>
+            <li>Vorlage der Baufinanzierung</li>
+            <li>Kauf des Grundstücks ist erfolgt</li>
+            <li>Planungsgespräch mit Architektinnen und Architekten</li>
+            <li>Erstellung und Einreichung des Bauantrages</li>
+            <li>Vorlage der Baugenehmigung</li>
+            <li>Bemusterung mit Ausstattung und Haustechnik</li>
+            <li>Planung der Baustelleneinrichtung und Produktion</li>
+          </ul>
+        </StepCard>
+      </article>
 
-      <StepCard
-        client:visible
-        step={3}
-        title="Die heiße Bauphase beginnt"
-        icon="hammer"
-        description="Vom Keller bis zur Schlüsselübergabe — Vorfertigung, Montage, Innenausbau."
-      >
-        <ul class="lined">
-          <li>Schaffung der Bauvoraussetzungen</li>
-          <li>Beginn der Fertigung des Hauses</li>
-          <li>Bau des Kellers oder der Bodenplatte</li>
-          <li>Aufbau des Hauses durch das Montageteam</li>
-          <li>Richtfest</li>
-          <li>Innenausbau und Haustechnik</li>
-          <li>Hausübergabe</li>
-        </ul>
-      </StepCard>
+      <article id={`phase-${buildPhases[2].slug}`} class="phase">
+        <figure class="phase-frame">
+          <img
+            src={buildPhases[2].imageURL}
+            alt={buildPhases[2].title}
+            loading="lazy"
+          />
+        </figure>
+        <StepCard
+          client:visible
+          step={3}
+          title="Die heiße Bauphase beginnt"
+          icon="hammer"
+          description="Vom Keller bis zur Schlüsselübergabe — Vorfertigung, Montage, Innenausbau."
+        >
+          <ul class="lined">
+            <li>Schaffung der Bauvoraussetzungen</li>
+            <li>Beginn der Fertigung des Hauses</li>
+            <li>Bau des Kellers oder der Bodenplatte</li>
+            <li>Aufbau des Hauses durch das Montageteam</li>
+            <li>Richtfest</li>
+            <li>Innenausbau und Haustechnik</li>
+            <li>Hausübergabe</li>
+          </ul>
+        </StepCard>
+      </article>
     </div>
   </section>
 
@@ -290,6 +321,38 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--spacing-4);
+  }
+
+  /* ── Phase composite (image stacked above StepCard) ──
+     Each .phase wraps the phase-teaser image and the StepCard. Scroll-margin
+     so a deep link from the homepage strip (`/dein-zuhause#phase-...`) lands
+     cleanly under the navbar. */
+  .phase {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    min-width: 0;
+    scroll-margin-block-start: var(--navbar-height);
+  }
+
+  .phase-frame {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    /* 4:3 — wide enough to read the scene, short enough that the StepCard
+       below still anchors the visual weight. */
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--clr-surface-secondary);
+  }
+
+  .phase-frame img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   @media (--from-tablet) {

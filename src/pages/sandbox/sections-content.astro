@@ -227,9 +227,11 @@ const spotlightSmall: [SpotlightCard, SpotlightCard] = [
             alt="BoHolz Architektur"
             class="zz-img"
           />
-          <Button slot="actions" client:load variant="secondary" size="sm" href="/dein-zuhause">
-            Mehr erfahren
-          </Button>
+          <Fragment slot="actions">
+            <Button client:load variant="secondary" size="sm" href="/dein-zuhause">
+              Mehr erfahren
+            </Button>
+          </Fragment>
         </ZigZag>
 
         <!-- New slots: #eyebrow + #heading, mediaSide=start, split=tablet, wide gap. -->

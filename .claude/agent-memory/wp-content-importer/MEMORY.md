@@ -1,0 +1,3 @@
+- [R2 Account ID Missing](project_r2_endpoint_blocker.md) — confirmed bucket=boholz-assets; account ID not in repo/env, must ask user
+- [WP Import Pipeline](reference_pipeline.md) — file layout for Phase 2/3 scripts and rerun command
+- [User Decisions: Import Style](feedback_user_decisions.md) — duplication policy, dual-destination assets, low-res exceptions, YouTube poster handling

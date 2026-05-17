@@ -9,11 +9,13 @@ import CategoriesShowcase from "@/features/Home/CategoriesShowcase/CategoriesSho
 import TrustBadges from "@/features/Home/TrustBadges/TrustBadges.vue";
 import Overview from "@/features/Home/Overview/Overview.vue";
 import BuildingStages from "@/features/Home/BuildingStages/BuildingStages.vue";
+import BauphasenStrip from "@/features/Bauphasen/BauphasenStrip.vue";
 import Faq from "@/features/Home/Faq/Faq.vue";
 import Button from "@/components/ui/Button.vue";
 
 import { homeSections } from "@/features/Home/home.content";
 import { buildingStages } from "@/features/Home/BuildingStages/building-stages.content";
+import { buildPhases } from "@/features/Bauphasen/bauphasen.content";
 import { featuredCard, overviewPillars } from "@/features/Home/Overview/overview.content";
 import { trustBadges } from "@/features/Home/TrustBadges/trust-badges.content";
 import { qaCategories } from "@/content/qa";
@@ -25,11 +27,12 @@ const heroSlides = await getHeroSlides(6);
 
 // Drop `navLabel` before forwarding to <Section> — it's a rail-only field
 // kept on the content shape for pages that still surface a section rail.
-const { categories: cat, trust, overview, finishes, qa, contact } = homeSections;
+const { categories: cat, trust, overview, bauphasen, finishes, qa, contact } = homeSections;
 const sectionProps = {
   categories: (({ navLabel, ...rest }) => rest)(cat),
   trust: (({ navLabel, ...rest }) => rest)(trust),
   overview: (({ navLabel, ...rest }) => rest)(overview),
+  bauphasen: (({ navLabel, ...rest }) => rest)(bauphasen),
   finishes: (({ navLabel, ...rest }) => rest)(finishes),
   qa: (({ navLabel, ...rest }) => rest)(qa),
   contact: (({ navLabel, ...rest }) => rest)(contact),
@@ -55,7 +58,16 @@ const sectionProps = {
     <Overview client:visible featured={featuredCard} pillars={overviewPillars} />
   </Section>
 
-  <Section {...sectionProps.finishes} tone="secondary">
+  <!-- Bauphasen — compact 3-step strip. Slots between "we deliver well"
+       (Overview) and "your finish-level path" (Ausbaustufen) as the bridging
+       "how it happens" beat. tone="secondary" so the strip's image-led
+       cards lift off a tinted band; preserves the alternation primary →
+       secondary → primary across the page. -->
+  <Section {...sectionProps.bauphasen} tone="secondary">
+    <BauphasenStrip client:visible phases={buildPhases} linkBaseHref="/dein-zuhause" />
+  </Section>
+
+  <Section {...sectionProps.finishes} tone="primary">
     <BuildingStages client:visible stages={buildingStages} />
   </Section>
 
@@ -74,12 +86,14 @@ const sectionProps = {
       subtitle={sectionProps.contact.subheading}
       tone="surface"
     >
-      <Button slot="actions" client:load variant="primary" size="md" href="/vor-ort-beratung">
-        Vor-Ort-Beratung
-      </Button>
-      <Button slot="actions" client:load variant="secondary" size="md" href="/kontakt">
-        Kontaktformular
-      </Button>
+      <Fragment slot="actions">
+        <Button client:load variant="primary" size="md" href="/vor-ort-beratung">
+          Vor-Ort-Beratung
+        </Button>
+        <Button client:load variant="secondary" size="md" href="/kontakt">
+          Kontaktformular
+        </Button>
+      </Fragment>
     </CTASection>
   </div>
 </Layout>

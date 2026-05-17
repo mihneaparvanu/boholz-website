@@ -13,6 +13,7 @@ yarn-error.log*
 pnpm-debug.log*
 
 .claude/worktrees/
+.playwright-mcp/
 
 public/to-organize/
 public/sorted-assets/

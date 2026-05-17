@@ -30,8 +30,8 @@ export const mehrfamilienContent: LandingPageContent = {
     subtitle:
       "Flexible Wohnlösungen aus Holz — für Familien, die zusammen leben, ohne aufeinander zu wohnen. Vom Zweifamilien- bis zum 16-Einheiten-Haus.",
     imageAlt:
-      "Mehrfamilienhaus von BoHolz Haus mit modernen Balkonen und Holzfassade",
-    imageFallbackPath: "/images/pages/uber-uns/value-1.jpg",
+      "Mehrfamilienhaus von BoHolz Haus — großzügige Architekturvisualisierung mit mehreren Wohneinheiten",
+    imageFallbackPath: "/images/landing/uebersicht/lifestyle-02.webp",
     preferredCategorySlug: "mehrfamilienhaus",
     primaryCta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
     secondaryCta: { label: "Katalog erhalten", href: "/kontakt#katalog" },
@@ -85,9 +85,9 @@ export const mehrfamilienContent: LandingPageContent = {
     heading: "Nah genug für die Familie,",
     highlight: "weit genug für sich selbst.",
     lede: "Getrennte Eingänge, geteilte Außenflächen — Generationenhäuser, die Eigenständigkeit und Nähe in Balance halten.",
-    imageFallbackPath: "/images/pages/uber-uns/value-3.jpg",
+    imageFallbackPath: "/images/landing/mehrfamilien/lifestyle-03.webp",
     imageAlt:
-      "Junges Paar vor einem Mehrfamilienhaus — Lifestyle-Szene im Eingangsbereich",
+      "Mehrgenerationenhaus von BoHolz — Lifestyle-Szene mit Bewohnern verschiedener Generationen",
     allowPlaceholder: true,
   },
 
@@ -132,9 +132,9 @@ export const mehrfamilienContent: LandingPageContent = {
       "Ob für Familien oder als Investition — ein Mehrfamilienhaus bietet Platz, Flexibilität und nachhaltige Wertbeständigkeit.",
       "Bo Holz Haus baut energieeffizient nach KfW-40/55-Standard, mit bis zu 16 Wohneinheiten unter einem Dach.",
     ],
-    imageFallbackPath: "/images/pages/unser-versprechen/16-gruende.jpg",
+    imageFallbackPath: "/images/landing/uebersicht/lifestyle-01.webp",
     imageAlt:
-      "Mehrfamilienhaus in Holzbauweise mit großzügigem Eingangsbereich",
+      "Stadtvilla mit Einliegerwohnung in Holzbauweise — Zweifamilien-Konzept unter einem Dach",
     reverse: false,
     cta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
   },

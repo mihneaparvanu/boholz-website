@@ -29,8 +29,8 @@ export const bungalowContent: LandingPageContent = {
     subtitle:
       "Ob altersgerecht, rollstuhlgerecht oder einfach bequem — ein BoHolz-Bungalow bietet Ihnen Sicherheit, Unabhängigkeit und nachhaltiges Wohnen auf einer Ebene.",
     imageAlt:
-      "Bungalow aus Holz mit großer Terrasse und Poolbereich am Abend",
-    imageFallbackPath: "/images/pages/uber-uns/value-2.jpg",
+      "BoHolz-Bungalow Schäfer-Haus 134/22 — ebenerdiges Wohnen auf einer Ebene",
+    imageFallbackPath: "/images/landing/bungalow/hero.webp",
     preferredCategorySlug: "bungalow",
     primaryCta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
     secondaryCta: { label: "Katalog erhalten", href: "/kontakt#katalog" },
@@ -84,9 +84,9 @@ export const bungalowContent: LandingPageContent = {
     heading: "Ein Zuhause,",
     highlight: "das mit Ihnen lebt.",
     lede: "Helle Räume, breite Türen, ebenerdiger Garten — ein Bungalow, der heute funktioniert und morgen mitwächst.",
-    imageFallbackPath: "/images/pages/unser-versprechen/qualitaet.jpg",
+    imageFallbackPath: "/images/landing/uebersicht/lifestyle-04.webp",
     imageAlt:
-      "Senior auf einer Terrasse vor einem Bungalow — entspannte Nachmittagslektüre",
+      "Modernistischer Kubus-Bungalow von BoHolz — klare Geometrie, ebenerdige Architektur",
     allowPlaceholder: true,
   },
 
@@ -131,9 +131,9 @@ export const bungalowContent: LandingPageContent = {
       "Ein barrierefreies Zuhause bedeutet mehr als stufenlose Übergänge — es steht für Unabhängigkeit, Sicherheit und täglichen Komfort.",
       "Jeder BoHolz-Bungalow wird individuell geplant — mit breiten Türen, offenen Grundrissen und intelligenten Details, die das Wohnen heute und in Zukunft angenehm und mühelos machen.",
     ],
-    imageFallbackPath: "/images/pages/unser-versprechen/wandaufbau.jpg",
+    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
     imageAlt:
-      "Bungalow-Innenraum mit barrierefreiem Übergang zur Terrasse und großer Glasfront",
+      "Holzfertighaus in naturnaher Lage — natürliche Materialien für langlebigen Wohnkomfort",
     reverse: false,
     cta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
   },

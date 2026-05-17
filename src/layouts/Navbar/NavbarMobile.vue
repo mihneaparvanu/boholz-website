@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref } from "vue";
 import { Menu, X, ChevronRight } from "lucide-vue-next";
 
 import Button from "@/components/ui/Button.vue";
@@ -10,7 +10,12 @@ import { useScrolledPast } from "@/composables/useScrolledPast";
 import { PRIMARY_NAV } from "./navbar.content";
 import { ROUTES } from "@/utils/routes";
 
-const hasScrolled = ref(useScrolledPast(10));
+/* Keep in sync with the .sheet fade-out duration below. The handler
+   below waits this long after closing the sheet before navigating, so
+   the user perceives the menu collapsing rather than a hard cut. */
+const SHEET_FADE_MS = 200;
+
+const hasScrolled = useScrolledPast(10);
 
 defineProps<{
   currentPath: string;
@@ -27,18 +32,28 @@ function setOpen(value: boolean) {
   emit("open-change", value);
 }
 
-function close() {
+/* Intercept link clicks inside the open sheet: close the sheet first
+   so the fade-out is visible, then navigate via a full page load.
+   With Astro's ClientRouter removed, navigation triggers a fresh
+   document load — the sheet would otherwise disappear instantly at
+   swap time. Respect modifier keys / non-primary buttons so the
+   browser's open-in-new-tab affordances keep working. */
+function handleNavClick(event: MouseEvent, href: string) {
+  if (
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey ||
+    event.button !== 0
+  ) {
+    return;
+  }
+  event.preventDefault();
   setOpen(false);
+  window.setTimeout(() => {
+    window.location.assign(href);
+  }, SHEET_FADE_MS);
 }
-
-/* Close the sheet on any Astro page swap — otherwise the panel stays open
-   under a persisted navbar across navigations. */
-onMounted(() => {
-  document.addEventListener("astro:after-swap", close);
-});
-onUnmounted(() => {
-  document.removeEventListener("astro:after-swap", close);
-});
 </script>
 
 <template>
@@ -76,13 +91,22 @@ onUnmounted(() => {
   >
     <ul class="items">
       <li v-for="route in PRIMARY_NAV" :key="route.path">
-        <a :href="route.path" :data-is-current="currentPath === route.path">
+        <a
+          :href="route.path"
+          :data-is-current="currentPath === route.path"
+          @click="handleNavClick($event, route.path)"
+        >
           <span>{{ route.label }}</span>
           <ChevronRight class="chevron" aria-hidden="true" />
         </a>
       </li>
     </ul>
-    <Button variant="primary" :href="ROUTES.contact">Beratung finden</Button>
+    <Button
+      variant="primary"
+      :href="ROUTES.contact"
+      @click="handleNavClick($event, ROUTES.contact)"
+      >Beratung finden</Button
+    >
   </div>
 </template>
 
@@ -91,8 +115,11 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-inline: var(--spacing-4);
+  /* No inline padding here — the .wrapper grid (via --padding-inline)
+     already gives this row its edge gap. Doubling it pushed the CTA
+     and trigger into overflow at 360–390px viewports. */
   padding-block-start: var(--spacing-2);
+  gap: var(--spacing-2);
   height: 100%;
   color: var(--clr-content-primary);
 
@@ -105,16 +132,18 @@ onUnmounted(() => {
 
 .logo-slot {
   display: inline-flex;
+  flex-shrink: 0;
 }
 
 .logo-slot :deep(.logo) {
-  width: var(--sz-3xl);
+  width: var(--navbar-logo-mobile);
 }
 
 .actions {
   display: flex;
   align-items: center;
   gap: var(--spacing-2);
+  flex-shrink: 0;
 }
 
 .cta {

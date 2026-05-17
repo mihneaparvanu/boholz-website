@@ -1,0 +1,88 @@
+[import] GET  https://boholz-haus.de/wp-content/uploads/2021/08/SV-ELW-173-22-0.jpg
+[import] OK   images/landing/uebersicht/lifestyle-01.webp  246003B -> 154118B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/03/3795_BoHolzHaus_EFH_128_28_170_Kam5_03.png
+[import] OK   images/landing/uebersicht/lifestyle-02.webp  21815653B -> 1749802B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/01/Stadtvilla-22-166_2025.jpg
+[import] OK   images/landing/uebersicht/lifestyle-03.webp  270635B -> 185840B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2025/02/Kubus-166-0-0_2025.jpg
+[import] OK   images/landing/uebersicht/lifestyle-04.webp  188724B -> 131856B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2025/02/3938_KEI-BV-Ilshofen-V_web_Flyout.jpg
+[import] OK   images/landing/uebersicht/lifestyle-05.webp  419290B -> 282492B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/10/P_AdobeStock_1188446881.jpg
+[import] OK   images/landing/uebersicht/lifestyle-06.webp  232230B -> 134940B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2022/01/3513_SchaeferHaus_Bungalow_134_22_03_1500px.jpg
+[import] OK   images/landing/bungalow/hero.webp  345009B -> 349208B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2025/11/mehrgenerationen-gallery-5.webp
+[import] OK   images/landing/mehrfamilien/lifestyle-03.webp  740748B -> 785686B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/01/zwei_starke_partner_header.jpg
+[import] OK   images/landing/zwei-starke-partner/hero.webp  512217B -> 382378B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/01/bad-vilbel1-min.jpg
+[import] OK   images/showhouses/bad-vilbel/hero.webp  377393B -> 507986B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/01/bad-vilbel2.jpg
+[import] OK   images/showhouses/bad-vilbel/gallery/exterior-01.webp  209727B -> 178010B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/KuechevMHS.jpg
+[import] OK   images/showhouses/bad-vilbel/gallery/interior-04.webp  96217B -> 45626B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/Master-Bad.jpg
+[import] OK   images/showhouses/bad-vilbel/gallery/interior-05.webp  74317B -> 28318B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/Theke.jpg
+[import] OK   images/showhouses/bad-vilbel/gallery/interior-06.webp  102644B -> 55406B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/Wohnen.jpg
+[import] OK   images/showhouses/bad-vilbel/gallery/interior-07.webp  82680B -> 37092B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/Bad-Vilbel_EG.png
+[import] OK   images/showhouses/bad-vilbel/plans/plan-02.webp  20023B -> 29586B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/Bad-Vilbel.png
+[import] OK   images/showhouses/bad-vilbel/plans/plan-03.webp  22595B -> 34064B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/01/fellbach1-min.jpg
+[import] OK   images/showhouses/fellbach/hero.webp  172542B -> 178920B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/01/fellbach2.jpg
+[import] OK   images/showhouses/fellbach/gallery/exterior-01.webp  143177B -> 104636B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/image00002.jpg
+[import] OK   images/showhouses/fellbach/gallery/interior-02.webp  52007B -> 30814B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/image00006.jpg
+[import] OK   images/showhouses/fellbach/gallery/interior-03.webp  83216B -> 56442B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/image00007.jpg
+[import] OK   images/showhouses/fellbach/gallery/interior-04.webp  76823B -> 50474B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/image00010.jpg
+[import] OK   images/showhouses/fellbach/gallery/interior-05.webp  91442B -> 65658B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/image00016.jpg
+[import] OK   images/showhouses/fellbach/gallery/interior-06.webp  78858B -> 49102B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/image00019.jpg
+[import] OK   images/showhouses/fellbach/gallery/interior-07.webp  81185B -> 56290B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/image00027.jpg
+[import] OK   images/showhouses/fellbach/gallery/interior-08.webp  103345B -> 78934B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/image00033.jpg
+[import] OK   images/showhouses/fellbach/gallery/interior-09.webp  83742B -> 73808B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2020/01/image00038.jpg
+[import] OK   images/showhouses/fellbach/gallery/interior-10.webp  88143B -> 66866B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/02/DBHS8111.jpg
+[import] OK   images/news/april-samstag-13-06-2026-werksfuehrung-bei-keitel-haus/cover.webp  6815066B -> 2420882B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/02/DBHS8111.jpg
+[import] OK   images/news/mai-samstag-02-05-2026-werksfuehrung-bei-keitel-haus/cover.webp  6815066B -> 2420882B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2025/04/Silder4_mobile_2025.jpg
+[import] OK   images/news/april-2026-stelltermin-in-steinheim-a-d-murr/cover.webp  82576B -> 58704B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/01/ihr_neues_zuhause_header.jpg
+[import] OK   images/content/bauphasen/hero.webp  166653B -> 83188B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/01/kontakt_header.jpg
+[import] OK   images/content/bauphasen/phase-01-grundstein.webp  177425B -> 143864B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/01/teaser_produktion.jpg
+[import] OK   images/content/bauphasen/phase-02-traeume.webp  89717B -> 89448B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/01/ausbaustufen_header.jpg
+[import] OK   images/content/bauphasen/phase-03-bauphase.webp  122879B -> 82204B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/04/nachhaltigkeit_header_2.jpg
+[import] OK   images/content/advantage/holzfaserdaemmung/hero.webp  230794B -> 281954B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/08/sommer.jpg
+[import] OK   images/content/advantage/holzfaserdaemmung/sommer.webp  111850B -> 108002B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/08/winter.jpg
+[import] OK   images/content/advantage/holzfaserdaemmung/winter.webp  109636B -> 104084B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/04/nachhaltigkeit_header_2.jpg
+[import] OK   images/content/advantage/nachhaltigkeit/hero.webp  230794B -> 281954B
+[import] GET  https://img.youtube.com/vi/0abnY3Re-tU/maxresdefault.jpg
+[import] OK   images/content/advantage/nachhaltigkeit/video-poster.webp  176886B -> 162738B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/01/wandaufbau_header.jpg
+[import] OK   images/content/advantage/wandaufbau/hero.webp  336218B -> 207388B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/06/wandaufbau_links.jpg
+[import] OK   images/content/advantage/wandaufbau/wandaufbau-links.webp  99357B -> 93422B
+[import] GET  https://boholz-haus.de/wp-content/uploads/2024/06/wandaufbau_rechts.jpg
+[import] OK   images/content/advantage/wandaufbau/wandaufbau-rechts.webp  99744B -> 93948B
+[import] Wrote C:\Users\m\Developer\Boholz\boholz-haus-frontend\design-audit\wp-inventory\MANIFEST-RESULT.json
+[import] Summary: 43/43 ok, 0 failed

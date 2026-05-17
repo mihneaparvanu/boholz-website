@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
+import { useEventListener } from "@vueuse/core";
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder.vue";
 import type { BuildingStage } from "./building-stages.types";
@@ -31,16 +32,10 @@ function updateEdges() {
   canNext.value = el.scrollLeft + el.clientWidth < el.scrollWidth - 2;
 }
 
-onMounted(() => {
-  updateEdges();
-  track.value?.addEventListener("scroll", updateEdges, { passive: true });
-  window.addEventListener("resize", updateEdges);
-});
+useEventListener(track, "scroll", updateEdges, { passive: true });
+useEventListener("resize", updateEdges, { passive: true });
 
-onBeforeUnmount(() => {
-  track.value?.removeEventListener("scroll", updateEdges);
-  window.removeEventListener("resize", updateEdges);
-});
+onMounted(updateEdges);
 
 const ariaLabel = computed(
   () => `Ausbaustufen — ${props.stages.length} Stufen`,

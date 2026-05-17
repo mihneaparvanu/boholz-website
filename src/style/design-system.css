@@ -261,6 +261,13 @@
   --font-weight-bold: 700;
 
   --navbar-height: var(--spacing-6);
+
+  /* Navbar logo width — named so we can tune mobile vs desktop independently
+     without hunting through `:deep(.logo)` rules. Desktop tracks the type
+     scale via --sz-3xl (~28–36px depending on viewport); mobile is a fixed
+     value chosen to feel present at 360–430px without dominating the bar. */
+  --navbar-logo: var(--sz-3xl);
+  --navbar-logo-mobile: 40px;
 }
 
 body {

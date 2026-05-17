@@ -79,12 +79,14 @@ const IMG = {
         imageAlt="Moderner Bungalow mit Holzfassade vor heller Wand"
         rule
       >
-        <Button slot="actions" client:load variant="primary" size="md">
-          Modelle entdecken
-        </Button>
-        <Button slot="actions" client:load variant="tertiary" size="md">
-          Beratung buchen
-        </Button>
+        <Fragment slot="actions">
+          <Button client:load variant="primary" size="md">
+            Modelle entdecken
+          </Button>
+          <Button client:load variant="tertiary" size="md">
+            Beratung buchen
+          </Button>
+        </Fragment>
       </HeroSplit>
 
       <!-- ═══ HeroSplit — image-start ═══ -->
@@ -98,9 +100,11 @@ const IMG = {
         imageAlt="Modernes Mehrfamilienhaus mit großzügigen Fensterflächen"
         image-side="start"
       >
-        <Button slot="actions" client:load variant="primary" size="md">
-          Grundrisse ansehen
-        </Button>
+        <Fragment slot="actions">
+          <Button client:load variant="primary" size="md">
+            Grundrisse ansehen
+          </Button>
+        </Fragment>
       </HeroSplit>
 
       <!-- ═══ HeroOverlayCard — with spec card ═══ -->
@@ -120,9 +124,11 @@ const IMG = {
           href: "/haus/alpha-162-1",
         }}
       >
-        <Button slot="actions" client:load variant="secondary" size="md">
-          Innenräume entdecken
-        </Button>
+        <Fragment slot="actions">
+          <Button client:load variant="secondary" size="md">
+            Innenräume entdecken
+          </Button>
+        </Fragment>
       </HeroOverlayCard>
 
       <!-- ═══ HeroOverlayCard — no spec card ═══ -->
@@ -135,9 +141,11 @@ const IMG = {
         image={IMG.cabinForest}
         imageAlt="Holzhaus eingebettet in deutschem Mischwald"
       >
-        <Button slot="actions" client:load variant="secondary" size="md">
-          Unsere Geschichte
-        </Button>
+        <Fragment slot="actions">
+          <Button client:load variant="secondary" size="md">
+            Unsere Geschichte
+          </Button>
+        </Fragment>
       </HeroOverlayCard>
 
       <!-- ═══ ImageBand · minimal ═══ -->

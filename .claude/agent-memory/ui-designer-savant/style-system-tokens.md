@@ -52,7 +52,8 @@ metadata:
 
 ## Layout
 `--padding-inline: var(--spacing-5)` (20px on mobile), `--content-max-width: 1600px`, `--popout-max-width: 1800px`. `.wrapper` grid uses three columns: full-width / popout / content.
-`--navbar-height: var(--spacing-6)` (64px mobile).
+`--navbar-height: var(--spacing-6)` (64px mobile, 84px override).
+`--navbar-logo: var(--sz-3xl)` (desktop, scales with type), `--navbar-logo-mobile: 40px` (fixed, added 2026-05-17 so the mark feels present at 360–430px without dominating the bar).
 
 ## Breakpoints (`@custom-media`, postcss-global-data)
 - Ranges: `--mobile` (<500), `--tablet` (500–1024), `--desktop` (1024–1440), `--wide` (>=1440).

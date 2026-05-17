@@ -1,0 +1,526 @@
+{
+  "generated_at": "2026-05-17T16:25:00Z",
+  "phase": "2-final-selection",
+  "source": "https://boholz-haus.de",
+  "r2_public_base": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev",
+  "naming_convention": "{category}_{slug}_{type}_{dimensions}.{ext}",
+  "transcode_policy": {
+    "format": "webp",
+    "quality": 85,
+    "strip_exif_gps": true,
+    "preserve_icc": true,
+    "min_shortest_side_for_hero": 1200,
+    "exception_low_res_accepted": [
+      "content/advantage/holzfaserdaemmung/sommer.webp",
+      "content/advantage/holzfaserdaemmung/winter.webp"
+    ]
+  },
+  "user_decisions_applied": [
+    "News template pairs: keep BOTH werksfuehrung dates + BOTH richtfest events as distinct posts",
+    "Bauphasen: same 4 assets feed both homepage compact strip (phases only) and /your-house (hero + phases). Single R2 set; downstream picks subset",
+    "Specs (fertighaus-bauen): NO imagery imported — text-only glossary; downstream uses icons",
+    "Holzfaserdaemmung pillars: ONLY sommer.jpg + winter.jpg (skipped oeko-test, waermespeicherkapazitaet, grafik1, grafik2)",
+    "Wandaufbau: keep BOTH wandaufbau_links + wandaufbau_rechts as side-by-side comparison cards",
+    "Sustainability: keep YouTube iframe AND fetch maxresdefault.jpg as video-poster.webp"
+  ],
+  "assets": [
+    {
+      "destination": "landing/uebersicht",
+      "classification": "lifestyle",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2021/08/SV-ELW-173-22-0.jpg",
+      "alt": "house model render",
+      "source_dimensions": "1300x867",
+      "filename": "landing_uebersicht_lifestyle-01_1300x867.webp",
+      "r2_key": "images/landing/uebersicht/lifestyle-01.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/landing/uebersicht/lifestyle-01.webp"
+    },
+    {
+      "destination": "landing/uebersicht",
+      "classification": "lifestyle",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/03/3795_BoHolzHaus_EFH_128_28_170_Kam5_03.png",
+      "alt": "house model render",
+      "source_dimensions": "4960x3507",
+      "filename": "landing_uebersicht_lifestyle-02_4960x3507.webp",
+      "r2_key": "images/landing/uebersicht/lifestyle-02.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/landing/uebersicht/lifestyle-02.webp"
+    },
+    {
+      "destination": "landing/uebersicht",
+      "classification": "lifestyle",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/01/Stadtvilla-22-166_2025.jpg",
+      "alt": "Stadtvilla house model render",
+      "source_dimensions": "1200x849",
+      "filename": "landing_uebersicht_lifestyle-03_1200x849.webp",
+      "r2_key": "images/landing/uebersicht/lifestyle-03.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/landing/uebersicht/lifestyle-03.webp"
+    },
+    {
+      "destination": "landing/uebersicht",
+      "classification": "lifestyle",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2025/02/Kubus-166-0-0_2025.jpg",
+      "alt": "Kubus model render",
+      "source_dimensions": "1000x707",
+      "filename": "landing_uebersicht_lifestyle-04_1000x707.webp",
+      "r2_key": "images/landing/uebersicht/lifestyle-04.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/landing/uebersicht/lifestyle-04.webp"
+    },
+    {
+      "destination": "landing/uebersicht",
+      "classification": "lifestyle",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2025/02/3938_KEI-BV-Ilshofen-V_web_Flyout.jpg",
+      "alt": "KEI Ilshofen flyout view",
+      "source_dimensions": "1600x1130",
+      "filename": "landing_uebersicht_lifestyle-05_1600x1130.webp",
+      "r2_key": "images/landing/uebersicht/lifestyle-05.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/landing/uebersicht/lifestyle-05.webp"
+    },
+    {
+      "destination": "landing/uebersicht",
+      "classification": "lifestyle",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/10/P_AdobeStock_1188446881.jpg",
+      "alt": "Adobe stock lifestyle",
+      "source_dimensions": "1600x778",
+      "filename": "landing_uebersicht_lifestyle-06_1600x778.webp",
+      "r2_key": "images/landing/uebersicht/lifestyle-06.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/landing/uebersicht/lifestyle-06.webp"
+    },
+    {
+      "destination": "landing/bungalow",
+      "classification": "hero",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2022/01/3513_SchaeferHaus_Bungalow_134_22_03_1500px.jpg",
+      "alt": "Bungalow 134-22-0",
+      "source_dimensions": "1500x1061",
+      "filename": "landing_bungalow_hero_1500x1061.webp",
+      "r2_key": "images/landing/bungalow/hero.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/landing/bungalow/hero.webp"
+    },
+    {
+      "destination": "landing/mehrfamilien",
+      "classification": "lifestyle",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2025/11/mehrgenerationen-gallery-5.webp",
+      "alt": "Mehrgenerationen gallery image",
+      "source_dimensions": "2368x1728",
+      "filename": "landing_mehrfamilien_lifestyle-03_2368x1728.webp",
+      "r2_key": "images/landing/mehrfamilien/lifestyle-03.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/landing/mehrfamilien/lifestyle-03.webp"
+    },
+    {
+      "destination": "landing/zwei-starke-partner",
+      "classification": "hero",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/01/zwei_starke_partner_header.jpg",
+      "alt": "Zwei starke Partner header",
+      "source_dimensions": "2000x776",
+      "filename": "landing_zwei-starke-partner_hero_2000x776.webp",
+      "r2_key": "images/landing/zwei-starke-partner/hero.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/landing/zwei-starke-partner/hero.webp"
+    },
+    {
+      "destination": "showhouses/bad-vilbel",
+      "classification": "hero",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/01/bad-vilbel1-min.jpg",
+      "alt": "Bad Vilbel showhouse hero",
+      "source_dimensions": "1500x946",
+      "filename": "showhouse_bad-vilbel_hero_1500x946.webp",
+      "r2_key": "images/showhouses/bad-vilbel/hero.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/bad-vilbel/hero.webp"
+    },
+    {
+      "destination": "showhouses/bad-vilbel",
+      "classification": "exterior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/01/bad-vilbel2.jpg",
+      "alt": "Bad Vilbel exterior",
+      "source_dimensions": "800x533",
+      "filename": "showhouse_bad-vilbel_exterior-01_800x533.webp",
+      "r2_key": "images/showhouses/bad-vilbel/gallery/exterior-01.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/bad-vilbel/gallery/exterior-01.webp"
+    },
+    {
+      "destination": "showhouses/bad-vilbel",
+      "classification": "interior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/KuechevMHS.jpg",
+      "alt": "Küche / kitchen",
+      "source_dimensions": "968x648",
+      "filename": "showhouse_bad-vilbel_interior-04_968x648.webp",
+      "r2_key": "images/showhouses/bad-vilbel/gallery/interior-04.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/bad-vilbel/gallery/interior-04.webp"
+    },
+    {
+      "destination": "showhouses/bad-vilbel",
+      "classification": "interior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/Master-Bad.jpg",
+      "alt": "Master bathroom",
+      "source_dimensions": "968x648",
+      "filename": "showhouse_bad-vilbel_interior-05_968x648.webp",
+      "r2_key": "images/showhouses/bad-vilbel/gallery/interior-05.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/bad-vilbel/gallery/interior-05.webp"
+    },
+    {
+      "destination": "showhouses/bad-vilbel",
+      "classification": "interior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/Theke.jpg",
+      "alt": "Counter / bar",
+      "source_dimensions": "968x648",
+      "filename": "showhouse_bad-vilbel_interior-06_968x648.webp",
+      "r2_key": "images/showhouses/bad-vilbel/gallery/interior-06.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/bad-vilbel/gallery/interior-06.webp"
+    },
+    {
+      "destination": "showhouses/bad-vilbel",
+      "classification": "interior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/Wohnen.jpg",
+      "alt": "Living room",
+      "source_dimensions": "968x648",
+      "filename": "showhouse_bad-vilbel_interior-07_968x648.webp",
+      "r2_key": "images/showhouses/bad-vilbel/gallery/interior-07.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/bad-vilbel/gallery/interior-07.webp"
+    },
+    {
+      "destination": "showhouses/bad-vilbel",
+      "classification": "plan",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/Bad-Vilbel_EG.png",
+      "alt": "Floorplan Erdgeschoss",
+      "source_dimensions": "661x605",
+      "filename": "showhouse_bad-vilbel_plan-02_661x605.webp",
+      "r2_key": "images/showhouses/bad-vilbel/plans/plan-02.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/bad-vilbel/plans/plan-02.webp"
+    },
+    {
+      "destination": "showhouses/bad-vilbel",
+      "classification": "plan",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/Bad-Vilbel.png",
+      "alt": "Site plan",
+      "source_dimensions": "612x567",
+      "filename": "showhouse_bad-vilbel_plan-03_612x567.webp",
+      "r2_key": "images/showhouses/bad-vilbel/plans/plan-03.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/bad-vilbel/plans/plan-03.webp"
+    },
+    {
+      "destination": "showhouses/fellbach",
+      "classification": "hero",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/01/fellbach1-min.jpg",
+      "alt": "Fellbach showhouse hero",
+      "source_dimensions": "1500x946",
+      "filename": "showhouse_fellbach_hero_1500x946.webp",
+      "r2_key": "images/showhouses/fellbach/hero.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/fellbach/hero.webp"
+    },
+    {
+      "destination": "showhouses/fellbach",
+      "classification": "exterior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/01/fellbach2.jpg",
+      "alt": "Fellbach exterior",
+      "source_dimensions": "800x585",
+      "filename": "showhouse_fellbach_exterior-01_800x585.webp",
+      "r2_key": "images/showhouses/fellbach/gallery/exterior-01.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/fellbach/gallery/exterior-01.webp"
+    },
+    {
+      "destination": "showhouses/fellbach",
+      "classification": "interior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/image00002.jpg",
+      "alt": "Fellbach interior",
+      "source_dimensions": "800x1067",
+      "filename": "showhouse_fellbach_interior-02_800x1067.webp",
+      "r2_key": "images/showhouses/fellbach/gallery/interior-02.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/fellbach/gallery/interior-02.webp"
+    },
+    {
+      "destination": "showhouses/fellbach",
+      "classification": "interior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/image00006.jpg",
+      "alt": "Fellbach interior",
+      "source_dimensions": "800x1067",
+      "filename": "showhouse_fellbach_interior-03_800x1067.webp",
+      "r2_key": "images/showhouses/fellbach/gallery/interior-03.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/fellbach/gallery/interior-03.webp"
+    },
+    {
+      "destination": "showhouses/fellbach",
+      "classification": "interior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/image00007.jpg",
+      "alt": "Fellbach interior",
+      "source_dimensions": "800x1067",
+      "filename": "showhouse_fellbach_interior-04_800x1067.webp",
+      "r2_key": "images/showhouses/fellbach/gallery/interior-04.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/fellbach/gallery/interior-04.webp"
+    },
+    {
+      "destination": "showhouses/fellbach",
+      "classification": "interior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/image00010.jpg",
+      "alt": "Fellbach interior",
+      "source_dimensions": "800x1067",
+      "filename": "showhouse_fellbach_interior-05_800x1067.webp",
+      "r2_key": "images/showhouses/fellbach/gallery/interior-05.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/fellbach/gallery/interior-05.webp"
+    },
+    {
+      "destination": "showhouses/fellbach",
+      "classification": "interior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/image00016.jpg",
+      "alt": "Fellbach interior",
+      "source_dimensions": "800x1067",
+      "filename": "showhouse_fellbach_interior-06_800x1067.webp",
+      "r2_key": "images/showhouses/fellbach/gallery/interior-06.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/fellbach/gallery/interior-06.webp"
+    },
+    {
+      "destination": "showhouses/fellbach",
+      "classification": "interior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/image00019.jpg",
+      "alt": "Fellbach interior",
+      "source_dimensions": "800x1067",
+      "filename": "showhouse_fellbach_interior-07_800x1067.webp",
+      "r2_key": "images/showhouses/fellbach/gallery/interior-07.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/fellbach/gallery/interior-07.webp"
+    },
+    {
+      "destination": "showhouses/fellbach",
+      "classification": "interior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/image00027.jpg",
+      "alt": "Fellbach interior",
+      "source_dimensions": "800x1067",
+      "filename": "showhouse_fellbach_interior-08_800x1067.webp",
+      "r2_key": "images/showhouses/fellbach/gallery/interior-08.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/fellbach/gallery/interior-08.webp"
+    },
+    {
+      "destination": "showhouses/fellbach",
+      "classification": "interior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/image00033.jpg",
+      "alt": "Fellbach interior",
+      "source_dimensions": "800x600",
+      "filename": "showhouse_fellbach_interior-09_800x600.webp",
+      "r2_key": "images/showhouses/fellbach/gallery/interior-09.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/fellbach/gallery/interior-09.webp"
+    },
+    {
+      "destination": "showhouses/fellbach",
+      "classification": "interior",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2020/01/image00038.jpg",
+      "alt": "Fellbach interior",
+      "source_dimensions": "800x1067",
+      "filename": "showhouse_fellbach_interior-10_800x1067.webp",
+      "r2_key": "images/showhouses/fellbach/gallery/interior-10.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/showhouses/fellbach/gallery/interior-10.webp"
+    },
+    {
+      "destination": "news/april-samstag-13-06-2026-werksfuehrung-bei-keitel-haus",
+      "classification": "cover",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/02/DBHS8111.jpg",
+      "alt": "Werksführung bei Keitel-Haus",
+      "source_dimensions": "4000x3000",
+      "filename": "news_april-samstag-13-06-2026-werksfuehrung-bei-keitel-haus_cover_4000x3000.webp",
+      "r2_key": "images/news/april-samstag-13-06-2026-werksfuehrung-bei-keitel-haus/cover.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/news/april-samstag-13-06-2026-werksfuehrung-bei-keitel-haus/cover.webp",
+      "note": "Same source as mai-samstag-02-05-2026 cover (events template re-use, both kept per user)"
+    },
+    {
+      "destination": "news/mai-samstag-02-05-2026-werksfuehrung-bei-keitel-haus",
+      "classification": "cover",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/02/DBHS8111.jpg",
+      "alt": "Werksführung bei Keitel-Haus",
+      "source_dimensions": "4000x3000",
+      "filename": "news_mai-samstag-02-05-2026-werksfuehrung-bei-keitel-haus_cover_4000x3000.webp",
+      "r2_key": "images/news/mai-samstag-02-05-2026-werksfuehrung-bei-keitel-haus/cover.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/news/mai-samstag-02-05-2026-werksfuehrung-bei-keitel-haus/cover.webp",
+      "note": "Same source as april-13-06 cover; both posts kept per user — staged twice to keep R2 keys decoupled"
+    },
+    {
+      "destination": "news/april-2026-stelltermin-in-steinheim-a-d-murr",
+      "classification": "cover",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2025/04/Silder4_mobile_2025.jpg",
+      "alt": "Stelltermin Steinheim",
+      "source_dimensions": "600x440",
+      "filename": "news_april-2026-stelltermin-in-steinheim-a-d-murr_cover_600x440.webp",
+      "r2_key": "images/news/april-2026-stelltermin-in-steinheim-a-d-murr/cover.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/news/april-2026-stelltermin-in-steinheim-a-d-murr/cover.webp"
+    },
+    {
+      "destination": "content/bauphasen",
+      "classification": "hero",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/01/ihr_neues_zuhause_header.jpg",
+      "alt": "Ihr neues Zuhause header",
+      "source_dimensions": "2000x776",
+      "filename": "content_bauphasen_hero_2000x776.webp",
+      "r2_key": "images/content/bauphasen/hero.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/content/bauphasen/hero.webp",
+      "note": "Used on /your-house full hero; homepage compact strip does NOT include this"
+    },
+    {
+      "destination": "content/bauphasen",
+      "classification": "pillar",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/01/kontakt_header.jpg",
+      "alt": "Phase 1 — Der Grundstein wird gelegt",
+      "source_dimensions": "2000x776",
+      "filename": "content_bauphasen_phase-01-grundstein_2000x776.webp",
+      "r2_key": "images/content/bauphasen/phase-01-grundstein.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/content/bauphasen/phase-01-grundstein.webp"
+    },
+    {
+      "destination": "content/bauphasen",
+      "classification": "pillar",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/01/teaser_produktion.jpg",
+      "alt": "Phase 2 — Träume in Realität verwandeln",
+      "source_dimensions": "800x310",
+      "filename": "content_bauphasen_phase-02-traeume_800x310.webp",
+      "r2_key": "images/content/bauphasen/phase-02-traeume.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/content/bauphasen/phase-02-traeume.webp"
+    },
+    {
+      "destination": "content/bauphasen",
+      "classification": "pillar",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/01/ausbaustufen_header.jpg",
+      "alt": "Phase 3 — Die heiße Bauphase beginnt",
+      "source_dimensions": "2000x776",
+      "filename": "content_bauphasen_phase-03-bauphase_2000x776.webp",
+      "r2_key": "images/content/bauphasen/phase-03-bauphase.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/content/bauphasen/phase-03-bauphase.webp"
+    },
+    {
+      "destination": "content/advantage/holzfaserdaemmung",
+      "classification": "hero",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/04/nachhaltigkeit_header_2.jpg",
+      "alt": "Holzfaserdämmung hero",
+      "source_dimensions": "1600x620",
+      "filename": "content_holzfaserdaemmung_hero_1600x620.webp",
+      "r2_key": "images/content/advantage/holzfaserdaemmung/hero.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/content/advantage/holzfaserdaemmung/hero.webp"
+    },
+    {
+      "destination": "content/advantage/holzfaserdaemmung",
+      "classification": "pillar",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/08/sommer.jpg",
+      "alt": "Sommer (summer thermal behavior)",
+      "source_dimensions": "800x546",
+      "filename": "content_holzfaserdaemmung_sommer_800x546.webp",
+      "r2_key": "images/content/advantage/holzfaserdaemmung/sommer.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/content/advantage/holzfaserdaemmung/sommer.webp",
+      "note": "Low-res acceptable per user; pair with winter side-by-side"
+    },
+    {
+      "destination": "content/advantage/holzfaserdaemmung",
+      "classification": "pillar",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/08/winter.jpg",
+      "alt": "Winter (winter thermal behavior)",
+      "source_dimensions": "800x546",
+      "filename": "content_holzfaserdaemmung_winter_800x546.webp",
+      "r2_key": "images/content/advantage/holzfaserdaemmung/winter.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/content/advantage/holzfaserdaemmung/winter.webp",
+      "note": "Low-res acceptable per user; pair with sommer side-by-side"
+    },
+    {
+      "destination": "content/advantage/nachhaltigkeit",
+      "classification": "hero",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/04/nachhaltigkeit_header_2.jpg",
+      "alt": "Nachhaltigkeit hero",
+      "source_dimensions": "1600x620",
+      "filename": "content_nachhaltigkeit_hero_1600x620.webp",
+      "r2_key": "images/content/advantage/nachhaltigkeit/hero.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/content/advantage/nachhaltigkeit/hero.webp",
+      "note": "Same source as holzfaserdaemmung/hero — uploaded to both keys for independence"
+    },
+    {
+      "destination": "content/advantage/nachhaltigkeit",
+      "classification": "video-poster",
+      "source_url": "https://img.youtube.com/vi/0abnY3Re-tU/maxresdefault.jpg",
+      "alt": "Film: Holz rettet Klima — video poster",
+      "source_dimensions": "1280x720",
+      "filename": "content_nachhaltigkeit_video-poster_1280x720.webp",
+      "r2_key": "images/content/advantage/nachhaltigkeit/video-poster.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/content/advantage/nachhaltigkeit/video-poster.webp",
+      "note": "YouTube thumbnail for iframe poster frame; iframe src=https://www.youtube.com/embed/0abnY3Re-tU"
+    },
+    {
+      "destination": "content/advantage/wandaufbau",
+      "classification": "hero",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/01/wandaufbau_header.jpg",
+      "alt": "Wandaufbau hero",
+      "source_dimensions": "2000x776",
+      "filename": "content_wandaufbau_hero_2000x776.webp",
+      "r2_key": "images/content/advantage/wandaufbau/hero.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/content/advantage/wandaufbau/hero.webp"
+    },
+    {
+      "destination": "content/advantage/wandaufbau",
+      "classification": "diagram",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/06/wandaufbau_links.jpg",
+      "alt": "Eco-Nature wall construction cross-section",
+      "source_dimensions": "854x800",
+      "filename": "content_wandaufbau_wandaufbau-links_854x800.webp",
+      "r2_key": "images/content/advantage/wandaufbau/wandaufbau-links.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/content/advantage/wandaufbau/wandaufbau-links.webp",
+      "note": "Pair side-by-side with wandaufbau-rechts as two comparison cards"
+    },
+    {
+      "destination": "content/advantage/wandaufbau",
+      "classification": "diagram",
+      "source_url": "https://boholz-haus.de/wp-content/uploads/2024/06/wandaufbau_rechts.jpg",
+      "alt": "Eco-Nature-Plus wall construction cross-section",
+      "source_dimensions": "853x800",
+      "filename": "content_wandaufbau_wandaufbau-rechts_853x800.webp",
+      "r2_key": "images/content/advantage/wandaufbau/wandaufbau-rechts.webp",
+      "r2_url": "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev/images/content/advantage/wandaufbau/wandaufbau-rechts.webp",
+      "note": "Pair side-by-side with wandaufbau-links as two comparison cards"
+    }
+  ],
+  "video_embeds": [
+    {
+      "destination": "content/advantage/nachhaltigkeit",
+      "type": "youtube-iframe",
+      "src": "https://www.youtube.com/embed/0abnY3Re-tU",
+      "video_id": "0abnY3Re-tU",
+      "title": "Film: Holz rettet Klima",
+      "poster_r2_key": "images/content/advantage/nachhaltigkeit/video-poster.webp"
+    }
+  ],
+  "news_without_cover_placeholder_needed": [
+    {
+      "destination": "news/april-richtfest-in-75242-muenisngen",
+      "title": "04. April. 2026 Richtfest in 75242 Münsingen",
+      "wp_post_id": 17341
+    },
+    {
+      "destination": "news/aprilt-richtfest-in-7177-steinheim",
+      "title": "30.04.2026 Richtfest in 71711 Steinheim a.d. Murr — Kleinbottwar",
+      "wp_post_id": 17315
+    }
+  ],
+  "explicitly_skipped": [
+    {"reason": "user has SVG locally", "url": "https://boholz-haus.de/wp-content/uploads/2024/01/logo_Holz-rettet-Klima.png"},
+    {"reason": "Keitel partner logo — brand asset", "url": "https://boholz-haus.de/wp-content/uploads/2024/07/BOL_Logo_Premiumpartner_Keitel_final1.jpg"},
+    {"reason": "Crefozert certification thumbnail — brand asset", "url": "https://boholz-haus.de/wp-content/uploads/2024/11/crefozert.jpg"},
+    {"reason": "WP-template teaser thumbnail", "url": "https://boholz-haus.de/wp-content/uploads/2024/01/teaser_8-gruende.jpg"},
+    {"reason": "WP-template teaser thumbnail", "url": "https://boholz-haus.de/wp-content/uploads/2024/01/teaser_nachhaltigkeit.jpg"},
+    {"reason": "WP-template teaser thumbnail", "url": "https://boholz-haus.de/wp-content/uploads/2024/01/teaser_qualitaet.jpg"},
+    {"reason": "Catalogue cover thumbnail", "url": "https://boholz-haus.de/wp-content/uploads/2024/06/katalog_neu.png"},
+    {"reason": "Eco-nature brand standard logo", "url": "https://boholz-haus.de/wp-content/uploads/2024/06/logo_eco-nature.jpg"},
+    {"reason": "Eco-nature-plus brand standard logo", "url": "https://boholz-haus.de/wp-content/uploads/2024/06/logo_eco-nature_plus.jpg"},
+    {"reason": "Certification seal — brand asset", "url": "https://boholz-haus.de/wp-content/uploads/2024/10/siegel_2.jpg"},
+    {"reason": "User skipped foerdertoepfe news cover", "url": "https://boholz-haus.de/wp-content/uploads/2024/12/kfw-foerderung_2025.jpg"},
+    {"reason": "Holzfaserdaemmung pillar — user kept only sommer+winter", "url": "https://boholz-haus.de/wp-content/uploads/2024/08/oeko-test.jpg"},
+    {"reason": "Holzfaserdaemmung pillar — user kept only sommer+winter", "url": "https://boholz-haus.de/wp-content/uploads/2024/08/Waermespeicherkapazitaet.jpg"},
+    {"reason": "Holzfaserdaemmung pillar — user kept only sommer+winter", "url": "https://boholz-haus.de/wp-content/uploads/2024/08/grafik1.jpg"},
+    {"reason": "Holzfaserdaemmung pillar — user kept only sommer+winter", "url": "https://boholz-haus.de/wp-content/uploads/2024/08/grafik2.jpg"},
+    {"reason": "Bungalow lifestyle — user unticked all 6", "url": "https://boholz-haus.de/wp-content/uploads/2019/07/Schaefer-Fertighaus-Bungalow-122-22-0-1500px.jpg"},
+    {"reason": "Bungalow lifestyle — user unticked all 6", "url": "https://boholz-haus.de/wp-content/uploads/2019/08/Bungalow-145-0-0-1500px.jpg"},
+    {"reason": "Bungalow lifestyle — user unticked all 6", "url": "https://boholz-haus.de/wp-content/uploads/2025/11/bungalow-gallery-2-1.webp"},
+    {"reason": "Bungalow lifestyle — user unticked all 6", "url": "https://boholz-haus.de/wp-content/uploads/2025/11/Pat-Post-copy.webp"},
+    {"reason": "Bungalow lifestyle — user unticked all 6", "url": "https://boholz-haus.de/wp-content/uploads/2025/11/bungalow-6.webp"},
+    {"reason": "Bungalow lifestyle — user unticked all 6", "url": "https://boholz-haus.de/wp-content/uploads/2025/11/bungalow-5.webp"},
+    {"reason": "Uebersicht hero — user unticked (no replacement)", "url": "https://boholz-haus.de/wp-content/uploads/2025/02/Keitelhaus_MFH_Satteldorf_02_A4.jpg"},
+    {"reason": "Mehrfamilien hero + 2 of 3 lifestyle unticked", "url": "https://boholz-haus.de/wp-content/uploads/2019/07/Zweifamilienhaus-279-22-0_1500px.jpg"},
+    {"reason": "Mehrfamilien lifestyle unticked", "url": "https://boholz-haus.de/wp-content/uploads/2019/06/Generationenhaus_-271-28-160-final.jpg"},
+    {"reason": "Mehrfamilien lifestyle unticked", "url": "https://boholz-haus.de/wp-content/uploads/2025/02/Keitelhaus_MFH_Satteldorf_02_A4-small.jpg"},
+    {"reason": "Zwei-starke-partner gallery unticked", "url": "https://boholz-haus.de/wp-content/uploads/2024/01/galerie1.jpg"},
+    {"reason": "Zwei-starke-partner gallery unticked", "url": "https://boholz-haus.de/wp-content/uploads/2024/01/galerie2.jpg"},
+    {"reason": "Zwei-starke-partner gallery unticked", "url": "https://boholz-haus.de/wp-content/uploads/2024/01/galerie3.jpg"},
+    {"reason": "Zwei-starke-partner gallery unticked", "url": "https://boholz-haus.de/wp-content/uploads/2024/01/galerie4.jpg"}
+  ],
+  "totals": {
+    "assets_to_upload": 43,
+    "video_embeds": 1,
+    "news_needing_placeholder": 2,
+    "explicitly_skipped": 29
+  }
+}

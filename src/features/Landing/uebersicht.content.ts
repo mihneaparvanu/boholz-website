@@ -29,8 +29,8 @@ export const uebersichtContent: LandingPageContent = {
     subtitle:
       "Nachhaltig, energieeffizient und individuell auf Sie zugeschnitten — vom ersten Entwurf bis zur Schlüsselübergabe begleitet von einem festen Ansprechpartner.",
     imageAlt:
-      "Modernes Holz-Fertighaus von BoHolz Haus, am Abend mit warmem Licht",
-    imageFallbackPath: "/images/pages/dein-zuhause/hero-bauen.jpg",
+      "Premium-Stadtvilla in Holzbauweise von BoHolz Haus — moderne Architektur mit klaren Linien",
+    imageFallbackPath: "/images/landing/uebersicht/lifestyle-03.webp",
     preferredCategorySlug: "einfamilienhaus",
     primaryCta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
     secondaryCta: { label: "Katalog erhalten", href: "/kontakt#katalog" },
@@ -84,9 +84,9 @@ export const uebersichtContent: LandingPageContent = {
     heading: "Für jedes Leben",
     highlight: "das passende Haus.",
     lede: "Egal in welcher Lebensphase Sie planen — wir entwickeln das Raumkonzept gemeinsam mit Ihnen.",
-    imageFallbackPath: "/images/pages/uber-uns/value-2.jpg",
+    imageFallbackPath: "/images/landing/uebersicht/lifestyle-05.webp",
     imageAlt:
-      "Familie vor einem BoHolz-Fertighaus — Mehrgenerationen-Szene im Garten",
+      "BoHolz-Bauvorhaben in Ilshofen — Luftaufnahme eines fertiggestellten Holzfertighauses",
     allowPlaceholder: true,
   },
 
@@ -131,9 +131,9 @@ export const uebersichtContent: LandingPageContent = {
       "Mit moderner Haustechnik erfüllen wir alle Standards für QNG-Siegel und KfW-Förderungen — und schaffen so Wohnkomfort für die Zukunft.",
       "Profitieren Sie von den staatlichen Förderungen. Wir beraten Sie umfassend, welche Programme zu Ihrem Vorhaben passen.",
     ],
-    imageFallbackPath: "/images/pages/unser-versprechen/nachhaltigkeit.jpg",
+    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
     imageAlt:
-      "BoHolz Fertighaus mit Photovoltaik und naturbelassener Holzfassade",
+      "Holzfertighaus in naturnaher Umgebung — Symbolbild für nachhaltigen Holzbau",
     reverse: false,
     cta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
   },

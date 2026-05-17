@@ -7,7 +7,6 @@ import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
 import DefinitionList, {
   type DefinitionItem,
 } from "@/components/ui/DefinitionList.astro";
-import Callout from "@/components/ui/Callout.vue";
 import StatBlock from "@/components/ui/StatBlock.vue";
 import IconList, { type IconListItem } from "@/components/ui/IconList.vue";
 import StepCard from "@/components/ui/StepCard.vue";
@@ -17,6 +16,10 @@ import ComparisonBlock, {
 import VideoPlaceholder from "@/components/ui/VideoPlaceholder.vue";
 import Button from "@/components/ui/Button.vue";
 import { ArrowRight, Phone } from "lucide-vue-next";
+import { getMediaURL } from "@/utils/media";
+import FeatureCardPair from "@/features/Advantage/FeatureCardPair.vue";
+import LiteYouTube from "@/features/Advantage/LiteYouTube.vue";
+import type { FeatureCard } from "@/features/Advantage/advantage.types";
 
 // ── Section index — drives the SectionNavigator's overview + sticky rail.
 const sections = [
@@ -24,9 +27,104 @@ const sections = [
   { id: "tradition", eyebrow: "02", label: "Tradition & Innovation" },
   { id: "gruende", eyebrow: "03", label: "16 gute Gründe" },
   { id: "nachhaltigkeit", eyebrow: "04", label: "Nachhaltigkeit" },
-  { id: "wandaufbau", eyebrow: "05", label: "Wandaufbau" },
-  { id: "technik", eyebrow: "06", label: "Energietechnik" },
+  { id: "holzfaserdaemmung", eyebrow: "05", label: "Holzfaserdämmung" },
+  { id: "wandaufbau", eyebrow: "06", label: "Wandaufbau" },
+  { id: "technik", eyebrow: "07", label: "Energietechnik" },
 ];
+
+// ── R2 image URLs for the advantage subsections.
+const nachhaltigkeitHero = getMediaURL(
+  "/images/content/advantage/nachhaltigkeit/hero.webp",
+);
+const nachhaltigkeitVideoPoster = getMediaURL(
+  "/images/content/advantage/nachhaltigkeit/video-poster.webp",
+);
+const holzfaserHero = getMediaURL(
+  "/images/content/advantage/holzfaserdaemmung/hero.webp",
+);
+const wandaufbauHero = getMediaURL(
+  "/images/content/advantage/wandaufbau/hero.webp",
+);
+
+// ── Section 5 — Holzfaserdämmung side-by-side (Sommer vs Winter).
+// The two seasons frame the same material's value from two angles — summer
+// heat shielded by the dense fibre, winter warmth retained by it. Bullet
+// copy stays anchored to the existing page numbers (11h, 92%, λ 0,036).
+const sommer: FeatureCard = {
+  eyebrow: "Sommer",
+  title: "Hitzeschutz bis in die Nacht",
+  lede:
+    "Die Holzfaserdämmplatte verzögert sommerliche Hitze um Stunden — Schlafräume bleiben kühl, wenn die Außentemperatur kippt.",
+  bullets: [
+    "11 Stunden Phasenverschiebung — die Hitze kommt erst nachts an, wenn es draußen längst kühl ist",
+    "92 % Temperaturpuffer gegenüber außen — der Innenraum schwingt kaum mit",
+    "Hohe spezifische Wärmekapazität (2100 J/(kg·K)) — die Wand speichert, gibt langsam ab",
+  ],
+  icon: "sun",
+  imageURL: getMediaURL(
+    "/images/content/advantage/holzfaserdaemmung/sommer.webp",
+  ),
+  imageAlt:
+    "Sommerlicher Hitzeschutz dank Holzfaserdämmung — kühles Innenklima trotz hoher Außentemperaturen",
+};
+
+const winter: FeatureCard = {
+  eyebrow: "Winter",
+  title: "Wärme bleibt, wo sie hingehört",
+  lede:
+    "Diffusionsoffen und dämmstark zugleich — die Holzfaser hält die Heizenergie im Haus und reguliert dabei die Raumfeuchte ganz natürlich.",
+  bullets: [
+    "Lambda-Nennwert 0,036 W/(mK) — exzellenter Dämmwert für KfW 40 / KfW 55",
+    "Diffusionsoffen — Feuchtigkeit kann nach außen, ohne dass Wärme entweicht",
+    "Baubiologisch hervorragend — gesundes Raumklima ohne Mineralfaser",
+  ],
+  icon: "thermometer",
+  imageURL: getMediaURL(
+    "/images/content/advantage/holzfaserdaemmung/winter.webp",
+  ),
+  imageAlt:
+    "Winterlicher Wärmeerhalt — Holzfaserdämmung hält die Heizenergie im Haus",
+};
+
+// ── Section 6 — Wandaufbau Vergleich (ECO Nature vs ECO Nature Plus).
+// Two cards side by side; ECO Nature Plus carries the accent as the
+// recommended KfW 40 upgrade. Bullet copy preserves the technical
+// differentiators (KfW class, U-Wert, Dämmstärke) without duplicating
+// the DefinitionList below.
+const ecoNature: FeatureCard = {
+  eyebrow: "KfW 55",
+  title: "ECO Nature",
+  lede:
+    "Unser Standard-Wandaufbau — diffusionsoffen, ökologisch gedämmt, Grundlage für ein KfW-Effizienzhaus 55.",
+  bullets: [
+    "60 mm Holzfaserdämmplatte plus 200 mm Holzrahmen mit Knauf Insulation (WLG 035)",
+    "U-Wert 0,164 W/(m²K) — bereits im Standard auf KfW-55-Niveau",
+    "Brandschutz F30-B, vollflächige OSB4-Beplankung, Luftdichtheitsebene",
+  ],
+  icon: "layers",
+  imageURL: getMediaURL(
+    "/images/content/advantage/wandaufbau/wandaufbau-links.webp",
+  ),
+  imageAlt: "Schichtaufbau ECO Nature — KfW 55 Standardwand der BoHolz Häuser",
+};
+
+const ecoNaturePlus: FeatureCard = {
+  eyebrow: "KfW 40",
+  title: "ECO Nature Plus",
+  lede:
+    "Der erweiterte Wandaufbau für noch höhere Energieeffizienz — Grundlage für ein KfW-Effizienzhaus 40 mit maximaler Förderfähigkeit.",
+  bullets: [
+    "Verstärkter Aufbau mit zusätzlicher Dämmebene — höhere Energieeinsparung",
+    "Grundlage für KfW 40 — Anspruch auf die höchste Neubau-Förderstufe",
+    "Identisch ökologische Materialien — kein Kompromiss bei Diffusionsoffenheit oder Wohngesundheit",
+  ],
+  icon: "shield",
+  imageURL: getMediaURL(
+    "/images/content/advantage/wandaufbau/wandaufbau-rechts.webp",
+  ),
+  imageAlt:
+    "Schichtaufbau ECO Nature Plus — erweiterte Dämmung für KfW 40 Effizienzhäuser",
+};
 
 // ── Section 2 — Qualität & Zertifikate stats.
 // Derived from existing copy: QDF + GDF Mitgliedschaft, Eigen- + Fremdüberwachung,
@@ -324,7 +422,7 @@ const technik: IconListItem[] = [
     <IconList client:visible items={sechzehnGruende} columns={4} />
   </section>
 
-  <!-- 5. Nachhaltigkeit — Vergleich ------------------------------------ -->
+  <!-- 5. Nachhaltigkeit — Vergleich + Video ---------------------------- -->
   <div class="band full-width">
    <section id="nachhaltigkeit" class="block band-inner">
     <EyebrowHeadingLede
@@ -333,69 +431,129 @@ const technik: IconListItem[] = [
       highlight="Umweltschutz."
       lede="Bei BoHolz Haus verbinden wir Ihre Wohnträume mit aktivem Umweltschutz. Unsere individuellen Fertighäuser aus Holz sind nicht nur Ihr persönliches Zuhause, sondern auch ein Beitrag zu einer besseren Zukunft."
     />
+
+    <!-- Hero image + lite-YouTube. Two-up on desktop so the image sets the
+         scene and the video sits as the active companion; stacks on mobile.
+         The video stays idle until the user clicks — no YouTube JS loads on
+         page load. -->
+    <div class="media-pair">
+      <figure class="media-hero">
+        <img
+          src={nachhaltigkeitHero}
+          alt="Nachhaltige Holzbauweise im BoHolz Werk — gelebter Umweltschutz von der Materialwahl bis zur Fertigung"
+          loading="lazy"
+        />
+      </figure>
+      <LiteYouTube
+        client:visible
+        videoId="0abnY3Re-tU"
+        posterURL={nachhaltigkeitVideoPoster}
+        label="BoHolz — Nachhaltigkeit erleben"
+        caption="Wie wir bauen und warum — drei Minuten Werksrundgang."
+      />
+    </div>
+
     <ComparisonBlock
       client:visible
       left={konventionell}
       right={holzbau}
       accent="right"
     />
+
+    <!-- Three numbers that quantify the holzbau side of the comparison above.
+         Lives inside the Nachhaltigkeit band so it reads as the closing
+         numerical proof of that narrative rather than a separate beat. -->
+    <div class="stats-trio">
+      <div class="stats">
+        <StatBlock
+          client:visible
+          value="30 t"
+          label="CO₂ je Haus"
+          caption="Durchschnittliche Kohlenstoffbindung im Holzbau — entlastet die Atmosphäre über die gesamte Lebensdauer."
+          icon="leaf"
+        />
+        <StatBlock
+          client:visible
+          value="11 h"
+          label="Phasenverschiebung"
+          caption="Holzfaserdämmung verzögert sommerliche Hitze um elf Stunden — der Innenraum bleibt nachts kühl."
+          icon="thermometer"
+        />
+        <StatBlock
+          client:visible
+          value="92 %"
+          label="Temperaturpuffer"
+          caption="Anteil der äußeren Temperaturschwankung, der dank des Wandaufbaus nicht im Inneren ankommt."
+          icon="shield"
+        />
+      </div>
+      <p class="footnote">
+        Plus: Lambda-Nennwert 0,036 W/(mK), spezifische Wärmekapazität 2100 J/(kg·K),
+        hoher Schallschutz, dampfdiffusionsoffen und baubiologisch hervorragend.
+      </p>
+    </div>
    </section>
   </div>
 
-  <!-- 6. Drei Kennzahlen ----------------------------------------------- -->
-  <section class="block stats-band">
-    <div class="stats">
-      <StatBlock
-        client:visible
-        value="30 t"
-        label="CO₂ je Haus"
-        caption="Durchschnittliche Kohlenstoffbindung im Holzbau — entlastet die Atmosphäre über die gesamte Lebensdauer."
-        icon="leaf"
+  <!-- 7. Holzfaserdämmung ─ Sommer / Winter ---------------------------- -->
+  <section id="holzfaserdaemmung" class="block">
+    <EyebrowHeadingLede
+      eyebrow="05 — Holzfaserdämmung"
+      heading="Eine Wand. Zwei"
+      highlight="Jahreszeiten."
+      lede="Die Holzfaserdämmplatte ist das stille Bauteil hinter unserem Wandaufbau — schützt im Sommer vor Hitze, hält im Winter Wärme, das ganze Jahr diffusionsoffen."
+    />
+    <figure class="hero-image">
+      <img
+        src={holzfaserHero}
+        alt="Holzfaserdämmplatten im BoHolz Wandaufbau — natürlicher Hitze- und Kälteschutz"
+        loading="lazy"
       />
-      <StatBlock
-        client:visible
-        value="11 h"
-        label="Phasenverschiebung"
-        caption="Holzfaserdämmung verzögert sommerliche Hitze um elf Stunden — der Innenraum bleibt nachts kühl."
-        icon="thermometer"
-      />
-      <StatBlock
-        client:visible
-        value="92 %"
-        label="Temperaturpuffer"
-        caption="Anteil der äußeren Temperaturschwankung, der dank des Wandaufbaus nicht im Inneren ankommt."
-        icon="shield"
-      />
-    </div>
-    <p class="footnote">
-      Plus: Lambda-Nennwert 0,036 W/(mK), spezifische Wärmekapazität 2100 J/(kg·K),
-      hoher Schallschutz, dampfdiffusionsoffen und baubiologisch hervorragend.
-    </p>
+    </figure>
+    <FeatureCardPair client:visible left={sommer} right={winter} />
   </section>
 
-  <!-- 7. Wandaufbau ---------------------------------------------------- -->
+  <!-- 8. Wandaufbau ---------------------------------------------------- -->
   <div class="band full-width">
    <section id="wandaufbau" class="block band-inner">
     <EyebrowHeadingLede
-      eyebrow="05 — Wandaufbau"
+      eyebrow="06 — Wandaufbau"
       heading="ECO Nature — die Schichten unserer"
       highlight="Gebäudehülle."
       lede="Die größten Energieverluste eines Hauses treten über seine äußere Hülle auf. ECO Nature schützt effektiv vor Hitze, Kälte, Lärm und Feuer — Schicht für Schicht."
     />
-    <DefinitionList items={ecoNatureLayers} layout="grid" />
-    <div class="callout-slot">
-      <Callout client:visible tone="tip" title="ECO Nature Plus (KfW 40)">
-        Für noch höhere Energieeffizienz bietet ECO Nature Plus einen erweiterten
-        Wandaufbau, der die Grundlage für ein KfW-Effizienzhaus 40 bildet.
-      </Callout>
-    </div>
+
+    <figure class="hero-image">
+      <img
+        src={wandaufbauHero}
+        alt="ECO Nature Wandaufbau — diffusionsoffener Mehrschichtaufbau für KfW-Effizienzhäuser"
+        loading="lazy"
+      />
+    </figure>
+
+    <!-- Two-up overview: ECO Nature vs ECO Nature Plus. Sits above the
+         deeper-spec DefinitionList so the user reads the high-level
+         choice first, then drills into the layer-by-layer detail. -->
+    <FeatureCardPair
+      client:visible
+      left={ecoNature}
+      right={ecoNaturePlus}
+      accent="right"
+    />
+
+    <details class="layers-details">
+      <summary>Schicht für Schicht — alle Werte im Detail</summary>
+      <div class="layers-inner">
+        <DefinitionList items={ecoNatureLayers} layout="grid" />
+      </div>
+    </details>
    </section>
   </div>
 
-  <!-- 8. Haus- & Energietechnik ---------------------------------------- -->
+  <!-- 9. Haus- & Energietechnik ---------------------------------------- -->
   <section id="technik" class="block">
     <EyebrowHeadingLede
-      eyebrow="06 — Energietechnik"
+      eyebrow="07 — Energietechnik"
       heading="Wärmepumpen, Photovoltaik,"
       highlight="gesundes Raumklima."
       lede="Dank gut gedämmter Außenwände bieten unsere Häuser von Anfang an umweltschonende Materialien und energieeffiziente Bauweise. Drei Bausteine, die Nachhaltigkeit konkret machen."
@@ -465,9 +623,17 @@ const technik: IconListItem[] = [
     width: 100%;
   }
 
-  /* The mid-page stats band shares the block rhythm but tightens the gap so
-     the trio reads as a single statement. */
-  .stats-band .footnote {
+  /* Stats trio nested inside the Nachhaltigkeit band — same visual shape
+     as the prior standalone .stats-band, just lives one nesting deeper so
+     the page's tonal alternation stays clean. */
+  .stats-trio {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    width: 100%;
+  }
+
+  .stats-trio .footnote {
     margin: 0;
     font-size: var(--fs-body-sm);
     color: var(--clr-content-tertiary);
@@ -508,5 +674,130 @@ const technik: IconListItem[] = [
   .callout-slot {
     max-width: 48rem;
     margin-block-start: var(--spacing-2);
+  }
+
+  /* ── Editorial hero image inside an advantage section.
+     Used by Holzfaserdämmung and Wandaufbau — anchors the section before
+     the FeatureCardPair grid. 16:9 on desktop reads as cinematic; mobile
+     drops to 4:3 so it doesn't dominate the viewport. */
+  .hero-image {
+    margin: 0;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--clr-surface-secondary);
+  }
+
+  @media (--from-tablet) {
+    .hero-image {
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-lg);
+    }
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Nachhaltigkeit hero + video pair.
+     One column on mobile (hero stacked above video); two columns from
+     desktop so the still and the motion sit side by side. */
+  .media-pair {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+    width: 100%;
+  }
+
+  @media (--from-desktop) {
+    .media-pair {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-4);
+      align-items: start;
+    }
+  }
+
+  .media-hero {
+    margin: 0;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--clr-surface-secondary);
+  }
+
+  .media-hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Progressive-disclosure: deep wandaufbau spec list.
+     Sits behind a <details>/<summary> so the page leads with the
+     high-level FeatureCardPair, then unfolds the layer-by-layer spec
+     for users who want the engineering. */
+  .layers-details {
+    border-block-start: 1px solid var(--clr-border-secondary);
+    padding-block-start: var(--spacing-4);
+  }
+
+  .layers-details summary {
+    cursor: pointer;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding-block: var(--spacing-2);
+    font-size: var(--fs-body);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-primary);
+    /* Remove the native disclosure triangle, replace via ::before so we own
+       the visual. */
+  }
+
+  .layers-details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .layers-details summary::before {
+    content: "+";
+    display: inline-grid;
+    place-items: center;
+    width: 1.25em;
+    height: 1.25em;
+    border: 1px solid var(--clr-border-primary);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-regular);
+    color: var(--clr-content-secondary);
+    transition: transform 200ms ease;
+  }
+
+  .layers-details[open] summary::before {
+    content: "−";
+  }
+
+  .layers-details summary:hover {
+    color: var(--clr-accent-secondary);
+  }
+
+  .layers-details summary:hover::before {
+    border-color: var(--clr-accent-secondary);
+    color: var(--clr-accent-secondary);
+  }
+
+  .layers-details summary:focus-visible {
+    outline: 2px solid var(--clr-accent-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .layers-inner {
+    padding-block-start: var(--spacing-4);
   }
 </style>

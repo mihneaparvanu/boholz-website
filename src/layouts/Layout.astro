@@ -2,9 +2,6 @@
 import "@/style/reset.css";
 import "@/style/design-system.css";
 import "@/style/wrapper.css";
-import "@/style/view-transitions.css";
-
-import { ClientRouter } from "astro:transitions";
 
 import qualityBadgesSprite from "@/icons/qualityBadges.svg?raw";
 
@@ -33,13 +30,11 @@ const showhouses = await getLocations({ kind: "showhouse" });
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
-    <ClientRouter />
   </head>
   <body>
     <Fragment set:html={qualityBadgesSprite} />
     <Navbar
       client:load
-      transition:persist="navbar"
       categories={categories}
       showhouses={showhouses}
     />

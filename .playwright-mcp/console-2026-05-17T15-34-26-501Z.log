@@ -1,3 +1,0 @@
-[     774ms] [LOG] JQMIGRATE: Migrate is installed, version 3.4.1 @ https://boholz-haus.de/wp-includes/js/jquery/jquery-migrate.min.js:1
-[     834ms] [ERROR] Failed to load resource: net::ERR_ADDRESS_INVALID @ https://www.googletagmanager.com/gtag/js?id=AW-17688212025:0
-[     932ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o @ https://boholz-haus.de/haus/ausstellungshaus-bad-vilbel/:0

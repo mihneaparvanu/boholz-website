@@ -45,6 +45,15 @@ export const homeSections = {
     subheading:
       "BoHolz vereint meisterhafte Präzision mit höchster Energieeffizienz. Für Sie bedeutet das: schneller Einzug, erstklassige Lebensqualität und dauerhaft niedrige Energiekosten.",
   },
+  bauphasen: {
+    id: "bauphasen",
+    eyebrow: "Bauphasen",
+    navLabel: "Bauphasen",
+    heading1: "In drei Phasen ins",
+    highlight: "eigene Zuhause.",
+    subheading:
+      "Vom ersten Beratungstermin bis zur Schlüsselübergabe — in klare Phasen gegliedert, begleitet von einem festen Ansprechpartner.",
+  },
   finishes: {
     id: "ausbaustufen",
     eyebrow: "Ausbaustufen",

@@ -59,12 +59,26 @@ fallback. Plan lives in `design-audit/2026-05-16/LANDING-PAGES-PLAN.md`.
 ## Hero image fallback chain
 
 DB hero (preferred category, isFeatured, isHero media) → static
-`imageFallbackPath` resolved through `getMediaURL()`. Documented static
-paths use the `images/pages/<slug>/...` R2 convention. The user has
-local source files for `bungalow-hero.webp`, `mehrfamilien-hero.webp`,
-`ubersicht-hero.webp` in `1-Branding/Images/` not yet uploaded —
-flagged in `r2-image-curator/project_missing_images.md`. When those
-upload, swap the `imageFallbackPath` strings.
+`imageFallbackPath` resolved through `getMediaURL()`. As of 2026-05-17
+fallback paths point to the dedicated `/images/landing/<slug>/...` R2
+namespace (rewired from placeholder `/images/pages/...` paths). Current
+allocation:
+
+- **uebersicht**: hero=`lifestyle-03` (Stadtvilla), imageBand=`lifestyle-05`
+  (Ilshofen aerial), sustainability=`lifestyle-06` (AdobeStock outdoor).
+- **bungalow**: hero=`bungalow/hero.webp` (only bungalow-specific asset),
+  imageBand+sustainability borrow from `uebersicht/` pool (lifestyle-04
+  Kubus, lifestyle-06 AdobeStock). Bungalow gallery still thin — request
+  more bungalow imagery when next R2 batch goes up.
+- **mehrfamilien**: hero=`uebersicht/lifestyle-02` (the 4960x3507
+  BoHolzHaus EFH-128 render — the user flagged this as MFH-style),
+  imageBand=`mehrfamilien/lifestyle-03` (only MFH-specific asset),
+  sustainability=`uebersicht/lifestyle-01` (SV-ELW Stadtvilla mit
+  Einliegerwohnung — fits "multiple units under one roof" narrative).
+
+No two landing pages share the same hero. `closingCta.tone` on uebersicht
+and mehrfamilien is `surface` (no image needed); bungalow is `accent`
+(no image needed).
 
 ## Frozen surface respected
 

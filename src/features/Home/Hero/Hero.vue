@@ -17,14 +17,6 @@ useIntervalFn(() => {
 }, 5000);
 
 const slide = computed(() => props.slides[index.value]);
-
-// View-transition name for the morph into /haus/[slug].
-// Bound via the current slide's slug — slugs are globally unique, so the
-// leaving image (kept briefly in the DOM by <Transition name="crossfade">)
-// and the entering image always carry *different* names. No collision is
-// possible, and Astro's ClientRouter captures the entering image as the
-// shared element when the CTA is clicked.
-const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
 </script>
 
 <template>
@@ -51,7 +43,6 @@ const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
         :key="slide.id"
         :src="slide.heroImgURL ?? undefined"
         :alt="slide.title"
-        :style="{ viewTransitionName: heroImgName }"
         width="1200"
         height="800"
         class="background full-width"
@@ -150,9 +141,37 @@ const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
 }
 
 .action {
+  display: flex;
   width: 100%;
+  /* Truncate long slide titles inside the label rather than wrapping —
+     a wrap would re-stack the column and visibly shift everything above
+     when the auto-rotate fires every 5s. */
+  &:deep(.btn-label) {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+  }
   &:deep(.btn) {
+    /* Lock the rendered height so a one-line label of any length keeps
+       a stable vertical box across the slide rotation. Matches the md
+       control height so the resting shape doesn't change visually. */
+    min-height: var(--control-height-md);
+    /* Desktop keeps the prior full-width button (visually a deliberate
+       block CTA in the lower-left of the hero). */
     width: 100%;
+  }
+  /* Below desktop: constrain the button so it sizes to its content with
+     a thumb-friendly floor instead of stretching edge-to-edge (which
+     read more like a banner than a CTA). Crossfades between slides with
+     different title lengths now grow/shrink the *button*, not the
+     whole layout column. */
+  @media (--below-desktop) {
+    &:deep(.btn) {
+      width: auto;
+      min-width: clamp(220px, 60vw, 360px);
+    }
   }
   @media (--from-desktop) {
     justify-content: start;
