@@ -11,6 +11,7 @@ import {
   newsMedia,
   locations,
   locationAgents,
+  locationMedia,
   agents,
 } from "@/db/schema";
 
@@ -27,11 +28,19 @@ export type BaseNewsMedia = InferSelectModel<typeof newsMedia>;
 export type Location = InferSelectModel<typeof locations>;
 export type Agent = InferSelectModel<typeof agents>;
 export type BaseLocationAgent = InferSelectModel<typeof locationAgents>;
+export type BaseLocationMedia = InferSelectModel<typeof locationMedia>;
 
-// Location with its joined agents (via location_agents pivot, ordered by sortOrder).
+// Location with its joined agents (via location_agents pivot, ordered by
+// sortOrder) and its gallery media (via location_media pivot).
 export type LocationWithAgents = Location & {
   agents: (Pick<BaseLocationAgent, "isPrimary" | "sortOrder"> & {
     agent: Agent;
+  })[];
+  media: (Pick<
+    BaseLocationMedia,
+    "isHero" | "isThumbnail" | "classification" | "sortOrder"
+  > & {
+    media: Pick<BaseMedia, "path" | "alt" | "width" | "height">;
   })[];
 };
 

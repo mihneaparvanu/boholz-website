@@ -162,6 +162,23 @@ export const agentMedia = boholzSchema.table("agent_media", {
   sortOrder: integer("sort_order").default(0),
 });
 
+// Location Media — galleries for showhouses (and any future office/HQ imagery)
+export const locationMedia = boholzSchema.table("location_media", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  locationId: uuid("location_id")
+    .references(() => locations.id)
+    .notNull(),
+  mediaId: uuid("media_id")
+    .references(() => media.id)
+    .notNull(),
+  isHero: boolean("is_hero").default(false),
+  isThumbnail: boolean("is_thumbnail").default(false),
+  // Free-form role inside the location's gallery — "exterior" | "interior" |
+  // "plan" for showhouses; null elsewhere.
+  classification: varchar("classification"),
+  sortOrder: integer("sort_order").default(0),
+});
+
 // Location ↔ Agents (M:N)
 export const locationAgents = boholzSchema.table("location_agents", {
   agentId: uuid("agent_id")
@@ -209,6 +226,7 @@ export const mediaRelations = relations(media, ({ many }) => ({
   floorMedia: many(floorMedia),
   agentMedia: many(agentMedia),
   newsMedia: many(newsMedia),
+  locationMedia: many(locationMedia),
 }));
 
 export const houseCategoriesRelations = relations(
@@ -282,6 +300,18 @@ export const newsMediaRelations = relations(newsMedia, ({ one }) => ({
 
 export const locationsRelations = relations(locations, ({ many }) => ({
   agents: many(locationAgents),
+  media: many(locationMedia),
+}));
+
+export const locationMediaRelations = relations(locationMedia, ({ one }) => ({
+  location: one(locations, {
+    fields: [locationMedia.locationId],
+    references: [locations.id],
+  }),
+  media: one(media, {
+    fields: [locationMedia.mediaId],
+    references: [media.id],
+  }),
 }));
 
 export const agentsRelations = relations(agents, ({ many }) => ({

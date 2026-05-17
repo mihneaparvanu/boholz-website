@@ -168,10 +168,14 @@ export async function getLocations(opts?: {
         with: { agent: true },
         orderBy: (la, { asc }) => [asc(la.sortOrder)],
       },
+      media: {
+        with: { media: true },
+        orderBy: (lm, { asc }) => [asc(lm.sortOrder)],
+      },
     },
     orderBy: (l, { asc }) => [asc(l.title)],
   });
-  return rows as LocationWithAgents[];
+  return resolveMediaPaths(rows as unknown as LocationWithAgents[]);
 }
 
 export async function getHeroSlides(limit = 6): Promise<HeroSlide[]> {
