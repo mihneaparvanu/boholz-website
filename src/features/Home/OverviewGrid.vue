@@ -14,8 +14,8 @@ const cards: OverviewCardData[] = [
     image: {
       url: getMediaURL("/images/pages/dein-zuhause/hero-bauen.jpg"),
       alt: "BoHolz Fertighaus in hochwertiger Bauweise",
-      width: 2000,
-      height: 776,
+      width: 1600,
+      height: 900,
     },
   },
   {
@@ -24,8 +24,8 @@ const cards: OverviewCardData[] = [
     image: {
       url: getMediaURL("/images/pages/dein-zuhause/ausbaustufen.jpg"),
       alt: "Holzbau im Innenausbau",
-      width: 500,
-      height: 300,
+      width: 1600,
+      height: 900,
     },
   },
   {
@@ -34,8 +34,8 @@ const cards: OverviewCardData[] = [
     image: {
       url: getMediaURL("/images/pages/dein-zuhause/foerderung.jpg"),
       alt: "Modernes energieeffizientes BoHolz Haus",
-      width: 500,
-      height: 300,
+      width: 1600,
+      height: 900,
     },
   },
   {
@@ -44,8 +44,8 @@ const cards: OverviewCardData[] = [
     image: {
       url: getMediaURL("/images/pages/unser-versprechen/qualitaet.jpg"),
       alt: "Planungsgespräch für ein BoHolz Fertighaus",
-      width: 500,
-      height: 300,
+      width: 1600,
+      height: 900,
     },
   },
   {
@@ -54,8 +54,8 @@ const cards: OverviewCardData[] = [
     image: {
       url: getMediaURL("/images/pages/uber-uns/value-1.jpg"),
       alt: "Digital vernetztes Smart-Home-Konzept",
-      width: 800,
-      height: 500,
+      width: 1600,
+      height: 900,
     },
   },
 ];
