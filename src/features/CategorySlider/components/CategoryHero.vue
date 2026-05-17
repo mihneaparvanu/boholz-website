@@ -47,15 +47,23 @@ const imageURL = computed(() => {
     text-align: center;
     max-width: 600px;
 
+    /*
+     * On mobile the overlay competes with the house render itself —
+     * the section's eyebrow/title above and the thumbnail strip below
+     * already provide context, so we let the image speak.
+     */
     @media (--mobile) {
-      max-width: 100%;
-      padding-inline: var(--spacing-3);
+      display: none;
     }
   }
 
   .model-image {
     width: 100%;
-    aspect-ratio: 3 / 4;
+    /*
+     * Mobile default: 5/4 — slightly taller than landscape so the façade
+     * has presence, but no longer the portrait tower the 3/4 crop produced.
+     */
+    aspect-ratio: 5 / 4;
     object-fit: cover;
     border-radius: var(--radius-lg);
 

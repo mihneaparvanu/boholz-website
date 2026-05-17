@@ -21,16 +21,7 @@ defineProps<{
   currentPath: string;
 }>();
 
-const emit = defineEmits<{
-  (e: "open-change", value: boolean): void;
-}>();
-
 const isOpen = ref(false);
-
-function setOpen(value: boolean) {
-  isOpen.value = value;
-  emit("open-change", value);
-}
 
 /* Intercept link clicks inside the open sheet: close the sheet first
    so the fade-out is visible, then navigate via a full page load.
@@ -49,7 +40,7 @@ function handleNavClick(event: MouseEvent, href: string) {
     return;
   }
   event.preventDefault();
-  setOpen(false);
+  isOpen.value = false;
   window.setTimeout(() => {
     window.location.assign(href);
   }, SHEET_FADE_MS);
@@ -73,7 +64,7 @@ function handleNavClick(event: MouseEvent, href: string) {
         :aria-label="isOpen ? 'Menü schließen' : 'Menü öffnen'"
         :aria-expanded="isOpen"
         aria-controls="navbar-mobile-sheet"
-        @click="setOpen(!isOpen)"
+        @click="isOpen = !isOpen"
       >
         <X v-if="isOpen" aria-hidden="true" />
         <Menu v-else aria-hidden="true" />

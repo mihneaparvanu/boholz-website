@@ -40,4 +40,16 @@ const items: IconListItem[] = props.pillars.map((p) => ({
      supporting pillars below. */
   width: 100%;
 }
+
+/* Mobile: bump the pillar icons so they hold their own next to the label.
+   IconList is a frozen kit (hardcoded :size="18") — the SVG honours CSS
+   width/height, so we override the rendered size at the .icon wrapper.
+   Bump only on mobile; at tablet+ the two-column dense layout reads
+   correctly at 18px and going larger competes with the label. */
+@media (--mobile) {
+  .stack :deep(.icon svg) {
+    width: 24px;
+    height: 24px;
+  }
+}
 </style>

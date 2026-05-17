@@ -48,7 +48,7 @@ const items = computed(() =>
             <component
               :is="item.Icon"
               class="icon"
-              :size="18"
+              :size="20"
               :stroke-width="1.75"
               aria-hidden="true"
             />
@@ -148,7 +148,7 @@ a.card:focus-visible {
 
 .head {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: var(--spacing-2);
 }
 
@@ -164,6 +164,29 @@ a.card:focus-visible {
 
 .icon {
   color: var(--clr-content-secondary);
+  /* Optical lift so the icon's baseline-ish midpoint sits near the
+     numeral's x-height instead of trailing under it. */
+  transform: translateY(0.15em);
+}
+
+/* Mobile: the strip reads as a single-column editorial sequence — push
+   the numeral to display weight and bump the icon so the two together
+   anchor the card. Restrained at tablet+ where three columns sit dense. */
+@media (--mobile) {
+  .head {
+    gap: var(--spacing-3);
+  }
+
+  .index {
+    font-size: var(--fs-h2);
+  }
+
+  .icon {
+    /* Lucide :size sets width/height attrs — CSS wins. */
+    width: 26px;
+    height: 26px;
+    transform: translateY(0.1em);
+  }
 }
 
 .title {

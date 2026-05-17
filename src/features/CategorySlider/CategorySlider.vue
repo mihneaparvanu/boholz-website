@@ -40,6 +40,15 @@ const selectCategory = (category: HouseCategory) => {
   gap: var(--spacing-4);
   width: 100%;
 
+  /*
+   * On mobile, the hero loses its overlay and shrinks vertically — we want
+   * a clearer rhythmic break between the hero image and the thumbnail strip
+   * so the eye reads them as two distinct layers.
+   */
+  @media (--mobile) {
+    gap: var(--spacing-5);
+  }
+
   .category-thumbnails {
     display: flex;
     flex-wrap: nowrap;

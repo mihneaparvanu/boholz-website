@@ -8,3 +8,4 @@
 - [Grid: explicit cell placement](feedback_grid_layout_explicit_placement.md) — for sticky-column compare tables, set grid-column/grid-row inline per cell; display:contents wrappers fight sticky layout
 - [Landing pages archetype](project_landing-pages-archetype.md) — Phase 1 canonical /landing/uebersicht: file layout, section order, customisation hooks, Phase 2 handoff
 - [Bauphasen + Advantage features](project_bauphasen-advantage-features.md) — 2026-05-17 wiring: BauphasenStrip (homepage + dein-zuhause), FeatureCardPair (Holzfaserdämmung + Wandaufbau), LiteYouTube (Nachhaltigkeit) — file paths + page edits
+- [Frozen-kit override pattern](feedback_frozen_kit_override_pattern.md) — use `:deep(.icon svg) { width; height }` from one consumer instead of adding a kit prop; second consumer = real prop
