@@ -72,11 +72,14 @@ export const bungalowContent: LandingPageContent = {
 
   houses: {
     eyebrow: "Beispiele",
-    heading: "Fertighaus-Beispiele",
+    heading: "Unsere Bungalows",
     highlight: "im Überblick.",
-    lede: "Drei Bungalow-Konzepte — vom kompakten Komfort-Heim bis zum Flachdach-Bungalow mit Pool-Terrasse.",
+    lede: "Vom kompakten Komfort-Heim bis zum Flachdach-Bungalow mit Pool-Terrasse — alle Modelle dieser Typologie auf einen Blick.",
+    // Typology page: audience has self-selected, show the full sub-catalogue
+    // (4 bungalow models) without the bestseller gate.
     categorySlugs: ["bungalow"],
-    maxItems: 3,
+    featuredOnly: false,
+    maxItems: 99,
   },
 
   imageBand: {
@@ -209,11 +212,17 @@ export const bungalowContent: LandingPageContent = {
       phone: "0971 / 78 55 57 15",
       email: "info@boholz-haus.de",
     },
+    // Bungalow-specific decision points — help a one-level-living interest
+    // converge on what they're actually planning. Size → accessibility →
+    // outdoor → grundstück → fallback. German voice, precise.
     interestOptions: [
-      { value: "bungalow", label: "Bungalow" },
-      { value: "bungalow-barrierefrei", label: "Bungalow barrierefrei" },
-      { value: "anbau-aufzug", label: "Bungalow mit Anbau / Aufzug" },
-      { value: "efh", label: "Einfamilienhaus auf einer Ebene" },
+      { value: "bungalow-kompakt", label: "Kompakter Bungalow (bis 100 m²)" },
+      { value: "bungalow-mittel", label: "Bungalow 100–130 m²" },
+      { value: "bungalow-gross", label: "Bungalow ab 130 m²" },
+      { value: "altersgerecht", label: "Altersgerecht / barrierefrei planen" },
+      { value: "garage-carport", label: "Mit Garage oder Carport" },
+      { value: "grundstueck-vorhanden", label: "Grundstück bereits vorhanden" },
+      { value: "grundstueck-suche", label: "Grundstückssuche gewünscht" },
       { value: "individuell", label: "Individuelle Planung" },
       { value: "unsure", label: "Noch unentschieden" },
     ],

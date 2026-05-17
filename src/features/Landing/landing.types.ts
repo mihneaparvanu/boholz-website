@@ -103,12 +103,17 @@ export interface LandingHouseShowcase {
   lede?: string;
   /**
    * Slug(s) of categories to include. The page picks `getModels()` whose
-   * `category.slug` is in this list AND `isFeatured === true`, capped at
-   * `maxItems`. Pass `null` to include every category (e.g. for the
-   * generic übersicht page).
+   * `category.slug` is in this list, capped at `maxItems`. Pass `null` to
+   * include every category (e.g. for the generic übersicht page).
    */
   categorySlugs: string[] | null;
-  /** Hard cap on cards rendered — typically 3 or 4. */
+  /**
+   * When true (default), only `isFeatured` models are kept — the bestseller
+   * gate. Set to `false` on typology-specific pages where the audience has
+   * already self-selected and we want to show the full sub-catalogue.
+   */
+  featuredOnly?: boolean;
+  /** Hard cap on cards rendered. Set high (e.g. 99) to effectively uncap. */
   maxItems: number;
 }
 

@@ -74,9 +74,12 @@ export const uebersichtContent: LandingPageContent = {
     eyebrow: "Hausmodelle",
     heading: "Welche Häuser",
     highlight: "gibt es?",
-    lede: "Drei Typologien, jede individuell anpassbar. Vom kompakten Bungalow für jedes Alter bis zum Doppelhaus für zwei Familien.",
-    categorySlugs: null, // every featured category — page 1 is the broad overview
-    maxItems: 3,
+    lede: "Vom kompakten Bungalow bis zur Stadtvilla — eine Auswahl unserer meistgewählten Modelle, individuell anpassbar.",
+    // Overview page: every typology, bestseller gate ON, no practical cap
+    // (the DB currently holds 6 featured models — 99 is an "uncapped" signal).
+    categorySlugs: null,
+    featuredOnly: true,
+    maxItems: 99,
   },
 
   imageBand: {
