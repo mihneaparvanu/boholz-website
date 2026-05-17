@@ -10,9 +10,6 @@ export default defineConfig({
   output: "server",
   adapter: node({ mode: "standalone" }),
   vite: {
-    // @ts-expect-error — vanilla-extract's Vite plugin is typed against a
-    // different Vite copy than Astro's (Bun isolated linker hoists one and
-    // keeps another in node_modules/.bun/). Runtime is fine.
     plugins: [vanillaExtractPlugin()],
     ssr: {
       // maplibre-gl uses browser-only APIs (window, Worker, WebGL).
