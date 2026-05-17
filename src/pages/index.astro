@@ -9,7 +9,6 @@ import TrustBadges from "@/features/Home/TrustBadges/TrustBadges.vue";
 import Overview from "@/features/Home/Overview/Overview.vue";
 import BuildingStages from "@/features/Home/BuildingStages/BuildingStages.vue";
 import Faq from "@/features/Home/Faq/Faq.vue";
-import SectionNavigator from "@/components/ui/SectionNavigator.vue";
 import Button from "@/components/ui/Button.vue";
 
 import { homeSections } from "@/features/Home/home.content";
@@ -23,18 +22,8 @@ import { getCategories, getHeroSlides } from "@/data/loaders";
 const categories = await getCategories();
 const heroSlides = await getHeroSlides(6);
 
-// Build the SectionNavigator rail in order. Hero is intentionally NOT in
-// the rail — the rail only enters once the hero has scrolled away.
-const navSections = [
-  homeSections.categories,
-  homeSections.trust,
-  homeSections.overview,
-  homeSections.finishes,
-  homeSections.qa,
-  homeSections.contact,
-].map((s) => ({ id: s.id, label: s.navLabel, eyebrow: s.eyebrow }));
-
-// Drop `navLabel` before forwarding to <Section> — it's a rail-only field.
+// Drop `navLabel` before forwarding to <Section> — it's a rail-only field
+// kept on the content shape for pages that still surface a section rail.
 const { categories: cat, trust, overview, finishes, qa, contact } = homeSections;
 const sectionProps = {
   categories: (({ navLabel, ...rest }) => rest)(cat),
@@ -48,9 +37,6 @@ const sectionProps = {
 
 <Layout title="Boholz Haus" categories={categories} isHero>
   <Hero client:load slides={heroSlides} />
-
-  <!-- Inline overview + sticky rail — wires the page's six anchors. -->
-  <SectionNavigator client:load sections={navSections} />
 
   <Section {...sectionProps.categories} tone="primary">
     <CategoriesShowcase client:visible categories={categories} />

@@ -2,6 +2,7 @@
 
 ## 1. Technical Stack
 
+- **Package manager / runtime:** **Bun** (lockfile: `bun.lock`). Use `bun install`, `bun run dev`, `bun x <cmd>`. Do not regenerate the lockfile with npm/pnpm/yarn.
 - **Framework:** Astro (SSR Mode)
 - **Frontend:** Vue.js (for interactive components)
 - **Database:** Postgres 18 (External via Dokploy)

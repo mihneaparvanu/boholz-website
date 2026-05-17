@@ -8,12 +8,14 @@ BoHolz is a premium prefab home manufacturer from Germany. This is the public-fa
 
 ## Commands
 
-- `npm run dev` — start dev server at `localhost:4321` (sets `NODE_TLS_REJECT_UNAUTHORIZED=0` so Drizzle can hit the dev DB)
-- `npm run build` — production build to `./dist/`
-- `npm run preview` — preview the production build
-- `npm run start` — run the production build on `0.0.0.0`
-- `npx tsx scripts/<script>.ts` — run one-off DB inspection / seed scripts against the live DB (delete the script when done, per repo rules)
-- `npx drizzle-kit generate` / `migrate` — manage migrations against the `boholz` Postgres schema (config in `drizzle.config.ts`)
+> **Package manager / runtime: Bun.** Use `bun install`, `bun run dev`, `bun run build`, `bun x <cmd>`. The lockfile is `bun.lock`; do not regenerate it with npm/pnpm/yarn. Vite's esbuild dep resolves under `node_modules/.bun/esbuild@*/` — keep that in mind when chasing stack traces.
+
+- `bun run dev` — start dev server at `localhost:4321` (sets `NODE_TLS_REJECT_UNAUTHORIZED=0` so Drizzle can hit the dev DB)
+- `bun run build` — production build to `./dist/`
+- `bun run preview` — preview the production build
+- `bun run start` — run the production build on `0.0.0.0`
+- `bun x tsx scripts/<script>.ts` — run one-off DB inspection / seed scripts against the live DB (delete the script when done, per repo rules)
+- `bun x drizzle-kit generate` / `migrate` — manage migrations against the `boholz` Postgres schema (config in `drizzle.config.ts`)
 
 Node ≥ 22.12 is required (`.node-version`).
 

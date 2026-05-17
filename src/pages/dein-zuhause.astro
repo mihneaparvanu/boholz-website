@@ -5,8 +5,6 @@ import { getMediaURL } from "@/utils/media";
 import PageHero from "@/components/sections/PageHero.astro";
 import CTASection from "@/components/sections/CTASection.astro";
 import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
-import DefinitionList from "@/components/ui/DefinitionList.astro";
-import type { DefinitionItem } from "@/components/ui/DefinitionList.astro";
 
 import SectionNavigator from "@/components/ui/SectionNavigator.vue";
 import type { Section } from "@/components/ui/SectionNavigator.vue";
@@ -15,6 +13,8 @@ import IconList from "@/components/ui/IconList.vue";
 import type { IconListItem } from "@/components/ui/IconList.vue";
 import Callout from "@/components/ui/Callout.vue";
 import VideoPlaceholder from "@/components/ui/VideoPlaceholder.vue";
+import BuildingStagesCarousel from "@/features/Home/BuildingStages/BuildingStagesCarousel.vue";
+import { buildingStages } from "@/features/Home/BuildingStages/building-stages.content";
 
 const sections: Section[] = [
   { id: "ablauf",       eyebrow: "01", label: "Der Ablauf" },
@@ -51,28 +51,6 @@ const smartHomeFeatures: IconListItem[] = [
   },
 ];
 
-const ausbaustufen: DefinitionItem[] = [
-  {
-    term: "1. Ausbauhaus",
-    description:
-      "Sind Sie handwerklich begabt und möchten Ihre ganz eigene Note in Ihr Haus einfließen lassen? Sie erhalten einen Rohbau einschließlich Dacheindeckung, sämtlichen Spenglerarbeiten sowie dem Fassadenputz, eingebauter Haustüre, Fenster inklusive Rollläden und Außenfensterbänken.",
-  },
-  {
-    term: "2. Technikfertig",
-    description:
-      "Zusätzlich zum Ausbauhaus: Elektroinstallation inkl. Schalterprogramm, Sanitär-Rohinstallation, Estrich, Dämmung und Beplankung der Decken und Dachschrägen. Das gewählte Heizsystem ist komplett eingebaut und wird mit Ihnen in Betrieb genommen.",
-  },
-  {
-    term: "3. Fast fertig",
-    description:
-      "Bad und WC sind nach Ihren Vorgaben gefliest und mit den ausgesuchten Sanitärobjekten bestückt. Zudem liefern und montieren wir Ihre Innentreppe.",
-  },
-  {
-    term: "4. Schlüsselfertig",
-    description:
-      "Bei dieser Ausbaustufe müssen Sie nur noch einziehen und Ihre Möbel und Küche mitbringen. BoHolz-Haus kümmert sich um Innentüren, Innenfensterbänke, Bodenbeläge sowie sämtliche Tapezier- und Malerarbeiten. Die Raufasertapeten erhalten einen weißen Deckanstrich, sämtliche Spachtelarbeiten in Qualitätsstandard II.",
-  },
-];
 
 const heroImage = getMediaURL("/images/pages/dein-zuhause/hero-bauen.jpg");
 const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
@@ -91,7 +69,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     />
   </div>
 
-  <SectionNavigator client:load sections={sections} />
+  <SectionNavigator client:load pageTitle="Dein Zuhause" sections={sections} />
 
   <!-- 02 · Ablauf ───────────────────────────────────────── -->
   <section id="ablauf" class="block" data-section-heading>
@@ -203,7 +181,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
       lede="Förderkredite der Kreditanstalt für Wiederaufbau (KfW) sind eine attraktive Möglichkeit, Ihren Hausbau finanziell zu unterstützen — gut kombinierbar untereinander."
     />
 
-    <div class="cards three">
+    <div class="cards three stack-below-desktop">
       <StepCard
         client:visible
         step={1}
@@ -254,7 +232,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
       lede="Jeder Bauherr ist anders. Wählen Sie die Ausbaustufe, die am besten zu Ihren Fähigkeiten und Ihrem Budget passt — vom Rohbau bis schlüsselfertig."
     />
 
-    <DefinitionList items={ausbaustufen} />
+    <BuildingStagesCarousel client:visible stages={buildingStages} />
   </section>
 
   <!-- 07 · Video placeholder ─────────────────────────────── -->
@@ -315,7 +293,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
   }
 
   @media (--from-tablet) {
-    .cards.three {
+    .cards.three:not(.stack-below-desktop) {
       grid-template-columns: 1fr 1fr;
     }
   }
