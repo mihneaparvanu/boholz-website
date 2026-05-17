@@ -1,44 +1,139 @@
-name: Deploy Boholz with Railpack
+name: Build & deploy (dev)
+
+# Pipeline:
+#   1. Build image with Railpack (BuildKit inside the runner)
+#   2. Push image to GHCR as ghcr.io/<owner>/<repo>:dev  + :dev-<sha>
+#   3. SSH into the dev host and (re)run the container against the new image.
+#
+# REQUIRED GITHUB SECRETS (Repo → Settings → Secrets and variables → Actions):
+#   DEPLOY_HOST     e.g. sn-c1.example.com   (the dev box, public-reachable)
+#   DEPLOY_USER     e.g. m
+#   DEPLOY_SSH_KEY  full private key (PEM) authorised on the dev host
+#   DEPLOY_PATH     e.g. /opt/clients/boholz/boholz-website/apps/boholz-web-front
+#                   (must contain a runtime .env file at $DEPLOY_PATH/.env)
+#
+# REPO VARIABLES (Settings → Variables → Actions):
+#   DEPLOY_ENABLED  set to "true" to enable the deploy job. Until then the
+#                   workflow only builds + pushes (safe to add secrets first).
+#   HOST_PORT       host port → container's 4321 (default 4321)
+
 on:
   push:
-    branches: [main]
+    branches: [dev]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
 
 jobs:
-  build-and-push:
+  build:
+    name: Build & push image
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
+    timeout-minutes: 20
+    outputs:
+      image_lc: ${{ steps.meta.outputs.image_lc }}
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v5
 
-      - name: Build Image with Railpack
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Start BuildKit daemon
         run: |
-          docker run --rm -v $(pwd):/app -v /var/run/docker.sock:/var/run/docker.sock \
-          ghcr.io/railwayapp/railpack:latest build /app --name ghcr.io/${{ github.repository }}/boholz-app:latest
+          docker run --rm --privileged -d --name buildkit moby/buildkit:latest
+          echo "BUILDKIT_HOST=docker-container://buildkit" >> "$GITHUB_ENV"
 
-      - name: Login to GHCR
+      - name: Compute lowercase image name
+        id: meta
+        run: |
+          IMAGE_LC=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          echo "image_lc=$IMAGE_LC" >> "$GITHUB_OUTPUT"
+          echo "IMAGE_LC=$IMAGE_LC" >> "$GITHUB_ENV"
+
+      - name: Install Railpack CLI
+        run: |
+          curl -sSL https://railpack.com/install.sh | bash
+          echo "$HOME/.railpack/bin" >> "$GITHUB_PATH"
+
+      - name: Build image
+        run: |
+          railpack build . \
+            --name "$REGISTRY/$IMAGE_LC:dev-${{ github.sha }}"
+
+      - name: Tag rolling :dev
+        run: |
+          docker tag "$REGISTRY/$IMAGE_LC:dev-${{ github.sha }}" \
+                     "$REGISTRY/$IMAGE_LC:dev"
+
+      - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push Image
-        run: docker push ghcr.io/${{ github.repository }}/boholz-app:latest
+      - name: Push images
+        run: |
+          docker push "$REGISTRY/$IMAGE_LC:dev-${{ github.sha }}"
+          docker push "$REGISTRY/$IMAGE_LC:dev"
 
   deploy:
-    needs: build-and-push
+    name: Deploy to dev host
     runs-on: ubuntu-latest
+    needs: build
+    if: ${{ vars.DEPLOY_ENABLED == 'true' }}
+    timeout-minutes: 10
+
     steps:
-      - name: SSH and Update VPS
-        uses: appleboy/ssh-action@master
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        env:
+          IMAGE: ghcr.io/${{ needs.build.outputs.image_lc }}:dev
         with:
-          host: ${{ secrets.VPS_IP }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.DEPLOY_PORT || 22 }}
+          envs: IMAGE
           script: |
-            cd /opt/clients/boholz/frontend
-            docker compose pull
-            docker compose up -d
+            set -euo pipefail
+
+            APP_DIR="${{ secrets.DEPLOY_PATH }}"
+            CONTAINER="boholz-frontend"
+            NETWORK="web-network"
+            HOST_PORT="${{ vars.HOST_PORT || '4321' }}"
+
+            if [ ! -f "$APP_DIR/.env" ]; then
+              echo "ERROR: $APP_DIR/.env is missing on the host at $APP_DIR" >&2
+              exit 1
+            fi
+
+            # Double-check that our shared web-network exists
+            docker network inspect "$NETWORK" >/dev/null 2>&1 \
+              || docker network create "$NETWORK"
+              
+            # Ensure the database container is linked to this network
+            docker network connect "$NETWORK" boholz-db 2>/dev/null || true
+
+            # Pull down the finished image built by GitHub
+            docker pull "$IMAGE"
+
+            # Remove old container and stand up the fresh one
+            docker rm -f "$CONTAINER" 2>/dev/null || true
+            docker run -d \
+              --name "$CONTAINER" \
+              --restart unless-stopped \
+              --network "$NETWORK" \
+              -p "${HOST_PORT}:4321" \
+              --env-file "$APP_DIR/.env" \
+              "$IMAGE"
+
+            # Housekeeping
+            docker image prune -f
+            docker ps --filter "name=$CONTAINER"
