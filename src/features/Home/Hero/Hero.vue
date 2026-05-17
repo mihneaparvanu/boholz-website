@@ -55,7 +55,7 @@ const slide = computed(() => props.slides[index.value]);
 <style scoped>
 .hero {
   position: relative;
-  height: 75dvh;
+  height: 90dvh;
   /* Pull the hero up under the sticky navbar; the absolute background
      image fills the whole box (incl. behind the navbar), while padding-top
      keeps the headline + CTA below the bar. */
@@ -93,6 +93,10 @@ const slide = computed(() => props.slides[index.value]);
   justify-content: end;
   align-items: start;
   height: 100%;
+  /* Cap the layout column so the full-width CTA below has a sane visual
+     width and doesn't read as a banner spanning the entire hero. The
+     button takes 100% of THIS column, not the full hero. */
+  max-width: 32rem;
   gap: var(--spacing-4);
   padding-block-end: var(--spacing-5);
 }
@@ -153,22 +157,12 @@ const slide = computed(() => props.slides[index.value]);
     white-space: nowrap;
     display: inline-block;
   }
+  /* Full-width inside .layout's capped column at every breakpoint. The
+     parent .layout max-width caps the visual width so the button reads
+     as a CTA, not a banner. Label nowrap+ellipsis above handles any
+     overflow from variable slide-title length. */
   &:deep(.btn) {
-    /* Desktop keeps the prior full-width button (visually a deliberate
-       block CTA in the lower-left of the hero). Height is stable
-       because Button's padding-block + nowrap label produce a
-       deterministic box at this font-size. */
     width: 100%;
-  }
-  /* Below desktop: lock the button width with a clamp so slide-to-slide
-     label-length differences (the label is the slide title — variable
-     length) don't grow/shrink the button. The label's nowrap+ellipsis
-     above caps any overflow. Floor 220px keeps thumb-friendly, ceiling
-     360px keeps the CTA from reading as a banner. */
-  @media (--below-desktop) {
-    &:deep(.btn) {
-      width: clamp(220px, 60vw, 360px);
-    }
   }
   @media (--from-desktop) {
     justify-content: start;

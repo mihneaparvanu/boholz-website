@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import StatBlock from "@/components/ui/StatBlock.vue";
+import TrustStatCard from "./TrustStatCard.vue";
 import type { TrustBadge } from "./trust-badges.content";
 
 defineProps<{
@@ -9,7 +9,7 @@ defineProps<{
 
 <template>
   <div class="row">
-    <StatBlock
+    <TrustStatCard
       v-for="b in badges"
       :key="b.label"
       :value="b.value"

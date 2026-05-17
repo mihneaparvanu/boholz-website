@@ -77,8 +77,9 @@ const sectionProps = {
 
   <!-- Closing CTA — kit CTASection. Its `surface` tone already uses
        `--clr-surface-secondary` so the section reads as the alternating
-       tone after the FAQ above. The wrapping div hosts the scroll anchor. -->
-  <div id={sectionProps.contact.id}>
+       tone after the FAQ above. `full-width` makes the tinted band bleed
+       edge-to-edge instead of being constrained to the wrapper column. -->
+  <div id={sectionProps.contact.id} class="full-width">
     <CTASection
       eyebrow={sectionProps.contact.eyebrow}
       title={`${sectionProps.contact.heading1} ${sectionProps.contact.heading2}`}

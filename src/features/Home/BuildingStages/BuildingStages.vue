@@ -66,12 +66,24 @@ const selected = computed(
 .root {
   display: grid;
   width: 100%;
-  /* Mobile default: two columns — stages list left, picture right. */
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
-  grid-template-areas: "options hero";
+  /* Mobile default: single column — stages list on top, picture below,
+     so the picture has the full content width to render the stage. */
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "options"
+    "hero";
   column-gap: var(--spacing-4);
   row-gap: var(--spacing-4);
   align-items: start;
+}
+
+@media (--from-tablet) {
+  .root {
+    /* Tablet keeps the two-column compact layout — there's enough
+       horizontal room for the tabs alongside the picture. */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    grid-template-areas: "options hero";
+  }
 }
 
 @media (--from-desktop) {
@@ -144,10 +156,20 @@ const selected = computed(
 .frame {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 5;
+  /* Mobile: 4/3 landscape so the stage photo reads cleanly across the
+     full content width without dominating vertical space. */
+  aspect-ratio: 4 / 3;
   border-radius: var(--radius-md);
   overflow: hidden;
   background: var(--clr-surface-secondary);
+}
+
+@media (--from-tablet) {
+  .frame {
+    /* Tablet keeps the prior 4/5 portrait so the side-by-side layout
+       reads correctly next to the vertical tabs list. */
+    aspect-ratio: 4 / 5;
+  }
 }
 
 @media (--from-desktop) {
