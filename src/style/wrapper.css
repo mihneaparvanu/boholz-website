@@ -4,6 +4,13 @@
   --padding-inline: var(--spacing-5);
   --content-max-width: 1600px;
   --popout-max-width: 1800px;
+
+  /* Alias used inside full-bleed (`.full-width`) sections that need to
+     re-pad themselves to the wrapper's content edge. Reads more clearly
+     at the call site than `--padding-inline`, which sounds like a
+     property name:
+       .hero.full-width .inner { padding-inline: var(--wrapper-edge); }   */
+  --wrapper-edge: var(--padding-inline);
 }
 
 .wrapper {

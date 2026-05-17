@@ -1,0 +1,297 @@
+---
+/**
+ * ComparisonStrip — quiet, typographic side-by-side compare of 2–3 models.
+ *
+ * The eye scans vertically: each spec row is the same key across every model
+ * column, hairline-divided. Photo at top of each column, name below, then the
+ * spec table. No glossy CTAs at the bottom — this is decision support, not
+ * sales push.
+ *
+ * Mobile: the table is too rich to stack (you'd lose the parallel scan that's
+ * the whole point), so we let it scroll horizontally with the label column
+ * sticky on the leading edge.
+ *
+ * Layout strategy: a flat grid with explicit grid-column / grid-row per cell
+ * (computed at render time). Earlier attempt used display:contents + nth-of-type
+ * which fights the auto-placement when columns mix sticky/static. Flat grid +
+ * explicit placement is the simpler win.
+ */
+
+interface ComparisonModel {
+  slug: string;
+  name: string;
+  code: string;
+  image: string;
+  imageAlt: string;
+  area: string;        // "134 m²"
+  rooms: string;       // "4 Zimmer"
+  efficiency: string;  // "KfW 40"
+  buildTime: string;   // "12–14 Wochen"
+  priceRange: string;  // "ab 290.000 €"
+  href?: string;
+}
+
+interface Props {
+  models: ComparisonModel[];
+  /** Override the label column heading. Defaults to "Vergleich". */
+  rowLabel?: string;
+}
+
+const { models, rowLabel = "Vergleich" } = Astro.props;
+
+/** Ordered rows — same shape, same order, every time. The label is the key
+ *  the user reads in the leftmost rail. */
+const rows = [
+  { key: "area", label: "Wohnfläche" },
+  { key: "rooms", label: "Zimmer" },
+  { key: "efficiency", label: "Effizienz" },
+  { key: "buildTime", label: "Bauzeit" },
+  { key: "priceRange", label: "Preisbereich" },
+] as const;
+
+type RowKey = (typeof rows)[number]["key"];
+
+const valueOf = (m: ComparisonModel, key: RowKey): string => m[key];
+
+const totalRows = rows.length + 1; // +1 for the head row (photo + name)
+---
+
+<div
+  class="strip"
+  role="table"
+  aria-label="Modellvergleich"
+  data-cols={models.length}
+  style={`--model-cols:${models.length}; --total-rows:${totalRows};`}
+>
+  <div class="grid">
+    <!-- ROW 1: head row. Label column gets the table-label, model columns
+         get the photo + name block. -->
+    <div class="cell head head-labels" style="grid-column: 1; grid-row: 1;">
+      <span class="head-label">{rowLabel}</span>
+    </div>
+    {
+      models.map((m, i) => (
+        <div
+          class="cell head"
+          style={`grid-column: ${i + 2}; grid-row: 1;`}
+        >
+          <a href={m.href ?? `/haus/${m.slug}`} class="head-link">
+            <figure class="media">
+              <img
+                src={m.image}
+                alt={m.imageAlt}
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <p class="code">{m.code}</p>
+            <h3 class="name">{m.name}</h3>
+          </a>
+        </div>
+      ))
+    }
+
+    <!-- DATA ROWS: one row per spec key. Label cell at column 1, then one
+         value cell per model column. -->
+    {
+      rows.map((r, rowIdx) => (
+        <>
+          <div
+            class="cell row-label"
+            style={`grid-column: 1; grid-row: ${rowIdx + 2};`}
+          >
+            {r.label}
+          </div>
+          {models.map((m, colIdx) => (
+            <div
+              class="cell value"
+              style={`grid-column: ${colIdx + 2}; grid-row: ${rowIdx + 2};`}
+            >
+              {valueOf(m, r.key)}
+            </div>
+          ))}
+        </>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .strip {
+    width: 100%;
+  }
+
+  /* The grid scrolls horizontally on mobile if the columns can't fit; on
+     desktop it expands evenly. The label column has a min/max width clamp
+     so it stays readable. */
+  .grid {
+    display: grid;
+    grid-template-columns:
+      [labels] minmax(110px, 22vw)
+      [models] repeat(var(--model-cols, 2), minmax(220px, 1fr));
+    grid-auto-rows: minmax(min-content, auto);
+    column-gap: 0;
+    row-gap: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    border-block: 1px solid var(--clr-border-secondary);
+  }
+
+  @media (--from-tablet) {
+    .grid {
+      grid-template-columns:
+        [labels] 140px
+        [models] repeat(var(--model-cols, 2), minmax(0, 1fr));
+      overflow-x: visible;
+    }
+  }
+
+  @media (--from-desktop) {
+    .grid {
+      grid-template-columns:
+        [labels] 160px
+        [models] repeat(var(--model-cols, 2), minmax(0, 1fr));
+    }
+  }
+
+  /* Sticky label column on mobile — the first column (grid-column: 1)
+     stays put while you scroll the model columns into view. */
+  .cell {
+    padding: var(--spacing-3);
+    border-block-end: 1px solid var(--clr-border-secondary);
+    color: var(--clr-content-secondary);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    min-width: 0;
+    background: var(--clr-surface-primary);
+  }
+
+  /* All cells in the last visible row (the priceRange row) drop their
+     bottom-border so the grid ends on the outer .grid border-block. */
+  .cell[style*="grid-row: 6"] {
+    border-block-end: 0;
+  }
+
+  /* Sticky label column — first column. Mobile only; goes static at tablet+. */
+  .cell[style*="grid-column: 1"] {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: 1;
+  }
+
+  @media (--from-tablet) {
+    .cell[style*="grid-column: 1"] {
+      position: static;
+    }
+  }
+
+  /* HEAD row — photo + name block in each model column. */
+  .cell.head {
+    padding: var(--spacing-3);
+  }
+
+  .cell.head-labels {
+    display: flex;
+    align-items: flex-end;
+    padding-block-end: var(--spacing-3);
+  }
+
+  .head-label {
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--clr-content-tertiary);
+    line-height: 1.2;
+  }
+
+  .head-link {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius-md);
+  }
+
+  .head-link:focus-visible {
+    outline: none;
+  }
+  .head-link:focus-visible .media {
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--clr-accent-primary) 28%, transparent);
+  }
+
+  .media {
+    margin: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--clr-surface-secondary);
+  }
+
+  .media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 500ms cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+
+  .head-link:hover .media img,
+  .head-link:focus-visible .media img {
+    transform: scale(1.02);
+  }
+
+  .code {
+    margin: 0;
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--clr-content-tertiary);
+    line-height: 1.2;
+  }
+
+  .name {
+    margin: 0;
+    font-size: var(--fs-h6);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-heading);
+    color: var(--clr-content-primary);
+  }
+
+  /* Spec rows */
+  .row-label {
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-tertiary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+  }
+
+  .value {
+    font-size: var(--fs-body);
+    color: var(--clr-content-primary);
+    font-weight: var(--font-weight-regular);
+    font-variant-numeric: tabular-nums;
+    display: flex;
+    align-items: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .media img {
+      transition: none;
+    }
+    .head-link:hover .media img,
+    .head-link:focus-visible .media img {
+      transform: none;
+    }
+  }
+</style>

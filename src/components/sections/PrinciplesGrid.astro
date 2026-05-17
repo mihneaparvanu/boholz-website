@@ -1,0 +1,136 @@
+---
+/**
+ * PrinciplesGrid — quiet manifesto. Numbered claims (01 / 02 / …) above
+ * a short label and one-line body. No boxes, no shadows; the rhythm is
+ * carried by the index and a single hairline rule between rows.
+ *
+ * Why this exists alongside BenefitsRow: BenefitsRow is for *features*
+ * (CO₂ speicher, KfW 40 …) and uses pastel cards. This is for *posture*
+ * — what the brand believes. Apple's product-spec grids or Vipp's
+ * principle pages model it: typographic, not decorative.
+ *
+ * 2-up on mobile→2-up tablet→3-up desktop. 6 items is the sweet spot
+ * for a manifesto (any more and it stops being principles, starts being
+ * a feature list). 3 or 6 items render best; arbitrary counts work.
+ *
+ * No icons. The discipline is the point.
+ */
+
+export interface Principle {
+  /** One-line claim — keep under ~24 chars; this is a label, not a sentence. */
+  label: string;
+  /** Short body — one sentence, two max. */
+  body: string;
+}
+
+interface Props {
+  items: Principle[];
+}
+
+const { items } = Astro.props;
+---
+
+<ol class="grid" role="list">
+  {
+    items.map((p, i) => (
+      <li class="item">
+        <span class="index" aria-hidden="true">
+          {String(i + 1).padStart(2, "0")}
+        </span>
+        <h3 class="label">{p.label}</h3>
+        <p class="body">{p.body}</p>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    /* No column gap on mobile; hairlines carry the row separation. */
+    gap: 0;
+    width: 100%;
+    border-block-start: 1px solid var(--clr-border-secondary);
+  }
+
+  @media (--from-tablet) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      /* Add column rules via the items themselves so we don't need
+         pseudo-elements on a UL. */
+      gap: 0;
+    }
+  }
+
+  @media (--from-desktop) {
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .item {
+    /* Each cell carries its own bottom + start hairline; the grid carries
+       the top. This makes the rules read uniformly regardless of count. */
+    border-block-end: 1px solid var(--clr-border-secondary);
+    padding: var(--spacing-4) var(--spacing-3) var(--spacing-4) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    min-width: 0;
+  }
+
+  @media (--from-tablet) {
+    .item {
+      padding: var(--spacing-4);
+      border-inline-start: 1px solid var(--clr-border-secondary);
+    }
+    /* Strip the leading start-rule on each row's first item.
+       Works for 2-col (every odd) and 3-col layouts via nth-of-type rules below. */
+    .item:first-child {
+      border-inline-start: 0;
+    }
+    .item:nth-child(odd) {
+      border-inline-start: 0;
+    }
+  }
+
+  @media (--from-desktop) {
+    .item:nth-child(odd) {
+      border-inline-start: 1px solid var(--clr-border-secondary);
+    }
+    .item:nth-child(3n + 1) {
+      border-inline-start: 0;
+    }
+  }
+
+  .index {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-size: var(--fs-h5);
+    line-height: 1;
+    color: var(--clr-content-tertiary);
+    margin-block-end: var(--spacing-2);
+  }
+
+  .label {
+    margin: 0;
+    font-size: var(--fs-h6);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--ls-heading);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+    max-width: 22ch;
+  }
+
+  .body {
+    margin: var(--spacing-1) 0 0 0;
+    font-size: var(--fs-body-sm);
+    line-height: var(--lh-body);
+    color: var(--clr-content-secondary);
+    max-width: 36ch;
+  }
+</style>

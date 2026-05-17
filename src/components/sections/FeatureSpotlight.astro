@@ -1,0 +1,276 @@
+---
+/**
+ * FeatureSpotlight — asymmetric editorial composition.
+ *
+ *   ┌──────────────────────────┬───────────────┐
+ *   │                          │   small-1     │
+ *   │      MAIN (photo)        ├───────────────┤
+ *   │      heading + body      │   small-2     │
+ *   └──────────────────────────┴───────────────┘
+ *
+ * Main card is a full-photo with copy overlay anchored to bottom-left
+ * (scrim only at the foot). Each small card is photo + heading + 1-line
+ * body + arrow CTA pinned bottom-right. On mobile everything stacks as
+ * full-width cards, copy detaches from the photo on small cards so
+ * legibility holds at 375px.
+ *
+ * Modelled on the Danwood "Entdecken Sie die Vorteile" reference —
+ * BoHolz reads quieter: scrim only where copy lives, no full-card
+ * darkening, hairline border on idle, accent border on hover.
+ */
+import { ArrowRight } from "lucide-vue-next";
+
+export interface SpotlightCard {
+  image: string;
+  imageAlt: string;
+  heading: string;
+  body: string;
+  href: string;
+}
+
+interface Props {
+  main: SpotlightCard;
+  /** Exactly two small cards stack to the right at desktop. */
+  small: [SpotlightCard, SpotlightCard];
+}
+
+const { main, small } = Astro.props;
+const [s1, s2] = small;
+---
+
+<section class="spotlight">
+  <a class="main card" href={main.href} aria-label={main.heading}>
+    <div class="media">
+      <img src={main.image} alt={main.imageAlt} loading="lazy" decoding="async" />
+      <div class="scrim" aria-hidden="true"></div>
+    </div>
+    <div class="overlay">
+      <h3 class="head">{main.heading}</h3>
+      <p class="body">{main.body}</p>
+      <span class="arrow" aria-hidden="true">
+        <ArrowRight size={18} strokeWidth={1.75} />
+      </span>
+    </div>
+  </a>
+
+  <a class="small card" href={s1.href} aria-label={s1.heading}>
+    <div class="media">
+      <img src={s1.image} alt={s1.imageAlt} loading="lazy" decoding="async" />
+      <div class="scrim" aria-hidden="true"></div>
+    </div>
+    <div class="overlay">
+      <h3 class="head">{s1.heading}</h3>
+      <p class="body">{s1.body}</p>
+      <span class="arrow" aria-hidden="true">
+        <ArrowRight size={16} strokeWidth={1.75} />
+      </span>
+    </div>
+  </a>
+
+  <a class="small card" href={s2.href} aria-label={s2.heading}>
+    <div class="media">
+      <img src={s2.image} alt={s2.imageAlt} loading="lazy" decoding="async" />
+      <div class="scrim" aria-hidden="true"></div>
+    </div>
+    <div class="overlay">
+      <h3 class="head">{s2.heading}</h3>
+      <p class="body">{s2.body}</p>
+      <span class="arrow" aria-hidden="true">
+        <ArrowRight size={16} strokeWidth={1.75} />
+      </span>
+    </div>
+  </a>
+</section>
+
+<style>
+  .spotlight {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+    width: 100%;
+  }
+
+  @media (--from-desktop) {
+    .spotlight {
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      grid-template-rows: 1fr 1fr;
+      gap: var(--spacing-3);
+    }
+    .main {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+  }
+
+  /* Card shell — both sizes share it. */
+  .card {
+    position: relative;
+    display: block;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--clr-surface-secondary);
+    color: var(--clr-pure-white);
+    text-decoration: none;
+    border: 1px solid var(--clr-border-secondary);
+    transition:
+      transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
+      border-color 200ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .card:hover {
+    /* Reset overrides anchor opacity-on-hover; we own the affordance. */
+    opacity: 1;
+    transform: translateY(-1px);
+    border-color: var(--clr-border-tertiary);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.04),
+      0 8px 28px rgba(0, 0, 0, 0.08);
+  }
+
+  .card:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--clr-accent-primary) 28%, transparent);
+  }
+
+  .media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    overflow: hidden;
+  }
+
+  .main .media {
+    aspect-ratio: 5 / 4;
+  }
+
+  @media (--from-desktop) {
+    .main .media {
+      /* Main card fills its row span — use 100% height so the photo
+         fills the tall column regardless of the aspect ratio. */
+      aspect-ratio: auto;
+      height: 100%;
+      min-height: 32rem;
+    }
+  }
+
+  .media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .card:hover .media img {
+      transform: scale(1.02);
+    }
+  }
+
+  /* Scrim — bottom-anchored only, so the top half of the photo reads clean.
+     Stronger on small cards (less copy real estate), softer on main. */
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+    pointer-events: none;
+  }
+
+  .main .scrim {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+  }
+
+  .overlay {
+    position: absolute;
+    inset: auto 0 0 0;
+    /* Asymmetric padding — generous on the bottom and start, room for
+       the arrow on the end. */
+    padding: var(--spacing-3) calc(var(--spacing-3) + var(--control-height-sm) + var(--spacing-2))
+      var(--spacing-3) var(--spacing-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    color: var(--clr-pure-white);
+  }
+
+  .main .overlay {
+    padding: var(--spacing-4) calc(var(--spacing-4) + var(--control-height-md) + var(--spacing-3))
+      var(--spacing-4) var(--spacing-4);
+    gap: var(--spacing-2);
+  }
+
+  .head {
+    margin: 0;
+    font-size: var(--fs-h6);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-heading);
+    color: var(--clr-pure-white);
+  }
+
+  .main .head {
+    font-size: var(--fs-h4);
+    font-weight: var(--font-weight-regular);
+    max-width: 18ch;
+  }
+
+  .body {
+    margin: 0;
+    font-size: var(--fs-body-sm);
+    line-height: var(--lh-body);
+    color: var(--clr-pure-white-soft);
+    max-width: 36ch;
+  }
+
+  .main .body {
+    font-size: var(--fs-body);
+    max-width: 44ch;
+  }
+
+  /* Arrow pin — bottom-right of the card, full circle, hairline border.
+     On hover swaps to white fill / dark glyph. Outer radius full, no
+     nested-radius issue. */
+  .arrow {
+    position: absolute;
+    right: var(--spacing-3);
+    bottom: var(--spacing-3);
+    width: var(--control-height-sm);
+    height: var(--control-height-sm);
+    display: inline-grid;
+    place-items: center;
+    border-radius: var(--radius-full);
+    color: var(--clr-pure-white);
+    background: color-mix(in srgb, var(--clr-pure-white) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--clr-pure-white) 38%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition:
+      background 180ms ease,
+      color 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .main .arrow {
+    right: var(--spacing-4);
+    bottom: var(--spacing-4);
+    width: var(--control-height-md);
+    height: var(--control-height-md);
+  }
+
+  .card:hover .arrow {
+    background: var(--clr-pure-white);
+    color: var(--clr-content-primary);
+    border-color: var(--clr-pure-white);
+  }
+</style>

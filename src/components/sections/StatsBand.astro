@@ -1,0 +1,186 @@
+---
+import StatBlock from "@/components/ui/StatBlock.vue";
+import type { IconName } from "@/utils/icons";
+
+export interface StatItem {
+  value: string;
+  label: string;
+  caption?: string;
+  icon?: IconName;
+}
+
+interface Props {
+  eyebrow?: string;
+  /** Main heading — composed of a regular phrase and an italic-serif highlight. */
+  heading: string;
+  /** Italic-serif phrase appended to the heading. */
+  highlight?: string;
+  /** Lede paragraph rendered to the right of (desktop) / under (mobile) the heading. */
+  lede?: string;
+  stats: StatItem[];
+  /** Surface tone — defaults to a quiet warm tone separating it from photo
+   * sections above/below without going dark. */
+  tone?: "warm" | "tertiary" | "primary";
+}
+
+const {
+  eyebrow,
+  heading,
+  highlight,
+  lede,
+  stats,
+  tone = "warm",
+} = Astro.props;
+---
+
+<section class="band full-width" data-tone={tone} aria-labelledby="stats-heading">
+  <div class="inner">
+    <header class="head">
+      <div class="head-text">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <h2 id="stats-heading" class="heading">
+          {heading}
+          {highlight && <span class="highlight"> {highlight}</span>}
+        </h2>
+      </div>
+      {lede && <p class="lede">{lede}</p>}
+    </header>
+
+    <ul class="grid" role="list">
+      {stats.map((s) => (
+        <li>
+          <StatBlock
+            client:load
+            value={s.value}
+            label={s.label}
+            caption={s.caption}
+            icon={s.icon}
+          />
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .band {
+    padding-block: var(--spacing-6);
+    padding-inline: var(--padding-inline);
+  }
+
+  .band[data-tone="warm"] {
+    background: var(--warm-gray-800);
+  }
+  .band[data-tone="tertiary"] {
+    background: var(--clr-surface-tertiary);
+  }
+  .band[data-tone="primary"] {
+    background: var(--clr-surface-primary);
+  }
+
+  .inner {
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5);
+  }
+
+  /* Editorial head — heading left, lede right. On mobile they stack. */
+  .head {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+    align-items: end;
+  }
+  @media (--from-desktop) {
+    .head {
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--spacing-5);
+    }
+  }
+
+  .head-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .eyebrow {
+    margin: 0 0 calc(var(--spacing-3) - var(--spacing-2)) 0;
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--clr-content-tertiary);
+  }
+
+  .heading {
+    margin: 0;
+    font-size: var(--fs-h2);
+    font-weight: var(--font-weight-light);
+    letter-spacing: var(--ls-heading);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+    text-wrap: balance;
+    max-width: 18ch;
+  }
+
+  .highlight {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+  }
+
+  .lede {
+    margin: 0;
+    font-size: var(--fs-body-lg);
+    line-height: var(--lh-body);
+    color: var(--clr-content-secondary);
+    max-width: 48ch;
+  }
+
+  /* Stats grid — 2-up on tablet, 4-up on desktop. Hairline dividers between
+     columns on desktop give it a craft-house ledger feel rather than card
+     islands. */
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+  }
+  @media (--from-tablet) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-4);
+    }
+  }
+  @media (--from-desktop) {
+    .grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .grid > li {
+      padding-inline: var(--spacing-4);
+      border-inline-start: 1px solid var(--clr-border-secondary);
+    }
+    .grid > li:first-child {
+      border-inline-start: none;
+      padding-inline-start: 0;
+    }
+    .grid > li:last-child {
+      padding-inline-end: 0;
+    }
+  }
+
+  @media (--mobile) {
+    .band {
+      padding-block: var(--spacing-5);
+    }
+    .heading {
+      font-size: var(--fs-h3);
+    }
+  }
+</style>

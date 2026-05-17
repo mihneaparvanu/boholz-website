@@ -1,0 +1,230 @@
+---
+/**
+ * AsymmetricShowcase — editorial multi-image showcase. A copy block
+ * (eyebrow + heading + small lede) plus three images staggered at
+ * different sizes/positions across a 12-col grid. Air New Zealand-style
+ * editorial; reads like a magazine spread.
+ *
+ * Mobile collapses to a single column where images stack at 4:3 with
+ * captions below. To keep the editorial feel on phone, the images
+ * vary in inline width (full / 92% / 82%) rather than all being equal.
+ *
+ * Slot the three images into the component as ShowcaseImage props.
+ */
+
+interface ShowcaseImage {
+  src: string;
+  alt: string;
+  /** Small caption rendered below the image. */
+  caption?: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  /** Italic-serif accent appended to the heading. */
+  highlight?: string;
+  lede?: string;
+  /** Exactly three images — the layout is choreographed for three. */
+  images: [ShowcaseImage, ShowcaseImage, ShowcaseImage];
+}
+
+const { eyebrow, heading, highlight, lede, images } = Astro.props;
+const [img1, img2, img3] = images;
+---
+
+<section class="showcase">
+  <header class="copy">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h2 class="head">
+      {heading}
+      {highlight && <span class="highlight"> {highlight}</span>}
+    </h2>
+    {lede && <p class="lede">{lede}</p>}
+  </header>
+
+  <figure class="frame frame-1">
+    <div class="media">
+      <img src={img1.src} alt={img1.alt} loading="lazy" decoding="async" />
+    </div>
+    {img1.caption && <figcaption>{img1.caption}</figcaption>}
+  </figure>
+
+  <figure class="frame frame-2">
+    <div class="media">
+      <img src={img2.src} alt={img2.alt} loading="lazy" decoding="async" />
+    </div>
+    {img2.caption && <figcaption>{img2.caption}</figcaption>}
+  </figure>
+
+  <figure class="frame frame-3">
+    <div class="media">
+      <img src={img3.src} alt={img3.alt} loading="lazy" decoding="async" />
+    </div>
+    {img3.caption && <figcaption>{img3.caption}</figcaption>}
+  </figure>
+</section>
+
+<style>
+  .showcase {
+    display: grid;
+    gap: var(--spacing-4);
+    padding-block: var(--spacing-6);
+  }
+
+  /* ── Mobile single-column with width variation ──
+     Equal-width stack would kill the editorial rhythm. Vary the inline
+     widths and side they hang from so the page still feels composed. */
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    max-width: 56ch;
+    margin-block-end: var(--spacing-2);
+  }
+
+  .frame-1 {
+    width: 100%;
+  }
+
+  .frame-2 {
+    width: 92%;
+    margin-inline-start: auto; /* hangs to the right edge */
+  }
+
+  .frame-3 {
+    width: 82%;
+    /* Sits roughly centred — slight pull left feels less symmetric than
+       margin-inline: auto would. */
+    margin-inline-start: var(--spacing-3);
+  }
+
+  .frame {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .frame .media {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--clr-surface-secondary);
+    aspect-ratio: 4 / 3;
+  }
+
+  .frame .media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Subtle ken-burns on hover (desktop pointer only). Disabled by the
+     reduced-motion media in reset.css. */
+  @media (hover: hover) and (pointer: fine) {
+    .frame .media:hover img {
+      transform: scale(1.03);
+    }
+  }
+
+  .frame figcaption {
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-secondary);
+    line-height: var(--lh-body);
+    max-width: 52ch;
+  }
+
+  .eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-tertiary);
+    margin-block-end: var(--spacing-1);
+  }
+
+  .head {
+    margin: 0;
+    font-weight: var(--font-weight-regular);
+    letter-spacing: var(--ls-heading);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+  }
+
+  .highlight {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+  }
+
+  .lede {
+    margin: 0;
+    font-size: var(--fs-body-lg);
+    color: var(--clr-content-secondary);
+    max-width: 52ch;
+  }
+
+  /* ── Tablet+: 12-column choreography ──
+     Rows are intentionally many small ones so the offsets read precisely.
+     Copy block top-left (cols 1-5, row 1).
+     Image 1 left tall portrait (cols 1-5, rows 2-5).
+     Image 2 large landscape top-right (cols 7-12, rows 1-3).
+     Image 3 medium landscape bottom-right (cols 8-12, rows 4-5). */
+  @media (--from-tablet) {
+    .showcase {
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto auto auto auto auto;
+      gap: var(--spacing-4) var(--spacing-4);
+      padding-block: var(--spacing-7);
+    }
+
+    .copy {
+      grid-column: 1 / span 5;
+      grid-row: 1;
+      max-width: none;
+      margin-block-end: 0;
+      padding-block-start: var(--spacing-2);
+    }
+
+    .frame-1 {
+      grid-column: 1 / span 5;
+      grid-row: 2 / span 3;
+      width: 100%;
+      margin: 0;
+    }
+
+    .frame-1 .media {
+      aspect-ratio: 4 / 5; /* tall portrait */
+    }
+
+    .frame-2 {
+      grid-column: 7 / span 6;
+      grid-row: 1 / span 3;
+      width: 100%;
+      margin: 0;
+    }
+
+    .frame-2 .media {
+      aspect-ratio: 4 / 3;
+    }
+
+    .frame-3 {
+      grid-column: 8 / span 5;
+      grid-row: 4 / span 2;
+      width: 100%;
+      margin: 0;
+    }
+
+    .frame-3 .media {
+      aspect-ratio: 4 / 3;
+    }
+  }
+
+  @media (--from-desktop) {
+    .showcase {
+      gap: var(--spacing-5) var(--spacing-5);
+    }
+  }
+</style>

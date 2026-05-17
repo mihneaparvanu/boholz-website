@@ -6,6 +6,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 BoHolz is a premium prefab home manufacturer from Germany. This is the public-facing marketing site, served by Astro in SSR mode (Node standalone adapter). Aesthetic is minimalist, high-end, precision-focused — keep that in mind when writing or styling UI.
 
+## Project documentation
+
+Detailed guides live in `docs/`. Read the relevant one before starting
+work in that area:
+
+- `docs/agent.md` — how agents in this project are structured
+- `docs/development.md` — local development setup, conventions
+- `docs/server-setup.md` — deployment and infrastructure notes
+- `docs/architecture.md` — high-level system design
+
 ## Commands
 
 > **Package manager / runtime: Bun.** Use `bun install`, `bun run dev`, `bun run build`, `bun x <cmd>`. The lockfile is `bun.lock`; do not regenerate it with npm/pnpm/yarn. Vite's esbuild dep resolves under `node_modules/.bun/esbuild@*/` — keep that in mind when chasing stack traces.

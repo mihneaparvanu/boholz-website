@@ -1,0 +1,274 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]: BoHolz Haus — Conversion Sections
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - paragraph [ref=e5]: Pack · Social proof & CTA bands
+      - heading "Conversion-Sektionen" [level=1] [ref=e6]
+      - paragraph [ref=e7]: Fünf wiederverwendbare Seitenbänder für Testimonials, Lead-Generierung, Vertrauenssignale und den abschließenden Call-to-Action.
+    - separator "Abschnitt 01 TestimonialBand" [ref=e8]:
+      - generic [ref=e9]: "01"
+      - generic [ref=e10]: TestimonialBand
+  - region "Langjährige Erfahrung im Holzfertigbau." [ref=e12]:
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - paragraph [ref=e15]: Stimmen unserer Bauherren
+        - heading "Langjährige Erfahrung im Holzfertigbau." [level=2] [ref=e16]
+        - paragraph [ref=e17]: Was unsere Kunden über uns sagen — drei Stimmen aus über siebzig Jahren Familienbetrieb.
+        - list [ref=e18]:
+          - listitem [ref=e19]:
+            - generic [ref=e20]: Made in Germany
+          - listitem [ref=e21]:
+            - generic [ref=e22]: KfW
+            - generic [ref=e23]: 40 Förderung
+          - listitem [ref=e24]:
+            - generic [ref=e25]: QNG-Plus
+            - generic [ref=e26]: Siegel
+      - list [ref=e27]:
+        - listitem [ref=e28]:
+          - generic [ref=e29]:
+            - generic [ref=e30]: L&
+            - generic [ref=e31]:
+              - paragraph [ref=e32]: Lena & Markus Hoffmann
+              - paragraph [ref=e33]: Familie, Niederbayern
+            - generic "5 von 5 Sternen" [ref=e34]:
+              - img [ref=e35]
+              - img [ref=e37]
+              - img [ref=e39]
+              - img [ref=e41]
+              - img [ref=e43]
+          - blockquote [ref=e45]:
+            - paragraph [ref=e46]: "Vom ersten Termin bis zur Übergabe: alles transparent, alles termintreu. Wir haben uns nie verkauft gefühlt — sondern beraten."
+        - listitem [ref=e47]:
+          - generic [ref=e48]:
+            - generic [ref=e49]: DA
+            - generic [ref=e50]:
+              - paragraph [ref=e51]: Dr. Annika Voss
+              - paragraph [ref=e52]: Architektin, Hamburg
+            - generic "5 von 5 Sternen" [ref=e53]:
+              - img [ref=e54]
+              - img [ref=e56]
+              - img [ref=e58]
+              - img [ref=e60]
+              - img [ref=e62]
+          - blockquote [ref=e64]:
+            - paragraph [ref=e65]: Selten so eine handwerklich saubere Vorfertigung gesehen. Die Toleranzen stimmen, das Material atmet — ein Haus, das altert wie eine gute Geige.
+        - listitem [ref=e66]:
+          - generic [ref=e67]:
+            - generic [ref=e68]: CR
+            - generic [ref=e69]:
+              - paragraph [ref=e70]: Christoph R.
+              - paragraph [ref=e71]: Bauherr, Schwarzwald
+            - generic "5 von 5 Sternen" [ref=e72]:
+              - img [ref=e73]
+              - img [ref=e75]
+              - img [ref=e77]
+              - img [ref=e79]
+              - img [ref=e81]
+          - blockquote [ref=e83]:
+            - paragraph [ref=e84]: Drei Tage Montage, vier Monate später Einzug. Festpreis hat gehalten, kein einziges Nachtragsangebot. Das spricht für sich.
+  - main [ref=e85]:
+    - separator "Abschnitt 02 LeadFormBand" [ref=e86]:
+      - generic [ref=e87]: "02"
+      - generic [ref=e88]: LeadFormBand
+  - region "Jetzt Angebot anfordern und Katalog erhalten." [ref=e91]:
+    - generic [ref=e92]:
+      - generic [ref=e93]:
+        - generic [ref=e94]:
+          - paragraph [ref=e95]: Beratung anfragen
+          - heading "Jetzt Angebot anfordern und Katalog erhalten." [level=2] [ref=e96]
+          - paragraph [ref=e97]: Wir sind für Sie da — stellen Sie uns Ihre Fragen oder fordern Sie Ihr persönliches Angebot an.
+          - paragraph [ref=e98]: Unverbindlich, ohne Verkaufsdruck. Antwort innerhalb eines Werktags von einem unserer Fachberater.
+        - list [ref=e99]:
+          - listitem [ref=e100]:
+            - img [ref=e101]
+            - link "+49 (0)971 78 55 57 15" [ref=e103] [cursor=pointer]:
+              - /url: tel:+49(0)97178555715
+          - listitem [ref=e104]:
+            - img [ref=e105]
+            - link "info@boholz-haus.de" [ref=e108] [cursor=pointer]:
+              - /url: mailto:info@boholz-haus.de
+          - listitem [ref=e109]:
+            - img [ref=e110]
+            - generic [ref=e113]: Bad Kissingen, Bayern · Werk & Showroom
+      - generic [ref=e114]:
+        - generic [ref=e115]:
+          - generic [ref=e116]: Name
+          - textbox "Name" [ref=e117]:
+            - /placeholder: Vor- und Nachname
+        - generic [ref=e118]:
+          - generic [ref=e119]:
+            - generic [ref=e120]: Telefonnummer
+            - textbox "Telefonnummer" [ref=e121]:
+              - /placeholder: +49 …
+          - generic [ref=e122]:
+            - generic [ref=e123]: E-Mail-Adresse
+            - textbox "E-Mail-Adresse" [ref=e124]:
+              - /placeholder: ihre@adresse.de
+        - generic [ref=e125]:
+          - generic [ref=e126]:
+            - generic [ref=e127]: PLZ / Ort
+            - textbox "PLZ / Ort" [ref=e128]:
+              - /placeholder: 12345 Musterstadt
+          - generic [ref=e129]:
+            - generic [ref=e130]: Interesse
+            - combobox "Interesse" [ref=e131]:
+              - option "Bitte wählen …" [disabled] [selected]
+              - option "Bungalow"
+              - option "Einfamilienhaus"
+              - option "Doppelhaus"
+              - option "Mehrfamilienhaus"
+              - option "Individuelle Planung"
+              - option "Noch unentschieden"
+        - generic [ref=e132]:
+          - generic [ref=e133]: Ihre Nachricht
+          - textbox "Ihre Nachricht" [ref=e134]:
+            - /placeholder: Erzählen Sie uns von Ihrem Projekt — wir melden uns innerhalb eines Werktags.
+        - generic [ref=e135] [cursor=pointer]:
+          - checkbox "Ich habe die Datenschutzerklärung gelesen und akzeptiere die Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage." [ref=e136]
+          - generic [ref=e137]:
+            - text: Ich habe die
+            - link "Datenschutzerklärung" [ref=e138]:
+              - /url: /datenschutz
+            - text: gelesen und akzeptiere die Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage.
+        - generic [ref=e139]:
+          - button "Anfrage senden" [ref=e140] [cursor=pointer]:
+            - generic [ref=e141]: Anfrage senden
+            - img [ref=e143]
+          - paragraph [ref=e145]: Wir antworten innerhalb eines Werktags. Keine automatischen Mailings — Sie sprechen mit einem Fachberater.
+  - main [ref=e146]:
+    - separator "Abschnitt 03 TrustStrip" [ref=e147]:
+      - generic [ref=e148]: "03"
+      - generic [ref=e149]: TrustStrip
+  - region "Auszeichnungen und Zertifikate" [ref=e151]:
+    - generic [ref=e152]:
+      - paragraph [ref=e153]: Geprüft, gefördert, zertifiziert
+      - list [ref=e154]:
+        - listitem [ref=e155]:
+          - img [ref=e156]
+          - generic [ref=e158]: Made in Germany
+        - listitem [ref=e159]:
+          - generic [ref=e160]: QNG
+          - generic [ref=e161]: Siegel
+        - listitem [ref=e162]:
+          - generic [ref=e163]: KfW 40
+          - generic [ref=e164]: Förderung
+        - listitem [ref=e165]:
+          - generic [ref=e166]: PEFC
+          - generic [ref=e167]: Holz
+        - listitem [ref=e168]:
+          - generic [ref=e169]: QDF
+          - generic [ref=e170]: Zertifiziert
+        - listitem [ref=e171]:
+          - generic [ref=e172]: DIN 1052
+          - generic [ref=e173]: Holzbau
+  - main [ref=e174]:
+    - paragraph [ref=e175]: Variante — transparent mit Haarlinien
+  - region "Auszeichnungen und Zertifikate" [ref=e176]:
+    - list [ref=e178]:
+      - listitem [ref=e179]:
+        - img [ref=e180]
+        - generic [ref=e182]: Made in Germany
+      - listitem [ref=e183]:
+        - generic [ref=e184]: QNG
+        - generic [ref=e185]: Siegel
+      - listitem [ref=e186]:
+        - generic [ref=e187]: KfW 40
+        - generic [ref=e188]: Förderung
+      - listitem [ref=e189]:
+        - generic [ref=e190]: PEFC
+        - generic [ref=e191]: Holz
+      - listitem [ref=e192]:
+        - generic [ref=e193]: QDF
+        - generic [ref=e194]: Zertifiziert
+      - listitem [ref=e195]:
+        - generic [ref=e196]: DIN 1052
+        - generic [ref=e197]: Holzbau
+  - main [ref=e198]:
+    - separator "Abschnitt 04 StatsBand · Stretch" [ref=e199]:
+      - generic [ref=e200]: "04"
+      - generic [ref=e201]: StatsBand · Stretch
+  - region "Vier Generationen Handwerk — messbar gemacht." [ref=e203]:
+    - generic [ref=e204]:
+      - generic [ref=e205]:
+        - generic [ref=e206]:
+          - paragraph [ref=e207]: In Zahlen
+          - heading "Vier Generationen Handwerk — messbar gemacht." [level=2] [ref=e208]
+        - paragraph [ref=e209]: Wir bauen seit 1934. Diese Zahlen erzählen, warum unsere Häuser auch noch in vierzig Jahren stehen — und welche Bilanz sie für ihre Bewohner ziehen.
+      - list [ref=e210]:
+        - listitem [ref=e211]:
+          - article [ref=e213]:
+            - img [ref=e214]
+            - paragraph [ref=e217]: "90"
+            - paragraph [ref=e218]: Jahre Erfahrung
+            - paragraph [ref=e219]: Vierte Generation im Familienbesitz.
+        - listitem [ref=e220]:
+          - article [ref=e222]:
+            - img [ref=e223]
+            - paragraph [ref=e226]: 30 t
+            - paragraph [ref=e227]: CO₂ je Haus
+            - paragraph [ref=e228]: Gespeichert über den gesamten Lebenszyklus.
+        - listitem [ref=e229]:
+          - article [ref=e231]:
+            - img [ref=e232]
+            - paragraph [ref=e236]: 1–3
+            - paragraph [ref=e237]: Tage Montage
+            - paragraph [ref=e238]: Vom Bodenplattenanschluss bis zum Richtfest.
+        - listitem [ref=e239]:
+          - article [ref=e241]:
+            - img [ref=e242]
+            - paragraph [ref=e244]: 100 %
+            - paragraph [ref=e245]: Festpreisgarantie
+            - paragraph [ref=e246]: Schwarz auf weiß. Kein Nachtrag-Roulette.
+  - main [ref=e247]:
+    - separator "Abschnitt 05 AnchorCTAStrip" [ref=e248]:
+      - generic [ref=e249]: "05"
+      - generic [ref=e250]: AnchorCTAStrip
+  - complementary "Bereit für Ihr" [ref=e252]:
+    - generic [ref=e253]:
+      - generic [ref=e254]:
+        - heading "Bereit für Ihr Traumhaus?" [level=2] [ref=e255]
+        - paragraph [ref=e256]: Unverbindliches Beratungsgespräch — wir hören erstmal zu.
+      - generic [ref=e257]:
+        - link "Jetzt Angebot anfordern" [ref=e259] [cursor=pointer]:
+          - /url: /kontakt
+          - generic [ref=e260]: Jetzt Angebot anfordern
+        - link "Katalog erhalten" [ref=e262] [cursor=pointer]:
+          - /url: /katalog
+          - generic [ref=e263]: Katalog erhalten
+  - main [ref=e264]:
+    - paragraph [ref=e265]: Variante — graphite
+  - complementary "Lieber persönlich?" [ref=e266]:
+    - generic [ref=e267]:
+      - generic [ref=e268]:
+        - heading "Lieber persönlich?" [level=2] [ref=e269]
+        - paragraph [ref=e270]: Besuchen Sie eines unserer Musterhäuser — ohne Termin, ohne Verkaufsdruck.
+      - generic [ref=e271]:
+        - link "Musterhäuser ansehen" [ref=e273] [cursor=pointer]:
+          - /url: /musterhaus
+          - generic [ref=e274]: Musterhäuser ansehen
+        - link "Vor-Ort-Beratung" [ref=e276] [cursor=pointer]:
+          - /url: /vor-ort-beratung
+          - generic [ref=e277]: Vor-Ort-Beratung
+  - main [ref=e278]:
+    - paragraph [ref=e279]: Variante — stone
+  - complementary "Holz hört nie auf" [ref=e280]:
+    - generic [ref=e281]:
+      - generic [ref=e282]:
+        - heading "Holz hört nie auf zu lernen." [level=2] [ref=e283]
+        - paragraph [ref=e284]: Erhalten Sie unseren Werkbrief — vier Mal im Jahr, kein Spam.
+      - link "Werkbrief abonnieren" [ref=e287] [cursor=pointer]:
+        - /url: /newsletter
+        - generic [ref=e288]: Werkbrief abonnieren
+  - generic [ref=e292]:
+    - button "Menu" [ref=e293]:
+      - img [ref=e295]
+      - generic: Menu
+    - button "Inspect" [ref=e299]:
+      - img [ref=e301]
+      - generic: Inspect
+    - button "Audit" [ref=e303]:
+      - img [ref=e305]
+      - generic: Audit
+    - button "Settings" [ref=e308]:
+      - img [ref=e310]
+      - generic: Settings

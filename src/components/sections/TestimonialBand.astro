@@ -1,0 +1,361 @@
+---
+import { Star } from "lucide-vue-next";
+
+export interface Testimonial {
+  /** Display name. */
+  name: string;
+  /** Short role / location, e.g. "Familie, Bayern". */
+  role?: string;
+  /** Optional avatar URL. If omitted, initials are rendered in a muted disc. */
+  avatar?: string;
+  /** 1–5 — defaults to 5. */
+  rating?: number;
+  /** One- or two-line quote. Keep it under ~180 chars. */
+  quote: string;
+}
+
+export interface CredentialBadge {
+  /** Short wordmark text — e.g. "MADE IN GERMANY". */
+  label: string;
+  /** Optional sub-label, rendered inline in muted weight — e.g. "KfW · Förderung". */
+  sub?: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  /** Optional italic-serif highlight appended to the heading. */
+  highlight?: string;
+  /** Optional lede / supporting copy under the heading. */
+  lede?: string;
+  /** Surface tone — defaults to deep olive. */
+  tone?: "olive" | "graphite" | "stone";
+  badges?: CredentialBadge[];
+  testimonials: Testimonial[];
+}
+
+const {
+  eyebrow,
+  heading,
+  highlight,
+  lede,
+  tone = "olive",
+  badges = [],
+  testimonials,
+} = Astro.props;
+
+function initials(name: string): string {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((p) => p[0]?.toUpperCase() ?? "")
+    .join("");
+}
+---
+
+<section class="band full-width" data-tone={tone} aria-labelledby="testimonial-heading">
+  <div class="inner">
+    <header class="head">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h2 id="testimonial-heading" class="heading">
+        {heading}
+        {highlight && <span class="highlight"> {highlight}</span>}
+      </h2>
+      {lede && <p class="lede">{lede}</p>}
+
+      {badges.length > 0 && (
+        <ul class="badges" role="list">
+          {badges.map((b) => (
+            <li class="badge">
+              <span class="badge-label">{b.label}</span>
+              {b.sub && <span class="badge-sub">{b.sub}</span>}
+            </li>
+          ))}
+        </ul>
+      )}
+    </header>
+
+    <ul class="cards" role="list">
+      {testimonials.map((t) => {
+        const r = t.rating ?? 5;
+        return (
+          <li class="card">
+            <div class="who">
+              {t.avatar ? (
+                <img class="avatar" src={t.avatar} alt="" loading="lazy" />
+              ) : (
+                <span class="avatar avatar-fallback" aria-hidden="true">
+                  {initials(t.name)}
+                </span>
+              )}
+              <div class="who-text">
+                <p class="name">{t.name}</p>
+                {t.role && <p class="role">{t.role}</p>}
+              </div>
+              <div class="stars" aria-label={`${r} von 5 Sternen`}>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    size={13}
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                    class:list={["star", i < r ? "on" : "off"]}
+                  />
+                ))}
+              </div>
+            </div>
+            <blockquote class="quote">
+              <p>{t.quote}</p>
+            </blockquote>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>
+
+<style>
+  /* Full-bleed tinted band. Goes edge-to-edge inside .wrapper via .full-width.
+     Repads internally to the wrapper inline padding and centres up to the
+     content max-width. Mirrors Section.astro[data-tone="secondary"] convention. */
+  .band {
+    padding-block: var(--spacing-6);
+    padding-inline: var(--padding-inline);
+    color: var(--clr-pure-white);
+  }
+
+  .band[data-tone="olive"] {
+    background: var(--pastell-oliv-alt);
+  }
+  .band[data-tone="graphite"] {
+    background: var(--cold-gray-200);
+  }
+  .band[data-tone="stone"] {
+    background: var(--dark-stone);
+  }
+
+  .inner {
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5);
+  }
+
+  /* ── Head ─────────────────────────────────────────── */
+  .head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-2);
+    max-width: 64ch;
+    margin-inline: auto;
+  }
+
+  .eyebrow {
+    margin: 0 0 calc(var(--spacing-3) - var(--spacing-2)) 0;
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--clr-pure-white-soft);
+  }
+
+  .heading {
+    margin: 0;
+    font-size: var(--fs-h3);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: var(--ls-heading);
+    line-height: var(--lh-heading);
+    color: var(--clr-pure-white);
+    text-wrap: balance;
+  }
+
+  .highlight {
+    font-family: var(--font-secondary);
+    font-style: italic;
+  }
+
+  .lede {
+    margin: 0;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--clr-pure-white-soft);
+    max-width: 52ch;
+  }
+
+  /* ── Credential badges row ───────────────────────── */
+  .badges {
+    list-style: none;
+    margin: var(--spacing-2) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-1) var(--spacing-3);
+  }
+
+  /* Subtle hairline divider between badges on wider screens — only when
+     two or more sit side-by-side. Uses ::before so we don't render an
+     extra DOM node per item. */
+  .badge {
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--spacing-1);
+    font-size: var(--fs-body-sm);
+    line-height: 1.2;
+    padding-inline-end: var(--spacing-3);
+  }
+  .badge:last-child {
+    padding-inline-end: 0;
+  }
+  .badge:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    inset-block: 15%;
+    inset-inline-end: 0;
+    width: 1px;
+    background: color-mix(in srgb, var(--clr-pure-white) 24%, transparent);
+  }
+
+  .badge-label {
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-pure-white);
+  }
+  .badge-sub {
+    color: var(--clr-pure-white-soft);
+    font-weight: var(--font-weight-light);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── Cards grid ──────────────────────────────────── */
+  .cards {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+  }
+  @media (--from-tablet) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (--from-desktop) {
+    .cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Card surface — translucent white on the tinted band. Hairline border in
+     pure-white at low opacity so it whispers rather than shouts. Inner radius
+     (radius-md) nests cleanly inside the section's tone block. */
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    padding: var(--spacing-4);
+    background: color-mix(in srgb, var(--clr-pure-white) 6%, transparent);
+    border: 1px solid color-mix(in srgb, var(--clr-pure-white) 14%, transparent);
+    border-radius: var(--radius-md);
+    backdrop-filter: blur(8px);
+  }
+
+  .who {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    column-gap: var(--spacing-2);
+  }
+
+  .avatar {
+    width: calc(var(--spacing-unit) * 10);
+    height: calc(var(--spacing-unit) * 10);
+    border-radius: var(--radius-full);
+    object-fit: cover;
+    background: color-mix(in srgb, var(--clr-pure-white) 14%, transparent);
+  }
+
+  .avatar-fallback {
+    display: inline-grid;
+    place-items: center;
+    color: var(--clr-pure-white);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.02em;
+  }
+
+  .who-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .name {
+    margin: 0;
+    font-size: var(--fs-body);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-pure-white);
+    line-height: 1.2;
+  }
+  .role {
+    margin: 0;
+    font-size: var(--fs-body-sm);
+    color: var(--clr-pure-white-soft);
+    line-height: 1.2;
+  }
+
+  .stars {
+    display: inline-flex;
+    gap: 2px;
+    align-items: center;
+  }
+  /* Filled stars inherit the warm stone tone — a craft-house cue rather
+     than the standard yellow. Off-stars sit at low opacity. */
+  .stars :global(.star.on) {
+    color: var(--light-stone);
+    fill: var(--light-stone);
+  }
+  .stars :global(.star.off) {
+    color: color-mix(in srgb, var(--clr-pure-white) 35%, transparent);
+  }
+
+  .quote {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+  .quote p {
+    margin: 0;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--clr-pure-white-soft);
+    text-wrap: pretty;
+  }
+
+  /* Mobile compression — keep the band breathing but pull padding in. */
+  @media (--mobile) {
+    .band {
+      padding-block: var(--spacing-5);
+    }
+    .heading {
+      font-size: var(--fs-h4);
+    }
+    .badges {
+      flex-direction: column;
+      gap: var(--spacing-1);
+    }
+    .badge {
+      padding-inline-end: 0;
+    }
+    .badge:not(:last-child)::after {
+      content: none;
+    }
+  }
+</style>

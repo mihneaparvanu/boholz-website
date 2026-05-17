@@ -20,11 +20,11 @@ export const homeSections = {
     id: "katalog",
     eyebrow: "Katalog",
     navLabel: "Katalog",
-    heading1: "Fertighäuser in Zimmermannsqualität",
-    heading2: "für Menschen mit",
-    highlight: "Anspruch.",
+    heading1: "Ihr Zuhause,",
+    heading2: "präzise gedacht.",
+    highlight: "Modell wählen.",
     subheading:
-      "Unsere barrierefreien Fertighäuser aus Holz vereinen höchste Energieeffizienz mit meisterhaftem Handwerk. So sparen Sie Energiekosten und gewinnen wertvolle Lebensqualität für die ganze Familie.",
+      "Vom Bungalow bis zur Stadtvilla — barrierefreie Fertighäuser aus Holz, gebaut mit Zimmermannskunst und höchster Energieeffizienz.",
   },
   trust: {
     id: "vertrauen",

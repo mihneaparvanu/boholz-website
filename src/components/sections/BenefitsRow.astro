@@ -1,0 +1,127 @@
+---
+/**
+ * BenefitsRow — 4-up row of brand benefits ("Ihre Vorteile auf einen Blick").
+ * Each card carries a Lucide icon, short title, one-line body, and a
+ * restrained pastel-tint background drawn from the brand palette.
+ *
+ * The old marketing page used the same four pastels at full saturation —
+ * which read like 2010 brochure. Here the tints are diluted with the page
+ * surface via color-mix() so each card is *suggestive* of its hue rather
+ * than declaring it. Hairline border on top, no shadow.
+ *
+ * Breakpoints: 1-up < 500 → 2x2 tablet → 4-up desktop.
+ */
+import { getIcon, type IconName } from "@/utils/icons";
+
+export type BenefitTone = "bg" | "petrol" | "grun" | "oliv";
+
+export interface Benefit {
+  icon: IconName;
+  title: string;
+  body: string;
+  /** Pastel tint key — maps to a token. */
+  tone: BenefitTone;
+}
+
+interface Props {
+  items: Benefit[];
+}
+
+const { items } = Astro.props as Props;
+---
+
+<ul class="row" role="list">
+  {
+    items.map((b: Benefit) => {
+      const Icon = getIcon(b.icon);
+      return (
+        <li class="card" data-tone={b.tone}>
+          <span class="icon" aria-hidden="true">
+            <Icon size={20} strokeWidth={1.75} />
+          </span>
+          <h3 class="title">{b.title}</h3>
+          <p class="body">{b.body}</p>
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style>
+  .row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+  }
+
+  @media (--from-tablet) {
+    .row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--spacing-3);
+    }
+  }
+
+  @media (--from-desktop) {
+    .row {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .card {
+    /* Asymmetric padding-block: more top than bottom so the icon visually
+       sits in its own air, and the title→body block hangs from above. */
+    padding: var(--spacing-4) var(--spacing-3) var(--spacing-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    border-radius: var(--radius-lg);
+    /* Pastel base, diluted with the page surface so cards stay quiet.
+       30% pastel + 70% surface keeps the tone visible without shouting. */
+    background: color-mix(in srgb, var(--card-tint) 22%, var(--clr-surface-primary));
+    border: 1px solid color-mix(in srgb, var(--card-tint) 42%, transparent);
+    min-width: 0;
+    /* For a long card title that wraps to 2 lines, keep the row aligned. */
+    height: 100%;
+  }
+
+  .card[data-tone="bg"]      { --card-tint: var(--pastell-bg); }
+  .card[data-tone="petrol"]  { --card-tint: var(--pastell-petrol); }
+  .card[data-tone="grun"]    { --card-tint: var(--pastell-grün); }
+  .card[data-tone="oliv"]    { --card-tint: var(--pastell-oliv); }
+
+  .icon {
+    /* Inner radius (md) = outer (lg) – padding step. */
+    width: var(--control-height-md);
+    height: var(--control-height-md);
+    display: inline-grid;
+    place-items: center;
+    border-radius: var(--radius-md);
+    /* Slightly stronger fill than the card so the glyph reads as the
+       card's "accent moment" without using --clr-accent (saved for the
+       page's true single primary action). */
+    background: color-mix(in srgb, var(--card-tint) 55%, var(--clr-surface-primary));
+    color: var(--clr-content-primary);
+    margin-block-end: var(--spacing-1);
+  }
+
+  .title {
+    margin: 0;
+    font-size: var(--fs-h6);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-heading);
+    color: var(--clr-content-primary);
+  }
+
+  .body {
+    margin: 0;
+    font-size: var(--fs-body-sm);
+    line-height: var(--lh-body);
+    color: var(--clr-content-secondary);
+    max-width: 28ch;
+  }
+</style>

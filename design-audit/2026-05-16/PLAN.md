@@ -1223,3 +1223,114 @@ is grounded in the source (every component, every content file, every breakpoint
 more authoritative than a render. When the DB is reachable locally, the kit stream should
 re-shoot under `screenshots/homepage-mobile/` per the plan in
 [`HOMEPAGE-MOBILE-ANALYSIS.md` §8](./HOMEPAGE-MOBILE-ANALYSIS.md#8--what-i-would-screenshot-if-i-could).
+
+---
+
+# Phase 2 — Section Catalog & Design-System Hardening (2026-05-17)
+
+**Status:** delivered. `bun x astro check` → 0 errors / 0 warnings / 0 hints.
+
+Before assembling the three landing pages from `old-design/`, we commissioned a catalogue of
+reusable section primitives so each page becomes a composition rather than a one-off render.
+Four `ui-designer-savant` agents ran in parallel, each owning a section pack; each previewed
+its work in a dedicated sandbox page. The handed-off `ZigZag.vue` was polished in-place
+(API back-compat preserved).
+
+## 2.1 — Sections delivered (19 new + 1 polished)
+
+All live under `src/components/sections/`. Sandbox preview pages at `src/pages/sandbox/`.
+
+| Pack | Files | Preview |
+| --- | --- | --- |
+| **A — Visual heroes & showcase** | `HeroSplit.astro`, `HeroOverlayCard.astro`, `ImageBand.astro`, `AsymmetricShowcase.astro`, `WindowGrid.vue` *(stretch — IO-triggered slow zoom)* | `/sandbox/sections-showcase` |
+| **B — Content blocks** | `BenefitsRow.astro`, `FeatureSpotlight.astro`, `AudienceBlock.astro`, `PrinciplesGrid.astro` *(stretch)* + `ZigZag.vue` polish | `/sandbox/sections-content` |
+| **C — Social proof & CTA** | `TestimonialBand.astro`, `LeadFormBand.vue`, `AnchorCTAStrip.astro`, `TrustStrip.astro`, `StatsBand.astro` *(stretch)* | `/sandbox/sections-conversion` |
+| **D — Catalog & models** | `HouseModelsGrid.astro` (+ `HouseModelCard.vue` shared), `HouseModelsCarousel.vue`, `ComparisonStrip.astro`, `FilterStrip.vue` *(stretch — category/size/budget rail)* | `/sandbox/sections-catalog` |
+
+### `ZigZag.vue` polish (API-compatible)
+
+Existing slots (`copy`, `actions`, `media`) preserved. New optional props:
+
+- `eyebrow` / `heading` slots — keep the heading shape with the copy column
+- `split: "tablet" | "desktop"` — when to flip from stack to 2-col (default `"desktop"` matches old behaviour)
+- `gap: "default" | "wide"` — editorial spacing on wide viewports
+- `dense: boolean` — tighter vertical rhythm for stacks of ZigZags
+- `mobileMediaFirst: boolean` — invert stacking on mobile
+
+## 2.2 — Design-system additions
+
+Three independent agents surfaced the same gaps (shadow / scrim / `Section.astro` align /
+`--wrapper-edge`). All four landed before any landing-page assembly so the new sections
+stop inlining workarounds.
+
+### Tokens added to `src/style/design-system.css`
+
+```
+--shadow-1                soft layered lift, for hover-floats / cards-on-hover
+--shadow-2                same first stop + larger blur, for popovers/dropdowns
+--focus-ring              `0 0 0 3px color-mix(accent-primary, 28%)` — compose
+                          via `box-shadow: var(--focus-ring);`
+--scrim-bottom            soft transparent → 50% dark at bottom (desktop heroes)
+--scrim-bottom-strong     20% top → 55% bottom (mobile heroes — full readability floor)
+--scrim-left              dark left → transparent right (panoramic bands)
+```
+
+Color follows `--clr-content-primary` via `color-mix` so the same shadow tokens read
+correctly when surfaces invert.
+
+### Alias added to `src/style/wrapper.css`
+
+```
+--wrapper-edge: var(--padding-inline);   /* clearer-named alias for the
+                                            "wrapper content edge" inside
+                                            `.full-width` sections */
+```
+
+### `Section.astro` — `align` prop
+
+```ts
+align?: "start" | "center"   // default "center" (back-compat)
+```
+
+`align="start"` left-aligns the `eyebrow + heading + lede` group so editorial sections can
+sit above asymmetric grids without being recentred. ProofSection (now embedded by the
+parent in every `.inner`) keeps its own centring.
+
+### Retrofits applied
+
+- `HeroOverlayCard.astro` — scrim (mobile + tablet+), spec-card hover shadow, focus ring → tokens
+- `ImageBand.astro` — left-weighted scrim → token
+- `FilterStrip.vue` — 3× focus ring + popover shadow → tokens
+
+## 2.3 — Followups for landing-page assembly
+
+1. **Retrofit `HeroSplit.astro`, `AsymmetricShowcase.astro`, `TestimonialBand.astro`** when
+   touched next — they don't currently inline shadow/scrim but new state may.
+2. **Sandbox image stability** — Unsplash CDN cold-cache leaves a couple of cards grey on
+   first render. Consider committing a small set of architecture stills under
+   `public/sandbox/` for deterministic screenshots.
+3. **`HouseModelCard.vue` → DB adapter** (Pack D notes): the card prop shape
+   (`slug`, `name`, `code`, `image`, `imageAlt`, `specs[]`, `priceHint?`) maps cleanly to
+   `houseModels` + `model_media`. `code` either needs a new `houseModels.modelCode` column
+   or a derived value from `category + slug`. `specs` is a small view-model adapter under
+   `src/features/Catalog/` — no loader changes needed.
+
+## 2.4 — Page assembly preview (what the three landing pages become)
+
+Page 1 — **Übersicht** (`old-design/Page 1 - Ubersicht.jpg`):
+`PageHero` → `BenefitsRow` → `HouseModelsGrid` → `ImageBand` → `AudienceBlock` →
+`ZigZag` (`KfW-Förderung`) → `TestimonialBand` → `FAQAccordion` → `LeadFormBand` → `AnchorCTAStrip`.
+
+Page 2 — **Kampagne Mehrfamilien**:
+`HeroSplit` (left copy, family photo right) → `BenefitsRow` (4 family-focused benefits)
+→ `HouseModelsGrid` (filtered to multi-family) → `ImageBand` → `FeatureSpotlight`
+("Mehr Raum, mehr Möglichkeiten") → `FAQAccordion` → `LeadFormBand` → `AnchorCTAStrip`.
+
+Page 3 — **Kampagne Bungalow**:
+`HeroSplit` (bungalow exterior right) → `BenefitsRow` (barrier-free benefits)
+→ `HouseModelsGrid` (filtered to bungalows) → `ImageBand` → `FeatureSpotlight` (smart-home
+trio) → `FAQAccordion` → `LeadFormBand` → `AnchorCTAStrip`.
+
+Each page is ~90% composition of the catalog + per-page content. The custom work shrinks
+to copy + photo selection + nav slug.
+

@@ -20,7 +20,7 @@ export const buildingStages: BuildingStage[] = [
   },
   {
     slug: "fast-fertig",
-    title: "Fast Fertig",
+    title: "Fast fertig",
     description:
       "Nahezu bezugsfertig – nur die letzten Feinheiten wie Bodenbeläge und Wandgestaltung bleiben Ihnen überlassen. Eine ausgewogene Balance aus Eigenleistung und Komfort.",
     imageURL: `${baseMediaURL}/nearly-complete.webp`,

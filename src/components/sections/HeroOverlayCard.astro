@@ -1,0 +1,313 @@
+---
+import { ArrowRight } from "lucide-vue-next";
+
+/**
+ * HeroOverlayCard — full-bleed photographic hero with an optional
+ * floating "spec card" pinned bottom-right. Used when the brief needs
+ * a photo to do the lifting and a single model needs to be surfaced
+ * (think the Danwood "Vorgeplante Wohnraumgestaltung / Alpha 162.1"
+ * reference).
+ *
+ * On mobile the spec card detaches from the photo and stacks below —
+ * overlapping a 375px-wide photo crops the card unreadably and breaks
+ * the headline's whitespace.
+ */
+
+interface SpecCard {
+  /** Small thumbnail image of the model. */
+  image: string;
+  imageAlt: string;
+  /** Model name — large label. */
+  name: string;
+  /** Smaller subtitle (model code, category, etc.). */
+  meta: string;
+  /** Where the card links to. */
+  href: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  /** Italic-serif accent appended to the heading. */
+  highlight?: string;
+  lede?: string;
+  image: string;
+  imageAlt: string;
+  /** Optional pinned spec-card in the bottom-right corner. */
+  spec?: SpecCard;
+}
+
+const { eyebrow, heading, highlight, lede, image, imageAlt, spec } =
+  Astro.props;
+---
+
+<section class="hero full-width" data-has-spec={Boolean(spec)}>
+  <div class="bg">
+    <img src={image} alt={imageAlt} loading="eager" decoding="async" />
+    <div class="scrim" aria-hidden="true"></div>
+  </div>
+
+  <div class="layout">
+    <div class="copy">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1 class="head">
+        {heading}
+        {highlight && <span class="highlight"> {highlight}</span>}
+      </h1>
+      {lede && <p class="lede">{lede}</p>}
+      {
+        Astro.slots.has("actions") && (
+          <div class="actions">
+            <slot name="actions" />
+          </div>
+        )
+      }
+    </div>
+
+    {
+      spec && (
+        <a class="spec" href={spec.href} aria-label={`${spec.name} — ${spec.meta}`}>
+          <div class="spec-thumb">
+            <img src={spec.image} alt={spec.imageAlt} loading="lazy" decoding="async" />
+          </div>
+          <div class="spec-text">
+            <span class="spec-name">{spec.name}</span>
+            <span class="spec-meta">{spec.meta}</span>
+          </div>
+          <span class="spec-arrow" aria-hidden="true">
+            <ArrowRight size={16} strokeWidth={1.75} />
+          </span>
+        </a>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    color: var(--clr-pure-white);
+    min-height: clamp(440px, 64vh, 720px);
+    display: flex;
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+
+  .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .scrim {
+    position: absolute;
+    inset: 0;
+    /* Mobile: the headline + spec card cover a large share of the photo
+       at 375px, so we need a flat readability floor (--scrim-bottom-strong:
+       tint at top + heavier bottom). Tablet+ relaxes to --scrim-bottom
+       because the copy retreats to the lower-left quadrant only. */
+    background: var(--scrim-bottom-strong);
+  }
+
+  @media (--from-tablet) {
+    .scrim {
+      background: var(--scrim-bottom);
+    }
+  }
+
+  /* Mobile: copy at bottom, then spec card stacked beneath (outside the
+     photographic area) so neither competes for the same 360px of width. */
+  .layout {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-self: flex-end;
+  }
+
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    padding-inline: var(--padding-inline);
+    padding-block-end: var(--spacing-5);
+    padding-block-start: var(--spacing-6);
+    max-width: 56ch;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-pure-white-soft);
+    margin: 0;
+  }
+
+  .head {
+    margin: 0;
+    font-weight: var(--font-weight-light);
+    letter-spacing: var(--ls-heading);
+    line-height: var(--lh-heading);
+    color: var(--clr-pure-white);
+  }
+
+  .highlight {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+  }
+
+  .lede {
+    margin: 0;
+    font-size: var(--fs-body-lg);
+    color: var(--clr-pure-white-soft);
+    max-width: 52ch;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    margin-block-start: var(--spacing-2);
+  }
+
+  /* Spec card — translucent surface that reads on light or dark photos.
+     A real card would steal too much weight; this one floats. */
+  .spec {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    /* Sit just under the photo on mobile, repad to wrapper. */
+    margin-block-start: var(--spacing-3);
+    margin-inline: var(--padding-inline);
+    margin-block-end: var(--spacing-4);
+    padding: var(--spacing-2);
+    /* Outer radius — spacing-2 padding ⇒ inner radius is xl - 2 step → lg. */
+    border-radius: var(--radius-xl);
+    background: var(--clr-pure-white);
+    color: var(--clr-content-primary);
+    border: 1px solid var(--clr-border-secondary);
+    text-decoration: none;
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease;
+    /* Cap the card width so a long model name doesn't pull it edge-to-edge. */
+    max-width: 22rem;
+  }
+
+  .spec:hover {
+    opacity: 1; /* override reset's `a:hover { opacity: 0.7 }` — we have our own affordance */
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-1);
+  }
+
+  .spec:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+  }
+
+  .spec-thumb {
+    flex-shrink: 0;
+    width: var(--spacing-5);
+    height: var(--spacing-5);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--clr-surface-secondary);
+  }
+
+  .spec-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .spec-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    /* Tightens the row a touch so the arrow doesn't drift far right. */
+    padding-inline-end: var(--spacing-1);
+  }
+
+  .spec-name {
+    font-size: var(--fs-body);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-primary);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .spec-meta {
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-secondary);
+    line-height: 1.2;
+  }
+
+  .spec-arrow {
+    flex-shrink: 0;
+    display: inline-grid;
+    place-items: center;
+    width: var(--control-height-sm);
+    height: var(--control-height-sm);
+    border-radius: var(--radius-full);
+    color: var(--clr-content-secondary);
+    border: 1px solid var(--clr-border-secondary);
+    transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+  }
+
+  .spec:hover .spec-arrow {
+    color: var(--clr-pure-white);
+    background: var(--clr-content-primary);
+    border-color: var(--clr-content-primary);
+  }
+
+  /* Tablet+: pin spec card to bottom-right inside the photo, and let
+     copy + spec coexist on the same row anchored to the bottom. */
+  @media (--from-tablet) {
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: var(--spacing-4);
+      padding-inline: var(--padding-inline);
+      padding-block-end: var(--spacing-5);
+      padding-block-start: var(--spacing-6);
+    }
+
+    .copy {
+      padding: 0;
+      max-width: 64ch;
+    }
+
+    .spec {
+      margin: 0;
+      align-self: end;
+      /* Slight translucency so the card sits *on* the photo without
+         pretending to be an opaque postcard. */
+      background: color-mix(in srgb, var(--clr-pure-white) 92%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  }
+
+  @media (--from-desktop) {
+    .hero {
+      min-height: clamp(560px, 72vh, 820px);
+    }
+
+    .layout {
+      padding-block-end: var(--spacing-6);
+    }
+  }
+</style>

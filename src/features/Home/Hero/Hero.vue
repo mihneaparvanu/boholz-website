@@ -31,45 +31,19 @@ const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
   <section class="hero subgrid">
     <div class="layout">
       <div class="heading">
-        <h1>Einfach einkommen.</h1>
-        <h2>Ihr Zuhause, meisterhaft vollendet.</h2>
+        <h1>Fertighäuser in Zimmermannsqualität. Für Generationen.</h1>
+        <p>
+          Unsere barrierefreien Fertighäuser aus Holz vereinen höchste
+          Energieeffizienz mit meisterhaftem Handwerk. So sparen Sie
+          Energiekosten und gewinnen wertvolle Lebensqualität für die ganze
+          Familie.
+        </p>
       </div>
-      <div class="bottom">
-        <div class="proof">
-          <span>Bewährte Spitzenqualität</span>
-          <div class="badges" aria-label="Qualitätssiegel">
-            <svg class="badge" aria-hidden="true">
-              <use href="#badge-iso" />
-            </svg>
-            <svg class="badge" aria-hidden="true">
-              <use href="#badge-bdf" />
-            </svg>
-            <svg class="badge" aria-hidden="true">
-              <use href="#badge-gdf" />
-            </svg>
-            <svg class="badge" aria-hidden="true">
-              <use href="#badge-qdf" />
-            </svg>
-            <svg class="badge" aria-hidden="true">
-              <use href="#badge-gdf-shield" />
-            </svg>
-            <svg class="badge" aria-hidden="true">
-              <use href="#badge-ral" />
-            </svg>
-          </div>
-        </div>
-        <div class="action">
-          <Button :href="ROUTES.house(slide.slug)">
-            {{ slide.title }}
-            <template #trailing> <ArrowRight /> </template>
-          </Button>
-          <ChevronDown
-            class="scroll-cue"
-            :size="16"
-            :stroke-width="2"
-            aria-hidden="true"
-          />
-        </div>
+      <div class="action">
+        <Button :href="ROUTES.house(slide.slug)">
+          {{ slide.title }}
+          <template #trailing> <ArrowRight /> </template>
+        </Button>
       </div>
     </div>
     <Transition name="crossfade">
@@ -83,19 +57,43 @@ const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
         class="background full-width"
       />
     </Transition>
+    <div class="tint-overlay full-width"></div>
   </section>
 </template>
 
 <style scoped>
 .hero {
   position: relative;
-  height: 100dvh;
+  height: 75dvh;
   /* Pull the hero up under the sticky navbar; the absolute background
      image fills the whole box (incl. behind the navbar), while padding-top
      keeps the headline + CTA below the bar. */
   margin-top: calc(-1 * var(--navbar-height));
   padding-top: var(--navbar-height);
   color: var(--clr-pure-white);
+
+  @media (--from-desktop) {
+    height: 100dvh;
+  }
+}
+
+.tint-overlay {
+  position: absolute;
+  bottom: 0;
+  height: 40%;
+  left: 0;
+  right: 0;
+  z-index: -1;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 10%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  @media (--from-desktop) {
+    height: 15%;
+  }
 }
 
 .layout {
@@ -104,6 +102,7 @@ const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
   justify-content: end;
   align-items: start;
   height: 100%;
+  gap: var(--spacing-4);
   padding-block-end: var(--spacing-5);
 }
 
@@ -111,9 +110,18 @@ const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-2);
+  width: 100%;
 
-  h2 {
-    font-size: var(--fs-h4);
+  h1 {
+    font-size: var(--fs-h2);
+    font-weight: var(--font-weight-medium);
+  }
+
+  p {
+    font-size: var(--fs-body-lg);
+    font-weight: var(--font-weight-regular);
+    color: var(--clr-surface-secondary);
+    opacity: 0.9;
   }
 }
 
@@ -141,97 +149,19 @@ const heroImgName = computed(() => `hero-img-${slide.value.slug}`);
   position: absolute;
 }
 
-.bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
+.action {
   width: 100%;
-
-  .proof {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-2);
-
-    span {
-      text-transform: uppercase;
-      font-size: var(--fs-small, 0.75rem);
-      letter-spacing: 0.08em;
-      opacity: 0.85;
-    }
+  &:deep(.btn) {
+    width: 100%;
   }
-
-  .badges {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-3);
-    color: currentColor;
-  }
-
-  .badge {
-    height: 28px;
-    width: auto;
-    aspect-ratio: var(--badge-aspect, auto);
-    color: inherit;
-    fill: currentColor;
-  }
-  .badge :where(use, path) {
-    fill: currentColor;
-  }
-
-  /* per-symbol aspect ratios so the SVG reserves the right horizontal slot */
-  .badge:nth-child(1) {
-    aspect-ratio: 34.7 / 31.7;
-  } /* iso       */
-  .badge:nth-child(2) {
-    aspect-ratio: 29.4 / 31.7;
-  } /* bdf       */
-  .badge:nth-child(3) {
-    aspect-ratio: 43.9 / 31.7;
-  } /* gdf       */
-  .badge:nth-child(4) {
-    aspect-ratio: 29.1 / 31.7;
-  } /* qdf       */
-  .badge:nth-child(5) {
-    aspect-ratio: 23.9 / 31.7;
-  } /* gdf-shield*/
-  .badge:nth-child(6) {
-    aspect-ratio: 44.85 / 31.7;
-  } /* ral       */
-
-  .action {
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    gap: var(--spacing-2);
-  }
-
-  .action button {
-    height: var(--control-height-md);
-    padding-inline: var(--spacing-3);
-    background-color: var(--clr-surface-primary);
-    color: var(--clr-accent-secondary);
-    border-radius: var(--radius-sm);
-    font-weight: 500;
-    transition:
-      background 160ms ease,
-      transform 160ms ease;
-  }
-
-  .action button:hover {
-    background-color: var(--clr-surface-secondary);
-  }
-
-  /* Scroll-cue under the CTA — quiet, sub-CTA tier, hints at depth below
-     the 100dvh photographic hero. */
-  .scroll-cue {
-    color: var(--clr-pure-white);
-    opacity: 0.7;
-    animation: scroll-cue-bounce 2400ms ease-in-out infinite;
+  @media (--from-desktop) {
+    justify-content: start;
   }
 }
 
 @keyframes scroll-cue-bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
     opacity: 0.7;
   }

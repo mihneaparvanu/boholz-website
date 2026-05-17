@@ -66,7 +66,21 @@ import {
   X,
   Zap,
 } from "lucide-vue-next";
-import type { FunctionalComponent } from "vue";
+import type { FunctionalComponent, SVGAttributes } from "vue";
+
+/** Lucide's per-icon prop surface — declared locally because
+ *  lucide-vue-next's `LucideProps` interface is internal (not exported).
+ *  Matches the lib's own numeric `size`/`strokeWidth` contract exactly so
+ *  the iconMap typing is assignment-compatible with the upstream
+ *  `FunctionalComponent<LucideProps>` shape. */
+export type IconProps = Partial<SVGAttributes> & {
+  size?: number;
+  strokeWidth?: number | string;
+  absoluteStrokeWidth?: boolean;
+  color?: string;
+};
+
+export type IconComponent = FunctionalComponent<IconProps>;
 
 export type IconName =
   | "alert-circle"
@@ -121,7 +135,7 @@ export type IconName =
   | "x"
   | "zap";
 
-export const iconMap: Record<IconName, FunctionalComponent> = {
+export const iconMap: Record<IconName, IconComponent> = {
   "alert-circle": AlertCircle,
   "alert-triangle": AlertTriangle,
   "arrow-right": ArrowRight,
@@ -175,5 +189,4 @@ export const iconMap: Record<IconName, FunctionalComponent> = {
   zap: Zap,
 };
 
-export const getIcon = (name: IconName): FunctionalComponent =>
-  iconMap[name];
+export const getIcon = (name: IconName): IconComponent => iconMap[name];

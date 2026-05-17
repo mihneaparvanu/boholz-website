@@ -1,0 +1,188 @@
+---
+/**
+ * HeroSplit — split-layout hero alternative to the centered PageHero.
+ *
+ * Use for campaign / sub-page heroes where the photo deserves equal
+ * weight to the copy (think "Mehr Raum für Familien", "Ihr Bungalow
+ * als Fertighaus"). Mobile stacks copy above a 4:3 image; tablet+
+ * places them side-by-side with the copy at ~5/12 of the row so the
+ * image breathes.
+ *
+ * `image-side` picks which side the photo lives on at tablet+; on
+ * mobile the photo is always below the copy (image-first feels
+ * brochure-y on a phone — the copy is the hook).
+ */
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  /** Italic-serif accent appended to the heading. Matches the PageHero pattern. */
+  highlight?: string;
+  lede?: string;
+  image: string;
+  imageAlt: string;
+  /** Which side the photo sits on at tablet+. Defaults to end (right). */
+  imageSide?: "start" | "end";
+  /** Render a left rule below the eyebrow — used on campaign pages for editorial weight. */
+  rule?: boolean;
+}
+
+const {
+  eyebrow,
+  heading,
+  highlight,
+  lede,
+  image,
+  imageAlt,
+  imageSide = "end",
+  rule = false,
+} = Astro.props;
+---
+
+<section class="split full-width" data-image-side={imageSide}>
+  <div class="copy">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    {rule && <span class="rule" aria-hidden="true"></span>}
+    <h1 class="head">
+      {heading}
+      {highlight && <span class="highlight"> {highlight}</span>}
+    </h1>
+    {lede && <p class="lede">{lede}</p>}
+    {
+      Astro.slots.has("actions") && (
+        <div class="actions">
+          <slot name="actions" />
+        </div>
+      )
+    }
+  </div>
+
+  <div class="media">
+    <img src={image} alt={imageAlt} loading="eager" decoding="async" />
+  </div>
+</section>
+
+<style>
+  .split {
+    /* Full-bleed so the photo can reach the viewport edge; copy column
+       repads itself via padding-inline so it lines up with the wrapper. */
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    min-height: clamp(420px, 60vh, 720px);
+  }
+
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    justify-content: center;
+    padding-inline: var(--padding-inline);
+    padding-block: var(--spacing-6);
+    /* Cap the copy column so headings don't stretch on wide viewports
+       even when the column is technically wide. */
+    max-width: 64ch;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-tertiary);
+    margin: 0 0 var(--spacing-3) 0;
+  }
+
+  .rule {
+    display: block;
+    width: var(--spacing-5);
+    height: 1px;
+    background: var(--clr-border-quaternary);
+    margin-block-end: var(--spacing-2);
+  }
+
+  .head {
+    margin: 0;
+    font-weight: var(--font-weight-light);
+    letter-spacing: var(--ls-heading);
+    line-height: var(--lh-heading);
+  }
+
+  .highlight {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+  }
+
+  .lede {
+    margin: 0;
+    font-size: var(--fs-body-lg);
+    color: var(--clr-content-secondary);
+    max-width: 56ch;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    margin-block-start: var(--spacing-2);
+  }
+
+  .media {
+    /* Mobile: 4:3 ratio capped image strip beneath the copy. */
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--clr-surface-secondary);
+  }
+
+  .media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Tablet+: side-by-side. The copy gets a calmer ~5/12 share so the
+     image dominates a touch — campaign heroes should feel photographic. */
+  @media (--from-tablet) {
+    .split {
+      grid-template-columns: 5fr 7fr;
+    }
+
+    .copy {
+      /* Re-pad to the wrapper's content edge. Right side gets a generous
+         gutter before the image — photos breathe better next to whitespace
+         than next to text. */
+      padding-inline: var(--padding-inline) var(--spacing-5);
+      padding-block: var(--spacing-5);
+    }
+
+    .media {
+      aspect-ratio: auto;
+      height: 100%;
+    }
+
+    .split[data-image-side="start"] .copy {
+      grid-column: 2;
+      padding-inline: var(--spacing-5) var(--padding-inline);
+    }
+
+    .split[data-image-side="start"] .media {
+      grid-column: 1;
+      grid-row: 1;
+    }
+  }
+
+  @media (--from-desktop) {
+    .copy {
+      padding-block: var(--spacing-6);
+      gap: var(--spacing-3);
+    }
+
+    /* On larger viewports the copy column relaxes a touch. */
+    .split {
+      grid-template-columns: 1fr 1fr;
+      min-height: clamp(520px, 64vh, 780px);
+    }
+  }
+</style>

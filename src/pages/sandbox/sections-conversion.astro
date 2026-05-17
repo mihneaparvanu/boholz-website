@@ -1,0 +1,271 @@
+---
+import "@/style/reset.css";
+import "@/style/design-system.css";
+import "@/style/wrapper.css";
+
+import Divider from "@/components/ui/Divider.astro";
+
+import TestimonialBand, {
+  type Testimonial,
+  type CredentialBadge,
+} from "@/components/sections/TestimonialBand.astro";
+import LeadFormBand from "@/components/sections/LeadFormBand.vue";
+import AnchorCTAStrip from "@/components/sections/AnchorCTAStrip.astro";
+import TrustStrip, {
+  type TrustBadge,
+} from "@/components/sections/TrustStrip.astro";
+import StatsBand, {
+  type StatItem,
+} from "@/components/sections/StatsBand.astro";
+
+// Sandbox — bypasses Layout.astro to avoid DB calls.
+
+const testimonials: Testimonial[] = [
+  {
+    name: "Lena & Markus Hoffmann",
+    role: "Familie, Niederbayern",
+    rating: 5,
+    quote:
+      "Vom ersten Termin bis zur Übergabe: alles transparent, alles termintreu. Wir haben uns nie verkauft gefühlt — sondern beraten.",
+  },
+  {
+    name: "Dr. Annika Voss",
+    role: "Architektin, Hamburg",
+    rating: 5,
+    quote:
+      "Selten so eine handwerklich saubere Vorfertigung gesehen. Die Toleranzen stimmen, das Material atmet — ein Haus, das altert wie eine gute Geige.",
+  },
+  {
+    name: "Christoph R.",
+    role: "Bauherr, Schwarzwald",
+    rating: 5,
+    quote:
+      "Drei Tage Montage, vier Monate später Einzug. Festpreis hat gehalten, kein einziges Nachtragsangebot. Das spricht für sich.",
+  },
+];
+
+const credentials: CredentialBadge[] = [
+  { label: "Made in Germany" },
+  { label: "KfW", sub: "40 Förderung" },
+  { label: "QNG-Plus", sub: "Siegel" },
+];
+
+const trustBadges: TrustBadge[] = [
+  { label: "Made in Germany", icon: "shield" },
+  { label: "QNG", caption: "Siegel" },
+  { label: "KfW 40", caption: "Förderung" },
+  { label: "PEFC", caption: "Holz" },
+  { label: "QDF", caption: "Zertifiziert" },
+  { label: "DIN 1052", caption: "Holzbau" },
+];
+
+const stats: StatItem[] = [
+  {
+    value: "90",
+    label: "Jahre Erfahrung",
+    caption: "Vierte Generation im Familienbesitz.",
+    icon: "award",
+  },
+  {
+    value: "30 t",
+    label: "CO₂ je Haus",
+    caption: "Gespeichert über den gesamten Lebenszyklus.",
+    icon: "leaf",
+  },
+  {
+    value: "1–3",
+    label: "Tage Montage",
+    caption: "Vom Bodenplattenanschluss bis zum Richtfest.",
+    icon: "hammer",
+  },
+  {
+    value: "100 %",
+    label: "Festpreisgarantie",
+    caption: "Schwarz auf weiß. Kein Nachtrag-Roulette.",
+    icon: "shield",
+  },
+];
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Sandbox — Conversion Sections · BoHolz</title>
+  </head>
+  <body>
+    <header class="faux-nav">BoHolz Haus — Conversion Sections</header>
+
+    <main class="wrapper">
+      <section class="page-hero">
+        <p class="page-eyebrow">Pack · Social proof & CTA bands</p>
+        <h1>Conversion-Sektionen</h1>
+        <p class="page-lede">
+          Fünf wiederverwendbare Seitenbänder für Testimonials, Lead-Generierung,
+          Vertrauenssignale und den abschließenden Call-to-Action.
+        </p>
+      </section>
+
+      <!-- ════ 1 · TestimonialBand ════ -->
+      <Divider index={1} label="TestimonialBand" />
+    </main>
+
+    <TestimonialBand
+      eyebrow="Stimmen unserer Bauherren"
+      heading="Langjährige Erfahrung"
+      highlight="im Holzfertigbau."
+      lede="Was unsere Kunden über uns sagen — drei Stimmen aus über siebzig Jahren Familienbetrieb."
+      tone="olive"
+      badges={credentials}
+      testimonials={testimonials}
+    />
+
+    <main class="wrapper">
+      <!-- ════ 2 · LeadFormBand ════ -->
+      <Divider index={2} label="LeadFormBand" />
+    </main>
+
+    <LeadFormBand
+      client:load
+      eyebrow="Beratung anfragen"
+      heading="Jetzt Angebot anfordern"
+      highlight="und Katalog erhalten."
+      lede="Wir sind für Sie da — stellen Sie uns Ihre Fragen oder fordern Sie Ihr persönliches Angebot an."
+      subCopy="Unverbindlich, ohne Verkaufsdruck. Antwort innerhalb eines Werktags von einem unserer Fachberater."
+      tone="pastell"
+      contact={{
+        phone: "+49 (0)971 78 55 57 15",
+        email: "info@boholz-haus.de",
+        address: "Bad Kissingen, Bayern · Werk & Showroom",
+      }}
+    />
+
+    <main class="wrapper">
+      <!-- ════ 3 · TrustStrip ════ -->
+      <Divider index={3} label="TrustStrip" />
+    </main>
+
+    <TrustStrip
+      eyebrow="Geprüft, gefördert, zertifiziert"
+      badges={trustBadges}
+      tone="tertiary"
+    />
+
+    <!-- variant: transparent with hairline rules -->
+    <main class="wrapper">
+      <p class="variant-note">Variante — transparent mit Haarlinien</p>
+    </main>
+    <TrustStrip badges={trustBadges} tone="transparent" />
+
+    <main class="wrapper">
+      <!-- ════ 4 · StatsBand (stretch) ════ -->
+      <Divider index={4} label="StatsBand · Stretch" />
+    </main>
+
+    <StatsBand
+      eyebrow="In Zahlen"
+      heading="Vier Generationen Handwerk —"
+      highlight="messbar gemacht."
+      lede="Wir bauen seit 1934. Diese Zahlen erzählen, warum unsere Häuser auch noch in vierzig Jahren stehen — und welche Bilanz sie für ihre Bewohner ziehen."
+      stats={stats}
+      tone="warm"
+    />
+
+    <main class="wrapper">
+      <!-- ════ 5 · AnchorCTAStrip ════ -->
+      <Divider index={5} label="AnchorCTAStrip" />
+    </main>
+
+    <AnchorCTAStrip
+      heading="Bereit für Ihr"
+      highlight="Traumhaus?"
+      subline="Unverbindliches Beratungsgespräch — wir hören erstmal zu."
+      tone="olive"
+      primary={{ label: "Jetzt Angebot anfordern", href: "/kontakt" }}
+      secondary={{ label: "Katalog erhalten", href: "/katalog" }}
+    />
+
+    <!-- Tone variants -->
+    <main class="wrapper">
+      <p class="variant-note">Variante — graphite</p>
+    </main>
+    <AnchorCTAStrip
+      heading="Lieber persönlich?"
+      subline="Besuchen Sie eines unserer Musterhäuser — ohne Termin, ohne Verkaufsdruck."
+      tone="graphite"
+      primary={{ label: "Musterhäuser ansehen", href: "/musterhaus" }}
+      secondary={{ label: "Vor-Ort-Beratung", href: "/vor-ort-beratung" }}
+    />
+
+    <main class="wrapper">
+      <p class="variant-note">Variante — stone</p>
+    </main>
+    <AnchorCTAStrip
+      heading="Holz hört nie auf"
+      highlight="zu lernen."
+      subline="Erhalten Sie unseren Werkbrief — vier Mal im Jahr, kein Spam."
+      tone="stone"
+      primary={{ label: "Werkbrief abonnieren", href: "/newsletter" }}
+    />
+
+    <div class="end-spacer"></div>
+  </body>
+</html>
+
+<style>
+  .faux-nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    height: 64px;
+    background: var(--clr-surface-primary);
+    border-block-end: 1px solid var(--clr-border-secondary);
+    display: flex;
+    align-items: center;
+    padding-inline: var(--padding-inline);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-primary);
+  }
+
+  .page-hero {
+    padding-block: var(--spacing-6) var(--spacing-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    max-width: 64ch;
+  }
+
+  .page-eyebrow {
+    font-size: var(--fs-body-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--clr-content-tertiary);
+    font-weight: var(--font-weight-medium);
+    margin: 0;
+    margin-block-end: calc(var(--spacing-4) - var(--spacing-3));
+  }
+
+  .page-hero h1 {
+    font-weight: var(--font-weight-light);
+    margin: 0;
+  }
+
+  .page-lede {
+    font-size: var(--fs-body-lg);
+    color: var(--clr-content-secondary);
+    margin: 0;
+  }
+
+  .variant-note {
+    margin: var(--spacing-3) 0 var(--spacing-2);
+    font-size: var(--fs-body-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--clr-content-tertiary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .end-spacer {
+    height: var(--spacing-7);
+  }
+</style>

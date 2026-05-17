@@ -19,9 +19,7 @@ const props = withDefaults(
   },
 );
 
-const IconComponent = computed(() =>
-  props.icon ? getIcon(props.icon) : null,
-);
+const IconComponent = computed(() => (props.icon ? getIcon(props.icon) : null));
 </script>
 
 <template>
@@ -54,8 +52,9 @@ const IconComponent = computed(() =>
 }
 
 .icon {
-  /* Primary accent on the icon — a larger visual element per the project rule. */
-  color: var(--clr-accent-primary);
+  /* Primary accent on the icon — a larger visual element per the project rule.
+     Override per usage by setting `--stat-icon-color` on the parent. */
+  color: var(--stat-icon-color, var(--clr-accent-primary));
   margin-block-end: var(--spacing-1);
 }
 

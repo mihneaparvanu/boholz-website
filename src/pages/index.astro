@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import Section from "@/layouts/Section.astro";
 import CTASection from "@/components/sections/CTASection.astro";
+import ProofSection from "@/components/sections/Proof-Section.vue";
 
 import Hero from "@/features/Home/Hero/Hero.vue";
 import CategoriesShowcase from "@/features/Home/CategoriesShowcase/CategoriesShowcase.vue";
@@ -37,6 +38,10 @@ const sectionProps = {
 
 <Layout title="Boholz Haus" categories={categories} isHero>
   <Hero client:load slides={heroSlides} />
+
+  <div class="proof-band">
+    <ProofSection />
+  </div>
 
   <Section {...sectionProps.categories} tone="primary">
     <CategoriesShowcase client:visible categories={categories} />
@@ -78,3 +83,10 @@ const sectionProps = {
     </CTASection>
   </div>
 </Layout>
+
+<style>
+  .proof-band {
+    padding-block: var(--spacing-5);
+    --proof-color: var(--clr-content-secondary);
+  }
+</style>

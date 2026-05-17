@@ -17,6 +17,8 @@ import StepCard from "@/components/ui/StepCard.vue";
 import FAQAccordion from "@/components/ui/FAQAccordion.vue";
 import ComparisonBlock from "@/components/ui/ComparisonBlock.vue";
 import Button from "@/components/ui/Button.vue";
+import ZigZag from "@/components/ui/ZigZag.vue";
+import { getMediaURL } from "@/utils/media";
 
 import { Leaf } from "lucide-vue-next";
 import type { IconListItem } from "@/components/ui/IconList.vue";
@@ -162,6 +164,103 @@ const comparison = {
         </p>
       </section>
 
+      <!-- ██████ SECTIONS — composite blocks built from multiple components ██████ -->
+      <div class="kind-banner">
+        <span class="kind-banner-eyebrow">Sections</span>
+        <h2 class="kind-banner-title">Composite blocks</h2>
+        <p class="kind-banner-lede">
+          Editorial layouts that compose atoms into reusable page sections.
+        </p>
+      </div>
+
+      <!-- ════ S1 · ZigZag ════ -->
+      <section class="group" id="zigzag">
+        <Divider label="ZigZag" />
+        <div class="stack">
+          <ZigZag>
+            <Fragment slot="copy">
+              <Eyebrow>01 · Architektur</Eyebrow>
+              <h3 class="zigzag-heading">
+                Jedes Haus erzählt seine eigene Geschichte.
+              </h3>
+              <p class="zigzag-body">
+                Von der Grundrissgestaltung bis zur Fassadenauswahl — bei uns
+                haben Sie die Freiheit, Ihren Hausentwurf mit eigenen Ideen
+                und Gestaltungswünschen zu individualisieren.
+              </p>
+            </Fragment>
+            <img
+              slot="media"
+              src={getMediaURL("/images/pages/uber-uns/value-1.jpg")}
+              alt="BoHolz Architektur"
+              class="zigzag-img"
+            />
+            <Button slot="actions" client:load variant="secondary" size="sm" href="/dein-zuhause">
+              Mehr erfahren
+            </Button>
+          </ZigZag>
+
+          <ZigZag media-side="start">
+            <Fragment slot="copy">
+              <Eyebrow tone="accent">02 · Material</Eyebrow>
+              <h3 class="zigzag-heading">
+                Holz, das CO₂ speichert — ein Leben lang.
+              </h3>
+              <p class="zigzag-body">
+                Wir bauen mit zertifiziertem PEFC-Holz aus heimischen Wäldern.
+                Jedes Haus speichert rund 30 Tonnen CO₂ über seinen
+                Lebenszyklus.
+              </p>
+            </Fragment>
+            <img
+              slot="media"
+              src={getMediaURL("/images/pages/uber-uns/value-2.jpg")}
+              alt="Massivholz aus heimischen Wäldern"
+              class="zigzag-img"
+            />
+          </ZigZag>
+        </div>
+      </section>
+
+      <!-- ════ S2 · EyebrowHeadingLede ════ -->
+      <section class="group" id="ehl">
+        <Divider label="EyebrowHeadingLede" />
+        <div class="stack">
+          <EyebrowHeadingLede
+            eyebrow="Nachhaltigkeit"
+            heading="Holz speichert CO₂."
+            highlight="Wir bauen mit Verantwortung."
+            lede="Bei BoHolz Haus verbinden wir Ihre Wohnträume mit aktivem Umweltschutz. Jedes Haus ist ein langlebiger Kohlenstoffspeicher — über Generationen hinweg."
+          />
+          <EyebrowHeadingLede
+            eyebrow="Über uns"
+            heading="Neunzig Jahre Erfahrung,"
+            highlight="im Familienbesitz."
+            lede="Seit 1934 bauen wir Häuser, die Generationen überdauern. Heute in vierter Generation."
+            align="center"
+          />
+        </div>
+      </section>
+
+      <!-- ════ S3 · ComparisonBlock ════ -->
+      <section class="group" id="comparison">
+        <Divider label="ComparisonBlock" />
+        <ComparisonBlock
+          client:load
+          left={comparison.left}
+          right={comparison.right}
+        />
+      </section>
+
+      <!-- ██████ COMPONENTS — atomic primitives ██████ -->
+      <div class="kind-banner">
+        <span class="kind-banner-eyebrow">Components</span>
+        <h2 class="kind-banner-title">Atomic primitives</h2>
+        <p class="kind-banner-lede">
+          Foundational atoms — the building blocks of every section above.
+        </p>
+      </div>
+
       <!-- ════ 1 · Eyebrow ════ -->
       <section class="group" id="eyebrow">
         <Divider index={1} label="Eyebrow" />
@@ -255,29 +354,9 @@ const comparison = {
         </div>
       </section>
 
-      <!-- ════ 6 · EyebrowHeadingLede ════ -->
-      <section class="group" id="ehl">
-        <Divider index={6} label="EyebrowHeadingLede" />
-        <div class="stack">
-          <EyebrowHeadingLede
-            eyebrow="Nachhaltigkeit"
-            heading="Holz speichert CO₂."
-            highlight="Wir bauen mit Verantwortung."
-            lede="Bei BoHolz Haus verbinden wir Ihre Wohnträume mit aktivem Umweltschutz. Jedes Haus ist ein langlebiger Kohlenstoffspeicher — über Generationen hinweg."
-          />
-          <EyebrowHeadingLede
-            eyebrow="Über uns"
-            heading="Neunzig Jahre Erfahrung,"
-            highlight="im Familienbesitz."
-            lede="Seit 1934 bauen wir Häuser, die Generationen überdauern. Heute in vierter Generation."
-            align="center"
-          />
-        </div>
-      </section>
-
-      <!-- ════ 7 · StatBlock ════ -->
+      <!-- ════ 6 · StatBlock ════ -->
       <section class="group" id="stat">
-        <Divider index={7} label="StatBlock" />
+        <Divider index={6} label="StatBlock" />
         <div class="stat-grid">
           {stats.map((s) => (
             <StatBlock
@@ -291,9 +370,9 @@ const comparison = {
         </div>
       </section>
 
-      <!-- ════ 8 · IconList ════ -->
+      <!-- ════ 7 · IconList ════ -->
       <section class="group" id="iconlist">
-        <Divider index={8} label="IconList" />
+        <Divider index={7} label="IconList" />
 
         <Eyebrow>Eine Spalte, comfortable</Eyebrow>
         <IconList client:load items={audienceItems} />
@@ -315,9 +394,9 @@ const comparison = {
         />
       </section>
 
-      <!-- ════ 9 · PullQuote ════ -->
+      <!-- ════ 8 · PullQuote ════ -->
       <section class="group" id="pullquote">
-        <Divider index={9} label="PullQuote" />
+        <Divider index={8} label="PullQuote" />
         <PullQuote
           quote="Qualität geht vor Quantität. Wir bauen keine Häuser, wir bauen Zuhause — und das spüren unsere Kunden in jeder Faserrichtung."
           author="Hans Boholz"
@@ -329,9 +408,9 @@ const comparison = {
         />
       </section>
 
-      <!-- ════ 10 · StepCard ════ -->
+      <!-- ════ 9 · StepCard ════ -->
       <section class="group" id="stepcard">
-        <Divider index={10} label="StepCard" />
+        <Divider index={9} label="StepCard" />
         <div class="step-grid">
           {steps.map((s) => (
             <StepCard
@@ -345,25 +424,15 @@ const comparison = {
         </div>
       </section>
 
-      <!-- ════ 11 · FAQAccordion ════ -->
+      <!-- ════ 10 · FAQAccordion ════ -->
       <section class="group" id="faq">
-        <Divider index={11} label="FAQAccordion" />
+        <Divider index={10} label="FAQAccordion" />
         <FAQAccordion client:load items={faqItems} type="single" />
       </section>
 
-      <!-- ════ 12 · ComparisonBlock ════ -->
-      <section class="group" id="comparison">
-        <Divider index={12} label="ComparisonBlock" />
-        <ComparisonBlock
-          client:load
-          left={comparison.left}
-          right={comparison.right}
-        />
-      </section>
-
-      <!-- ════ 13 · VideoPlaceholder ════ -->
+      <!-- ════ 11 · VideoPlaceholder ════ -->
       <section class="group" id="video">
-        <Divider index={13} label="VideoPlaceholder" />
+        <Divider index={11} label="VideoPlaceholder" />
 
         <Eyebrow>16:9 — Standard Werksrundgang</Eyebrow>
         <VideoPlaceholder
@@ -461,6 +530,39 @@ const comparison = {
     gap: var(--spacing-4);
   }
 
+  .kind-banner {
+    margin-block: var(--spacing-7) var(--spacing-4);
+    padding-block: var(--spacing-4);
+    border-block: 2px solid var(--clr-content-primary);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .kind-banner-eyebrow {
+    font-size: var(--fs-body-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--clr-content-tertiary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .kind-banner-title {
+    margin: 0;
+    font-size: var(--fs-h2);
+    font-weight: var(--font-weight-light);
+    letter-spacing: var(--ls-heading);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+  }
+
+  .kind-banner-lede {
+    margin: 0;
+    font-size: var(--fs-body);
+    color: var(--clr-content-secondary);
+    max-width: 60ch;
+  }
+
   .row {
     display: grid;
     grid-template-columns: 1fr;
@@ -483,6 +585,31 @@ const comparison = {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-3);
+  }
+
+  .zigzag-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    display: block;
+  }
+
+  .zigzag-heading {
+    margin: 0;
+    font-size: var(--fs-h3);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: var(--ls-heading);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+  }
+
+  .zigzag-body {
+    margin: 0;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--clr-content-secondary);
+    max-width: 60ch;
   }
 
   .badges {

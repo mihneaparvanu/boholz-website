@@ -5,3 +5,4 @@
 - [Homepage mobile redesign priority](project_homepage-mobile-redesign-priority.md) — user-flagged top priority 2026-05-17; outranks campaign pages; full brief in HOMEPAGE-MOBILE-ANALYSIS.md
 - [Design work state](project_design-work-state.md) — read-on-resume crib sheet: phase status, frozen surface, open decisions, pick-up checklist
 - [Skip verification screenshots](feedback_skip-verification-screenshots.md) — user prefers no Playwright/screenshot loop; build → ship; a11y-contrast-auditor still OK
+- [Grid: explicit cell placement](feedback_grid_layout_explicit_placement.md) — for sticky-column compare tables, set grid-column/grid-row inline per cell; display:contents wrappers fight sticky layout

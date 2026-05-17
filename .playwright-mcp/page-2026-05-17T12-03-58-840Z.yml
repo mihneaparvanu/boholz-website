@@ -1,0 +1,128 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]: BoHolz Haus — Sections / Visual Heroes
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - paragraph [ref=e5]: Pack · Visual heroes & showcase
+      - heading "Visuelle Heroes und Editorial-Layouts" [level=1] [ref=e6]
+      - paragraph [ref=e7]: Fünf Sektionen — vier aus dem Brief und ein Vorschlag aus dem Atelier. Jeder Block sitzt photographisch, nicht marketinghaft.
+    - separator "Abschnitt HeroSplit · image right (default)" [ref=e8]:
+      - generic [ref=e9]: HeroSplit · image right (default)
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - paragraph [ref=e13]: Kampagne · Bungalow
+        - heading "Ihr Bungalow als Fertighaus." [level=1] [ref=e15]
+        - paragraph [ref=e16]: Ebenerdig wohnen, ein Leben lang. Schlüsselfertige Bungalows in 8 bis 12 Wochen, mit Festpreis und KfW-40-Standard.
+        - generic [ref=e17]:
+          - button "Modelle entdecken" [ref=e19] [cursor=pointer]:
+            - generic [ref=e20]: Modelle entdecken
+          - button "Beratung buchen" [ref=e22] [cursor=pointer]:
+            - generic [ref=e23]: Beratung buchen
+      - img "Moderner Bungalow mit Holzfassade vor heller Wand" [ref=e25]
+    - separator "Abschnitt HeroSplit · image left" [ref=e26]:
+      - generic [ref=e27]: HeroSplit · image left
+    - generic [ref=e29]:
+      - generic [ref=e30]:
+        - paragraph [ref=e31]: Kampagne · Mehrfamilien
+        - heading "Mehr Raum für Familien." [level=1] [ref=e32]
+        - paragraph [ref=e33]: Zwei- und Dreifamilienhäuser, vorgefertigt aus heimischem Holz. Mehrgenerationen-Wohnen mit klarer Trennung der Lebensbereiche.
+        - button "Grundrisse ansehen" [ref=e36] [cursor=pointer]:
+          - generic [ref=e37]: Grundrisse ansehen
+      - img "Modernes Mehrfamilienhaus mit großzügigen Fensterflächen" [ref=e39]
+    - separator "Abschnitt HeroOverlayCard · with spec card" [ref=e40]:
+      - generic [ref=e41]: HeroOverlayCard · with spec card
+    - generic [ref=e42]:
+      - img "Helles modernes Wohnzimmer mit Holzakzenten und großen Fenstern" [ref=e44]
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - paragraph [ref=e48]: Wohnraumgestaltung
+          - heading "Vorgeplante Wohnräume, entworfen von Architekten." [level=1] [ref=e49]
+          - paragraph [ref=e50]: Vierzig Modelle, jeder Grundriss bewohnt gedacht. Sie wählen das Haus — die Räume bringen die Geschichte mit.
+          - button "Innenräume entdecken" [ref=e53] [cursor=pointer]:
+            - generic [ref=e54]: Innenräume entdecken
+        - link "Alpha 162.1 — Basismodell · 162 m²" [ref=e55] [cursor=pointer]:
+          - /url: /haus/alpha-162-1
+          - img "Modell Alpha 162.1 Außenansicht" [ref=e57]
+          - generic [ref=e58]:
+            - generic [ref=e59]: Alpha 162.1
+            - generic [ref=e60]: Basismodell · 162 m²
+          - img [ref=e62]
+    - separator "Abschnitt HeroOverlayCard · no spec card" [ref=e64]:
+      - generic [ref=e65]: HeroOverlayCard · no spec card
+    - generic [ref=e67]:
+      - img "Holzhaus eingebettet in deutschem Mischwald" [ref=e69]
+      - generic [ref=e72]:
+        - paragraph [ref=e73]: Über uns
+        - heading "Neunzig Jahre Holzbau, in vierter Generation." [level=1] [ref=e74]
+        - paragraph [ref=e75]: Familienbetrieb seit 1934. Wir bauen keine Häuser, wir bauen Zuhause — und das spürt man bis in die Faserrichtung.
+        - button "Unsere Geschichte" [ref=e78] [cursor=pointer]:
+          - generic [ref=e79]: Unsere Geschichte
+    - separator "Abschnitt ImageBand · minimal" [ref=e80]:
+      - generic [ref=e81]: ImageBand · minimal
+    - complementary [ref=e83]:
+      - img "Waldweg mit modernem Holzhaus am Horizont" [ref=e85]
+      - paragraph [ref=e88]: Planen Sie, ein Haus zu bauen? Wir sind für Sie da.
+    - separator "Abschnitt ImageBand · with eyebrow, lede, rule" [ref=e89]:
+      - generic [ref=e90]: ImageBand · with eyebrow, lede, rule
+    - complementary [ref=e91]:
+      - img "Holzfassade eines KfW-40-zertifizierten Hauses im Detail" [ref=e93]
+      - generic [ref=e95]:
+        - paragraph [ref=e96]: KfW-Förderung
+        - paragraph [ref=e97]: Bauen mit Förderung. Ohne Kompromisse.
+        - paragraph [ref=e99]: Alle BoHolz-Häuser sind KfW-40-fähig. Auf Wunsch QNG-Plus für maximale Zuschüsse.
+    - separator "Abschnitt AsymmetricShowcase" [ref=e100]:
+      - generic [ref=e101]: AsymmetricShowcase
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - paragraph [ref=e105]: Wohnen bei BoHolz
+        - heading "Räume, die mitwachsen — für jede Lebensphase." [level=2] [ref=e106]
+        - paragraph [ref=e107]: Von der ersten gemeinsamen Wohnung bis zum barrierefreien Alterswohnsitz. Wir entwerfen Häuser, die sich Ihnen anpassen — nicht umgekehrt.
+      - figure "Schlafräume mit Querlüftung und nordischer Lichtführung — Ruhe wird hier gebaut, nicht installiert." [ref=e108]:
+        - img "Helles Schlafzimmer mit Holzdielen und gedämpften Naturtönen" [ref=e110]
+        - generic [ref=e111]: Schlafräume mit Querlüftung und nordischer Lichtführung — Ruhe wird hier gebaut, nicht installiert.
+      - 'figure "Die offene Küche als Mittelpunkt: ehrliche Materialien, präzise Verarbeitung, geteilte Mahlzeiten." [ref=e112]':
+        - img "Offene Küche mit Massivholz-Arbeitsplatte und großem Fenster" [ref=e114]
+        - generic [ref=e115]: "Die offene Küche als Mittelpunkt: ehrliche Materialien, präzise Verarbeitung, geteilte Mahlzeiten."
+      - figure "Volle Glasfronten lösen die Grenze zum Außenraum auf. Die Tafel wird zur Verlängerung des Gartens." [ref=e116]:
+        - img "Esszimmer mit großzügiger Glasfront zum Garten" [ref=e118]
+        - generic [ref=e119]: Volle Glasfronten lösen die Grenze zum Außenraum auf. Die Tafel wird zur Verlängerung des Gartens.
+    - separator "Abschnitt WindowGrid · stretch — slow-zoom 2×2" [ref=e120]:
+      - generic [ref=e121]: WindowGrid · stretch — slow-zoom 2×2
+    - generic [ref=e123]:
+      - generic [ref=e124]:
+        - paragraph [ref=e125]: Modell Alpha 162.1
+        - heading "Vier Räume, ein Zuhause." [level=2] [ref=e126]
+        - paragraph [ref=e127]: Bewegen Sie sich durch die Räume — wie ein Spaziergang durch ein bewohntes Haus. Jedes Fenster zeigt einen anderen Moment im Tagesablauf.
+      - generic [ref=e128]:
+        - figure "Wohnzimmer 32 m²" [ref=e129]:
+          - img "Wohnzimmer im Tageslicht" [ref=e131]
+          - generic [ref=e132]:
+            - generic [ref=e133]: Wohnzimmer
+            - generic [ref=e134]: 32 m²
+        - figure "Küche 18 m²" [ref=e135]:
+          - img "Offene Küche mit Frühstücksinsel" [ref=e137]
+          - generic [ref=e138]:
+            - generic [ref=e139]: Küche
+            - generic [ref=e140]: 18 m²
+        - figure "Hauptschlafzimmer 22 m²" [ref=e141]:
+          - img "Hauptschlafzimmer mit Holzdielen" [ref=e143]
+          - generic [ref=e144]:
+            - generic [ref=e145]: Hauptschlafzimmer
+            - generic [ref=e146]: 22 m²
+        - figure "Badezimmer 14 m²" [ref=e147]:
+          - img "Badezimmer mit Naturstein und Tageslicht" [ref=e149]
+          - generic [ref=e150]:
+            - generic [ref=e151]: Badezimmer
+            - generic [ref=e152]: 14 m²
+  - generic [ref=e156]:
+    - button "Menu" [ref=e157]:
+      - img [ref=e159]
+      - generic: Menu
+    - button "Inspect" [ref=e163]:
+      - img [ref=e165]
+      - generic: Inspect
+    - button "Audit" [ref=e167]:
+      - img [ref=e169]
+      - generic: Audit
+    - button "Settings" [ref=e172]:
+      - img [ref=e174]
+      - generic: Settings
