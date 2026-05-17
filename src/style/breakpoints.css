@@ -44,3 +44,13 @@
 
 /* Convenience: anything narrower than desktop */
 @custom-media --below-desktop screen and (width < 1024px);
+
+/* --- Orientation / viewport-height breakpoints ---
+
+   `--short` fires whenever the viewport is landscape AND vertically
+   constrained (≤ 500px). Catches landscape phones (390 / 430 / 375
+   tall) at any width — they otherwise fall into `--tablet` or
+   `--from-tablet` and get desktop-shaped vertical rhythm despite
+   having no vertical room. Use to clamp hero heights, tighten
+   block padding, or stack two-column compositions earlier. */
+@custom-media --short screen and (orientation: landscape) and (max-height: 500px);

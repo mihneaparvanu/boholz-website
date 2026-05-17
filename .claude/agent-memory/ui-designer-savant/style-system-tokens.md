@@ -58,6 +58,7 @@ metadata:
 ## Breakpoints (`@custom-media`, postcss-global-data)
 - Ranges: `--mobile` (<500), `--tablet` (500–1024), `--desktop` (1024–1440), `--wide` (>=1440).
 - From: `--from-tablet`, `--from-desktop`, `--from-wide`. Convenience: `--below-desktop`.
+- **Orientation / short-viewport (added 2026-05-17):** `--short` = `(orientation: landscape) and (max-height: 500px)`. Catches landscape phones (390/430/375 tall) at any width — they otherwise fall into `--tablet` / `--from-tablet` and get desktop-shaped vertical rhythm despite no vertical room. Use to clamp hero heights, tighten block padding. Applied to `Hero.vue` (homepage) and PageHero via `:global()` overrides in `src/pages/landing/*.astro`.
 - **Always** use these tokens; never raw pixel values in `@media`.
 
 ## Notable absences (need to ask before adding)

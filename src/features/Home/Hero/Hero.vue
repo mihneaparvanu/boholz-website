@@ -89,6 +89,16 @@ const slide = computed(() => props.slides[idx.value]);
   padding-top: var(--navbar-height);
   color: var(--clr-pure-white);
 
+  /* Landscape phones (any width, max-height 500px) — 90dvh becomes ~350px
+     on a 390-tall viewport, which swallows the whole screen and pushes
+     the CTA below the fold. Cap at a fixed range using `svh` (smallest
+     viewport height — stable when the URL bar toggles, which matters
+     much more in landscape than portrait). Aim: headline visible AND
+     CTA visible without scrolling. */
+  @media (--short) {
+    height: clamp(320px, 78svh, 440px);
+  }
+
   @media (--from-desktop) {
     height: 100dvh;
   }
@@ -125,6 +135,14 @@ const slide = computed(() => props.slides[idx.value]);
   max-width: 32rem;
   gap: var(--spacing-4);
   padding-block-end: var(--spacing-5);
+
+  /* Landscape phones — trim vertical rhythm so headline + lede + CTA all
+     fit inside the clamped hero height without the CTA hugging the
+     bottom edge. */
+  @media (--short) {
+    gap: var(--spacing-2);
+    padding-block-end: var(--spacing-3);
+  }
 }
 
 .heading {
