@@ -6,3 +6,4 @@
 - [Design work state](project_design-work-state.md) — read-on-resume crib sheet: phase status, frozen surface, open decisions, pick-up checklist
 - [Skip verification screenshots](feedback_skip-verification-screenshots.md) — user prefers no Playwright/screenshot loop; build → ship; a11y-contrast-auditor still OK
 - [Grid: explicit cell placement](feedback_grid_layout_explicit_placement.md) — for sticky-column compare tables, set grid-column/grid-row inline per cell; display:contents wrappers fight sticky layout
+- [Landing pages archetype](project_landing-pages-archetype.md) — Phase 1 canonical /landing/uebersicht: file layout, section order, customisation hooks, Phase 2 handoff

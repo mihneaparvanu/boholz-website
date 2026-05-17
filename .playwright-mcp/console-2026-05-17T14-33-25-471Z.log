@@ -1,0 +1,61 @@
+[    3691ms] [WARNING] [Vue warn]: Hydration attribute mismatch on JSHandle@node 
+  - rendered on server: (not rendered)
+  - expected on client: slot="actions"
+  Note: this mismatch is check-only. The DOM will not be rectified in production due to performance overhead.
+  You should fix the source of the mismatch. 
+  at <Button slot="actions" variant="secondary" size="lg"  ... > 
+  at <App> @ http://localhost:4322/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=b5b14966:2224
+[    3691ms] [ERROR] Hydration completed but contains mismatches. @ http://localhost:4322/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=b5b14966:4060
+[    3692ms] [WARNING] [Vue warn]: Hydration attribute mismatch on JSHandle@node 
+  - rendered on server: (not rendered)
+  - expected on client: slot="actions"
+  Note: this mismatch is check-only. The DOM will not be rectified in production due to performance overhead.
+  You should fix the source of the mismatch. 
+  at <Button slot="actions" variant="primary" size="lg"  ... > 
+  at <App> @ http://localhost:4322/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=b5b14966:2224
+[    3693ms] [WARNING] [Vue warn]: Hydration attribute mismatch on JSHandle@node 
+  - rendered on server: (not rendered)
+  - expected on client: slot="actions"
+  Note: this mismatch is check-only. The DOM will not be rectified in production due to performance overhead.
+  You should fix the source of the mismatch. 
+  at <Button slot="actions" variant="primary" size="lg"  ... > 
+  at <App> @ http://localhost:4322/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=b5b14966:2224
+[    3695ms] [WARNING] [Vue warn]: Hydration attribute mismatch on JSHandle@node 
+  - rendered on server: (not rendered)
+  - expected on client: slot="actions"
+  Note: this mismatch is check-only. The DOM will not be rectified in production due to performance overhead.
+  You should fix the source of the mismatch. 
+  at <Button slot="actions" variant="secondary" size="lg"  ... > 
+  at <App> @ http://localhost:4322/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=b5b14966:2224
+[    9948ms] [ERROR] Failed to load resource: the server responded with a status of 504 (Outdated Optimize Dep) @ http://localhost:4322/node_modules/.vite/deps/motion-v.js?v=39ed6b00:0
+[   10348ms] [ERROR] Failed to load resource: the server responded with a status of 504 (Outdated Optimize Dep) @ http://localhost:4322/@id/astro/runtime/client/dev-toolbar/entrypoint.js:0
+[   10520ms] [WARNING] [Vue warn]: Hydration attribute mismatch on JSHandle@node 
+  - rendered on server: (not rendered)
+  - expected on client: slot="actions"
+  Note: this mismatch is check-only. The DOM will not be rectified in production due to performance overhead.
+  You should fix the source of the mismatch. 
+  at <Button slot="actions" variant="secondary" size="lg"  ... > 
+  at <App> @ http://localhost:4322/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=5e1632e5:2224
+[   10520ms] [ERROR] Hydration completed but contains mismatches. @ http://localhost:4322/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=5e1632e5:4060
+[   10522ms] [WARNING] [Vue warn]: Hydration attribute mismatch on JSHandle@node 
+  - rendered on server: (not rendered)
+  - expected on client: slot="actions"
+  Note: this mismatch is check-only. The DOM will not be rectified in production due to performance overhead.
+  You should fix the source of the mismatch. 
+  at <Button slot="actions" variant="primary" size="lg"  ... > 
+  at <App> @ http://localhost:4322/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=5e1632e5:2224
+[   10523ms] [WARNING] [Vue warn]: Hydration attribute mismatch on JSHandle@node 
+  - rendered on server: (not rendered)
+  - expected on client: slot="actions"
+  Note: this mismatch is check-only. The DOM will not be rectified in production due to performance overhead.
+  You should fix the source of the mismatch. 
+  at <Button slot="actions" variant="primary" size="lg"  ... > 
+  at <App> @ http://localhost:4322/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=5e1632e5:2224
+[   10525ms] [WARNING] [Vue warn]: Hydration attribute mismatch on JSHandle@node 
+  - rendered on server: (not rendered)
+  - expected on client: slot="actions"
+  Note: this mismatch is check-only. The DOM will not be rectified in production due to performance overhead.
+  You should fix the source of the mismatch. 
+  at <Button slot="actions" variant="secondary" size="lg"  ... > 
+  at <App> @ http://localhost:4322/node_modules/.vite/deps/chunk-S7BDWQ5K.js?v=5e1632e5:2224
+[   10592ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:4322/favicon.ico:0
