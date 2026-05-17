@@ -30,10 +30,10 @@ Coordinate design work across multiple agents without overlap, force explicit us
 
 ## Decision Gates (user input required)
 
-- [ ] **DG-1 Brand direction lock:** choose one of: `minimal-neutral` / `premium-contrast` / `editorial-bold`.
-- [ ] **DG-2 Navbar behavior:** choose transition behavior: `instant` / `fade-150ms` / `slide+fade-200ms`.
-- [ ] **DG-3 Heading treatment:** confirm line-break style for hero/headings (single-line vs curated per-word/per-line).
-- [ ] **DG-4 Image treatment:** confirm visual style (`natural` vs `high-contrast`) and corner radius policy.
+- [x] **DG-1 Brand direction lock:** `premium-contrast`.
+- [x] **DG-2 Navbar behavior:** `slide+fade-200ms`.
+- [x] **DG-3 Heading treatment:** `single-line`.
+- [x] **DG-4 Image treatment:** `natural`.
 - [ ] **DG-5 Final QA sign-off:** approve full-page visual review.
 
 ## Master Design Checklist
@@ -79,7 +79,11 @@ Coordinate design work across multiple agents without overlap, force explicit us
 | Final integration | A6 | All above | A6 blocks merge if overlap/conflicts are unresolved |
 
 ## Decision Log
-- _No decisions recorded yet._
+- 2026-05-17: DG-1 approved — `premium-contrast`.
+- 2026-05-17: DG-2 approved — `slide+fade-200ms`.
+- 2026-05-17: DG-3 approved — `single-line`.
+- 2026-05-17: DG-4 approved — `natural`.
 
 ## Change Log
 - 2026-05-16: Initialized design orchestration plan and task checklist.
+- 2026-05-17: Recorded DG-1..DG-4 decisions from stakeholder feedback.
