@@ -152,16 +152,15 @@ withDefaults(
 .btn[data-variant="primary"]:hover:not([disabled], [aria-disabled="true"]) {
   background: var(--clr-accent-secondary);
   border-color: var(--clr-accent-secondary);
+  color: var(--clr-surface-primary);
 }
 
 .btn[data-variant="secondary"] {
   background: var(--clr-surface-primary);
   color: var(--clr-accent-primary);
-  border-color: var(--clr-border-secondary);
 }
 .btn[data-variant="secondary"]:hover:not([disabled], [aria-disabled="true"]) {
   color: var(--clr-accent-secondary);
-  border-color: var(--clr-accent-secondary);
 }
 
 .btn[data-variant="tertiary"] {
