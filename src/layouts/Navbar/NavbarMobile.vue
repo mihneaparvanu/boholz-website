@@ -5,8 +5,6 @@ import { Menu, X, ChevronRight } from "lucide-vue-next";
 import Button from "@/components/ui/Button.vue";
 import NavbarLogo from "./parts/NavbarLogo.vue";
 
-import { useScrolledPast } from "@/composables/useScrolledPast";
-
 import { PRIMARY_NAV } from "./navbar.content";
 import { ROUTES } from "@/utils/routes";
 
@@ -14,8 +12,6 @@ import { ROUTES } from "@/utils/routes";
    below waits this long after closing the sheet before navigating, so
    the user perceives the menu collapsing rather than a hard cut. */
 const SHEET_FADE_MS = 200;
-
-const hasScrolled = useScrolledPast(10);
 
 defineProps<{
   currentPath: string;
@@ -48,7 +44,7 @@ function handleNavClick(event: MouseEvent, href: string) {
 </script>
 
 <template>
-  <div class="bar" :data-open="isOpen" :data-scrolled="hasScrolled">
+  <div class="bar" :data-open="isOpen">
     <div class="logo-slot">
       <NavbarLogo tone="brand" />
     </div>
@@ -113,12 +109,6 @@ function handleNavClick(event: MouseEvent, href: string) {
   gap: var(--spacing-2);
   height: 100%;
   color: var(--clr-content-primary);
-
-  &[data-scrolled="true"] {
-    .trigger {
-      display: grid;
-    }
-  }
 }
 
 .logo-slot {
@@ -142,7 +132,7 @@ function handleNavClick(event: MouseEvent, href: string) {
 }
 
 .trigger {
-  display: none;
+  display: grid;
   place-items: center;
   width: var(--control-height-md);
   height: var(--control-height-md);
