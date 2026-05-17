@@ -4,7 +4,6 @@ import { Motion, AnimatePresence } from "motion-v";
 import type { HouseCategory, Location } from "@/types/models";
 import { ROUTES } from "@/utils/routes";
 import { BESTSELLER_CATEGORY_ID } from "@/data/constants";
-import TitleLinks from "./TitleLinks.vue";
 
 const props = defineProps<{
   categories: HouseCategory[];
@@ -51,7 +50,6 @@ const ctaLinks = [
         :animate="{ opacity: 1, y: 0 }"
         :transition="{ duration: 0.35, delay: 0.12, ease: EASE }"
       >
-        <TitleLinks :showhouses="props.showhouses" />
         <div class="links cta">
           <Motion
             v-for="(link, i) in ctaLinks"

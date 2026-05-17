@@ -30,6 +30,9 @@ defineProps<{
   border-radius: var(--radius-md);
   padding: var(--spacing-4);
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
 }
 
 .text {
@@ -39,6 +42,18 @@ defineProps<{
   h3 {
     font-size: var(--fs-h6);
     font-weight: 500;
+  }
+}
+
+.img-wrapper {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 </style>
