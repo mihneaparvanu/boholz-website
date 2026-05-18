@@ -12,21 +12,20 @@ import EditorialCard from "@/components/ui/EditorialCard.vue";
 import IconList from "@/components/ui/IconList.vue";
 import type { IconListItem } from "@/components/ui/IconList.vue";
 import Callout from "@/components/ui/Callout.vue";
-import VideoPlaceholder from "@/components/ui/VideoPlaceholder.vue";
 import BuildingStagesCarousel from "@/features/Home/BuildingStages/BuildingStagesCarousel.vue";
 import { buildingStages } from "@/features/Home/BuildingStages/building-stages.content";
 import {
   buildPhases,
   bauphasenHeroImageURL,
 } from "@/features/Bauphasen/bauphasen.content";
-import { keitel } from "@/content/keitel";
 
 const sections: Section[] = [
-  { id: "ablauf",       eyebrow: "01", label: "Der Ablauf" },
-  { id: "architektur",  eyebrow: "02", label: "Architektur" },
-  { id: "smart-home",   eyebrow: "03", label: "Smart Home" },
-  { id: "finanzierung", eyebrow: "04", label: "Finanzierung" },
-  { id: "ausbaustufen", eyebrow: "05", label: "Ausbaustufen" },
+  { id: "ablauf",         eyebrow: "01", label: "Der Ablauf" },
+  { id: "architektur",    eyebrow: "02", label: "Architektur" },
+  { id: "smart-home",     eyebrow: "03", label: "Smart Home" },
+  { id: "finanzierung",   eyebrow: "04", label: "Finanzierung" },
+  { id: "ausbaustufen",   eyebrow: "05", label: "Ausbaustufen" },
+  { id: "nachhaltigkeit", eyebrow: "06", label: "Nachhaltigkeit" },
 ];
 
 const smartHomeFeatures: IconListItem[] = [
@@ -52,18 +51,69 @@ const smartHomeFeatures: IconListItem[] = [
     icon: "sparkles",
     label: "Maßgeschneidert",
     description:
-      "Von Beleuchtungssteuerung bis Gartenbewässerung — wir entwickeln ein individuelles Konzept für Ihr intelligentes Zuhause.",
+      "Von Beleuchtungssteuerung bis Lichtszenen — wir entwickeln ein individuelles Konzept für Ihr intelligentes Zuhause.",
+  },
+];
+
+// ── Architektur — three editorial beats, alternating image/text. The
+// fallback images live under /landing/uebersicht/ (already cropped for
+// editorial use) and /content/advantage/ for variety.
+type ArchBeat = {
+  eyebrow: string;
+  heading: string;
+  body: string;
+  imageURL: string;
+  imageAlt: string;
+};
+
+const architekturBeats: ArchBeat[] = [
+  {
+    eyebrow: "Grundriss",
+    heading: "Frei gestalten — bis zur letzten Wand.",
+    body:
+      "Offener Wohnbereich, separates Homeoffice, Einliegerwohnung oder großzügige Terrasse — Ihr Grundriss folgt Ihrem Leben, nicht einem Katalog. Wir planen die Räume so, wie Sie sie täglich nutzen werden.",
+    imageURL: getMediaURL("/images/landing/uebersicht/lifestyle-01.webp"),
+    imageAlt:
+      "Offener Wohnbereich mit großzügiger Tageslichtführung — individuell geplanter Grundriss",
+  },
+  {
+    eyebrow: "Fassade",
+    heading: "Außen, wie Sie es sich vorstellen.",
+    body:
+      "Klassisch verputzt, mit Holzakzenten oder vollflächig in Holz — die Fassade definiert den ersten Eindruck. Aus einer abgestimmten Palette wählen Sie Materialien, Farben und Proportionen, die zum Ort passen.",
+    imageURL: getMediaURL("/images/landing/uebersicht/lifestyle-04.webp"),
+    imageAlt:
+      "Moderne Holzfassade eines BoHolz-Hauses — wählbare Materialität für die Außenwirkung",
+  },
+  {
+    eyebrow: "Innen & außen",
+    heading: "Aus einer Hand, ohne Übergabeverluste.",
+    body:
+      "Wer plant, baut. Vom ersten Skizzenstrich bis zur fertigen Innenraumgestaltung bleibt das Projekt in einer Hand — keine Schnittstellen zwischen Architekt, Generalunternehmer und Innenausbau, keine Reibungsverluste in Detail und Termin.",
+    imageURL: getMediaURL("/images/landing/uebersicht/lifestyle-05.webp"),
+    imageAlt:
+      "Detailliert ausgestalteter Wohnraum — Innenausbau und Architektur aus einer Hand",
   },
 ];
 
 const heroImage = bauphasenHeroImageURL;
 const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
+
+// Nachhaltigkeit — two side-by-side editorial images. The first carries the
+// `badge-holz-klima-color` sigil from the global sprite (injected by
+// Layout.astro) as an absolutely-positioned overlay.
+const nachhaltigkeitImageA = getMediaURL(
+  "/images/content/advantage/nachhaltigkeit/hero.webp",
+);
+const nachhaltigkeitImageB = getMediaURL(
+  "/images/content/advantage/holzfaserdaemmung/hero.webp",
+);
 ---
 
-<Layout title="Dein Zuhause – BoHolz Haus">
+<Layout title="Ihr Neues Zuhause – BoHolz Haus">
   <div class="full-width">
     <PageHero
-      eyebrow="Dein Zuhause"
+      eyebrow="Ihr Neues Zuhause"
       title="Von der ersten Idee bis zur"
       highlight="Schlüsselübergabe."
       subtitle="So entsteht Ihr individuelles BoHolz Fertighaus — gegliedert in klare Phasen, begleitet von einem festen Ansprechpartner."
@@ -73,9 +123,9 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     />
   </div>
 
-  <SectionNavigator client:load pageTitle="Dein Zuhause" sections={sections} />
+  <SectionNavigator client:load pageTitle="Ihr Neues Zuhause" sections={sections} />
 
-  <!-- 02 · Ablauf ───────────────────────────────────────── -->
+  <!-- 01 · Ablauf ───────────────────────────────────────── -->
   <Block
     id="ablauf"
     eyebrow="01 · Der Ablauf"
@@ -165,7 +215,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     </div>
   </Block>
 
-  <!-- 03 · Architektur ───────────────────────────────────── -->
+  <!-- 02 · Architektur — zigzag editorial ─────────────────── -->
   <Block
     id="architektur"
     eyebrow="02 · Architektur"
@@ -173,17 +223,23 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     highlight="eigene Geschichte."
     lede="Von der Grundrissgestaltung bis zur Fassadenauswahl — bei uns haben Sie die Freiheit, Ihren Hausentwurf mit eigenen Ideen und Gestaltungswünschen zu individualisieren."
   >
-    <div class="prose">
-      <p>
-        Ob Sie von einem offenen Wohnbereich träumen, ein separates Homeoffice,
-        eine Einliegerwohnung oder eine großzügige Terrasse wünschen — wir setzen
-        Ihre Vorstellungen um.
-      </p>
-      <p>{keitel("zuhauseArchitektur")}</p>
+    <div class="zigzag">
+      {architekturBeats.map((beat) => (
+        <article class="beat">
+          <figure class="beat-frame">
+            <img src={beat.imageURL} alt={beat.imageAlt} loading="lazy" />
+          </figure>
+          <div class="beat-body">
+            <span class="beat-eyebrow">{beat.eyebrow}</span>
+            <h3 class="beat-heading">{beat.heading}</h3>
+            <p class="beat-text">{beat.body}</p>
+          </div>
+        </article>
+      ))}
     </div>
   </Block>
 
-  <!-- 04 · Smart Home ────────────────────────────────────── -->
+  <!-- 03 · Smart Home ────────────────────────────────────── -->
   <Block
     id="smart-home"
     eyebrow="03 · Smart Home"
@@ -194,7 +250,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     <IconList client:visible items={smartHomeFeatures} columns={2} />
   </Block>
 
-  <!-- 05 · Finanzierung & Förderung ─────────────────────── -->
+  <!-- 04 · Finanzierung & Förderung ─────────────────────── -->
   <Block
     id="finanzierung"
     eyebrow="04 · Finanzierung"
@@ -249,7 +305,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     </div>
   </Block>
 
-  <!-- 06 · Ausbaustufen ──────────────────────────────────── -->
+  <!-- 05 · Ausbaustufen ──────────────────────────────────── -->
   <Block
     id="ausbaustufen"
     eyebrow="05 · Ausbaustufen"
@@ -260,19 +316,37 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     <BuildingStagesCarousel client:visible stages={buildingStages} />
   </Block>
 
-  <!-- 07 · Video placeholder ─────────────────────────────── -->
-  <Block>
-    <VideoPlaceholder
-      client:visible
-      slotId="dein-zuhause-zeitraffer"
-      variant="film"
-      aspectRatio="21/9"
-      label="Zeitraffer · Vom Werk auf die Baustelle"
-      caption="Bewegtbild folgt — Aufbau eines BoHolz-Hauses in unter 60 Sekunden."
-    />
+  <!-- 06 · Nachhaltigkeit ───────────────────────────────── -->
+  <Block
+    id="nachhaltigkeit"
+    tone="band"
+    eyebrow="06 · Nachhaltigkeit"
+    heading="Gebaut für"
+    highlight="Generationen."
+    lede="Jedes BoHolz-Haus bindet im Schnitt rund 30 Tonnen CO₂ in seinen Wänden — als KfW 40 oder KfW 55 ausgelegt, Schicht für Schicht aus regional gewachsenem Holz. Nachhaltigkeit ist hier kein Etikett, sondern Bauweise."
+  >
+    <div class="sustain-pair">
+      <figure class="sustain-frame">
+        <img
+          src={nachhaltigkeitImageA}
+          alt="Holzbauweise als gelebter Klimaschutz — BoHolz Manufaktur"
+          loading="lazy"
+        />
+        <svg class="sustain-badge" aria-label="Holz rettet Klima 2030">
+          <use href="#badge-holz-klima-color" />
+        </svg>
+      </figure>
+      <figure class="sustain-frame">
+        <img
+          src={nachhaltigkeitImageB}
+          alt="Holzfaserdämmung als ökologische Gebäudehülle — diffusionsoffen, baubiologisch hervorragend"
+          loading="lazy"
+        />
+      </figure>
+    </div>
   </Block>
 
-  <!-- 08 · CTA ────────────────────────────────────────────── -->
+  <!-- 07 · CTA ────────────────────────────────────────────── -->
   <div class="full-width">
     <CTASection
       title="Bereit für Ihr"
@@ -299,10 +373,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     gap: var(--spacing-4);
   }
 
-  /* ── Phase composite (image stacked above EditorialCard) ──
-     Each .phase wraps the phase-teaser image and the card. Scroll-margin
-     so a deep link from the homepage strip (`/dein-zuhause#phase-...`) lands
-     cleanly under the navbar. */
+  /* ── Phase composite (image stacked above EditorialCard) ── */
   .phase {
     display: flex;
     flex-direction: column;
@@ -315,8 +386,6 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     position: relative;
     margin: 0;
     width: 100%;
-    /* 4:3 — wide enough to read the scene, short enough that the card
-       below still anchors the visual weight. */
     aspect-ratio: 4 / 3;
     border-radius: var(--radius-md);
     overflow: hidden;
@@ -344,18 +413,83 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     }
   }
 
-  /* ── Prose: paragraph stack inside an Architektur-style section ── */
-  .prose {
+  /* ── Architektur — zigzag editorial. Three beats alternate image-left/
+     text-right and image-right/text-left from tablet up. On mobile, every
+     beat stacks (image above text). The image holds a 4:3 frame so it
+     reads as editorial weight, not as a card thumbnail. ── */
+  .zigzag {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-5);
+  }
+
+  .beat {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: var(--spacing-3);
-    max-width: 64ch;
+    align-items: center;
+  }
+
+  .beat-frame {
+    margin: 0;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--clr-surface-secondary);
+  }
+
+  .beat-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .beat-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    max-width: 56ch;
+  }
+
+  .beat-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-tertiary);
+  }
+
+  .beat-heading {
+    margin: 0;
+    font-size: var(--fs-h5);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-heading);
+    color: var(--clr-content-primary);
+    font-weight: var(--font-weight-regular);
+  }
+
+  .beat-text {
+    margin: 0;
     color: var(--clr-content-secondary);
     line-height: var(--lh-body);
   }
 
-  .prose p {
-    margin: 0;
+  @media (--from-tablet) {
+    .beat {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-5);
+    }
+
+    /* Alternate every second beat: image on the right, text on the left. */
+    .beat:nth-child(even) .beat-frame {
+      order: 2;
+    }
+
+    .beat:nth-child(even) .beat-body {
+      order: 1;
+    }
   }
 
   /* ── Lists inside EditorialCards (Phase 1/2/3 detail bullets) ── */
@@ -371,7 +505,6 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     line-height: var(--lh-body);
   }
 
-  /* Hairline bullet — quieter than ::marker, scales with the card. */
   .lined li {
     position: relative;
     padding-inline-start: var(--spacing-3);
@@ -397,13 +530,10 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     font-weight: var(--font-weight-medium);
   }
 
-  /* Callout sits flush with the cards above (its own block-padding inside) */
   .callout-slot {
     max-width: 56rem;
   }
 
-  /* Inline anchors inside the Förderung callout pick up the accent and a
-     1px underline so the kfw.de pointer reads as a link, not body text. */
   .callout-slot :global(a) {
     color: var(--clr-accent-primary);
     text-decoration: underline;
@@ -423,10 +553,56 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     border-radius: var(--radius-sm);
   }
 
+  /* ── Nachhaltigkeit pair — two editorial images side-by-side with a
+     `Holz rettet Klima 2030` badge overlaid on the first frame. The badge
+     sits as a square overlay anchored to the top-right corner, sized so it
+     reads as a sigil — not as decoration. Mobile shrinks both the frame
+     gap and the badge so it can't overflow the image. ── */
+  .sustain-pair {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+  }
+
+  @media (--from-tablet) {
+    .sustain-pair {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-4);
+    }
+  }
+
+  .sustain-frame {
+    position: relative;
+    margin: 0;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--clr-surface-primary);
+  }
+
+  .sustain-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .sustain-badge {
+    position: absolute;
+    inset-block-start: var(--spacing-3);
+    inset-inline-end: var(--spacing-3);
+    /* Sized in absolute px (not a scale token) so the badge never grows
+       larger than the frame on small viewports; aspect 1/1 from the
+       symbol's viewBox. */
+    width: clamp(64px, 18vw, 112px);
+    height: clamp(64px, 18vw, 112px);
+    filter: drop-shadow(0 4px 16px color-mix(in srgb, #000 28%, transparent));
+  }
+
   /* ── CTA inline links ──
      CTASection ships layout + tone but no buttons. Primary accent on the
-     larger CTA surface per the project rule; ghost for the secondary
-     action so a single accent reads clearly. */
+     larger CTA surface; ghost for the secondary action. */
   .cta-link {
     display: inline-flex;
     align-items: center;

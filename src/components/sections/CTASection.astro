@@ -153,4 +153,12 @@ const resolvedTone: Tone = image ? "image" : tone;
     gap: var(--spacing-2);
     margin-top: var(--spacing-2);
   }
+
+  @media (--mobile) {
+    .actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+  }
 </style>

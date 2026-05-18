@@ -134,11 +134,17 @@ function warm() {
 .scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, #000 12%, transparent),
-    color-mix(in srgb, #000 36%, transparent) 100%
-  );
+  background:
+    radial-gradient(
+      circle at center,
+      color-mix(in srgb, #000 28%, transparent) 0%,
+      color-mix(in srgb, #000 0%, transparent) 55%
+    ),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, #000 12%, transparent),
+      color-mix(in srgb, #000 36%, transparent) 100%
+    );
   transition: background 200ms ease;
 }
 
@@ -155,13 +161,16 @@ function warm() {
 
 .play :deep(svg) {
   /* The chip itself — circular glass affordance over imagery. Backdrop blur
-     keeps the play glyph legible regardless of the underlying scene. */
+     keeps the play glyph legible regardless of the underlying scene; the
+     soft drop shadow guarantees separation from light scenes (snow, white
+     facades) where the glass alone would disappear. */
   padding: var(--spacing-3);
-  background: color-mix(in srgb, var(--clr-pure-white) 22%, transparent);
+  background: color-mix(in srgb, var(--clr-pure-white) 32%, transparent);
   border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--clr-pure-white) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--clr-pure-white) 40%, transparent);
   backdrop-filter: blur(6px) saturate(120%);
   -webkit-backdrop-filter: blur(6px) saturate(120%);
+  box-shadow: 0 6px 24px color-mix(in srgb, #000 28%, transparent);
   /* Optical adjustment — Play triangle is right-heavy; nudge it 1.5px left
      inside the chip so it reads centred. */
   margin-inline-start: 1.5px;
@@ -169,6 +178,16 @@ function warm() {
     transform 200ms ease,
     background 200ms ease,
     border-color 200ms ease;
+}
+
+/* Mobile: poster crops smaller, so the chip needs to read as a clear
+   affordance against a tighter frame. Larger inner padding bumps the chip's
+   visual footprint without changing the icon size. */
+@media (--mobile) {
+  .play :deep(svg) {
+    padding: var(--spacing-4);
+    background: color-mix(in srgb, var(--clr-pure-white) 38%, transparent);
+  }
 }
 
 .poster:hover img,

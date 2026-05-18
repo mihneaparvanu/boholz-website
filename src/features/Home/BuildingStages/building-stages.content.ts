@@ -9,9 +9,6 @@ export const buildingStages: BuildingStage[] = [
     title: "Ausbauhaus",
     description:
       "Sie möchten selbst Hand anlegen? Wir liefern den Rohbau wetterfest und winddicht – Sie übernehmen den Innenausbau in Ihrem Tempo und sparen dabei spürbar Kosten.",
-    // TODO(client 2026-05-18): reuse the Technikfertig image here per request,
-    // but only once a clean variant arrives — current utility-ready.webp shows
-    // landscaping (Außenanlage) which doesn't apply to Ausbauhaus.
     imageURL: `${baseMediaURL}/shell.webp`,
   },
   {
@@ -19,9 +16,8 @@ export const buildingStages: BuildingStage[] = [
     title: "Technikfertig",
     description:
       "Wir installieren die komplette Haustechnik – Heizung, Elektrik und Rohinstallation für Sanitär. Sie gestalten Wände, Böden und Oberflächen ganz nach Ihrem persönlichen Geschmack.",
-    // Image hidden until a clean variant without Außenanlage arrives — the
-    // current utility-ready.webp shows landscaping the client wants removed.
-    // Renderer falls back to <ImagePlaceholder> (a "?" tile) automatically.
+    // Image intentionally null until a clean variant arrives — renderer
+    // falls back to <ImagePlaceholder> automatically.
     imageURL: null,
   },
   {

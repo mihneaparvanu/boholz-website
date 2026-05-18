@@ -10,28 +10,22 @@ import DefinitionList, {
 import StatBlock from "@/components/ui/StatBlock.vue";
 import IconList, { type IconListItem } from "@/components/ui/IconList.vue";
 import EditorialCard from "@/components/ui/EditorialCard.vue";
-import ComparisonBlock, {
-  type ComparisonSide,
-} from "@/components/ui/ComparisonBlock.vue";
-import VideoPlaceholder from "@/components/ui/VideoPlaceholder.vue";
 import Button from "@/components/ui/Button.vue";
 import { ArrowRight, Phone } from "lucide-vue-next";
 import { getMediaURL } from "@/utils/media";
 import FeatureCardPair from "@/features/Advantage/FeatureCardPair.vue";
 import LiteYouTube from "@/features/Advantage/LiteYouTube.vue";
 import type { FeatureCard } from "@/features/Advantage/advantage.types";
-import ProofSection from "@/components/sections/Proof-Section.vue";
 import { keitel } from "@/content/keitel";
 
 // ── Section index — drives the SectionNavigator's overview + sticky rail.
 const sections = [
-  { id: "qualitaet", eyebrow: "01", label: "Qualität & Zertifikate" },
-  { id: "tradition", eyebrow: "02", label: "Tradition & Innovation" },
-  { id: "gruende", eyebrow: "03", label: "16 gute Gründe" },
-  { id: "nachhaltigkeit", eyebrow: "04", label: "Nachhaltigkeit" },
-  { id: "holzfaserdaemmung", eyebrow: "05", label: "Holzfaserdämmung" },
-  { id: "wandaufbau", eyebrow: "06", label: "Wandaufbau" },
-  { id: "technik", eyebrow: "07", label: "Energietechnik" },
+  { id: "tradition", eyebrow: "01", label: "Tradition & Innovation" },
+  { id: "gruende", eyebrow: "02", label: "16 gute Gründe" },
+  { id: "nachhaltigkeit", eyebrow: "03", label: "Nachhaltigkeit" },
+  { id: "holzfaserdaemmung", eyebrow: "04", label: "Holzfaserdämmung" },
+  { id: "wandaufbau", eyebrow: "05", label: "Wandaufbau" },
+  { id: "technik", eyebrow: "06", label: "Energietechnik" },
 ];
 
 // ── R2 image URLs for the advantage subsections.
@@ -49,9 +43,6 @@ const wandaufbauHero = getMediaURL(
 );
 
 // ── Section 5 — Holzfaserdämmung side-by-side (Sommer vs Winter).
-// The two seasons frame the same material's value from two angles — summer
-// heat shielded by the dense fibre, winter warmth retained by it. Bullet
-// copy stays anchored to the existing page numbers (11h, 92%, λ 0,036).
 const sommer: FeatureCard = {
   eyebrow: "Sommer",
   title: "Hitzeschutz bis in die Nacht",
@@ -89,10 +80,6 @@ const winter: FeatureCard = {
 };
 
 // ── Section 6 — Wandaufbau Vergleich (ECO Nature vs ECO Nature Plus).
-// Two cards side by side; ECO Nature Plus carries the accent as the
-// recommended KfW 40 upgrade. Bullet copy preserves the technical
-// differentiators (KfW class, U-Wert, Dämmstärke) without duplicating
-// the DefinitionList below.
 const ecoNature: FeatureCard = {
   eyebrow: "KfW 55",
   title: "ECO Nature",
@@ -128,37 +115,7 @@ const ecoNaturePlus: FeatureCard = {
     "Schichtaufbau ECO Nature Plus — erweiterte Dämmung für KfW 40 Effizienzhäuser",
 };
 
-const qualityStats: Array<{
-  value: string;
-  label: string;
-  caption: string;
-  icon: "shield" | "award" | "users";
-}> = [
-  {
-    value: "Qualität",
-    label: "ständig überwacht",
-    caption:
-      "Unsere Güter werden ständig überwacht — eigene Qualitätskontrollen plus unabhängige Fremdüberwachung.",
-    icon: "shield",
-  },
-  {
-    value: "18 Monate",
-    label: "Festpreisgarantie",
-    caption:
-      "Bei uns haben Sie 18 Monate Festpreisgarantie auf Ihr Bauprojekt.",
-    icon: "award",
-  },
-  {
-    value: "Deutschland",
-    label: "Made in Germany",
-    caption: "Jedes Haus wird in Deutschland produziert.",
-    icon: "users",
-  },
-];
-
-// ── Section 4 — 16 gute Gründe.
-// All sixteen original list items preserved verbatim; icons chosen per item
-// from the existing IconName union in src/utils/icons.ts.
+// ── Section 3 — 16 gute Gründe.
 const sechzehnGruende: IconListItem[] = [
   {
     icon: "leaf",
@@ -236,39 +193,7 @@ const sechzehnGruende: IconListItem[] = [
   },
 ];
 
-// ── Section 5 — Holzbau vs konventionell.
-// Both sides derived from the existing six "feature-card" entries plus the
-// Holzfaserdämmung block — the original sustainability claims, restructured
-// as a side-by-side so the contrast is legible at a glance.
-const konventionell: ComparisonSide = {
-  title: "Konventioneller Hausbau",
-  caption: "Beton, Ziegel, mineralische Dämmstoffe",
-  items: [
-    "Hohe CO₂-Emissionen schon beim Bau",
-    "Energieintensive, oft fossile Heizsysteme",
-    "Plastik- oder mineralfaserbasierte Dämmstoffe",
-    "Lange Transportwege für Baustoffe",
-    "Schwer recyclebare Materialkombinationen",
-    "Trockene, träge regulierte Raumluft",
-  ],
-};
-
-const holzbau: ComparisonSide = {
-  title: "BoHolz Holzbau",
-  caption: "Holz aus regionaler nachhaltiger Forstwirtschaft",
-  items: [
-    "Ein Haus bindet durchschnittlich 30 Tonnen CO₂",
-    "KfW 55 / KfW 40 Standard mit staatlicher Förderung",
-    "Diffusionsoffene Holzfaserdämmung, λ 0,036 W/(mK)",
-    "Regionale Wertschöpfung, kurze Wege",
-    "Am Ende der Lebensdauer recycelbar oder thermisch verwertbar",
-    "Natürlich feuchteregulierendes, gesundes Raumklima",
-  ],
-};
-
 // ── Section 7 — ECO Nature Wandaufbau (KfW 55).
-// Verbatim from the original "ECO Nature" list; the U-Wert and Brandschutz
-// kicker survives as the final two rows so all numeric specs stay grouped.
 const ecoNatureLayers: DefinitionItem[] = [
   {
     term: "Außenputz",
@@ -312,7 +237,6 @@ const ecoNatureLayers: DefinitionItem[] = [
 ];
 
 // ── Section 8 — Haus- & Energietechnik.
-// Three IconList items, each preserves the original paragraph as description.
 const technik: IconListItem[] = [
   {
     icon: "zap",
@@ -335,13 +259,13 @@ const technik: IconListItem[] = [
 ];
 ---
 
-<Layout title="Das BoHolz Versprechen — BoHolz Haus">
+<Layout title="Bauen mit BoHolz — BoHolz Haus">
   <!-- 0. Hero ----------------------------------------------------------- -->
   <div class="full-width">
     <PageHero
-      eyebrow="Unser Versprechen"
-      title="Das BoHolz"
-      highlight="Versprechen"
+      eyebrow="Bauen mit BoHolz"
+      title="Solide gebaut. Sauber"
+      highlight="übergeben."
       subtitle="Höchste Bauqualität. Gelebte Nachhaltigkeit. Persönliche Begleitung — vom ersten Entwurf bis zum Einzug."
       image={nachhaltigkeitHero}
       imageAlt="BoHolz Holzbau in der Manufaktur — gelebter Qualitätsanspruch"
@@ -349,42 +273,14 @@ const technik: IconListItem[] = [
     />
   </div>
 
-  <!-- 0b. Zertifikate & Siegel (full-bleed band, mirrors homepage) ------ -->
-  <Block tone="band">
-    <ProofSection client:visible />
-  </Block>
-
   <!-- 1. Section overview + sticky rail -------------------------------- -->
-  <SectionNavigator client:load pageTitle="Unser Versprechen" sections={sections} stickyOffset={64} />
+  <SectionNavigator client:load pageTitle="Bauen mit BoHolz" sections={sections} stickyOffset={64} />
 
-  <!-- 2. Qualität & Zertifikate ---------------------------------------- -->
-  <Block
-    id="qualitaet"
-    eyebrow="01 — Qualität & Zertifikate"
-    heading="Qualität, die sich überprüfen"
-    highlight="lässt."
-    lede="Unser oberstes Ziel ist die Zufriedenheit unserer Kunden, dicht gefolgt von einem hohen Qualitätsstandard. Der Bau eines Hauses ist eine der wichtigsten Entscheidungen im Leben — wir gestalten den Prozess so angenehm und erfolgreich wie möglich."
-  >
-    <div class="stats">
-      {
-        qualityStats.map((s) => (
-          <StatBlock
-            client:visible
-            value={s.value}
-            label={s.label}
-            caption={s.caption}
-            icon={s.icon}
-          />
-        ))
-      }
-    </div>
-  </Block>
-
-  <!-- 3. Tradition trifft Innovation ----------------------------------- -->
+  <!-- 2. Tradition trifft Innovation ----------------------------------- -->
   <Block
     id="tradition"
     tone="band"
-    eyebrow="02 — Tradition & Innovation"
+    eyebrow="01 — Tradition & Innovation"
     heading="Generationen-Handwerk, moderne"
     highlight="Fertigung."
     lede={keitel("versprechenTraditionLede")}
@@ -414,10 +310,10 @@ const technik: IconListItem[] = [
     </div>
   </Block>
 
-  <!-- 4. 16 gute Gründe ------------------------------------------------ -->
+  <!-- 3. 16 gute Gründe ------------------------------------------------ -->
   <Block
     id="gruende"
-    eyebrow="03 — 16 gute Gründe"
+    eyebrow="02 — 16 gute Gründe"
     heading="Was in jedem BoHolz Fertighaus"
     highlight="serienmäßig steckt."
     lede="Vom diffusionsoffenen Wandaufbau bis zur barrierefreien Dusche — sechzehn Details, die wir bereits im Standard liefern."
@@ -425,19 +321,15 @@ const technik: IconListItem[] = [
     <IconList client:visible items={sechzehnGruende} columns={4} />
   </Block>
 
-  <!-- 5. Nachhaltigkeit — Vergleich + Video ---------------------------- -->
+  <!-- 4. Nachhaltigkeit — Hero + Video + Stats -------------------------- -->
   <Block
     id="nachhaltigkeit"
     tone="band"
-    eyebrow="04 — Nachhaltigkeit"
+    eyebrow="03 — Nachhaltigkeit"
     heading="Wohnträume mit aktivem"
     highlight="Umweltschutz."
     lede="Bei BoHolz Haus verbinden wir Ihre Wohnträume mit aktivem Umweltschutz. Unsere individuellen Fertighäuser aus Holz sind nicht nur Ihr persönliches Zuhause, sondern auch ein Beitrag zu einer besseren Zukunft."
   >
-    <!-- Hero image + lite-YouTube. Two-up on desktop so the image sets the
-         scene and the video sits as the active companion; stacks on mobile.
-         The video stays idle until the user clicks — no YouTube JS loads on
-         page load. -->
     <div class="media-pair">
       <figure class="media-hero">
         <img
@@ -455,14 +347,7 @@ const technik: IconListItem[] = [
       />
     </div>
 
-    <ComparisonBlock
-      client:visible
-      left={konventionell}
-      right={holzbau}
-      accent="right"
-    />
-
-    <!-- Three numbers that quantify the holzbau side of the comparison above. -->
+    <!-- Three numbers that quantify the BoHolz Holzbau approach. -->
     <div class="stats-trio">
       <div class="stats">
         <StatBlock
@@ -494,10 +379,10 @@ const technik: IconListItem[] = [
     </div>
   </Block>
 
-  <!-- 7. Holzfaserdämmung ─ Sommer / Winter ---------------------------- -->
+  <!-- 5. Holzfaserdämmung ─ Sommer / Winter ---------------------------- -->
   <Block
     id="holzfaserdaemmung"
-    eyebrow="05 — Holzfaserdämmung"
+    eyebrow="04 — Holzfaserdämmung"
     heading="Eine Wand. Zwei"
     highlight="Jahreszeiten."
     lede="Die Holzfaserdämmplatte ist das stille Bauteil hinter unserem Wandaufbau — schützt im Sommer vor Hitze, hält im Winter Wärme, das ganze Jahr diffusionsoffen."
@@ -512,11 +397,11 @@ const technik: IconListItem[] = [
     <FeatureCardPair client:visible left={sommer} right={winter} />
   </Block>
 
-  <!-- 8. Wandaufbau ---------------------------------------------------- -->
+  <!-- 6. Wandaufbau ---------------------------------------------------- -->
   <Block
     id="wandaufbau"
     tone="band"
-    eyebrow="06 — Wandaufbau"
+    eyebrow="05 — Wandaufbau"
     heading="ECO Nature — die Schichten unserer"
     highlight="Gebäudehülle."
     lede="Die größten Energieverluste eines Hauses treten über seine äußere Hülle auf. ECO Nature schützt effektiv vor Hitze, Kälte, Lärm und Feuer — Schicht für Schicht."
@@ -529,9 +414,6 @@ const technik: IconListItem[] = [
       />
     </figure>
 
-    <!-- Two-up overview: ECO Nature vs ECO Nature Plus. Sits above the
-         deeper-spec DefinitionList so the user reads the high-level
-         choice first, then drills into the layer-by-layer detail. -->
     <FeatureCardPair
       client:visible
       left={ecoNature}
@@ -547,10 +429,10 @@ const technik: IconListItem[] = [
     </details>
   </Block>
 
-  <!-- 9. Haus- & Energietechnik ---------------------------------------- -->
+  <!-- 7. Haus- & Energietechnik ---------------------------------------- -->
   <Block
     id="technik"
-    eyebrow="07 — Energietechnik"
+    eyebrow="06 — Energietechnik"
     heading="Wärmepumpen, Photovoltaik,"
     highlight="gesundes Raumklima."
     lede="Dank gut gedämmter Außenwände bieten unsere Häuser von Anfang an umweltschonende Materialien und energieeffiziente Bauweise. Drei Bausteine, die Nachhaltigkeit konkret machen."
@@ -558,19 +440,7 @@ const technik: IconListItem[] = [
     <IconList client:visible items={technik} columns={1} density="comfortable" />
   </Block>
 
-  <!-- 9b. Werksrundgang Video Slot ------------------------------------- -->
-  <Block tone="band">
-    <VideoPlaceholder
-      client:visible
-      slotId="versprechen-werksrundgang"
-      aspectRatio="16/9"
-      variant="film"
-      label="Werksrundgang — bald verfügbar"
-      caption="Ein Blick hinter die Kulissen der Manufaktur."
-    />
-  </Block>
-
-  <!-- 10. CTA --------------------------------------------------------- -->
+  <!-- 8. CTA --------------------------------------------------------- -->
   <div class="full-width">
     <CTASection
       tone="accent"
@@ -593,9 +463,7 @@ const technik: IconListItem[] = [
 </Layout>
 
 <style>
-  /* Stats trio nested inside the Nachhaltigkeit band — same visual shape
-     as the prior standalone .stats-band, just lives one nesting deeper so
-     the page's tonal alternation stays clean. */
+  /* Stats trio nested inside the Nachhaltigkeit band. */
   .stats-trio {
     display: flex;
     flex-direction: column;
@@ -639,10 +507,7 @@ const technik: IconListItem[] = [
     }
   }
 
-  /* ── Editorial hero image inside an advantage section.
-     Used by Holzfaserdämmung and Wandaufbau — anchors the section before
-     the FeatureCardPair grid. 16:9 on desktop reads as cinematic; mobile
-     drops to 4:3 so it doesn't dominate the viewport. */
+  /* ── Editorial hero image inside an advantage section. */
   .hero-image {
     margin: 0;
     width: 100%;
@@ -666,9 +531,7 @@ const technik: IconListItem[] = [
     display: block;
   }
 
-  /* ── Nachhaltigkeit hero + video pair.
-     One column on mobile (hero stacked above video); two columns from
-     desktop so the still and the motion sit side by side. */
+  /* ── Nachhaltigkeit hero + video pair. */
   .media-pair {
     display: grid;
     grid-template-columns: 1fr;
@@ -700,10 +563,7 @@ const technik: IconListItem[] = [
     display: block;
   }
 
-  /* ── Progressive-disclosure: deep wandaufbau spec list.
-     Sits behind a <details>/<summary> so the page leads with the
-     high-level FeatureCardPair, then unfolds the layer-by-layer spec
-     for users who want the engineering. */
+  /* ── Progressive-disclosure: deep wandaufbau spec list. */
   .layers-details {
     border-block-start: 1px solid var(--clr-border-secondary);
     padding-block-start: var(--spacing-4);

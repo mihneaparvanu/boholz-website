@@ -264,9 +264,11 @@
   /* Navbar logo width — named so we can tune mobile vs desktop independently
      without hunting through `:deep(.logo)` rules. Desktop tracks the type
      scale via --sz-3xl (~28–36px depending on viewport); mobile is a fixed
-     value chosen to feel present at 360–430px without dominating the bar. */
+     value chosen to feel present at 360–430px without dominating the bar.
+     Bumped 40→46 on 2026-05-18 — the mark felt undersized at 390px once the
+     trigger and Katalog CTA were on the same row. */
   --navbar-logo: var(--sz-3xl);
-  --navbar-logo-mobile: 40px;
+  --navbar-logo-mobile: 46px;
 }
 
 body {
@@ -333,4 +335,14 @@ h6 {
     --control-height-md: 44px;
     --control-height-lg: 52px;
   }
+}
+
+/* Italic heading highlights render in BoHolz brand blue site-wide. Double-class
+   selectors keep specificity above Vue/Astro scoped-style hashes that would
+   otherwise win on per-component .highlight / .index rules. */
+body em,
+body i:not(.open),
+body .highlight.highlight,
+body .index.index {
+  color: var(--clr-accent-primary);
 }

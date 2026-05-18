@@ -16,6 +16,7 @@ defineProps<{
       :label="b.label"
       :caption="b.caption"
       :icon="b.icon"
+      :flag="b.flag"
       align="start"
     />
   </div>

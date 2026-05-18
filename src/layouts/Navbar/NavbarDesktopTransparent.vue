@@ -11,6 +11,7 @@ import { TRANSPARENT_NAV } from "./navbar.content";
 defineProps<{
   categories: HouseCategory[];
   showhouses: Location[];
+  officeLocations?: Location[];
   bestsellerHero?: string | null;
   currentPath: string;
 }>();

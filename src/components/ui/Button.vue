@@ -124,8 +124,16 @@ withDefaults(
 /* Mobile: bump padding-block one step per size so the label has real
    breathing room. We also drop the min-height floors — padding alone now
    pushes every size above the 44px tap target, and keeping min-height was
-   pinning short labels to the top/bottom of the box (the "squashed" look). */
+   pinning short labels to the top/bottom of the box (the "squashed" look).
+
+   Every button stretches full-width on mobile so labels of different lengths
+   end up the same visual weight. Inline button rows on parent surfaces opt
+   into `flex-direction: column` so the pair stacks rather than being squeezed
+   side-by-side. */
 @media (--mobile) {
+  .btn {
+    width: 100%;
+  }
   .btn[data-size="sm"] {
     min-height: 0;
     padding-block: var(--spacing-2);

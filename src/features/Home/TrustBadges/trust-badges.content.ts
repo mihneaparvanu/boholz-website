@@ -13,6 +13,8 @@ export interface TrustBadge {
   label: string;
   /** Optional explainer below the label. */
   caption?: string;
+  /** When true, the card renders the Germany-flag visual above its value. */
+  flag?: boolean;
 }
 
 export const trustBadges: TrustBadge[] = [
@@ -21,6 +23,7 @@ export const trustBadges: TrustBadge[] = [
     value: "100%",
     label: "Made in Germany",
     caption: "Vorgefertigt im Werk, montiert vom Boholz-Team.",
+    flag: true,
   },
   {
     icon: "calendar-check",

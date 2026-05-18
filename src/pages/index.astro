@@ -19,7 +19,10 @@
  *   7. TestimonialBand     — dark olive band with 3 quotes + badges
  *   8. FAQAccordion        — 3–6 page-specific FAQs
  *   9. LeadFormBand        — split rail + form, pre-selected interest
- *  10. CTASection          — closing call-to-action
+ *
+ * Note: the closing CTA block was removed from the homepage on 2026-05-18
+ * (client feedback) — the lead form is the page's final beat. Other landing
+ * pages still render `closingCta` from their content modules.
  */
 import Layout from "@/layouts/Layout.astro";
 import { getMediaURL } from "@/utils/media";
@@ -33,7 +36,6 @@ import AudienceBlock from "@/components/sections/AudienceBlock.astro";
 import TwoColumn from "@/components/sections/TwoColumn.astro";
 import TestimonialBand from "@/components/sections/TestimonialBand.astro";
 import LeadFormBand from "@/components/sections/LeadFormBand.vue";
-import CTASection from "@/components/sections/CTASection.astro";
 
 import FAQAccordion from "@/components/ui/FAQAccordion.vue";
 import Button from "@/components/ui/Button.vue";
@@ -79,6 +81,7 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
       image={heroImage}
       imageAlt={content.hero.imageAlt}
       align="center"
+      context="home"
     >
       <Fragment slot="actions">
         <Button  variant="primary" size="lg" href={content.hero.primaryCta.href}>
@@ -224,7 +227,7 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     </div>
   </Block>
 
-  <!-- ── 09 · Lead form (full-bleed) ────────────────────────────── -->
+  <!-- ── 09 · Lead form (full-bleed) — last beat on the page ────── -->
   <LeadFormBand
     client:visible
     eyebrow={content.leadForm.eyebrow}
@@ -236,30 +239,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     interestOptions={content.leadForm.interestOptions}
     tone={content.leadForm.tone}
   />
-
-  <!-- ── 10 · Closing CTA ───────────────────────────────────────── -->
-  <div class="full-width">
-    <CTASection
-      eyebrow={content.closingCta.eyebrow}
-      title={content.closingCta.title}
-      highlight={content.closingCta.highlight}
-      subtitle={content.closingCta.subtitle}
-      tone={content.closingCta.tone}
-      image={content.closingCta.imageFallbackPath ? getMediaURL(content.closingCta.imageFallbackPath) : undefined}
-      imageAlt={content.closingCta.imageAlt ?? ""}
-    >
-      <Fragment slot="actions">
-        <Button client:load variant="primary" size="lg" href={content.closingCta.primaryCta.href}>
-          {content.closingCta.primaryCta.label}
-        </Button>
-        {content.closingCta.secondaryCta && (
-          <Button client:load variant="secondary" size="lg" href={content.closingCta.secondaryCta.href}>
-            {content.closingCta.secondaryCta.label}
-          </Button>
-        )}
-      </Fragment>
-    </CTASection>
-  </div>
 </Layout>
 
 <style>

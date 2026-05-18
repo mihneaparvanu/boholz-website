@@ -253,6 +253,29 @@ const currentYear = new Date().getFullYear();
     height: 60px;
   }
 
+  /* Mobile: keep all six certs on a single horizontal row. Shrink the
+     badges so six fit comfortably across a 360–430px viewport, tighten
+     the column gap, and scale-down the oversize Holz Rettet Klima mark
+     proportionally so the rhythm holds. */
+  @media (--mobile) {
+    .badges {
+      flex-wrap: nowrap;
+      column-gap: var(--spacing-1);
+      justify-content: space-between;
+      width: 100%;
+    }
+    .badges li {
+      flex-shrink: 1;
+      min-width: 0;
+    }
+    .badge {
+      height: 32px;
+    }
+    .badges li:nth-child(6) .badge {
+      height: 40px;
+    }
+  }
+
   @media (--from-desktop) {
     .badge {
       height: 48px;

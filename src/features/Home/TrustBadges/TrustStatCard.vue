@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { getIcon, type IconName } from "@/utils/icons";
 import { useCountUp, parseCountTarget } from "@/composables/useCountUp";
+import GermanyFlag from "@/icons/GermanyFlag.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -14,8 +15,10 @@ const props = withDefaults(
     /** Optional Lucide icon name. */
     icon?: IconName;
     align?: "start" | "center";
+    /** Render the Germany flag above the value (Made-in-Germany anchor). */
+    flag?: boolean;
   }>(),
-  { align: "start" },
+  { align: "start", flag: false },
 );
 
 const IconComponent = computed(() => (props.icon ? getIcon(props.icon) : null));
@@ -29,6 +32,7 @@ const { targetEl, display } = useCountUp(parsed?.target ?? 0);
 
 <template>
   <article ref="targetEl" class="stat" :data-align="align">
+    <GermanyFlag v-if="flag" class="flag" />
     <component
       v-if="IconComponent"
       :is="IconComponent"
@@ -61,10 +65,31 @@ const { targetEl, display } = useCountUp(parsed?.target ?? 0);
   text-align: center;
 }
 
+/* On mobile every stat centers — the row is single-column and the visual
+   gravity should sit in the middle of the screen, not against the left edge. */
+@media (--mobile) {
+  .stat {
+    align-items: center;
+    text-align: center;
+  }
+}
+
 .icon {
   /* Primary accent on the icon — larger visual element per the project rule. */
   color: var(--stat-icon-color, var(--clr-accent-primary));
   margin-block-end: var(--spacing-1);
+}
+
+/* Germany-flag visual sits above the icon; subtle on desktop, slightly
+   larger on mobile so the made-in-Germany meaning lands at a glance. */
+.flag {
+  height: 24px;
+  margin-block-end: var(--spacing-0);
+}
+@media (--mobile) {
+  .flag {
+    height: 32px;
+  }
 }
 
 .value {
@@ -83,6 +108,14 @@ const { targetEl, display } = useCountUp(parsed?.target ?? 0);
   font-feature-settings: "tnum";
   font-variant-numeric: tabular-nums;
   margin: 0;
+}
+
+/* On mobile the count-up is the section's anchor — push it well past --fs-h1
+   so the number lands as a true display beat at 360–430px widths. */
+@media (--mobile) {
+  .value {
+    font-size: clamp(3rem, 2rem + 8vw, 4rem);
+  }
 }
 
 @media (--from-tablet) {

@@ -11,3 +11,5 @@
 - [Frozen-kit override pattern](feedback_frozen_kit_override_pattern.md) — use `:deep(.icon svg) { width; height }` from one consumer instead of adding a kit prop; second consumer = real prop
 - [Count-up composable](project_count-up-composable.md) — src/composables/useCountUp.ts: parseCountTarget + useCountUp (easeOutExpo, IO 0.3, reduced-motion aware) for scroll-triggered stat numbers
 - [Landing pages house filter](project_landing-pages-house-filter.md) — featuredOnly flag + canonical filter expression; Mehrfamilien = doppelhaus+generationenhaus (no mehrfamilienhaus slug)
+- [Button mobile width rule](feedback_button_mobile_width.md) — global .btn = width 100% on (--mobile); inline rows stack their actions, navbar/toolbar CTAs opt out
+- [Homepage mobile polish 2026-05-18](project_homepage_mobile_polish_2026-05-18.md) — closing CTA removed from home, PageHero context prop, GermanyFlag, single-line cert rows, count-up bump

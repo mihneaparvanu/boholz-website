@@ -81,4 +81,33 @@
   aspect-ratio: 1 / 1;
   height: 88px;
 } /* holz-klima — Holz Rettet Klima 2030, oversized per client request */
+
+@media (--mobile) {
+  /* Eyebrow drops to tertiary tone — the proof line is supporting copy,
+     not headline beat. */
+  .proof span {
+    color: var(--clr-content-tertiary);
+    opacity: 1;
+  }
+
+  /* Six badges across a 360–430px viewport. Shrink the badge floor to
+     36–40px and tighten the row gap so they hold one line. The oversize
+     holz-klima badge scales down proportionally so it stays a hair larger
+     than the others without dominating. */
+  .badges {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: var(--spacing-1);
+  }
+
+  .badge {
+    height: 36px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .badge:nth-child(6) {
+    height: 44px;
+  }
+}
 </style>

@@ -50,11 +50,18 @@ const { heading, highlight, lede, image, imageAlt, eyebrow, rule = false } =
     isolation: isolate;
     overflow: hidden;
     color: var(--clr-pure-white);
-    /* Mobile band — tall enough for two lines of heading + lede, short
-       enough to feel like a rhythm break. */
+    /* Aspect-driven fallback so the image always fills if dvh isn't honoured. */
     min-height: clamp(140px, 32vw, 200px);
     display: flex;
     align-items: center;
+  }
+
+  /* Mobile: anchor the band to viewport height so the lifestyle photo
+     reads as a true full-bleed rhythm break, not a banner. */
+  @media (--mobile) {
+    .band {
+      min-height: 65dvh;
+    }
   }
 
   .bg {
@@ -135,7 +142,7 @@ const { heading, highlight, lede, image, imageAlt, eyebrow, rule = false } =
 
   @media (--from-desktop) {
     .band {
-      min-height: clamp(200px, 18vw, 260px);
+      min-height: 45dvh;
     }
 
     .head {

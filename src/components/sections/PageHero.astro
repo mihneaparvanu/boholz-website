@@ -7,6 +7,9 @@ interface Props {
   imageAlt?: string;
   align?: "left" | "center";
   eyebrow?: string;
+  /** Page context — "home" gives the hero a taller mobile floor (100dvh)
+   *  and aligns content to the top so the photo's faces stay visible. */
+  context?: "home" | "default";
 }
 
 const {
@@ -17,6 +20,7 @@ const {
   imageAlt = "",
   align = "center",
   eyebrow,
+  context = "default",
 } = Astro.props;
 
 
@@ -24,7 +28,12 @@ const {
 const hasImage = Boolean(image);
 ---
 
-<section class="hero" data-align={align} data-has-image={hasImage}>
+<section
+  class="hero"
+  data-align={align}
+  data-has-image={hasImage}
+  data-context={context}
+>
   {
     hasImage && (
       <div class="bg">
@@ -126,6 +135,7 @@ const hasImage = Boolean(image);
   h1 {
     font-weight: var(--font-weight-regular);
     margin: 0;
+    text-wrap: balance;
   }
 
   .highlight {
@@ -138,6 +148,7 @@ const hasImage = Boolean(image);
     color: var(--clr-content-tertiary);
     font-weight: var(--font-weight-medium);
     max-width: 56rem;
+    text-wrap: balance;
   }
 
   .hero[data-has-image="true"] .subtitle {
@@ -157,8 +168,35 @@ const hasImage = Boolean(image);
 
   @media (--mobile) {
     .hero {
-      min-height: clamp(220px, 40vh, 360px);
+      /* Default mobile floor for non-home heroes: at least 70dvh so
+         the photo gets vertical room. Home overrides to a full 100dvh. */
+      min-height: 70dvh;
+      /* Anchor copy near the top so the photo's faces stay visible. */
+      align-items: start;
       padding-block: var(--spacing-6) var(--spacing-5);
+    }
+
+    .hero[data-context="home"] {
+      min-height: 100dvh;
+      padding-block-start: var(--spacing-6);
+    }
+
+    /* Stack hero CTA pair vertically; full-width buttons line up. */
+    .actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      gap: var(--spacing-2);
+    }
+
+    /* Slightly tighter headline + subtitle to keep them off the
+       single-orphan threshold at 360–430px widths. */
+    h1 {
+      font-size: calc(var(--fs-h1) * 0.92);
+    }
+
+    .subtitle {
+      font-size: var(--fs-body);
     }
   }
 

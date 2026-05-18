@@ -114,5 +114,12 @@ const sectionClass = isBand ? "block band-inner" : "block";
       gap: var(--spacing-4);
       padding-block: var(--spacing-5);
     }
+    /* Stack the trailing CTA pair so each full-width Button sits on its
+       own row instead of being squeezed side-by-side. */
+    .actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
   }
 </style>
