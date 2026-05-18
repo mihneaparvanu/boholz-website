@@ -16,7 +16,8 @@ const props = defineProps<{
         <span>{{ model.category.name }}</span>
       </div>
       <span class="highlight-item" v-if="model.details?.familiesCount"
-        >{{ model.details.familiesCount }} Familien</span
+        >{{ model.details.familiesCount }}
+        {{ model.details.familiesCount === 1 ? "Familie" : "Familien" }}</span
       >
     </div>
     <div class="heading-group">

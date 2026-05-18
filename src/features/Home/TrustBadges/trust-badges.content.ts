@@ -23,7 +23,6 @@ export const trustBadges: TrustBadge[] = [
     value: "100%",
     label: "Made in Germany",
     caption: "Vorgefertigt im Werk, montiert vom Boholz-Team.",
-    flag: true,
   },
   {
     icon: "calendar-check",

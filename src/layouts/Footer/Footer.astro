@@ -8,6 +8,7 @@ import { ROUTES } from "@/utils/routes";
 import { FOOTER_NAV, FOOTER_CERTIFICATIONS } from "./footer.content";
 
 import BoholzLogo from "@/components/brand/BoholzLogo.vue";
+import GermanyFlag from "@/icons/GermanyFlag.vue";
 import PrivacyBtn from "@/components/ui/PrivacyBtn.vue";
 import Separator from "@/features/HousePage/components/Separator.vue";
 
@@ -67,9 +68,15 @@ const currentYear = new Date().getFullYear();
     </section>
 
     <div class="trailing">
-      <p class="copyright">
-        © {currentYear} BoHolz Haus GmbH. Alle Rechte vorbehalten.
-      </p>
+      <div class="meta">
+        <p class="copyright">
+          © {currentYear} BoHolz Haus GmbH. Alle Rechte vorbehalten.
+        </p>
+        <p class="origin" aria-label="100 Prozent in Deutschland gefertigt">
+          <GermanyFlag aria-hidden="true" />
+          <span>100% Made in Germany</span>
+        </p>
+      </div>
       <ul class="socials" aria-label="Soziale Netzwerke">
         <li>
           <a href="#" aria-label="Facebook"
@@ -224,7 +231,7 @@ const currentYear = new Date().getFullYear();
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    column-gap: var(--spacing-5);
+    column-gap: var(--spacing-3);
     row-gap: var(--spacing-3);
   }
 
@@ -284,7 +291,7 @@ const currentYear = new Date().getFullYear();
       height: 72px;
     }
     .badges {
-      column-gap: var(--spacing-5);
+      column-gap: var(--spacing-3);
     }
   }
 
@@ -304,6 +311,31 @@ const currentYear = new Date().getFullYear();
     color: var(--clr-content-tertiary);
     font-size: var(--fs-body-sm);
     margin: 0;
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-1);
+  }
+
+  @media (--from-desktop) {
+    .meta {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--spacing-3);
+    }
+  }
+
+  .origin {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    color: var(--clr-content-tertiary);
+    font-size: var(--fs-body-sm);
+    text-transform: uppercase;
   }
 
   .socials {
