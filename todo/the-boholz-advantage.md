@@ -1,8 +1,0 @@
--Bitte ein ansprechendes Bild hinter die Überschrift platzieren.
--Bitte die Zertifikate und Siegel aufnehmen (bitte in Farbe)
--Qualität – unsere Güter werden ständig überwacht. (statt QDF+GDF)
--Festpreisgarantie – bei uns haben Sie 18 Monate Festpreisgarantie (statt Doppelt)
--Deutschland – jedes Haus wird in Deutschland produziert. (statt Generationen)
--gedämmte Bodenplatte ist bei uns nur optional vorhanden. „Optional gedämmte Bodenplatte..)
--Holzfaserdämmung ist bei uns nicht im Standard, nur optional. (bitte hinzufügen)
--Partner Keitel-Haus rausnehmen (gerne das Logo mit einbringen)

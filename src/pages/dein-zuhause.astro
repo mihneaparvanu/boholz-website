@@ -4,11 +4,11 @@ import { getMediaURL } from "@/utils/media";
 
 import PageHero from "@/components/sections/PageHero.astro";
 import CTASection from "@/components/sections/CTASection.astro";
-import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
+import Block from "@/components/sections/Block.astro";
 
 import SectionNavigator from "@/components/ui/SectionNavigator.vue";
 import type { Section } from "@/components/ui/SectionNavigator.vue";
-import StepCard from "@/components/ui/StepCard.vue";
+import EditorialCard from "@/components/ui/EditorialCard.vue";
 import IconList from "@/components/ui/IconList.vue";
 import type { IconListItem } from "@/components/ui/IconList.vue";
 import Callout from "@/components/ui/Callout.vue";
@@ -55,7 +55,6 @@ const smartHomeFeatures: IconListItem[] = [
   },
 ];
 
-
 const heroImage = bauphasenHeroImageURL;
 const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
 ---
@@ -76,14 +75,13 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
   <SectionNavigator client:load pageTitle="Dein Zuhause" sections={sections} />
 
   <!-- 02 · Ablauf ───────────────────────────────────────── -->
-  <section id="ablauf" class="block" data-section-heading>
-    <EyebrowHeadingLede
-      eyebrow="01 · Der Ablauf"
-      heading="In drei Phasen ins"
-      highlight="eigene Zuhause."
-      lede="In übersichtliche Schritte gegliedert, mit klaren Deadlines und einem Ansprechpartner, der Sie von Anfang bis Ende begleitet."
-    />
-
+  <Block
+    id="ablauf"
+    eyebrow="01 · Der Ablauf"
+    heading="In drei Phasen ins"
+    highlight="eigene Zuhause."
+    lede="In übersichtliche Schritte gegliedert, mit klaren Deadlines und einem Ansprechpartner, der Sie von Anfang bis Ende begleitet."
+  >
     <div class="cards three">
       <article id={`phase-${buildPhases[0].slug}`} class="phase">
         <figure class="phase-frame">
@@ -93,7 +91,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
             loading="lazy"
           />
         </figure>
-        <StepCard
+        <EditorialCard
           client:visible
           step={1}
           title="Der Grundstein wird gelegt"
@@ -106,7 +104,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
             <li>Sicherung der Finanzierung</li>
             <li>Abschluss des Hausvertrages</li>
           </ul>
-        </StepCard>
+        </EditorialCard>
       </article>
 
       <article id={`phase-${buildPhases[1].slug}`} class="phase">
@@ -117,7 +115,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
             loading="lazy"
           />
         </figure>
-        <StepCard
+        <EditorialCard
           client:visible
           step={2}
           title="Träume in Realität verwandeln"
@@ -134,7 +132,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
             <li>Bemusterung mit Ausstattung und Haustechnik</li>
             <li>Planung der Baustelleneinrichtung und Produktion</li>
           </ul>
-        </StepCard>
+        </EditorialCard>
       </article>
 
       <article id={`phase-${buildPhases[2].slug}`} class="phase">
@@ -145,7 +143,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
             loading="lazy"
           />
         </figure>
-        <StepCard
+        <EditorialCard
           client:visible
           step={3}
           title="Die heiße Bauphase beginnt"
@@ -161,20 +159,19 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
             <li>Innenausbau und Haustechnik</li>
             <li>Hausübergabe</li>
           </ul>
-        </StepCard>
+        </EditorialCard>
       </article>
     </div>
-  </section>
+  </Block>
 
   <!-- 03 · Architektur ───────────────────────────────────── -->
-  <section id="architektur" class="block" data-section-heading>
-    <EyebrowHeadingLede
-      eyebrow="02 · Architektur"
-      heading="Jedes Haus erzählt seine"
-      highlight="eigene Geschichte."
-      lede="Von der Grundrissgestaltung bis zur Fassadenauswahl — bei uns haben Sie die Freiheit, Ihren Hausentwurf mit eigenen Ideen und Gestaltungswünschen zu individualisieren."
-    />
-
+  <Block
+    id="architektur"
+    eyebrow="02 · Architektur"
+    heading="Jedes Haus erzählt seine"
+    highlight="eigene Geschichte."
+    lede="Von der Grundrissgestaltung bis zur Fassadenauswahl — bei uns haben Sie die Freiheit, Ihren Hausentwurf mit eigenen Ideen und Gestaltungswünschen zu individualisieren."
+  >
     <div class="prose">
       <p>
         Ob Sie von einem offenen Wohnbereich träumen, ein separates Homeoffice,
@@ -182,38 +179,35 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
         Ihre Vorstellungen um.
       </p>
       <p>
-        In Zusammenarbeit mit der renommierten Keitel-Haus GmbH in Rot am
-        See-Brettheim, dem Geburtsort und der Produktionsstätte jedes
-        BoHolz-Hauses, bieten wir Ihnen die perfekte Partnerschaft zweier
-        starker Unternehmen. Diese Kooperation garantiert höchste
-        Qualitätsstandards und jahrzehntelange Erfahrung im Fertighausbau.
+        Jedes BoHolz-Haus wird in Rot am See-Brettheim gefertigt — von einer
+        Manufaktur, die jeden Schritt selbst verantwortet. Jahrzehntelange
+        Erfahrung im Fertighausbau und höchste Qualitätsstandards sind dabei
+        keine Versprechen, sondern Voraussetzung.
       </p>
     </div>
-  </section>
+  </Block>
 
   <!-- 04 · Smart Home ────────────────────────────────────── -->
-  <section id="smart-home" class="block" data-section-heading>
-    <EyebrowHeadingLede
-      eyebrow="03 · Smart Home"
-      heading="Komfort, auf Ihre Bedürfnisse"
-      highlight="zugeschnitten."
-      lede="Tauchen Sie ein in den ultimativen Komfort einer Smart-Home-Installation, die ab Werk mitgeplant und sauber integriert wird."
-    />
-
+  <Block
+    id="smart-home"
+    eyebrow="03 · Smart Home"
+    heading="Komfort, auf Ihre Bedürfnisse"
+    highlight="zugeschnitten."
+    lede="Tauchen Sie ein in den ultimativen Komfort einer Smart-Home-Installation, die ab Werk mitgeplant und sauber integriert wird."
+  >
     <IconList client:visible items={smartHomeFeatures} columns={2} />
-  </section>
+  </Block>
 
   <!-- 05 · Finanzierung & Förderung ─────────────────────── -->
-  <section id="finanzierung" class="block" data-section-heading>
-    <EyebrowHeadingLede
-      eyebrow="04 · Finanzierung"
-      heading="Staatliche Förderungen,"
-      highlight="klar erklärt."
-      lede="Förderkredite der Kreditanstalt für Wiederaufbau (KfW) sind eine attraktive Möglichkeit, Ihren Hausbau finanziell zu unterstützen — gut kombinierbar untereinander."
-    />
-
+  <Block
+    id="finanzierung"
+    eyebrow="04 · Finanzierung"
+    heading="Staatliche Förderungen,"
+    highlight="klar erklärt."
+    lede="Förderkredite der Kreditanstalt für Wiederaufbau (KfW) sind eine attraktive Möglichkeit, Ihren Hausbau finanziell zu unterstützen — gut kombinierbar untereinander."
+  >
     <div class="cards three stack-below-desktop">
-      <StepCard
+      <EditorialCard
         client:visible
         step={1}
         title="Wohneigentumsprogramm"
@@ -221,9 +215,9 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
         description="Förderkredit bis zu 100.000 € für alle, die Wohnraum kaufen oder bauen und selbst darin wohnen wollen. Gut kombinierbar mit anderen KfW-Förderprodukten."
       >
         <p class="meta">Kredit 124</p>
-      </StepCard>
+      </EditorialCard>
 
-      <StepCard
+      <EditorialCard
         client:visible
         step={2}
         title="Klimafreundlicher Neubau"
@@ -231,9 +225,9 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
         description="Förderkredit für energieeffizientes und nachhaltiges Bauen — bis zu 150.000 € je Wohneinheit, bis zu 35 Jahre Laufzeit und bis zu 10 Jahre Zinsbindung."
       >
         <p class="meta">Kredit 297 / 298</p>
-      </StepCard>
+      </EditorialCard>
 
-      <StepCard
+      <EditorialCard
         client:visible
         step={3}
         title="Wohneigentum für Familien"
@@ -241,7 +235,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
         description="Für Familien mit Kindern und Alleinerziehende mit niedrigem bis mittlerem Einkommen. Kredithöchstbeträge von 170.000 € bis 270.000 € für klimafreundlichen Neubau."
       >
         <p class="meta">Kredit 300</p>
-      </StepCard>
+      </EditorialCard>
     </div>
 
     <div class="callout-slot">
@@ -250,24 +244,28 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
           Die Zinskonditionen orientieren sich am Kapitalmarkt und werden
           laufend angepasst. Ein Rechtsanspruch auf die Förderung besteht nicht.
         </p>
+        <p>
+          Förderbedingungen ändern sich laufend. Die jeweils aktuellen
+          Konditionen finden Sie auf
+          <a href="https://www.kfw.de" rel="noopener noreferrer" target="_blank">www.kfw.de</a>.
+        </p>
       </Callout>
     </div>
-  </section>
+  </Block>
 
   <!-- 06 · Ausbaustufen ──────────────────────────────────── -->
-  <section id="ausbaustufen" class="block" data-section-heading>
-    <EyebrowHeadingLede
-      eyebrow="05 · Ausbaustufen"
-      heading="Wählen Sie, wie weit"
-      highlight="wir gehen."
-      lede="Jeder Bauherr ist anders. Wählen Sie die Ausbaustufe, die am besten zu Ihren Fähigkeiten und Ihrem Budget passt — vom Rohbau bis schlüsselfertig."
-    />
-
+  <Block
+    id="ausbaustufen"
+    eyebrow="05 · Ausbaustufen"
+    heading="Wählen Sie, wie weit"
+    highlight="wir gehen."
+    lede="Jeder Bauherr ist anders. Wählen Sie die Ausbaustufe, die am besten zu Ihren Fähigkeiten und Ihrem Budget passt — vom Rohbau bis schlüsselfertig."
+  >
     <BuildingStagesCarousel client:visible stages={buildingStages} />
-  </section>
+  </Block>
 
   <!-- 07 · Video placeholder ─────────────────────────────── -->
-  <section class="block">
+  <Block>
     <VideoPlaceholder
       client:visible
       slotId="dein-zuhause-zeitraffer"
@@ -276,7 +274,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
       label="Zeitraffer · Vom Werk auf die Baustelle"
       caption="Bewegtbild folgt — Aufbau eines BoHolz-Hauses in unter 60 Sekunden."
     />
-  </section>
+  </Block>
 
   <!-- 08 · CTA ────────────────────────────────────────────── -->
   <div class="full-width">
@@ -298,24 +296,6 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
 </Layout>
 
 <style>
-  /* ── Page rhythm ──
-     Sections stack with generous vertical breathing. The wrapper grid
-     already centres each `<section>` in the content column; we just add
-     consistent block padding so the SectionNavigator's scroll-spy
-     activation lands cleanly on each heading. */
-  .block {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-5);
-    padding-block: var(--spacing-6);
-    scroll-margin-block-start: var(--navbar-height);
-  }
-
-  /* First content section after the inline navigator needs less top air. */
-  .block:first-of-type {
-    padding-block-start: var(--spacing-5);
-  }
-
   /* ── Card row ── */
   .cards {
     display: grid;
@@ -323,8 +303,8 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     gap: var(--spacing-4);
   }
 
-  /* ── Phase composite (image stacked above StepCard) ──
-     Each .phase wraps the phase-teaser image and the StepCard. Scroll-margin
+  /* ── Phase composite (image stacked above EditorialCard) ──
+     Each .phase wraps the phase-teaser image and the card. Scroll-margin
      so a deep link from the homepage strip (`/dein-zuhause#phase-...`) lands
      cleanly under the navbar. */
   .phase {
@@ -339,7 +319,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     position: relative;
     margin: 0;
     width: 100%;
-    /* 4:3 — wide enough to read the scene, short enough that the StepCard
+    /* 4:3 — wide enough to read the scene, short enough that the card
        below still anchors the visual weight. */
     aspect-ratio: 4 / 3;
     border-radius: var(--radius-md);
@@ -382,7 +362,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
     margin: 0;
   }
 
-  /* ── Lists inside StepCards (Phase 1/2/3 detail bullets) ── */
+  /* ── Lists inside EditorialCards (Phase 1/2/3 detail bullets) ── */
   .lined {
     list-style: none;
     padding: 0;
@@ -424,6 +404,27 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
   /* Callout sits flush with the cards above (its own block-padding inside) */
   .callout-slot {
     max-width: 56rem;
+  }
+
+  /* Inline anchors inside the Förderung callout pick up the accent and a
+     1px underline so the kfw.de pointer reads as a link, not body text. */
+  .callout-slot :global(a) {
+    color: var(--clr-accent-primary);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+    font-weight: var(--font-weight-medium);
+    transition: color 160ms ease;
+  }
+
+  .callout-slot :global(a:hover) {
+    color: var(--clr-accent-secondary);
+  }
+
+  .callout-slot :global(a:focus-visible) {
+    outline: 2px solid var(--clr-accent-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
   }
 
   /* ── CTA inline links ──
@@ -472,13 +473,5 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
   .cta-link:focus-visible {
     outline: 2px solid var(--clr-pure-white);
     outline-offset: 2px;
-  }
-
-  /* ── Mobile rhythm ── */
-  @media (--mobile) {
-    .block {
-      gap: var(--spacing-4);
-      padding-block: var(--spacing-5);
-    }
   }
 </style>

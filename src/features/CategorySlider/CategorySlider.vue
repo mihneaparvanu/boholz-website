@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import type { HouseCategory } from "@/types/models";
+import { useCategoryGallery } from "@/composables/useCategoryGallery";
 
 import CategoryThumbnail from "./components/CategoryThumbnail.vue";
 import CategoryHero from "./components/CategoryHero.vue";
@@ -9,24 +9,20 @@ const props = defineProps<{
   categories: HouseCategory[];
 }>();
 
-const selectedCategory = ref<HouseCategory | null>(props.categories[0] || null);
-
-const selectCategory = (category: HouseCategory) => {
-  selectedCategory.value = category;
-};
+const { selected, select } = useCategoryGallery(props.categories);
 </script>
 
 <template>
   <div class="category-slider">
-    <CategoryHero v-if="selectedCategory" :category="selectedCategory" />
+    <CategoryHero v-if="selected" :category="selected" />
 
     <div class="category-thumbnails">
       <CategoryThumbnail
         v-for="category in categories"
         :key="category.slug"
         :category="category"
-        :data-is-selected="category.id === selectedCategory?.id"
-        @click="selectCategory(category)"
+        :data-is-selected="category.id === selected?.id"
+        @click="select(category)"
       />
     </div>
   </div>

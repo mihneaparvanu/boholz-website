@@ -2,14 +2,14 @@
 import Layout from "@/layouts/Layout.astro";
 import PageHero from "@/components/sections/PageHero.astro";
 import CTASection from "@/components/sections/CTASection.astro";
+import Block from "@/components/sections/Block.astro";
 import SectionNavigator from "@/components/ui/SectionNavigator.vue";
-import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
 import DefinitionList, {
   type DefinitionItem,
 } from "@/components/ui/DefinitionList.astro";
 import StatBlock from "@/components/ui/StatBlock.vue";
 import IconList, { type IconListItem } from "@/components/ui/IconList.vue";
-import StepCard from "@/components/ui/StepCard.vue";
+import EditorialCard from "@/components/ui/EditorialCard.vue";
 import ComparisonBlock, {
   type ComparisonSide,
 } from "@/components/ui/ComparisonBlock.vue";
@@ -20,6 +20,7 @@ import { getMediaURL } from "@/utils/media";
 import FeatureCardPair from "@/features/Advantage/FeatureCardPair.vue";
 import LiteYouTube from "@/features/Advantage/LiteYouTube.vue";
 import type { FeatureCard } from "@/features/Advantage/advantage.types";
+import ProofSection from "@/components/sections/Proof-Section.vue";
 
 // ── Section index — drives the SectionNavigator's overview + sticky rail.
 const sections = [
@@ -126,10 +127,6 @@ const ecoNaturePlus: FeatureCard = {
     "Schichtaufbau ECO Nature Plus — erweiterte Dämmung für KfW 40 Effizienzhäuser",
 };
 
-// ── Section 2 — Qualität & Zertifikate stats.
-// Derived from existing copy: QDF + GDF Mitgliedschaft, Eigen- + Fremdüberwachung,
-// generationsübergreifende Keitel-Partnerschaft. Claim-style stats — no numbers
-// invented; each one is anchored in the original page text.
 const qualityStats: Array<{
   value: string;
   label: string;
@@ -137,24 +134,23 @@ const qualityStats: Array<{
   icon: "shield" | "award" | "users";
 }> = [
   {
-    value: "QDF + GDF",
-    label: "Qualitätsverbände",
+    value: "Qualität",
+    label: "ständig überwacht",
     caption:
-      "Doppelt geprüft — durch die Qualitätsgemeinschaft Deutscher Fertigbau (QDF) und die Gütegemeinschaft Deutscher Fertigbau (GDF).",
+      "Unsere Güter werden ständig überwacht — eigene Qualitätskontrollen plus unabhängige Fremdüberwachung.",
     icon: "shield",
   },
   {
-    value: "Doppelt",
-    label: "Geprüft",
+    value: "18 Monate",
+    label: "Festpreisgarantie",
     caption:
-      "Eigene Qualitätskontrollen plus Fremdüberwachung durch unabhängige Prüfinstitute.",
+      "Bei uns haben Sie 18 Monate Festpreisgarantie auf Ihr Bauprojekt.",
     icon: "award",
   },
   {
-    value: "Generationen",
-    label: "Partner Keitel-Haus",
-    caption:
-      "Generationsübergreifendes Handwerk, kombiniert mit innovativer CNC-Fertigung.",
+    value: "Deutschland",
+    label: "Made in Germany",
+    caption: "Jedes Haus wird in Deutschland produziert.",
     icon: "users",
   },
 ];
@@ -166,7 +162,7 @@ const sechzehnGruende: IconListItem[] = [
   {
     icon: "leaf",
     label:
-      "Nachhaltige diffusionsoffene ausgedämmte Außenwände mit Holzfaserdämmplatte für sommerlichen Hitzeschutz und besten Wohnkomfort",
+      "Nachhaltige diffusionsoffene ausgedämmte Außenwände — optional mit Holzfaserdämmplatte für sommerlichen Hitzeschutz und besten Wohnkomfort",
   },
   {
     icon: "layers",
@@ -175,7 +171,7 @@ const sechzehnGruende: IconListItem[] = [
   {
     icon: "shield",
     label:
-      "Gedämmte Bodenplatte zur Einhaltung klimafreundlicher Vorgaben gemäß der KfW",
+      "Optional gedämmte Bodenplatte zur Einhaltung klimafreundlicher KfW-Vorgaben",
   },
   {
     icon: "home",
@@ -346,21 +342,28 @@ const technik: IconListItem[] = [
       title="Das BoHolz"
       highlight="Versprechen"
       subtitle="Höchste Bauqualität. Gelebte Nachhaltigkeit. Persönliche Begleitung — vom ersten Entwurf bis zum Einzug."
+      image={nachhaltigkeitHero}
+      imageAlt="BoHolz Holzbau in der Manufaktur — gelebter Qualitätsanspruch"
       align="center"
     />
   </div>
+
+  <!-- 0b. Zertifikate & Siegel (full-bleed band, mirrors homepage) ------ -->
+  <Block tone="band">
+    <ProofSection client:visible />
+  </Block>
 
   <!-- 1. Section overview + sticky rail -------------------------------- -->
   <SectionNavigator client:load pageTitle="Unser Versprechen" sections={sections} stickyOffset={64} />
 
   <!-- 2. Qualität & Zertifikate ---------------------------------------- -->
-  <section id="qualitaet" class="block">
-    <EyebrowHeadingLede
-      eyebrow="01 — Qualität & Zertifikate"
-      heading="Qualität, die sich überprüfen"
-      highlight="lässt."
-      lede="Unser oberstes Ziel ist die Zufriedenheit unserer Kunden, dicht gefolgt von einem hohen Qualitätsstandard. Der Bau eines Hauses ist eine der wichtigsten Entscheidungen im Leben — wir gestalten den Prozess so angenehm und erfolgreich wie möglich."
-    />
+  <Block
+    id="qualitaet"
+    eyebrow="01 — Qualität & Zertifikate"
+    heading="Qualität, die sich überprüfen"
+    highlight="lässt."
+    lede="Unser oberstes Ziel ist die Zufriedenheit unserer Kunden, dicht gefolgt von einem hohen Qualitätsstandard. Der Bau eines Hauses ist eine der wichtigsten Entscheidungen im Leben — wir gestalten den Prozess so angenehm und erfolgreich wie möglich."
+  >
     <div class="stats">
       {
         qualityStats.map((s) => (
@@ -374,33 +377,33 @@ const technik: IconListItem[] = [
         ))
       }
     </div>
-  </section>
+  </Block>
 
   <!-- 3. Tradition trifft Innovation ----------------------------------- -->
-  <div class="band full-width">
-   <section id="tradition" class="block band-inner">
-    <EyebrowHeadingLede
-      eyebrow="02 — Tradition & Innovation"
-      heading="Generationen-Handwerk, moderne"
-      highlight="Fertigung."
-      lede="Unser starker Partner Keitel-Haus greift auf jahrelanges und generationenübergreifendes Wissen rund um den Fertighausbau zurück. Dies gewährleistet handwerkliche Wertarbeit im traditionellen Sinne, kombiniert mit modernster Technologie."
-    />
+  <Block
+    id="tradition"
+    tone="band"
+    eyebrow="02 — Tradition & Innovation"
+    heading="Generationen-Handwerk, moderne"
+    highlight="Fertigung."
+    lede="BoHolz vereint jahrzehntelanges Wissen rund um den Fertighausbau mit moderner CNC-Fertigung. Das Ergebnis: handwerkliche Wertarbeit im traditionellen Sinne, getragen von einer Manufaktur, die jeden Schritt selbst verantwortet."
+  >
     <div class="steps">
-      <StepCard
+      <EditorialCard
         client:visible
         step={1}
         title="Tradition"
         icon="hammer"
-        description="Generationsübergreifendes Wissen und Kompetenz rund um den Fertighausbau — handwerkliche Wertarbeit im traditionellen Sinne, getragen vom Partner Keitel-Haus."
+        description="Generationsübergreifendes Wissen rund um den Fertighausbau — handwerkliche Wertarbeit im traditionellen Sinne, getragen von einer eigenständigen Manufaktur in Deutschland."
       />
-      <StepCard
+      <EditorialCard
         client:visible
         step={2}
         title="Moderne Fertigung"
         icon="wrench"
         description="Innovative CNC-Maschinen für präzise Fertigung, automatisierte Anlagen für effiziente Produktion und kontinuierliche Weiterentwicklung unserer Baumethoden."
       />
-      <StepCard
+      <EditorialCard
         client:visible
         step={3}
         title="Zertifizierungen"
@@ -408,30 +411,28 @@ const technik: IconListItem[] = [
         description="Mitglied der Qualitätsgemeinschaft Deutscher Fertigbau (QDF) und der Gemeinschaft Deutscher Fertigbau (GDF) — ständige Qualitätssicherung der Materialien, regelmäßige Kontrollen, Eigen- und Fremdüberwachung durch unabhängige Prüfinstitute."
       />
     </div>
-   </section>
-  </div>
+  </Block>
 
   <!-- 4. 16 gute Gründe ------------------------------------------------ -->
-  <section id="gruende" class="block">
-    <EyebrowHeadingLede
-      eyebrow="03 — 16 gute Gründe"
-      heading="Was in jedem BoHolz Fertighaus"
-      highlight="serienmäßig steckt."
-      lede="Vom diffusionsoffenen Wandaufbau bis zur barrierefreien Dusche — sechzehn Details, die wir bereits im Standard liefern."
-    />
+  <Block
+    id="gruende"
+    eyebrow="03 — 16 gute Gründe"
+    heading="Was in jedem BoHolz Fertighaus"
+    highlight="serienmäßig steckt."
+    lede="Vom diffusionsoffenen Wandaufbau bis zur barrierefreien Dusche — sechzehn Details, die wir bereits im Standard liefern."
+  >
     <IconList client:visible items={sechzehnGruende} columns={4} />
-  </section>
+  </Block>
 
   <!-- 5. Nachhaltigkeit — Vergleich + Video ---------------------------- -->
-  <div class="band full-width">
-   <section id="nachhaltigkeit" class="block band-inner">
-    <EyebrowHeadingLede
-      eyebrow="04 — Nachhaltigkeit"
-      heading="Wohnträume mit aktivem"
-      highlight="Umweltschutz."
-      lede="Bei BoHolz Haus verbinden wir Ihre Wohnträume mit aktivem Umweltschutz. Unsere individuellen Fertighäuser aus Holz sind nicht nur Ihr persönliches Zuhause, sondern auch ein Beitrag zu einer besseren Zukunft."
-    />
-
+  <Block
+    id="nachhaltigkeit"
+    tone="band"
+    eyebrow="04 — Nachhaltigkeit"
+    heading="Wohnträume mit aktivem"
+    highlight="Umweltschutz."
+    lede="Bei BoHolz Haus verbinden wir Ihre Wohnträume mit aktivem Umweltschutz. Unsere individuellen Fertighäuser aus Holz sind nicht nur Ihr persönliches Zuhause, sondern auch ein Beitrag zu einer besseren Zukunft."
+  >
     <!-- Hero image + lite-YouTube. Two-up on desktop so the image sets the
          scene and the video sits as the active companion; stacks on mobile.
          The video stays idle until the user clicks — no YouTube JS loads on
@@ -460,9 +461,7 @@ const technik: IconListItem[] = [
       accent="right"
     />
 
-    <!-- Three numbers that quantify the holzbau side of the comparison above.
-         Lives inside the Nachhaltigkeit band so it reads as the closing
-         numerical proof of that narrative rather than a separate beat. -->
+    <!-- Three numbers that quantify the holzbau side of the comparison above. -->
     <div class="stats-trio">
       <div class="stats">
         <StatBlock
@@ -492,17 +491,16 @@ const technik: IconListItem[] = [
         hoher Schallschutz, dampfdiffusionsoffen und baubiologisch hervorragend.
       </p>
     </div>
-   </section>
-  </div>
+  </Block>
 
   <!-- 7. Holzfaserdämmung ─ Sommer / Winter ---------------------------- -->
-  <section id="holzfaserdaemmung" class="block">
-    <EyebrowHeadingLede
-      eyebrow="05 — Holzfaserdämmung"
-      heading="Eine Wand. Zwei"
-      highlight="Jahreszeiten."
-      lede="Die Holzfaserdämmplatte ist das stille Bauteil hinter unserem Wandaufbau — schützt im Sommer vor Hitze, hält im Winter Wärme, das ganze Jahr diffusionsoffen."
-    />
+  <Block
+    id="holzfaserdaemmung"
+    eyebrow="05 — Holzfaserdämmung"
+    heading="Eine Wand. Zwei"
+    highlight="Jahreszeiten."
+    lede="Die Holzfaserdämmplatte ist das stille Bauteil hinter unserem Wandaufbau — schützt im Sommer vor Hitze, hält im Winter Wärme, das ganze Jahr diffusionsoffen."
+  >
     <figure class="hero-image">
       <img
         src={holzfaserHero}
@@ -511,18 +509,17 @@ const technik: IconListItem[] = [
       />
     </figure>
     <FeatureCardPair client:visible left={sommer} right={winter} />
-  </section>
+  </Block>
 
   <!-- 8. Wandaufbau ---------------------------------------------------- -->
-  <div class="band full-width">
-   <section id="wandaufbau" class="block band-inner">
-    <EyebrowHeadingLede
-      eyebrow="06 — Wandaufbau"
-      heading="ECO Nature — die Schichten unserer"
-      highlight="Gebäudehülle."
-      lede="Die größten Energieverluste eines Hauses treten über seine äußere Hülle auf. ECO Nature schützt effektiv vor Hitze, Kälte, Lärm und Feuer — Schicht für Schicht."
-    />
-
+  <Block
+    id="wandaufbau"
+    tone="band"
+    eyebrow="06 — Wandaufbau"
+    heading="ECO Nature — die Schichten unserer"
+    highlight="Gebäudehülle."
+    lede="Die größten Energieverluste eines Hauses treten über seine äußere Hülle auf. ECO Nature schützt effektiv vor Hitze, Kälte, Lärm und Feuer — Schicht für Schicht."
+  >
     <figure class="hero-image">
       <img
         src={wandaufbauHero}
@@ -547,23 +544,21 @@ const technik: IconListItem[] = [
         <DefinitionList items={ecoNatureLayers} layout="grid" />
       </div>
     </details>
-   </section>
-  </div>
+  </Block>
 
   <!-- 9. Haus- & Energietechnik ---------------------------------------- -->
-  <section id="technik" class="block">
-    <EyebrowHeadingLede
-      eyebrow="07 — Energietechnik"
-      heading="Wärmepumpen, Photovoltaik,"
-      highlight="gesundes Raumklima."
-      lede="Dank gut gedämmter Außenwände bieten unsere Häuser von Anfang an umweltschonende Materialien und energieeffiziente Bauweise. Drei Bausteine, die Nachhaltigkeit konkret machen."
-    />
+  <Block
+    id="technik"
+    eyebrow="07 — Energietechnik"
+    heading="Wärmepumpen, Photovoltaik,"
+    highlight="gesundes Raumklima."
+    lede="Dank gut gedämmter Außenwände bieten unsere Häuser von Anfang an umweltschonende Materialien und energieeffiziente Bauweise. Drei Bausteine, die Nachhaltigkeit konkret machen."
+  >
     <IconList client:visible items={technik} columns={1} density="comfortable" />
-  </section>
+  </Block>
 
-  <!-- 9. Werksrundgang Video Slot ------------------------------------- -->
-  <div class="band full-width">
-   <section class="block band-inner">
+  <!-- 9b. Werksrundgang Video Slot ------------------------------------- -->
+  <Block tone="band">
     <VideoPlaceholder
       client:visible
       slotId="versprechen-werksrundgang"
@@ -572,8 +567,7 @@ const technik: IconListItem[] = [
       label="Werksrundgang — bald verfügbar"
       caption="Ein Blick hinter die Kulissen der Manufaktur."
     />
-   </section>
-  </div>
+  </Block>
 
   <!-- 10. CTA --------------------------------------------------------- -->
   <div class="full-width">
@@ -598,31 +592,6 @@ const technik: IconListItem[] = [
 </Layout>
 
 <style>
-  /* Section rhythm. Each `.block` is a top-level vertical stack between hero
-     and CTA; the gap between the heading bundle and its content is `--spacing-4`,
-     the padding-block paces adjacent blocks. */
-  .block {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-4);
-    padding-block: var(--spacing-6);
-  }
-
-  /* Alternating-tone band — wraps every other section in a tinted full-width
-     surface, mirroring the homepage cadence (`Section.astro` data-tone pattern).
-     The outer `.band.full-width` escapes the page wrapper grid; `.band-inner`
-     re-caps the content width and re-centres. */
-  .band {
-    background: var(--clr-surface-secondary);
-    padding-inline: var(--padding-inline);
-  }
-
-  .band-inner {
-    max-width: var(--content-max-width);
-    margin-inline: auto;
-    width: 100%;
-  }
-
   /* Stats trio nested inside the Nachhaltigkeit band — same visual shape
      as the prior standalone .stats-band, just lives one nesting deeper so
      the page's tonal alternation stays clean. */
@@ -667,13 +636,6 @@ const technik: IconListItem[] = [
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: var(--spacing-4);
     }
-  }
-
-  /* The callout under the wandaufbau spec list — give it breathing room
-     and bound its width so it doesn't span the full column. */
-  .callout-slot {
-    max-width: 48rem;
-    margin-block-start: var(--spacing-2);
   }
 
   /* ── Editorial hero image inside an advantage section.
@@ -756,8 +718,6 @@ const technik: IconListItem[] = [
     font-size: var(--fs-body);
     font-weight: var(--font-weight-medium);
     color: var(--clr-content-primary);
-    /* Remove the native disclosure triangle, replace via ::before so we own
-       the visual. */
   }
 
   .layers-details summary::-webkit-details-marker {

@@ -1,2 +1,0 @@
-I replaced the home-old.astro that you can find in the sandbox folder with the uebersicht page because it's more aligned with what the client wants so please keep all those changes in mind and maybe we can blend in the part the client wanted from the old page which is the plproof section with those 3 animating numbers but 
-we can tweak the house slider based on what they want and put it there next to the houses carousel on the actual index.astro and let the client decide tomorrow I want you to be very attentitve to the home as it's very important

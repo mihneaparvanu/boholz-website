@@ -10,7 +10,6 @@ import type {
 } from "@/types/models";
 import type { HeroSlide } from "@/features/Home/Hero/hero.types";
 import { getMediaURL } from "@/utils/media";
-export { BESTSELLER_CATEGORY_ID } from "./constants";
 
 const HIDDEN_CATEGORY_SLUGS: string[] = [];
 
@@ -23,21 +22,19 @@ export const BESTSELLER_CATEGORY: HouseCategory = {
   media: [],
 };
 
-/** Resolve all nested media paths to full URLs so client components don't need env vars. */
-function resolveMediaPaths<
-  T extends { media: { path: string }[] | { media: { path: string } }[] },
->(items: T[]): T[] {
+type PivotMediaRow = { media: { path: string } };
+type WithPivotMedia<M extends PivotMediaRow> = { media: M[] };
+
+/** Resolve nested pivot-media paths to full URLs so client components don't need env vars. */
+function resolveMediaPaths<M extends PivotMediaRow, T extends WithPivotMedia<M>>(
+  items: T[],
+): T[] {
   return items.map((item) => ({
     ...item,
-    media: item.media.map((m: any) => {
-      if (m.media?.path) {
-        return { ...m, media: { ...m.media, path: getMediaURL(m.media.path) } };
-      }
-      if (m.path) {
-        return { ...m, path: getMediaURL(m.path) };
-      }
-      return m;
-    }),
+    media: item.media.map((m) => ({
+      ...m,
+      media: { ...m.media, path: getMediaURL(m.media.path) },
+    })),
   }));
 }
 

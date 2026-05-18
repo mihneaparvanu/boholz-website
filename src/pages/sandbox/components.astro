@@ -13,7 +13,7 @@ import VideoPlaceholder from "@/components/ui/VideoPlaceholder.vue";
 import Callout from "@/components/ui/Callout.vue";
 import StatBlock from "@/components/ui/StatBlock.vue";
 import IconList from "@/components/ui/IconList.vue";
-import StepCard from "@/components/ui/StepCard.vue";
+import EditorialCard from "@/components/ui/EditorialCard.vue";
 import FAQAccordion from "@/components/ui/FAQAccordion.vue";
 import ComparisonBlock from "@/components/ui/ComparisonBlock.vue";
 import Button from "@/components/ui/Button.vue";
@@ -410,12 +410,12 @@ const comparison = {
         />
       </section>
 
-      <!-- ════ 9 · StepCard ════ -->
-      <section class="group" id="stepcard">
-        <Divider index={9} label="StepCard" />
+      <!-- ════ 9 · EditorialCard ════ -->
+      <section class="group" id="editorialcard">
+        <Divider index={9} label="EditorialCard" />
         <div class="step-grid">
           {steps.map((s) => (
-            <StepCard
+            <EditorialCard
               client:load
               step={s.step}
               title={s.title}

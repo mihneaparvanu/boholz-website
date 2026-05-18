@@ -14,6 +14,7 @@ const props = defineProps<{
   enableDropdown?: boolean;
   categories?: HouseCategory[];
   showhouses?: Location[];
+  bestsellerHero?: string | null;
 }>();
 
 const isDropOpen = ref(false);
@@ -78,7 +79,11 @@ const EASE = [0.22, 1, 0.36, 1] as const;
       @mouseenter="openDrop"
       @mouseleave="scheduleClose"
     >
-      <NavbarDrop :categories="categories" :showhouses="showhouses" />
+      <NavbarDrop
+        :categories="categories"
+        :showhouses="showhouses"
+        :bestseller-hero="bestsellerHero"
+      />
     </Motion>
   </AnimatePresence>
 </template>

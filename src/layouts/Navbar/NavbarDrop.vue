@@ -1,25 +1,20 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
 import { Motion, AnimatePresence } from "motion-v";
 import type { HouseCategory, Location } from "@/types/models";
 import { ROUTES } from "@/utils/routes";
-import { BESTSELLER_CATEGORY_ID } from "@/data/constants";
+import { useCategoryGallery } from "@/composables/useCategoryGallery";
 import TitleLinks from "./TitleLinks.vue";
 
 const props = defineProps<{
   categories: HouseCategory[];
   showhouses: Location[];
+  /** Hero image for the virtual Bestseller category (no DB media of its own). */
+  bestsellerHero?: string | null;
 }>();
 
-const visibleCategories = computed(() =>
-  props.categories.filter((c) => c.id !== BESTSELLER_CATEGORY_ID),
-);
-
-const selected = ref<HouseCategory>(visibleCategories.value[0]);
-
-const heroMedia = computed(
-  () => selected.value?.media.find((m) => m.isHero)?.media,
-);
+const { selected, select, showcaseImage } = useCategoryGallery(props.categories, {
+  bestsellerHero: props.bestsellerHero,
+});
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const ctaLinks = [
@@ -33,13 +28,13 @@ const ctaLinks = [
     <div class="drop-panel-nav">
       <ul class="links category">
         <Motion
-          v-for="(category, i) in visibleCategories"
+          v-for="(category, i) in props.categories"
           :key="category.id"
           tag="li"
           :initial="{ opacity: 0, x: -8 }"
           :animate="{ opacity: 1, x: 0 }"
           :transition="{ duration: 0.32, delay: 0.05 + i * 0.035, ease: EASE }"
-          @mouseenter="selected = category"
+          @mouseenter="select(category)"
         >
           <a :href="`/hauser?category=${category.slug}`">{{ category.name }}</a>
         </Motion>
@@ -84,9 +79,9 @@ const ctaLinks = [
         </div>
         <div class="image-wrapper">
           <img
-            v-if="heroMedia"
-            :src="heroMedia.path"
-            :alt="heroMedia.alt ?? selected.name"
+            v-if="showcaseImage"
+            :src="showcaseImage.path"
+            :alt="showcaseImage.alt"
           />
         </div>
       </Motion>

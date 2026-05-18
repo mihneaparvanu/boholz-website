@@ -6,9 +6,9 @@ const base = "/images/content/bauphasen";
 /**
  * The three narrative phases of building with BoHolz.
  *
- * Long-form `description` strings mirror the StepCard copy that already lives
- * on /dein-zuhause "01 · Der Ablauf" — kept verbatim so swapping the page
- * over to consume this file (instead of inlining the StepCards) is a no-op
+ * Long-form `description` strings mirror the EditorialCard copy that already
+ * lives on /dein-zuhause "01 · Der Ablauf" — kept verbatim so swapping the
+ * page over to consume this file (instead of inlining the cards) is a no-op
  * for the visible copy.
  *
  * `teaser` is the homepage-strip variant — one sentence, ~10 words, so all

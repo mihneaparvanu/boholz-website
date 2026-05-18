@@ -1,14 +1,13 @@
 ---
 /**
- * Landing page · `/landing/mehrfamilien`
+ * Hero-headline preview variant of `/`.
  *
- * Page 2 of the campaign landing series. Pattern-matches `uebersicht.astro`
- * — same section order, same frontmatter loaders. Only the imported content
- * module differs:
- *   - hero.preferredCategorySlug = "mehrfamilienhaus" (drives DB hero lookup)
- *   - houses.categorySlugs = ["mehrfamilienhaus", "doppelhaus"]
- *   - leadForm.interestOptions pre-selected for the MFH audience
- *   - closingCta.tone = "surface" (page 3 is the accent-toned one)
+ * Identical to `index.astro` in every section except the PageHero
+ * title/highlight, plus a thin dev banner at the very top so the client
+ * can toggle between the two variants. Not linked from the navbar.
+ *
+ * Title:     "Fertighäuser in Zimmermannsqualität für Menschen mit"
+ * Highlight: "Anspruch."   (italic-blue per PageHero contract)
  */
 import Layout from "@/layouts/Layout.astro";
 import { getMediaURL } from "@/utils/media";
@@ -30,7 +29,16 @@ import Button from "@/components/ui/Button.vue";
 import { getCategories, getModels } from "@/data/loaders";
 import { toHouseModelCard } from "@/data/derive";
 
-import { mehrfamilienContent as content } from "@/features/Landing/mehrfamilien.content";
+import { uebersichtContent as content } from "@/features/Landing/uebersicht.content";
+import ProofSection from "@/components/sections/Proof-Section.vue";
+import TrustBadges from "@/features/Home/TrustBadges/TrustBadges.vue";
+import { trustBadges } from "@/features/Home/TrustBadges/trust-badges.content";
+import { homeSections } from "@/features/Home/home.content";
+
+const heroOverride = {
+  title: "Fertighäuser in Zimmermannsqualität für Menschen mit",
+  highlight: "Anspruch.",
+};
 
 const categories = await getCategories();
 const allModels = await getModels();
@@ -47,42 +55,54 @@ const filteredModels = allModels
 
 const houseCards = filteredModels.map((m) => toHouseModelCard(m));
 
-// Hero image — try live DB first (featured model in preferred category,
-// pick its hero photo), fall back to the page-specific static asset.
-const preferredHero = allModels
-  .filter((m) => m.isFeatured && m.category?.slug === content.hero.preferredCategorySlug)
-  .map((m) => m.media.find((mm) => mm.isHero)?.media.path)
-  .find((path): path is string => Boolean(path));
-
-const heroImage = preferredHero ?? getMediaURL(content.hero.imageFallbackPath);
+const heroImage = getMediaURL(content.hero.imageFallbackPath);
 const imageBandImage = getMediaURL(content.imageBand.imageFallbackPath);
 const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath);
 ---
 
-<Layout title={content.seo.title} categories={categories}>
-  <!-- ── 01 · Hero (full-bleed) ────────────────────────────────── -->
+<Layout title={`${heroOverride.title} ${heroOverride.highlight}`} categories={categories}>
+  <!-- Dev-only preview banner. Sits above the hero so the client can flip
+       back to the standard variant without clearing the URL. -->
+  <aside class="preview-banner full-width">
+    <span>Vorschau · Alternative Hero-Headline</span>
+    <a href="/">← Zur Standard-Variante</a>
+  </aside>
+
   <div class="full-width">
     <PageHero
       eyebrow={content.hero.eyebrow}
-      title={content.hero.title}
-      highlight={content.hero.highlight}
+      title={heroOverride.title}
+      highlight={heroOverride.highlight}
       subtitle={content.hero.subtitle}
       image={heroImage}
       imageAlt={content.hero.imageAlt}
       align="center"
     >
       <Fragment slot="actions">
-        <Button client:load variant="primary" size="lg" href={content.hero.primaryCta.href}>
+        <Button variant="primary" size="lg" href={content.hero.primaryCta.href}>
           {content.hero.primaryCta.label}
         </Button>
-        <Button client:load variant="secondary" size="lg" href={content.hero.secondaryCta.href}>
+        <Button variant="secondary" size="lg" href={content.hero.secondaryCta.href}>
           {content.hero.secondaryCta.label}
         </Button>
       </Fragment>
     </PageHero>
   </div>
 
-  <!-- ── 02 · Benefits row ─────────────────────────────────────── -->
+  <Block><ProofSection /></Block>
+
+  <Block
+    id={homeSections.trust.id}
+    tone="band"
+    eyebrow={homeSections.trust.eyebrow}
+    heading={homeSections.trust.heading1}
+    highlight={homeSections.trust.highlight}
+    lede={homeSections.trust.subheading}
+    align="center"
+  >
+    <TrustBadges client:visible badges={trustBadges} />
+  </Block>
+
   <Block
     id="vorteile"
     eyebrow={content.benefitsIntro.eyebrow}
@@ -93,7 +113,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     <BenefitsRow items={content.benefits} />
   </Block>
 
-  <!-- ── 03 · House showcase ───────────────────────────────────── -->
   <Block
     id="hausmodelle"
     eyebrow={content.houses.eyebrow}
@@ -119,7 +138,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     }
   </Block>
 
-  <!-- ── 04 · Image band (full-bleed lifestyle) ─────────────────── -->
   <ImageBand
     eyebrow={content.imageBand.eyebrow}
     heading={content.imageBand.heading}
@@ -130,7 +148,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     rule
   />
 
-  <!-- ── 05 · Audience block ───────────────────────────────────── -->
   <Block
     id="zielgruppen"
     eyebrow={content.audience.eyebrow}
@@ -149,7 +166,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     </Fragment>
   </Block>
 
-  <!-- ── 06 · Sustainability (two-column) ───────────────────────── -->
   <Block id="nachhaltigkeit">
     <TwoColumn
       eyebrow={content.sustainability.eyebrow}
@@ -173,7 +189,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     </TwoColumn>
   </Block>
 
-  <!-- ── 07 · Testimonials (full-bleed dark band) ───────────────── -->
   <TestimonialBand
     eyebrow={content.trust.eyebrow}
     heading={content.trust.heading}
@@ -184,7 +199,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     testimonials={content.trust.testimonials}
   />
 
-  <!-- ── 08 · FAQ ──────────────────────────────────────────────── -->
   <Block
     id="faq"
     eyebrow={content.faq.eyebrow}
@@ -200,7 +214,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     </div>
   </Block>
 
-  <!-- ── 09 · Lead form (full-bleed) ────────────────────────────── -->
   <LeadFormBand
     client:visible
     eyebrow={content.leadForm.eyebrow}
@@ -213,7 +226,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     tone={content.leadForm.tone}
   />
 
-  <!-- ── 10 · Closing CTA ───────────────────────────────────────── -->
   <div class="full-width">
     <CTASection
       eyebrow={content.closingCta.eyebrow}
@@ -239,7 +251,45 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
 </Layout>
 
 <style>
-  /* Empty-state copy when no DB models match the page's category filter. */
+  /* Thin preview banner — full-bleed via the wrapper grid escape
+     (`.full-width`). Sits above the sticky navbar so it scrolls away
+     naturally with the hero. Uses accent-secondary for the link (small
+     element, per the project accent-tier rule). */
+  .preview-banner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-3);
+    padding-block: var(--spacing-1);
+    padding-inline: var(--padding-inline);
+    background: var(--clr-surface-secondary);
+    border-block-end: 1px solid var(--clr-border-secondary);
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-secondary);
+    text-align: center;
+  }
+
+  .preview-banner span {
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .preview-banner a {
+    color: var(--clr-accent-secondary);
+    font-weight: var(--font-weight-medium);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--clr-accent-secondary) 40%, transparent);
+    text-underline-offset: 2px;
+    transition: text-decoration-color 160ms ease;
+  }
+
+  .preview-banner a:hover,
+  .preview-banner a:focus-visible {
+    text-decoration-color: var(--clr-accent-secondary);
+  }
+
   .empty {
     margin: 0;
     padding: var(--spacing-3) 0;
@@ -255,8 +305,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     text-underline-offset: 2px;
   }
 
-  /* Sustainability paragraphs — vertical stack inside TwoColumn's default
-     slot. Width is governed by TwoColumn's content column. */
   .prose {
     display: flex;
     flex-direction: column;
@@ -271,7 +319,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     line-height: var(--lh-body);
   }
 
-  /* FAQ accordion — bounded width on wide displays for legibility. */
   .faq-wrap {
     max-width: 56rem;
     width: 100%;

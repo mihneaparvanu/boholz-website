@@ -11,6 +11,7 @@ import { PRIMARY_NAV } from "./navbar.content";
 defineProps<{
   categories: HouseCategory[];
   showhouses: Location[];
+  bestsellerHero?: string | null;
   currentPath: string;
 }>();
 </script>
@@ -25,6 +26,7 @@ defineProps<{
         enable-dropdown
         :categories="categories"
         :showhouses="showhouses"
+        :bestseller-hero="bestsellerHero"
       />
     </div>
 
