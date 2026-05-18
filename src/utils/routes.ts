@@ -2,6 +2,7 @@ export const ROUTES = {
   home: "/",
   houses: "/hauser",
   house: (slug: string) => `/haus/${slug}`,
+  musterhaus: (slug: string) => `/musterhaus/${slug}`,
   promise: "/bauen-mit-boholz",
   yourHouse: "/ihr-neues-zuhause",
   aboutUS: "/uber-uns",

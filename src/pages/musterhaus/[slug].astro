@@ -1,0 +1,198 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getLocations } from "@/data/loaders";
+
+import PageHero from "@/components/sections/PageHero.astro";
+import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
+import CTASection from "@/components/sections/CTASection.astro";
+import Button from "@/components/ui/Button.vue";
+import { ROUTES } from "@/utils/routes";
+import { ArrowLeft, MapPin, Phone, Mail } from "lucide-vue-next";
+
+const { slug } = Astro.params;
+const showhouses = await getLocations({ kind: "showhouse" });
+const showhouse = showhouses.find((s) => s.slug === slug);
+
+if (!showhouse) return Astro.redirect(ROUTES.onsite);
+
+const hero = showhouse.media.find((m) => m.isHero)?.media ?? showhouse.media[0]?.media;
+const gallery = showhouse.media
+  .filter((m) => !m.isHero)
+  .slice(0, 8)
+  .map((m) => m.media);
+---
+
+<Layout title={`${showhouse.title} – BoHolz Haus`}>
+  <div class="full-width">
+    <PageHero
+      eyebrow="Musterhaus"
+      title={showhouse.title.replace("Musterhaus ", "")}
+      highlight="erleben."
+      subtitle={showhouse.address ?? `Musterhaus in ${showhouse.city}`}
+      image={hero?.path}
+      imageAlt={hero?.alt ?? showhouse.title}
+      align="center"
+    />
+  </div>
+
+  <section class="back">
+    <a class="back-link" href={ROUTES.onsite}>
+      <ArrowLeft :size={14} :stroke-width={2} aria-hidden="true" />
+      <span>Alle Musterhäuser</span>
+    </a>
+  </section>
+
+  <section id="kontakt" class="info">
+    <EyebrowHeadingLede
+      eyebrow="Adresse & Anfahrt"
+      heading="Wir freuen uns auf Ihren"
+      highlight="Besuch."
+    />
+    <ul class="meta">
+      <li>
+        <MapPin :size={16} :stroke-width={1.75} aria-hidden="true" />
+        <span>{showhouse.address ?? `${showhouse.city}, ${showhouse.country}`}</span>
+      </li>
+      {showhouse.phone && (
+        <li>
+          <Phone :size={16} :stroke-width={1.75} aria-hidden="true" />
+          <a href={`tel:${showhouse.phone}`}>{showhouse.phone}</a>
+        </li>
+      )}
+      {showhouse.email && (
+        <li>
+          <Mail :size={16} :stroke-width={1.75} aria-hidden="true" />
+          <a href={`mailto:${showhouse.email}`}>{showhouse.email}</a>
+        </li>
+      )}
+    </ul>
+  </section>
+
+  {gallery.length > 0 && (
+    <section id="impressionen" class="gallery-section">
+      <EyebrowHeadingLede
+        eyebrow="Impressionen"
+        heading="Ein Blick"
+        highlight="ins Haus."
+      />
+      <div class="gallery">
+        {gallery.map((m) => (
+          <figure>
+            <img src={m.path} alt={m.alt ?? showhouse.title} loading="lazy" />
+          </figure>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <div class="full-width">
+    <CTASection
+      title="Lust auf einen"
+      highlight="Termin?"
+      subtitle="Sprechen Sie mit uns — Beratung im Musterhaus oder Vor-Ort-Termin auf Ihrem Bauplatz."
+    >
+      <Fragment slot="actions">
+        <Button variant="primary" size="lg" href="/kontakt">Termin vereinbaren</Button>
+        <Button variant="tertiary" size="lg" href={ROUTES.onsite}>
+          Alle Musterhäuser
+        </Button>
+      </Fragment>
+    </CTASection>
+  </div>
+</Layout>
+
+<style>
+  .back {
+    padding-block: var(--spacing-3) 0;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-tertiary);
+    transition: color 160ms ease;
+  }
+
+  .back-link:hover,
+  .back-link:focus-visible {
+    color: var(--clr-accent-secondary);
+  }
+
+  .info {
+    padding-block: var(--spacing-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .meta {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    color: var(--clr-content-secondary);
+  }
+
+  .meta li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+  }
+
+  .meta a {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-color: color-mix(in srgb, currentColor 30%, transparent);
+    text-underline-offset: 3px;
+    transition: color 160ms ease;
+  }
+
+  .meta a:hover {
+    color: var(--clr-accent-secondary);
+  }
+
+  .gallery-section {
+    padding-block: var(--spacing-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2);
+  }
+
+  @media (--from-tablet) {
+    .gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--spacing-3);
+    }
+  }
+
+  @media (--from-desktop) {
+    .gallery {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .gallery figure {
+    margin: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--clr-surface-secondary);
+  }
+
+  .gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+</style>

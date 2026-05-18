@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Location } from "@/layouts/types/models";
+import { ROUTES } from "@/utils/routes";
 
 const { showhouses } = defineProps<{
   showhouses: Location[];
@@ -8,12 +9,10 @@ const { showhouses } = defineProps<{
 
 <template>
   <div class="title-links">
-    <p class="title">Musterhauser</p>
+    <p class="title">Musterhäuser</p>
     <ul class="links">
       <li v-for="showhouse in showhouses" :key="showhouse.id">
-        <a :href="`/hauser?category=${showhouse.slug}`">{{
-          showhouse.title
-        }}</a>
+        <a :href="ROUTES.musterhaus(showhouse.slug)">{{ showhouse.title }}</a>
       </li>
     </ul>
   </div>
