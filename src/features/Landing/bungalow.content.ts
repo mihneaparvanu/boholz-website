@@ -32,8 +32,8 @@ export const bungalowContent: LandingPageContent = {
       "BoHolz-Bungalow Schäfer-Haus 134/22 — ebenerdiges Wohnen auf einer Ebene",
     imageFallbackPath: "/images/landing/bungalow/hero.webp",
     preferredCategorySlug: "bungalow",
-    primaryCta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
-    secondaryCta: { label: "Katalog erhalten", href: "/kontakt#katalog" },
+    primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
+    secondaryCta: { label: "Hauskatalog bestellen", href: "/kontakt#katalog" },
   },
 
   benefitsIntro: {
@@ -138,7 +138,7 @@ export const bungalowContent: LandingPageContent = {
     imageAlt:
       "Holzfertighaus in naturnaher Lage — natürliche Materialien für langlebigen Wohnkomfort",
     reverse: false,
-    cta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
+    cta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
   trust: {
@@ -204,9 +204,9 @@ export const bungalowContent: LandingPageContent = {
   },
 
   leadForm: {
-    eyebrow: "Jetzt Angebot",
+    eyebrow: "Ihr persönliches Angebot",
     heading: "Anfordern und",
-    highlight: "Katalog erhalten.",
+    highlight: "Hauskatalog bestellen.",
     lede: "Wir sind für Sie da — stellen Sie uns Ihre Fragen oder fordern Sie Ihr persönliches Angebot an.",
     contact: {
       phone: "0971 / 78 55 57 15",
@@ -236,7 +236,7 @@ export const bungalowContent: LandingPageContent = {
     subtitle:
       "Jetzt unverbindlich beraten lassen oder direkt ein Angebot anfordern.",
     tone: "accent",
-    primaryCta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
-    secondaryCta: { label: "Katalog erhalten", href: "/kontakt#katalog" },
+    primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
+    secondaryCta: { label: "Hauskatalog bestellen", href: "/kontakt#katalog" },
   },
 };

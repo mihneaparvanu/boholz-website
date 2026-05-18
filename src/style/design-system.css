@@ -52,8 +52,8 @@
   /* Semantics */
 
   /* Overlay */
-  --clr-overlay: rgba(0, 0, 0, 0.2);
-  --clr-overlay-strong: rgba(0, 0, 0, 0.5);
+  --clr-overlay: rgba(0, 0, 0, 0.08);
+  --clr-overlay-strong: rgba(0, 0, 0, 0.3);
 
   /* Surface */
   --clr-surface-primary: var(--neutral-gray-900);
@@ -138,14 +138,13 @@
      Focus ring is a third box-shadow, kept here so every interactive
      primitive composes it the same way:
        :focus-visible { box-shadow: var(--focus-ring); }                  */
-  --shadow-1: 0 1px 2px
-      color-mix(in srgb, var(--clr-content-primary) 6%, transparent),
+  --shadow-1:
+    0 1px 2px color-mix(in srgb, var(--clr-content-primary) 6%, transparent),
     0 8px 24px color-mix(in srgb, var(--clr-content-primary) 8%, transparent);
 
-  --shadow-2: 0 1px 2px
-      color-mix(in srgb, var(--clr-content-primary) 6%, transparent),
-    0 12px 36px
-      color-mix(in srgb, var(--clr-content-primary) 10%, transparent);
+  --shadow-2:
+    0 1px 2px color-mix(in srgb, var(--clr-content-primary) 6%, transparent),
+    0 12px 36px color-mix(in srgb, var(--clr-content-primary) 10%, transparent);
 
   --focus-ring: 0 0 0 3px
     color-mix(in srgb, var(--clr-accent-primary) 28%, transparent);

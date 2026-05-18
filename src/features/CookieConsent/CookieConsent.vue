@@ -3,12 +3,12 @@ import { ref } from "vue";
 import ConsentNotice from "./ConsentNotice.vue";
 import ConsentPreferences from "./ConsentPreferences.vue";
 
-const noticeVisible = ref(true);
+const noticeVisible = ref(false);
 const prefVisible = ref(false);
 </script>
 
 <template>
-  <div class="root">
+  <div v-if="noticeVisible || prefVisible" class="root">
     <ConsentPreferences v-if="prefVisible" />
     <ConsentNotice
       v-if="noticeVisible && !prefVisible"

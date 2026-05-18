@@ -23,17 +23,17 @@ export const uebersichtContent: LandingPageContent = {
   },
 
   hero: {
-    eyebrow: "Sichern Sie jetzt Ihr Traumhaus",
+    eyebrow: "Ihr Zuhause, individuell geplant",
     title: "Premium-Fertighäuser",
     highlight: "aus Holz.",
     subtitle:
       "Nachhaltig, energieeffizient und individuell auf Sie zugeschnitten — vom ersten Entwurf bis zur Schlüsselübergabe begleitet von einem festen Ansprechpartner.",
     imageAlt:
       "Premium-Stadtvilla in Holzbauweise von BoHolz Haus — moderne Architektur mit klaren Linien",
-    imageFallbackPath: "/images/landing/uebersicht/lifestyle-03.webp",
+    imageFallbackPath: "/images/homepage/overview-hero.webp",
     preferredCategorySlug: "einfamilienhaus",
-    primaryCta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
-    secondaryCta: { label: "Katalog erhalten", href: "/kontakt#katalog" },
+    primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
+    secondaryCta: { label: "Hauskatalog bestellen", href: "/kontakt#katalog" },
   },
 
   benefitsIntro: {
@@ -138,7 +138,7 @@ export const uebersichtContent: LandingPageContent = {
     imageAlt:
       "Holzfertighaus in naturnaher Umgebung — Symbolbild für nachhaltigen Holzbau",
     reverse: false,
-    cta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
+    cta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
   trust: {
@@ -147,10 +147,7 @@ export const uebersichtContent: LandingPageContent = {
     highlight: "im Holzfertigbau.",
     lede: "Vertrieb aus Bad Kissingen, Produktion in Rot am See — zwei Familienunternehmen, ein Maßstab.",
     tone: "olive",
-    badges: [
-      { label: "Made in Germany" },
-      { label: "KfW", sub: "Förderung" },
-    ],
+    badges: [{ label: "Made in Germany" }, { label: "KfW", sub: "Förderung" }],
     testimonials: [
       {
         name: "Olaf V.",
@@ -203,9 +200,9 @@ export const uebersichtContent: LandingPageContent = {
   },
 
   leadForm: {
-    eyebrow: "Jetzt Angebot",
+    eyebrow: "Ihr persönliches Angebot",
     heading: "Anfordern und",
-    highlight: "Katalog erhalten.",
+    highlight: "Hauskatalog bestellen.",
     lede: "Wir sind für Sie da — stellen Sie uns Ihre Fragen oder fordern Sie Ihr persönliches Angebot an.",
     contact: {
       phone: "0971 / 78 55 57 15",
@@ -229,7 +226,7 @@ export const uebersichtContent: LandingPageContent = {
     subtitle:
       "Sie sind unverbindlich beraten — oder direkt ein Angebot anfordern.",
     tone: "surface",
-    primaryCta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
-    secondaryCta: { label: "Katalog erhalten", href: "/kontakt#katalog" },
+    primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
+    secondaryCta: { label: "Hauskatalog bestellen", href: "/kontakt#katalog" },
   },
 };

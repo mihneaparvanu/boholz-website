@@ -1,124 +1,409 @@
 ---
+/**
+ * Landing page · `/landing/uebersicht`
+ *
+ * Canonical landing-page template. Pages 2 (`mehrfamilien`) and 3
+ * (`bungalow`) pattern-match this file — same section order, same
+ * frontmatter loaders, swap only the imported content module and the
+ * preferred-category fallback. See
+ * `design-audit/2026-05-16/LANDING-PAGES-PLAN.md` for the build plan and
+ * the bottom of this file's frontmatter for the per-page customisation
+ * hooks Phase-2 agents should preserve.
+ *
+ * Section composition (top → bottom):
+ *   1. PageHero            — full-bleed photo + 2 CTAs
+ *   2. BenefitsRow         — 4 pastel-tinted benefit cards
+ *   3. HouseModelsCarousel — live DB models, filtered + capped
+ *   4. ImageBand           — full-bleed lifestyle photo, eyebrow + heading
+ *   5. AudienceBlock       — 4-row "for whom" editorial list
+ *   6. TwoColumn           — sustainability narrative (image + copy)
+ *   7. TestimonialBand     — dark olive band with 3 quotes + badges
+ *   8. FAQAccordion        — 3–6 page-specific FAQs
+ *   9. LeadFormBand        — split rail + form, pre-selected interest
+ *  10. CTASection          — closing call-to-action
+ */
 import Layout from "@/layouts/Layout.astro";
-import Section from "@/layouts/Section.astro";
-import CTASection from "@/components/sections/CTASection.astro";
-import ProofSection from "@/components/sections/Proof-Section.vue";
+import { getMediaURL } from "@/utils/media";
 
-import Hero from "@/features/Home/Hero/Hero.vue";
-import CategoriesShowcase from "@/features/Home/CategoriesShowcase/CategoriesShowcase.vue";
-import TrustBadges from "@/features/Home/TrustBadges/TrustBadges.vue";
-import Overview from "@/features/Home/Overview/Overview.vue";
-import BuildingStages from "@/features/Home/BuildingStages/BuildingStages.vue";
-import BauphasenStrip from "@/features/Bauphasen/BauphasenStrip.vue";
-import Faq from "@/features/Home/Faq/Faq.vue";
+import PageHero from "@/components/sections/PageHero.astro";
+import BenefitsRow from "@/components/sections/BenefitsRow.astro";
+import HouseModelsCarousel from "@/components/sections/HouseModelsCarousel.vue";
+import type { HouseModelCardProps } from "@/components/sections/HouseModelCard.vue";
+import ImageBand from "@/components/sections/ImageBand.astro";
+import AudienceBlock from "@/components/sections/AudienceBlock.astro";
+import TwoColumn from "@/components/sections/TwoColumn.astro";
+import TestimonialBand from "@/components/sections/TestimonialBand.astro";
+import LeadFormBand from "@/components/sections/LeadFormBand.vue";
+import CTASection from "@/components/sections/CTASection.astro";
+
+import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
+import FAQAccordion from "@/components/ui/FAQAccordion.vue";
 import Button from "@/components/ui/Button.vue";
 
-import { homeSections } from "@/features/Home/home.content";
-import { buildingStages } from "@/features/Home/BuildingStages/building-stages.content";
-import { buildPhases } from "@/features/Bauphasen/bauphasen.content";
-import { featuredCard, overviewPillars } from "@/features/Home/Overview/overview.content";
-import { trustBadges } from "@/features/Home/TrustBadges/trust-badges.content";
-import { qaCategories } from "@/content/qa";
+import { getCategories, getModels } from "@/data/loaders";
+import type { HouseModel } from "@/types/models";
 
-import { getCategories, getHeroSlides } from "@/data/loaders";
+import { uebersichtContent as content } from "@/features/Landing/uebersicht.content";
+import ProofSection from "@/components/sections/Proof-Section.vue";
 
+/* ── Data loading ──────────────────────────────────────────────────
+   Layout wants `categories` for the nav. `getModels()` returns every
+   model; we filter to the page's `categorySlugs` + `isFeatured` in JS
+   because that's how the loader is shaped (loader is the view-model). */
 const categories = await getCategories();
-const heroSlides = await getHeroSlides(6);
+const allModels = await getModels();
 
-// Drop `navLabel` before forwarding to <Section> — it's a rail-only field
-// kept on the content shape for pages that still surface a section rail.
-const { categories: cat, trust, overview, bauphasen, finishes, qa, contact } = homeSections;
-const sectionProps = {
-  categories: (({ navLabel, ...rest }) => rest)(cat),
-  trust: (({ navLabel, ...rest }) => rest)(trust),
-  overview: (({ navLabel, ...rest }) => rest)(overview),
-  bauphasen: (({ navLabel, ...rest }) => rest)(bauphasen),
-  finishes: (({ navLabel, ...rest }) => rest)(finishes),
-  qa: (({ navLabel, ...rest }) => rest)(qa),
-  contact: (({ navLabel, ...rest }) => rest)(contact),
-};
+// `featuredOnly` defaults to true — bestseller gate is the safer default.
+// Pages targeting a single typology (e.g. bungalow) opt out so the full
+// sub-catalogue surfaces.
+const featuredOnly = content.houses.featuredOnly ?? true;
+const filteredModels = allModels
+  .filter((m) => (featuredOnly ? m.isFeatured : true))
+  .filter((m) =>
+    content.houses.categorySlugs === null
+      ? true
+      : content.houses.categorySlugs.includes(m.category?.slug ?? ""),
+  )
+  .slice(0, content.houses.maxItems);
+
+/* ── HouseModel → HouseModelCardProps mapping ──────────────────────
+   The card component is presentation-only — the loader formats
+   m²/Zimmer/efficiency strings here so the component stays dumb.
+   `code` is "{CATEGORY-UPPER} · {MODEL-CODE}" per HouseModelCard's
+   contract. */
+function specsFor(m: HouseModel): HouseModelCardProps["specs"] {
+  const specs: HouseModelCardProps["specs"] = [];
+
+  if (m.livingArea != null) {
+    // Drizzle returns `numeric` columns as strings — Number() coerces and
+    // toLocaleString gives us the German decimal comma.
+    const area = Number(m.livingArea);
+    specs.push({
+      kind: "area",
+      value: `${area.toLocaleString("de-DE")} m²`,
+    });
+  }
+
+  if (m.details?.bedroomCount != null) {
+    specs.push({
+      kind: "rooms",
+      value: `${m.details.bedroomCount} Zimmer`,
+    });
+  } else if (m.details?.familiesCount != null && m.details.familiesCount > 1) {
+    // Multi-family models surface the unit count instead of bedrooms —
+    // more meaningful for that typology.
+    specs.push({
+      kind: "rooms",
+      value: `${m.details.familiesCount} Einheiten`,
+    });
+  }
+
+  // KfW efficiency isn't a structured field today — show the typology as
+  // a stand-in. Once an efficiency column lands we'll swap this here.
+  if (m.category?.name) {
+    specs.push({ kind: "efficiency", value: "KfW 40 / 55" });
+  }
+
+  return specs.slice(0, 3);
+}
+
+function priceHintFor(m: HouseModel): string | undefined {
+  if (m.price == null) return undefined;
+  const price = Number(m.price);
+  if (!Number.isFinite(price) || price <= 0) return undefined;
+  return `ab ${price.toLocaleString("de-DE")} €`;
+}
+
+function imageFor(m: HouseModel): { src: string; alt: string } {
+  // Prefer the hero photo for showcase, then thumbnail, then a static
+  // placeholder. Paths from the loader are already R2-resolved.
+  const hero = m.media.find((mm) => mm.isHero);
+  const thumb = m.media.find((mm) => mm.isThumbnail);
+  const first = m.media[0];
+  const pick = hero ?? thumb ?? first;
+  return {
+    src: pick?.media.path ?? getMediaURL("/images/pages/uber-uns/value-1.jpg"),
+    alt: pick?.media.alt ?? m.title,
+  };
+}
+
+const houseCards: HouseModelCardProps[] = filteredModels.map((m) => {
+  const { src, alt } = imageFor(m);
+  return {
+    slug: m.slug,
+    name: m.title,
+    code: `${(m.category?.name ?? "Hausmodell").toUpperCase()} · ${m.modelCode}`,
+    image: src,
+    imageAlt: alt,
+    specs: specsFor(m),
+    priceHint: priceHintFor(m),
+  };
+});
+
+
+
+
+const heroImage = getMediaURL(content.hero.imageFallbackPath);
+const imageBandImage = getMediaURL(content.imageBand.imageFallbackPath);
+const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath);
 ---
 
-<Layout title="Boholz Haus" categories={categories} isHero>
-  <Hero client:load slides={heroSlides} />
-
-  <div class="proof-band">
-    <ProofSection />
-  </div>
-
-  <Section {...sectionProps.categories} tone="primary">
-    <CategoriesShowcase client:visible categories={categories} />
-  </Section>
-
-  <Section {...sectionProps.trust} tone="secondary">
-    <TrustBadges client:visible badges={trustBadges} />
-  </Section>
-
-  <Section {...sectionProps.overview} tone="primary">
-    <Overview client:visible featured={featuredCard} pillars={overviewPillars} />
-  </Section>
-
-  <!-- Bauphasen — compact 3-step strip. Slots between "we deliver well"
-       (Overview) and "your finish-level path" (Ausbaustufen) as the bridging
-       "how it happens" beat. tone="secondary" so the strip's image-led
-       cards lift off a tinted band; preserves the alternation primary →
-       secondary → primary across the page. -->
-  <Section {...sectionProps.bauphasen} tone="secondary">
-    <BauphasenStrip client:visible phases={buildPhases} linkBaseHref="/dein-zuhause" />
-  </Section>
-
-  <Section {...sectionProps.finishes} tone="primary">
-    <BuildingStages client:visible stages={buildingStages} />
-  </Section>
-
-  <Section {...sectionProps.qa} tone="primary">
-    <Faq client:visible categories={qaCategories} />
-  </Section>
-
-  <!-- Closing CTA — kit CTASection. Its `surface` tone already uses
-       `--clr-surface-secondary` so the section reads as the alternating
-       tone after the FAQ above. `full-width` makes the tinted band bleed
-       edge-to-edge instead of being constrained to the wrapper column. -->
-  <div id={sectionProps.contact.id} class="full-width">
-    <CTASection
-      eyebrow={sectionProps.contact.eyebrow}
-      title={`${sectionProps.contact.heading1} ${sectionProps.contact.heading2}`}
-      highlight={sectionProps.contact.highlight}
-      subtitle={sectionProps.contact.subheading}
-      tone="surface"
+<Layout title={content.seo.title} categories={categories}>
+  <!-- ── 01 · Hero ─────────────────────────────────────────────────
+       Hero bleeds full-width via the wrapper grid escape. Uses real R2
+       hero from the preferred category when available, otherwise the
+       page-specific fallback documented in the content file. -->
+  <div class="full-width">
+    <PageHero
+      eyebrow={content.hero.eyebrow}
+      title={content.hero.title}
+      highlight={content.hero.highlight}
+      subtitle={content.hero.subtitle}
+      image={heroImage}
+      imageAlt={content.hero.imageAlt}
+      align="center"
     >
       <Fragment slot="actions">
-        <Button client:load variant="primary" size="md" href="/vor-ort-beratung">
-          Vor-Ort-Beratung
+        <Button  variant="primary" size="lg" href={content.hero.primaryCta.href}>
+          {content.hero.primaryCta.label}
         </Button>
-        <Button client:load variant="secondary" size="md" href="/kontakt">
-          Kontaktformular
+        <Button variant="secondary" size="lg" href={content.hero.secondaryCta.href}>
+          {content.hero.secondaryCta.label}
         </Button>
+      </Fragment>
+    </PageHero>
+  </div>
+
+<section class="block"><ProofSection/></section>
+
+
+
+  <!-- ── 02 · Benefits row ─────────────────────────────────────── -->
+  <section id="vorteile" class="block">
+    <EyebrowHeadingLede
+      eyebrow={content.benefitsIntro.eyebrow}
+      heading={content.benefitsIntro.heading}
+      highlight={content.benefitsIntro.highlight}
+      lede={content.benefitsIntro.lede}
+    />
+    <BenefitsRow items={content.benefits} />
+  </section>
+
+  <!-- ── 03 · House showcase ───────────────────────────────────── -->
+  <section id="hausmodelle" class="block">
+    <EyebrowHeadingLede
+      eyebrow={content.houses.eyebrow}
+      heading={content.houses.heading}
+      highlight={content.houses.highlight}
+      lede={content.houses.lede}
+    />
+    {
+      houseCards.length > 0 ? (
+        <HouseModelsCarousel
+          client:visible
+          models={houseCards}
+          ariaLabel="Empfohlene Hausmodelle"
+        />
+      ) : (
+        <p class="empty">
+          Aktuell keine empfohlenen Modelle für diese Kategorie.
+          Bitte sehen Sie sich
+          <a href="/hauser"> die vollständige Übersicht </a>
+          an.
+        </p>
+      )
+    }
+  </section>
+
+  <!-- ── 04 · Image band (full-bleed lifestyle) ─────────────────── -->
+  <ImageBand
+    eyebrow={content.imageBand.eyebrow}
+    heading={content.imageBand.heading}
+    highlight={content.imageBand.highlight}
+    lede={content.imageBand.lede}
+    image={imageBandImage}
+    imageAlt={content.imageBand.imageAlt}
+    rule
+  />
+
+  <!-- ── 05 · Audience block ───────────────────────────────────── -->
+  <section id="zielgruppen" class="block">
+    <EyebrowHeadingLede
+      eyebrow={content.audience.eyebrow}
+      heading={content.audience.heading}
+      highlight={content.audience.highlight}
+      lede={content.audience.lede}
+    />
+    <AudienceBlock items={content.audience.items} />
+    <div class="audience-actions">
+      <Button client:load variant="primary" size="md" href={content.hero.primaryCta.href}>
+        {content.hero.primaryCta.label}
+      </Button>
+      <Button client:load variant="ghost" size="md" href={content.hero.secondaryCta.href}>
+        {content.hero.secondaryCta.label}
+      </Button>
+    </div>
+  </section>
+
+  <!-- ── 06 · Sustainability (two-column) ───────────────────────── -->
+  <section id="nachhaltigkeit" class="block">
+    <TwoColumn
+      eyebrow={content.sustainability.eyebrow}
+      title={content.sustainability.title}
+      highlight={content.sustainability.highlight}
+      subtitle={content.sustainability.subtitle}
+      image={sustainabilityImage}
+      imageAlt={content.sustainability.imageAlt}
+      reverse={content.sustainability.reverse}
+    >
+      <div class="prose">
+        {content.sustainability.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+      {content.sustainability.cta && (
+        <Fragment slot="actions">
+          <Button client:load variant="primary" size="md" href={content.sustainability.cta.href}>
+            {content.sustainability.cta.label}
+          </Button>
+        </Fragment>
+      )}
+    </TwoColumn>
+  </section>
+
+  <!-- ── 07 · Testimonials (full-bleed dark band) ───────────────── -->
+  <TestimonialBand
+    eyebrow={content.trust.eyebrow}
+    heading={content.trust.heading}
+    highlight={content.trust.highlight}
+    lede={content.trust.lede}
+    tone={content.trust.tone}
+    badges={content.trust.badges}
+    testimonials={content.trust.testimonials}
+  />
+
+  <!-- ── 08 · FAQ ──────────────────────────────────────────────── -->
+  <section id="faq" class="block">
+    <EyebrowHeadingLede
+      eyebrow={content.faq.eyebrow}
+      heading={content.faq.heading}
+      highlight={content.faq.highlight}
+    />
+    <div class="faq-wrap">
+      <FAQAccordion
+        client:visible
+        items={content.faq.items}
+        defaultOpen={content.faq.defaultOpen}
+      />
+    </div>
+  </section>
+
+  <!-- ── 09 · Lead form (full-bleed) ────────────────────────────── -->
+  <LeadFormBand
+    client:visible
+    eyebrow={content.leadForm.eyebrow}
+    heading={content.leadForm.heading}
+    highlight={content.leadForm.highlight}
+    lede={content.leadForm.lede}
+    subCopy={content.leadForm.subCopy}
+    contact={content.leadForm.contact}
+    interestOptions={content.leadForm.interestOptions}
+    tone={content.leadForm.tone}
+  />
+
+  <!-- ── 10 · Closing CTA ───────────────────────────────────────── -->
+  <div class="full-width">
+    <CTASection
+      eyebrow={content.closingCta.eyebrow}
+      title={content.closingCta.title}
+      highlight={content.closingCta.highlight}
+      subtitle={content.closingCta.subtitle}
+      tone={content.closingCta.tone}
+      image={content.closingCta.imageFallbackPath ? getMediaURL(content.closingCta.imageFallbackPath) : undefined}
+      imageAlt={content.closingCta.imageAlt ?? ""}
+    >
+      <Fragment slot="actions">
+        <Button client:load variant="primary" size="lg" href={content.closingCta.primaryCta.href}>
+          {content.closingCta.primaryCta.label}
+        </Button>
+        {content.closingCta.secondaryCta && (
+          <Button client:load variant="secondary" size="lg" href={content.closingCta.secondaryCta.href}>
+            {content.closingCta.secondaryCta.label}
+          </Button>
+        )}
       </Fragment>
     </CTASection>
   </div>
 </Layout>
 
 <style>
-  .proof-band {
-    padding-block: var(--spacing-5);
-    --proof-color: var(--clr-content-secondary);
+  /* ── Page rhythm ──
+     Each `.block` is a content-column section with consistent vertical
+     air. Matches the rhythm used on `dein-zuhause.astro` /
+     `unser-versprechen.astro` — generous block padding, scroll-margin
+     so deep links don't tuck headings under the sticky navbar. */
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5);
+    padding-block: var(--spacing-6);
+    scroll-margin-block-start: var(--navbar-height);
   }
-</style>
 
-<!--
-  Homepage-only: render every italic text in the canonical BoHolz Blau
-  (`--boholz-blau` = #91ACBE, the soft slate-blue), per client request.
-  Scoped to `/` because this stylesheet only ships with index.astro.
-  Double-class selectors (.highlight.highlight, .index.index) bump
-  specificity above Vue's `<style scoped>` `[data-v-hash]` selectors,
-  which otherwise win for `.index` inside BauphasenStrip.
--->
-<style is:global>
-  body em,
-  body i,
-  body .highlight.highlight,
-  body .index.index {
-    color: var(--boholz-blau);
+  /* The first content-column section sits beneath a full-width hero,
+     so the top air can be tighter — the hero already supplied padding. */
+  .block:first-of-type {
+    padding-block-start: var(--spacing-5);
+  }
+
+  /* Empty-state copy when no DB models match the page's category filter.
+     Quiet, single sentence with a link to the full catalog. */
+  .empty {
+    margin: 0;
+    padding: var(--spacing-3) 0;
+    color: var(--clr-content-tertiary);
+    font-size: var(--fs-body);
+    text-align: center;
+  }
+
+  .empty a {
+    color: var(--clr-accent-secondary);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--clr-accent-secondary) 40%, transparent);
+    text-underline-offset: 2px;
+  }
+
+  /* Audience section's CTA pair — pinned below the AudienceBlock list,
+     centred under the same content column. Mirrors the old-design
+     "Persönliches Angebot anfragen · Hauskatalog bestellen" duo at this beat. */
+  .audience-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-2);
+  }
+
+  /* Sustainability paragraphs — vertical stack inside TwoColumn's
+     default slot. Width is governed by TwoColumn's content column. */
+  .prose {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    max-width: 64ch;
+  }
+
+  .prose p {
+    margin: 0;
+    color: var(--clr-content-secondary);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+
+  /* FAQ accordion wants a max-width so questions don't stretch full
+     content column on wide displays — readability over the answers
+     wraps tighter. */
+  .faq-wrap {
+    max-width: 56rem;
+    width: 100%;
+    margin-inline: auto;
   }
 </style>

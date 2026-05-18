@@ -19,6 +19,8 @@ const {
   eyebrow,
 } = Astro.props;
 
+
+
 const hasImage = Boolean(image);
 ---
 
@@ -54,10 +56,10 @@ const hasImage = Boolean(image);
     position: relative;
     isolation: isolate;
     display: flex;
-    align-items: center;
-    padding-block: var(--spacing-7) var(--spacing-6);
+    align-items: start;
+    padding-block: var(--spacing-5) var(--spacing-6);
     padding-inline: var(--padding-inline, var(--spacing-4));
-    min-height: clamp(280px, 36vh, 480px);
+    min-height: 90dvh;
   }
 
   .hero[data-align="center"] .inner {
@@ -92,18 +94,17 @@ const hasImage = Boolean(image);
     position: absolute;
     inset: 0;
     background: linear-gradient(
-      to bottom,
-      var(--clr-overlay) 0%,
+      to top,
+      var(--clr-overlay) 100%,
       var(--clr-overlay-strong) 100%
     );
   }
 
   .inner {
+    max-width: 90ch;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-3);
-    max-width: 64rem;
-    width: 100%;
   }
 
   .eyebrow {
@@ -134,7 +135,8 @@ const hasImage = Boolean(image);
 
   .subtitle {
     font-size: var(--fs-body-lg);
-    color: var(--clr-content-secondary);
+    color: var(--clr-content-tertiary);
+    font-weight: var(--font-weight-medium);
     max-width: 56rem;
   }
 

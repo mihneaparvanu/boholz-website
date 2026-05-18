@@ -33,8 +33,8 @@ export const mehrfamilienContent: LandingPageContent = {
       "Mehrfamilienhaus von BoHolz Haus — großzügige Architekturvisualisierung mit mehreren Wohneinheiten",
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-02.webp",
     preferredCategorySlug: "mehrfamilienhaus",
-    primaryCta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
-    secondaryCta: { label: "Katalog erhalten", href: "/kontakt#katalog" },
+    primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
+    secondaryCta: { label: "Hauskatalog bestellen", href: "/kontakt#katalog" },
   },
 
   benefitsIntro: {
@@ -140,7 +140,7 @@ export const mehrfamilienContent: LandingPageContent = {
     imageAlt:
       "Stadtvilla mit Einliegerwohnung in Holzbauweise — Zweifamilien-Konzept unter einem Dach",
     reverse: false,
-    cta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
+    cta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
   trust: {
@@ -205,9 +205,9 @@ export const mehrfamilienContent: LandingPageContent = {
   },
 
   leadForm: {
-    eyebrow: "Jetzt Angebot",
+    eyebrow: "Ihr persönliches Angebot",
     heading: "Anfordern und",
-    highlight: "Katalog erhalten.",
+    highlight: "Hauskatalog bestellen.",
     lede: "Wir sind für Sie da — stellen Sie uns Ihre Fragen oder fordern Sie Ihr persönliches Angebot an.",
     contact: {
       phone: "0971 / 78 55 57 15",
@@ -240,7 +240,7 @@ export const mehrfamilienContent: LandingPageContent = {
     subtitle:
       "Jetzt unverbindlich beraten lassen oder direkt ein Angebot anfordern.",
     tone: "surface",
-    primaryCta: { label: "Jetzt Angebot anfordern", href: "/kontakt" },
-    secondaryCta: { label: "Katalog erhalten", href: "/kontakt#katalog" },
+    primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
+    secondaryCta: { label: "Hauskatalog bestellen", href: "/kontakt#katalog" },
   },
 };
