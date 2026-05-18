@@ -18,7 +18,6 @@ const visibleCategories = computed(() =>
   <div class="showcase">
     <CategorySlider :categories="visibleCategories" />
     <div class="info">
-      <p>Ab <span class="price">200.000€</span> zzgl. Überführung.</p>
       <p>Attraktive Finanzierungsmöglichkeiten.</p>
     </div>
   </div>
@@ -38,11 +37,5 @@ const visibleCategories = computed(() =>
   flex-direction: column;
   gap: var(--spacing-0);
   text-align: center;
-}
-
-.price {
-  display: inline-block;
-  color: var(--clr-content-secondary);
-  font-weight: 500;
 }
 </style>

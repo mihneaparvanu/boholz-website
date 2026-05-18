@@ -12,4 +12,9 @@ export const ROUTES = {
   impressum: "/impressum",
   datenschutz: "/datenschutz",
   cookies: "/cookies",
+  landing: {
+    uebersicht: "/landing/uebersicht",
+    bungalow: "/landing/bungalow",
+    mehrfamilien: "/landing/mehrfamilien",
+  },
 } as const;

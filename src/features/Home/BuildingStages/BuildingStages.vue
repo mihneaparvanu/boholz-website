@@ -2,7 +2,6 @@
 import { computed, ref } from "vue";
 import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "reka-ui";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder.vue";
-import VideoPlaceholder from "@/components/ui/VideoPlaceholder.vue";
 import type { BuildingStage } from "./building-stages.types";
 
 const props = defineProps<{
@@ -49,16 +48,6 @@ const selected = computed(
         <figcaption>{{ selected.description }}</figcaption>
       </figure>
     </TabsContent>
-
-    <!-- Desktop-only support media. -->
-    <div class="support">
-      <VideoPlaceholder
-        slot-id="home-factory-loop"
-        aspect-ratio="16/9"
-        label="Werksrundgang"
-        caption="Bald verfügbar — Atmosphäre aus der Vorfertigung."
-      />
-    </div>
   </TabsRoot>
 </template>
 
@@ -88,11 +77,13 @@ const selected = computed(
 
 @media (--from-desktop) {
   .root {
-    /* Desktop: stages on top, picture below, support beside. */
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    /* Desktop: tabs row above, hero spans full width below.
+       Previously reserved a `support` column for a Werksrundgang video tile;
+       tile removed per client request, so the hero takes the full column. */
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
-      "options options"
-      "hero    support";
+      "options"
+      "hero";
   }
 }
 
@@ -201,15 +192,4 @@ const selected = computed(
   }
 }
 
-/* ── Support (desktop-only video) ────────────────── */
-.support {
-  grid-area: support;
-  display: none;
-}
-
-@media (--from-desktop) {
-  .support {
-    display: block;
-  }
-}
 </style>

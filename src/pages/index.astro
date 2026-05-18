@@ -105,3 +105,20 @@ const sectionProps = {
     --proof-color: var(--clr-content-secondary);
   }
 </style>
+
+<!--
+  Homepage-only: render every italic text in the canonical BoHolz Blau
+  (`--boholz-blau` = #91ACBE, the soft slate-blue), per client request.
+  Scoped to `/` because this stylesheet only ships with index.astro.
+  Double-class selectors (.highlight.highlight, .index.index) bump
+  specificity above Vue's `<style scoped>` `[data-v-hash]` selectors,
+  which otherwise win for `.index` inside BauphasenStrip.
+-->
+<style is:global>
+  body em,
+  body i,
+  body .highlight.highlight,
+  body .index.index {
+    color: var(--boholz-blau);
+  }
+</style>

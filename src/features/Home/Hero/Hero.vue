@@ -5,36 +5,13 @@ import type { HeroSlide } from "./hero.types";
 import Button from "@/components/ui/Button.vue";
 import { ArrowRight, ChevronDown } from "lucide-vue-next";
 import { ROUTES } from "@/utils/routes";
+import { getMediaURL } from "@/utils/media";
+
+const heroIMG = getMediaURL("/images/brand/hero.jpg");
 
 const props = defineProps<{
   slides: HeroSlide[];
 }>();
-
-/* Two-IMG ping-pong crossfade. The previous Vue <Transition> approach
-   keyed off slide.id replaced the IMG element on every rotation; on iOS
-   Safari that left orphaned IMGs accumulating in the DOM with stale
-   layout (some sized to the content column, some full-width) — the user
-   saw the hero "shifting" after the first slide.
-   We keep two persistent IMGs and only swap which is opaque. Zero DOM
-   churn, no <Transition> wrapper, no per-slide layout recompute. */
-const idx = ref(0);
-const slotA = ref<HeroSlide | null>(props.slides[0] ?? null);
-const slotB = ref<HeroSlide | null>(null);
-const activeIsA = ref(true);
-
-useIntervalFn(() => {
-  idx.value = (idx.value + 1) % props.slides.length;
-  const next = props.slides[idx.value];
-  if (activeIsA.value) {
-    slotB.value = next;
-    activeIsA.value = false;
-  } else {
-    slotA.value = next;
-    activeIsA.value = true;
-  }
-}, 5000);
-
-const slide = computed(() => props.slides[idx.value]);
 </script>
 
 <template>
@@ -50,29 +27,18 @@ const slide = computed(() => props.slides[idx.value]);
         </p>
       </div>
       <div class="action">
-        <Button :href="ROUTES.house(slide.slug)">
-          {{ slide.title }}
+        <Button :href="ROUTES.landing.uebersicht">
+          Häuser entdecken
           <template #trailing> <ArrowRight /> </template>
         </Button>
       </div>
     </div>
     <img
-      v-if="slotA"
-      :src="slotA.heroImgURL ?? undefined"
-      :alt="slotA.title"
+      :src="heroIMG"
+      alt="barrierefreien Fertighäuser"
       width="1200"
       height="800"
       class="background full-width"
-      :data-active="activeIsA || undefined"
-    />
-    <img
-      v-if="slotB"
-      :src="slotB.heroImgURL ?? undefined"
-      :alt="slotB.title"
-      width="1200"
-      height="800"
-      class="background full-width"
-      :data-active="!activeIsA || undefined"
     />
     <div class="tint-overlay full-width"></div>
   </section>
@@ -132,7 +98,7 @@ const slide = computed(() => props.slides[idx.value]);
   /* Cap the layout column so the full-width CTA below has a sane visual
      width and doesn't read as a banner spanning the entire hero. The
      button takes 100% of THIS column, not the full hero. */
-  max-width: 32rem;
+  max-width: 45rem;
   gap: var(--spacing-4);
   padding-block-end: var(--spacing-5);
 
@@ -173,21 +139,10 @@ const slide = computed(() => props.slides[idx.value]);
   inset: 0;
   width: 100%;
   height: 100%;
+  object-position: 70%;
   object-fit: cover;
-  background-color: var(--clr-content-secondary);
   z-index: -1;
-  opacity: 0;
   transition: opacity 800ms ease;
-}
-
-.background[data-active] {
-  opacity: 1;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .background {
-    transition: opacity 1ms;
-  }
 }
 
 .action {

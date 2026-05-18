@@ -4,10 +4,11 @@ import "@/style/design-system.css";
 import "@/style/wrapper.css";
 
 import qualityBadgesSprite from "@/icons/qualityBadges.svg?raw";
+import qualityBadgesColorSprite from "@/icons/qualityBadgesColor.svg?raw";
 
 import Navbar from "./Navbar/Navbar.vue";
 import Footer from "./Footer/Footer.astro";
-import PrivacyPopup from "@/features/PrivacyPopup/PrivacyPopup.vue";
+import CookieConsent from "../features/CookieConsent/CookieConsent.vue";
 
 import { getCategories, getLocations } from "@/data/loaders";
 import type { HouseCategory } from "@/types/models";
@@ -33,13 +34,14 @@ const showhouses = await getLocations({ kind: "showhouse" });
   </head>
   <body>
     <Fragment set:html={qualityBadgesSprite} />
+    <Fragment set:html={qualityBadgesColorSprite} />
     <Navbar
       client:load
       categories={categories}
       showhouses={showhouses}
     />
     <main class="wrapper">
-      <PrivacyPopup />
+      <CookieConsent client:visible/>
       <slot />
       <Footer />
     </main>

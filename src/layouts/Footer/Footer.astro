@@ -233,25 +233,32 @@ const currentYear = new Date().getFullYear();
   }
 
   .badge {
-    height: 32px;
+    /* Color sprite carries its own fills; no currentColor styling here. */
+    height: 40px;
     width: auto;
-    color: var(--clr-content-tertiary);
-    fill: currentColor;
-    transition: color 200ms ease;
-  }
-  .badge :where(use, path) {
-    fill: currentColor;
+    transition: opacity 200ms ease;
   }
 
-  /* Quiet by default, deepen slightly on hover/focus to confirm interactivity
-     would be available if we ever wire each badge to a detail page. */
+  /* Quiet by default, brighten on hover to confirm interactivity would be
+     available if we ever wire each badge to a detail page. */
+  .badges li .badge {
+    opacity: 0.85;
+  }
   .badges li:hover .badge {
-    color: var(--clr-content-secondary);
+    opacity: 1;
+  }
+
+  /* Holz Rettet Klima sits at position 6 — oversize per client request. */
+  .badges li:nth-child(6) .badge {
+    height: 60px;
   }
 
   @media (--from-desktop) {
     .badge {
-      height: 36px;
+      height: 48px;
+    }
+    .badges li:nth-child(6) .badge {
+      height: 72px;
     }
     .badges {
       column-gap: var(--spacing-5);

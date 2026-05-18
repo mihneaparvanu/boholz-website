@@ -11,7 +11,7 @@ export const FOOTER_NAV: NavLink[] = [
 
 /**
  * Quality / certification badges shown as a single institutional row.
- * Each entry maps to a `<symbol id>` inside `src/icons/qualityBadges.svg`,
+ * Each entry maps to a `<symbol id>` inside `src/icons/qualityBadgesColor.svg`,
  * which is injected globally by `layouts/Layout.astro`.
  *
  * `aspect` keeps the SVG slot width correct without a known intrinsic size
@@ -27,10 +27,11 @@ export interface FooterCertification {
 }
 
 export const FOOTER_CERTIFICATIONS: FooterCertification[] = [
-  { id: "badge-iso", label: "ISO-zertifiziert", aspect: "34.7 / 31.7" },
-  { id: "badge-bdf", label: "Bundesverband Deutscher Fertigbau", aspect: "29.4 / 31.7" },
-  { id: "badge-gdf", label: "Gütegemeinschaft Deutsche Fertigbau", aspect: "43.9 / 31.7" },
-  { id: "badge-qdf", label: "Qualitätsgemeinschaft Deutscher Fertigbau", aspect: "29.1 / 31.7" },
-  { id: "badge-gdf-shield", label: "GDF Schutzsiegel", aspect: "23.9 / 31.7" },
-  { id: "badge-ral", label: "RAL Gütezeichen", aspect: "100 / 70" },
+  { id: "badge-iso-color", label: "ISO-zertifiziert", aspect: "560 / 512" },
+  { id: "badge-bdf-color", label: "Bundesverband Deutscher Fertigbau", aspect: "474 / 512" },
+  { id: "badge-gdf-color", label: "Gütegemeinschaft Deutsche Fertigbau", aspect: "709 / 512" },
+  { id: "badge-qdf-color", label: "Qualitätsgemeinschaft Deutscher Fertigbau", aspect: "469 / 512" },
+  // RAL cropped to "RAL Gütezeichen" only — Holzhausbau house-frame mark below was excluded per client.
+  { id: "badge-ral-color", label: "RAL Gütezeichen", aspect: "256 / 120" },
+  { id: "badge-holz-klima-color", label: "Holz Rettet Klima 2030", aspect: "1 / 1" },
 ];

@@ -5,22 +5,22 @@
     <span>Geprüfte Qualität · Zertifizierte Sicherheit</span>
     <div class="badges" aria-label="Qualitätssiegel">
       <svg class="badge" aria-hidden="true">
-        <use href="#badge-iso" />
+        <use href="#badge-iso-color" />
       </svg>
       <svg class="badge" aria-hidden="true">
-        <use href="#badge-bdf" />
+        <use href="#badge-bdf-color" />
       </svg>
       <svg class="badge" aria-hidden="true">
-        <use href="#badge-gdf" />
+        <use href="#badge-gdf-color" />
       </svg>
       <svg class="badge" aria-hidden="true">
-        <use href="#badge-qdf" />
+        <use href="#badge-qdf-color" />
       </svg>
       <svg class="badge" aria-hidden="true">
-        <use href="#badge-gdf-shield" />
+        <use href="#badge-ral-color" />
       </svg>
       <svg class="badge" aria-hidden="true">
-        <use href="#badge-ral" />
+        <use href="#badge-holz-klima-color" />
       </svg>
     </div>
   </div>
@@ -55,33 +55,30 @@
 }
 
 .badge {
-  height: 36px;
+  height: 56px;
   width: auto;
   aspect-ratio: var(--badge-aspect, auto);
-  color: inherit;
-  fill: currentColor;
-}
-.badge :where(use, path) {
-  fill: currentColor;
 }
 
-/* per-symbol aspect ratios so the SVG reserves the right horizontal slot */
+/* per-symbol aspect ratios so the SVG reserves the right horizontal slot.
+   Values mirror the viewBox of each <symbol> in qualityBadgesColor.svg. */
 .badge:nth-child(1) {
-  aspect-ratio: 34.7 / 31.7;
-} /* iso       */
+  aspect-ratio: 560 / 512;
+} /* iso        */
 .badge:nth-child(2) {
-  aspect-ratio: 29.4 / 31.7;
-} /* bdf       */
+  aspect-ratio: 474 / 512;
+} /* bdf        */
 .badge:nth-child(3) {
-  aspect-ratio: 43.9 / 31.7;
-} /* gdf       */
+  aspect-ratio: 709 / 512;
+} /* gdf        */
 .badge:nth-child(4) {
-  aspect-ratio: 29.1 / 31.7;
-} /* qdf       */
+  aspect-ratio: 469 / 512;
+} /* qdf        */
 .badge:nth-child(5) {
-  aspect-ratio: 23.9 / 31.7;
-} /* gdf-shield*/
+  aspect-ratio: 256 / 120;
+} /* ral — cropped to RAL Gütezeichen only (no Holzhausbau frame) */
 .badge:nth-child(6) {
-  aspect-ratio: 100 / 70;
-} /* ral       */
+  aspect-ratio: 1 / 1;
+  height: 88px;
+} /* holz-klima — Holz Rettet Klima 2030, oversized per client request */
 </style>

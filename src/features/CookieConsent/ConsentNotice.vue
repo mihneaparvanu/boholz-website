@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue";
-
-const popupVisible = ref(false);
 import Button from "@/components/ui/Button.vue";
+const prefVisible = defineModel<boolean>("prefVisible", { required: true });
 </script>
 
 <template>
-  <div v-if="popupVisible" class="popup">
+  <div class="popup">
     <div class="text">
       <h4 class="title">Cookies &amp; Privatsphäre</h4>
       <p class="disclaimer">
@@ -21,7 +19,9 @@ import Button from "@/components/ui/Button.vue";
     <div class="btns">
       <Button size="sm" variant="primary">Alle akzeptieren</Button>
       <Button size="sm" variant="primary">Alle ablehnen</Button>
-      <Button size="sm" variant="ghost">Einstellungen</Button>
+      <Button @click="prefVisible = true" size="sm" variant="ghost"
+        >Einstellungen</Button
+      >
     </div>
   </div>
 </template>
