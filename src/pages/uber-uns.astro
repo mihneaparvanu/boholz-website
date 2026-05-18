@@ -11,6 +11,7 @@ import StatBlock from "@/components/ui/StatBlock.vue";
 import IconList from "@/components/ui/IconList.vue";
 import Button from "@/components/ui/Button.vue";
 import { HeartHandshake, Compass, Sparkles } from "lucide-vue-next";
+import { keitel } from "@/content/keitel";
 
 const whatWeDoItems = [
   {
@@ -59,7 +60,7 @@ const whatWeDoItems = [
       eyebrow="Zwei starke Partner"
       heading="Vertrieb mit Haltung,"
       highlight="Produktion mit Erfahrung."
-      lede="BoHolz-Haus ist die Vertriebsgesellschaft, Keitel Haus der Produzent. Was Sie unterschreiben, hat ein Gesicht — und 90 Jahre Holzbau hinter sich."
+      lede={keitel("uberUnsPartnerLede")}
     >
       <Fragment slot="eyebrow-icon">
         <HeartHandshake :size={14} :stroke-width={2} />
@@ -69,11 +70,7 @@ const whatWeDoItems = [
     <div class="prose">
       <p class="lead">
         <i class="open">Wir sind die Vertriebsgesellschaft hinter Ihrem
-        BoHolz-Haus.</i> Vom ersten Entwurf bis zum unterschriebenen Vertrag
-        begleitet Sie ein erfahrener Hausberater — persönlich, präzise, ohne
-        Umwege. Unser Partner Keitel Haus baut seit über 90 Jahren in Holz: ein
-        Familienunternehmen aus Rot am See-Brettheim, das den Baustoff kennt
-        wie wenige andere.
+        BoHolz-Haus.</i> {keitel("uberUnsLeadProse")}
       </p>
 
       <p>
@@ -88,7 +85,7 @@ const whatWeDoItems = [
     <StatBlock
       value="90+"
       label="Jahre Holzbau"
-      caption="Erfahrung unseres Partners Keitel Haus aus Rot am See-Brettheim."
+      caption={keitel("uberUnsStatCaption")}
       icon="award"
       client:visible
     />
@@ -171,7 +168,7 @@ const whatWeDoItems = [
   <section class="quote-section">
     <PullQuote
       quote="Qualität vor Quantität. Individualität vor Standard. Beratung vor Überredung."
-      author="BoHolz-Haus & Keitel Haus"
+      author={keitel("uberUnsQuoteAuthor")}
       role="Drei Prinzipien, an denen sich alles misst"
       align="center"
     />
@@ -186,7 +183,7 @@ const whatWeDoItems = [
         eyebrow="Was wir tun"
         heading="Vier Schritte zu Ihrem"
         highlight="BoHolz-Haus."
-        lede="Familien, Paare, Singles, Senioren — wir planen für die, die bauen. Mit Keitel Haus an unserer Seite bringen wir Kompetenz, Erfahrung und ein durchdachtes Komplettpaket auf Ihren Bauplatz."
+        lede={keitel("uberUnsWasWirTunLede")}
       >
         <Fragment slot="eyebrow-icon">
           <Sparkles :size={14} :stroke-width={2} />

@@ -25,6 +25,7 @@ import SectionNavigator from "@/components/ui/SectionNavigator.vue";
 
 import type { IconListItem } from "@/components/ui/IconList.vue";
 import type { Section } from "@/components/ui/SectionNavigator.vue";
+import { keitel } from "@/content/keitel";
 
 // ── Navigator ──────────────────────────────────────────────────────────────
 // Anchor ids are German-umlaut-normalised per CLAUDE.md (ü → ue, ä → ae).
@@ -70,7 +71,7 @@ const vorteile: IconListItem[] = [
     icon: "award",
     label: "90 Jahre Holzbau-Kompetenz",
     description:
-      "Sie verkaufen ein Produkt, hinter dem ein gewachsenes Familienunternehmen und unser Partner Keitel Haus mit jahrzehntelanger Erfahrung stehen.",
+      keitel("karriereVorteilBullet"),
   },
   {
     icon: "target",

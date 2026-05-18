@@ -2,6 +2,7 @@
 // Sourced from the production WordPress export (boholz-haus.de FAQ accordion).
 // Answers contain trusted internal HTML; render with v-html.
 // If this ever moves to the DB, this file is the seed shape.
+import { keitel } from "./keitel";
 
 export type Question = {
   id: string;
@@ -60,8 +61,7 @@ export const qaCategories: QuestionCategory[] = [
         id: "werk-besichtigen",
         question:
           "Kann ich das Werk besichtigen, in dem mein Fertighaus entsteht?",
-        answer:
-          "<p>Ja, mit unseren Kunden vereinbaren wir regelmäßige Werksführungen bei unserem starken Partner Keitel-Haus in 74585 Rot am See-Brettheim (bei Rothenburg o.d. Tauber). Gerne können Sie auf Wunsch auch persönliche Einzeltermine vereinbaren.</p>",
+        answer: keitel("qaWerksfuehrung"),
       },
     ],
   },

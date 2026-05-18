@@ -19,6 +19,7 @@ import {
   buildPhases,
   bauphasenHeroImageURL,
 } from "@/features/Bauphasen/bauphasen.content";
+import { keitel } from "@/content/keitel";
 
 const sections: Section[] = [
   { id: "ablauf",       eyebrow: "01", label: "Der Ablauf" },
@@ -178,12 +179,7 @@ const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
         eine Einliegerwohnung oder eine großzügige Terrasse wünschen — wir setzen
         Ihre Vorstellungen um.
       </p>
-      <p>
-        Jedes BoHolz-Haus wird in Rot am See-Brettheim gefertigt — von einer
-        Manufaktur, die jeden Schritt selbst verantwortet. Jahrzehntelange
-        Erfahrung im Fertighausbau und höchste Qualitätsstandards sind dabei
-        keine Versprechen, sondern Voraussetzung.
-      </p>
+      <p>{keitel("zuhauseArchitektur")}</p>
     </div>
   </Block>
 

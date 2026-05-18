@@ -21,6 +21,7 @@ import FeatureCardPair from "@/features/Advantage/FeatureCardPair.vue";
 import LiteYouTube from "@/features/Advantage/LiteYouTube.vue";
 import type { FeatureCard } from "@/features/Advantage/advantage.types";
 import ProofSection from "@/components/sections/Proof-Section.vue";
+import { keitel } from "@/content/keitel";
 
 // ── Section index — drives the SectionNavigator's overview + sticky rail.
 const sections = [
@@ -386,7 +387,7 @@ const technik: IconListItem[] = [
     eyebrow="02 — Tradition & Innovation"
     heading="Generationen-Handwerk, moderne"
     highlight="Fertigung."
-    lede="BoHolz vereint jahrzehntelanges Wissen rund um den Fertighausbau mit moderner CNC-Fertigung. Das Ergebnis: handwerkliche Wertarbeit im traditionellen Sinne, getragen von einer Manufaktur, die jeden Schritt selbst verantwortet."
+    lede={keitel("versprechenTraditionLede")}
   >
     <div class="steps">
       <EditorialCard
@@ -394,7 +395,7 @@ const technik: IconListItem[] = [
         step={1}
         title="Tradition"
         icon="hammer"
-        description="Generationsübergreifendes Wissen rund um den Fertighausbau — handwerkliche Wertarbeit im traditionellen Sinne, getragen von einer eigenständigen Manufaktur in Deutschland."
+        description={keitel("versprechenTraditionCard")}
       />
       <EditorialCard
         client:visible
