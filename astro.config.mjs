@@ -9,6 +9,11 @@ export default defineConfig({
   integrations: [vue()],
   output: "server",
   adapter: node({ mode: "standalone" }),
+  // Routes renamed 2026-05-18; redirects keep old links + bookmarks alive.
+  redirects: {
+    "/unser-versprechen": "/bauen-mit-boholz",
+    "/dein-zuhause": "/ihr-neues-zuhause",
+  },
   vite: {
     plugins: [vanillaExtractPlugin()],
     ssr: {
