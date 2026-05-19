@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 import { Motion, AnimatePresence } from "motion-v";
 import { X } from "lucide-vue-next";
+import { AccordionRoot } from "reka-ui";
 import {
   type ActiveFilter,
   type FilterOption,
@@ -9,8 +10,10 @@ import {
 } from "./filter-panel.types";
 import { filterOptions } from "./filter-panel.options";
 import OptionsButton from "./OptionsButton.vue";
+import FilterSection from "./FilterSection.vue";
+import FilterChip from "./FilterChip.vue";
 
-const props = defineProps<{ modelsCount: number }>();
+defineProps<{ modelsCount: number }>();
 
 const emit = defineEmits<{
   "filter-confirmed": [];
@@ -19,26 +22,60 @@ const emit = defineEmits<{
 const filterState = defineModel<FilterState>("filterState", { required: true });
 const isOpen = defineModel<boolean>("isOpen", { required: true });
 
-const appendFilter = (filter: ActiveFilter, filters: ActiveFilter[]) => {
-  const isDuplicate = filters.find((f) => f.value === filter.value);
+type Primitive = boolean | number | string;
 
-  if (isDuplicate) return filters;
-  return [...filters, filter];
+// Identity = (option.id, value). Never `value` alone — two `count` options
+// (bedrooms vs. bathrooms) share a value space and would collapse silently.
+const isSameFilter = (
+  a: ActiveFilter,
+  option: FilterOption,
+  value: Primitive,
+): boolean => a.option.id === option.id && a.value === value;
+
+const isSelected = (option: FilterOption, value: Primitive): boolean =>
+  filterState.value.filters.some((f) => isSameFilter(f, option, value));
+
+const sectionActiveCount = (option: FilterOption): number =>
+  filterState.value.filters.filter((f) => f.option.id === option.id).length;
+
+const totalActive = computed(() => filterState.value.filters.length);
+
+const updateFilters = (filters: ActiveFilter[]) => {
+  filterState.value =
+    filters.length === 0
+      ? { status: "inactive", filters: [] }
+      : { status: "pending", filters };
 };
 
-const handleOptionSelect = (
-  option: FilterOption,
-  value: boolean | number | string,
-) => {
-  const selectedFilter = { option, value } as ActiveFilter;
-  filterState.value = {
-    status: "pending",
-    filters: appendFilter(selectedFilter, filterState.value.filters),
-  };
+// Toggle / replace semantics per kind:
+//   boolean → present ? remove : append
+//   count   → single-select per option; clicking the same value deselects
+//   enum    → same single-select semantics as count
+const handleOptionSelect = (option: FilterOption, value: Primitive) => {
+  const filters = filterState.value.filters;
+  const exists = filters.find((f) => isSameFilter(f, option, value));
+  if (exists) {
+    updateFilters(filters.filter((f) => !isSameFilter(f, option, value)));
+    return;
+  }
+  const cleared = filters.filter((f) => f.option.id !== option.id);
+  updateFilters([...cleared, { option, value } as ActiveFilter]);
+};
+
+const handleRemoveFilter = (filter: ActiveFilter) => {
+  updateFilters(
+    filterState.value.filters.filter(
+      (f) => !isSameFilter(f, filter.option, filter.value as Primitive),
+    ),
+  );
 };
 
 const handleFilterConfirmed = () => {
-  if (filterState.value.status !== "pending") return;
+  // Confirming on an empty state is a close-and-emit, not a transition.
+  if (filterState.value.status === "inactive") {
+    emit("filter-confirmed");
+    return;
+  }
   filterState.value = {
     status: "confirmed",
     filters: filterState.value.filters,
@@ -49,173 +86,344 @@ const handleFilterConfirmed = () => {
 const handleReset = () => {
   filterState.value = { status: "inactive", filters: [] };
 };
+
+const chipLabel = (f: ActiveFilter): string => {
+  if (f.option.kind === "boolean") return f.option.label;
+  return `${f.option.label}: ${f.value}`;
+};
+
+const openSections = computed<string[]>(() => filterOptions.map((o) => o.id));
 </script>
 
 <template>
-  <div class="page-wrapper" @click="isOpen = false" v-if="isOpen">
-    <div class="filter-panel" @click.stop="">
-      <div class="control-panel">
-        <div class="close-action">
-          <button @click="isOpen = false">
-            <X />
-          </button>
+  <AnimatePresence>
+    <Motion
+      v-if="isOpen"
+      key="backdrop"
+      class="backdrop"
+      :initial="{ opacity: 0 }"
+      :animate="{ opacity: 1 }"
+      :exit="{ opacity: 0 }"
+      :transition="{ duration: 0.2, ease: [0.32, 0.72, 0, 1] }"
+      @click="isOpen = false"
+    />
+    <Motion
+      v-if="isOpen"
+      key="panel"
+      class="panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="filter-panel-title"
+      :initial="{ x: '100%' }"
+      :animate="{ x: '0%' }"
+      :exit="{ x: '100%' }"
+      :transition="{ duration: 0.28, ease: [0.32, 0.72, 0, 1] }"
+    >
+      <header class="header">
+        <div class="title-block">
+          <h2 id="filter-panel-title" class="title">Filter</h2>
+          <span v-if="totalActive > 0" class="active-count">
+            {{ totalActive }} aktiv
+          </span>
         </div>
-        <div class="filter-options">
-          <div class="filter-option" v-for="option in filterOptions">
-            <h5>{{ option.label }}</h5>
+        <button
+          class="close"
+          type="button"
+          aria-label="Filter schließen"
+          @click="isOpen = false"
+        >
+          <X :size="18" :stroke-width="2" aria-hidden="true" />
+        </button>
+      </header>
+
+      <div class="body">
+        <div v-if="totalActive > 0" class="active-filters">
+          <FilterChip
+            v-for="(f, i) in filterState.filters"
+            :key="`${f.option.id}-${f.value}-${i}`"
+            :label="chipLabel(f)"
+            @remove="handleRemoveFilter(f)"
+          />
+        </div>
+
+        <AccordionRoot
+          type="multiple"
+          :default-value="openSections"
+          class="sections"
+        >
+          <FilterSection
+            v-for="option in filterOptions"
+            :key="option.id"
+            :value="option.id"
+            :title="option.label"
+            :active-count="sectionActiveCount(option)"
+          >
             <OptionsButton
               v-if="option.kind === 'boolean'"
               :title="option.label"
+              :selected="isSelected(option, true)"
               @click="handleOptionSelect(option, true)"
-            ></OptionsButton>
-            <div class="filter-option-values">
+            />
+            <template v-if="option.kind === 'count'">
               <OptionsButton
-                v-if="option.kind === 'count'"
                 v-for="val in option.values"
                 :key="val"
                 :title="val.toString()"
+                :selected="isSelected(option, val)"
                 @click="handleOptionSelect(option, val)"
-              ></OptionsButton>
+              />
+            </template>
+            <template v-if="option.kind === 'enum'">
               <OptionsButton
-                v-if="option.kind === 'enum'"
                 v-for="opt in option.options"
                 :key="opt"
-                :title="opt.toString()"
+                :title="opt"
+                :selected="isSelected(option, opt)"
                 @click="handleOptionSelect(option, opt)"
-              ></OptionsButton>
-            </div>
-          </div>
-        </div>
+              />
+            </template>
+          </FilterSection>
+        </AccordionRoot>
       </div>
-      <div class="trailing-buttons">
-        <button @click="handleReset">Alle löschen</button>
-        <button @click="handleFilterConfirmed" class="confirm-btn">
-          <span class="label"> Entdecken </span>
-          <div class="count-box">
-            <AnimatePresence mode="wait">
-              <Motion
-                :key="modelsCount"
-                :initial="{ opacity: 0, y: 8 }"
-                :animate="{ opacity: 1, y: 0 }"
-                :exit="{ opacity: 0, y: -8 }"
-                :transition="{ duration: 0.25 }"
-                class="count"
-                >{{ modelsCount }}</Motion
-              >
-            </AnimatePresence>
-          </div>
+
+      <footer class="footer">
+        <button
+          class="btn reset"
+          type="button"
+          :disabled="totalActive === 0"
+          @click="handleReset"
+        >
+          Alle zurücksetzen
         </button>
-      </div>
-    </div>
-  </div>
+        <button class="btn primary" type="button" @click="handleFilterConfirmed">
+          <span class="primary-label">
+            <span class="count-box" aria-hidden="true">
+              <AnimatePresence mode="wait">
+                <Motion
+                  :key="modelsCount"
+                  :initial="{ opacity: 0, y: 8 }"
+                  :animate="{ opacity: 1, y: 0 }"
+                  :exit="{ opacity: 0, y: -8 }"
+                  :transition="{ duration: 0.22, ease: [0.32, 0.72, 0, 1] }"
+                  class="count"
+                  >{{ modelsCount }}</Motion
+                >
+              </AnimatePresence>
+            </span>
+            <span>Häuser anzeigen</span>
+          </span>
+        </button>
+      </footer>
+    </Motion>
+  </AnimatePresence>
 </template>
 
 <style scoped>
-.page-wrapper {
+.backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+  inset: 0;
   background-color: var(--clr-overlay);
   z-index: 15;
 }
-.filter-panel {
+
+.panel {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-end: 0;
   display: flex;
   flex-direction: column;
-  position: fixed;
-  right: 0;
-  width: 100%;
-  height: 100vh;
+  width: clamp(320px, 100vw, 460px);
   background-color: var(--clr-surface-primary);
-  justify-content: space-between;
   z-index: 20;
+  border-inline-start: 1px solid var(--clr-border-primary);
+  box-shadow:
+    -1px 0 0 0 var(--clr-border-primary),
+    -24px 0 48px -24px rgba(0, 0, 0, 0.12);
+}
 
-  @media (--from-tablet) {
-    width: 60%;
+@media (--mobile) {
+  .panel {
+    width: 100vw;
+    border-inline-start: 0;
+    box-shadow: none;
   }
+}
 
-  @media (--from-desktop) {
-    width: 30%;
-  }
+/* ── Header ─────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-2);
+  padding-inline: var(--spacing-4);
+  padding-block: var(--spacing-3);
+  border-block-end: 1px solid var(--clr-border-primary);
+  background: var(--clr-surface-primary);
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
+}
 
-  .control-panel {
-    padding: var(--spacing-4);
+.title-block {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--spacing-2);
+}
 
-    .close-action {
-      display: flex;
-      justify-content: end;
-    }
+.title {
+  margin: 0;
+  font-size: var(--fs-h5);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: var(--ls-heading);
+  color: var(--clr-content-primary);
+}
 
-    .filter-options {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-3);
+.active-count {
+  font-size: var(--fs-body-sm);
+  color: var(--clr-content-tertiary);
+  line-height: 1;
+}
 
-      .filter-option {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-1);
+.close {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-height-md);
+  height: var(--control-height-md);
+  border-radius: var(--radius-md);
+  color: var(--clr-content-secondary);
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
 
-        .filter-option-values {
-          display: flex;
-          gap: var(--spacing-1);
-          flex-wrap: wrap;
-        }
-      }
-    }
-  }
+.close:hover {
+  background: var(--clr-surface-secondary);
+  color: var(--clr-content-primary);
+}
 
-  .trailing-buttons {
-    --margin: var(--spacing-4);
-    margin-block: 0 var(--margin);
-    margin-inline: var(--margin) var(--margin);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-4);
+.close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--clr-accent-primary) 28%, transparent);
+}
 
-    @media (--from-wide) {
-      flex-direction: row;
-    }
+/* ── Body ───────────────────────────────────────── */
+.body {
+  flex: 1;
+  overflow-y: auto;
+  padding-inline: var(--spacing-4);
+}
 
-    button {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--spacing-1);
-      height: var(--control-height-md);
-      padding: 0 var(--spacing-5);
-      border: 1px solid var(--clr-accent-secondary);
-      color: var(--clr-accent-secondary);
-      border-radius: var(--radius-sm);
-      font: inherit;
-      font-weight: 400;
-      cursor: pointer;
-      white-space: nowrap;
-      position: relative;
-      overflow: hidden;
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-1);
+  padding-block: var(--spacing-3);
+  border-block-end: 1px solid var(--clr-border-primary);
+}
 
-      &.confirm-btn {
-        background-color: var(--clr-accent-primary);
-        color: var(--clr-surface-primary);
-      }
-    }
+.sections {
+  display: flex;
+  flex-direction: column;
+}
 
-    .count-box {
-      position: relative;
-      height: 100%;
-      display: flex;
-      width: 2ch;
-      margin-inline-end: var(--spacing-2);
-    }
-    .count {
-      position: absolute;
-      inset: 0;
-      margin: auto;
-      height: fit-content;
-      text-align: center;
-    }
-  }
+/* Last section: drop the divider — footer border handles it */
+.sections :deep(.section:last-child) {
+  border-block-end: 0;
+}
+
+/* ── Footer ─────────────────────────────────────── */
+.footer {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-block-start: 1px solid var(--clr-border-primary);
+  background: var(--clr-surface-primary);
+  position: sticky;
+  inset-block-end: 0;
+  z-index: 1;
+}
+
+.btn {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--control-height-md);
+  padding-inline: var(--spacing-3);
+  border-radius: var(--radius-md);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease,
+    opacity 160ms ease;
+  border: 1px solid transparent;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--clr-accent-primary) 28%, transparent);
+}
+
+.btn.reset {
+  background: var(--clr-surface-primary);
+  color: var(--clr-content-secondary);
+  border-color: var(--clr-border-secondary);
+}
+
+.btn.reset:hover:not(:disabled) {
+  color: var(--clr-content-primary);
+  border-color: var(--clr-border-tertiary);
+}
+
+.btn.reset:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  background: var(--clr-accent-primary);
+  color: var(--clr-surface-primary);
+  border-color: var(--clr-accent-primary);
+}
+
+.btn.primary:hover {
+  background: var(--clr-accent-secondary);
+  border-color: var(--clr-accent-secondary);
+}
+
+.primary-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+}
+
+.count-box {
+  position: relative;
+  display: inline-flex;
+  width: 2.5ch;
+  height: 1.2em;
+  justify-content: center;
+}
+
+.count {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
 }
 </style>

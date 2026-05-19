@@ -13,13 +13,21 @@ export interface SortOption extends SortField {
 }
 
 // Filtering
+//
+// Each filter option has a stable `id` — used as the identity key for
+// deduplication, toggling, and URL serialization. The `id` must be unique
+// across all filter options regardless of `kind`; two `count` options
+// (e.g. bedrooms vs. bathrooms) can share the same numeric value space, so
+// dedup MUST be against the (id, value) tuple — never value alone.
 export type BooleanFilter = {
+  id: string;
   kind: "boolean";
   label: string;
   resolve: (m: HouseModel) => boolean | null;
 };
 
 export type EnumFilter = {
+  id: string;
   kind: "enum";
   label: string;
   options: string[];
@@ -27,6 +35,7 @@ export type EnumFilter = {
 };
 
 export type CountFilter = {
+  id: string;
   kind: "count";
   label: string;
   values: number[];
@@ -35,6 +44,17 @@ export type CountFilter = {
 
 export type FilterOption = BooleanFilter | EnumFilter | CountFilter;
 
+// The state machine:
+//   inactive  — no filters at all (initial)
+//   pending   — user has clicked filter chips but hasn't pressed "Entdecken";
+//               the grid still shows the previous confirmed result so the
+//               page doesn't churn under them. The panel shows a live preview
+//               count via `modelsCount`.
+//   confirmed — pending was confirmed; the grid now reflects `filters`.
+//
+// Panel close without confirming reverts to the last confirmed state
+// (see HousesPage.handleClosePanel). This keeps the contract:
+// "what's on screen is what the user opted into".
 export type FilterState =
   | { status: "inactive"; filters: ActiveFilter[] }
   | { status: "pending"; filters: ActiveFilter[] }

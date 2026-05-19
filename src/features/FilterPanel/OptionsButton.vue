@@ -1,27 +1,69 @@
 <script setup lang="ts">
-const props = defineProps<{ title: string }>();
+defineProps<{
+  title: string;
+  selected?: boolean;
+}>();
 </script>
 
 <template>
-  <button class="options-btn">{{ title }}</button>
+  <button
+    class="chip"
+    type="button"
+    :data-selected="selected ? '' : undefined"
+    :aria-pressed="selected ? 'true' : 'false'"
+  >
+    {{ title }}
+  </button>
 </template>
 
 <style scoped>
-.options-btn {
+.chip {
   all: unset;
   box-sizing: border-box;
   display: inline-flex;
-  justify-content: center;
   align-items: center;
-  border: 1px solid var(--clr-border-tertiary);
+  justify-content: center;
+  min-height: var(--control-height-sm);
+  min-width: var(--control-height-sm);
+  padding-inline: var(--spacing-2);
+  border: 1px solid var(--clr-border-secondary);
+  border-radius: var(--radius-md);
+  background: var(--clr-surface-primary);
   color: var(--clr-content-primary);
   font: inherit;
-  padding: var(--spacing-0) var(--spacing-2);
-  border-radius: var(--radius-md);
+  font-size: var(--fs-body-sm);
+  line-height: 1;
   cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
 }
 
-.options-btn:hover {
-  background: var(--clr-surface-secondary);
+.chip:hover {
+  border-color: var(--clr-border-tertiary);
+  background: color-mix(
+    in srgb,
+    var(--clr-accent-primary) 4%,
+    var(--clr-surface-primary)
+  );
+}
+
+.chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--clr-accent-primary) 28%, transparent);
+}
+
+.chip[data-selected] {
+  background: var(--clr-accent-primary);
+  border-color: var(--clr-accent-primary);
+  color: var(--clr-surface-primary);
+}
+
+.chip[data-selected]:hover {
+  background: var(--clr-accent-secondary);
+  border-color: var(--clr-accent-secondary);
 }
 </style>

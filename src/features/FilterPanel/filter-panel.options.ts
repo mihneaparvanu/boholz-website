@@ -6,18 +6,27 @@ import type {
   CountFilter,
   FilterOption,
 } from "./filter-panel.types";
+import { parseLivingArea } from "@/utils/parseLivingArea";
 
 // Sorting
+// `livingArea` and `price` are stored as Postgres `numeric` -> string in
+// drizzle. Resolve them to `number | null` so comparators don't have to
+// guess at locale-compare semantics. Default sort + this resolve share
+// the same parser (parseLivingArea / Number) for consistency.
 export const sortFields: SortField[] = [
   {
     value: "livingArea",
-    label: "Flache",
-    resolve: (m) => m.livingArea,
+    label: "Fläche",
+    resolve: (m) => parseLivingArea(m.livingArea),
   },
   {
     value: "price",
     label: "Preis",
-    resolve: (m) => m.price,
+    resolve: (m) => {
+      if (m.price == null) return null;
+      const n = Number(m.price);
+      return Number.isFinite(n) ? n : null;
+    },
   },
   {
     value: "floorCount",
@@ -51,13 +60,16 @@ const generateSortOptions = (fields: SortField[]): SortOption[] => {
 export const sortOptions = generateSortOptions(sortFields);
 
 // Filtering
+// `id` is the dedup / URL key — keep it stable and unique across the array.
 const hasGarage: BooleanFilter = {
+  id: "hasGarage",
   kind: "boolean",
   label: "Garage",
   resolve: (m) => m.details?.hasGarage ?? null,
 };
 
 const bedroomNumber: CountFilter = {
+  id: "bedroomCount",
   kind: "count",
   label: "Schlafzimmer",
   values: [1, 2, 3],
@@ -65,6 +77,7 @@ const bedroomNumber: CountFilter = {
 };
 
 const bathroomCount: CountFilter = {
+  id: "bathroomCount",
   kind: "count",
   label: "Badezimmer",
   values: [1, 2],
@@ -72,12 +85,14 @@ const bathroomCount: CountFilter = {
 };
 
 const hasKniestock: BooleanFilter = {
+  id: "hasKniestock",
   kind: "boolean",
   label: "Kniestock",
   resolve: (m) => (m.details != null ? m.details.kniestock != null : null),
 };
 
 const roofType: EnumFilter = {
+  id: "roofType",
   kind: "enum",
   label: "Dachtyp",
   options: ["Satteldach", "Walmdach", "Flachdach", "Pultdach"],
