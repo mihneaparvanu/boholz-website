@@ -1,9 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 
-import PageHero from "@/components/sections/PageHero.astro";
 import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
-import Divider from "@/components/ui/Divider.astro";
 
 import CatalogForm from "@/features/ContactForms/CatalogForm.vue";
 
@@ -53,18 +51,32 @@ const benefits: CatalogBenefit[] = [
 ---
 
 <Layout title="Hauskatalog bestellen – BoHolz Haus">
-  <PageHero
-    eyebrow="Hauskatalog"
-    title="Der BoHolz-Katalog —"
-    highlight="kostenfrei zu Ihnen."
-    subtitle="Alle Modelle, Grundrisse und Ausstattungsdetails in einem Dokument. Per E-Mail in wenigen Minuten oder gedruckt per Post — Sie entscheiden."
-    align="center"
-  />
+  <!--
+    Pattern mirrors kontakt.astro: no PageHero, no numeric step dividers.
+    Form sits at the top of the page (primary action), then the "what you
+    get" supporting copy sits below as the closing beat.
+  -->
 
-  <!-- 02 — Inhalt des Katalogs -->
-  <Divider index={2} label="Im Katalog enthalten" />
+  <section id="anfordern" class="section form-section">
+    <div class="form-col">
+      <EyebrowHeadingLede
+        eyebrow="Bestellen"
+        heading="Hauskatalog"
+        highlight="kostenfrei anfordern."
+        lede="Wenige Angaben genügen — wir senden Ihnen den Katalog per E-Mail oder Post. Werktags meist binnen 24 Stunden."
+      >
+        <Fragment slot="eyebrow-icon">
+          <Mail :size={14} :stroke-width={2} />
+        </Fragment>
+      </EyebrowHeadingLede>
 
-  <section id="inhalt" class="section">
+      <div class="form-wrap">
+        <CatalogForm client:visible />
+      </div>
+    </div>
+  </section>
+
+  <section id="inhalt" class="section benefits-section">
     <EyebrowHeadingLede
       eyebrow="Was Sie erhalten"
       heading="Alles, was Sie für Ihre"
@@ -92,53 +104,39 @@ const benefits: CatalogBenefit[] = [
       }
     </ul>
   </section>
-
-  <!-- 03 — Katalog anfordern -->
-  <Divider index={3} label="Katalog anfordern" />
-
-  <div class="band full-width">
-    <section id="anfordern" class="section band-inner">
-      <div class="form-col">
-        <EyebrowHeadingLede
-          eyebrow="Bestellen"
-          heading="Hauskatalog"
-          highlight="kostenfrei anfordern."
-          lede="Wenige Angaben genügen — wir senden Ihnen den Katalog per E-Mail oder Post. Werktags meist binnen 24 Stunden."
-        >
-          <Fragment slot="eyebrow-icon">
-            <Mail :size={14} :stroke-width={2} />
-          </Fragment>
-        </EyebrowHeadingLede>
-
-        <div class="form-wrap">
-          <CatalogForm client:visible />
-        </div>
-      </div>
-    </section>
-  </div>
 </Layout>
 
 <style>
   /* ============================================================
-     Section rhythm — mirrors `kontakt.astro`. `<main class="wrapper">`
-     lands children in the content column unless they declare
-     `.full-width` and re-establish width via `.band-inner`.
+     Section rhythm — mirrors kontakt.astro. Form-first, supporting
+     content below, no numeric step dividers.
      ============================================================ */
   .section {
     padding-block: var(--spacing-5);
   }
 
-  /* Alternating-tone band — tinted full-width surface for the form
-     section, matching the kontakt page treatment. */
-  .band {
-    background: var(--clr-surface-secondary);
-    padding-inline: var(--padding-inline);
+  /* Form column — bounded measure so the fields hold a comfortable
+     reading width on wide screens. Centered within the content column. */
+  .form-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    min-width: 0;
+    max-width: 56rem;
+    margin-inline: auto;
   }
 
-  .band-inner {
-    max-width: var(--content-max-width);
-    margin-inline: auto;
-    width: 100%;
+  .form-wrap {
+    margin-block-start: var(--spacing-3);
+  }
+
+  /* Benefits below — sits on a hairline-separated band so the supporting
+     copy reads as a closing beat, not a peer of the form. Mirrors
+     kontakt's stats-band treatment without the toned background. */
+  .benefits-section {
+    padding-block-start: var(--spacing-6);
+    border-block-start: 1px solid var(--clr-border-secondary);
+    margin-block-start: var(--spacing-4);
   }
 
   /* "What you get" list — calm two-column grid from tablet up,
@@ -197,20 +195,5 @@ const benefits: CatalogBenefit[] = [
     margin: 0;
     color: var(--clr-content-secondary);
     line-height: var(--lh-body);
-  }
-
-  /* Form column — bounded measure so the fields hold a comfortable
-     shape on wide screens. */
-  .form-col {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-3);
-    min-width: 0;
-    max-width: 56rem;
-    margin-inline: auto;
-  }
-
-  .form-wrap {
-    margin-block-start: var(--spacing-3);
   }
 </style>

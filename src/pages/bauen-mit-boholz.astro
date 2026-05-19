@@ -11,7 +11,7 @@ import StatBlock from "@/components/ui/StatBlock.vue";
 import IconList, { type IconListItem } from "@/components/ui/IconList.vue";
 import EditorialCard from "@/components/ui/EditorialCard.vue";
 import Button from "@/components/ui/Button.vue";
-import { ArrowRight, Phone } from "lucide-vue-next";
+import { ArrowRight, BookOpen } from "lucide-vue-next";
 import { getMediaURL } from "@/utils/media";
 import FeatureCardPair from "@/features/Advantage/FeatureCardPair.vue";
 import LiteYouTube from "@/features/Advantage/LiteYouTube.vue";
@@ -468,7 +468,7 @@ const technik: IconListItem[] = [
           <ArrowRight slot="trailing" :size="16" :stroke-width="2" />
         </Button>
         <Button client:visible variant="ghost" size="lg" href="/katalog">
-          <Phone slot="leading" :size="16" :stroke-width="2" />
+          <BookOpen slot="leading" :size="16" :stroke-width="2" />
           Katalog bestellen
         </Button>
       </Fragment>

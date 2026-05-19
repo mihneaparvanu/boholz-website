@@ -101,6 +101,10 @@ watch(activeId, (id) => {
 }
 
 .pills {
+  /* position: relative so pill.offsetLeft resolves against this scroll
+     container, keeping the active-pill centering math accurate (see
+     HausPageNav / SectionNavigator for the same pattern). */
+  position: relative;
   display: flex;
   gap: var(--spacing-1);
   align-items: center;

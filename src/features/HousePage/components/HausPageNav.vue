@@ -31,10 +31,17 @@ onMounted(() => {
   if (Number.isFinite(parsed) && parsed > 0) navbarHeight.value = parsed;
 });
 
-const spyOffset = computed(() => navbarHeight.value + 16);
+// Two distinct offsets — see SectionNavigator for the same pattern.
+//   detectionOffset: deeper into the viewport so the active pill flips
+//     ~120 px before the section's top crosses the navbar.
+//   scrollTarget:    where the section's top lands after a click — close
+//     to the navbar so the tap doesn't visually overshoot.
+const SPY_BUFFER = 120;
+const detectionOffset = computed(() => navbarHeight.value + SPY_BUFFER);
+const scrollTarget = computed(() => navbarHeight.value + 16);
 
 const ids = computed(() => props.sections.map((s) => s.id));
-const trackedId = useScrollSpy(ids, { topOffset: spyOffset });
+const trackedId = useScrollSpy(ids, { topOffset: detectionOffset });
 
 // Click-lock: when the user taps a pill, persist that selection for 2s
 // regardless of what scroll-spy reports. Gives a clear visual ack that the
@@ -69,13 +76,15 @@ const scrollTo = (id: string, e: Event): void => {
     lockTimer = null;
   }, LOCK_MS);
   const top =
-    el.getBoundingClientRect().top + window.scrollY - spyOffset.value + 1;
+    el.getBoundingClientRect().top + window.scrollY - scrollTarget.value + 1;
   window.scrollTo({ top, behavior: "smooth" });
 };
 
-// Keep the active pill horizontally centered inside the floating bar
-// without nudging the document scroll.
-watch(activeId, (id) => {
+// Centre the active pill in the floating bar's horizontal scroll. .pills
+// has position: relative so pill.offsetLeft is reported relative to the
+// scroll container (without that, offsetLeft walks up the tree and the
+// centering math drifts — the "active link stays hidden" report).
+const centerActivePill = (id: string | null, instant = false) => {
   const pills = pillsRef.value;
   if (!id || !pills) return;
   const pill = pills.querySelector<HTMLElement>(
@@ -83,8 +92,17 @@ watch(activeId, (id) => {
   );
   if (!pill) return;
   const left = pill.offsetLeft - (pills.clientWidth - pill.offsetWidth) / 2;
-  pills.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
-});
+  pills.scrollTo({
+    left: Math.max(0, left),
+    behavior: instant ? "auto" : "smooth",
+  });
+};
+
+watch(activeId, (id) => centerActivePill(id));
+
+// Centre the initial active pill instantly on mount so the indicator is
+// in view from the first paint.
+onMounted(() => centerActivePill(activeId.value, true));
 </script>
 
 <template>
@@ -123,6 +141,10 @@ watch(activeId, (id) => {
 }
 
 .pills {
+  /* position: relative so pill.offsetLeft resolves against this scroll
+     container; without it the centering math walks up to the nav (or body)
+     and the active pill ends up off-screen. */
+  position: relative;
   display: flex;
   gap: var(--spacing-1);
   align-items: center;
