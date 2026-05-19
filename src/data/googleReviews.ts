@@ -62,9 +62,13 @@ export async function getGoogleReviews(): Promise<Review[]> {
 }
 
 async function fetchAndMap(): Promise<Review[]> {
-  const key = import.meta.env.GOOGLE_PLACES_API_KEY;
+  // Read from both — import.meta.env works under astro dev/build, process.env
+  // works under the Node adapter's SSR runtime where non-PUBLIC_ vars don't
+  // reach import.meta.env. Same pattern as src/db/db.ts.
+  const key =
+    import.meta.env.GOOGLE_PLACES_API_KEY ?? process.env.GOOGLE_PLACES_API_KEY;
   console.log(
-    `[googleReviews] key present=${Boolean(key)} prefix=${key ? key.slice(0, 6) : "n/a"} length=${key?.length ?? 0}`,
+    `[googleReviews] key present=${Boolean(key)} prefix=${key ? key.slice(0, 6) : "n/a"} length=${key?.length ?? 0} source=${import.meta.env.GOOGLE_PLACES_API_KEY ? "import.meta" : process.env.GOOGLE_PLACES_API_KEY ? "process.env" : "neither"}`,
   );
   if (!key) {
     console.error("[googleReviews] GOOGLE_PLACES_API_KEY is not set — returning empty list");
