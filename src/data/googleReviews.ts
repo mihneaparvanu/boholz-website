@@ -50,12 +50,9 @@ export async function getGoogleReviews(): Promise<Review[]> {
       return data;
     })
     .catch((err) => {
-      // Stale-on-error: serve last good payload if we have one, else rethrow.
-      if (cache) {
-        console.warn("[googleReviews] refresh failed, serving stale:", err);
-        return cache.data;
-      }
-      throw err;
+      // Fail-soft: log and return whatever we can. Never crash the SSR render.
+      console.error("[googleReviews] unexpected error:", err);
+      return cache?.data ?? [];
     })
     .finally(() => {
       inflight = null;
@@ -66,7 +63,13 @@ export async function getGoogleReviews(): Promise<Review[]> {
 
 async function fetchAndMap(): Promise<Review[]> {
   const key = import.meta.env.GOOGLE_PLACES_API_KEY;
-  if (!key) throw new Error("GOOGLE_PLACES_API_KEY is not set");
+  console.log(
+    `[googleReviews] key present=${Boolean(key)} prefix=${key ? key.slice(0, 6) : "n/a"} length=${key?.length ?? 0}`,
+  );
+  if (!key) {
+    console.error("[googleReviews] GOOGLE_PLACES_API_KEY is not set — returning empty list");
+    return [];
+  }
 
   const res = await fetch(
     `https://places.googleapis.com/v1/places/${PLACE_ID}`,
@@ -78,7 +81,9 @@ async function fetchAndMap(): Promise<Review[]> {
     },
   );
   if (!res.ok) {
-    throw new Error(`Places API ${res.status}: ${await res.text()}`);
+    const body = await res.text();
+    console.error(`[googleReviews] Places API ${res.status} — ${body.slice(0, 400)}`);
+    return [];
   }
   const data = (await res.json()) as PlacesResponse;
 

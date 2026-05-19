@@ -207,11 +207,12 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     </TwoColumn>
   </Block>
 
-  {/* ── 07 · Testimonials — temporarily disabled.
-       getGoogleReviews() throws when GOOGLE_PLACES_API_KEY is missing on
-       the host, which 500s the SSR render (build is unaffected). Restore
-       once the env var is set on dev and harden the loader to fail soft. */}
-  {/*
+  {/* ── 07 · Testimonials (full-bleed dark band) ───────────────── */}
+  {/* Loader is now fail-soft: returns [] + logs to stderr on any error,
+     so a missing key or API failure won't 500 the page. Watch
+     `docker logs boholz-frontend` for the [googleReviews] prefix to
+     diagnose key issues. */}
+
   <div class="testimonials"><TestimonialBand
     eyebrow={content.trust.eyebrow}
     heading={content.trust.heading}
@@ -220,7 +221,7 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     tone={content.trust.tone}
     badges={content.trust.badges}
   /></div>
-  */}
+
 
 
   <!-- ── 08 · FAQ ──────────────────────────────────────────────── -->
