@@ -31,7 +31,7 @@ const props = defineProps<{
       <Button variant="primary" size="md" href="/kontakt">
         Beratungstermin
       </Button>
-      <Button variant="tertiary" size="md" href="/kontakt#katalog">
+      <Button variant="tertiary" size="md" href="/katalog">
         Katalog bestellen
       </Button>
     </div>

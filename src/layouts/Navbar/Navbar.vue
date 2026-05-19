@@ -13,8 +13,6 @@ import { usePathname } from "@/composables/usePathname";
 const props = defineProps<{
   categories: HouseCategory[];
   showhouses: Location[];
-  /** Office locations (showhouses excluded) — feeds the Kontakt subnav. */
-  officeLocations?: Location[];
   /** Fallback hero image URL for the virtual Bestseller category. */
   bestsellerHero?: string | null;
 }>();
@@ -46,7 +44,7 @@ const DesktopVariant = computed(() =>
     aria-label="Hauptnavigation"
   >
     <div class="shell mobile">
-      <NavbarMobile :current-path="pathname" :office-locations="props.officeLocations" />
+      <NavbarMobile :current-path="pathname" />
     </div>
 
     <div class="shell desktop">
@@ -54,7 +52,6 @@ const DesktopVariant = computed(() =>
         :is="DesktopVariant"
         :categories="props.categories"
         :showhouses="props.showhouses"
-        :office-locations="props.officeLocations"
         :bestseller-hero="props.bestsellerHero"
         :current-path="pathname"
       />

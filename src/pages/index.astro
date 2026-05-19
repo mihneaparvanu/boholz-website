@@ -37,7 +37,6 @@ import TwoColumn from "@/components/sections/TwoColumn.astro";
 import TestimonialBand from "@/components/sections/TestimonialBand.astro";
 import LeadFormBand from "@/components/sections/LeadFormBand.vue";
 
-import FAQAccordion from "@/components/ui/FAQAccordion.vue";
 import Button from "@/components/ui/Button.vue";
 
 import { getCategories, getModels } from "@/data/loaders";
@@ -48,6 +47,8 @@ import ProofSection from "@/components/sections/Proof-Section.vue";
 import TrustBadges from "@/features/Home/TrustBadges/TrustBadges.vue";
 import { trustBadges } from "@/features/Home/TrustBadges/trust-badges.content";
 import { homeSections } from "@/features/Home/home.content";
+import Faq from "@/features/Home/Faq/Faq.vue";
+import { qaCategories } from "@/content/qa";
 
 const categories = await getCategories();
 const allModels = await getModels();
@@ -212,19 +213,17 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
   />
 
   <!-- ── 08 · FAQ ──────────────────────────────────────────────── -->
+  <!-- Multi-category FAQ from the previous homepage (see
+       `pages/sandbox/home-old.astro`). Framing uses `homeSections.qa` to
+       match the previous home tone; data lives in `src/content/qa.ts`. -->
   <Block
-    id="faq"
-    eyebrow={content.faq.eyebrow}
-    heading={content.faq.heading}
-    highlight={content.faq.highlight}
+    id={homeSections.qa.id}
+    eyebrow={homeSections.qa.eyebrow}
+    heading={homeSections.qa.heading1}
+    highlight={homeSections.qa.highlight}
+    lede={homeSections.qa.subheading}
   >
-    <div class="faq-wrap">
-      <FAQAccordion
-        client:visible
-        items={content.faq.items}
-        defaultOpen={content.faq.defaultOpen}
-      />
-    </div>
+    <Faq client:visible categories={qaCategories} />
   </Block>
 
   <!-- ── 09 · Lead form (full-bleed) — last beat on the page ────── -->
@@ -272,12 +271,5 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     color: var(--clr-content-secondary);
     font-size: var(--fs-body);
     line-height: var(--lh-body);
-  }
-
-  /* FAQ accordion — bounded width on wide displays for legibility. */
-  .faq-wrap {
-    max-width: 56rem;
-    width: 100%;
-    margin-inline: auto;
   }
 </style>

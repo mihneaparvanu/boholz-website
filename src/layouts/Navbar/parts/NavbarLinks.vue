@@ -6,26 +6,21 @@ import type { NavLink } from "../../nav.types";
 import type { HouseCategory, Location } from "@/types/models";
 import { ROUTES } from "@/utils/routes";
 import NavbarDrop from "../NavbarDrop.vue";
-import NavbarKontaktDrop from "../NavbarKontaktDrop.vue";
 
 const props = defineProps<{
   routes: NavLink[];
   currentPath: string;
-  /** When true, hovering "Häuser" reveals the NavbarDrop and hovering
-      "Kontakt" reveals the NavbarKontaktDrop. Pass `categories`,
-      `showhouses` and `locations` alongside. */
+  /** When true, hovering "Häuser" reveals the NavbarDrop. Pass
+      `categories` and `showhouses` alongside. */
   enableDropdown?: boolean;
   categories?: HouseCategory[];
   showhouses?: Location[];
   bestsellerHero?: string | null;
-  /** Office locations (showhouses excluded) for the Kontakt subnav. */
-  locations?: Location[];
 }>();
 
 /* One drop is open at a time. The string identifies which route's panel
-   is showing; null = nothing. A single shared close-timer keeps
-   transitions across the two panels clean. */
-type DropKey = "houses" | "kontakt" | null;
+   is showing; null = nothing. */
+type DropKey = "houses" | null;
 const openDrop = ref<DropKey>(null);
 let closeTimer: ReturnType<typeof setTimeout> | null = null;
 
@@ -48,9 +43,6 @@ function dropForRoute(route: NavLink): DropKey {
   if (route.path === ROUTES.houses && props.currentPath !== ROUTES.houses) {
     return "houses";
   }
-  if (route.path === ROUTES.contact && props.currentPath !== ROUTES.contact) {
-    return "kontakt";
-  }
   return null;
 }
 
@@ -69,9 +61,6 @@ watch(
   () => props.currentPath,
   (p) => {
     if (p === ROUTES.houses && openDrop.value === "houses") {
-      openDrop.value = null;
-    }
-    if (p === ROUTES.contact && openDrop.value === "kontakt") {
       openDrop.value = null;
     }
   },
@@ -128,22 +117,6 @@ function hasDropdown(route: NavLink): boolean {
         :showhouses="showhouses"
         :bestseller-hero="bestsellerHero"
       />
-    </Motion>
-
-    <!-- Kontakt drop — narrower panel anchored under the Kontakt item. -->
-    <Motion
-      v-if="openDrop === 'kontakt' && locations"
-      key="drop-kontakt"
-      tag="div"
-      class="drop-container wrapper"
-      :initial="{ opacity: 0, y: -6 }"
-      :animate="{ opacity: 1, y: 0 }"
-      :exit="{ opacity: 0, y: -6 }"
-      :transition="{ duration: 0.28, ease: EASE }"
-      @mouseenter="open('kontakt')"
-      @mouseleave="scheduleClose"
-    >
-      <NavbarKontaktDrop :locations="locations" />
     </Motion>
   </AnimatePresence>
 </template>

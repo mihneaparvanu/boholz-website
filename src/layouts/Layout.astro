@@ -22,9 +22,6 @@ interface Props {
 const { title, categories: categoriesProp, isHero = false } = Astro.props;
 const categories = categoriesProp ?? (await getCategories());
 const showhouses = await getLocations({ kind: "showhouse" });
-// Office locations (non-showhouses) feed the Kontakt subnav dropdown.
-// Same query path as showhouses — no extra round-trip cost beyond one call.
-const officeLocations = await getLocations({ exceptKind: "showhouse" });
 
 // Pick a fallback hero image for the virtual Bestseller category — it has
 // no media of its own, so we surface the first featured model's hero so
@@ -48,7 +45,6 @@ const bestsellerHero = topFeatured?.heroImgURL ?? null;
       client:load
       categories={categories}
       showhouses={showhouses}
-      officeLocations={officeLocations}
       bestsellerHero={bestsellerHero}
     />
     <main class="wrapper">

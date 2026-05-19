@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { HouseCategory, Location } from "@/types/models";
-import { ROUTES } from "@/utils/routes";
 
-import Button from "@/components/ui/Button.vue";
 import NavbarLogo from "./parts/NavbarLogo.vue";
 import NavbarLinks from "./parts/NavbarLinks.vue";
 
@@ -11,7 +9,6 @@ import { PRIMARY_NAV } from "./navbar.content";
 defineProps<{
   categories: HouseCategory[];
   showhouses: Location[];
-  officeLocations?: Location[];
   bestsellerHero?: string | null;
   currentPath: string;
 }>();
@@ -27,14 +24,8 @@ defineProps<{
         enable-dropdown
         :categories="categories"
         :showhouses="showhouses"
-        :locations="officeLocations"
         :bestseller-hero="bestsellerHero"
       />
-    </div>
-
-    <div class="cta">
-      <Button variant="tertiary" :href="ROUTES.contact">Katalog</Button>
-      <Button variant="primary" :href="ROUTES.contact">Beratung finden</Button>
     </div>
   </div>
 </template>
@@ -54,10 +45,5 @@ defineProps<{
   display: flex;
   align-items: center;
   gap: var(--spacing-4);
-}
-
-.cta {
-  display: flex;
-  gap: var(--spacing-2);
 }
 </style>

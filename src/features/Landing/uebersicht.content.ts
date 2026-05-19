@@ -13,6 +13,52 @@
  */
 import type { LandingPageContent } from "./landing.types";
 
+/**
+ * Hero copy variants — only `title` / `highlight` / `subtitle` differ across
+ * variants. Eyebrow, image, CTAs and category preferences are page-level
+ * (declared once on `uebersichtContent.hero`).
+ *
+ * To switch variants on the homepage, change a single line below:
+ *   `export const heroVariant: HeroVariantKey = "current";`
+ * Valid keys: `current` (default), `classic`, `brand`.
+ */
+type HeroCopy = {
+  title: string;
+  highlight: string;
+  subtitle: string;
+};
+
+export const heroVariants = {
+  // Variant 1 — the current launch copy. Default.
+  current: {
+    title: "Premium-Fertighäuser",
+    highlight: "aus Holz.",
+    subtitle:
+      "Nachhaltig, energieeffizient und individuell auf Sie zugeschnitten — vom ersten Entwurf bis zur Schlüsselübergabe begleitet von einem festen Ansprechpartner.",
+  },
+  // Variant 2 — the previous home hero (see `features/Home/Hero/Hero.vue`).
+  classic: {
+    title: "Fertighäuser in Zimmermannsqualität.",
+    highlight: "Für Generationen.",
+    subtitle:
+      "Unsere barrierefreien Fertighäuser aus Holz vereinen höchste Energieeffizienz mit meisterhaftem Handwerk. So sparen Sie Energiekosten und gewinnen wertvolle Lebensqualität für die ganze Familie.",
+  },
+  // Variant 3 — brand-led new copy.
+  brand: {
+    title: "Fertighäuser von",
+    highlight: "BoHolz-Haus.",
+    subtitle:
+      "Nachhaltiger Holzbau, präzise gefertigt in Deutschland — Ihr Traumhaus, individuell geplant und schlüsselfertig übergeben.",
+  },
+} as const satisfies Record<string, HeroCopy>;
+
+export type HeroVariantKey = keyof typeof heroVariants;
+
+/**
+ * Active hero variant. Change this single line to swap homepage hero copy.
+ */
+export const heroVariant: HeroVariantKey = "current";
+
 export const uebersichtContent: LandingPageContent = {
   slug: "uebersicht",
 
@@ -23,17 +69,16 @@ export const uebersichtContent: LandingPageContent = {
   },
 
   hero: {
-    eyebrow: "Ihr Zuhause, individuell geplant",
-    title: "Premium-Fertighäuser",
-    highlight: "aus Holz.",
-    subtitle:
-      "Nachhaltig, energieeffizient und individuell auf Sie zugeschnitten — vom ersten Entwurf bis zur Schlüsselübergabe begleitet von einem festen Ansprechpartner.",
+    eyebrow: "Finden Sie jetzt Ihr Traumhaus",
+    title: heroVariants[heroVariant].title,
+    highlight: heroVariants[heroVariant].highlight,
+    subtitle: heroVariants[heroVariant].subtitle,
     imageAlt:
       "Premium-Stadtvilla in Holzbauweise von BoHolz Haus — moderne Architektur mit klaren Linien",
     imageFallbackPath: "/images/homepage/overview-hero.webp",
     preferredCategorySlug: "einfamilienhaus",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
-    secondaryCta: { label: "Hauskatalog bestellen", href: "/kontakt#katalog" },
+    secondaryCta: { label: "Hauskatalog bestellen", href: "/katalog" },
   },
 
   benefitsIntro: {
@@ -227,6 +272,6 @@ export const uebersichtContent: LandingPageContent = {
       "Sie sind unverbindlich beraten — oder direkt ein Angebot anfordern.",
     tone: "surface",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
-    secondaryCta: { label: "Hauskatalog bestellen", href: "/kontakt#katalog" },
+    secondaryCta: { label: "Hauskatalog bestellen", href: "/katalog" },
   },
 };

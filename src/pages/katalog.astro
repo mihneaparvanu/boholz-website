@@ -1,0 +1,216 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import PageHero from "@/components/sections/PageHero.astro";
+import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
+import Divider from "@/components/ui/Divider.astro";
+
+import CatalogForm from "@/features/ContactForms/CatalogForm.vue";
+
+import {
+  BookOpen,
+  Mail,
+  Layers3,
+  Ruler,
+  Euro,
+  ImageIcon,
+  Compass,
+} from "lucide-vue-next";
+
+type CatalogBenefit = {
+  icon: typeof BookOpen;
+  title: string;
+  body: string;
+};
+
+const benefits: CatalogBenefit[] = [
+  {
+    icon: Layers3,
+    title: "Komplette Hausübersicht",
+    body: "Alle Modelle — Bungalow, Einfamilienhaus, Doppelhaus, Stadtvilla und Mehrfamilienhaus — auf einen Blick.",
+  },
+  {
+    icon: Ruler,
+    title: "Grundrisse & Ausstattung",
+    body: "Maßstabsgetreue Grundrisse, Wandaufbauten und unsere Standard­ausstattung im Detail.",
+  },
+  {
+    icon: Euro,
+    title: "Preisindikationen",
+    body: "Orientierungspreise pro Modell — transparent, ohne versteckte Posten, mit KfW-Förderhinweisen.",
+  },
+  {
+    icon: ImageIcon,
+    title: "Beispielprojekte",
+    body: "Realisierte BoHolz-Häuser in Bild und Zahlen — von der Bodenplatte bis zur Schlüsselübergabe.",
+  },
+  {
+    icon: Compass,
+    title: "Nächste Schritte zur Beratung",
+    body: "Ein klarer Fahrplan vom Hauskatalog über die Bedarfsanalyse bis zum persönlichen Angebot.",
+  },
+];
+---
+
+<Layout title="Hauskatalog bestellen – BoHolz Haus">
+  <PageHero
+    eyebrow="Hauskatalog"
+    title="Der BoHolz-Katalog —"
+    highlight="kostenfrei zu Ihnen."
+    subtitle="Alle Modelle, Grundrisse und Ausstattungsdetails in einem Dokument. Per E-Mail in wenigen Minuten oder gedruckt per Post — Sie entscheiden."
+    align="center"
+  />
+
+  <!-- 02 — Inhalt des Katalogs -->
+  <Divider index={2} label="Im Katalog enthalten" />
+
+  <section id="inhalt" class="section">
+    <EyebrowHeadingLede
+      eyebrow="Was Sie erhalten"
+      heading="Alles, was Sie für Ihre"
+      highlight="Entscheidung brauchen."
+      lede="Der Katalog ist kein Werbeprospekt — er ist eine sachliche Grundlage. Sie blättern in Ruhe, vergleichen, planen. Ohne Anruf, ohne Verkaufsdruck."
+    >
+      <Fragment slot="eyebrow-icon">
+        <BookOpen :size={14} :stroke-width={2} />
+      </Fragment>
+    </EyebrowHeadingLede>
+
+    <ul class="benefits" role="list">
+      {
+        benefits.map((b) => (
+          <li class="item">
+            <span class="icon" aria-hidden="true">
+              <b.icon size={18} stroke-width={1.75} />
+            </span>
+            <div class="copy">
+              <h3 class="title">{b.title}</h3>
+              <p class="body">{b.body}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <!-- 03 — Katalog anfordern -->
+  <Divider index={3} label="Katalog anfordern" />
+
+  <div class="band full-width">
+    <section id="anfordern" class="section band-inner">
+      <div class="form-col">
+        <EyebrowHeadingLede
+          eyebrow="Bestellen"
+          heading="Hauskatalog"
+          highlight="kostenfrei anfordern."
+          lede="Wenige Angaben genügen — wir senden Ihnen den Katalog per E-Mail oder Post. Werktags meist binnen 24 Stunden."
+        >
+          <Fragment slot="eyebrow-icon">
+            <Mail :size={14} :stroke-width={2} />
+          </Fragment>
+        </EyebrowHeadingLede>
+
+        <div class="form-wrap">
+          <CatalogForm client:visible />
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  /* ============================================================
+     Section rhythm — mirrors `kontakt.astro`. `<main class="wrapper">`
+     lands children in the content column unless they declare
+     `.full-width` and re-establish width via `.band-inner`.
+     ============================================================ */
+  .section {
+    padding-block: var(--spacing-5);
+  }
+
+  /* Alternating-tone band — tinted full-width surface for the form
+     section, matching the kontakt page treatment. */
+  .band {
+    background: var(--clr-surface-secondary);
+    padding-inline: var(--padding-inline);
+  }
+
+  .band-inner {
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  /* "What you get" list — calm two-column grid from tablet up,
+     stacked on mobile. Icon + copy pair, no chrome, just rhythm. */
+  .benefits {
+    list-style: none;
+    margin: var(--spacing-4) 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+
+  @media (--from-tablet) {
+    .benefits {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--spacing-5);
+    }
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--spacing-3);
+    align-items: start;
+  }
+
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius-md);
+    background: var(--clr-surface-secondary);
+    color: var(--clr-content-primary);
+    flex-shrink: 0;
+  }
+
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    min-width: 0;
+  }
+
+  .title {
+    margin: 0;
+    font-size: var(--fs-body-lg);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-primary);
+    line-height: var(--lh-heading);
+  }
+
+  .body {
+    margin: 0;
+    color: var(--clr-content-secondary);
+    line-height: var(--lh-body);
+  }
+
+  /* Form column — bounded measure so the fields hold a comfortable
+     shape on wide screens. */
+  .form-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    min-width: 0;
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+
+  .form-wrap {
+    margin-block-start: var(--spacing-3);
+  }
+</style>

@@ -34,7 +34,7 @@ export const mehrfamilienContent: LandingPageContent = {
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-02.webp",
     preferredCategorySlug: "mehrfamilienhaus",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
-    secondaryCta: { label: "Hauskatalog bestellen", href: "/kontakt#katalog" },
+    secondaryCta: { label: "Hauskatalog bestellen", href: "/katalog" },
   },
 
   benefitsIntro: {
@@ -241,6 +241,6 @@ export const mehrfamilienContent: LandingPageContent = {
       "Jetzt unverbindlich beraten lassen oder direkt ein Angebot anfordern.",
     tone: "surface",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
-    secondaryCta: { label: "Hauskatalog bestellen", href: "/kontakt#katalog" },
+    secondaryCta: { label: "Hauskatalog bestellen", href: "/katalog" },
   },
 };

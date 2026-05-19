@@ -1,27 +1,21 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Menu, X, ChevronRight, ChevronDown } from "lucide-vue-next";
+import { Menu, X, ChevronRight } from "lucide-vue-next";
 
-import Button from "@/components/ui/Button.vue";
 import NavbarLogo from "./parts/NavbarLogo.vue";
-import NavbarMobileContactExpand from "./NavbarMobileContactExpand.vue";
 
 import { PRIMARY_NAV } from "./navbar.content";
-import { ROUTES } from "@/utils/routes";
-import type { Location } from "@/types/models";
 
 /* Keep in sync with the .sheet fade-out duration below. The handler
    below waits this long after closing the sheet before navigating, so
    the user perceives the menu collapsing rather than a hard cut. */
 const SHEET_FADE_MS = 200;
 
-const props = defineProps<{
+defineProps<{
   currentPath: string;
-  officeLocations?: Location[];
 }>();
 
 const isOpen = ref(false);
-const kontaktExpanded = ref(false);
 
 /* Intercept link clicks inside the open sheet: close the sheet first
    so the fade-out is visible, then navigate via a full page load.
@@ -54,10 +48,6 @@ function handleNavClick(event: MouseEvent, href: string) {
     </div>
 
     <div class="actions">
-      <Button :href="ROUTES.contact" variant="primary" size="md" class="cta">
-        Katalog
-      </Button>
-
       <button
         type="button"
         class="trigger"
@@ -81,42 +71,17 @@ function handleNavClick(event: MouseEvent, href: string) {
     :inert="!isOpen || undefined"
   >
     <ul class="items">
-      <template v-for="route in PRIMARY_NAV" :key="route.path">
-        <li v-if="route.path === ROUTES.contact && props.officeLocations?.length">
-          <button
-            type="button"
-            class="row toggle"
-            :data-expanded="kontaktExpanded"
-            :aria-expanded="kontaktExpanded"
-            @click="kontaktExpanded = !kontaktExpanded"
-          >
-            <span>{{ route.label }}</span>
-            <ChevronDown class="chevron" aria-hidden="true" />
-          </button>
-          <NavbarMobileContactExpand
-            v-if="kontaktExpanded"
-            :locations="props.officeLocations"
-            @navclick="(href, e) => handleNavClick(e, href)"
-          />
-        </li>
-        <li v-else>
-          <a
-            :href="route.path"
-            :data-is-current="currentPath === route.path"
-            @click="handleNavClick($event, route.path)"
-          >
-            <span>{{ route.label }}</span>
-            <ChevronRight class="chevron" aria-hidden="true" />
-          </a>
-        </li>
-      </template>
+      <li v-for="route in PRIMARY_NAV" :key="route.path">
+        <a
+          :href="route.path"
+          :data-is-current="currentPath === route.path"
+          @click="handleNavClick($event, route.path)"
+        >
+          <span>{{ route.label }}</span>
+          <ChevronRight class="chevron" aria-hidden="true" />
+        </a>
+      </li>
     </ul>
-    <Button
-      variant="primary"
-      :href="ROUTES.contact"
-      @click="handleNavClick($event, ROUTES.contact)"
-      >Beratung finden</Button
-    >
   </div>
 </template>
 
@@ -139,15 +104,6 @@ function handleNavClick(event: MouseEvent, href: string) {
   overflow-x: clip;
 }
 
-/* The inline Katalog button shouldn't stretch to the full row width —
-   it sits next to the menu trigger and must hold its intrinsic size.
-   The global `.btn { width: 100% }` mobile rule is opt-in for stacked
-   stacks; the navbar's inline CTA opts out. */
-.bar .cta {
-  width: auto;
-  flex-shrink: 0;
-}
-
 .logo-slot {
   display: inline-flex;
   flex-shrink: 0;
@@ -162,10 +118,6 @@ function handleNavClick(event: MouseEvent, href: string) {
   align-items: center;
   gap: var(--spacing-2);
   flex-shrink: 0;
-}
-
-.cta {
-  white-space: nowrap;
 }
 
 .trigger {
@@ -227,8 +179,7 @@ function handleNavClick(event: MouseEvent, href: string) {
   gap: var(--spacing-3);
 }
 
-.items a,
-.items .row {
+.items a {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -244,9 +195,7 @@ function handleNavClick(event: MouseEvent, href: string) {
 
 .items a[data-is-current="true"],
 .items a:hover,
-.items a:focus-visible,
-.items .row:hover,
-.items .row:focus-visible {
+.items a:focus-visible {
   color: var(--clr-accent-secondary);
 }
 
@@ -255,10 +204,5 @@ function handleNavClick(event: MouseEvent, href: string) {
   height: var(--sz-base);
   color: var(--clr-content-tertiary);
   transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.row.toggle[data-expanded="true"] .chevron {
-  transform: rotate(180deg);
-  color: var(--clr-accent-secondary);
 }
 </style>

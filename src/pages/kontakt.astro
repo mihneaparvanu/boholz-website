@@ -7,11 +7,10 @@ import Divider from "@/components/ui/Divider.astro";
 import StatBlock from "@/components/ui/StatBlock.vue";
 
 import ContactForm from "@/features/ContactForms/ContactForm.vue";
-import CatalogForm from "@/features/ContactForms/CatalogForm.vue";
 import LocationsMap from "@/features/Locations/LocationsMap.vue";
 import { getLocations } from "@/data/loaders";
 
-import { MessagesSquare, Home, Mail, MapPin } from "lucide-vue-next";
+import { MessagesSquare, Home, MapPin } from "lucide-vue-next";
 
 const locations = await getLocations({ exceptKind: "showhouse" });
 ---
@@ -83,46 +82,25 @@ const locations = await getLocations({ exceptKind: "showhouse" });
     </div>
   </section>
 
-  <!-- 03 — Anfragen (split: Hausanfrage | Katalog) -->
-  <Divider index={3} label="Anfragen" />
+  <!-- 03 — Bauanfrage -->
+  <Divider index={3} label="Bauanfrage" />
 
   <div class="band full-width">
-    <section id="anfragen" class="section band-inner">
-      <div class="forms">
-        <!-- Form A — Hausanfrage (existing ContactForm) -->
-        <div class="form-col">
-          <EyebrowHeadingLede
-            eyebrow="Hausanfrage"
-            heading="Sprechen Sie mit uns über Ihr"
-            highlight="Bauvorhaben."
-            lede="Erzählen Sie uns kurz, wie Sie wohnen möchten — wir melden uns mit einem passenden Vorschlag und allen Unterlagen zurück."
-          >
-            <Fragment slot="eyebrow-icon">
-              <Home :size={14} :stroke-width={2} />
-            </Fragment>
-          </EyebrowHeadingLede>
+    <section id="bauanfrage" class="section band-inner">
+      <div class="form-col">
+        <EyebrowHeadingLede
+          eyebrow="Bauanfrage"
+          heading="Sprechen Sie mit uns über Ihr"
+          highlight="Bauvorhaben."
+          lede="Erzählen Sie uns kurz, wie Sie wohnen möchten — wir melden uns mit einem passenden Vorschlag und allen Unterlagen zurück."
+        >
+          <Fragment slot="eyebrow-icon">
+            <Home :size={14} :stroke-width={2} />
+          </Fragment>
+        </EyebrowHeadingLede>
 
-          <div class="form-wrap">
-            <ContactForm client:visible />
-          </div>
-        </div>
-
-        <!-- Form B — Katalog anfordern (new CatalogForm) -->
-        <div class="form-col">
-          <EyebrowHeadingLede
-            eyebrow="Katalog anfordern"
-            heading="Hauskatalog"
-            highlight="kostenfrei anfordern."
-            lede="Wenige Angaben genügen — wir senden Ihnen den passenden Katalog per E-Mail oder Post zu."
-          >
-            <Fragment slot="eyebrow-icon">
-              <Mail :size={14} :stroke-width={2} />
-            </Fragment>
-          </EyebrowHeadingLede>
-
-          <div class="form-wrap">
-            <CatalogForm client:visible />
-          </div>
+        <div class="form-wrap">
+          <ContactForm client:visible />
         </div>
       </div>
     </section>
@@ -227,28 +205,15 @@ const locations = await getLocations({ exceptKind: "showhouse" });
     font-size: var(--fs-body-sm);
   }
 
-  /* Two-form split — stacked on mobile, side-by-side from desktop.
-     Both columns get their own EyebrowHeadingLede header so each form
-     carries its own intent. A vertical rule on desktop separates them
-     without adding chrome around either card. */
-  .forms {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-5);
-  }
-
-  @media (--from-desktop) {
-    .forms {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--spacing-6);
-    }
-  }
-
+  /* Bauanfrage column — single full-width form, bounded measure so the
+     fields hold a comfortable shape on wide screens. */
   .form-col {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-3);
     min-width: 0;
+    max-width: 56rem;
+    margin-inline: auto;
   }
 
   /* Form wrapper — adds breathing room between the EyebrowHeadingLede

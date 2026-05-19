@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { HouseCategory, Location } from "@/types/models";
-import { ROUTES } from "@/utils/routes";
 
-import Button from "@/components/ui/Button.vue";
 import NavbarLogo from "./parts/NavbarLogo.vue";
 import NavbarLinks from "./parts/NavbarLinks.vue";
 
@@ -11,7 +9,6 @@ import { TRANSPARENT_NAV } from "./navbar.content";
 defineProps<{
   categories: HouseCategory[];
   showhouses: Location[];
-  officeLocations?: Location[];
   bestsellerHero?: string | null;
   currentPath: string;
 }>();
@@ -29,11 +26,7 @@ defineProps<{
       :bestseller-hero="bestsellerHero"
     />
 
-    <div class="cta">
-      <Button variant="secondary" :href="ROUTES.contact"
-        >Beratung finden</Button
-      >
-    </div>
+    <div class="spacer" aria-hidden="true"></div>
   </div>
 </template>
 
@@ -48,9 +41,7 @@ defineProps<{
   color: var(--clr-pure-white);
 }
 
-.cta {
+.spacer {
   justify-self: end;
-  display: flex;
-  gap: var(--spacing-2);
 }
 </style>

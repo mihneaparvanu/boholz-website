@@ -40,4 +40,15 @@ defineProps<{
     gap: var(--spacing-4);
   }
 }
+
+/* Desktop only — center each stat card inside its column so the trio reads
+   visually centered across the band. Mobile (single column, already centered
+   via TrustStatCard's own @media rule) and tablet (left-aligned by design)
+   stay untouched. */
+@media (--from-desktop) {
+  .row :deep(.stat) {
+    align-items: center;
+    text-align: center;
+  }
+}
 </style>

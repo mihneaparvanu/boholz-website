@@ -18,8 +18,8 @@ const { selected, select, showcaseImage } = useCategoryGallery(props.categories,
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const ctaLinks = [
-  { label: "Entdecken sie unsere Hauser", href: ROUTES.contact },
-  { label: "Katalog anforden", href: ROUTES.contact },
+  { label: "Vor-Ort-Beratung", href: "/vor-ort-beratung" },
+  { label: "Kontakt", href: ROUTES.contact },
 ];
 </script>
 

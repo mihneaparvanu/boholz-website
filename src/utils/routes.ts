@@ -9,6 +9,7 @@ export const ROUTES = {
   news: "/news",
   newsArticle: (slug: string) => `/news/${slug}`,
   contact: "/kontakt",
+  catalog: "/katalog",
   onsite: "vor-ort-beratung",
   impressum: "/impressum",
   datenschutz: "/datenschutz",

@@ -1,0 +1,287 @@
+---
+/**
+ * 404 · Not Found
+ *
+ * Astro serves this file automatically for unknown routes when running under
+ * the Node SSR adapter. Composition is "numeral-as-art": the 404 itself is
+ * set in display-scale Instrument-Serif italic as a quiet decorative anchor,
+ * with the heading, lede and three navigation paths stacked beneath a
+ * hairline rule. No image, no illustration — the typography is the design.
+ *
+ * SSR status: Astro.response.status is set to 404 in the frontmatter so the
+ * server returns the correct code (without this, SSR would serve the page
+ * with a 200).
+ */
+import Layout from "@/layouts/Layout.astro";
+import Button from "@/components/ui/Button.vue";
+import { getCategories } from "@/data/loaders";
+
+Astro.response.status = 404;
+
+const categories = await getCategories();
+---
+
+<Layout title="404 – BoHolz Haus" categories={categories}>
+  <section class="notfound" aria-labelledby="notfound-title">
+    <p class="eyebrow">404</p>
+
+    <p class="numeral" aria-hidden="true">404</p>
+
+    <h1 id="notfound-title">Diese Tür führt ins Leere.</h1>
+
+    <p class="lede">
+      Die Seite, die Sie suchen, gibt es nicht oder wurde verschoben. Kehren
+      Sie zur Startseite zurück oder finden Sie Ihr Haus über die Übersicht.
+    </p>
+
+    <hr class="rule" />
+
+    <div class="actions">
+      <Button variant="primary" size="lg" href="/" client:visible>
+        Zur Startseite
+      </Button>
+      <Button variant="secondary" size="lg" href="/hauser" client:visible>
+        Hausmodelle entdecken
+      </Button>
+    </div>
+
+    <p class="below">
+      Lieber persönlich? <a href="/kontakt">Kontakt aufnehmen</a>.
+    </p>
+  </section>
+</Layout>
+
+<style>
+  /* ============================================================
+     Section frame.
+     Lives in the wrapper's `content` column. Block padding mirrors
+     a PageHero so the page doesn't feel underdressed; we anchor
+     centred and let the numeral carry the vertical weight.
+     ============================================================ */
+  .notfound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-block: var(--spacing-6) var(--spacing-6);
+    min-height: 70dvh;
+    justify-content: center;
+    gap: var(--spacing-3);
+  }
+
+  /* Small eyebrow above the numeral — keeps the page semantically labelled
+     for screen readers and search snippets without competing with the
+     decorative oversized 404. */
+  .eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-secondary);
+  }
+
+  /* The numeral. Display-scaled italic — same Instrument-Serif italic the
+     brand uses for highlight text — set in the quaternary content tier so
+     it reads as quiet architecture rather than copy. Letter-spacing nudged
+     tighter than the heading default so the three glyphs sit as a single
+     mark, not three numbers. */
+  .numeral {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: var(--font-weight-light);
+    color: var(--clr-content-quaternary);
+    line-height: var(--lh-tight);
+    letter-spacing: -0.06em;
+    /* Fluid display size — 22vw clamped so it dominates at every viewport
+       without ever fully spanning the column. */
+    font-size: clamp(7rem, 22vw, 18rem);
+    /* Optical centring — the italic's right-leaning bowls make the visual
+       centre sit a hair left of the geometric centre. */
+    transform: translateX(-0.02em);
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--clr-content-primary);
+    font-weight: var(--font-weight-regular);
+    text-wrap: balance;
+    /* Slightly under the default --fs-h1 — the numeral above already owns
+       the display weight, the heading is a quieter second voice. */
+    font-size: calc(var(--fs-h1) * 0.6);
+  }
+
+  .lede {
+    margin: 0;
+    max-width: 52ch;
+    color: var(--clr-content-secondary);
+    font-size: var(--fs-body-lg);
+    line-height: var(--lh-body);
+    text-wrap: balance;
+  }
+
+  /* Hairline rule — the precision marker BoHolz uses to separate editorial
+     beats. Short and centred under the lede so it reads as a deliberate
+     divider, not a wall. */
+  .rule {
+    width: var(--spacing-5);
+    height: 1px;
+    border: 0;
+    background: var(--clr-border-secondary);
+    margin: var(--spacing-2) 0 var(--spacing-1);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-2);
+  }
+
+  /* Tertiary path — a single inline link beneath the buttons so the
+     contact route reads as a softer, conversational option. */
+  .below {
+    margin: var(--spacing-3) 0 0;
+    color: var(--clr-content-tertiary);
+    font-size: var(--fs-body);
+  }
+
+  .below a {
+    color: var(--clr-content-secondary);
+    text-decoration: underline;
+    text-decoration-color: color-mix(
+      in srgb,
+      var(--clr-content-secondary) 35%,
+      transparent
+    );
+    text-underline-offset: 3px;
+    transition: color 160ms ease, text-decoration-color 160ms ease;
+  }
+
+  .below a:hover {
+    color: var(--clr-accent-secondary);
+    text-decoration-color: var(--clr-accent-secondary);
+  }
+
+  .below a:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
+    border-radius: var(--radius-sm);
+  }
+
+  /* ============================================================
+     Entrance — quiet fade-up. Single stagger via per-element
+     animation-delay. Disabled under prefers-reduced-motion.
+     ============================================================ */
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .eyebrow,
+  .numeral,
+  h1,
+  .lede,
+  .rule,
+  .actions,
+  .below {
+    animation: rise 280ms ease-out both;
+  }
+
+  .numeral {
+    animation-delay: 40ms;
+  }
+  h1 {
+    animation-delay: 100ms;
+  }
+  .lede {
+    animation-delay: 160ms;
+  }
+  .rule {
+    animation-delay: 200ms;
+  }
+  .actions {
+    animation-delay: 220ms;
+  }
+  .below {
+    animation-delay: 260ms;
+  }
+
+  /* The numeral keeps the optical-centre transform from above when the
+     animation lands. Override the keyframe's translateY-only end-state
+     so we don't clobber the horizontal nudge. */
+  .numeral {
+    animation-name: rise-numeral;
+  }
+
+  @keyframes rise-numeral {
+    from {
+      opacity: 0;
+      transform: translate(-0.02em, 8px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-0.02em, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .eyebrow,
+    .numeral,
+    h1,
+    .lede,
+    .rule,
+    .actions,
+    .below {
+      animation: none;
+    }
+  }
+
+  /* ============================================================
+     Responsive.
+     Mobile: tighten the vertical stack and let the numeral go
+     larger relative to the viewport so it still feels like the
+     visual anchor at 360–430px.
+     ============================================================ */
+  @media (--mobile) {
+    .notfound {
+      padding-block: var(--spacing-5);
+      min-height: calc(100dvh - var(--navbar-height));
+      gap: var(--spacing-2);
+    }
+
+    h1 {
+      font-size: calc(var(--fs-h1) * 0.55);
+    }
+
+    .lede {
+      font-size: var(--fs-body);
+    }
+
+    .actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+  }
+
+  @media (--from-tablet) {
+    .notfound {
+      gap: var(--spacing-3);
+    }
+  }
+
+  @media (--from-desktop) {
+    .notfound {
+      padding-block: var(--spacing-7) var(--spacing-6);
+    }
+  }
+</style>

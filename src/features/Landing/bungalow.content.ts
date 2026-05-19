@@ -33,7 +33,7 @@ export const bungalowContent: LandingPageContent = {
     imageFallbackPath: "/images/landing/bungalow/hero.webp",
     preferredCategorySlug: "bungalow",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
-    secondaryCta: { label: "Hauskatalog bestellen", href: "/kontakt#katalog" },
+    secondaryCta: { label: "Hauskatalog bestellen", href: "/katalog" },
   },
 
   benefitsIntro: {
@@ -237,6 +237,6 @@ export const bungalowContent: LandingPageContent = {
       "Jetzt unverbindlich beraten lassen oder direkt ein Angebot anfordern.",
     tone: "accent",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
-    secondaryCta: { label: "Hauskatalog bestellen", href: "/kontakt#katalog" },
+    secondaryCta: { label: "Hauskatalog bestellen", href: "/katalog" },
   },
 };
