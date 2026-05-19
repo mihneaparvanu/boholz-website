@@ -68,6 +68,11 @@ const Heading = level;
     margin: 0;
     font-weight: var(--font-weight-regular);
     letter-spacing: var(--ls-heading);
+    /* Even out the line wrap so the italic-serif highlight never ends up
+       stranded on its own line beneath a near-full-width first line.
+       Critical on mobile where two- and three-line German headings sit
+       directly above image grids/carousels. */
+    text-wrap: balance;
   }
 
   .highlight {
