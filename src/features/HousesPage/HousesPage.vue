@@ -6,6 +6,7 @@ import CategoryThumbnail from "@/features/CategorySlider/components/CategoryThum
 import SortButton from "@/components/ui/SortButton.vue";
 import { ROUTES } from "@/utils/routes";
 import FilterPanel from "@/features/FilterPanel/FilterPanel.vue";
+import FloatingCategoryMenu from "@/features/HousesPage/FloatingCategoryMenu.vue";
 import {
   type SortOption,
   type ActiveFilter,
@@ -389,12 +390,26 @@ watch(
         Filter zurücksetzen
       </button>
     </div>
+
+    <FloatingCategoryMenu
+      class="floating-menu"
+      :categories="props.categories"
+      :selected-id="selectedCategory?.id"
+      @select="handleCategorySelect"
+    />
   </div>
 </template>
 
 <style scoped>
 .houses-page-wrapper {
   grid-column: content;
+
+  /* Mobile: leave room at the bottom so the last card isn't covered by
+     the FloatingCategoryMenu. Matches the floating bar's inset + a touch
+     of breathing room. */
+  @media (--mobile) {
+    padding-block-end: calc(var(--spacing-7) + env(safe-area-inset-bottom, 0px));
+  }
 
   .controls-wrapper {
     display: flex;
@@ -421,6 +436,12 @@ watch(
       }
 
       padding-block: var(--spacing-4);
+
+      /* Mobile uses the FloatingCategoryMenu instead — keep the inline grid
+         out of the document flow so the catalog starts at the filter row. */
+      @media (--mobile) {
+        display: none;
+      }
     }
 
     .filter-buttons-wrapper {
