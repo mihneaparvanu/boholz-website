@@ -119,6 +119,17 @@ const activeOption = computed(
     background-color 160ms ease,
     border-color 160ms ease,
     color 160ms ease;
+
+  /* Mobile: pair with the compact `Filtern` trigger — md height, tighter
+     padding, smaller type. min-width drops too so the chip can fit at
+     360px viewport when right-aligned alongside Filtern. */
+  @media (--mobile) {
+    min-width: 11ch;
+    height: var(--control-height-md);
+    padding-inline: var(--spacing-3) var(--spacing-2);
+    font-size: var(--fs-body-sm);
+    gap: var(--spacing-1);
+  }
 }
 
 .trigger:hover {

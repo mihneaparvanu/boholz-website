@@ -428,6 +428,14 @@ watch(
       align-items: center;
       gap: var(--spacing-1);
 
+      /* Mobile: the filter+sort pair feels heavy at lg control height when
+         it's the lone row above the category circles. Shrink to md and pin
+         to the trailing edge so the visual gravity sits on the right where
+         the thumb expects it. */
+      @media (--mobile) {
+        align-self: flex-end;
+      }
+
       .filter-trigger {
         all: unset;
         box-sizing: border-box;
@@ -452,6 +460,13 @@ watch(
           background-color 160ms ease,
           border-color 160ms ease,
           color 160ms ease;
+
+        @media (--mobile) {
+          height: var(--control-height-md);
+          padding-inline: var(--spacing-3);
+          font-size: var(--fs-body-sm);
+          gap: var(--spacing-1);
+        }
 
         .trigger-count {
           display: inline-flex;

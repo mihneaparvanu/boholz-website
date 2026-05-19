@@ -197,6 +197,16 @@ const nextDisabled = computed(() => !canNext.value);
   }
 }
 
+/* Mobile: reposition the category circles BELOW the cards (Apple-style — pills
+   live where the thumb expects them, beneath the content). Also widen the gap
+   to the carousel above for a clearer visual boundary between the two units. */
+@media (--mobile) {
+  .category-thumbnails {
+    order: 1;
+    margin-block-start: var(--spacing-3);
+  }
+}
+
 /* Controls — right-aligned chevron pair. Hidden on touch (mobile) where the
    native scroll is the affordance plus the peek-next pattern. The visual
    peek already telegraphs scrollability; chevrons would be redundant. */

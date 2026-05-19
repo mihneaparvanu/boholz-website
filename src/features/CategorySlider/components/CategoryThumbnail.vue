@@ -105,19 +105,26 @@ const initials = computed(() =>
   .house-model-circle {
     position: relative;
     cursor: pointer;
-    --size: 72px;
+    --size: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: var(--radius-full);
+    /* Belt-and-suspenders square sizing: explicit width AND height + flex
+       guards so a parent flex stretch or unexpected text wrap can't squash
+       one axis and produce ovals. */
     width: var(--size);
-    aspect-ratio: 1/1;
+    height: var(--size);
+    min-width: var(--size);
+    min-height: var(--size);
+    aspect-ratio: 1 / 1;
+    flex: 0 0 auto;
     border: 2px solid var(--clr-border-primary);
     overflow: visible;
     background: var(--clr-surface-secondary, var(--clr-surface-primary));
 
     @media (--below-desktop) {
-      --size: 84px;
+      --size: 68px;
     }
 
     img {

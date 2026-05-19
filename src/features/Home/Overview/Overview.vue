@@ -28,12 +28,16 @@ defineProps<{
   width: 100%;
 }
 
-/* Mobile: bump the pillar icons so they hold their own next to the label.
-   IconList is a frozen kit (hardcoded :size="18") — the SVG honours CSS
-   width/height, so we override the rendered size at the .icon wrapper.
-   Bump only on mobile; at tablet+ the two-column dense layout reads
-   correctly at 18px and going larger competes with the label. */
+/* Mobile: collapse to a single column and let the featured card sit on its
+   own row at full width (rather than the implicit "span 2 of 1" which is a
+   no-op but reads as confusing intent). */
 @media (--mobile) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .grid :deep(.card[data-featured]) {
+    grid-column: auto;
+  }
   .stack :deep(.icon svg) {
     width: 24px;
     height: 24px;

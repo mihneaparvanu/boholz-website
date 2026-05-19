@@ -30,8 +30,6 @@ defineProps<{
   border-radius: var(--radius-md);
   padding: var(--spacing-4);
   width: 100%;
-  min-height: 300px;
-  max-height: 50dvh;
   display: flex;
   flex-direction: column;
 }
@@ -46,11 +44,15 @@ defineProps<{
   }
 }
 
+/* Fixed aspect ratio so every card's image renders at identical proportions
+   regardless of text length — previously .img-wrapper { flex: 1 } stretched
+   to whatever room the card had left, which drifted per-cell. */
 .img-wrapper {
   margin-top: var(--spacing-4);
   border-radius: var(--radius-sm);
   overflow: hidden;
-  flex: 1;
+  aspect-ratio: 16 / 10;
+  width: 100%;
 
   img {
     display: block;
