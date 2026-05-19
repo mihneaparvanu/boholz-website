@@ -32,6 +32,7 @@ export function toHouseModelCard(m: HouseModel): HouseModelCardProps {
     image: src,
     imageAlt: alt,
     categoryID: m.category?.id ?? "",
+    isFeatured: m.isFeatured ?? false,
     specs: specsFor(m),
     priceHint: priceHintFor(m),
   };

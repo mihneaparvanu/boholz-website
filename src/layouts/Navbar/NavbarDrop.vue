@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Motion, AnimatePresence } from "motion-v";
+import { Star } from "lucide-vue-next";
 import type { HouseCategory, Location } from "@/types/models";
 import { ROUTES } from "@/utils/routes";
 import { useCategoryGallery } from "@/composables/useCategoryGallery";
@@ -31,17 +32,34 @@ const extraLinks = HOUSE_DROP_EXTRA_LINKS;
           v-for="(category, i) in props.categories"
           :key="category.id"
           tag="li"
+          :data-bestseller="category.slug === 'bestseller' ? 'true' : null"
           :initial="{ opacity: 0, x: -8 }"
           :animate="{ opacity: 1, x: 0 }"
           :transition="{ duration: 0.32, delay: 0.05 + i * 0.035, ease: EASE }"
           @mouseenter="select(category)"
         >
-          <a :href="`/hauser?category=${category.slug}`">{{ category.name }}</a>
+          <a :href="`/hauser?category=${category.slug}`">
+            <span class="label">{{ category.name }}</span>
+            <span
+              v-if="category.slug === 'bestseller'"
+              class="badge"
+              aria-label="Beliebteste Auswahl"
+              title="Beliebteste Auswahl"
+            >
+              <Star
+                :size="10"
+                :stroke-width="0"
+                fill="currentColor"
+                aria-hidden="true"
+              />
+            </span>
+          </a>
         </Motion>
         <Motion
           v-for="(link, j) in extraLinks"
           :key="link.path"
           tag="li"
+          :data-bestseller="link.path === 'bestseller' ? 'true' : null"
           :initial="{ opacity: 0, x: -8 }"
           :animate="{ opacity: 1, x: 0 }"
           :transition="{
@@ -139,9 +157,19 @@ const extraLinks = HOUSE_DROP_EXTRA_LINKS;
 
     li {
       width: fit-content;
+
+      &[data-bestseller="true"] a {
+        color: var(--clr-accent-secondary);
+        font-weight: var(--font-weight-medium);
+        background-color: var(--clr-accent-secondary);
+        padding: var(--spacing-0) var(--spacing-1);
+      }
     }
 
     a {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-1);
       transition: color 160ms ease;
     }
 
@@ -149,6 +177,17 @@ const extraLinks = HOUSE_DROP_EXTRA_LINKS;
     a:focus-visible {
       opacity: 1;
       color: var(--clr-accent-secondary);
+    }
+
+    .badge {
+      display: inline-grid;
+      place-items: center;
+      width: 16px;
+      height: 16px;
+      border-radius: var(--radius-full);
+      background: var(--clr-accent-secondary);
+      color: var(--clr-pure-white);
+      flex: none;
     }
   }
 

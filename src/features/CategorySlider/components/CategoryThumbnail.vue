@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { Star } from "lucide-vue-next";
 
 import type { HouseCategory } from "@/types/models";
 
@@ -15,6 +16,8 @@ const imageURL = computed(() => {
   return thumbnail.value?.media.path ?? "";
 });
 
+const isBestseller = computed(() => props.category.slug === "bestseller");
+
 const initials = computed(() =>
   props.category.name
     .split(/\s+/)
@@ -25,7 +28,7 @@ const initials = computed(() =>
 );
 </script>
 <template>
-  <div class="category-thumbnail">
+  <div class="category-thumbnail" :data-is-bestseller="isBestseller">
     <div class="house-model-circle">
       <img
         v-if="imageURL"
@@ -36,6 +39,19 @@ const initials = computed(() =>
         class="model-image"
       />
       <span v-else class="fallback" aria-hidden="true">{{ initials }}</span>
+      <span
+        v-if="isBestseller"
+        class="badge"
+        aria-label="Beliebteste Auswahl"
+        title="Beliebteste Auswahl"
+      >
+        <Star
+          :size="11"
+          :stroke-width="0"
+          fill="currentColor"
+          aria-hidden="true"
+        />
+      </span>
     </div>
     <div class="text-wrapper">
       <span>{{ category.name }}</span>
@@ -60,7 +76,34 @@ const initials = computed(() =>
     }
   }
 
+  /* Bestseller — quiet brand-blue ring + a small star chip nestled on the
+     circle. Stays visible whether selected or not; the badge is the cue,
+     not the colour. */
+  &[data-is-bestseller="true"] {
+    .house-model-circle {
+      border-color: color-mix(
+        in srgb,
+        var(--clr-accent-secondary) 55%,
+        transparent
+      );
+      box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--clr-accent-secondary) 10%, transparent);
+    }
+
+    .text-wrapper span {
+      color: var(--clr-content-primary);
+      font-weight: var(--font-weight-medium);
+    }
+  }
+
+  &[data-is-bestseller="true"][data-is-selected="true"] .house-model-circle {
+    border-color: var(--clr-accent-secondary);
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--clr-accent-secondary) 18%, transparent);
+  }
+
   .house-model-circle {
+    position: relative;
     cursor: pointer;
     --size: 72px;
     display: flex;
@@ -70,7 +113,7 @@ const initials = computed(() =>
     width: var(--size);
     aspect-ratio: 1/1;
     border: 2px solid var(--clr-border-primary);
-    overflow: hidden;
+    overflow: visible;
     background: var(--clr-surface-secondary, var(--clr-surface-primary));
 
     @media (--below-desktop) {
@@ -81,6 +124,7 @@ const initials = computed(() =>
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: var(--radius-full);
     }
 
     .fallback {
@@ -88,6 +132,22 @@ const initials = computed(() =>
       font-weight: var(--font-weight-medium);
       letter-spacing: var(--tracking-eyebrow);
       color: var(--clr-content-secondary);
+    }
+
+    .badge {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      display: inline-grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: var(--radius-full);
+      background: var(--clr-accent-secondary);
+      color: var(--clr-pure-white);
+      border: 2px solid var(--clr-surface-primary);
+      box-shadow: 0 1px 2px rgb(0 0 0 / 0.15);
+      pointer-events: none;
     }
   }
 

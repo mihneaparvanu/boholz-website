@@ -40,6 +40,9 @@ export type HouseModelCardProps = {
   specs: HouseModelSpec[];
 
   categoryID: string;
+  /** True if the model is marked `isFeatured` in the DB — used by the
+   *  carousel to resolve the virtual "Bestseller" category. */
+  isFeatured?: boolean;
   /** Optional "ab 290.000 €" hint. */
   priceHint?: string;
   /** Detail-page link override; defaults to `/haus/${slug}`. */

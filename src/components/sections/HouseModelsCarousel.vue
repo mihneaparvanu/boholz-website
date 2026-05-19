@@ -42,6 +42,11 @@ const select = (category: HouseCategory) => {
 
 const displayModels = computed(() => {
   if (!selected.value) return props.models;
+  // "Bestseller" is a virtual category — models aren't assigned to it via
+  // categoryID; they're flagged with `isFeatured`. Filter accordingly.
+  if (selected.value.slug === "bestseller") {
+    return props.models.filter((m) => m.isFeatured);
+  }
   return props.models.filter((m) => m.categoryID === selected.value?.id);
 });
 
