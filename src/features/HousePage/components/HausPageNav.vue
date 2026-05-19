@@ -1,24 +1,60 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useScrollSpy } from "@/composables/useScrollSpy";
 
 export type HausSection = { id: string; label: string };
 
-const props = defineProps<{
-  sections: HausSection[];
-}>();
-
-const desktopOffset = 84 + 16;
-const mobileOffset = 64 + 8;
-
-const spyOffset = computed(() =>
-  typeof window !== "undefined" && window.innerWidth < 1024
-    ? mobileOffset
-    : desktopOffset,
+const props = withDefaults(
+  defineProps<{
+    sections: HausSection[];
+    /**
+     * Active-pill background tone. Defaults to "secondary" for the haus
+     * detail (Danwood) layout. Pass "primary" on /hauser so the active pill
+     * reads as the brand-primary signal there.
+     */
+    tone?: "primary" | "secondary";
+  }>(),
+  { tone: "secondary" },
 );
 
+// Read --navbar-height live from CSS so JS stays in sync with the design
+// system across breakpoints. Previously this was hardcoded (84 desktop /
+// 64 mobile), so any change to the token left the activation line out of
+// sync with the navbar and surfaced as "the indicator highlights the
+// wrong section" on mobile.
+const navbarHeight = ref(64);
+onMounted(() => {
+  const raw = getComputedStyle(document.documentElement)
+    .getPropertyValue("--navbar-height")
+    .trim();
+  const parsed = parseInt(raw, 10);
+  if (Number.isFinite(parsed) && parsed > 0) navbarHeight.value = parsed;
+});
+
+const spyOffset = computed(() => navbarHeight.value + 16);
+
 const ids = computed(() => props.sections.map((s) => s.id));
-const activeId = useScrollSpy(ids, { topOffset: spyOffset });
+const trackedId = useScrollSpy(ids, { topOffset: spyOffset });
+
+// Click-lock: when the user taps a pill, persist that selection for 2s
+// regardless of what scroll-spy reports. Gives a clear visual ack that the
+// tap registered and prevents flicker as the smooth-scroll passes
+// intermediate sections.
+const lockedId = ref<string | null>(null);
+let lockTimer: number | null = null;
+const LOCK_MS = 2000;
+
+const clearLock = (): void => {
+  if (lockTimer !== null) {
+    window.clearTimeout(lockTimer);
+    lockTimer = null;
+  }
+  lockedId.value = null;
+};
+
+onBeforeUnmount(clearLock);
+
+const activeId = computed(() => lockedId.value ?? trackedId.value);
 
 const pillsRef = ref<HTMLElement | null>(null);
 
@@ -26,13 +62,19 @@ const scrollTo = (id: string, e: Event): void => {
   e.preventDefault();
   const el = document.getElementById(id);
   if (!el) return;
+  lockedId.value = id;
+  if (lockTimer !== null) window.clearTimeout(lockTimer);
+  lockTimer = window.setTimeout(() => {
+    lockedId.value = null;
+    lockTimer = null;
+  }, LOCK_MS);
   const top =
     el.getBoundingClientRect().top + window.scrollY - spyOffset.value + 1;
   window.scrollTo({ top, behavior: "smooth" });
 };
 
-// Mirror SectionNavigator: keep the active pill horizontally centred inside
-// the floating bar without yanking the document scroll.
+// Keep the active pill horizontally centered inside the floating bar
+// without nudging the document scroll.
 watch(activeId, (id) => {
   const pills = pillsRef.value;
   if (!id || !pills) return;
@@ -46,7 +88,11 @@ watch(activeId, (id) => {
 </script>
 
 <template>
-  <nav class="nav full-width" aria-label="Hausseiten-Navigation">
+  <nav
+    class="nav full-width"
+    aria-label="Hausseiten-Navigation"
+    :data-tone="tone"
+  >
     <ul ref="pillsRef" class="pills" role="list">
       <li v-for="s in sections" :key="s.id">
         <a
@@ -68,6 +114,12 @@ watch(activeId, (id) => {
   display: flex;
   justify-content: center;
   pointer-events: none;
+  /* Active-pill background swaps per page via the `tone` prop. */
+  --pill-active-bg: var(--clr-accent-secondary);
+}
+
+.nav[data-tone="primary"] {
+  --pill-active-bg: var(--clr-accent-primary);
 }
 
 .pills {
@@ -108,12 +160,17 @@ watch(activeId, (id) => {
 }
 
 .pill.active {
-  background: var(--clr-accent-secondary);
+  background: var(--pill-active-bg);
   color: var(--clr-pure-white);
 }
 
+/* Focus ring matches the active tone so a focused pill never reads as a
+   different state than an active one. Previously this hardcoded
+   --clr-accent-primary, which caused tapped pills on a "secondary"-tone
+   page to flash in the primary accent — exactly the "sometimes primary,
+   sometimes secondary" flicker reported on mobile. */
 .pill:focus-visible {
-  outline: 2px solid var(--clr-accent-primary);
+  outline: 2px solid var(--pill-active-bg);
   outline-offset: 2px;
 }
 

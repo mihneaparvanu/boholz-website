@@ -2,17 +2,10 @@
 import Layout from "@/layouts/Layout.astro";
 import { getModelBySlug } from "@/data/loaders";
 
-// Old composition — every model except the Danwood prototype.
-import HeroContent from "@/features/HousePage/components/HeroContent.vue";
-import FloorDisplay from "@/features/HousePage/components/FloorDisplay.vue";
-
-// Danwood prototype composition — gated to one slug pending client sign-off.
 import HausPageNav from "@/features/HousePage/components/HausPageNav.vue";
 import HeroGallery from "@/features/HousePage/components/HeroGallery.vue";
 import SideCard from "@/features/HousePage/components/SideCard.vue";
 import FloorPlanTabs from "@/features/HousePage/components/FloorPlanTabs.vue";
-
-// Shared between layouts.
 import StatsGrid from "@/features/HousePage/components/StatsGrid.vue";
 import AccordionItem from "@/features/HousePage/components/AccordionItem.vue";
 import DetailsGrid from "@/features/HousePage/components/DetailsGrid.vue";
@@ -22,12 +15,6 @@ import Button from "@/components/ui/Button.vue";
 const { slug } = Astro.params;
 const model = await getModelBySlug(slug!);
 if (!model) return Astro.redirect("/hauser");
-
-// Single slug gets the Danwood-style prototype until the client signs off.
-const PROTOTYPE_SLUG = "einfamilienhaus-38-115-125";
-const useDanwood = true;
-
-const heroImage = model.media.find((m) => m.isHero)?.media;
 
 const sections = [
   { id: "hausansichten", label: "Hausansichten" },
@@ -51,96 +38,67 @@ const leistungen = [
 ---
 
 <Layout title={`${model.title} – BoHolz Haus`}>
-  {
-    useDanwood ? (
-      <>
-        <HausPageNav client:load sections={sections} />
+  <HausPageNav client:load sections={sections} />
 
-        <section id="hausansichten" class="hero-zone">
-          <div class="hero-grid">
-            <HeroGallery client:load model={model} />
-            <SideCard
-              client:load
-              model={model}
-              descriptionPlaceholder={descriptionPlaceholder}
-            />
-          </div>
-        </section>
+  <section id="hausansichten" class="hero-zone">
+    <div class="hero-grid">
+      <HeroGallery client:load model={model} />
+      <SideCard
+        client:load
+        model={model}
+        descriptionPlaceholder={descriptionPlaceholder}
+      />
+    </div>
+  </section>
 
-        <section class="stats">
-          <StatsGrid model={model} />
-        </section>
+  <section class="stats">
+    <StatsGrid model={model} />
+  </section>
 
-        <section id="informationen" class="info">
-          <h2 class="section-title">Informationen</h2>
-          <AccordionItem client:visible label="Beschreibung">
-            <p class="prose">{descriptionPlaceholder}</p>
-            <p class="prose" set:html={model.category?.description ?? ""} />
-          </AccordionItem>
-          <AccordionItem client:visible label="Details">
-            <DetailsGrid model={model} />
-          </AccordionItem>
-          <AccordionItem client:visible label="Leistungsumfang">
-            <ul class="leistungen">
-              {leistungen.map((item) => <li>{item}</li>)}
-            </ul>
-          </AccordionItem>
-        </section>
+  <section id="informationen" class="info">
+    <h2 class="section-title">Informationen</h2>
+    <AccordionItem client:visible label="Beschreibung">
+      <p class="prose">{descriptionPlaceholder}</p>
+      <p class="prose" set:html={model.category?.description ?? ""} />
+    </AccordionItem>
+    <AccordionItem client:visible label="Details">
+      <DetailsGrid model={model} />
+    </AccordionItem>
+    <AccordionItem client:visible label="Leistungsumfang">
+      <ul class="leistungen">
+        {leistungen.map((item) => <li>{item}</li>)}
+      </ul>
+    </AccordionItem>
+  </section>
 
-        <section id="grundrisse" class="floors">
-          <h2 class="section-title">Grundrisse</h2>
-          {model.floors.length > 0 ? (
-            <FloorPlanTabs client:visible floors={model.floors} />
-          ) : (
-            <p class="empty">Grundrisse folgen in Kürze.</p>
-          )}
-        </section>
-
-        <section id="kontakt">
-          <CTASection
-            title="Interesse an"
-            highlight="diesem Haus?"
-            subtitle="Vereinbaren Sie ein Beratungsgespräch oder lassen Sie sich den Katalog kostenlos zusenden."
-          >
-            <Fragment slot="actions">
-              <Button variant="primary" size="lg" href="/kontakt">
-                Beratungstermin
-              </Button>
-              <Button variant="tertiary" size="lg" href="/katalog">
-                Katalog bestellen
-              </Button>
-            </Fragment>
-          </CTASection>
-        </section>
-      </>
+  <section id="grundrisse" class="floors">
+    <h2 class="section-title">Grundrisse</h2>
+    {model.floors.length > 0 ? (
+      <FloorPlanTabs client:visible floors={model.floors} />
     ) : (
-      <section class="hero subgrid legacy">
-        <div class="hero-image full-width">
-          {heroImage && (
-            <img
-              src={heroImage.path}
-              alt={heroImage.alt}
-              width={heroImage.width}
-              height={heroImage.height}
-            />
-          )}
-        </div>
-        <HeroContent model={model} />
-        <StatsGrid model={model} />
-        <div class="features-list">
-          <AccordionItem class="details-grid" label="Details" client:visible>
-            <DetailsGrid model={model} />
-          </AccordionItem>
-        </div>
-        {model.floors.length > 0 &&
-          model.floors.map((floor) => <FloorDisplay floor={floor} />)}
-      </section>
-    )
-  }
+      <p class="empty">Grundrisse folgen in Kürze.</p>
+    )}
+  </section>
+
+  <section id="kontakt">
+    <CTASection
+      title="Interesse an"
+      highlight="diesem Haus?"
+      subtitle="Vereinbaren Sie ein Beratungsgespräch oder lassen Sie sich den Katalog kostenlos zusenden."
+    >
+      <Fragment slot="actions">
+        <Button variant="primary" size="lg" href="/kontakt">
+          Beratungstermin
+        </Button>
+        <Button variant="tertiary" size="lg" href="/katalog">
+          Katalog bestellen
+        </Button>
+      </Fragment>
+    </CTASection>
+  </section>
 </Layout>
 
 <style>
-  /* ── Danwood prototype layout ──────────────────────────────── */
   .hero-zone {
     padding-block-start: var(--spacing-4);
     padding-block-end: var(--spacing-5);
@@ -217,28 +175,5 @@ const leistungen = [
     :global(main.wrapper) {
       padding-block-end: var(--spacing-6);
     }
-  }
-
-  /* ── Legacy layout — unchanged from pre-rework ─────────────── */
-  .legacy {
-    display: grid;
-  }
-
-  .legacy .hero-image {
-    width: 100%;
-    height: 80vh;
-  }
-
-  .legacy .hero-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .legacy .features-list {
-    display: flex;
-    flex-direction: column;
-    padding-block: var(--spacing-5);
-    width: 100%;
   }
 </style>
