@@ -25,11 +25,13 @@ const FALLBACK_IMAGE_PATH = "/images/pages/uber-uns/value-1.jpg";
 export function toHouseModelCard(m: HouseModel): HouseModelCardProps {
   const { src, alt } = pickImage(m);
   return {
+    id: m.id,
     slug: m.slug,
     name: m.title,
     code: `${(m.category?.name ?? "Hausmodell").toUpperCase()} · ${m.modelCode}`,
     image: src,
     imageAlt: alt,
+    categoryID: m.category?.id ?? "",
     specs: specsFor(m),
     priceHint: priceHintFor(m),
   };
@@ -49,7 +51,10 @@ function specsFor(m: HouseModel): HouseModelSpec[] {
     specs.push({ kind: "rooms", value: `${m.details.bedroomCount} Zimmer` });
   } else if (m.details?.familiesCount != null && m.details.familiesCount > 1) {
     // Multi-family models surface unit count instead of bedrooms.
-    specs.push({ kind: "rooms", value: `${m.details.familiesCount} Einheiten` });
+    specs.push({
+      kind: "rooms",
+      value: `${m.details.familiesCount} Einheiten`,
+    });
   }
 
   // KfW efficiency isn't a structured field today — stand in with the

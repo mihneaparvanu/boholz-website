@@ -4,23 +4,23 @@ import type { HouseCategory, Location } from "@/types/models";
 import { ROUTES } from "@/utils/routes";
 import { useCategoryGallery } from "@/composables/useCategoryGallery";
 import TitleLinks from "./TitleLinks.vue";
+import { HOUSE_DROP_EXTRA_LINKS } from "./navbar.content";
 
 const props = defineProps<{
   categories: HouseCategory[];
   showhouses: Location[];
-  /** Hero image for the virtual Bestseller category (no DB media of its own). */
-  bestsellerHero?: string | null;
 }>();
 
-const { selected, select, showcaseImage } = useCategoryGallery(props.categories, {
-  bestsellerHero: props.bestsellerHero,
-});
+const { selected, select, showcaseImage } = useCategoryGallery(
+  props.categories,
+);
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const ctaLinks = [
   { label: "Vor-Ort-Beratung", href: "/vor-ort-beratung" },
   { label: "Kontakt", href: ROUTES.contact },
 ];
+const extraLinks = HOUSE_DROP_EXTRA_LINKS;
 </script>
 
 <template>
@@ -38,6 +38,20 @@ const ctaLinks = [
         >
           <a :href="`/hauser?category=${category.slug}`">{{ category.name }}</a>
         </Motion>
+        <Motion
+          v-for="(link, j) in extraLinks"
+          :key="link.path"
+          tag="li"
+          :initial="{ opacity: 0, x: -8 }"
+          :animate="{ opacity: 1, x: 0 }"
+          :transition="{
+            duration: 0.32,
+            delay: 0.05 + (props.categories.length + j) * 0.035,
+            ease: EASE,
+          }"
+        >
+          <a :href="link.path">{{ link.label }}</a>
+        </Motion>
       </ul>
       <Motion
         tag="div"
@@ -53,12 +67,9 @@ const ctaLinks = [
                anchors here; the panel's slide-in already covers the entrance
                motion, and the staggered link reveal isn't worth a broken
                navigation. -->
-          <a
-            v-for="link in ctaLinks"
-            :key="link.label"
-            :href="link.href"
-            >{{ link.label }}</a
-          >
+          <a v-for="link in ctaLinks" :key="link.label" :href="link.href">{{
+            link.label
+          }}</a>
         </div>
       </Motion>
     </div>

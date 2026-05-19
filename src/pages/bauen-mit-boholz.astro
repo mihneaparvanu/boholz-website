@@ -35,7 +35,7 @@ const sections = [
 // keeps the forest at the top, then transitions to craftsmanship and material
 // detail as the reader descends.
 const nachhaltigkeitHero = getMediaURL(
-  "/images/content/advantage/nachhaltigkeit/hero.webp",
+  "/images/lifestyle/house-planning-office.webp",
 );
 const nachhaltigkeitManufaktur = getMediaURL(
   "/images/lifestyle/craftsmanship-factory.webp",
@@ -324,7 +324,14 @@ const technik: IconListItem[] = [
     highlight="serienmäßig steckt."
     lede="Vom diffusionsoffenen Wandaufbau bis zur barrierefreien Dusche — sechzehn Details, die wir bereits im Standard liefern."
   >
-    <IconList client:visible items={sechzehnGruende} columns={4} />
+    <IconList
+      client:visible
+      items={sechzehnGruende}
+      columns={4}
+      collapsible
+      moreLabel="Alle 16 Gründe anzeigen"
+      lessLabel="Weniger anzeigen"
+    />
   </Block>
 
   <!-- 4. Nachhaltigkeit — Hero + Video + Stats -------------------------- -->
@@ -401,6 +408,7 @@ const technik: IconListItem[] = [
       />
     </figure>
     <FeatureCardPair client:visible left={sommer} right={winter} />
+    <p class="footnote">* Optionale Ausstattung — auf Wunsch verfügbar.</p>
   </Block>
 
   <!-- 6. Wandaufbau ---------------------------------------------------- -->
@@ -479,9 +487,14 @@ const technik: IconListItem[] = [
 
   .stats-trio .footnote {
     margin: 0;
+    max-width: 64ch;
+  }
+
+  /* Quiet inline fine-print — used for "*Optional" notes under callouts. */
+  .footnote {
+    margin: var(--spacing-3) 0 0 0;
     font-size: var(--fs-body-sm);
     color: var(--clr-content-tertiary);
-    max-width: 64ch;
     line-height: var(--lh-body);
   }
 
@@ -490,6 +503,7 @@ const technik: IconListItem[] = [
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--spacing-4);
+    --stat-icon-color: var(--pastell-grün);
   }
 
   @media (--from-tablet) {

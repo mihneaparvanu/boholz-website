@@ -195,7 +195,11 @@ const openSections = computed<string[]>(() => filterOptions.map((o) => o.id));
         >
           Alle zurücksetzen
         </button>
-        <button class="btn primary" type="button" @click="handleFilterConfirmed">
+        <button
+          class="btn primary"
+          type="button"
+          @click="handleFilterConfirmed"
+        >
           <span class="primary-label">
             <span class="count-box" aria-hidden="true">
               <AnimatePresence mode="wait">
@@ -340,8 +344,10 @@ const openSections = computed<string[]>(() => filterOptions.map((o) => o.id));
 .footer {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: var(--spacing-2);
+  align-items: center;
+  gap: var(--spacing-3);
   padding: var(--spacing-3) var(--spacing-4);
+  padding-block-end: max(var(--spacing-3), env(safe-area-inset-bottom));
   border-block-start: 1px solid var(--clr-border-primary);
   background: var(--clr-surface-primary);
   position: sticky;
@@ -356,8 +362,6 @@ const openSections = computed<string[]>(() => filterOptions.map((o) => o.id));
   align-items: center;
   justify-content: center;
   height: var(--control-height-md);
-  padding-inline: var(--spacing-3);
-  border-radius: var(--radius-md);
   font: inherit;
   font-weight: 500;
   cursor: pointer;
@@ -365,9 +369,7 @@ const openSections = computed<string[]>(() => filterOptions.map((o) => o.id));
   transition:
     background-color 160ms ease,
     color 160ms ease,
-    border-color 160ms ease,
     opacity 160ms ease;
-  border: 1px solid transparent;
 }
 
 .btn:focus-visible {
@@ -377,30 +379,46 @@ const openSections = computed<string[]>(() => filterOptions.map((o) => o.id));
 }
 
 .btn.reset {
-  background: var(--clr-surface-primary);
-  color: var(--clr-content-secondary);
-  border-color: var(--clr-border-secondary);
+  padding-inline: var(--spacing-2);
+  color: var(--clr-content-tertiary);
+  font-size: var(--fs-body-sm);
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition:
+    color 160ms ease,
+    text-decoration-color 160ms ease,
+    opacity 160ms ease;
 }
 
 .btn.reset:hover:not(:disabled) {
   color: var(--clr-content-primary);
-  border-color: var(--clr-border-tertiary);
+  text-decoration-color: currentColor;
 }
 
 .btn.reset:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
 .btn.primary {
-  background: var(--clr-accent-primary);
+  padding-inline: var(--spacing-4);
+  border-radius: var(--radius-sm);
+  background: var(--clr-content-primary);
   color: var(--clr-surface-primary);
-  border-color: var(--clr-accent-primary);
+  letter-spacing: 0.01em;
 }
 
 .btn.primary:hover {
-  background: var(--clr-accent-secondary);
-  border-color: var(--clr-accent-secondary);
+  background: color-mix(
+    in srgb,
+    var(--clr-content-primary) 88%,
+    var(--clr-accent-secondary)
+  );
+}
+
+.btn.primary:active {
+  transform: translateY(0.5px);
 }
 
 .primary-label {

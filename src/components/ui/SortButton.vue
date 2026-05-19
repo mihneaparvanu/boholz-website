@@ -32,8 +32,8 @@ const fields = computed<Field[]>(() => {
   return out;
 });
 
-const activeOption = computed(() =>
-  props.options.find((o) => o.value === sort.value) ?? null,
+const activeOption = computed(
+  () => props.options.find((o) => o.value === sort.value) ?? null,
 );
 </script>
 
@@ -52,39 +52,33 @@ const activeOption = computed(() =>
     </SelectTrigger>
     <SelectPortal>
       <SelectContent
-        class="content"
+        class="sb-select sb-content"
         position="popper"
         side="bottom"
         align="end"
         :side-offset="6"
       >
-        <SelectViewport class="viewport">
+        <SelectViewport class="sb-viewport">
           <template v-for="field in fields" :key="field.value">
-            <div class="group-label">{{ field.label }}</div>
-            <SelectItem
-              class="item"
-              :value="`${field.value}-asc`"
-            >
-              <SelectItemIndicator class="indicator">
+            <div class="sb-group-label">{{ field.label }}</div>
+            <SelectItem class="sb-item" :value="`${field.value}-asc`">
+              <SelectItemIndicator class="sb-indicator">
                 <Check :size="12" :stroke-width="2.5" aria-hidden="true" />
               </SelectItemIndicator>
               <ArrowUp
-                class="dir-icon"
+                class="sb-dir-icon"
                 :size="12"
                 :stroke-width="2"
                 aria-hidden="true"
               />
               <SelectItemText>Aufsteigend</SelectItemText>
             </SelectItem>
-            <SelectItem
-              class="item"
-              :value="`${field.value}-desc`"
-            >
-              <SelectItemIndicator class="indicator">
+            <SelectItem class="sb-item" :value="`${field.value}-desc`">
+              <SelectItemIndicator class="sb-indicator">
                 <Check :size="12" :stroke-width="2.5" aria-hidden="true" />
               </SelectItemIndicator>
               <ArrowDown
-                class="dir-icon"
+                class="sb-dir-icon"
                 :size="12"
                 :stroke-width="2"
                 aria-hidden="true"
@@ -159,11 +153,13 @@ const activeOption = computed(() =>
 </style>
 
 <style>
-/* Portal'd content — unscoped */
-.content {
+/* Portal'd content — unscoped because Reka renders into <body>, outside
+   this component's scope hash. Every class is `sb-`-prefixed so it can't
+   collide with generic names like `.content` / `.item` / `.viewport`
+   used elsewhere (e.g. FilterSection's AccordionContent uses `.content`). */
+.sb-content {
   overflow: hidden;
   pointer-events: auto;
-  min-width: var(--reka-select-trigger-width);
   background-color: var(--clr-surface-primary);
   border: 1px solid var(--clr-border-primary);
   border-radius: var(--radius-md);
@@ -171,16 +167,21 @@ const activeOption = computed(() =>
     0 1px 2px rgba(0, 0, 0, 0.04),
     0 8px 24px -8px rgba(0, 0, 0, 0.12);
   z-index: 40;
+  /* Cap to the space Reka calculates between the trigger and the viewport
+     edge so the menu stays scrollable instead of clipped when the page
+     can't fit it. */
+  max-height: var(--reka-select-content-available-height);
 }
 
-.viewport {
+.sb-viewport {
   padding: var(--spacing-2);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-0);
+  overflow-y: auto;
 }
 
-.group-label {
+.sb-group-label {
   font-size: var(--fs-body-sm);
   font-weight: 500;
   color: var(--clr-content-tertiary);
@@ -189,19 +190,18 @@ const activeOption = computed(() =>
   letter-spacing: 0;
 }
 
-.group-label:not(:first-child) {
+.sb-group-label:not(:first-child) {
   margin-block-start: var(--spacing-2);
   border-block-start: 1px solid var(--clr-border-primary);
   padding-block-start: var(--spacing-3);
 }
 
-.item {
+.sb-item {
   font-size: var(--fs-body);
   line-height: 1;
   color: var(--clr-content-primary);
   border-radius: var(--radius-sm);
-  display: grid;
-  grid-template-columns: 16px 16px 1fr;
+  display: flex;
   align-items: center;
   gap: var(--spacing-2);
   height: var(--control-height-md);
@@ -210,20 +210,21 @@ const activeOption = computed(() =>
   user-select: none;
   cursor: pointer;
   outline: none;
+  width: fit-content;
 }
 
-.dir-icon {
+.sb-dir-icon {
   color: var(--clr-content-tertiary);
 }
 
-.indicator {
+.sb-indicator {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: var(--clr-accent-primary);
 }
 
-.item[data-highlighted] {
+.sb-item[data-highlighted] {
   background: color-mix(
     in srgb,
     var(--clr-accent-primary) 6%,
@@ -232,7 +233,7 @@ const activeOption = computed(() =>
   color: var(--clr-content-primary);
 }
 
-.item[data-state="checked"] .dir-icon {
+.sb-item[data-state="checked"] .sb-dir-icon {
   color: var(--clr-accent-primary);
 }
 </style>

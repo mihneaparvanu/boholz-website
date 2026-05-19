@@ -53,23 +53,11 @@ import { featuredCard, overviewCardsSecondary } from "@/features/Home/Overview/o
 import Faq from "@/features/Home/Faq/Faq.vue";
 import { qaCategories } from "@/content/qa";
 
-import CategorySlider from "@/features/CategorySlider/CategorySlider.vue";
 
 const categories = await getCategories();
-const allModels = await getModels();
+const houseModels = await getModels();
 
-// `featuredOnly` defaults to true — bestseller gate is the safer default.
-const featuredOnly = content.houses.featuredOnly ?? true;
-const filteredModels = allModels
-  .filter((m) => (featuredOnly ? m.isFeatured : true))
-  .filter((m) =>
-    content.houses.categorySlugs === null
-      ? true
-      : content.houses.categorySlugs.includes(m.category?.slug ?? ""),
-  )
-  .slice(0, content.houses.maxItems);
-
-const houseCards = filteredModels.map((m) => toHouseModelCard(m));
+const houseCards = houseModels.map((m) => toHouseModelCard(m));
 
 const heroImage = getMediaURL(content.hero.imageFallbackPath);
 const imageBandImage = getMediaURL(content.imageBand.imageFallbackPath);
@@ -88,7 +76,7 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
       align="left"
       context="home"
     >
-      <Fragment slot="actions">
+      <Fragment slot="actions" class="actions">
         <Button  variant="primary" size="lg" href={content.hero.primaryCta.href}>
           {content.hero.primaryCta.label}
         </Button>
@@ -100,8 +88,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
   </div>
 
   <Block><ProofSection /></Block>
-
- 
 
   <!-- ── 01b · Trust band (full-bleed) ──────────────────────────── -->
   <Block
@@ -262,9 +248,37 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
 </Layout>
 
 <style>
-.hero-wrap {
---hero-align: end;
-}
+  /* Hero overrides — `--hero-align` inherits into PageHero's scoped CSS,
+     so this one works without `:global`. Everything else has to pierce
+     the scope boundary because `.hero`, `.inner`, and `.actions` live
+     inside PageHero.astro. */
+  .hero-wrap {
+    --hero-align: end;
+  }
+
+  @media (--mobile) {
+    /* Hide the secondary CTA on mobile — second child of the slotted
+       `.actions` container that PageHero renders. */
+    .hero-wrap :global(.actions > *:nth-child(2)) {
+      display: none;
+    }
+
+    /* Center the hero copy on mobile even though desktop is `align="left"`.
+       Selector includes `[data-align="left"]` to match PageHero's own
+       specificity so we win the cascade. */
+    .hero-wrap :global(.hero[data-align="left"] .inner) {
+      text-align: center;
+      align-items: center;
+      margin-inline: auto;
+    }
+
+    .hero-wrap :global(.actions) {
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+
 
   /* Empty-state copy when no DB models match the page's category filter. */
   .empty {

@@ -9,7 +9,6 @@ import { TRANSPARENT_NAV } from "./navbar.content";
 defineProps<{
   categories: HouseCategory[];
   showhouses: Location[];
-  bestsellerHero?: string | null;
   currentPath: string;
 }>();
 </script>
@@ -23,7 +22,6 @@ defineProps<{
       :current-path="currentPath"
       :categories="categories"
       :showhouses="showhouses"
-      :bestseller-hero="bestsellerHero"
     />
 
     <div class="spacer" aria-hidden="true"></div>

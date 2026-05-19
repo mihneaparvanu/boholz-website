@@ -25,6 +25,8 @@ export type HouseModelSpec = {
 
 export type HouseModelCardProps = {
   /** Slug used for the detail-page href. */
+  id: string;
+
   slug: string;
   /** Display name, e.g. "Bungalow 22-134". */
   name: string;
@@ -36,6 +38,8 @@ export type HouseModelCardProps = {
   imageAlt: string;
   /** Spec chips — up to 3, rendered inline with hairline separators. */
   specs: HouseModelSpec[];
+
+  categoryID: string;
   /** Optional "ab 290.000 €" hint. */
   priceHint?: string;
   /** Detail-page link override; defaults to `/haus/${slug}`. */
@@ -89,7 +93,11 @@ const iconFor = (kind: HouseModelSpec["kind"]) => {
 
         <footer class="foot">
           <span v-if="priceHint" class="price">{{ priceHint }}</span>
-          <span v-else class="price price-placeholder" aria-hidden="true"></span>
+          <span
+            v-else
+            class="price price-placeholder"
+            aria-hidden="true"
+          ></span>
           <span class="cta" aria-hidden="true">
             <ArrowUpRight :size="18" :stroke-width="1.75" />
           </span>

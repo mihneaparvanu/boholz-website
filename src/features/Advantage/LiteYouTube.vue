@@ -53,7 +53,15 @@ function warm() {
         :src="`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`"
         :title="label"
         loading="lazy"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allow="
+          accelerometer;
+          autoplay;
+          clipboard-write;
+          encrypted-media;
+          gyroscope;
+          picture-in-picture;
+          web-share;
+        "
         allowfullscreen
       />
       <button
@@ -160,17 +168,16 @@ function warm() {
 }
 
 .play :deep(svg) {
-  /* The chip itself — circular glass affordance over imagery. Backdrop blur
-     keeps the play glyph legible regardless of the underlying scene; the
-     soft drop shadow guarantees separation from light scenes (snow, white
-     facades) where the glass alone would disappear. */
+  /* The chip itself — circular glass affordance over imagery. A dark base
+     keeps the white play glyph legible regardless of poster brightness;
+     the soft drop shadow guarantees separation on busy scenes. */
   padding: var(--spacing-3);
-  background: color-mix(in srgb, var(--clr-pure-white) 32%, transparent);
+  background: color-mix(in srgb, #000 55%, transparent);
   border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--clr-pure-white) 40%, transparent);
+  border: 1px solid color-mix(in srgb, var(--clr-pure-white) 18%, transparent);
   backdrop-filter: blur(6px) saturate(120%);
   -webkit-backdrop-filter: blur(6px) saturate(120%);
-  box-shadow: 0 6px 24px color-mix(in srgb, #000 28%, transparent);
+  box-shadow: 0 6px 24px color-mix(in srgb, #000 36%, transparent);
   /* Optical adjustment — Play triangle is right-heavy; nudge it 1.5px left
      inside the chip so it reads centred. */
   margin-inline-start: 1.5px;
@@ -186,7 +193,6 @@ function warm() {
 @media (--mobile) {
   .play :deep(svg) {
     padding: var(--spacing-4);
-    background: color-mix(in srgb, var(--clr-pure-white) 38%, transparent);
   }
 }
 
@@ -206,7 +212,7 @@ function warm() {
 
 .poster:hover .play :deep(svg),
 .poster:focus-visible .play :deep(svg) {
-  background: color-mix(in srgb, var(--clr-pure-white) 34%, transparent);
+  background: color-mix(in srgb, #000 65%, transparent);
   transform: scale(1.06);
 }
 

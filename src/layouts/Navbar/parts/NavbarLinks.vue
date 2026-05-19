@@ -15,7 +15,6 @@ const props = defineProps<{
   enableDropdown?: boolean;
   categories?: HouseCategory[];
   showhouses?: Location[];
-  bestsellerHero?: string | null;
 }>();
 
 /* One drop is open at a time. The string identifies which route's panel
@@ -112,11 +111,7 @@ function hasDropdown(route: NavLink): boolean {
       @mouseenter="open('houses')"
       @mouseleave="scheduleClose"
     >
-      <NavbarDrop
-        :categories="categories"
-        :showhouses="showhouses"
-        :bestseller-hero="bestsellerHero"
-      />
+      <NavbarDrop :categories="categories" :showhouses="showhouses" />
     </Motion>
   </AnimatePresence>
 </template>

@@ -55,14 +55,8 @@ const filteredModels = allModels
 
 const houseCards = filteredModels.map((m) => toHouseModelCard(m));
 
-// Hero image — try live DB first (featured model in preferred category,
-// pick its hero photo), fall back to the page-specific static asset.
-const preferredHero = allModels
-  .filter((m) => m.isFeatured && m.category?.slug === content.hero.preferredCategorySlug)
-  .map((m) => m.media.find((mm) => mm.isHero)?.media.path)
-  .find((path): path is string => Boolean(path));
 
-const heroImage = preferredHero ?? getMediaURL(content.hero.imageFallbackPath);
+const heroImage = getMediaURL(content.hero.imageFallbackPath);
 const imageBandImage = getMediaURL(content.imageBand.imageFallbackPath);
 const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath);
 ---

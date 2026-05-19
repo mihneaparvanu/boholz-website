@@ -39,11 +39,6 @@ defineProps<{
 </template>
 
 <style scoped>
-.section {
-  /* Section dividers removed — the chip groups already chunk the panel
-     vertically; hairlines on top of that read as a "framed" container. */
-}
-
 .header {
   display: flex;
   margin: 0;

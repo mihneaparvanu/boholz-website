@@ -12,23 +12,16 @@ import type { HeroSlide } from "@/features/Home/Hero/hero.types";
 import { getMediaURL } from "@/utils/media";
 
 const HIDDEN_CATEGORY_SLUGS: string[] = [];
-
-// Virtual "Bestseller" category — not stored in DB; filtered client-side by model.isFeatured
-export const BESTSELLER_CATEGORY: HouseCategory = {
-  id: "00000000-0000-0000-0000-000000000001",
-  name: "Bestseller",
-  slug: "bestseller",
-  description: null,
-  media: [],
-};
+const BESTSELLER_SLUG = "bestseller";
 
 type PivotMediaRow = { media: { path: string } };
 type WithPivotMedia<M extends PivotMediaRow> = { media: M[] };
 
 /** Resolve nested pivot-media paths to full URLs so client components don't need env vars. */
-function resolveMediaPaths<M extends PivotMediaRow, T extends WithPivotMedia<M>>(
-  items: T[],
-): T[] {
+function resolveMediaPaths<
+  M extends PivotMediaRow,
+  T extends WithPivotMedia<M>,
+>(items: T[]): T[] {
   return items.map((item) => ({
     ...item,
     media: item.media.map((m) => ({
@@ -50,8 +43,16 @@ export async function getCategories(): Promise<HouseCategory[]> {
   });
 
   const resolved = resolveMediaPaths(data as unknown as HouseCategory[]);
-  // Append virtual Bestseller at the end
-  return [...resolved, BESTSELLER_CATEGORY];
+  // Bestseller is a real DB row (see `scripts/seed-bestseller-category.ts`)
+  // but we want it to lead the list regardless of insertion order. Sort it
+  // to the front here so every consumer — navbar dropdown, CategorySlider,
+  // HousesPage filter rail — receives the same canonical ordering without
+  // having to reimplement the rule.
+  return resolved.sort((a, b) => {
+    if (a.slug === BESTSELLER_SLUG) return -1;
+    if (b.slug === BESTSELLER_SLUG) return 1;
+    return 0;
+  });
 }
 
 export async function getModels(): Promise<HouseModel[]> {

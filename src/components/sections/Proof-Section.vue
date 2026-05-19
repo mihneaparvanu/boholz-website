@@ -55,7 +55,7 @@
 }
 
 .badge {
-  height: 56px;
+  height: var(--fs-h3);
   width: auto;
   aspect-ratio: var(--badge-aspect, auto);
 }
@@ -79,10 +79,10 @@
 } /* ral — cropped to RAL Gütezeichen only (no Holzhausbau frame) */
 .badge:nth-child(6) {
   aspect-ratio: 1 / 1;
-  height: 88px;
+  height: var(--fs-h2);
 } /* holz-klima — Holz Rettet Klima 2030, oversized per client request */
 
-@media (--mobile) {
+@media (--below-desktop) {
   /* Eyebrow drops to tertiary tone — the proof line is supporting copy,
      not headline beat. */
   .proof span {
@@ -97,17 +97,13 @@
   .badges {
     flex-wrap: nowrap;
     justify-content: space-between;
-    gap: var(--spacing-1);
+    gap: var(--spacing-4);
   }
 
   .badge {
-    height: 36px;
+    height: var(--fs-h4);
     flex-shrink: 1;
     min-width: 0;
-  }
-
-  .badge:nth-child(6) {
-    height: 44px;
   }
 }
 </style>

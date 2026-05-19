@@ -60,24 +60,6 @@ const activeKey = ref<string>(props.floors[0]?.title ?? "");
         </div>
       </div>
     </div>
-
-    <a
-      v-if="floors.length > 0"
-      class="download"
-      :href="floors[0].media.path"
-      target="_blank"
-      rel="noopener"
-    >
-      <span class="dl-icon"><FileText :size="20" :stroke-width="1.75" /></span>
-      <span class="dl-text">
-        <span class="dl-title">Grundrisse</span>
-        <span class="dl-sub">Kompletter Plan aller Etagen mit Fläche</span>
-      </span>
-      <span class="dl-cta">
-        Herunterladen
-        <Download :size="16" :stroke-width="2" />
-      </span>
-    </a>
   </div>
 </template>
 

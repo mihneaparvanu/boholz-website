@@ -14,17 +14,28 @@ const thumbnail = computed(() => {
 const imageURL = computed(() => {
   return thumbnail.value?.media.path ?? "";
 });
+
+const initials = computed(() =>
+  props.category.name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((p) => p[0]?.toUpperCase() ?? "")
+    .join(""),
+);
 </script>
 <template>
   <div class="category-thumbnail">
     <div class="house-model-circle">
       <img
+        v-if="imageURL"
         :src="imageURL"
         :alt="category.name"
         :width="thumbnail?.media.width"
         :height="thumbnail?.media.height"
         class="model-image"
       />
+      <span v-else class="fallback" aria-hidden="true">{{ initials }}</span>
     </div>
     <div class="text-wrapper">
       <span>{{ category.name }}</span>
@@ -51,7 +62,7 @@ const imageURL = computed(() => {
 
   .house-model-circle {
     cursor: pointer;
-    --size: var(--fs-h2);
+    --size: 72px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,6 +71,7 @@ const imageURL = computed(() => {
     aspect-ratio: 1/1;
     border: 2px solid var(--clr-border-primary);
     overflow: hidden;
+    background: var(--clr-surface-secondary, var(--clr-surface-primary));
 
     @media (--below-desktop) {
       --size: 84px;
@@ -69,6 +81,13 @@ const imageURL = computed(() => {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .fallback {
+      font-size: var(--fs-body-sm);
+      font-weight: var(--font-weight-medium);
+      letter-spacing: var(--tracking-eyebrow);
+      color: var(--clr-content-secondary);
     }
   }
 

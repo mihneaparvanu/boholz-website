@@ -13,8 +13,6 @@ import { usePathname } from "@/composables/usePathname";
 const props = defineProps<{
   categories: HouseCategory[];
   showhouses: Location[];
-  /** Fallback hero image URL for the virtual Bestseller category. */
-  bestsellerHero?: string | null;
 }>();
 
 const isHero = useIsHeroPage();
@@ -52,7 +50,6 @@ const DesktopVariant = computed(() =>
         :is="DesktopVariant"
         :categories="props.categories"
         :showhouses="props.showhouses"
-        :bestseller-hero="props.bestsellerHero"
         :current-path="pathname"
       />
     </div>

@@ -17,20 +17,33 @@ import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 import HouseModelCard from "./HouseModelCard.vue";
 import type { HouseModelCardProps } from "./HouseModelCard.vue";
+import CategoryThumbnail from "@/features/CategorySlider/components/CategoryThumbnail.vue";
 import type { HouseCategory } from "@/types/models";
 
-const selected = ref<HouseCategory | null>(null);
+const props = defineProps<{
+  models: HouseModelCardProps[];
+  categories?: HouseCategory[];
+  /** Accessible label for the scrollable region. */
+  ariaLabel?: string;
+}>();
+
+// Default selection lands on the Bestseller category if present — it's
+// the canonical "start here" entry across every category surface. Falls
+// back to the first category if Bestseller hasn't been seeded yet.
+const selected = ref<HouseCategory | null>(
+  props.categories?.find((c) => c.slug === "bestseller") ??
+    props.categories?.[0] ??
+    null,
+);
 
 const select = (category: HouseCategory) => {
   selected.value = category;
 };
 
-defineProps<{
-  models: HouseModelCardProps[];
-  categories: HouseCategory[];
-  /** Accessible label for the scrollable region. */
-  ariaLabel?: string;
-}>();
+const displayModels = computed(() => {
+  if (!selected.value) return props.models;
+  return props.models.filter((m) => m.categoryID === selected.value?.id);
+});
 
 const trackRef = ref<HTMLElement | null>(null);
 const canPrev = ref(false);
@@ -81,6 +94,15 @@ const nextDisabled = computed(() => !canNext.value);
 
 <template>
   <div class="carousel">
+    <div v-if="props.categories?.length" class="category-thumbnails">
+      <CategoryThumbnail
+        v-for="category in categories"
+        :key="category.slug"
+        :category="category"
+        :data-is-selected="category.id === selected?.id"
+        @click="select(category)"
+      />
+    </div>
     <div class="controls" role="group" aria-label="Navigation">
       <button
         type="button"
@@ -111,14 +133,16 @@ const nextDisabled = computed(() => !canNext.value);
       :aria-label="ariaLabel ?? 'Hausmodelle'"
       tabindex="0"
     >
-      <div v-for="m in models" :key="m.slug" class="cell">
+      <div v-for="m in displayModels" :key="m.id" class="cell">
         <HouseModelCard
+          :id="m.id"
           :slug="m.slug"
           :name="m.name"
           :code="m.code"
           :image="m.image"
           :image-alt="m.imageAlt"
           :specs="m.specs"
+          :category-i-d="m.categoryID"
           :price-hint="m.priceHint"
           :href="m.href"
         />
@@ -126,15 +150,6 @@ const nextDisabled = computed(() => !canNext.value);
       <!-- A trailing spacer keeps the last card's right-edge breathing room
            equal to the leading inset, even when scroll-padding lands. -->
       <div class="cell cell-spacer" aria-hidden="true"></div>
-    </div>
-    <div class="category-thumbnails">
-      <CategoryThumbnail
-        v-for="category in categories"
-        :key="category.slug"
-        :category="category"
-        :data-is-selected="category.id === selected?.id"
-        @click="select(category)"
-      />
     </div>
   </div>
 </template>
@@ -145,6 +160,36 @@ const nextDisabled = computed(() => !canNext.value);
   flex-direction: column;
   gap: var(--spacing-4);
   width: 100%;
+}
+
+.category-thumbnails {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: var(--spacing-2);
+
+  @media (--below-desktop) {
+    /* Native horizontal scroll, full-bleed across the section padding */
+    justify-content: flex-start;
+    gap: var(--spacing-3);
+    width: 100vw;
+    margin-inline: calc(var(--padding-inline) * -1);
+    padding-inline: var(--padding-inline);
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    > * {
+      scroll-snap-align: center;
+      flex: 0 0 auto;
+    }
+  }
 }
 
 /* Controls — right-aligned chevron pair. Hidden on touch (mobile) where the

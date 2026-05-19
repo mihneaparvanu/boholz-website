@@ -111,7 +111,7 @@ const reviews = await getGoogleReviews();
     padding-block: var(--spacing-6);
     padding-inline: var(--padding-inline);
     background: var(--pastell-grün);
-    color: var(--clr-content-primary);
+    color: var(--clr-pure-white);
   }
 
   .inner {
@@ -139,7 +139,7 @@ const reviews = await getGoogleReviews();
     font-weight: var(--font-weight-medium);
     text-transform: uppercase;
     letter-spacing: var(--tracking-eyebrow);
-    color: var(--clr-content-secondary);
+    color: color-mix(in srgb, var(--clr-pure-white) 80%, transparent);
   }
 
   .heading {
@@ -148,21 +148,21 @@ const reviews = await getGoogleReviews();
     font-weight: var(--font-weight-regular);
     letter-spacing: var(--ls-heading);
     line-height: var(--lh-heading);
-    color: var(--clr-content-primary);
+    color: var(--clr-pure-white);
     text-wrap: balance;
   }
 
-  .highlight {
+  .band .highlight.highlight {
     font-family: var(--font-secondary);
     font-style: italic;
-    color: var(--highlight-color, var(--clr-accent-primary));
+    color: var(--clr-pure-white);
   }
 
   .lede {
     margin: 0;
     font-size: var(--fs-body);
     line-height: var(--lh-body);
-    color: var(--clr-content-secondary);
+    color: color-mix(in srgb, var(--clr-pure-white) 85%, transparent);
     max-width: 52ch;
   }
 
@@ -199,7 +199,7 @@ const reviews = await getGoogleReviews();
     inset-block: 15%;
     inset-inline-end: 0;
     width: 1px;
-    background: color-mix(in srgb, var(--clr-content-primary) 20%, transparent);
+    background: color-mix(in srgb, var(--clr-pure-white) 30%, transparent);
   }
 
   .badge-label {

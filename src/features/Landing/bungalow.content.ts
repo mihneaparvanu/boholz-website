@@ -30,7 +30,7 @@ export const bungalowContent: LandingPageContent = {
       "Ob altersgerecht, rollstuhlgerecht oder einfach bequem — ein BoHolz-Bungalow bietet Ihnen Sicherheit, Unabhängigkeit und nachhaltiges Wohnen auf einer Ebene.",
     imageAlt:
       "BoHolz-Bungalow Schäfer-Haus 134/22 — ebenerdiges Wohnen auf einer Ebene",
-    imageFallbackPath: "/images/landing/bungalow/hero.webp",
+    imageFallbackPath: "/images/models/bungalow/bungalow-hero-1.webp",
     preferredCategorySlug: "bungalow",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
     secondaryCta: { label: "Hauskatalog bestellen", href: "/katalog" },
