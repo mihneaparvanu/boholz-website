@@ -4,7 +4,6 @@ import { ref, computed, onMounted, watch } from "vue";
 import ModelCard from "@/features/ModelOverview/components/ModelCard.vue";
 import CategoryThumbnail from "@/features/CategorySlider/components/CategoryThumbnail.vue";
 import SortButton from "@/components/ui/SortButton.vue";
-import { SlidersHorizontal } from "lucide-vue-next";
 import { ROUTES } from "@/utils/routes";
 import FilterPanel from "@/features/FilterPanel/FilterPanel.vue";
 import {
@@ -352,7 +351,6 @@ watch(
               : 'Filtern'
           "
         >
-          <SlidersHorizontal :size="14" :stroke-width="2" aria-hidden="true" />
           <span>Filtern</span>
           <span
             v-if="
@@ -435,27 +433,25 @@ watch(
         box-sizing: border-box;
         display: inline-flex;
         align-items: center;
-        gap: var(--spacing-1);
-        height: var(--control-height-md);
-        padding-inline: var(--spacing-2);
+        gap: var(--spacing-2);
+        /* Bumped from `--control-height-md` + `--spacing-2` to the lg
+           control floor + `--spacing-4` so the chip reads as a deliberate
+           CTA rather than a compact toolbar control. */
+        height: var(--control-height-lg);
+        padding-inline: var(--spacing-4);
         border: 1px solid var(--clr-border-secondary);
         background: var(--clr-surface-primary);
         color: var(--clr-content-primary);
         border-radius: var(--radius-md);
         font: inherit;
         font-weight: 400;
-        font-size: var(--fs-body-sm);
+        font-size: var(--fs-body);
         cursor: pointer;
         white-space: nowrap;
         transition:
           background-color 160ms ease,
           border-color 160ms ease,
           color 160ms ease;
-
-        & :first-child {
-          color: var(--clr-content-tertiary);
-          flex-shrink: 0;
-        }
 
         .trigger-count {
           display: inline-flex;

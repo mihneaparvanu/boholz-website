@@ -7,7 +7,12 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import type { LocationWithAgents } from "@/types/models";
 import LocationCard from "./LocationCard.vue";
 import LocationMarker from "./LocationMarker.vue";
-import { getBrandedStyle, GERMANY_CENTER, GERMANY_ZOOM } from "./mapStyle";
+import {
+  getBrandedStyle,
+  GERMANY_CENTER,
+  GERMANY_ZOOM,
+  GERMANY_BOUNDS,
+} from "./mapStyle";
 
 const props = defineProps<{ locations: LocationWithAgents[] }>();
 
@@ -32,6 +37,7 @@ const selected = ref<LocationWithAgents | null>(null);
       :map-style="mapStyle"
       :center="GERMANY_CENTER"
       :zoom="GERMANY_ZOOM"
+      :max-bounds="GERMANY_BOUNDS"
       :attribution-control="{ compact: true }"
     >
       <MglNavigationControl position="top-right" :show-compass="false" />
@@ -59,15 +65,15 @@ const selected = ref<LocationWithAgents | null>(null);
 .map-wrapper {
   position: relative;
   width: 100%;
-  height: 70vh;
-  min-height: 480px;
+  height: 50vh;
+  min-height: 360px;
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--clr-border-secondary);
 
   @media (--mobile) {
-    height: 60vh;
-    min-height: 320px;
+    height: 45vh;
+    min-height: 280px;
   }
 }
 

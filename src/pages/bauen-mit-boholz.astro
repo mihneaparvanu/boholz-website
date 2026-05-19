@@ -29,15 +29,21 @@ const sections = [
 ];
 
 // ── R2 image URLs for the advantage subsections.
+// PageHero, Section 3 media-hero, and Section 4 hero-image previously all
+// resolved to the same forest webp (identical R2 etag) — three identical
+// "sun-through-trees" frames on one page. They're now diversified: the page
+// keeps the forest at the top, then transitions to craftsmanship and material
+// detail as the reader descends.
 const nachhaltigkeitHero = getMediaURL(
   "/images/content/advantage/nachhaltigkeit/hero.webp",
+);
+const nachhaltigkeitManufaktur = getMediaURL(
+  "/images/lifestyle/craftsmanship-factory.webp",
 );
 const nachhaltigkeitVideoPoster = getMediaURL(
   "/images/content/advantage/nachhaltigkeit/video-poster.webp",
 );
-const holzfaserHero = getMediaURL(
-  "/images/content/advantage/holzfaserdaemmung/hero.webp",
-);
+const holzfaserHero = getMediaURL("/images/photography/timber-grain.webp");
 const wandaufbauHero = getMediaURL(
   "/images/content/advantage/wandaufbau/hero.webp",
 );
@@ -333,7 +339,7 @@ const technik: IconListItem[] = [
     <div class="media-pair">
       <figure class="media-hero">
         <img
-          src={nachhaltigkeitHero}
+          src={nachhaltigkeitManufaktur}
           alt="Nachhaltige Holzbauweise im BoHolz Werk — gelebter Umweltschutz von der Materialwahl bis zur Fertigung"
           loading="lazy"
         />

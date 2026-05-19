@@ -124,11 +124,31 @@ const resolvedTone: Tone = image ? "image" : tone;
   h2 {
     margin: 0;
     font-weight: var(--font-weight-regular);
+    /* CTA closer carries the page's final beat — sized larger than the
+       default h2 (--fs-h3) and rendered with no tracking so the headline
+       reads open and confident, not condensed. */
+    letter-spacing: 0;
+    font-size: var(--fs-h2);
+  }
+
+  @media (--mobile) {
+    h2 {
+      font-size: var(--fs-h3);
+    }
   }
 
   .highlight {
     font-family: var(--font-secondary);
     font-style: italic;
+  }
+
+  /* On the accent-tone CTA, the background IS accent-primary — the global
+     `.highlight` rule colours the italic word in the same accent, making it
+     vanish. Promote it to white so the headline reads as two parts again.
+     The double-class selector matches the global rule's specificity. */
+  .cta[data-tone="accent"] .highlight.highlight,
+  .cta[data-tone="image"] .highlight.highlight {
+    color: var(--clr-pure-white);
   }
 
   .subtitle {
@@ -160,5 +180,23 @@ const resolvedTone: Tone = image ? "image" : tone;
       align-items: stretch;
       width: 100%;
     }
+  }
+
+  /* On accent/image tones the page background IS the accent, so a `ghost`
+     Button (transparent bg + accent-primary text + transparent border) is
+     invisible. Promote its label and outline to white-soft so the secondary
+     action reads against the saturated surface. `:global` lets the rule
+     reach the scoped Button.vue internals. */
+  .cta[data-tone="accent"] :global(.btn[data-variant="ghost"]),
+  .cta[data-tone="image"] :global(.btn[data-variant="ghost"]) {
+    color: var(--clr-pure-white);
+    border-color: var(--clr-pure-white-soft);
+  }
+
+  .cta[data-tone="accent"] :global(.btn[data-variant="ghost"]:hover),
+  .cta[data-tone="image"] :global(.btn[data-variant="ghost"]:hover) {
+    background: var(--clr-pure-white);
+    color: var(--clr-content-primary);
+    border-color: var(--clr-pure-white);
   }
 </style>

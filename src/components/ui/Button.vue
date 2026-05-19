@@ -66,6 +66,12 @@ withDefaults(
     color-mix(in srgb, var(--clr-accent-primary) 28%, transparent);
 }
 
+/* Override global `a:hover { opacity: 0.7 }` from reset.css — the button
+   owns its own hover affordance (bg/color swap). */
+a.btn:hover {
+  opacity: 1;
+}
+
 .btn:active:not([disabled], [aria-disabled="true"]) {
   transform: translateY(1px);
 }
@@ -168,7 +174,9 @@ withDefaults(
   color: var(--clr-accent-primary);
 }
 .btn[data-variant="secondary"]:hover:not([disabled], [aria-disabled="true"]) {
-  color: var(--clr-accent-secondary);
+  background: var(--clr-accent-primary);
+  border-color: var(--clr-accent-primary);
+  color: var(--clr-surface-primary);
 }
 
 .btn[data-variant="tertiary"] {

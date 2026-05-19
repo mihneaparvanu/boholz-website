@@ -2,7 +2,7 @@
  * Site-wide toggle for the Keitel-Haus partner brand mentions. Client asked
  * to hide them in 2026-05; flip `SHOW_KEITEL_HAUS` to `true` to restore.
  */
-export const SHOW_KEITEL_HAUS = false;
+export const SHOW_KEITEL_HAUS = true;
 
 const copy = {
   versprechenTraditionLede: {

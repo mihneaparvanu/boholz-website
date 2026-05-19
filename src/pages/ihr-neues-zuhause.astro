@@ -97,7 +97,7 @@ const architekturBeats: ArchBeat[] = [
 ];
 
 const heroImage = bauphasenHeroImageURL;
-const ctaImage = getMediaURL("/images/pages/dein-zuhause/foerderung.jpg");
+const ctaImage = getMediaURL("/images/brand/brochure-vertical.webp");
 
 // Nachhaltigkeit — two side-by-side editorial images. The first carries the
 // `badge-holz-klima-color` sigil from the global sprite (injected by
@@ -106,7 +106,7 @@ const nachhaltigkeitImageA = getMediaURL(
   "/images/content/advantage/nachhaltigkeit/hero.webp",
 );
 const nachhaltigkeitImageB = getMediaURL(
-  "/images/content/advantage/holzfaserdaemmung/hero.webp",
+  "/images/photography/timber-grain.webp",
 );
 ---
 
@@ -133,7 +133,7 @@ const nachhaltigkeitImageB = getMediaURL(
     highlight="eigene Zuhause."
     lede="In übersichtliche Schritte gegliedert, mit klaren Deadlines und einem Ansprechpartner, der Sie von Anfang bis Ende begleitet."
   >
-    <div class="cards three">
+    <div class="cards">
       <article id={`phase-${buildPhases[0].slug}`} class="phase">
         <figure class="phase-frame">
           <img
@@ -339,7 +339,7 @@ const nachhaltigkeitImageB = getMediaURL(
       <figure class="sustain-frame">
         <img
           src={nachhaltigkeitImageB}
-          alt="Holzfaserdämmung als ökologische Gebäudehülle — diffusionsoffen, baubiologisch hervorragend"
+          alt="Detailaufnahme der massiven Holzmaserung — gewachsenes Material, sichtbar gemacht"
           loading="lazy"
         />
       </figure>
@@ -369,7 +369,7 @@ const nachhaltigkeitImageB = getMediaURL(
   /* ── Card row ── */
   .cards {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns:repeat(3, 1fr);
     gap: var(--spacing-4);
   }
 

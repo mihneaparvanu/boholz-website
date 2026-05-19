@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="card">
+  <div class="card" :data-featured="data.featured || null">
     <div class="text">
       <h3>{{ data.heading }}</h3>
       <p v-if="data.subheading">{{ data.subheading }}</p>
@@ -30,6 +30,10 @@ defineProps<{
   border-radius: var(--radius-md);
   padding: var(--spacing-4);
   width: 100%;
+  min-height: 300px;
+  max-height: 50dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 .text {
@@ -39,6 +43,20 @@ defineProps<{
   h3 {
     font-size: var(--fs-h6);
     font-weight: 500;
+  }
+}
+
+.img-wrapper {
+  margin-top: var(--spacing-4);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  flex: 1;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 </style>

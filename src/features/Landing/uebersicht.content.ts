@@ -75,7 +75,7 @@ export const uebersichtContent: LandingPageContent = {
     subtitle: heroVariants[heroVariant].subtitle,
     imageAlt:
       "Premium-Stadtvilla in Holzbauweise von BoHolz Haus — moderne Architektur mit klaren Linien",
-    imageFallbackPath: "/images/homepage/overview-hero.webp",
+    imageFallbackPath: "/images/brand/hero.jpg",
     preferredCategorySlug: "einfamilienhaus",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
     secondaryCta: { label: "Hauskatalog bestellen", href: "/katalog" },

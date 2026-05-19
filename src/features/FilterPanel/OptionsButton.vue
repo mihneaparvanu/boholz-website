@@ -18,18 +18,21 @@ defineProps<{
 
 <style scoped>
 .chip {
+  /* Border-less chip — the chip itself is the only interactive token here,
+     so we lean on subtle background tinting (resting → hover → selected)
+     instead of a hairline outline. The previous variant read as "a button
+     inside a container", which is the look the design pass wanted gone. */
   all: unset;
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: var(--control-height-sm);
-  min-width: var(--control-height-sm);
-  padding-inline: var(--spacing-2);
-  border: 1px solid var(--clr-border-secondary);
-  border-radius: var(--radius-md);
-  background: var(--clr-surface-primary);
-  color: var(--clr-content-primary);
+  min-height: var(--control-height-md);
+  min-width: var(--control-height-md);
+  padding-inline: var(--spacing-3);
+  border-radius: var(--radius-full);
+  background: var(--clr-surface-secondary);
+  color: var(--clr-content-secondary);
   font: inherit;
   font-size: var(--fs-body-sm);
   line-height: 1;
@@ -37,17 +40,16 @@ defineProps<{
   white-space: nowrap;
   transition:
     background-color 160ms ease,
-    border-color 160ms ease,
     color 160ms ease;
 }
 
 .chip:hover {
-  border-color: var(--clr-border-tertiary);
   background: color-mix(
     in srgb,
-    var(--clr-accent-primary) 4%,
-    var(--clr-surface-primary)
+    var(--clr-accent-primary) 10%,
+    var(--clr-surface-secondary)
   );
+  color: var(--clr-content-primary);
 }
 
 .chip:focus-visible {
@@ -58,12 +60,10 @@ defineProps<{
 
 .chip[data-selected] {
   background: var(--clr-accent-primary);
-  border-color: var(--clr-accent-primary);
-  color: var(--clr-surface-primary);
+  color: var(--clr-pure-white);
 }
 
 .chip[data-selected]:hover {
   background: var(--clr-accent-secondary);
-  border-color: var(--clr-accent-secondary);
 }
 </style>

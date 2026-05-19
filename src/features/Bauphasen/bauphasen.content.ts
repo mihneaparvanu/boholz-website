@@ -20,8 +20,7 @@ export const buildPhases: BuildPhase[] = [
     title: "Der Grundstein wird gelegt",
     description:
       "Planung, Grundstück, Finanzierung — wir legen die Basis für Ihr Projekt.",
-    teaser:
-      "Planung, Grundstück, Finanzierung — die Basis für Ihr Projekt.",
+    teaser: "Planung, Grundstück, Finanzierung — die Basis für Ihr Projekt.",
     icon: "compass",
     imageURL: getMediaURL(`${base}/phase-01-grundstein.webp`),
   },
@@ -30,18 +29,16 @@ export const buildPhases: BuildPhase[] = [
     title: "Träume in Realität verwandeln",
     description:
       "Architektur, Bauantrag und Bemusterung — Ihr Haus nimmt Form an.",
-    teaser:
-      "Architektur, Bauantrag, Bemusterung — Ihr Haus nimmt Form an.",
+    teaser: "Architektur, Bauantrag, Bemusterung — Ihr Haus nimmt Form an.",
     icon: "pencil",
-    imageURL: getMediaURL(`${base}/phase-02-traeume.webp`),
+    imageURL: getMediaURL(`images/lifestyle/craftsmanship-factory.webp`),
   },
   {
     slug: "bauphase",
     title: "Die heiße Bauphase beginnt",
     description:
       "Vom Keller bis zur Schlüsselübergabe — Vorfertigung, Montage, Innenausbau.",
-    teaser:
-      "Vorfertigung, Montage, Innenausbau — bis zur Schlüsselübergabe.",
+    teaser: "Vorfertigung, Montage, Innenausbau — bis zur Schlüsselübergabe.",
     icon: "hammer",
     imageURL: getMediaURL(`${base}/phase-03-bauphase.webp`),
   },

@@ -199,25 +199,30 @@ const whatWeDoItems = [
   </div>
 
   <!-- 08 — CTA -->
-  <CTASection
-    title="Lernen wir uns"
-    highlight="kennen."
-    subtitle="Ein Erstgespräch — unverbindlich, kostenfrei. Persönlich in Bad Kissingen oder in einem unserer Vertriebsbüros."
-  >
-    <Fragment slot="actions">
-      <Button variant="primary" size="lg" href="/kontakt" client:visible>
-        Beratungstermin vereinbaren
-      </Button>
-      <Button
-        variant="secondary"
-        size="lg"
-        href="/vor-ort-beratung"
-        client:visible
-      >
-        Standort finden
-      </Button>
-    </Fragment>
-  </CTASection>
+  <!-- Wrapped in `.full-width` so the CTA escapes the wrapper's content
+       column and spans the full viewport — mirrors `bauen-mit-boholz.astro`
+       and `ihr-neues-zuhause.astro`. -->
+  <div class="full-width">
+    <CTASection
+      title="Lernen wir uns"
+      highlight="kennen."
+      subtitle="Ein Erstgespräch — unverbindlich, kostenfrei. Persönlich in Bad Kissingen oder in einem unserer Vertriebsbüros."
+    >
+      <Fragment slot="actions">
+        <Button variant="primary" size="lg" href="/kontakt" client:visible>
+          Beratungstermin vereinbaren
+        </Button>
+        <Button
+          variant="secondary"
+          size="lg"
+          href="/vor-ort-beratung"
+          client:visible
+        >
+          Standort finden
+        </Button>
+      </Fragment>
+    </CTASection>
+  </div>
 </Layout>
 
 <style>

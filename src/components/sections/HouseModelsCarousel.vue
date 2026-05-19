@@ -17,9 +17,17 @@ import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 import HouseModelCard from "./HouseModelCard.vue";
 import type { HouseModelCardProps } from "./HouseModelCard.vue";
+import type { HouseCategory } from "@/types/models";
+
+const selected = ref<HouseCategory | null>(null);
+
+const select = (category: HouseCategory) => {
+  selected.value = category;
+};
 
 defineProps<{
   models: HouseModelCardProps[];
+  categories: HouseCategory[];
   /** Accessible label for the scrollable region. */
   ariaLabel?: string;
 }>();
@@ -42,7 +50,9 @@ const scrollByCard = (direction: 1 | -1) => {
   // Scroll by one card-width (first child is the canonical card). Falls back
   // to 80% of the viewport if no children for some reason.
   const first = el.querySelector<HTMLElement>(".cell");
-  const step = first ? first.getBoundingClientRect().width + 24 : el.clientWidth * 0.8;
+  const step = first
+    ? first.getBoundingClientRect().width + 24
+    : el.clientWidth * 0.8;
   el.scrollBy({ left: direction * step, behavior: "smooth" });
 };
 
@@ -116,6 +126,15 @@ const nextDisabled = computed(() => !canNext.value);
       <!-- A trailing spacer keeps the last card's right-edge breathing room
            equal to the leading inset, even when scroll-padding lands. -->
       <div class="cell cell-spacer" aria-hidden="true"></div>
+    </div>
+    <div class="category-thumbnails">
+      <CategoryThumbnail
+        v-for="category in categories"
+        :key="category.slug"
+        :category="category"
+        :data-is-selected="category.id === selected?.id"
+        @click="select(category)"
+      />
     </div>
   </div>
 </template>

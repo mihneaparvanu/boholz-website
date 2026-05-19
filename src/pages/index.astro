@@ -25,6 +25,7 @@
  * pages still render `closingCta` from their content modules.
  */
 import Layout from "@/layouts/Layout.astro";
+import Section from "@/layouts/Section.astro";
 import { getMediaURL } from "@/utils/media";
 
 import PageHero from "@/components/sections/PageHero.astro";
@@ -47,8 +48,12 @@ import ProofSection from "@/components/sections/Proof-Section.vue";
 import TrustBadges from "@/features/Home/TrustBadges/TrustBadges.vue";
 import { trustBadges } from "@/features/Home/TrustBadges/trust-badges.content";
 import { homeSections } from "@/features/Home/home.content";
+import Overview from "@/features/Home/Overview/Overview.vue";
+import { featuredCard, overviewCardsSecondary } from "@/features/Home/Overview/overview.content";
 import Faq from "@/features/Home/Faq/Faq.vue";
 import { qaCategories } from "@/content/qa";
+
+import CategorySlider from "@/features/CategorySlider/CategorySlider.vue";
 
 const categories = await getCategories();
 const allModels = await getModels();
@@ -73,15 +78,14 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
 
 <Layout title={content.seo.title} categories={categories}>
   <!-- ── 01 · Hero (full-bleed) ────────────────────────────────── -->
-  <div class="full-width">
+  <div class="full-width hero-wrap">
     <PageHero
-      eyebrow={content.hero.eyebrow}
       title={content.hero.title}
       highlight={content.hero.highlight}
       subtitle={content.hero.subtitle}
       image={heroImage}
       imageAlt={content.hero.imageAlt}
-      align="center"
+      align="left"
       context="home"
     >
       <Fragment slot="actions">
@@ -96,6 +100,8 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
   </div>
 
   <Block><ProofSection /></Block>
+
+ 
 
   <!-- ── 01b · Trust band (full-bleed) ──────────────────────────── -->
   <Block
@@ -121,6 +127,7 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     <BenefitsRow items={content.benefits} />
   </Block>
 
+
   <!-- ── 03 · House showcase ───────────────────────────────────── -->
   <Block
     id="hausmodelle"
@@ -132,6 +139,7 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     {
       houseCards.length > 0 ? (
         <HouseModelsCarousel
+        categories={categories}
           client:visible
           models={houseCards}
           ariaLabel="Empfohlene Hausmodelle"
@@ -145,6 +153,18 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
         </p>
       )
     }
+  </Block>
+
+   <!-- ── 01c · Overview (featured + secondary cards) ────────────── -->
+  <Block
+    id={homeSections.overview.id}
+    eyebrow={homeSections.overview.eyebrow}
+    heading={homeSections.overview.heading1}
+    highlight={homeSections.overview.highlight}
+    lede={homeSections.overview.subheading}
+
+  >
+    <Overview client:visible featured={featuredCard} cards={overviewCardsSecondary} />
   </Block>
 
   <!-- ── 04 · Image band (full-bleed lifestyle) ─────────────────── -->
@@ -202,15 +222,16 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
   </Block>
 
   <!-- ── 07 · Testimonials (full-bleed dark band) ───────────────── -->
-  <TestimonialBand
+
+  <div class="testimonials"><TestimonialBand
     eyebrow={content.trust.eyebrow}
     heading={content.trust.heading}
     highlight={content.trust.highlight}
     lede={content.trust.lede}
     tone={content.trust.tone}
     badges={content.trust.badges}
-    testimonials={content.trust.testimonials}
-  />
+  /></div>
+  
 
   <!-- ── 08 · FAQ ──────────────────────────────────────────────── -->
   <!-- Multi-category FAQ from the previous homepage (see
@@ -241,6 +262,10 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
 </Layout>
 
 <style>
+.hero-wrap {
+--hero-align: end;
+}
+
   /* Empty-state copy when no DB models match the page's category filter. */
   .empty {
     margin: 0;
@@ -255,6 +280,10 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     text-decoration: underline;
     text-decoration-color: color-mix(in srgb, var(--clr-accent-secondary) 40%, transparent);
     text-underline-offset: 2px;
+  }
+
+  .testimonials {
+    --highlight-color: var(--clr-surface-primary);
   }
 
   /* Sustainability paragraphs — vertical stack inside TwoColumn's default

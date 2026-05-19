@@ -11,13 +11,7 @@ import {
   SelectValue,
   SelectViewport,
 } from "reka-ui";
-import {
-  ArrowDownUp,
-  ArrowDown,
-  ArrowUp,
-  Check,
-  ChevronDown,
-} from "lucide-vue-next";
+import { ArrowDown, ArrowUp, Check, ChevronDown } from "lucide-vue-next";
 import { type SortOption } from "@/features/FilterPanel/filter-panel.types";
 
 const props = defineProps<{ options: SortOption[] }>();
@@ -46,21 +40,12 @@ const activeOption = computed(() =>
 <template>
   <SelectRoot v-model="sort">
     <SelectTrigger class="trigger" aria-label="Sortierung wählen">
-      <ArrowDownUp
-        class="leading-icon"
-        :size="14"
-        :stroke-width="2"
-        aria-hidden="true"
-      />
-      <SelectValue
-        class="value"
-        :placeholder="'Sortieren'"
-      >
+      <SelectValue class="value" :placeholder="'Sortieren'">
         <template v-if="activeOption">{{ activeOption.label }}</template>
       </SelectValue>
       <ChevronDown
         class="chevron"
-        :size="14"
+        :size="16"
         :stroke-width="2"
         aria-hidden="true"
       />
@@ -119,17 +104,21 @@ const activeOption = computed(() =>
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-1);
-  min-width: 11ch;
-  height: var(--control-height-md);
-  padding-inline: var(--spacing-2) var(--spacing-2);
+  /* Match the larger `Filtern` trigger: lg height + `--spacing-4` inline
+     padding + body type so both chips read as a balanced pair of CTAs.
+     The trailing chevron gets a tighter right-pad so the icon doesn't
+     drift away from the label. */
+  gap: var(--spacing-2);
+  min-width: 14ch;
+  height: var(--control-height-lg);
+  padding-inline: var(--spacing-4) var(--spacing-3);
   border: 1px solid var(--clr-border-secondary);
   background: var(--clr-surface-primary);
   color: var(--clr-content-primary);
   border-radius: var(--radius-md);
   font: inherit;
   font-weight: 400;
-  font-size: var(--fs-body-sm);
+  font-size: var(--fs-body);
   cursor: pointer;
   white-space: nowrap;
   transition:
@@ -151,11 +140,6 @@ const activeOption = computed(() =>
   outline: none;
   box-shadow: 0 0 0 3px
     color-mix(in srgb, var(--clr-accent-primary) 28%, transparent);
-}
-
-.leading-icon {
-  color: var(--clr-content-tertiary);
-  flex-shrink: 0;
 }
 
 .value {
@@ -190,38 +174,38 @@ const activeOption = computed(() =>
 }
 
 .viewport {
-  padding: var(--spacing-1);
+  padding: var(--spacing-2);
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: var(--spacing-0);
 }
 
 .group-label {
   font-size: var(--fs-body-sm);
   font-weight: 500;
   color: var(--clr-content-tertiary);
-  padding: var(--spacing-1) var(--spacing-2) calc(var(--spacing-0) / 2);
+  padding: var(--spacing-2) var(--spacing-3) var(--spacing-1);
   text-transform: none;
   letter-spacing: 0;
 }
 
 .group-label:not(:first-child) {
-  margin-block-start: var(--spacing-1);
+  margin-block-start: var(--spacing-2);
   border-block-start: 1px solid var(--clr-border-primary);
-  padding-block-start: var(--spacing-2);
+  padding-block-start: var(--spacing-3);
 }
 
 .item {
-  font-size: var(--fs-body-sm);
+  font-size: var(--fs-body);
   line-height: 1;
   color: var(--clr-content-primary);
   border-radius: var(--radius-sm);
   display: grid;
-  grid-template-columns: 14px 14px 1fr;
+  grid-template-columns: 16px 16px 1fr;
   align-items: center;
-  gap: var(--spacing-1);
-  height: var(--control-height-sm);
-  padding-inline: var(--spacing-2);
+  gap: var(--spacing-2);
+  height: var(--control-height-md);
+  padding-inline: var(--spacing-3);
   position: relative;
   user-select: none;
   cursor: pointer;

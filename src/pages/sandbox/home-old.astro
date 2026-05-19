@@ -46,10 +46,6 @@ const sectionProps = {
     <ProofSection />
   </div>
 
-  <Section {...sectionProps.categories} tone="primary">
-    <CategoriesShowcase client:visible categories={categories} />
-  </Section>
-
   <Section {...sectionProps.trust} tone="secondary">
     <TrustBadges client:visible badges={trustBadges} />
   </Section>

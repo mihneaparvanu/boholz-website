@@ -1,3 +1,0 @@
-- [Design system tokens summary](project_design_system.md) — BoHolz token names, spacing scale, fonts, color palette, conventions
-- [Lucide icon conventions](feedback_lucide_conventions.md) — stroke widths and sizes used across this project
-- [Sandbox page convention](feedback_sandbox_convention.md) — how sandbox pages bypass Layout.astro

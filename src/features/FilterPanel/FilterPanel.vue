@@ -235,10 +235,9 @@ const openSections = computed<string[]>(() => filterOptions.map((o) => o.id));
   width: clamp(320px, 100vw, 460px);
   background-color: var(--clr-surface-primary);
   z-index: 20;
+  /* Minimal edge: hairline border only, no surrounding drop-shadow. The
+     backdrop already provides the depth separation the user expected. */
   border-inline-start: 1px solid var(--clr-border-primary);
-  box-shadow:
-    -1px 0 0 0 var(--clr-border-primary),
-    -24px 0 48px -24px rgba(0, 0, 0, 0.12);
 }
 
 @media (--mobile) {

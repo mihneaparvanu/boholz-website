@@ -16,7 +16,6 @@ const visibleCategories = computed(() =>
 
 <template>
   <div class="showcase">
-    <CategorySlider :categories="visibleCategories" />
     <div class="info">
       <p>Attraktive Finanzierungsmöglichkeiten.</p>
     </div>

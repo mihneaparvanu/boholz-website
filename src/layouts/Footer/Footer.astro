@@ -74,31 +74,9 @@ const currentYear = new Date().getFullYear();
         </p>
         <p class="origin" aria-label="100 Prozent in Deutschland gefertigt">
           <GermanyFlag aria-hidden="true" />
-          <span>100% Made in Germany</span>
+          <span>Made in Germany</span>
         </p>
       </div>
-      <ul class="socials" aria-label="Soziale Netzwerke">
-        <li>
-          <a href="#" aria-label="Facebook"
-            ><FacebookIcon aria-hidden="true" /></a
-          >
-        </li>
-        <li>
-          <a href="#" aria-label="Instagram"
-            ><InstagramIcon aria-hidden="true" /></a
-          >
-        </li>
-        <li>
-          <a href="#" aria-label="YouTube"
-            ><YoutubeIcon aria-hidden="true" /></a
-          >
-        </li>
-        <li>
-          <a href="#" aria-label="LinkedIn"
-            ><LinkedinIcon aria-hidden="true" /></a
-          >
-        </li>
-      </ul>
     </div>
   </div>
 </footer>
@@ -315,14 +293,14 @@ const currentYear = new Date().getFullYear();
 
   .meta {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    gap: var(--spacing-1);
+     width: 100%;
   }
 
   @media (--from-desktop) {
     .meta {
-      flex-direction: row;
+       width: fit-content;
       align-items: center;
       gap: var(--spacing-3);
     }

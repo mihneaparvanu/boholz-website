@@ -65,7 +65,7 @@ const hasImage = Boolean(image);
     position: relative;
     isolation: isolate;
     display: flex;
-    align-items: start;
+    align-items: var(--hero-align, start);
     padding-block: var(--spacing-5) var(--spacing-6);
     padding-inline: var(--padding-inline, var(--spacing-4));
     min-height: 90dvh;
@@ -140,7 +140,16 @@ const hasImage = Boolean(image);
 
   .highlight {
     font-family: var(--font-secondary);
+    font-weight: var(--font-weight-medium);
     font-style: italic;
+    color: var(--highlight-color, var(--clr-accent-primary));
+  }
+
+  /* Over a photo, the default fallback flips to a soft white so the
+     italic stays readable on the scrim. Pages can still override by
+     setting --highlight-color inline. */
+  .hero[data-has-image="true"] .highlight {
+    color: var(--highlight-color, var(--clr-pure-white-soft));
   }
 
   .subtitle {

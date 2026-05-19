@@ -16,9 +16,7 @@ export const buildingStages: BuildingStage[] = [
     title: "Technikfertig",
     description:
       "Wir installieren die komplette Haustechnik – Heizung, Elektrik und Rohinstallation für Sanitär. Sie gestalten Wände, Böden und Oberflächen ganz nach Ihrem persönlichen Geschmack.",
-    // Image intentionally null until a clean variant arrives — renderer
-    // falls back to <ImagePlaceholder> automatically.
-    imageURL: null,
+    imageURL: `${baseMediaURL}/mechanically-complete.webp`,
   },
   {
     slug: "fast-fertig",

@@ -48,17 +48,17 @@ const ctaLinks = [
       >
         <TitleLinks :showhouses="props.showhouses" />
         <div class="links cta">
-          <Motion
-            v-for="(link, i) in ctaLinks"
+          <!-- Motion's `tag="a"` was rendering as `<div tag="a" href="…">`
+               in motion-v's current build, so clicks went nowhere. Plain
+               anchors here; the panel's slide-in already covers the entrance
+               motion, and the staggered link reveal isn't worth a broken
+               navigation. -->
+          <a
+            v-for="link in ctaLinks"
             :key="link.label"
-            tag="a"
             :href="link.href"
-            :initial="{ opacity: 0, y: 4 }"
-            :animate="{ opacity: 1, y: 0 }"
-            :transition="{ duration: 0.3, delay: 0.22 + i * 0.05, ease: EASE }"
+            >{{ link.label }}</a
           >
-            {{ link.label }}
-          </Motion>
         </div>
       </Motion>
     </div>

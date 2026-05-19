@@ -16,22 +16,67 @@ const locations = await getLocations({ exceptKind: "showhouse" });
 ---
 
 <Layout title="Kontakt – BoHolz Haus">
-  <PageHero
-    eyebrow="Kontakt"
-    title="Eine Nachricht reicht."
-    highlight="Antwort meist binnen 24 Stunden."
-    subtitle="Werktags persönlich, kostenfrei, ohne Verkaufsdruck — von Bad Kissingen aus, in ganz Deutschland."
-    align="center"
-  />
 
-  <!-- Stats trio — page-level service promise. -->
-  <section class="stats" aria-label="Service auf einen Blick">
+  <section id="erreichbar" class="section contact-hero">
+
+    <div class="contact-details">
+      <EyebrowHeadingLede
+        eyebrow="Direkt erreichbar" 
+        heading="Telefon, E-Mail —"
+        highlight="oder persönlich."
+        lede="Das persönliche Gespräch kann nichts ersetzen. Rufen Sie uns an oder schreiben Sie kurz, wann wir uns am besten zurückmelden."
+      >
+        <Fragment slot="eyebrow-icon">
+          <MessagesSquare :size={14} :stroke-width={2} />
+        </Fragment>
+      </EyebrowHeadingLede>
+
+      <div class="info-box">
+        <p><strong>BoHolz-Haus GmbH</strong></p>
+        <p>Ostring 1<br />97688 Bad Kissingen</p>
+        <p>
+          Telefon: <a href="tel:+49971785557150">0971 / 78 55 57 15</a><br />
+          E-Mail: <a href="mailto:info@boholz-haus.de">info@boholz-haus.de</a>
+        </p>
+        <p><strong>Öffnungszeiten</strong></p>
+        <p>
+          Mo – Fr: 08:00 – 17:00 Uhr<br />
+          Sa &amp; So: Geschlossen
+        </p>
+        <p class="muted">
+          <em>An gesetzlichen Feiertagen können Öffnungszeiten abweichen.</em>
+        </p>
+      </div>
+    </div>
+
+    <div class="form-col">
+      <EyebrowHeadingLede
+        eyebrow="Bauanfrage"
+        heading="Sprechen Sie mit uns über Ihr"
+        highlight="Bauvorhaben."
+        lede="Erzählen Sie uns kurz, wie Sie wohnen möchten — wir melden uns mit einem passenden Vorschlag und allen Unterlagen zurück."
+      >
+        <Fragment slot="eyebrow-icon">
+          <Home :size={14} :stroke-width={2} />
+        </Fragment>
+      </EyebrowHeadingLede>
+
+      <div class="form-wrap">
+        <ContactForm client:visible />
+      </div>
+    </div>
+  </section>
+
+  <!-- Service-promise trio — page-level, sits between the contact split
+       and the rest of the page so the promise reads as a closing beat. -->
+  <section class="section stats-band" aria-label="Service auf einen Blick">
     <StatBlock
       client:visible
-      value="< 24 h"
+      value="24 h"
       label="Antwortzeit"
       caption="Werktagsanfragen beantworten wir meist noch am selben Tag."
       icon="messages-square"
+      align="center"
     />
     <StatBlock
       client:visible
@@ -39,6 +84,7 @@ const locations = await getLocations({ exceptKind: "showhouse" });
       label="Beratung kostenfrei"
       caption="Erstgespräch, Hauskatalog und Bedarfsanalyse — ohne Verpflichtung."
       icon="heart-handshake"
+align="center"
     />
     <StatBlock
       client:visible
@@ -46,85 +92,10 @@ const locations = await getLocations({ exceptKind: "showhouse" });
       label="Standorte"
       caption="Vertriebsbüros, Musterhäuser und Zentrale in Bad Kissingen."
       icon="map-pin"
+align="center"
     />
   </section>
 
-  <!-- 02 — Direkt erreichbar -->
-  <Divider index={2} label="Erreichbar" />
-
-  <section id="erreichbar" class="section">
-    <EyebrowHeadingLede
-      eyebrow="Direkt erreichbar"
-      heading="Telefon, E-Mail —"
-      highlight="oder persönlich."
-      lede="Das persönliche Gespräch kann nichts ersetzen. Rufen Sie uns an oder schreiben Sie kurz, wann wir uns am besten zurückmelden."
-    >
-      <Fragment slot="eyebrow-icon">
-        <MessagesSquare :size={14} :stroke-width={2} />
-      </Fragment>
-    </EyebrowHeadingLede>
-
-    <div class="info-box">
-      <p><strong>BoHolz-Haus GmbH</strong></p>
-      <p>Ostring 1<br />97688 Bad Kissingen</p>
-      <p>
-        Telefon: <a href="tel:+49971785557150">0971 / 78 55 57 15</a><br />
-        E-Mail: <a href="mailto:info@boholz-haus.de">info@boholz-haus.de</a>
-      </p>
-      <p><strong>Öffnungszeiten</strong></p>
-      <p>
-        Mo – Fr: 08:00 – 17:00 Uhr<br />
-        Sa &amp; So: Geschlossen
-      </p>
-      <p class="muted">
-        <em>An gesetzlichen Feiertagen können Öffnungszeiten abweichen.</em>
-      </p>
-    </div>
-  </section>
-
-  <!-- 03 — Bauanfrage -->
-  <Divider index={3} label="Bauanfrage" />
-
-  <div class="band full-width">
-    <section id="bauanfrage" class="section band-inner">
-      <div class="form-col">
-        <EyebrowHeadingLede
-          eyebrow="Bauanfrage"
-          heading="Sprechen Sie mit uns über Ihr"
-          highlight="Bauvorhaben."
-          lede="Erzählen Sie uns kurz, wie Sie wohnen möchten — wir melden uns mit einem passenden Vorschlag und allen Unterlagen zurück."
-        >
-          <Fragment slot="eyebrow-icon">
-            <Home :size={14} :stroke-width={2} />
-          </Fragment>
-        </EyebrowHeadingLede>
-
-        <div class="form-wrap">
-          <ContactForm client:visible />
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- 04 — Standorte -->
-  <Divider index={4} label="Standorte" />
-
-  <section id="standorte" class="section">
-    <EyebrowHeadingLede
-      eyebrow="Vor Ort"
-      heading="Besuchen Sie uns"
-      highlight="persönlich."
-      lede="Persönliche Beratung in unseren Vertriebsbüros, Musterhäusern und der Zentrale in Bad Kissingen. Wählen Sie einen Standort, um Details und Ansprechpartner zu sehen."
-    >
-      <Fragment slot="eyebrow-icon">
-        <MapPin :size={14} :stroke-width={2} />
-      </Fragment>
-    </EyebrowHeadingLede>
-
-    <div class="map-wrap full-width">
-      <LocationsMap client:only="vue" locations={locations} />
-    </div>
-  </section>
 </Layout>
 
 <style>
@@ -136,6 +107,31 @@ const locations = await getLocations({ exceptKind: "showhouse" });
      ============================================================ */
   .section {
     padding-block: var(--spacing-5);
+  }
+
+  .contact-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-6);
+    align-items: start;
+  }
+
+  @media (--below-desktop) {
+    .contact-hero {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-5);
+    }
+  }
+
+  .contact-details {
+    position: sticky;
+    top: var(--spacing-5);
+  }
+
+  @media (--below-desktop) {
+    .contact-details {
+      position: static;
+    }
   }
 
   /* Alternating-tone band — wraps every other content section in a tinted
@@ -151,19 +147,21 @@ const locations = await getLocations({ exceptKind: "showhouse" });
     width: 100%;
   }
 
-  /* Stats trio — service promise immediately under the hero.
-     Stacked on mobile, three-up from tablet. */
-  .stats {
+  /* Service-promise trio — horizontal three-up band sitting between the
+     two-column hero and the rest of the page. Stacks on mobile. */
+  .stats-band {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-4);
-    padding-block: var(--spacing-5);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--spacing-5);
+    padding-block-start: var(--spacing-6);
+    border-block-start: 1px solid var(--clr-border-secondary);
+    margin-block-start: var(--spacing-6);
   }
 
-  @media (--from-tablet) {
-    .stats {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--spacing-5);
+  @media (--below-desktop) {
+    .stats-band {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-4);
     }
   }
 
@@ -205,15 +203,16 @@ const locations = await getLocations({ exceptKind: "showhouse" });
     font-size: var(--fs-body-sm);
   }
 
-  /* Bauanfrage column — single full-width form, bounded measure so the
-     fields hold a comfortable shape on wide screens. */
+  /* Bauanfrage column — anchored to the right edge of its grid cell so
+     the form reads as the primary action. Bounded measure keeps inputs
+     at a comfortable reading width. */
   .form-col {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-3);
     min-width: 0;
-    max-width: 56rem;
-    margin-inline: auto;
+    max-width: 36rem;
+    margin-inline-start: auto;
   }
 
   /* Form wrapper — adds breathing room between the EyebrowHeadingLede
