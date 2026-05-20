@@ -1,0 +1,20 @@
+#!/bin/bash
+# Prevent /dev folder from being pushed to main branch
+# This protects dev-only content from accidentally reaching production
+
+remote="$1"
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+# Only enforce on pushes to main
+if [[ "$current_branch" == "main" ]] || git rev-parse --verify "refs/remotes/$remote/main" &>/dev/null; then
+  # Check if /dev folder exists in the commits being pushed
+  if git diff origin/main... --name-only 2>/dev/null | grep -q "^dev/"; then
+    echo "❌ Push rejected: /dev folder cannot be pushed to main branch"
+    echo ""
+    echo "The /dev folder is for development only and must stay on the dev branch."
+    echo "Move any production-ready content out of /dev before pushing to main."
+    exit 1
+  fi
+fi
+
+exit 0
