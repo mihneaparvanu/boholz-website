@@ -3,6 +3,7 @@
 ## 1. Technical Stack
 
 - **Package manager / runtime:** **Bun** (lockfile: `bun.lock`). Use `bun install`, `bun run dev`, `bun x <cmd>`. Do not regenerate the lockfile with npm/pnpm/yarn.
+- **First-time setup:** run `git config core.hooksPath .githooks` to enable the `pre-push` hook that blocks `/dev/**` paths from being pushed to `main`.
 - **Framework:** Astro (SSR Mode)
 - **Frontend:** Vue.js (for interactive components)
 - **Database:** Postgres 18 (External via Dokploy)

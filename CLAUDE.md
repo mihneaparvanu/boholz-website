@@ -13,7 +13,6 @@ work in that area:
 
 - `docs/agent.md` — how agents in this project are structured
 - `docs/development.md` — local development setup, conventions
-- `docs/server-setup.md` — deployment and infrastructure notes
 - `docs/architecture.md` — high-level system design
 
 ## Commands
@@ -24,7 +23,7 @@ work in that area:
 - `bun run build` — production build to `./dist/`
 - `bun run preview` — preview the production build
 - `bun run start` — run the production build on `0.0.0.0`
-- `bun x tsx scripts/<script>.ts` — run one-off DB inspection / seed scripts against the live DB (delete the script when done, per repo rules)
+- `bun x tsx scripts/<script>.ts` — run one-off DB inspection scripts against the live DB (folder is created when needed and deleted after, per repo rules)
 - `bun x drizzle-kit generate` / `migrate` — manage migrations against the `boholz` Postgres schema (config in `drizzle.config.ts`)
 
 Node ≥ 22.12 is required (`.node-version`).
@@ -66,12 +65,13 @@ Single-caller components live next to their consumer (e.g. `TitleLinks` in `layo
 
 ### Content / data placement
 
-Two scopes — pick the smaller one that still fits.
+Three tiers — pick the smallest that still fits. The content file lives as close to its only consumer as possible; the moment a second consumer appears, it graduates to `src/content/`.
 
-- **Feature-local**: only one feature reads it → live next to the component as `<feature>.content.ts` and `<feature>.types.ts` (e.g. `features/Home/home.content.ts`, `features/Home/building-stages.content.ts`).
-- **Shared / domain-level**: two or more features (or a future page) will read the same data → `src/content/<topic>.ts` with the types declared in the same file (e.g. `content/qa.ts` exports `Question`, `QuestionCategory`, `qaCategories`). When this content eventually moves to the DB, the file becomes the seed shape.
+- **Single page, no feature folder** → next to the page as `<page>.content.ts` (e.g. `src/pages/karriere.content.ts`, `src/pages/vor-ort-beratung.content.ts`).
+- **Inside a feature folder** → next to the component as `<feature>.content.ts` and `<feature>.types.ts` (e.g. `features/Home/home.content.ts`, `features/Home/BuildingStages/building-stages.content.ts`).
+- **Shared by 2+ pages or features** → `src/content/<topic>.ts` with the types declared in the same file (e.g. `content/qa.ts` exports `Question`, `QuestionCategory`, `qaCategories`). When this content eventually moves to the DB, the file becomes the seed shape.
 
-DB entity types stay in `src/types/models.ts`. Don't pre-emptively split content into `models/` + `data/` folders — types live next to the data they describe.
+Naming is kebab-case, suffix `.content.ts` (or just `.ts` inside `src/content/` since the folder name already signals intent). DB entity types stay in `src/types/models.ts`. Don't pre-emptively split content into `models/` + `data/` folders — types live next to the data they describe.
 
 ### Styling
 
@@ -102,7 +102,8 @@ Animation: GSAP (in-viewport reveals) + Lenis (smooth scroll). Keep easings mini
 
 ## Conventions specific to this repo
 
-- **Workspace hygiene:** ad-hoc `npx tsx` scripts created to inspect or fix DB state must be deleted (`rm -f`) once their output is captured. Do not leave `test-db.ts`, `fix-foo.ts`, etc. behind. The kept scripts live in `scripts/` (`inspect-db.ts`, `seed-showhouses.ts`).
+- **Workspace hygiene:** ad-hoc `bun x tsx` scripts created to inspect or fix DB state must be deleted (`rm -f`) once their output is captured. Do not leave `test-db.ts`, `fix-foo.ts`, etc. behind. Ad-hoc scripts go in `scripts/` (folder is created when needed) and the folder is removed when empty.
+- **Dev-only content lives in `/dev/`** (planning docs, sandbox routes, migration guides). Never put experiments in `src/`. Never commit `/dev/` paths in a `main`-targeted push — `.githooks/pre-push` blocks it. Enable the hook once per clone: `git config core.hooksPath .githooks`.
 - **TypeScript:** no `any`. Three-layer model hierarchy (see `types-masterclass.md` for the full reasoning):
   1. **Entity types** — inferred via `InferSelectModel<typeof table>`, live in `src/types/models.ts`. One per DB table. Never hand-written.
   2. **Composite types** — entity + relations (e.g. `HouseModel & { media: Media[] }`). Named at the project level when reused; declared at the feature level otherwise.

@@ -6,9 +6,8 @@ import type { HouseCategory } from "@/types/models";
  *
  * Both surfaces render a `HouseCategory[]` list, pick a selected category,
  * and show its hero photo. Bestseller is now a real DB row carrying its
- * own `category_media` pivot (see `scripts/seed-bestseller-category.ts`),
- * so there's no special-case branch — every category resolves its hero
- * the same way.
+ * own `category_media` pivot, so there's no special-case branch — every
+ * category resolves its hero the same way.
  */
 export interface CategoryGalleryShowcase {
   path: string;

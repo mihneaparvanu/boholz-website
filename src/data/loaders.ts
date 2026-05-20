@@ -43,8 +43,7 @@ export async function getCategories(): Promise<HouseCategory[]> {
   });
 
   const resolved = resolveMediaPaths(data as unknown as HouseCategory[]);
-  // Bestseller is a real DB row (see `scripts/seed-bestseller-category.ts`)
-  // but we want it to lead the list regardless of insertion order. Sort it
+  // Bestseller is a real DB row but we want it to lead the list regardless of insertion order. Sort it
   // to the front here so every consumer — navbar dropdown, CategorySlider,
   // HousesPage filter rail — receives the same canonical ordering without
   // having to reimplement the rule.

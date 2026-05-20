@@ -5,49 +5,9 @@ import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
 
 import CatalogForm from "@/features/ContactForms/CatalogForm.vue";
 
-import {
-  BookOpen,
-  Mail,
-  Layers3,
-  Ruler,
-  Euro,
-  ImageIcon,
-  Compass,
-} from "lucide-vue-next";
+import { BookOpen, Mail } from "lucide-vue-next";
 
-type CatalogBenefit = {
-  icon: typeof BookOpen;
-  title: string;
-  body: string;
-};
-
-const benefits: CatalogBenefit[] = [
-  {
-    icon: Layers3,
-    title: "Komplette Hausübersicht",
-    body: "Alle Modelle — Bungalow, Einfamilienhaus, Doppelhaus, Stadtvilla und Mehrfamilienhaus — auf einen Blick.",
-  },
-  {
-    icon: Ruler,
-    title: "Grundrisse & Ausstattung",
-    body: "Maßstabsgetreue Grundrisse, Wandaufbauten und unsere Standard­ausstattung im Detail.",
-  },
-  {
-    icon: Euro,
-    title: "Preisindikationen",
-    body: "Orientierungspreise pro Modell — transparent, ohne versteckte Posten, mit KfW-Förderhinweisen.",
-  },
-  {
-    icon: ImageIcon,
-    title: "Beispielprojekte",
-    body: "Realisierte BoHolz-Häuser in Bild und Zahlen — von der Bodenplatte bis zur Schlüsselübergabe.",
-  },
-  {
-    icon: Compass,
-    title: "Nächste Schritte zur Beratung",
-    body: "Ein klarer Fahrplan vom Hauskatalog über die Bedarfsanalyse bis zum persönlichen Angebot.",
-  },
-];
+import { benefits } from "./katalog.content";
 ---
 
 <Layout title="Hauskatalog bestellen – BoHolz Haus">

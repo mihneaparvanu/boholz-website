@@ -12,33 +12,7 @@ import IconList from "@/components/ui/IconList.vue";
 import Button from "@/components/ui/Button.vue";
 import { HeartHandshake, Compass, Sparkles } from "lucide-vue-next";
 import { keitel } from "@/content/keitel";
-
-const whatWeDoItems = [
-  {
-    icon: "users" as const,
-    label: "Persönliche Bauberatung",
-    description:
-      "Vom ersten Entwurf bis zum unterschriebenen Vertrag begleitet Sie ein erfahrener Hausberater — persönlich, präzise, ohne Umwege.",
-  },
-  {
-    icon: "map-pin" as const,
-    label: "Hilfe bei der Grundstückssuche",
-    description:
-      "Wir unterstützen bei der Suche nach dem passenden Bauplatz in Ihrer Region.",
-  },
-  {
-    icon: "coins" as const,
-    label: "Sicherung der Finanzierung",
-    description:
-      "Begleitung bei Förderprogrammen, KfW-Konzepten und der passenden Bankenlösung.",
-  },
-  {
-    icon: "key-round" as const,
-    label: "Abschluss des Hausvertrags",
-    description:
-      "Klare Konditionen, transparente Leistungsbeschreibung, ein Ansprechpartner durchgängig.",
-  },
-];
+import { whatWeDoItems } from "./uber-uns.content";
 ---
 
 <Layout title="Über Uns – BoHolz Haus">
