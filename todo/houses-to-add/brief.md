@@ -1,2 +1,0 @@
-here are 2 houses that are missing and the zweifamilienhaus is totally missing fron the menu so we can add that too, what i want is for you to check cloudflare for the pics, if they re not already there optimize, upload, wire them up in the db accordingly then delete every media asset and the folder as well in the local project 
-I want you to also make an ammemdment in the claude.md file about this procedure so i don't have to repeat this from now on in the project, can this be turnedf into a repo skill?
