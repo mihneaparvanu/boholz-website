@@ -44,6 +44,9 @@ export const houseDetails = boholzSchema.table("house_details", {
     .references(() => houseModels.id)
     .notNull(),
   levelCount: smallint("level_count"),
+  // Geschosse — accepts 1, 1.5, 2. Supersedes levelCount (smallint can't hold
+  // 1.5). levelCount is kept for back-compat until callers migrate.
+  floorCount: numeric("floor_count"),
   bedroomCount: smallint("bedroom_count"),
   bathroomCount: smallint("bathroom_count"),
   familiesCount: smallint("families_count"),
@@ -53,9 +56,18 @@ export const houseDetails = boholzSchema.table("house_details", {
   height: numeric("height"),
   // Features
   hasGarage: boolean("has_garage").default(false),
+  // Anbau — free text describing any extension ("Erker 38°", "Garage", null).
+  // UI picks an icon by regex on the value; supersedes the hasGarage boolean.
+  extensionDescription: varchar("extension_description"),
   roofType: varchar("roof_type"),
   // Kniestock height in cm; null = no kniestock
   kniestock: smallint("kniestock"),
+  // Net floor area per DIN 277 (m²)
+  netFloorAreaDin: numeric("net_floor_area_din"),
+  // Total living area per Wohnflächenverordnung (m²) — legally-binding number
+  totalLivingAreaWoflv: numeric("total_living_area_woflv"),
+  // True when the floor plan supports an Einliegerwohnung on request
+  allowsGrannyFlat: boolean("allows_granny_flat").default(false),
   // Accessibility
   isBarrierFree: boolean("is_barrier_free").default(false),
   // Children's room (true = at least one dedicated children's room)

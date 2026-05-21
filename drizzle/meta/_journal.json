@@ -64,6 +64,13 @@
       "when": 1779039300018,
       "tag": "0008_strange_ironclad",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1779366192971,
+      "tag": "0009_fuzzy_stardust",
+      "breakpoints": true
     }
   ]
 }

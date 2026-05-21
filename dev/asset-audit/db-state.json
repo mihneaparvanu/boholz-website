@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-21T01:32:11.858Z",
+  "generatedAt": "2026-05-21T11:43:16.174Z",
   "categories": [
     {
       "id": "00123c79-1feb-4e70-8068-4bd79a31b3eb",
@@ -302,1100 +302,76 @@
   ],
   "media": [
     {
-      "id": "2e67c27d-a083-4f9a-a43f-2d7eeacccca9",
-      "path": "/images/models/einfamilienhaus/38-115-125/einfamilienhaus-38-115-125-hero-1300x919.webp",
-      "alt": "Einfamilienhaus 38-115-125",
-      "width": 1300,
-      "height": 919,
-      "createdAt": "2026-04-19T09:38:30.982Z"
-    },
-    {
-      "id": "09adfd98-4741-4b3f-9e98-3cabf3fde22f",
-      "path": "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-2640x1509.png",
+      "id": "2d689ecb-5916-4728-9e11-bd78be44cf54",
+      "path": "/images/stock/doppelhaeuser-slider/502125-01-xxl-02-ret-cymk.webp",
       "alt": null,
-      "width": 2640,
-      "height": 1509,
-      "createdAt": "2026-04-17T22:41:48.342Z"
-    },
-    {
-      "id": "27dc18f6-3bbc-4907-a8f0-50f4c8e9b3d4",
-      "path": "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-4960x3507.jpg",
-      "alt": null,
-      "width": 4960,
-      "height": 3507,
-      "createdAt": "2026-04-17T22:41:48.370Z"
-    },
-    {
-      "id": "fd9265ef-4446-4d39-bd62-f7abdc7b3af0",
-      "path": "/images/models/bungalow/22-149/floor-plans/bungalow-22-149-floor-plan-ground-2136x1989.jpg",
-      "alt": null,
-      "width": 2136,
-      "height": 1989,
-      "createdAt": "2026-04-17T22:41:48.450Z"
-    },
-    {
-      "id": "9f5e6e27-450b-4c54-82d1-8d47bc0148c5",
-      "path": "/images/models/bungalow/bungalow/gallery/bungalow-bungalow-gallery-2-3000x3000.webp",
-      "alt": null,
-      "width": 3000,
-      "height": 3000,
-      "createdAt": "2026-04-17T22:41:48.500Z"
-    },
-    {
-      "id": "88c3aeb8-120d-4092-945d-5920e758c391",
-      "path": "/images/models/bungalow/bungalow/gallery/bungalow-bungalow-gallery-2368x1728.webp",
-      "alt": null,
-      "width": 2368,
-      "height": 1728,
-      "createdAt": "2026-04-17T22:41:48.533Z"
-    },
-    {
-      "id": "a6a3237e-9585-4336-bee7-0d96d3cb16a0",
-      "path": "/images/models/bungalow/bungalow/gallery/bungalow-bungalow-gallery-3-2368x1728.webp",
-      "alt": null,
-      "width": 2368,
-      "height": 1728,
-      "createdAt": "2026-04-17T22:41:48.567Z"
-    },
-    {
-      "id": "e0184eeb-07b4-4373-8c31-ce016ea66dca",
-      "path": "/images/models/bungalow/bungalow/gallery/bungalow-bungalow-gallery-4-2368x1728.webp",
-      "alt": null,
-      "width": 2368,
-      "height": 1728,
-      "createdAt": "2026-04-17T22:41:48.601Z"
-    },
-    {
-      "id": "af7c7122-8992-45f8-aa03-cb940c67b91a",
-      "path": "/images/models/bungalow/bungalow/gallery/bungalow-bungalow-gallery-5-2368x1728.webp",
-      "alt": null,
-      "width": 2368,
-      "height": 1728,
-      "createdAt": "2026-04-17T22:41:48.638Z"
-    },
-    {
-      "id": "4f9e63a4-b92d-4b96-a21f-07d291adb433",
-      "path": "/images/models/bungalow/bungalow/hero/bungalow-bungalow-hero-2368x1728.webp",
-      "alt": null,
-      "width": 2368,
-      "height": 1728,
-      "createdAt": "2026-04-17T22:41:48.675Z"
-    },
-    {
-      "id": "1025e22c-2ecc-41e7-b054-c481669e9e03",
-      "path": "/images/models/city-villa/18-140/floor-plans/city-villa-18-140-floor-plan-ground-1346x1580.jpg",
-      "alt": null,
-      "width": 1346,
-      "height": 1580,
-      "createdAt": "2026-04-17T22:41:48.731Z"
-    },
-    {
-      "id": "de27679a-fbfe-438c-98b8-87cc0381718c",
-      "path": "/images/models/city-villa/18-140/floor-plans/city-villa-18-140-floor-plan-upper-1389x1604.jpg",
-      "alt": null,
-      "width": 1389,
-      "height": 1604,
-      "createdAt": "2026-04-17T22:41:48.764Z"
-    },
-    {
-      "id": "21ebcfdf-c535-4648-82fc-78884d55884e",
-      "path": "/images/models/city-villa/22-157/floor-plans/city-villa-22-157-floor-plan-ground-2795x1635.jpg",
-      "alt": null,
-      "width": 2795,
-      "height": 1635,
-      "createdAt": "2026-04-17T22:41:48.808Z"
-    },
-    {
-      "id": "8f3e53fb-9c2a-4dde-881c-fcab78658a7c",
-      "path": "/images/models/city-villa/22-157/floor-plans/city-villa-22-157-floor-plan-upper-2775x1742.jpg",
-      "alt": null,
-      "width": 2775,
-      "height": 1742,
-      "createdAt": "2026-04-17T22:41:48.842Z"
-    },
-    {
-      "id": "0909223b-fbec-46e6-b453-c51c33291bfc",
-      "path": "/images/models/city-villa/22-157/gallery/city-villa-22-157-gallery-4252x3007.jpg",
-      "alt": null,
-      "width": 4252,
-      "height": 3007,
-      "createdAt": "2026-04-17T22:41:48.873Z"
-    },
-    {
-      "id": "7844a991-572b-4502-bf33-55097b8171ff",
-      "path": "/images/models/cube-house/0-166/floor-plans/cube-house-0-166-floor-plan-ground-919x889.jpg",
-      "alt": null,
-      "width": 919,
-      "height": 889,
-      "createdAt": "2026-04-17T22:41:48.957Z"
-    },
-    {
-      "id": "b111238d-56a0-491b-a1d6-d6cca471ce51",
-      "path": "/images/models/cube-house/0-166/floor-plans/cube-house-0-166-floor-plan-upper-956x845.jpg",
-      "alt": null,
-      "width": 956,
-      "height": 845,
-      "createdAt": "2026-04-17T22:41:48.996Z"
-    },
-    {
-      "id": "ba75bad1-a0b7-4bbf-980e-d78a49b37972",
-      "path": "/images/models/cube-house/0-278/floor-plans/cube-house-0-278-floor-plan-ground-2001x2009.jpg",
-      "alt": null,
-      "width": 2001,
-      "height": 2009,
-      "createdAt": "2026-04-17T22:41:49.032Z"
-    },
-    {
-      "id": "fc784113-69b7-4d34-aef0-2811388f1099",
-      "path": "/images/models/cube-house/0-278/floor-plans/cube-house-0-278-floor-plan-upper-2112x2065.jpg",
-      "alt": null,
-      "width": 2112,
-      "height": 2065,
-      "createdAt": "2026-04-17T22:41:49.065Z"
-    },
-    {
-      "id": "ca3d66fc-5bc3-4515-88c7-6b9eef489c3b",
-      "path": "/images/models/duplex/38-238-125/floor-plans/duplex-38-238-125-floor-plan-attic-2907x1947.jpg",
-      "alt": null,
-      "width": 2907,
-      "height": 1947,
-      "createdAt": "2026-04-17T22:41:49.170Z"
-    },
-    {
-      "id": "82909c02-e5e5-417f-8913-29c36905f714",
-      "path": "/images/models/duplex/38-238-125/floor-plans/duplex-38-238-125-floor-plan-ground-2764x1904.jpg",
-      "alt": null,
-      "width": 2764,
-      "height": 1904,
-      "createdAt": "2026-04-17T22:41:49.217Z"
-    },
-    {
-      "id": "d26a4432-9ed0-4fb1-8b08-a1e4089dd825",
-      "path": "/images/models/single-family/22-162-190/floor-plans/single-family-22-162-190-floor-plan-attic-1752x1687.jpg",
-      "alt": null,
-      "width": 1752,
-      "height": 1687,
-      "createdAt": "2026-04-17T22:41:49.460Z"
-    },
-    {
-      "id": "56c7bbb1-918a-4888-b49e-07d4b46f9dfb",
-      "path": "/images/models/single-family/22-162-190/floor-plans/single-family-22-162-190-floor-plan-ground-1711x1676.jpg",
-      "alt": null,
-      "width": 1711,
-      "height": 1676,
-      "createdAt": "2026-04-17T22:41:49.502Z"
-    },
-    {
-      "id": "12aac0b9-3e2f-4be4-9d43-51e7e265d6be",
-      "path": "/images/models/single-family/35-181-150/floor-plans/single-family-35-181-150-floor-plan-attic-1846x1708.jpg",
-      "alt": null,
-      "width": 1846,
-      "height": 1708,
-      "createdAt": "2026-04-17T22:41:49.605Z"
-    },
-    {
-      "id": "3905b493-b947-4b65-bf07-b304a00ebe60",
-      "path": "/images/models/single-family/35-181-150/floor-plans/single-family-35-181-150-floor-plan-ground-1610x1635.jpg",
-      "alt": null,
-      "width": 1610,
-      "height": 1635,
-      "createdAt": "2026-04-17T22:41:49.653Z"
-    },
-    {
-      "id": "58c09a7e-ce49-4171-ae9a-38369346df47",
-      "path": "/images/models/single-family/38-115-125/floor-plans/single-family-38-115-125-floor-plan-attic-1670x1634.jpg",
-      "alt": null,
-      "width": 1670,
-      "height": 1634,
-      "createdAt": "2026-04-17T22:41:49.694Z"
-    },
-    {
-      "id": "0c89f69e-ca9d-4788-bc68-9dc6f536e759",
-      "path": "/images/models/single-family/38-115-125/floor-plans/single-family-38-115-125-floor-plan-ground-1603x1665.jpg",
-      "alt": null,
-      "width": 1603,
-      "height": 1665,
-      "createdAt": "2026-04-17T22:41:49.746Z"
-    },
-    {
-      "id": "0f99f2cc-9087-4a2e-8177-66fe4921cf2b",
-      "path": "/images/models/single-family/38-128-125/floor-plans/single-family-38-128-125-floor-plan-ground-1485x1526.jpg",
-      "alt": null,
-      "width": 1485,
-      "height": 1526,
-      "createdAt": "2026-04-17T22:41:49.796Z"
-    },
-    {
-      "id": "67a90c49-24ca-4c89-b4d5-023596a9b295",
-      "path": "/images/models/single-family/38-128-125/floor-plans/single-family-38-128-125-floor-plan-upper-1580x1550.jpg",
-      "alt": null,
-      "width": 1580,
-      "height": 1550,
-      "createdAt": "2026-04-17T22:41:49.824Z"
-    },
-    {
-      "id": "6d533e06-58dc-4e99-8768-4f2139eaa5fb",
-      "path": "/images/models/single-family/38-138-125/floor-plans/single-family-38-138-125-floor-plan-attic-1670x1651.jpg",
-      "alt": null,
-      "width": 1670,
-      "height": 1651,
-      "createdAt": "2026-04-17T22:41:49.866Z"
-    },
-    {
-      "id": "0b8e5ed9-1263-4d7c-ab48-467447c64b00",
-      "path": "/images/models/single-family/38-138-125/floor-plans/single-family-38-138-125-floor-plan-ground-1604x1621.jpg",
-      "alt": null,
-      "width": 1604,
-      "height": 1621,
-      "createdAt": "2026-04-17T22:41:49.908Z"
-    },
-    {
-      "id": "f5a104ca-5545-467b-a436-710abc91e027",
-      "path": "/images/models/single-family/38-138-125/gallery/single-family-38-138-125-gallery-2-3507x1799.jpg",
-      "alt": null,
-      "width": 3507,
-      "height": 1799,
-      "createdAt": "2026-04-17T22:41:49.938Z"
-    },
-    {
-      "id": "d690f0f2-714f-46e8-ae9f-ca50b5ec306f",
-      "path": "/images/models/single-family/38-138-125/gallery/single-family-38-138-125-gallery-3507x1799.jpg",
-      "alt": null,
-      "width": 3507,
-      "height": 1799,
-      "createdAt": "2026-04-17T22:41:49.975Z"
-    },
-    {
-      "id": "3eedfa09-06fa-4549-a45b-fb58adde4ad7",
-      "path": "/images/models/bungalow/bungalow-thumb.jpg",
-      "alt": null,
-      "width": 800,
-      "height": 561,
-      "createdAt": "2026-04-18T10:48:22.452Z"
-    },
-    {
-      "id": "bc3615ec-25fa-4b02-b773-ea0e3d26c0f9",
-      "path": "/images/models/city-villa/city-villa-thumb.jpg",
-      "alt": null,
-      "width": 800,
-      "height": 561,
-      "createdAt": "2026-04-18T10:52:26.632Z"
-    },
-    {
-      "id": "b0856987-52ed-4ab0-a744-5450c38ca7cb",
-      "path": "/images/models/cube-house/cube-house-thumb.jpg",
-      "alt": null,
-      "width": 800,
-      "height": 561,
-      "createdAt": "2026-04-18T10:52:26.677Z"
-    },
-    {
-      "id": "fb3e3af6-fd3b-400c-84e4-8766f8f93094",
-      "path": "/images/models/multi-generational/multi-generational-thumb.jpg",
-      "alt": null,
-      "width": 800,
-      "height": 561,
-      "createdAt": "2026-04-18T10:52:26.706Z"
-    },
-    {
-      "id": "f9aea76e-8ca5-4371-a044-90a4c7f58ce9",
-      "path": "/images/models/single-family/single-family-thumb.jpg",
-      "alt": null,
-      "width": 800,
-      "height": 561,
-      "createdAt": "2026-04-18T10:52:26.736Z"
-    },
-    {
-      "id": "ff1fae65-0b4c-4362-848b-9abf2cb8de92",
-      "path": "/images/models/bungalow/bungalow-hero-1.webp",
-      "alt": null,
-      "width": 1920,
-      "height": 1080,
-      "createdAt": "2026-04-18T11:37:33.181Z"
-    },
-    {
-      "id": "ad9b7c66-cea6-4a8d-bdca-790c0b6aa87f",
-      "path": "/images/models/single-family/single-family-hero-1.webp",
-      "alt": null,
-      "width": 1920,
-      "height": 1080,
-      "createdAt": "2026-04-18T11:37:33.228Z"
-    },
-    {
-      "id": "8cd13a7d-957d-4b5a-9703-11d94ade5c17",
-      "path": "/images/models/bungalow/bungalow-22-117/hero.jpg",
-      "alt": "Bungalow 22-117 Außenansicht",
-      "width": 1920,
-      "height": 1080,
-      "createdAt": "2026-04-19T08:36:47.605Z"
-    },
-    {
-      "id": "cecb874b-0985-4a84-9706-a9d2e41c43e9",
-      "path": "/images/models/bungalow/22-117/floor-plans/bungalow-22-117-floor-plan-ground-2248x1874.jpg",
-      "alt": "Bungalow 22-117 Grundriss Erdgeschoss",
-      "width": 2248,
-      "height": 1874,
-      "createdAt": "2026-04-17T22:41:48.297Z"
-    },
-    {
-      "id": "0d6e5598-7533-46a6-8f56-dac838862620",
-      "path": "/images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-ground-1000x1024.webp",
-      "alt": "Einfamilienhaus 38-115-125 Grundriss Erdgeschoss",
-      "width": 1000,
-      "height": 1024,
-      "createdAt": "2026-04-19T09:37:21.122Z"
-    },
-    {
-      "id": "ee77ad23-92d4-4de1-85e1-1f08ef6d9112",
-      "path": "/images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-upper-1000x990.webp",
-      "alt": "Einfamilienhaus 38-115-125 Grundriss Dachgeschoss",
-      "width": 1000,
-      "height": 990,
-      "createdAt": "2026-04-19T09:37:21.122Z"
-    },
-    {
-      "id": "84591509-d655-446e-8bbb-49b4eff6c4cb",
-      "path": "images/models/single-family/25-168-190/floor-plans/single-family-25-168-190-floor-plan-ground-1000x717.webp",
-      "alt": "25-168-190 – Erdgeschoss",
-      "width": 1000,
-      "height": 717,
-      "createdAt": "2026-04-19T17:21:49.405Z"
-    },
-    {
-      "id": "d688d257-7ff7-4d4c-ab43-a3ac88f7d0ac",
-      "path": "images/models/single-family/25-168-190/floor-plans/single-family-25-168-190-floor-plan-attic-1000x750.webp",
-      "alt": "25-168-190 – Dachgeschoss",
-      "width": 1000,
-      "height": 750,
-      "createdAt": "2026-04-19T17:21:49.472Z"
-    },
-    {
-      "id": "c2308218-ca75-4185-bb6d-6f7409384bd5",
-      "path": "images/models/bungalow/22-134/floor-plans/bungalow-22-134-floor-plan-ground-2640x1509.webp",
-      "alt": "22-134 – Erdgeschoss",
-      "width": 2640,
-      "height": 1509,
-      "createdAt": "2026-04-19T17:21:49.537Z"
-    },
-    {
-      "id": "4b3d8544-448e-4a90-b124-d4463d320853",
-      "path": "images/models/cube-house/0-190/floor-plans/cube-house-0-190-floor-plan-ground-1000x713.webp",
-      "alt": "0-190 – Erdgeschoss",
-      "width": 1000,
-      "height": 713,
-      "createdAt": "2026-04-19T17:21:49.558Z"
-    },
-    {
-      "id": "35dde249-e699-4e12-9ecd-0b883a1fc631",
-      "path": "images/models/cube-house/0-190/floor-plans/cube-house-0-190-floor-plan-upper-1000x717.webp",
-      "alt": "0-190 – Obergeschoss",
-      "width": 1000,
-      "height": 717,
-      "createdAt": "2026-04-19T17:21:49.576Z"
-    },
-    {
-      "id": "de79cc7f-331f-4b1b-9a95-030caafa96f5",
-      "path": "images/models/city-villa/22-166/floor-plans/city-villa-22-166-floor-plan-ground-1000x946.webp",
-      "alt": "22-166 – Erdgeschoss",
-      "width": 1000,
-      "height": 946,
-      "createdAt": "2026-04-19T17:21:49.596Z"
-    },
-    {
-      "id": "7d788374-2fdb-446e-86f9-1c925a972bfa",
-      "path": "images/models/city-villa/22-166/floor-plans/city-villa-22-166-floor-plan-upper-1000x936.webp",
-      "alt": "22-166 – Obergeschoss",
-      "width": 1000,
-      "height": 936,
-      "createdAt": "2026-04-19T17:21:49.615Z"
-    },
-    {
-      "id": "0355573b-01b7-4bde-925c-cf1a8ffb6214",
-      "path": "images/models/single-family/22-173-190/floor-plans/single-family-22-173-190-floor-plan-ground-1000x634.webp",
-      "alt": "22-173-190 – Erdgeschoss",
-      "width": 1000,
-      "height": 634,
-      "createdAt": "2026-04-19T17:24:03.853Z"
-    },
-    {
-      "id": "1079bc28-8aed-4673-9424-054d2aa732dc",
-      "path": "images/models/single-family/22-173-190/floor-plans/single-family-22-173-190-floor-plan-attic-1000x651.webp",
-      "alt": "22-173-190 – Dachgeschoss",
-      "width": 1000,
-      "height": 651,
-      "createdAt": "2026-04-19T17:24:03.871Z"
-    },
-    {
-      "id": "a4bfd28a-12f6-4fa2-8be5-0c09675d9641",
-      "path": "images/models/single-family/28-194-170/floor-plans/single-family-28-194-170-floor-plan-ground-1912x1676.webp",
-      "alt": "28-194-170 – Erdgeschoss",
-      "width": 1912,
-      "height": 1676,
-      "createdAt": "2026-04-19T17:24:03.887Z"
-    },
-    {
-      "id": "cf29a0f3-3118-4d68-bf48-db0e69398098",
-      "path": "images/models/single-family/28-194-170/floor-plans/single-family-28-194-170-floor-plan-attic-1948x1708.webp",
-      "alt": "28-194-170 – Dachgeschoss",
-      "width": 1948,
-      "height": 1708,
-      "createdAt": "2026-04-19T17:24:03.904Z"
-    },
-    {
-      "id": "563772ae-deb0-4ac9-aafd-0e86091f9283",
-      "path": "images/models/city-villa/22-173/floor-plans/city-villa-22-173-floor-plan-ground-1468x1051.webp",
-      "alt": "22-173 – Erdgeschoss",
-      "width": 1468,
-      "height": 1051,
-      "createdAt": "2026-04-19T17:24:03.958Z"
-    },
-    {
-      "id": "28deeebf-8804-46f0-9675-100ff01d6e29",
-      "path": "images/models/city-villa/22-173/floor-plans/city-villa-22-173-floor-plan-upper-1977x1277.webp",
-      "alt": "22-173 – Obergeschoss",
-      "width": 1977,
-      "height": 1277,
-      "createdAt": "2026-04-19T17:24:03.975Z"
-    },
-    {
-      "id": "058a8720-b57b-4ce4-aa83-6bae52d46124",
-      "path": "/images/models/single-family/22-141-190/hero/single-family-22-141-190-hero-1300x920.webp",
-      "alt": "Hausbild 22-141-190",
-      "width": 1300,
-      "height": 920,
-      "createdAt": "2026-04-19T17:34:58.322Z"
-    },
-    {
-      "id": "efcc62df-1ab7-41cc-8113-75a719204e74",
-      "path": "/images/models/single-family/22-162-190/hero/single-family-22-162-190-hero-1300x919.webp",
-      "alt": "Hausbild 22-162-190",
-      "width": 1300,
-      "height": 919,
-      "createdAt": "2026-04-19T17:34:58.364Z"
-    },
-    {
-      "id": "3061940e-c283-4210-a77e-2388e25a2779",
-      "path": "/images/models/duplex/38-238-125/hero/duplex-38-238-125-hero-1300x919.webp",
-      "alt": "Hausbild 38-238-125",
-      "width": 1300,
-      "height": 919,
-      "createdAt": "2026-04-19T17:34:58.388Z"
-    },
-    {
-      "id": "bbe4e923-929b-49e1-b09f-251830723c23",
-      "path": "/images/models/generation-house/28-264-160/hero/generation-house-28-264-160-hero-1170x600.webp",
-      "alt": "Hausbild 28-264-160",
-      "width": 1170,
-      "height": 600,
-      "createdAt": "2026-04-19T17:34:58.410Z"
-    },
-    {
-      "id": "e33d40bf-1e90-42ff-bbc2-63d9d6e36e09",
-      "path": "/images/models/pent-roof/21-349-225/hero/pent-roof-21-349-225-hero-1200x849.webp",
-      "alt": "Hausbild 21-349-225",
-      "width": 1200,
-      "height": 849,
-      "createdAt": "2026-04-19T17:34:58.428Z"
-    },
-    {
-      "id": "fe4ba023-5e37-45ed-82e3-0d8bb50dcebb",
-      "path": "/images/models/city-villa/22-173/hero/city-villa-22-173-hero-2000x776.webp",
-      "alt": "Hausbild 22-173",
-      "width": 2000,
-      "height": 776,
-      "createdAt": "2026-04-19T17:34:58.446Z"
-    },
-    {
-      "id": "6c208205-834b-4853-8a69-31d60844f48d",
-      "path": "/images/models/single-family/28-182-170/hero/single-family-28-182-170-hero-4960x3507.webp",
-      "alt": "Hausbild 28-182-170",
-      "width": 4960,
-      "height": 3507,
-      "createdAt": "2026-04-19T17:34:58.475Z"
-    },
-    {
-      "id": "3f38c77b-5c1c-4a0b-b806-0b3a81619ed2",
-      "path": "/images/models/single-family/22-162-190/floor-plans/single-family-22-162-190-floor-plan-ground-1000x881.webp",
-      "alt": "Grundriss Erdgeschoss 22-162-190",
-      "width": 1000,
-      "height": 881,
-      "createdAt": "2026-04-19T17:49:50.716Z"
-    },
-    {
-      "id": "a0ce1e10-1b1e-477e-a823-5872f71bcab2",
-      "path": "/images/models/single-family/22-162-190/floor-plans/single-family-22-162-190-floor-plan-attic-1000x859.webp",
-      "alt": "Grundriss Dachgeschoss 22-162-190",
-      "width": 1000,
-      "height": 859,
-      "createdAt": "2026-04-19T17:49:50.751Z"
-    },
-    {
-      "id": "c4ffdd8b-a010-4082-99b7-20be39d127c7",
-      "path": "/images/models/single-family/35-181-150/floor-plans/single-family-35-181-150-floor-plan-ground-1000x915.webp",
-      "alt": "Grundriss Erdgeschoss 35-181-150",
-      "width": 1000,
-      "height": 915,
-      "createdAt": "2026-04-19T17:49:50.771Z"
-    },
-    {
-      "id": "20036948-0d28-43b5-8ef1-8c6d88e1872f",
-      "path": "/images/models/single-family/35-181-150/floor-plans/single-family-35-181-150-floor-plan-attic-1000x883.webp",
-      "alt": "Grundriss Dachgeschoss 35-181-150",
-      "width": 1000,
-      "height": 883,
-      "createdAt": "2026-04-19T17:49:50.787Z"
-    },
-    {
-      "id": "46862ed0-5cc4-4876-86c3-23eb1d730063",
-      "path": "/images/models/single-family/35-181-150/floor-plans/single-family-35-181-150-floor-plan-ground-alt-1000x929.webp",
-      "alt": "Grundriss Erdgeschoss (Alternativ) 35-181-150",
-      "width": 1000,
-      "height": 929,
-      "createdAt": "2026-04-19T17:49:50.804Z"
-    },
-    {
-      "id": "2d0acc1c-cc3e-4384-b8ab-f816c6392ed7",
-      "path": "/images/models/single-family/38-128-125/floor-plans/single-family-38-128-125-floor-plan-ground-1000x1021.webp",
-      "alt": "Grundriss Erdgeschoss 38-128-125",
-      "width": 1000,
-      "height": 1021,
-      "createdAt": "2026-04-19T17:49:50.822Z"
-    },
-    {
-      "id": "5a51b004-66a2-4cf5-8b05-cf70116084c3",
-      "path": "/images/models/single-family/38-128-125/floor-plans/single-family-38-128-125-floor-plan-attic-1000x987.webp",
-      "alt": "Grundriss Dachgeschoss 38-128-125",
-      "width": 1000,
-      "height": 987,
-      "createdAt": "2026-04-19T17:49:50.840Z"
-    },
-    {
-      "id": "5bec8973-250a-4b95-b5f0-1a5681bef90d",
-      "path": "/images/models/single-family/38-138-125/floor-plans/single-family-38-138-125-floor-plan-ground-1000x967.webp",
-      "alt": "Grundriss Erdgeschoss 38-138-125",
-      "width": 1000,
-      "height": 967,
-      "createdAt": "2026-04-19T17:49:50.854Z"
-    },
-    {
-      "id": "6754a83d-4a99-43e6-a6e7-c48d6c435545",
-      "path": "/images/models/single-family/38-138-125/floor-plans/single-family-38-138-125-floor-plan-attic-1000x1002.webp",
-      "alt": "Grundriss Dachgeschoss 38-138-125",
-      "width": 1000,
-      "height": 1002,
-      "createdAt": "2026-04-19T17:49:50.868Z"
-    },
-    {
-      "id": "53697eaa-8284-4ffc-baa6-42c3a615f916",
-      "path": "/images/models/single-family/38-138-125/floor-plans/single-family-38-138-125-floor-plan-ground-alt-1000x1095.webp",
-      "alt": "Grundriss Erdgeschoss (Alternativ) 38-138-125",
-      "width": 1000,
-      "height": 1095,
-      "createdAt": "2026-04-19T17:49:50.885Z"
-    },
-    {
-      "id": "885dd5b0-6ba3-4e42-bddd-2277edbb4bb5",
-      "path": "/images/models/single-family/45-139-75/floor-plans/single-family-45-139-75-floor-plan-ground-1000x815.webp",
-      "alt": "Grundriss Erdgeschoss 45-139-75",
-      "width": 1000,
-      "height": 815,
-      "createdAt": "2026-04-19T17:49:50.903Z"
-    },
-    {
-      "id": "00271982-2add-4f21-a803-5d763f73e45a",
-      "path": "/images/models/single-family/45-139-75/floor-plans/single-family-45-139-75-floor-plan-attic-1000x849.webp",
-      "alt": "Grundriss Dachgeschoss 45-139-75",
-      "width": 1000,
-      "height": 849,
-      "createdAt": "2026-04-19T17:49:50.920Z"
-    },
-    {
-      "id": "4b3e25a7-3b40-45e4-91e8-cfb0e7e1064a",
-      "path": "/images/models/single-family/22-141-190/floor-plans/single-family-22-141-190-floor-plan-ground-1000x627.webp",
-      "alt": "Grundriss Erdgeschoss 22-141-190",
-      "width": 1000,
-      "height": 627,
-      "createdAt": "2026-04-19T17:49:50.937Z"
-    },
-    {
-      "id": "68212218-d848-455f-a79d-ed5c04896792",
-      "path": "/images/models/single-family/22-141-190/floor-plans/single-family-22-141-190-floor-plan-attic-1000x637.webp",
-      "alt": "Grundriss Dachgeschoss 22-141-190",
-      "width": 1000,
-      "height": 637,
-      "createdAt": "2026-04-19T17:49:50.955Z"
-    },
-    {
-      "id": "4de61a47-0ea5-4d97-a0da-6220bcaefd87",
-      "path": "/images/models/single-family/35-146-150/floor-plans/single-family-35-146-150-floor-plan-ground-1000x768.webp",
-      "alt": "Grundriss Erdgeschoss 35-146-150",
-      "width": 1000,
+      "width": 1024,
       "height": 768,
-      "createdAt": "2026-04-19T17:49:50.971Z"
+      "createdAt": "2026-05-21T11:24:02.277Z"
     },
     {
-      "id": "48894b29-228f-41fc-ac0d-acf7fb51b8f7",
-      "path": "/images/models/single-family/35-146-150/floor-plans/single-family-35-146-150-floor-plan-attic-1000x746.webp",
-      "alt": "Grundriss Dachgeschoss 35-146-150",
-      "width": 1000,
-      "height": 746,
-      "createdAt": "2026-04-19T17:49:50.986Z"
+      "id": "9b77cd1c-73ed-4d5c-8acc-0b64b37c7a74",
+      "path": "/images/stock/doppelhaeuser-slider/forest-3315896-1920.webp",
+      "alt": null,
+      "width": 1920,
+      "height": 1280,
+      "createdAt": "2026-05-21T11:24:02.277Z"
     },
     {
-      "id": "004f4720-1f1e-4977-bb64-a0beb8931d17",
-      "path": "/images/models/single-family/28-194-170/floor-plans/single-family-28-194-170-floor-plan-ground-alt-1916x1780.webp",
-      "alt": "Grundriss Erdgeschoss (Variante 2) 28-194-170",
-      "width": 1916,
-      "height": 1780,
-      "createdAt": "2026-04-19T17:49:51.005Z"
+      "id": "97beffb0-7a63-46fc-9353-e65e24e5c5c5",
+      "path": "/images/stock/kubus-slider/tree-1750784.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1600,
+      "createdAt": "2026-05-21T11:24:02.277Z"
     },
     {
-      "id": "71a7c5d4-47f1-4e47-bf1a-ed2a2ca160bb",
-      "path": "/images/models/city-villa/22-173/floor-plans/city-villa-22-173-floor-plan-ground-alt-1000x716.webp",
-      "alt": "Grundriss Erdgeschoss (Alternativ) 22-173",
-      "width": 1000,
-      "height": 716,
-      "createdAt": "2026-04-19T17:49:51.025Z"
+      "id": "096a33f5-b005-48cc-97d3-044f365f6cda",
+      "path": "/images/stock/kubus-slider/p-shutterstock-729856273.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1535,
+      "createdAt": "2026-05-21T11:24:02.277Z"
     },
     {
-      "id": "297a7ed8-1ca8-4314-a1b5-a7f6e77d64e0",
-      "path": "/images/models/cube-house/0-166/hero/cube-house-0-166-hero-1000x707.webp",
-      "alt": "Boholz Kubus 0-166 Außenansicht",
-      "width": 1000,
-      "height": 707,
-      "createdAt": "2026-04-19T18:12:22.155Z"
+      "id": "2af03631-3090-4826-bb09-b080f2cdd851",
+      "path": "/images/stock/kubus-slider/129072-03-xxl-ggu-cymk.webp",
+      "alt": null,
+      "width": 1024,
+      "height": 683,
+      "createdAt": "2026-05-21T11:24:02.277Z"
     },
     {
-      "id": "5e6d5178-42fa-4d8a-b946-4cb3ae92ec09",
-      "path": "/images/models/city-villa/22-166/hero/city-villa-22-166-hero-1200x849.webp",
-      "alt": "Boholz Stadtvilla 22-166 Außenansicht",
-      "width": 1200,
-      "height": 849,
-      "createdAt": "2026-04-19T18:12:22.190Z"
+      "id": "4fde16fe-fcb9-4248-890d-c179a7ef424c",
+      "path": "/images/stock/pultdachhaeuser-slider/115957-02-xxl-cymk.webp",
+      "alt": null,
+      "width": 1024,
+      "height": 768,
+      "createdAt": "2026-05-21T11:24:02.277Z"
     },
     {
-      "id": "a71c4b8b-5baa-4419-a32b-a2cba4f1dc71",
-      "path": "/images/models/single-family/35-181-150/hero/single-family-35-181-150-hero-1500x1061.webp",
-      "alt": "Boholz Einfamilienhaus 35-181-150 Außenansicht",
-      "width": 1500,
-      "height": 1061,
-      "createdAt": "2026-04-19T18:12:22.210Z"
+      "id": "2209ce35-4a66-4fda-bbff-0ea6c840b1a8",
+      "path": "/images/stock/bungalow-slider/p-adobestock-622134419.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1808,
+      "createdAt": "2026-05-21T11:24:02.277Z"
     },
     {
-      "id": "115a505e-d356-41ad-8643-067351bd645f",
-      "path": "/images/models/single-family/25-168-190/hero/single-family-25-168-190-hero-1170x600.webp",
-      "alt": "Boholz Einfamilienhaus 25-168-190 Außenansicht",
-      "width": 1170,
-      "height": 600,
-      "createdAt": "2026-04-19T18:12:22.230Z"
+      "id": "da767643-a1a9-42c2-aee4-dd1c531601a1",
+      "path": "/images/stock/stadtvillen-slider/environmental-protection-683437.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1350,
+      "createdAt": "2026-05-21T11:24:02.277Z"
     },
     {
-      "id": "455a3515-ca90-48a0-ac70-7342b35bbf20",
-      "path": "/images/models/city-villa/22-157/hero/city-villa-22-157-hero-1300x1039.webp",
-      "alt": "Boholz Stadtvilla 22-157 Außenansicht",
-      "width": 1300,
-      "height": 1039,
-      "createdAt": "2026-04-19T18:12:22.252Z"
-    },
-    {
-      "id": "57324fa9-956c-487f-b244-e9a9c773ef47",
-      "path": "/images/models/single-family/45-139-75/hero/single-family-45-139-75-hero-1300x919.webp",
-      "alt": "Boholz Einfamilienhaus 45-139-75 Außenansicht",
-      "width": 1300,
-      "height": 919,
-      "createdAt": "2026-04-19T18:12:22.273Z"
-    },
-    {
-      "id": "676cd865-2a83-44a7-a969-802e3a86712c",
-      "path": "/images/models/duplex/28-299/hero/duplex-28-299-hero-1300x919.webp",
-      "alt": "Boholz Doppelhaus 28-299 Außenansicht",
-      "width": 1300,
-      "height": 919,
-      "createdAt": "2026-04-19T18:18:51.712Z"
-    },
-    {
-      "id": "44a9ee2d-338b-42a8-a6f5-5c10d8a72b95",
-      "path": "/images/models/single-family/38-138-125/hero/single-family-38-138-125-hero-700x495.webp",
-      "alt": "Boholz Einfamilienhaus 38-138-125 Außenansicht",
-      "width": 700,
-      "height": 495,
-      "createdAt": "2026-04-19T18:18:51.752Z"
-    },
-    {
-      "id": "1975267e-a8a6-499b-b55d-8e1a5857aa50",
-      "path": "/images/models/cube-house/0-278/hero/cube-house-0-278-hero-1300x919.webp",
-      "alt": "Boholz Kubus 0-278 Außenansicht",
-      "width": 1300,
-      "height": 919,
-      "createdAt": "2026-04-19T18:18:51.781Z"
-    },
-    {
-      "id": "696fa904-4d38-4751-8cba-4180814f4f77",
-      "path": "/images/models/single-family/38-128-125/hero/single-family-38-128-125-hero-1300x919.webp",
-      "alt": "Boholz Einfamilienhaus 38-128-125 Außenansicht",
-      "width": 1300,
-      "height": 919,
-      "createdAt": "2026-04-19T18:18:51.797Z"
-    },
-    {
-      "id": "9a7cde52-3474-4c2b-97f5-e3ff975f83fe",
-      "path": "/images/models/single-family/35-146-150/hero/single-family-35-146-150-hero-1500x1060.webp",
-      "alt": "Boholz Einfamilienhaus 35-146-150 Außenansicht",
-      "width": 1500,
-      "height": 1060,
-      "createdAt": "2026-04-19T18:18:51.814Z"
-    },
-    {
-      "id": "35ebae72-63db-4ea4-8a55-7ae8361b2312",
-      "path": "/images/models/bungalow/22-117/thumbnail/bungalow-22-117-thumbnail.png",
-      "alt": "Bungalow 22-117 Vorschaubild",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "b5f1e87c-5483-4ccb-9458-3acd19871703",
-      "path": "/images/models/bungalow/22-134/thumbnail/bungalow-22-134-thumbnail.jpg",
-      "alt": "Bungalow 22-134 Vorschaubild",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "45b87478-a958-4f9e-81e5-a7ba0608b809",
-      "path": "/images/models/bungalow/22-149/hero/bungalow-22-149-hero.jpg",
-      "alt": "Bungalow 22-149 Außenansicht",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "157d7f2a-8ca9-4ed3-984a-2108359138b9",
-      "path": "/images/models/bungalow/22-149/floor-plans/bungalow-22-149-floor-plan-ground.png",
-      "alt": "Bungalow 22-149 Grundriss Erdgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "39d0604d-c2c3-47c3-84fa-07bb0a534e4e",
-      "path": "/images/models/duplex/28-299/floor-plans/duplex-28-299-floor-plan-ground.png",
-      "alt": "Doppelhaus 28-299 Grundriss Erdgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "3e169152-e56a-48a1-8817-048c6cba771b",
-      "path": "/images/models/duplex/28-299/floor-plans/duplex-28-299-floor-plan-upper.png",
-      "alt": "Doppelhaus 28-299 Grundriss Obergeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "e4811354-db74-486e-8347-6819481c1fa0",
-      "path": "/images/models/duplex/38-238-125/floor-plans/duplex-38-238-125-floor-plan-ground-new.png",
-      "alt": "Doppelhaus 38-238-125 Grundriss Erdgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "2f331a2f-589d-41f6-9396-6afe2dba1e54",
-      "path": "/images/models/duplex/38-238-125/floor-plans/duplex-38-238-125-floor-plan-upper-new.png",
-      "alt": "Doppelhaus 38-238-125 Grundriss Obergeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "361fabf7-4ac9-4f7a-8aae-6c1a868e8fd1",
-      "path": "/images/models/duplex/38-238-125/gallery/duplex-38-238-125-gallery.png",
-      "alt": "Doppelhaus 38-238-125 Außenansicht",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "d6762cbc-30b4-48dc-9d37-2935e16297a6",
-      "path": "/images/models/single-family/22-173-190/hero/single-family-22-173-190-hero.jpg",
-      "alt": "Einfamilienhaus 22-173-190 Außenansicht",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "303c8967-3892-4355-a9a4-9d2146a72815",
-      "path": "/images/models/single-family/22-173-190/floor-plans/single-family-22-173-190-floor-plan-ground-new.png",
-      "alt": "Einfamilienhaus 22-173-190 Grundriss Erdgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "47346a13-bd3c-49e9-8d6d-a3a940d8fdc2",
-      "path": "/images/models/single-family/22-173-190/floor-plans/single-family-22-173-190-floor-plan-attic-new.png",
-      "alt": "Einfamilienhaus 22-173-190 Grundriss Dachgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "a2032993-6627-4a52-afa5-fd4d4c2be1b0",
-      "path": "/images/models/single-family/22-173-190/floor-plans/single-family-22-173-190-floor-plan-ground-alt-new.png",
-      "alt": "Einfamilienhaus 22-173-190 Grundriss Erdgeschoss (Alternative)",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "59bd65ab-9368-4d0e-8b4e-2292bc252cc2",
-      "path": "/images/models/single-family/28-182-170/gallery/single-family-28-182-170-gallery.jpg",
-      "alt": "Einfamilienhaus 28-182-170 Außenansicht",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "91e72611-f428-45a1-b337-89ed0578a66c",
-      "path": "/images/models/single-family/28-182-170/floor-plans/single-family-28-182-170-floor-plan-ground.png",
-      "alt": "Einfamilienhaus 28-182-170 Grundriss Erdgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "4e782edb-aff7-430f-b244-74e3b6d19bed",
-      "path": "/images/models/single-family/28-182-170/floor-plans/single-family-28-182-170-floor-plan-upper.png",
-      "alt": "Einfamilienhaus 28-182-170 Grundriss Obergeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "476bb174-7c01-4376-992c-336e030d0a10",
-      "path": "/images/models/single-family/28-194-170/hero/single-family-28-194-170-hero.png",
-      "alt": "Einfamilienhaus 28-194-170 Außenansicht",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "a4000eda-4831-46ed-9b38-1a8c9d8f011c",
-      "path": "/images/models/generation-house/28-264-160/floor-plans/generation-house-28-264-160-floor-plan-ground.png",
-      "alt": "Generationenhaus 28-264-160 Grundriss Erdgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "715c7784-aa14-404a-9cca-af5f04185563",
-      "path": "/images/models/generation-house/28-264-160/floor-plans/generation-house-28-264-160-floor-plan-upper.png",
-      "alt": "Generationenhaus 28-264-160 Grundriss Obergeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "6947fb23-80a1-4189-916d-1cccf3ce1b94",
-      "path": "/images/models/cube-house/0-166/floor-plans/cube-house-0-166-floor-plan-ground-new.png",
-      "alt": "Kubus 0-166 Grundriss Erdgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "9f90b60f-1fda-4bd7-b247-8efe40f3309e",
-      "path": "/images/models/cube-house/0-166/floor-plans/cube-house-0-166-floor-plan-upper-new.png",
-      "alt": "Kubus 0-166 Grundriss Obergeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "5ae9a732-cd53-45f7-ae26-bc774e4d12df",
-      "path": "/images/models/cube-house/0-190/floor-plans/cube-house-0-190-floor-plan-ground-new.png",
-      "alt": "Kubus 0-190 Grundriss Erdgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "82f5e353-9b1f-4885-bed7-c39353c68bb7",
-      "path": "/images/models/cube-house/0-190/floor-plans/cube-house-0-190-floor-plan-upper-new.png",
-      "alt": "Kubus 0-190 Grundriss Obergeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "ee3edbc0-2c79-4e0f-89c6-de03b78358a1",
-      "path": "/images/models/cube-house/0-278/floor-plans/cube-house-0-278-floor-plan-ground-new.png",
-      "alt": "Kubus 0-278 Grundriss Erdgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "9acedb3f-0025-4cc0-9678-00863c0c053b",
-      "path": "/images/models/cube-house/0-278/floor-plans/cube-house-0-278-floor-plan-upper-new.png",
-      "alt": "Kubus 0-278 Grundriss Obergeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "b6964305-dab5-486f-a156-0c29e5f295c3",
-      "path": "/images/models/cube-house/0-278/gallery/cube-house-0-278-gallery.png",
-      "alt": "Kubus 0-278 Außenansicht",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "28b1bbe0-75c9-43a8-b038-1847ba0436d1",
-      "path": "/images/models/pent-roof/21-349-225/gallery/pent-roof-21-349-225-gallery.jpg",
-      "alt": "Pultdachhaus 21-369-225 Außenansicht",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "6fa0e555-e261-4d9e-a239-6e1146ee0d85",
-      "path": "/images/models/pent-roof/21-349-225/floor-plans/pent-roof-21-349-225-floor-plan-ground.png",
-      "alt": "Pultdachhaus 21-369-225 Grundriss Erdgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "ef0782d1-649d-4c89-85ab-8d548c3419a2",
-      "path": "/images/models/pent-roof/21-349-225/floor-plans/pent-roof-21-349-225-floor-plan-attic.png",
-      "alt": "Pultdachhaus 21-369-225 Grundriss Dachgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "8eebb331-337c-4058-92f5-abc84d5c50c9",
-      "path": "/images/models/pent-roof/21-349-225/floor-plans/pent-roof-21-349-225-floor-plan-basement.png",
-      "alt": "Pultdachhaus 21-369-225 Grundriss Kellergeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "fe120351-2836-4d98-9fb9-009dc981593c",
-      "path": "/images/models/city-villa/18-140/hero/city-villa-18-140-hero.jpg",
-      "alt": "Stadtvilla 18-140 Außenansicht",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "38117bf3-f1f3-4e31-8002-6fedd7814552",
-      "path": "/images/models/city-villa/18-140/floor-plans/city-villa-18-140-floor-plan-ground-new.png",
-      "alt": "Stadtvilla 18-140 Grundriss Erdgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "fa57ebb4-1389-4f10-900e-751becaa1f4b",
-      "path": "/images/models/city-villa/18-140/floor-plans/city-villa-18-140-floor-plan-upper-new.png",
-      "alt": "Stadtvilla 18-140 Grundriss Obergeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "4da1fc77-034a-44f9-b17d-9df27bc40941",
-      "path": "/images/models/city-villa/22-157/floor-plans/city-villa-22-157-floor-plan-ground-new.png",
-      "alt": "Stadtvilla 22-157 Grundriss Erdgeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "12e5bced-7444-4d62-87d1-8e1d342ff831",
-      "path": "/images/models/city-villa/22-157/floor-plans/city-villa-22-157-floor-plan-upper-new.png",
-      "alt": "Stadtvilla 22-157 Grundriss Obergeschoss",
-      "width": null,
-      "height": null,
-      "createdAt": "2026-04-27T11:44:22.313Z"
-    },
-    {
-      "id": "e00f8a78-9446-47ee-9e05-75fb8e8b10f4",
-      "path": "/images/models/bestseller/32-150-170/hero/bestseller-family-150-hero-1216x932.jpg",
-      "alt": "Bestseller Family 150 Außenansicht",
-      "width": 1216,
-      "height": 932,
-      "createdAt": "2026-05-11T20:22:07.758Z"
-    },
-    {
-      "id": "97419057-1c8a-4f3e-a27f-a91948de9bf6",
-      "path": "/images/models/bestseller/22-116-000/hero/bestseller-komfort-116-hero-1216x932.jpg",
-      "alt": "Bestseller Komfort 116 Außenansicht",
-      "width": 1216,
-      "height": 932,
-      "createdAt": "2026-05-11T20:22:15.845Z"
-    },
-    {
-      "id": "aeab4ef1-6a44-4293-afb4-0fcbd218921f",
-      "path": "/images/models/bestseller/22-140-000/hero/bestseller-weitblick-140-hero-1216x932.jpg",
-      "alt": "Bestseller Weitblick 140 Außenansicht",
-      "width": 1216,
-      "height": 932,
-      "createdAt": "2026-05-11T20:22:23.757Z"
-    },
-    {
-      "id": "c8be6a83-ec21-4273-830e-6e2edca42232",
-      "path": "/images/models/bestseller/30-223-160/hero/bestseller-plus-223-hero-1216x932.jpg",
-      "alt": "Bestseller Plus 223 Außenansicht",
-      "width": 1216,
-      "height": 932,
-      "createdAt": "2026-05-11T20:22:31.742Z"
-    },
-    {
-      "id": "64875531-e54b-4be6-8422-40ba57131504",
-      "path": "/images/models/bestseller/25-138-210/hero/bestseller-twin-138-hero-1215x932.jpg",
-      "alt": "Bestseller Twin 138 Außenansicht",
-      "width": 1215,
-      "height": 932,
-      "createdAt": "2026-05-11T20:22:39.633Z"
-    },
-    {
-      "id": "a3106cb7-8ef1-4af7-80f6-0ee350fe8c2e",
-      "path": "/images/models/bestseller/30-168-160/hero/bestseller-freiraum-167-hero-1216x932.jpg",
-      "alt": "Bestseller Freiraum 167 Außenansicht",
-      "width": 1216,
-      "height": 932,
-      "createdAt": "2026-05-11T20:22:48.111Z"
-    },
-    {
-      "id": "c9030671-3008-47f0-875b-5d3c71d80b2d",
-      "path": "/images/models/bestseller/32-150-170/gallery/bestseller-family-150-gallery-2-540x424.jpg",
-      "alt": "Bestseller Family 150 Außenansicht alternativ",
-      "width": 540,
-      "height": 424,
-      "createdAt": "2026-05-11T20:43:30.704Z"
-    },
-    {
-      "id": "5aaa7d61-afc1-443f-9b03-fb5a1e9ab8a3",
-      "path": "/images/models/bestseller/22-116-000/gallery/bestseller-komfort-116-gallery-2-540x414.jpg",
-      "alt": "Bestseller Komfort 116 Außenansicht alternativ",
-      "width": 540,
-      "height": 414,
-      "createdAt": "2026-05-11T20:43:38.919Z"
-    },
-    {
-      "id": "6d820271-e0d7-4700-8aa3-df10b210c66e",
-      "path": "/images/models/bestseller/22-140-000/gallery/bestseller-weitblick-140-gallery-2-540x424.jpg",
-      "alt": "Bestseller Weitblick 140 Außenansicht alternativ",
-      "width": 540,
-      "height": 424,
-      "createdAt": "2026-05-11T20:43:47.196Z"
+      "id": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "path": "/images/stock/einfamilienhaeuser-slider/p-adobestock-622134419.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1808,
+      "createdAt": "2026-05-21T11:24:02.277Z"
     },
     {
       "id": "756e0974-7786-4f6a-90be-44637405d889",
@@ -1582,789 +558,1677 @@
       "createdAt": "2026-05-17T17:58:05.753Z"
     },
     {
-      "id": "5d4c503f-b005-470a-8a07-f509607ee60c",
-      "path": "/images/models/city-villa/22-170/hero/city-villa-22-170-hero-retusche2.jpg",
-      "alt": "BoHolz Stadtvilla 170 m² — moderne Villenarchitektur mit Holzfertigbauweise",
-      "width": 2400,
-      "height": 1600,
-      "createdAt": "2026-05-18T15:55:09.429Z"
-    },
-    {
-      "id": "66325a97-1460-4e2f-a3f0-6d2e9366cd51",
-      "path": "/images/models/bungalow/22-134/hero/bungalow-22-134-hero-client.jpg",
-      "alt": "BoHolz Bungalow 134 m² — barrierefreies Wohnen auf einer Ebene",
-      "width": 2400,
-      "height": 1600,
-      "createdAt": "2026-05-18T15:55:09.502Z"
-    },
-    {
-      "id": "41db8343-c7ed-4a74-a100-cae2f7f9f3e7",
-      "path": "images/models/stadtvilla/stadtvilla-thumb.webp",
-      "alt": "Stadtvilla — Kategorie",
-      "width": 1600,
-      "height": 1132,
-      "createdAt": "2026-05-18T22:42:08.301Z"
-    },
-    {
-      "id": "23bae9c1-7855-453f-a074-7faa021c4697",
-      "path": "images/models/bungalow/bungalow-thumb.webp",
-      "alt": "Bungalow — Kategorie",
-      "width": 1600,
-      "height": 1132,
-      "createdAt": "2026-05-18T22:42:08.795Z"
-    },
-    {
-      "id": "1c9a208a-41d4-44d5-b935-891159b37098",
-      "path": "/images/models/bungalow/22-134/hero/bungalow-22-134-hero-4960x3507.webp",
+      "id": "5136c900-c675-4e4d-817d-fa3c037110bb",
+      "path": "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-generationenhaus-28-264-160-3d-4-xxl.webp",
       "alt": null,
-      "width": 4960,
-      "height": 3507,
-      "createdAt": "2026-04-17T22:41:48.403Z"
+      "width": 1169,
+      "height": 826,
+      "createdAt": "2026-05-21T03:39:43.536Z"
     },
     {
-      "id": "a7d31145-5306-4855-be57-71a5fd66efa3",
-      "path": "/images/models/stadtvilla/22-157/hero/stadtvilla-22-157-hero-4252x3007.webp",
-      "alt": "Stadtvilla 22-157 — Außenansicht",
-      "width": 4252,
-      "height": 3007,
-      "createdAt": "2026-05-18T22:42:07.812Z"
+      "id": "bdb0b7fd-9cdd-4d4a-8c4a-14cef759be2f",
+      "path": "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-eg-elw.webp",
+      "alt": null,
+      "width": 2086,
+      "height": 1509,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "cbae309a-3783-4965-836c-0e97c35afa9b",
+      "path": "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-og-elw.webp",
+      "alt": null,
+      "width": 1942,
+      "height": 1451,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "f9be1eb4-e974-4046-91d3-11d9d192b9c1",
+      "path": "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-generationenhaus-28-264-160-3d-2-xxl.webp",
+      "alt": null,
+      "width": 1169,
+      "height": 826,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "7b71daa5-d42f-494c-8963-7f850a92d16f",
+      "path": "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1696,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "ba268185-d00e-4193-afd4-6d9ba95d9985",
+      "path": "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-generationenhaus-28-264-160-3d-3-xxl.webp",
+      "alt": null,
+      "width": 1169,
+      "height": 826,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "5b7cdc11-fcde-47ff-aff2-d4ee5aa56118",
+      "path": "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-generationenhaus-28-264-160-3d-1-xxl.webp",
+      "alt": null,
+      "width": 1169,
+      "height": 826,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "149f677e-a981-49a5-b4a5-c89042726397",
+      "path": "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 2086,
+      "height": 1509,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "14a29dcf-7d4b-457a-a41b-b8000247d486",
+      "path": "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 1942,
+      "height": 1451,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "969cf058-e6b8-4099-bae0-4db052295b87",
+      "path": "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-bodenplatte-expose-grundrisse300dpi-neu.webp",
+      "alt": null,
+      "width": 1696,
+      "height": 2400,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "abbaaa32-c2a6-4a23-910d-3d15faf53238",
+      "path": "/images/models/doppelhaus/38-238-125/floor-plans/doppelhaus-38-238-125-floor-plan-dh-238-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1474,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "032f16c9-e5a8-4aa1-bfb7-f4ad75a89811",
+      "path": "/images/models/doppelhaus/38-238-125/gallery/doppelhaus-38-238-125-gallery-dh-238-38-125.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "abdbac5c-ee3d-4208-b64f-f4046cd2521b",
+      "path": "/images/models/doppelhaus/38-238-125/floor-plans/doppelhaus-38-238-125-floor-plan-dh-238-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1435,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "b1aba571-ec6e-4150-9340-46f1b6aacce2",
+      "path": "/images/models/doppelhaus/28-299/floor-plans/doppelhaus-28-299-floor-plan-dh-299-28-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1999,
+      "height": 1751,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "e104f068-71d7-420a-a742-d88d4f0e73b4",
+      "path": "/images/models/doppelhaus/28-299/floor-plans/doppelhaus-28-299-floor-plan-dh-299-28-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 2082,
+      "height": 1645,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "b9f13814-1eda-4fc2-80d5-0f288293ffaa",
+      "path": "/images/models/doppelhaus/28-299/gallery/doppelhaus-28-299-gallery-dh-299-28-0.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1696,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "da413d80-8287-4b24-8393-6584897efe81",
+      "path": "/images/models/kubus/0-166/floor-plans/kubus-0-166-floor-plan-kubus-166-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1649,
+      "height": 1550,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "3f681e7d-c07c-4926-89b4-d92502df54c6",
+      "path": "/images/models/kubus/0-166/gallery/kubus-0-166-gallery-kubus-166-0-0.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "53744aa0-0d0a-4719-8014-3d8749850c77",
+      "path": "/images/models/kubus/0-166/floor-plans/kubus-0-166-floor-plan-kubus-166-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 1625,
+      "height": 1511,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "688eef13-9837-4111-82ac-491f6cda8276",
+      "path": "/images/models/kubus/0-190/floor-plans/kubus-0-190-floor-plan-kubus-190-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 1907,
+      "height": 1368,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "56c2e59f-142d-4e5b-9dc3-f0f1ec776155",
+      "path": "/images/models/kubus/0-190/gallery/kubus-0-190-gallery-kubus-190-0-0.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "bb5e91b3-4eb5-41b7-aeda-a83d731ec218",
+      "path": "/images/models/kubus/0-190/floor-plans/kubus-0-190-floor-plan-kubus-190-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1939,
+      "height": 1382,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "00096428-3da9-4616-a44e-d5f3113a3656",
+      "path": "/images/models/kubus/0-278/gallery/kubus-0-278-gallery-kubus-278-0-0.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1696,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "2c3b5c81-628d-43af-8c72-393eab7e3536",
+      "path": "/images/models/kubus/0-278/floor-plans/kubus-0-278-floor-plan-kubus-278-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1728,
+      "height": 1678,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "5dc93632-b6f8-4913-9b9e-588356e6d3e9",
+      "path": "/images/models/kubus/0-278/floor-plans/kubus-0-278-floor-plan-kubus-278-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 1638,
+      "height": 1585,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "e3f406a6-c242-4ce8-8eb4-49309b0a042a",
+      "path": "/images/models/pultdachhaus/21-349-225/floor-plans/pultdachhaus-21-349-225-floor-plan-pdh-elw-349-21-225-eg-elw.webp",
+      "alt": null,
+      "width": 2367,
+      "height": 1381,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "b9fdcc27-76bd-4ae0-a588-a7c797215b4a",
+      "path": "/images/models/pultdachhaus/21-349-225/floor-plans/pultdachhaus-21-349-225-floor-plan-pdh-elw-349-21-225-dg.webp",
+      "alt": null,
+      "width": 1828,
+      "height": 1276,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "2b138a51-478f-4e5a-b941-c2b4bb571e19",
+      "path": "/images/models/pultdachhaus/21-349-225/gallery/pultdachhaus-21-349-225-gallery-pdh-elw-349-21-225.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "1df5fa50-5b51-47db-b102-3391e997a39d",
+      "path": "/images/models/pultdachhaus/21-349-225/floor-plans/pultdachhaus-21-349-225-floor-plan-pdh-elw-349-21-225-kg.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1276,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "66f50ed1-79d1-48ed-ad10-73c4543bd0a7",
+      "path": "/images/models/bungalow/22-149/gallery/bungalow-22-149-gallery-bu-22-149.webp",
+      "alt": null,
+      "width": 1756,
+      "height": 1696,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "01beddc7-a5ee-47bf-878c-58f611c72963",
+      "path": "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-bu-134-22-0.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "ffa559de-98c9-4872-92ca-cfb823eed9a6",
+      "path": "/images/models/bungalow/22-134/floor-plans/bungalow-22-134-floor-plan-bu-elw-134-22-0-eg-elw.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1342,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "ed5290fb-83de-456f-afff-4b24b1bbed7f",
+      "path": "/images/models/bungalow/22-117/gallery/bungalow-22-117-gallery-bu-117-22-0-cymk.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1696,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "ca33198b-00bf-4acb-a7b5-aeaae243242a",
+      "path": "/images/models/bungalow/22-117/floor-plans/bungalow-22-117-floor-plan-bu-22-117-eg.webp",
+      "alt": null,
+      "width": 2045,
+      "height": 1637,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "92512393-67e2-4b7b-a460-e9326b65aefa",
+      "path": "/images/models/bungalow/22-117/gallery/bungalow-22-117-gallery-bu-117-22-0.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1696,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "3b8534e3-1738-4108-81c9-cfc976f3b38c",
+      "path": "/images/models/einfamilienhaus/30-168-160/floor-plans/einfamilienhaus-30-168-160-floor-plan-eg.webp",
+      "alt": null,
+      "width": 635,
+      "height": 471,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "0457d991-84ae-4c0a-a87c-1ebeb7551cff",
+      "path": "/images/models/einfamilienhaus/30-168-160/floor-plans/einfamilienhaus-30-168-160-floor-plan-dg.webp",
+      "alt": null,
+      "width": 657,
+      "height": 485,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "a8c14580-5862-4c00-82f8-8b5179b400cb",
+      "path": "/images/models/stadtvilla/22-140-000/gallery/stadtvilla-22-140-000-gallery-neues-bild-nachhaltigkeit.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1159,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "2f4fda1c-fe7f-4992-9ae8-d08426482fea",
+      "path": "/images/models/stadtvilla/22-140-000/gallery/stadtvilla-22-140-000-gallery-sv-02.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1350,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "6659daec-cb65-4379-9db9-ee336425976a",
+      "path": "/images/models/stadtvilla/22-140-000/floor-plans/stadtvilla-22-140-000-floor-plan-eg.webp",
+      "alt": null,
+      "width": 505,
+      "height": 505,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "7a6194be-629d-4738-811a-5a538c4c95c3",
+      "path": "/images/models/stadtvilla/22-140-000/gallery/stadtvilla-22-140-000-gallery-sv-01.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1350,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "04ec4761-e8ff-4732-bcbe-b154280454d7",
+      "path": "/images/models/stadtvilla/22-140-000/floor-plans/stadtvilla-22-140-000-floor-plan-og.webp",
+      "alt": null,
+      "width": 498,
+      "height": 491,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "5fb062b8-63dc-4cb1-8601-64db6cc0c01a",
+      "path": "/images/models/einfamilienhaus/32-150-170/gallery/einfamilienhaus-32-150-170-gallery-ehf-01.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1350,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "aacd0c63-c4e5-42a0-a3df-734150d98758",
+      "path": "/images/models/einfamilienhaus/32-150-170/gallery/einfamilienhaus-32-150-170-gallery-ehf-02.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1350,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "6d1d604c-9198-463a-b168-0f4dbdbc3fd3",
+      "path": "/images/models/einfamilienhaus/32-150-170/gallery/einfamilienhaus-32-150-170-gallery-neues-bild-nachhaltigkeit.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1159,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "dcbbf096-b97d-4b41-8323-137b40ae3f49",
+      "path": "/images/models/einfamilienhaus/32-150-170/gallery/einfamilienhaus-32-150-170-gallery-environmental-protection-683437.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1350,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "8c16b102-c283-425a-a2e9-8d0f58d3efbd",
+      "path": "/images/models/einfamilienhaus/32-150-170/floor-plans/einfamilienhaus-32-150-170-floor-plan-eg.webp",
+      "alt": null,
+      "width": 493,
+      "height": 385,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "7fc0b130-af7a-48f8-97c7-2f0351075298",
+      "path": "/images/models/einfamilienhaus/32-150-170/floor-plans/einfamilienhaus-32-150-170-floor-plan-dg.webp",
+      "alt": null,
+      "width": 498,
+      "height": 407,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "5442bd23-64e0-4a36-a4f3-0cf1291c95d7",
+      "path": "/images/models/generationenhaus/30-223-160/gallery/generationenhaus-30-223-160-gallery-gen-2-1.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1350,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "84af4b22-12b0-4354-abda-82c449443fef",
+      "path": "/images/models/generationenhaus/30-223-160/gallery/generationenhaus-30-223-160-gallery-gen-1.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1350,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "dcc02a9d-ffcf-4d5a-b5af-69bd671af8ce",
+      "path": "/images/models/generationenhaus/30-223-160/floor-plans/generationenhaus-30-223-160-floor-plan-eg.webp",
+      "alt": null,
+      "width": 575,
+      "height": 425,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "4fa71f6c-08f5-4f98-b853-de98fe6c9fdf",
+      "path": "/images/models/generationenhaus/30-223-160/floor-plans/generationenhaus-30-223-160-floor-plan-dg.webp",
+      "alt": null,
+      "width": 585,
+      "height": 463,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "35963f5e-d77e-4f7c-a681-bbc16d3dc536",
+      "path": "/images/models/doppelhaus/25-138-210/gallery/doppelhaus-25-138-210-gallery-dhh-2-1.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1350,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "e73c8208-6b1c-4121-89aa-2a677fda95f6",
+      "path": "/images/models/doppelhaus/25-138-210/floor-plans/doppelhaus-25-138-210-floor-plan-eg.webp",
+      "alt": null,
+      "width": 696,
+      "height": 490,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "0b5c80fe-d24e-4cfd-a4b2-0f213cd49392",
+      "path": "/images/models/doppelhaus/25-138-210/floor-plans/doppelhaus-25-138-210-floor-plan-dg.webp",
+      "alt": null,
+      "width": 932,
+      "height": 698,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "8f423ab9-263c-4827-9e2e-0186991c237b",
+      "path": "/images/models/bungalow/22-116-000/floor-plans/bungalow-22-116-000-floor-plan-eg.webp",
+      "alt": null,
+      "width": 581,
+      "height": 433,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "fd886a06-ba7d-4398-b874-5916c40905fc",
+      "path": "/images/models/bungalow/22-116-000/gallery/bungalow-22-116-000-gallery-bu-02.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1351,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "61bf2f6c-db09-4588-817b-d4e9eea7ce39",
+      "path": "/images/models/bungalow/22-116-000/gallery/bungalow-22-116-000-gallery-bu-01.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1351,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "8a2704e4-99dc-40ba-8bac-fc57275f8340",
+      "path": "/images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-sv-140-18-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1198,
+      "height": 1260,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "f5101671-e195-4952-accb-c8c1654b53c6",
+      "path": "/images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-sv-140-18-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 1290,
+      "height": 1313,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "5d81f5d0-90a6-44f1-aed8-ae1075ed4b3a",
+      "path": "/images/models/stadtvilla/18-140/gallery/stadtvilla-18-140-gallery-sv-140-18-0.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1696,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "5d7ba51f-7fad-4a53-ac14-ba741e21ecf9",
+      "path": "/images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-flachdach-sv-140-18-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1198,
+      "height": 1260,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "f2bcce2c-f6cb-43a0-9206-f28c22bfa3eb",
+      "path": "/images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-flachdach-sv-140-18-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 1290,
+      "height": 1313,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "f513aa29-8346-46ab-89f7-73fe0377b7b9",
+      "path": "/images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-flachdach-kubus-145-0-0.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1696,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "509a39a8-54c8-4e2b-a68d-45aade2b556c",
+      "path": "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-sv-elw-173-22-0-eg-alternative.webp",
+      "alt": null,
+      "width": 1468,
+      "height": 1051,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "852952c1-9a57-4a9a-a1d1-e593602cebc7",
+      "path": "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-sv-elw-173-22-0-og-neu.webp",
+      "alt": null,
+      "width": 1977,
+      "height": 1277,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "cc068b90-a003-436c-b524-1b4174c7cebe",
+      "path": "/images/models/stadtvilla/22-173/gallery/stadtvilla-22-173-gallery-sv-elw-173-22-0.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1600,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "847d5919-dd03-4b79-bc66-e78a3ae624a4",
+      "path": "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-22-0-bodenplatte-eg-alternativ-expose-grundriss300dpi.webp",
+      "alt": null,
+      "width": 1696,
+      "height": 2400,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "2b5aad2d-7e9c-4aaa-9081-20f04800adf7",
+      "path": "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1644,
+      "height": 1555,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "8683db25-9bbe-4654-ba44-6c71148a30ff",
+      "path": "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-22-0-bodenplatte-eg-alternativ-expose-grundriss300dpi-website-erdgeschoss-alternativ.webp",
+      "alt": null,
+      "width": 1668,
+      "height": 1553,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "4cb8020b-a34e-401e-b89a-a7aed3603a07",
+      "path": "/images/models/stadtvilla/22-166/gallery/stadtvilla-22-166-gallery-stadtvilla-22-166-retusche.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "2756510e-23c1-4b52-9d97-aa5d53208d0b",
+      "path": "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-22-0-bodenplatte-expose-grundrisse300dpi-og.webp",
+      "alt": null,
+      "width": 1680,
+      "height": 1545,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "5e128a62-5776-49c7-9388-39a8298c73a2",
+      "path": "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0-eg-alternative.webp",
+      "alt": null,
+      "width": 1468,
+      "height": 1051,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "a47cd5f4-5d09-49a5-bc7d-f3d804cd929a",
+      "path": "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0-eg-elw-neu.webp",
+      "alt": null,
+      "width": 1945,
+      "height": 1246,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "ef2753d1-1848-4643-b9bb-fd8e8b3fe373",
+      "path": "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0-og-neu.webp",
+      "alt": null,
+      "width": 1977,
+      "height": 1277,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "be553ae2-32cc-4460-82be-1f044a010156",
+      "path": "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1600,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "1ed1741e-2cf8-44c1-bafd-26405d3cb0fd",
+      "path": "/images/models/stadtvilla/22-157/gallery/stadtvilla-22-157-gallery-stadtvilla-170-22-0-1-retusche2.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "730fd5a7-eb61-43bc-a91b-8ac022793205",
+      "path": "/images/models/stadtvilla/22-157/floor-plans/stadtvilla-22-157-floor-plan-sv-22-157-grundriss-og.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1265,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "4072845f-9215-4d7d-9f1a-b424e3d1fb6f",
+      "path": "/images/models/stadtvilla/22-157/floor-plans/stadtvilla-22-157-floor-plan-sv-22-157-grundriss-eg.webp",
+      "alt": null,
+      "width": 2366,
+      "height": 1291,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "c1b9fb8d-ea76-44ff-92f3-417a8e6fafd5",
+      "path": "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-efh-28-194-170.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "18ddc519-228f-4ce0-b794-05237003140b",
+      "path": "/images/models/einfamilienhaus/28-182-170/gallery/einfamilienhaus-28-182-170-gallery-efh-182-28-170.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1696,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "5761745a-9e26-45d2-bb08-fa663c9588fd",
+      "path": "/images/models/einfamilienhaus/28-182-170/floor-plans/einfamilienhaus-28-182-170-floor-plan-efh-182-28-170-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 1970,
+      "height": 1567,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "8ffc4101-8c96-4b78-b712-4cfdb1c787e7",
+      "path": "/images/models/einfamilienhaus/28-182-170/floor-plans/einfamilienhaus-28-182-170-floor-plan-efh-182-28-170-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1934,
+      "height": 1521,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "9056bdfe-0dca-42bc-8671-e258057c4d29",
+      "path": "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-elw-efh-181-35-150-eg-m-elw.webp",
+      "alt": null,
+      "width": 1429,
+      "height": 1327,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "11c445c2-e218-4eaf-b3d9-b080bf731260",
+      "path": "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-elw-efh-181-35-150-og-m-elw.webp",
+      "alt": null,
+      "width": 1490,
+      "height": 1316,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "043b20c0-7c80-4e35-9cf2-ac2278e11150",
+      "path": "/images/models/einfamilienhaus/22-141-190/floor-plans/einfamilienhaus-22-141-190-floor-plan-efh-22-141-190-obergeschoss.webp",
+      "alt": null,
+      "width": 2192,
+      "height": 1396,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "e4bde521-8e82-4d7c-aa7e-b4aec9f9274a",
+      "path": "/images/models/einfamilienhaus/22-141-190/floor-plans/einfamilienhaus-22-141-190-floor-plan-efh-22-141-190-erdgeschoss.webp",
+      "alt": null,
+      "width": 2123,
+      "height": 1331,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "01bee970-50ab-4e98-bf0c-07d7af5ac687",
+      "path": "/images/models/einfamilienhaus/22-141-190/gallery/einfamilienhaus-22-141-190-gallery-efh-141-22-190-v1.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1698,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "f8cd0163-d46d-4881-9cc5-bc0fbe300891",
+      "path": "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-efh-ho-181-35-150-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1429,
+      "height": 1307,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "24df287f-0d2a-4d29-998b-df7173dfa37f",
+      "path": "/images/models/einfamilienhaus/35-181-150/gallery/einfamilienhaus-35-181-150-gallery-efh-181-35-150.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "17d5ae19-becb-44a7-a8af-e4556a47f7ef",
+      "path": "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-efh-181-35-150-og-m-elw.webp",
+      "alt": null,
+      "width": 1490,
+      "height": 1316,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "a28c1a4d-2e92-4a3d-8ec8-79cea3321ea5",
+      "path": "/images/models/einfamilienhaus/22-173-190/floor-plans/einfamilienhaus-22-173-190-floor-plan-efh-22-173-190-dg.webp",
+      "alt": null,
+      "width": 1980,
+      "height": 1288,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "70f460a0-d037-48be-96ef-caf181ac4ddb",
+      "path": "/images/models/einfamilienhaus/22-173-190/gallery/einfamilienhaus-22-173-190-gallery-efh-elw-173-22-190.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1696,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "56b86c52-85de-4e36-b016-af4d4ca171c3",
+      "path": "/images/models/einfamilienhaus/22-173-190/floor-plans/einfamilienhaus-22-173-190-floor-plan-efh-elw-173-22-190-sd-bodenplatte-expose-grundriss300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1956,
+      "height": 1240,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "9bdba8cc-d398-45d0-b564-93120becef36",
+      "path": "/images/models/einfamilienhaus/35-146-150/gallery/einfamilienhaus-35-146-150-gallery-efh-146-35-150.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "614772ef-f41c-4259-bcd8-084976514cdf",
+      "path": "/images/models/einfamilienhaus/35-146-150/floor-plans/einfamilienhaus-35-146-150-floor-plan-efh-146-35-150-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 1731,
+      "height": 1292,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "6f0ff670-39e6-4965-826b-e0deb7260d53",
+      "path": "/images/models/einfamilienhaus/35-146-150/floor-plans/einfamilienhaus-35-146-150-floor-plan-efh-146-35-150-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1693,
+      "height": 1300,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "b47c3214-06c6-4997-ab94-eeed67550728",
+      "path": "/images/models/einfamilienhaus/35-146-150/gallery/einfamilienhaus-35-146-150-gallery-efh-146-35-150-2025.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "5c6bb707-f5f6-435b-ba80-d9b0ed7f1046",
+      "path": "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-efh-ho-166-22-190-holzverschalung.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "fdd72350-119f-4344-8448-bc3d9c205e92",
+      "path": "/images/models/einfamilienhaus/22-162-190/floor-plans/einfamilienhaus-22-162-190-floor-plan-efh-ho-162-22-190-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1568,
+      "height": 1381,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "9465bb0b-d5b4-4bce-81ae-53cfe69e6c34",
+      "path": "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-efh-ho-166-22-190-betonoptikfassade.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "8955ecbf-5b0e-4dda-a30f-0106363ae0c0",
+      "path": "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-efh-ho-166-22-190-holzverschalung-1.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "04573103-20b3-47be-8767-73f42d6335f4",
+      "path": "/images/models/einfamilienhaus/22-162-190/floor-plans/einfamilienhaus-22-162-190-floor-plan-efh-ho-162-22-190-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 1501,
+      "height": 1289,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "31b09758-2a17-4837-b769-7f687e74b66d",
+      "path": "/images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-efh-115-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 1501,
+      "height": 1486,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "18bb8b4d-2109-487a-bf59-f82550cc7ac4",
+      "path": "/images/models/einfamilienhaus/38-115-125/gallery/einfamilienhaus-38-115-125-gallery-efh-115-38-125.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "37a4d22e-cbfa-4268-8df2-8aed11d29c92",
+      "path": "/images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-efh-115-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1456,
+      "height": 1491,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "0b4f98c2-031e-401d-b7a8-9e7427bfc675",
+      "path": "/images/models/einfamilienhaus/38-128-125/gallery/einfamilienhaus-38-128-125-gallery-efh-128-38-125.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "7b2d8648-1320-42ab-84b8-e46d3d99e5cb",
+      "path": "/images/models/einfamilienhaus/38-128-125/floor-plans/einfamilienhaus-38-128-125-floor-plan-efh-128-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 1565,
+      "height": 1545,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "f852d88a-d011-4437-aef8-6235ff7994af",
+      "path": "/images/models/einfamilienhaus/38-128-125/floor-plans/einfamilienhaus-38-128-125-floor-plan-efh-128-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1540,
+      "height": 1573,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "dbe3135c-41ba-41b9-8a5b-4e5e7d39efa3",
+      "path": "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-efh-138-38-125-bodenplatte-eg-alternativ-expose-grundriss300dpi-neu-website-erdgeschoss-alternative.webp",
+      "alt": null,
+      "width": 1269,
+      "height": 1389,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "bf031be8-ac0b-46c0-83e1-1033a8df59af",
+      "path": "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-efh-38-138-125-eg.webp",
+      "alt": null,
+      "width": 1347,
+      "height": 1303,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "3cc24ec1-385d-407a-b307-6ee2e6a050f0",
+      "path": "/images/models/einfamilienhaus/38-138-125/gallery/einfamilienhaus-38-138-125-gallery-efh-138-38-125.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "8fd3fac2-c313-49d9-b816-568e5928af31",
+      "path": "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-efh-38-138-125-og.webp",
+      "alt": null,
+      "width": 1363,
+      "height": 1366,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "5e839040-a651-4ef9-bb6f-f02cd5eb32cb",
+      "path": "/images/models/einfamilienhaus/45-139-75/gallery/einfamilienhaus-45-139-75-gallery-efh-139-45-75-hausbild.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1697,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "1a68617b-781d-4fc9-b505-8b94666ba5ff",
+      "path": "/images/models/einfamilienhaus/45-139-75/floor-plans/einfamilienhaus-45-139-75-floor-plan-efh-139-45-75-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 1432,
+      "height": 1216,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "ec940b0e-ebfe-4c06-b1de-45bbb8430959",
+      "path": "/images/models/einfamilienhaus/45-139-75/floor-plans/einfamilienhaus-45-139-75-floor-plan-efh-139-45-75-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1460,
+      "height": 1190,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "446fe11a-a171-460d-86d2-b0d3833d6e12",
+      "path": "/images/models/einfamilienhaus/25-168-190/floor-plans/einfamilienhaus-25-168-190-floor-plan-efh-ho-168-25-190-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+      "alt": null,
+      "width": 1990,
+      "height": 1427,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "3e69712a-ebbe-4c1c-86c9-f4c763239adb",
+      "path": "/images/models/einfamilienhaus/25-168-190/gallery/einfamilienhaus-25-168-190-gallery-efh-ho-168-25-190-cymk.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1600,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "7af7d25c-b987-414f-b44a-e6eff3661471",
+      "path": "/images/models/einfamilienhaus/25-168-190/gallery/einfamilienhaus-25-168-190-gallery-efh-ho-168-25-190.webp",
+      "alt": null,
+      "width": 2400,
+      "height": 1600,
+      "createdAt": "2026-05-21T03:39:43.536Z"
+    },
+    {
+      "id": "97768ad2-37ab-479c-a0df-e42959c4893e",
+      "path": "/images/models/einfamilienhaus/25-168-190/floor-plans/einfamilienhaus-25-168-190-floor-plan-efh-ho-168-25-190-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+      "alt": null,
+      "width": 1973,
+      "height": 1479,
+      "createdAt": "2026-05-21T03:39:43.536Z"
     }
   ],
   "modelMedia": [
     {
-      "id": "3adad4df-8e83-46c7-806e-8f9bcb89dcfb",
-      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
-      "mediaId": "cecb874b-0985-4a84-9706-a9d2e41c43e9",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "09efe71d-dd17-4fe9-9a3d-7e1d6e322c12",
-      "modelId": "92af9e1e-0fc5-4979-90c3-78cdb20259dd",
-      "mediaId": "09adfd98-4741-4b3f-9e98-3cabf3fde22f",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "8f97e0f5-49d2-4e0b-a6ae-ba0625ab0f82",
-      "modelId": "92af9e1e-0fc5-4979-90c3-78cdb20259dd",
-      "mediaId": "27dc18f6-3bbc-4907-a8f0-50f4c8e9b3d4",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "b111dca7-039b-4350-8f01-efb36d7ab323",
-      "modelId": "92af9e1e-0fc5-4979-90c3-78cdb20259dd",
-      "mediaId": "1c9a208a-41d4-44d5-b935-891159b37098",
-      "isHero": true,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "99d75fd6-9830-4d6c-b9cc-52a403bba49c",
-      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
-      "mediaId": "9f5e6e27-450b-4c54-82d1-8d47bc0148c5",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "efde487e-df75-45af-8bf8-9cc891010a5d",
-      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
-      "mediaId": "88c3aeb8-120d-4092-945d-5920e758c391",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "a7e2e72a-d6b4-413e-b1a8-a5fa9043fe68",
-      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
-      "mediaId": "a6a3237e-9585-4336-bee7-0d96d3cb16a0",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "2f209b29-1b56-4c08-a99c-4660a16d92e9",
-      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
-      "mediaId": "e0184eeb-07b4-4373-8c31-ce016ea66dca",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "48c84d29-b5cf-470a-b42e-0bc2a675d220",
-      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
-      "mediaId": "af7c7122-8992-45f8-aa03-cb940c67b91a",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "a91d15f0-8243-4ada-bac4-cfd139d11fd8",
-      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
-      "mediaId": "4f9e63a4-b92d-4b96-a21f-07d291adb433",
-      "isHero": true,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "4bc328cc-2765-472d-8597-b5c0d70a78bb",
-      "modelId": "8945ad8d-411e-47b2-ad56-3356399f759d",
-      "mediaId": "21ebcfdf-c535-4648-82fc-78884d55884e",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "871e0570-caa7-4fb2-8ebd-34c7dcef819d",
-      "modelId": "8945ad8d-411e-47b2-ad56-3356399f759d",
-      "mediaId": "8f3e53fb-9c2a-4dde-881c-fcab78658a7c",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "42d21281-37e5-44b2-be2f-50680a244a5f",
-      "modelId": "8945ad8d-411e-47b2-ad56-3356399f759d",
-      "mediaId": "0909223b-fbec-46e6-b453-c51c33291bfc",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "64ccbd2e-44d9-46d7-b3c2-78395c0afa04",
-      "modelId": "7f4466db-e48a-47c8-9344-ec6805bca2b9",
-      "mediaId": "7844a991-572b-4502-bf33-55097b8171ff",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "cd432917-3acf-446e-ad01-02db10074703",
-      "modelId": "7f4466db-e48a-47c8-9344-ec6805bca2b9",
-      "mediaId": "b111238d-56a0-491b-a1d6-d6cca471ce51",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "3e545dbc-6635-432c-860c-860bcc6b606e",
-      "modelId": "53183e81-1c8e-45e9-81d0-9f257b337935",
-      "mediaId": "ba75bad1-a0b7-4bbf-980e-d78a49b37972",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "b4c2915f-fa2b-48cf-8c4b-bab49d336916",
-      "modelId": "53183e81-1c8e-45e9-81d0-9f257b337935",
-      "mediaId": "fc784113-69b7-4d34-aef0-2811388f1099",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "d3359956-2066-4e00-bd7a-43913ce9490b",
-      "modelId": "c454b031-3d63-4938-a9a3-3cc5c2cc8b93",
-      "mediaId": "ca3d66fc-5bc3-4515-88c7-6b9eef489c3b",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "639275c0-df0f-4fe9-a7ff-d5453efdae2b",
-      "modelId": "c454b031-3d63-4938-a9a3-3cc5c2cc8b93",
-      "mediaId": "82909c02-e5e5-417f-8913-29c36905f714",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "2d173d68-4fcc-46ab-accd-3937fbb77200",
-      "modelId": "24ad03ba-ed7c-4cc4-8df8-0f4b75135274",
-      "mediaId": "d26a4432-9ed0-4fb1-8b08-a1e4089dd825",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "09041f11-601a-4211-ab82-c7b1a0b1e500",
-      "modelId": "24ad03ba-ed7c-4cc4-8df8-0f4b75135274",
-      "mediaId": "56c7bbb1-918a-4888-b49e-07d4b46f9dfb",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "02ac71fa-e0c6-4442-9f96-3bfb538f50b7",
-      "modelId": "680321bb-158e-4552-b625-69dffaf8ab1f",
-      "mediaId": "12aac0b9-3e2f-4be4-9d43-51e7e265d6be",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "428ef812-6745-4d32-9839-956c5920c9cc",
-      "modelId": "680321bb-158e-4552-b625-69dffaf8ab1f",
-      "mediaId": "3905b493-b947-4b65-bf07-b304a00ebe60",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "183729a5-ac54-471d-9fab-50b336d1c0d8",
-      "modelId": "379a5a6f-66aa-4ca3-b0cd-b5f0d5ef0316",
-      "mediaId": "58c09a7e-ce49-4171-ae9a-38369346df47",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "6f0b0ff0-c11a-494d-9172-8be0bd3bbac8",
-      "modelId": "379a5a6f-66aa-4ca3-b0cd-b5f0d5ef0316",
-      "mediaId": "0c89f69e-ca9d-4788-bc68-9dc6f536e759",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "3d103326-5fb8-418d-a315-37bf722b1cdd",
-      "modelId": "1991fc2d-ed96-4027-bcfc-86cf677f1881",
-      "mediaId": "0f99f2cc-9087-4a2e-8177-66fe4921cf2b",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "a747329e-1ad3-442d-ab87-08d5512b260c",
-      "modelId": "1991fc2d-ed96-4027-bcfc-86cf677f1881",
-      "mediaId": "67a90c49-24ca-4c89-b4d5-023596a9b295",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "f4e5d09c-230e-4bad-8a50-ccc68c748382",
-      "modelId": "9fb9fae2-1a50-48d8-8eb0-cf5376cb064f",
-      "mediaId": "6d533e06-58dc-4e99-8768-4f2139eaa5fb",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "b9637bd8-117a-4eba-a006-e91e1219f715",
-      "modelId": "9fb9fae2-1a50-48d8-8eb0-cf5376cb064f",
-      "mediaId": "0b8e5ed9-1263-4d7c-ab48-467447c64b00",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "54282ace-919b-40f1-9d31-9fd7db1a5ec0",
-      "modelId": "9fb9fae2-1a50-48d8-8eb0-cf5376cb064f",
-      "mediaId": "f5a104ca-5545-467b-a436-710abc91e027",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "f44443c1-d348-453e-b57e-4d705003f069",
-      "modelId": "9fb9fae2-1a50-48d8-8eb0-cf5376cb064f",
-      "mediaId": "d690f0f2-714f-46e8-ae9f-ca50b5ec306f",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "3cb3789e-1802-4462-a8f0-6b1cef5decd8",
-      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
-      "mediaId": "8cd13a7d-957d-4b5a-9703-11d94ade5c17",
-      "isHero": true,
-      "isThumbnail": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "fb4c3ff3-2963-4984-9ac4-1bb544eeb8a3",
-      "modelId": "379a5a6f-66aa-4ca3-b0cd-b5f0d5ef0316",
-      "mediaId": "2e67c27d-a083-4f9a-a43f-2d7eeacccca9",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "332ad55f-efc1-4623-9723-53af09d83cd1",
-      "modelId": "0cf0efd6-1253-45d4-aaf4-04009c5b50ed",
-      "mediaId": "058a8720-b57b-4ce4-aa83-6bae52d46124",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "28beba6f-4667-47b6-840b-7f0857b589d9",
-      "modelId": "24ad03ba-ed7c-4cc4-8df8-0f4b75135274",
-      "mediaId": "efcc62df-1ab7-41cc-8113-75a719204e74",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "7dc41471-dc40-4885-8d43-6a5b4526f5e6",
-      "modelId": "c454b031-3d63-4938-a9a3-3cc5c2cc8b93",
-      "mediaId": "3061940e-c283-4210-a77e-2388e25a2779",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "f2c8768c-3767-482c-a181-fa61ba57d80b",
-      "modelId": "f8f29c24-de4a-4c25-8025-1a22919a1f90",
-      "mediaId": "bbe4e923-929b-49e1-b09f-251830723c23",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "e866a685-3995-410c-b1a5-b2b18b55c726",
-      "modelId": "bc41f693-e5f5-4a16-bf8b-d0ccdaf24834",
-      "mediaId": "e33d40bf-1e90-42ff-bbc2-63d9d6e36e09",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "e214cd1e-528f-428b-9312-a319eb9ef2a0",
-      "modelId": "5a4531c6-e140-4471-9dc4-96fd4f358c8f",
-      "mediaId": "fe4ba023-5e37-45ed-82e3-0d8bb50dcebb",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "3975ea1b-8563-4b84-ab70-ec1d5514137c",
-      "modelId": "74aa93a9-4c6b-4101-98f7-75f4644e4277",
-      "mediaId": "6c208205-834b-4853-8a69-31d60844f48d",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "0d97512f-fb8c-4044-a9b4-7f59cde1a132",
-      "modelId": "7f4466db-e48a-47c8-9344-ec6805bca2b9",
-      "mediaId": "297a7ed8-1ca8-4314-a1b5-a7f6e77d64e0",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "26630c4c-600c-46e0-85b2-5509a9413e15",
-      "modelId": "f07d020a-e1b2-45d2-aa29-be46c439c0ed",
-      "mediaId": "5e6d5178-42fa-4d8a-b946-4cb3ae92ec09",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "f19feed6-80e9-40d3-88a4-f075a1582d47",
-      "modelId": "680321bb-158e-4552-b625-69dffaf8ab1f",
-      "mediaId": "a71c4b8b-5baa-4419-a32b-a2cba4f1dc71",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "ce2ab6b1-e47e-4843-b026-bc93533f8200",
-      "modelId": "60bff901-0a34-40ae-b7de-6939b8da9122",
-      "mediaId": "115a505e-d356-41ad-8643-067351bd645f",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "21b943f8-fd99-49bc-98a4-d2363d954635",
-      "modelId": "04b9ec39-0c92-431e-a96a-5ca17b90851e",
-      "mediaId": "57324fa9-956c-487f-b244-e9a9c773ef47",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "ce993517-46e9-4783-90e3-356268dd617c",
+      "id": "d76e5892-3de6-4d0d-998e-5d11bd90a473",
       "modelId": "07fccc4a-7ca2-4907-9e5c-a7ba69c04c20",
-      "mediaId": "676cd865-2a83-44a7-a969-802e3a86712c",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "8c33aaad-f797-433c-89c9-c0764066b26c",
-      "modelId": "9fb9fae2-1a50-48d8-8eb0-cf5376cb064f",
-      "mediaId": "44a9ee2d-338b-42a8-a6f5-5c10d8a72b95",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "3274aae8-55a0-42bd-b7db-6f6a29e0da9b",
-      "modelId": "53183e81-1c8e-45e9-81d0-9f257b337935",
-      "mediaId": "1975267e-a8a6-499b-b55d-8e1a5857aa50",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "af8b5d20-a7b1-4efb-8021-428abb213776",
-      "modelId": "1991fc2d-ed96-4027-bcfc-86cf677f1881",
-      "mediaId": "696fa904-4d38-4751-8cba-4180814f4f77",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "065d64a5-ba05-4f51-8009-b4f677e2993b",
-      "modelId": "7805d6c4-011f-410a-889d-081b403ed498",
-      "mediaId": "9a7cde52-3474-4c2b-97f5-e3ff975f83fe",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "9be58271-7df6-4189-a104-93a9cc4ed794",
-      "modelId": "d0f2528f-b883-4903-97f6-f0bb63179a62",
-      "mediaId": "1025e22c-2ecc-41e7-b054-c481669e9e03",
+      "mediaId": "2d689ecb-5916-4728-9e11-bd78be44cf54",
       "isHero": false,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "4ee4b57d-9be5-4ee1-a294-c9fa279c96b8",
-      "modelId": "d0f2528f-b883-4903-97f6-f0bb63179a62",
-      "mediaId": "de27679a-fbfe-438c-98b8-87cc0381718c",
-      "isHero": false,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "746c8cff-cb10-4863-9314-f3d35112e87b",
-      "modelId": "ba9c1cfa-78b8-404b-9932-d7d4f1c413d9",
-      "mediaId": "fd9265ef-4446-4d39-bd62-f7abdc7b3af0",
-      "isHero": false,
-      "isThumbnail": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "2086876c-4648-4501-970e-2eac71fac55e",
-      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
-      "mediaId": "35ebae72-63db-4ea4-8a55-7ae8361b2312",
-      "isHero": false,
-      "isThumbnail": true,
-      "sortOrder": 99
-    },
-    {
-      "id": "1178e80e-db20-44f5-9119-7ba72d1700fa",
-      "modelId": "92af9e1e-0fc5-4979-90c3-78cdb20259dd",
-      "mediaId": "b5f1e87c-5483-4ccb-9458-3acd19871703",
-      "isHero": false,
-      "isThumbnail": true,
-      "sortOrder": 99
-    },
-    {
-      "id": "ead507b9-dc8e-441b-baef-abff07e8e6b8",
-      "modelId": "ba9c1cfa-78b8-404b-9932-d7d4f1c413d9",
-      "mediaId": "45b87478-a958-4f9e-81e5-a7ba0608b809",
-      "isHero": true,
       "isThumbnail": false,
       "sortOrder": 1
     },
     {
-      "id": "7efa9c00-b2e5-4d66-abc9-bfb4a3a2289c",
+      "id": "5becad40-7fea-4b30-9ace-2ca40dc2fd95",
       "modelId": "c454b031-3d63-4938-a9a3-3cc5c2cc8b93",
-      "mediaId": "361fabf7-4ac9-4f7a-8aae-6c1a868e8fd1",
+      "mediaId": "2d689ecb-5916-4728-9e11-bd78be44cf54",
       "isHero": false,
       "isThumbnail": false,
-      "sortOrder": 5
-    },
-    {
-      "id": "f1484b74-df08-4764-84a4-8022658be60f",
-      "modelId": "ffb4617b-3edf-4cb5-bfca-95390857aabf",
-      "mediaId": "d6762cbc-30b4-48dc-9d37-2935e16297a6",
-      "isHero": true,
-      "isThumbnail": true,
       "sortOrder": 1
     },
     {
-      "id": "5da29d55-cb43-46cd-85f5-db015291c1c0",
-      "modelId": "74aa93a9-4c6b-4101-98f7-75f4644e4277",
-      "mediaId": "59bd65ab-9368-4d0e-8b4e-2292bc252cc2",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 5
-    },
-    {
-      "id": "1d4d654d-1684-4c55-a780-37d8bdc7d368",
-      "modelId": "64ee8dc9-0a2a-4d13-b8da-211058787b39",
-      "mediaId": "476bb174-7c01-4376-992c-336e030d0a10",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 1
-    },
-    {
-      "id": "99805d40-6545-4451-a71f-ebf904b5786e",
-      "modelId": "53183e81-1c8e-45e9-81d0-9f257b337935",
-      "mediaId": "b6964305-dab5-486f-a156-0c29e5f295c3",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 5
-    },
-    {
-      "id": "6944a89d-26a9-4848-a544-ba95352c3688",
-      "modelId": "bc41f693-e5f5-4a16-bf8b-d0ccdaf24834",
-      "mediaId": "28b1bbe0-75c9-43a8-b038-1847ba0436d1",
-      "isHero": false,
-      "isThumbnail": false,
-      "sortOrder": 5
-    },
-    {
-      "id": "98a35a2c-e389-4c29-b21d-badd103253e7",
-      "modelId": "d0f2528f-b883-4903-97f6-f0bb63179a62",
-      "mediaId": "fe120351-2836-4d98-9fb9-009dc981593c",
-      "isHero": true,
-      "isThumbnail": false,
-      "sortOrder": 1
-    },
-    {
-      "id": "eba7afe3-95b3-4430-b5a0-c93e336985d1",
-      "modelId": "9bd91137-c170-445d-84e0-716cec4cc630",
-      "mediaId": "e00f8a78-9446-47ee-9e05-75fb8e8b10f4",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 1
-    },
-    {
-      "id": "658472b6-7cb5-49e3-92b2-9c7be7272746",
-      "modelId": "286e47b7-d6b2-4dac-a50f-acb6dd57530a",
-      "mediaId": "97419057-1c8a-4f3e-a27f-a91948de9bf6",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 1
-    },
-    {
-      "id": "2fdba6d7-78e3-4c0e-a65b-83b5411630ff",
-      "modelId": "b958df3b-c82d-4e44-9948-7e125f8df429",
-      "mediaId": "aeab4ef1-6a44-4293-afb4-0fcbd218921f",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 1
-    },
-    {
-      "id": "2d0c6805-cd26-4e7b-880a-92b86489bab4",
-      "modelId": "e7a0f60c-6053-4fca-ba14-ea1ae7f511da",
-      "mediaId": "c8be6a83-ec21-4273-830e-6e2edca42232",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 1
-    },
-    {
-      "id": "9c99aee1-41f0-49d8-997e-1ca74a948364",
+      "id": "15452882-3ef2-4231-9470-e2a0dc235a4c",
       "modelId": "5c133725-afa5-43c0-9c09-9c2a0075548e",
-      "mediaId": "64875531-e54b-4be6-8422-40ba57131504",
-      "isHero": true,
-      "isThumbnail": true,
+      "mediaId": "2d689ecb-5916-4728-9e11-bd78be44cf54",
+      "isHero": false,
+      "isThumbnail": false,
       "sortOrder": 1
     },
     {
-      "id": "6cd25cce-182b-48b8-947f-cb8bb9a6842a",
-      "modelId": "e26f656e-dec8-43f1-a02e-c26a0cf6a582",
-      "mediaId": "a3106cb7-8ef1-4af7-80f6-0ee350fe8c2e",
-      "isHero": true,
-      "isThumbnail": true,
-      "sortOrder": 1
-    },
-    {
-      "id": "e624abac-ab3d-4283-a7af-e921726d0a99",
-      "modelId": "9bd91137-c170-445d-84e0-716cec4cc630",
-      "mediaId": "c9030671-3008-47f0-875b-5d3c71d80b2d",
+      "id": "94397d46-1f04-46ad-86c4-a38ed05e0d7d",
+      "modelId": "07fccc4a-7ca2-4907-9e5c-a7ba69c04c20",
+      "mediaId": "9b77cd1c-73ed-4d5c-8acc-0b64b37c7a74",
       "isHero": false,
       "isThumbnail": false,
       "sortOrder": 2
     },
     {
-      "id": "90d57a8e-7e43-4808-9865-8f96018eb34e",
+      "id": "a7f07612-d5c5-41f8-bdef-c751fc025d6b",
+      "modelId": "c454b031-3d63-4938-a9a3-3cc5c2cc8b93",
+      "mediaId": "9b77cd1c-73ed-4d5c-8acc-0b64b37c7a74",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "e2951079-b8f4-4634-aac6-8d233cf43b9c",
+      "modelId": "5c133725-afa5-43c0-9c09-9c2a0075548e",
+      "mediaId": "9b77cd1c-73ed-4d5c-8acc-0b64b37c7a74",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "801dc929-5543-49a5-99df-b6227defe728",
+      "modelId": "af049094-bbd0-4550-9813-e42f28877cd6",
+      "mediaId": "97beffb0-7a63-46fc-9353-e65e24e5c5c5",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "7039dfd1-089d-4c57-8b9a-cabcb7cd5f2d",
+      "modelId": "7f4466db-e48a-47c8-9344-ec6805bca2b9",
+      "mediaId": "97beffb0-7a63-46fc-9353-e65e24e5c5c5",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "dd16bd6a-472a-4b17-8b59-e3de00e18ed4",
+      "modelId": "53183e81-1c8e-45e9-81d0-9f257b337935",
+      "mediaId": "97beffb0-7a63-46fc-9353-e65e24e5c5c5",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "23ab726b-da78-4121-b0cc-a4a00746d7f1",
+      "modelId": "af049094-bbd0-4550-9813-e42f28877cd6",
+      "mediaId": "096a33f5-b005-48cc-97d3-044f365f6cda",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "dd1b5de1-e66f-4233-b041-4c53b6301710",
+      "modelId": "7f4466db-e48a-47c8-9344-ec6805bca2b9",
+      "mediaId": "096a33f5-b005-48cc-97d3-044f365f6cda",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "6d8976a1-bd7b-4185-885c-bf7fe40030c8",
+      "modelId": "53183e81-1c8e-45e9-81d0-9f257b337935",
+      "mediaId": "096a33f5-b005-48cc-97d3-044f365f6cda",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "995207a0-b887-408e-aab8-b71a37b157f2",
+      "modelId": "af049094-bbd0-4550-9813-e42f28877cd6",
+      "mediaId": "2af03631-3090-4826-bb09-b080f2cdd851",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "02e20fa0-1bfc-4b55-b170-61a6082941cc",
+      "modelId": "7f4466db-e48a-47c8-9344-ec6805bca2b9",
+      "mediaId": "2af03631-3090-4826-bb09-b080f2cdd851",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "37dd7c37-b7f2-4a46-b5da-8185576b07df",
+      "modelId": "53183e81-1c8e-45e9-81d0-9f257b337935",
+      "mediaId": "2af03631-3090-4826-bb09-b080f2cdd851",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "5b5c0256-d804-4589-94bc-ec9a082937d8",
+      "modelId": "bc41f693-e5f5-4a16-bf8b-d0ccdaf24834",
+      "mediaId": "4fde16fe-fcb9-4248-890d-c179a7ef424c",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "83437b13-3216-4b88-9113-8bbc53815906",
+      "modelId": "92af9e1e-0fc5-4979-90c3-78cdb20259dd",
+      "mediaId": "2209ce35-4a66-4fda-bbff-0ea6c840b1a8",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "540023af-d89e-4bd1-8d5d-ea20127fa622",
+      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
+      "mediaId": "2209ce35-4a66-4fda-bbff-0ea6c840b1a8",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "9f56b1ce-570e-415e-9b7d-3744940d584e",
+      "modelId": "ba9c1cfa-78b8-404b-9932-d7d4f1c413d9",
+      "mediaId": "2209ce35-4a66-4fda-bbff-0ea6c840b1a8",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "d1b6e510-ce85-49ac-8cea-3622cec60616",
       "modelId": "286e47b7-d6b2-4dac-a50f-acb6dd57530a",
-      "mediaId": "5aaa7d61-afc1-443f-9b03-fb5a1e9ab8a3",
+      "mediaId": "2209ce35-4a66-4fda-bbff-0ea6c840b1a8",
       "isHero": false,
       "isThumbnail": false,
       "sortOrder": 2
     },
     {
-      "id": "ee213495-b4ad-48ef-b245-8af509db40d8",
-      "modelId": "b958df3b-c82d-4e44-9948-7e125f8df429",
-      "mediaId": "6d820271-e0d7-4700-8aa3-df10b210c66e",
+      "id": "c7340669-63ec-4315-be22-8e4a41365d6f",
+      "modelId": "d0f2528f-b883-4903-97f6-f0bb63179a62",
+      "mediaId": "da767643-a1a9-42c2-aee4-dd1c531601a1",
       "isHero": false,
       "isThumbnail": false,
-      "sortOrder": 2
+      "sortOrder": 1
     },
     {
-      "id": "ec3945a4-da7f-430d-a2f4-4ae38e6d8728",
+      "id": "717c20d2-ba7a-4703-bce2-a40f2ea728d0",
       "modelId": "8945ad8d-411e-47b2-ad56-3356399f759d",
-      "mediaId": "455a3515-ca90-48a0-ac70-7342b35bbf20",
+      "mediaId": "da767643-a1a9-42c2-aee4-dd1c531601a1",
       "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "a63d73eb-4e35-4418-98fa-2010ea53849e",
+      "modelId": "f07d020a-e1b2-45d2-aa29-be46c439c0ed",
+      "mediaId": "da767643-a1a9-42c2-aee4-dd1c531601a1",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "1b8a6bf0-2f81-43af-a1f0-5d275933cceb",
+      "modelId": "5a4531c6-e140-4471-9dc4-96fd4f358c8f",
+      "mediaId": "da767643-a1a9-42c2-aee4-dd1c531601a1",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "b934fbd5-f5f2-47c8-bd96-de7080727ce6",
+      "modelId": "b958df3b-c82d-4e44-9948-7e125f8df429",
+      "mediaId": "da767643-a1a9-42c2-aee4-dd1c531601a1",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "bd04d314-36fb-4237-a528-b447acd35b8a",
+      "modelId": "74aa93a9-4c6b-4101-98f7-75f4644e4277",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "6a09ab9c-d264-408d-8b35-c543e3660312",
+      "modelId": "379a5a6f-66aa-4ca3-b0cd-b5f0d5ef0316",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "d543c34d-3494-42f3-95b7-5c23c2d6a380",
+      "modelId": "680321bb-158e-4552-b625-69dffaf8ab1f",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "c5d7481c-89c4-4bf8-9205-dce9c437feb8",
+      "modelId": "24ad03ba-ed7c-4cc4-8df8-0f4b75135274",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "0b871d14-e863-437d-b643-18e7fd209294",
+      "modelId": "0cf0efd6-1253-45d4-aaf4-04009c5b50ed",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "33a6c955-e1b6-4ed5-9d66-5b4f741cf7e1",
+      "modelId": "ffb4617b-3edf-4cb5-bfca-95390857aabf",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "6b1012a1-61f8-4c85-836f-e494717111d6",
+      "modelId": "60bff901-0a34-40ae-b7de-6939b8da9122",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "29c65c33-027b-4872-8768-b530d407d4ae",
+      "modelId": "64ee8dc9-0a2a-4d13-b8da-211058787b39",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "4004f22b-98f4-440b-97a6-72a706cd6a9b",
+      "modelId": "e26f656e-dec8-43f1-a02e-c26a0cf6a582",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 0
+    },
+    {
+      "id": "a019f915-5f7d-4859-ac03-1d8a120e4304",
+      "modelId": "7805d6c4-011f-410a-889d-081b403ed498",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "12051ab7-66d4-4692-884c-619d63b0faf6",
+      "modelId": "1991fc2d-ed96-4027-bcfc-86cf677f1881",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "bb3fc956-edee-4ce2-9b0e-ce1970eeeb95",
+      "modelId": "9fb9fae2-1a50-48d8-8eb0-cf5376cb064f",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "4c15bff0-e5f2-45a2-b6a4-413e510aea31",
+      "modelId": "04b9ec39-0c92-431e-a96a-5ca17b90851e",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "65c9be4f-72fc-41bb-abe2-31b4935a3e37",
+      "modelId": "9bd91137-c170-445d-84e0-716cec4cc630",
+      "mediaId": "db99afde-3f65-44bf-a810-0745076b42e3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 4
+    },
+    {
+      "id": "9825da66-784a-4e66-8084-b0101a441742",
+      "modelId": "b958df3b-c82d-4e44-9948-7e125f8df429",
+      "mediaId": "2f4fda1c-fe7f-4992-9ae8-d08426482fea",
+      "isHero": true,
+      "isThumbnail": false,
+      "sortOrder": 0
+    },
+    {
+      "id": "8afd94fc-15a4-495d-8cc7-65545d99c8c8",
+      "modelId": "b958df3b-c82d-4e44-9948-7e125f8df429",
+      "mediaId": "7a6194be-629d-4738-811a-5a538c4c95c3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "7f5045bb-17b5-445d-a251-c1580772261b",
+      "modelId": "b958df3b-c82d-4e44-9948-7e125f8df429",
+      "mediaId": "a8c14580-5862-4c00-82f8-8b5179b400cb",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "afb8fa44-353c-487a-81e3-89ea0c3624ce",
+      "modelId": "c454b031-3d63-4938-a9a3-3cc5c2cc8b93",
+      "mediaId": "032f16c9-e5a8-4aa1-bfb7-f4ad75a89811",
+      "isHero": true,
       "isThumbnail": true,
       "sortOrder": 0
     },
     {
-      "id": "ba2161f6-9bcc-4185-85cb-ea23d3683765",
-      "modelId": "8945ad8d-411e-47b2-ad56-3356399f759d",
-      "mediaId": "a7d31145-5306-4855-be57-71a5fd66efa3",
+      "id": "a928d410-c7c7-4e54-b451-bcd722293ab8",
+      "modelId": "07fccc4a-7ca2-4907-9e5c-a7ba69c04c20",
+      "mediaId": "b9f13814-1eda-4fc2-80d5-0f288293ffaa",
       "isHero": true,
-      "isThumbnail": false,
+      "isThumbnail": true,
       "sortOrder": 0
+    },
+    {
+      "id": "c6f8a002-8901-4238-ad31-7d3819cec579",
+      "modelId": "7f4466db-e48a-47c8-9344-ec6805bca2b9",
+      "mediaId": "3f681e7d-c07c-4926-89b4-d92502df54c6",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "53fc737e-0aa5-4419-b0e9-d2add66b64fa",
+      "modelId": "af049094-bbd0-4550-9813-e42f28877cd6",
+      "mediaId": "56c2e59f-142d-4e5b-9dc3-f0f1ec776155",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "4947907a-1df2-4029-9d1a-f2c1a391fed1",
+      "modelId": "53183e81-1c8e-45e9-81d0-9f257b337935",
+      "mediaId": "00096428-3da9-4616-a44e-d5f3113a3656",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "9b4e3cd6-62cd-4793-9550-454949f1c1ed",
+      "modelId": "bc41f693-e5f5-4a16-bf8b-d0ccdaf24834",
+      "mediaId": "2b138a51-478f-4e5a-b941-c2b4bb571e19",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "26915812-1913-40fb-9016-2df3ca1b21f8",
+      "modelId": "ba9c1cfa-78b8-404b-9932-d7d4f1c413d9",
+      "mediaId": "66f50ed1-79d1-48ed-ad10-73c4543bd0a7",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "0e894c95-af9e-427a-a9e5-a1d0236eb46b",
+      "modelId": "92af9e1e-0fc5-4979-90c3-78cdb20259dd",
+      "mediaId": "01beddc7-a5ee-47bf-878c-58f611c72963",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "a2282dde-58b3-418f-831c-4e71f21f7e48",
+      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
+      "mediaId": "ed5290fb-83de-456f-afff-4b24b1bbed7f",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "6391208b-9f12-484d-b8b3-28cddbb30843",
+      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
+      "mediaId": "92512393-67e2-4b7b-a460-e9326b65aefa",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "6c9ad6da-32db-45c4-93e9-33ccf08cbcd2",
+      "modelId": "9bd91137-c170-445d-84e0-716cec4cc630",
+      "mediaId": "5fb062b8-63dc-4cb1-8601-64db6cc0c01a",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "0c232609-717f-49bc-b1e5-e34304a6a96f",
+      "modelId": "9bd91137-c170-445d-84e0-716cec4cc630",
+      "mediaId": "aacd0c63-c4e5-42a0-a3df-734150d98758",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "0fbb1287-ede2-4f25-9165-7fdb8f0867f3",
+      "modelId": "9bd91137-c170-445d-84e0-716cec4cc630",
+      "mediaId": "dcbbf096-b97d-4b41-8323-137b40ae3f49",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "9c3aead3-3b6b-43bf-a969-96878a50cf10",
+      "modelId": "9bd91137-c170-445d-84e0-716cec4cc630",
+      "mediaId": "6d1d604c-9198-463a-b168-0f4dbdbc3fd3",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 3
+    },
+    {
+      "id": "fd178e56-7d1a-49ad-ad85-0d85ae5997f7",
+      "modelId": "e7a0f60c-6053-4fca-ba14-ea1ae7f511da",
+      "mediaId": "84af4b22-12b0-4354-abda-82c449443fef",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "ab2fa286-0c68-49eb-91b6-35024a8679ff",
+      "modelId": "e7a0f60c-6053-4fca-ba14-ea1ae7f511da",
+      "mediaId": "5442bd23-64e0-4a36-a4f3-0cf1291c95d7",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "027c53f6-908a-49c7-a9c1-4c9b3a11f977",
+      "modelId": "5c133725-afa5-43c0-9c09-9c2a0075548e",
+      "mediaId": "35963f5e-d77e-4f7c-a681-bbc16d3dc536",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "ac476a0d-d623-4fcf-9818-e76dc914cd1b",
+      "modelId": "286e47b7-d6b2-4dac-a50f-acb6dd57530a",
+      "mediaId": "61bf2f6c-db09-4588-817b-d4e9eea7ce39",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "915da3c2-0eca-47db-adff-9915ef73b39e",
+      "modelId": "286e47b7-d6b2-4dac-a50f-acb6dd57530a",
+      "mediaId": "fd886a06-ba7d-4398-b874-5916c40905fc",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "d3944a34-9979-4dfc-ad52-9786523c710f",
+      "modelId": "d0f2528f-b883-4903-97f6-f0bb63179a62",
+      "mediaId": "5d81f5d0-90a6-44f1-aed8-ae1075ed4b3a",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "e55eb364-9fe7-4356-bc14-466d8863b0f1",
+      "modelId": "5a4531c6-e140-4471-9dc4-96fd4f358c8f",
+      "mediaId": "cc068b90-a003-436c-b524-1b4174c7cebe",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "a85fb266-7f0e-4ef3-808a-a80efc28605c",
+      "modelId": "f07d020a-e1b2-45d2-aa29-be46c439c0ed",
+      "mediaId": "4cb8020b-a34e-401e-b89a-a7aed3603a07",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "1d7a8bf8-fd3b-4cc6-ae9b-88d58677720a",
+      "modelId": "8945ad8d-411e-47b2-ad56-3356399f759d",
+      "mediaId": "1ed1741e-2cf8-44c1-bafd-26405d3cb0fd",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "98cd0f48-5691-43c4-84da-c01d477ba604",
+      "modelId": "64ee8dc9-0a2a-4d13-b8da-211058787b39",
+      "mediaId": "c1b9fb8d-ea76-44ff-92f3-417a8e6fafd5",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "08d13d46-105c-4f78-808e-993a139ad169",
+      "modelId": "74aa93a9-4c6b-4101-98f7-75f4644e4277",
+      "mediaId": "18ddc519-228f-4ce0-b794-05237003140b",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "4c62d3a9-2073-4686-991a-1e695692faf2",
+      "modelId": "680321bb-158e-4552-b625-69dffaf8ab1f",
+      "mediaId": "24df287f-0d2a-4d29-998b-df7173dfa37f",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "d67d2baa-b8f6-43a0-9bb0-fd1366069ace",
+      "modelId": "0cf0efd6-1253-45d4-aaf4-04009c5b50ed",
+      "mediaId": "01bee970-50ab-4e98-bf0c-07d7af5ac687",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "1554ef75-0fa9-4aba-bc95-d6973ab5b3cb",
+      "modelId": "ffb4617b-3edf-4cb5-bfca-95390857aabf",
+      "mediaId": "70f460a0-d037-48be-96ef-caf181ac4ddb",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "b0cb23d6-2b73-4354-942e-67b2d467b556",
+      "modelId": "7805d6c4-011f-410a-889d-081b403ed498",
+      "mediaId": "b47c3214-06c6-4997-ab94-eeed67550728",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "d6c206aa-663e-4048-b00d-9605866b5824",
+      "modelId": "7805d6c4-011f-410a-889d-081b403ed498",
+      "mediaId": "9bdba8cc-d398-45d0-b564-93120becef36",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "4bd50eab-001c-4197-b5c7-5c2a32370efe",
+      "modelId": "24ad03ba-ed7c-4cc4-8df8-0f4b75135274",
+      "mediaId": "9465bb0b-d5b4-4bce-81ae-53cfe69e6c34",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "63a10f66-9d6f-474f-a80d-757d717c6f36",
+      "modelId": "24ad03ba-ed7c-4cc4-8df8-0f4b75135274",
+      "mediaId": "8955ecbf-5b0e-4dda-a30f-0106363ae0c0",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
+    },
+    {
+      "id": "f02ffdcd-dc5e-4332-b537-d5a013cbb71b",
+      "modelId": "24ad03ba-ed7c-4cc4-8df8-0f4b75135274",
+      "mediaId": "5c6bb707-f5f6-435b-ba80-d9b0ed7f1046",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 2
+    },
+    {
+      "id": "6f87091a-0cbc-4a27-9f5d-2995a7942adf",
+      "modelId": "379a5a6f-66aa-4ca3-b0cd-b5f0d5ef0316",
+      "mediaId": "18bb8b4d-2109-487a-bf59-f82550cc7ac4",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "7c865465-e907-40c8-a790-0d05bcf7fb82",
+      "modelId": "1991fc2d-ed96-4027-bcfc-86cf677f1881",
+      "mediaId": "0b4f98c2-031e-401d-b7a8-9e7427bfc675",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "e4437b75-398a-472e-9f5f-a90013400e74",
+      "modelId": "9fb9fae2-1a50-48d8-8eb0-cf5376cb064f",
+      "mediaId": "3cc24ec1-385d-407a-b307-6ee2e6a050f0",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "b8d16134-b8db-44b2-9e7c-831d348f945b",
+      "modelId": "04b9ec39-0c92-431e-a96a-5ca17b90851e",
+      "mediaId": "5e839040-a651-4ef9-bb6f-f02cd5eb32cb",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "64517ab7-0883-4459-b4d4-b01de9a6b3a7",
+      "modelId": "60bff901-0a34-40ae-b7de-6939b8da9122",
+      "mediaId": "3e69712a-ebbe-4c1c-86c9-f4c763239adb",
+      "isHero": true,
+      "isThumbnail": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "c19618bb-9fec-4718-84a1-495f2076aa6f",
+      "modelId": "60bff901-0a34-40ae-b7de-6939b8da9122",
+      "mediaId": "7af7d25c-b987-414f-b44a-e6eff3661471",
+      "isHero": false,
+      "isThumbnail": false,
+      "sortOrder": 1
     }
   ],
   "categoryMedia": [
     {
-      "id": "630f2ce5-ad19-4195-aadd-f8572fb5e312",
-      "categoryId": "00123c79-1feb-4e70-8068-4bd79a31b3eb",
-      "mediaId": "f9aea76e-8ca5-4371-a044-90a4c7f58ce9",
-      "isThumbnail": false,
-      "isHero": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "e42e14a7-dfce-4a73-842f-24fa2ada3002",
-      "categoryId": "00123c79-1feb-4e70-8068-4bd79a31b3eb",
-      "mediaId": "ad9b7c66-cea6-4a8d-bdca-790c0b6aa87f",
-      "isThumbnail": false,
-      "isHero": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "23a2aa6e-74d5-4977-af6b-78aed48c51a3",
-      "categoryId": "00123c79-1feb-4e70-8068-4bd79a31b3eb",
-      "mediaId": "476bb174-7c01-4376-992c-336e030d0a10",
-      "isThumbnail": true,
-      "isHero": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "b2020d7e-c899-4a3a-a5ee-9786833ff659",
+      "id": "058d5576-ada1-45e9-ab69-a8d0100bcad4",
       "categoryId": "0297ea54-c40c-4186-b90b-1257a0077723",
-      "mediaId": "bc3615ec-25fa-4b02-b773-ea0e3d26c0f9",
-      "isThumbnail": false,
-      "isHero": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "69349672-b291-4271-ad45-377279b0ac2f",
-      "categoryId": "7d2ccb1e-35a9-4bd3-aae0-c05c1efd9ad4",
-      "mediaId": "fb3e3af6-fd3b-400c-84e4-8766f8f93094",
-      "isThumbnail": false,
-      "isHero": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "59c1cc36-d659-4680-a961-d2fe2c1dce59",
-      "categoryId": "7d2ccb1e-35a9-4bd3-aae0-c05c1efd9ad4",
-      "mediaId": "bbe4e923-929b-49e1-b09f-251830723c23",
+      "mediaId": "5d81f5d0-90a6-44f1-aed8-ae1075ed4b3a",
       "isThumbnail": true,
       "isHero": true,
       "sortOrder": 0
     },
     {
-      "id": "a96ddb61-50d1-4999-9c60-d9a36654ab49",
+      "id": "3c634739-fc1a-4cab-ad77-35a582c46910",
       "categoryId": "021f7fc9-17d8-4f79-8c53-230d83c6d418",
-      "mediaId": "e33d40bf-1e90-42ff-bbc2-63d9d6e36e09",
+      "mediaId": "2b138a51-478f-4e5a-b941-c2b4bb571e19",
       "isThumbnail": true,
       "isHero": true,
       "sortOrder": 0
     },
     {
-      "id": "bb851344-fd33-4564-aaec-1e82e84d93ff",
+      "id": "2d455196-5ab3-4ccd-9f91-23ad875b6c3c",
+      "categoryId": "a4bca71f-dd16-446f-9d37-2c12ab2852d0",
+      "mediaId": "61bf2f6c-db09-4588-817b-d4e9eea7ce39",
+      "isThumbnail": true,
+      "isHero": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "42f5a379-337f-4c77-8a39-397ebd02aa07",
+      "categoryId": "00123c79-1feb-4e70-8068-4bd79a31b3eb",
+      "mediaId": "01bee970-50ab-4e98-bf0c-07d7af5ac687",
+      "isThumbnail": true,
+      "isHero": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "29d9aa91-369c-455f-9ab3-db9332632eb2",
       "categoryId": "e4fd02c5-da80-47b4-b40b-8588266427cf",
-      "mediaId": "676cd865-2a83-44a7-a969-802e3a86712c",
+      "mediaId": "35963f5e-d77e-4f7c-a681-bbc16d3dc536",
       "isThumbnail": true,
       "isHero": true,
       "sortOrder": 0
     },
     {
-      "id": "f9a1e36d-8956-4036-afdf-0d91f530de16",
+      "id": "cf232fbb-31f1-4481-8f01-9478fed7bc56",
+      "categoryId": "7d2ccb1e-35a9-4bd3-aae0-c05c1efd9ad4",
+      "mediaId": "84af4b22-12b0-4354-abda-82c449443fef",
+      "isThumbnail": true,
+      "isHero": true,
+      "sortOrder": 0
+    },
+    {
+      "id": "caf85304-0220-46e8-b340-88ef636f1b0f",
       "categoryId": "2de14b12-7e99-4aab-b9bd-3112d03c39a0",
-      "mediaId": "b0856987-52ed-4ab0-a744-5450c38ca7cb",
-      "isThumbnail": false,
-      "isHero": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "23de13b8-3757-41cc-8522-b102142f16f7",
-      "categoryId": "2de14b12-7e99-4aab-b9bd-3112d03c39a0",
-      "mediaId": "1975267e-a8a6-499b-b55d-8e1a5857aa50",
+      "mediaId": "56c2e59f-142d-4e5b-9dc3-f0f1ec776155",
       "isThumbnail": true,
       "isHero": true,
       "sortOrder": 0
     },
     {
-      "id": "aa8369ee-090c-4fa4-a6f1-305249ff2535",
-      "categoryId": "a4bca71f-dd16-446f-9d37-2c12ab2852d0",
-      "mediaId": "3eedfa09-06fa-4549-a45b-fb58adde4ad7",
-      "isThumbnail": false,
-      "isHero": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "fdb4b880-bf91-41d4-b3fe-7d8fd34d1928",
-      "categoryId": "a4bca71f-dd16-446f-9d37-2c12ab2852d0",
-      "mediaId": "ff1fae65-0b4c-4362-848b-9abf2cb8de92",
-      "isThumbnail": false,
-      "isHero": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "a0cdbfff-5e3c-459b-968c-bd26c6085486",
-      "categoryId": "0297ea54-c40c-4186-b90b-1257a0077723",
-      "mediaId": "5d4c503f-b005-470a-8a07-f509607ee60c",
-      "isThumbnail": false,
-      "isHero": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "620131f9-9eef-43fd-9a3a-edb6a3e8bafc",
-      "categoryId": "0297ea54-c40c-4186-b90b-1257a0077723",
-      "mediaId": "41db8343-c7ed-4a74-a100-cae2f7f9f3e7",
-      "isThumbnail": true,
-      "isHero": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "2137216d-d554-41ba-aa14-01d8dac23c8e",
-      "categoryId": "a4bca71f-dd16-446f-9d37-2c12ab2852d0",
-      "mediaId": "66325a97-1460-4e2f-a3f0-6d2e9366cd51",
-      "isThumbnail": false,
-      "isHero": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "d147ac0c-3cfa-4092-9471-aab8227966d7",
-      "categoryId": "a4bca71f-dd16-446f-9d37-2c12ab2852d0",
-      "mediaId": "23bae9c1-7855-453f-a074-7faa021c4697",
-      "isThumbnail": true,
-      "isHero": false,
-      "sortOrder": 0
-    },
-    {
-      "id": "447da90e-3ff2-4427-8f62-be31d16df798",
-      "categoryId": "0297ea54-c40c-4186-b90b-1257a0077723",
-      "mediaId": "a7d31145-5306-4855-be57-71a5fd66efa3",
-      "isThumbnail": false,
-      "isHero": true,
-      "sortOrder": 0
-    },
-    {
-      "id": "73a871dc-6491-4cdb-a3fc-e149773431f2",
+      "id": "21df67a5-3194-4f50-9ca3-44389c06e649",
       "categoryId": "00000000-0000-0000-0000-000000000001",
-      "mediaId": "e00f8a78-9446-47ee-9e05-75fb8e8b10f4",
+      "mediaId": "aacd0c63-c4e5-42a0-a3df-734150d98758",
       "isThumbnail": true,
       "isHero": true,
       "sortOrder": 0
@@ -2372,417 +2236,550 @@
   ],
   "floorMedia": [
     {
-      "id": "825bcaf2-c6b1-4918-b5bc-548e3eb58da7",
-      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
-      "mediaId": "cecb874b-0985-4a84-9706-a9d2e41c43e9",
-      "title": "Erdgeschoss",
+      "id": "43a21b45-11c8-4ce1-b71c-ac6710812a2c",
+      "modelId": "f8f29c24-de4a-4c25-8025-1a22919a1f90",
+      "mediaId": "5b7cdc11-fcde-47ff-aff2-d4ee5aa56118",
+      "title": "Grundriss (mit ELW)",
       "sortOrder": 0
     },
     {
-      "id": "6f5a0206-450b-4599-805d-5b551236d988",
-      "modelId": "379a5a6f-66aa-4ca3-b0cd-b5f0d5ef0316",
-      "mediaId": "0d6e5598-7533-46a6-8f56-dac838862620",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "771a0b2e-8428-4c67-a670-a4cbce225a58",
-      "modelId": "379a5a6f-66aa-4ca3-b0cd-b5f0d5ef0316",
-      "mediaId": "ee77ad23-92d4-4de1-85e1-1f08ef6d9112",
-      "title": "Dachgeschoss",
+      "id": "215a5714-50de-43a2-979f-b968597b05b9",
+      "modelId": "f8f29c24-de4a-4c25-8025-1a22919a1f90",
+      "mediaId": "f9be1eb4-e974-4046-91d3-11d9d192b9c1",
+      "title": "Grundriss (mit ELW)",
       "sortOrder": 1
     },
     {
-      "id": "6bb5e55a-3870-4446-8a1e-e0147e260c37",
-      "modelId": "60bff901-0a34-40ae-b7de-6939b8da9122",
-      "mediaId": "84591509-d655-446e-8bbb-49b4eff6c4cb",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "d971fcff-f95a-4ac6-b782-49eb9d109f6e",
-      "modelId": "60bff901-0a34-40ae-b7de-6939b8da9122",
-      "mediaId": "d688d257-7ff7-4d4c-ab43-a3ac88f7d0ac",
-      "title": "Dachgeschoss",
+      "id": "17c009c8-88e9-4a4e-a6aa-0b5cd8a4e279",
+      "modelId": "f8f29c24-de4a-4c25-8025-1a22919a1f90",
+      "mediaId": "ba268185-d00e-4193-afd4-6d9ba95d9985",
+      "title": "Grundriss (mit ELW)",
       "sortOrder": 2
     },
     {
-      "id": "6a22231d-ef45-490c-aeb6-388f32f5cc05",
-      "modelId": "92af9e1e-0fc5-4979-90c3-78cdb20259dd",
-      "mediaId": "c2308218-ca75-4185-bb6d-6f7409384bd5",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "ea0796fe-c78f-4f15-a853-9ada7b2d7a60",
-      "modelId": "af049094-bbd0-4550-9813-e42f28877cd6",
-      "mediaId": "4b3d8544-448e-4a90-b124-d4463d320853",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "b49b6e2f-fddc-4ff1-beea-115cd0720392",
-      "modelId": "af049094-bbd0-4550-9813-e42f28877cd6",
-      "mediaId": "35dde249-e699-4e12-9ecd-0b883a1fc631",
-      "title": "Obergeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "19984db2-e7b5-469c-ae77-7fcf40713686",
-      "modelId": "f07d020a-e1b2-45d2-aa29-be46c439c0ed",
-      "mediaId": "de79cc7f-331f-4b1b-9a95-030caafa96f5",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "1c007e87-308a-480f-bc1b-1939f11908df",
-      "modelId": "f07d020a-e1b2-45d2-aa29-be46c439c0ed",
-      "mediaId": "7d788374-2fdb-446e-86f9-1c925a972bfa",
-      "title": "Obergeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "b722f5ef-2eb5-4ee0-8b5c-9efa941e1a5b",
-      "modelId": "ffb4617b-3edf-4cb5-bfca-95390857aabf",
-      "mediaId": "0355573b-01b7-4bde-925c-cf1a8ffb6214",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "227cbff6-d954-49d4-bb73-ba0292db77e0",
-      "modelId": "ffb4617b-3edf-4cb5-bfca-95390857aabf",
-      "mediaId": "1079bc28-8aed-4673-9424-054d2aa732dc",
-      "title": "Dachgeschoss",
-      "sortOrder": 2
-    },
-    {
-      "id": "449f8685-91a7-4443-bab3-640b6f017a06",
-      "modelId": "64ee8dc9-0a2a-4d13-b8da-211058787b39",
-      "mediaId": "a4bfd28a-12f6-4fa2-8be5-0c09675d9641",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "6b6d6e0c-09c2-4aa0-b7ea-073613f172e1",
-      "modelId": "64ee8dc9-0a2a-4d13-b8da-211058787b39",
-      "mediaId": "cf29a0f3-3118-4d68-bf48-db0e69398098",
-      "title": "Dachgeschoss",
-      "sortOrder": 2
-    },
-    {
-      "id": "edbe7224-f949-4899-81c2-9fc08a7d63d8",
-      "modelId": "5a4531c6-e140-4471-9dc4-96fd4f358c8f",
-      "mediaId": "563772ae-deb0-4ac9-aafd-0e86091f9283",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "754e29fb-a963-40ec-a26d-78097c9194b2",
-      "modelId": "5a4531c6-e140-4471-9dc4-96fd4f358c8f",
-      "mediaId": "28deeebf-8804-46f0-9675-100ff01d6e29",
-      "title": "Obergeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "90bed942-9b7d-4628-9dad-92b0e16ac7d7",
-      "modelId": "24ad03ba-ed7c-4cc4-8df8-0f4b75135274",
-      "mediaId": "3f38c77b-5c1c-4a0b-b806-0b3a81619ed2",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "8b28b0c2-6e1f-4697-8d2f-67060c763d3f",
-      "modelId": "24ad03ba-ed7c-4cc4-8df8-0f4b75135274",
-      "mediaId": "a0ce1e10-1b1e-477e-a823-5872f71bcab2",
-      "title": "Dachgeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "cfdeb005-87a3-41e5-b08f-872a10297ead",
-      "modelId": "680321bb-158e-4552-b625-69dffaf8ab1f",
-      "mediaId": "c4ffdd8b-a010-4082-99b7-20be39d127c7",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "7f66e86f-3e58-49e6-8cd4-d8c765b0d823",
-      "modelId": "680321bb-158e-4552-b625-69dffaf8ab1f",
-      "mediaId": "20036948-0d28-43b5-8ef1-8c6d88e1872f",
-      "title": "Dachgeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "fa77f6eb-753c-4563-95a0-a5dcebf424b7",
-      "modelId": "680321bb-158e-4552-b625-69dffaf8ab1f",
-      "mediaId": "46862ed0-5cc4-4876-86c3-23eb1d730063",
-      "title": "Erdgeschoss (Alternativ)",
-      "sortOrder": 2
-    },
-    {
-      "id": "b39e6f51-b6fc-431a-ba7e-50de4268a879",
-      "modelId": "1991fc2d-ed96-4027-bcfc-86cf677f1881",
-      "mediaId": "2d0acc1c-cc3e-4384-b8ab-f816c6392ed7",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "82d73f20-8ff5-4b15-9c31-60d021996aa3",
-      "modelId": "1991fc2d-ed96-4027-bcfc-86cf677f1881",
-      "mediaId": "5a51b004-66a2-4cf5-8b05-cf70116084c3",
-      "title": "Dachgeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "67bdb1a8-8dbf-444d-a6e1-ff6762d16d32",
-      "modelId": "9fb9fae2-1a50-48d8-8eb0-cf5376cb064f",
-      "mediaId": "5bec8973-250a-4b95-b5f0-1a5681bef90d",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "6c1e44ab-1b54-4321-aa1e-d8ac31a0d3ae",
-      "modelId": "9fb9fae2-1a50-48d8-8eb0-cf5376cb064f",
-      "mediaId": "6754a83d-4a99-43e6-a6e7-c48d6c435545",
-      "title": "Dachgeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "42018312-9405-4a74-ab64-c244fd171058",
-      "modelId": "9fb9fae2-1a50-48d8-8eb0-cf5376cb064f",
-      "mediaId": "53697eaa-8284-4ffc-baa6-42c3a615f916",
-      "title": "Erdgeschoss (Alternativ)",
-      "sortOrder": 2
-    },
-    {
-      "id": "bca4b754-3688-4f7c-b9e3-c4cbb325824d",
-      "modelId": "04b9ec39-0c92-431e-a96a-5ca17b90851e",
-      "mediaId": "885dd5b0-6ba3-4e42-bddd-2277edbb4bb5",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "0f92a695-bbea-46be-a8bb-a730f57027c0",
-      "modelId": "04b9ec39-0c92-431e-a96a-5ca17b90851e",
-      "mediaId": "00271982-2add-4f21-a803-5d763f73e45a",
-      "title": "Dachgeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "57631e6b-f80b-4808-ab95-4a6fbb08b8c1",
-      "modelId": "0cf0efd6-1253-45d4-aaf4-04009c5b50ed",
-      "mediaId": "4b3e25a7-3b40-45e4-91e8-cfb0e7e1064a",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "fb03185a-c53c-49d1-9534-d3999137e950",
-      "modelId": "0cf0efd6-1253-45d4-aaf4-04009c5b50ed",
-      "mediaId": "68212218-d848-455f-a79d-ed5c04896792",
-      "title": "Dachgeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "5558d65f-0458-49f1-ba73-c85873e5a406",
-      "modelId": "7805d6c4-011f-410a-889d-081b403ed498",
-      "mediaId": "4de61a47-0ea5-4d97-a0da-6220bcaefd87",
-      "title": "Erdgeschoss",
-      "sortOrder": 0
-    },
-    {
-      "id": "7d82b3a8-e056-4168-8dcb-95a6eb59ba57",
-      "modelId": "7805d6c4-011f-410a-889d-081b403ed498",
-      "mediaId": "48894b29-228f-41fc-ac0d-acf7fb51b8f7",
-      "title": "Dachgeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "718fab50-431c-4c4c-b533-05190a096fb6",
-      "modelId": "64ee8dc9-0a2a-4d13-b8da-211058787b39",
-      "mediaId": "004f4720-1f1e-4977-bb64-a0beb8931d17",
-      "title": "Erdgeschoss (Variante 2)",
-      "sortOrder": 2
-    },
-    {
-      "id": "8c7d9146-2991-4e19-882c-f83eb4247741",
-      "modelId": "5a4531c6-e140-4471-9dc4-96fd4f358c8f",
-      "mediaId": "71a7c5d4-47f1-4e47-bf1a-ed2a2ca160bb",
-      "title": "Erdgeschoss (Alternativ)",
-      "sortOrder": 2
-    },
-    {
-      "id": "88e3b182-479b-4eb6-80b8-718481e27efb",
-      "modelId": "ba9c1cfa-78b8-404b-9932-d7d4f1c413d9",
-      "mediaId": "157d7f2a-8ca9-4ed3-984a-2108359138b9",
-      "title": "Erdgeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "a58bda60-8001-4292-8297-ad510136998e",
-      "modelId": "07fccc4a-7ca2-4907-9e5c-a7ba69c04c20",
-      "mediaId": "39d0604d-c2c3-47c3-84fa-07bb0a534e4e",
-      "title": "Erdgeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "7d2e88c8-f9ee-46ba-ac12-9be56a4ddc88",
-      "modelId": "07fccc4a-7ca2-4907-9e5c-a7ba69c04c20",
-      "mediaId": "3e169152-e56a-48a1-8817-048c6cba771b",
-      "title": "Obergeschoss",
-      "sortOrder": 2
-    },
-    {
-      "id": "ab7c3781-ceda-4410-8fc3-3777b0981998",
-      "modelId": "c454b031-3d63-4938-a9a3-3cc5c2cc8b93",
-      "mediaId": "e4811354-db74-486e-8347-6819481c1fa0",
-      "title": "Erdgeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "09c7f852-7f3e-4460-bfdc-8274cc2e871a",
-      "modelId": "c454b031-3d63-4938-a9a3-3cc5c2cc8b93",
-      "mediaId": "2f331a2f-589d-41f6-9396-6afe2dba1e54",
-      "title": "Obergeschoss",
-      "sortOrder": 2
-    },
-    {
-      "id": "7e719956-143c-439a-b4ff-63497100d782",
-      "modelId": "ffb4617b-3edf-4cb5-bfca-95390857aabf",
-      "mediaId": "303c8967-3892-4355-a9a4-9d2146a72815",
-      "title": "Erdgeschoss",
+      "id": "9ca69c9e-b215-4c47-baef-1ff4fc9fbce7",
+      "modelId": "f8f29c24-de4a-4c25-8025-1a22919a1f90",
+      "mediaId": "5136c900-c675-4e4d-817d-fa3c037110bb",
+      "title": "Grundriss (mit ELW)",
       "sortOrder": 3
     },
     {
-      "id": "2167e516-ef09-4d13-b2ef-55f7da262105",
-      "modelId": "ffb4617b-3edf-4cb5-bfca-95390857aabf",
-      "mediaId": "47346a13-bd3c-49e9-8d6d-a3a940d8fdc2",
-      "title": "Dachgeschoss",
+      "id": "db4ee7f2-8de9-46eb-b157-c4e20316ab91",
+      "modelId": "f8f29c24-de4a-4c25-8025-1a22919a1f90",
+      "mediaId": "149f677e-a981-49a5-b4a5-c89042726397",
+      "title": "Erdgeschoss (mit ELW)",
       "sortOrder": 4
     },
     {
-      "id": "9bf9d7ae-b8bd-46a9-8790-c6305453adeb",
-      "modelId": "ffb4617b-3edf-4cb5-bfca-95390857aabf",
-      "mediaId": "a2032993-6627-4a52-afa5-fd4d4c2be1b0",
-      "title": "Erdgeschoss (Alternative)",
+      "id": "2e670e51-d334-4fed-af43-1836a14a7e8a",
+      "modelId": "f8f29c24-de4a-4c25-8025-1a22919a1f90",
+      "mediaId": "14a29dcf-7d4b-457a-a41b-b8000247d486",
+      "title": "Obergeschoss (mit ELW)",
       "sortOrder": 5
     },
     {
-      "id": "e0a95820-01c5-4301-a635-4ba31f24b592",
-      "modelId": "74aa93a9-4c6b-4101-98f7-75f4644e4277",
-      "mediaId": "91e72611-f428-45a1-b337-89ed0578a66c",
-      "title": "Erdgeschoss",
-      "sortOrder": 1
-    },
-    {
-      "id": "30cbdf0c-2193-44b8-9acf-44b77ef7631b",
-      "modelId": "74aa93a9-4c6b-4101-98f7-75f4644e4277",
-      "mediaId": "4e782edb-aff7-430f-b244-74e3b6d19bed",
-      "title": "Obergeschoss",
-      "sortOrder": 2
-    },
-    {
-      "id": "82b5dad3-dabb-4631-8fc6-f2b763488a3a",
+      "id": "e81d2eff-bca2-4f6d-82ae-c5f0543f45f5",
       "modelId": "f8f29c24-de4a-4c25-8025-1a22919a1f90",
-      "mediaId": "a4000eda-4831-46ed-9b38-1a8c9d8f011c",
-      "title": "Erdgeschoss",
-      "sortOrder": 1
+      "mediaId": "969cf058-e6b8-4099-bae0-4db052295b87",
+      "title": "Grundriss (mit ELW)",
+      "sortOrder": 6
     },
     {
-      "id": "1ec7ff73-1ea0-460c-a594-12d6fa754ccf",
+      "id": "c684eac6-52a3-42fd-acb2-ee46230d5484",
       "modelId": "f8f29c24-de4a-4c25-8025-1a22919a1f90",
-      "mediaId": "715c7784-aa14-404a-9cca-af5f04185563",
-      "title": "Obergeschoss",
-      "sortOrder": 2
+      "mediaId": "bdb0b7fd-9cdd-4d4a-8c4a-14cef759be2f",
+      "title": "Erdgeschoss (mit ELW)",
+      "sortOrder": 7
     },
     {
-      "id": "9574948b-c0c3-48ac-9451-6101b3db68a9",
+      "id": "7f907efe-5cb7-487f-b145-7fad3a43860f",
+      "modelId": "f8f29c24-de4a-4c25-8025-1a22919a1f90",
+      "mediaId": "cbae309a-3783-4965-836c-0e97c35afa9b",
+      "title": "Obergeschoss (mit ELW)",
+      "sortOrder": 8
+    },
+    {
+      "id": "52258ff7-4d00-4218-9337-c084cf0287a1",
+      "modelId": "f8f29c24-de4a-4c25-8025-1a22919a1f90",
+      "mediaId": "7b71daa5-d42f-494c-8963-7f850a92d16f",
+      "title": "Grundriss (mit ELW)",
+      "sortOrder": 9
+    },
+    {
+      "id": "576bf3a0-d18e-4cb9-9df8-6bd802478162",
+      "modelId": "c454b031-3d63-4938-a9a3-3cc5c2cc8b93",
+      "mediaId": "abdbac5c-ee3d-4208-b64f-f4046cd2521b",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "5d2b0ea9-afd0-4906-849d-c5dbec8b230e",
+      "modelId": "c454b031-3d63-4938-a9a3-3cc5c2cc8b93",
+      "mediaId": "abbaaa32-c2a6-4a23-910d-3d15faf53238",
+      "title": "Obergeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "1668cb43-662e-4b18-bac6-52a969b542ce",
+      "modelId": "07fccc4a-7ca2-4907-9e5c-a7ba69c04c20",
+      "mediaId": "b1aba571-ec6e-4150-9340-46f1b6aacce2",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "1144ec03-d605-4a6b-bfe1-0c47ee070230",
+      "modelId": "07fccc4a-7ca2-4907-9e5c-a7ba69c04c20",
+      "mediaId": "e104f068-71d7-420a-a742-d88d4f0e73b4",
+      "title": "Obergeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "fe6ca6c6-dc10-4266-af14-1d6233737268",
       "modelId": "7f4466db-e48a-47c8-9344-ec6805bca2b9",
-      "mediaId": "6947fb23-80a1-4189-916d-1cccf3ce1b94",
+      "mediaId": "da413d80-8287-4b24-8393-6584897efe81",
       "title": "Erdgeschoss",
-      "sortOrder": 1
+      "sortOrder": 0
     },
     {
-      "id": "eaeaed06-d3f2-48c2-b338-455c20992fc4",
+      "id": "87d1e50e-6f62-4dd0-b968-108841944ce1",
       "modelId": "7f4466db-e48a-47c8-9344-ec6805bca2b9",
-      "mediaId": "9f90b60f-1fda-4bd7-b247-8efe40f3309e",
+      "mediaId": "53744aa0-0d0a-4719-8014-3d8749850c77",
       "title": "Obergeschoss",
-      "sortOrder": 2
-    },
-    {
-      "id": "54dfa5d8-04b8-4c28-aa1a-d193a635b8c9",
-      "modelId": "af049094-bbd0-4550-9813-e42f28877cd6",
-      "mediaId": "5ae9a732-cd53-45f7-ae26-bc774e4d12df",
-      "title": "Erdgeschoss",
-      "sortOrder": 3
-    },
-    {
-      "id": "82af7858-da29-4e0b-9e16-9c8518b1ca5d",
-      "modelId": "af049094-bbd0-4550-9813-e42f28877cd6",
-      "mediaId": "82f5e353-9b1f-4885-bed7-c39353c68bb7",
-      "title": "Obergeschoss",
-      "sortOrder": 4
-    },
-    {
-      "id": "d272e1df-e508-406f-8889-c45a3cb13275",
-      "modelId": "53183e81-1c8e-45e9-81d0-9f257b337935",
-      "mediaId": "ee3edbc0-2c79-4e0f-89c6-de03b78358a1",
-      "title": "Erdgeschoss",
       "sortOrder": 1
     },
     {
-      "id": "78bba976-904a-4085-a8cc-b521bbd7df62",
-      "modelId": "53183e81-1c8e-45e9-81d0-9f257b337935",
-      "mediaId": "9acedb3f-0025-4cc0-9678-00863c0c053b",
-      "title": "Obergeschoss",
-      "sortOrder": 2
+      "id": "c77c8ffc-f602-42d5-b67a-3fffe343035a",
+      "modelId": "af049094-bbd0-4550-9813-e42f28877cd6",
+      "mediaId": "bb5e91b3-4eb5-41b7-aeda-a83d731ec218",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
     },
     {
-      "id": "b96b209c-eb75-4697-8639-e2811915d4d0",
-      "modelId": "bc41f693-e5f5-4a16-bf8b-d0ccdaf24834",
-      "mediaId": "6fa0e555-e261-4d9e-a239-6e1146ee0d85",
-      "title": "Erdgeschoss",
+      "id": "73b78b51-29ad-493a-9aa4-c2de38d572b8",
+      "modelId": "af049094-bbd0-4550-9813-e42f28877cd6",
+      "mediaId": "688eef13-9837-4111-82ac-491f6cda8276",
+      "title": "Obergeschoss",
       "sortOrder": 1
     },
     {
-      "id": "1f534a7b-8d57-46fe-99f6-d79b90d4d949",
+      "id": "6b2fac97-a1f0-4b72-8584-533f3d719870",
+      "modelId": "53183e81-1c8e-45e9-81d0-9f257b337935",
+      "mediaId": "2c3b5c81-628d-43af-8c72-393eab7e3536",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "10e94253-4c49-4459-b4aa-809783a89fa3",
+      "modelId": "53183e81-1c8e-45e9-81d0-9f257b337935",
+      "mediaId": "5dc93632-b6f8-4913-9b9e-588356e6d3e9",
+      "title": "Obergeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "75b9c5a5-ef0a-46ca-82f1-55e971306429",
       "modelId": "bc41f693-e5f5-4a16-bf8b-d0ccdaf24834",
-      "mediaId": "ef0782d1-649d-4c89-85ab-8d548c3419a2",
+      "mediaId": "b9fdcc27-76bd-4ae0-a588-a7c797215b4a",
+      "title": "Dachgeschoss (mit ELW)",
+      "sortOrder": 0
+    },
+    {
+      "id": "3a9e7c09-161f-43ac-ba84-e0ff517dd3df",
+      "modelId": "bc41f693-e5f5-4a16-bf8b-d0ccdaf24834",
+      "mediaId": "e3f406a6-c242-4ce8-8eb4-49309b0a042a",
+      "title": "Erdgeschoss (mit ELW)",
+      "sortOrder": 1
+    },
+    {
+      "id": "79524679-bfa3-4d80-a8c9-53763594681e",
+      "modelId": "bc41f693-e5f5-4a16-bf8b-d0ccdaf24834",
+      "mediaId": "1df5fa50-5b51-47db-b102-3391e997a39d",
+      "title": "Grundriss (mit ELW)",
+      "sortOrder": 2
+    },
+    {
+      "id": "c9b8d0d7-cbd5-4f86-b33f-87dc8fe63ebc",
+      "modelId": "92af9e1e-0fc5-4979-90c3-78cdb20259dd",
+      "mediaId": "ffa559de-98c9-4872-92ca-cfb823eed9a6",
+      "title": "Erdgeschoss (mit ELW)",
+      "sortOrder": 0
+    },
+    {
+      "id": "2f03d624-b373-4497-b247-aecc57644538",
+      "modelId": "ff1aa147-2469-4956-afc5-796b3706479d",
+      "mediaId": "ca33198b-00bf-4acb-a7b5-aeaae243242a",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "7eb39b5c-6e6d-46ab-9be6-79b68803d9e2",
+      "modelId": "e26f656e-dec8-43f1-a02e-c26a0cf6a582",
+      "mediaId": "0457d991-84ae-4c0a-a87c-1ebeb7551cff",
       "title": "Dachgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "89409d47-c5ad-4d0d-b529-46bbbe43ef47",
+      "modelId": "e26f656e-dec8-43f1-a02e-c26a0cf6a582",
+      "mediaId": "3b8534e3-1738-4108-81c9-cfc976f3b38c",
+      "title": "Erdgeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "d8fbc916-7b1f-4789-8193-bb1406b7a421",
+      "modelId": "b958df3b-c82d-4e44-9948-7e125f8df429",
+      "mediaId": "6659daec-cb65-4379-9db9-ee336425976a",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "ff29c0cc-6c76-45c6-aac3-fb36e6a4c079",
+      "modelId": "b958df3b-c82d-4e44-9948-7e125f8df429",
+      "mediaId": "04ec4761-e8ff-4732-bcbe-b154280454d7",
+      "title": "Obergeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "e30701e4-e021-41a5-a259-0ed4017ec2bd",
+      "modelId": "9bd91137-c170-445d-84e0-716cec4cc630",
+      "mediaId": "7fc0b130-af7a-48f8-97c7-2f0351075298",
+      "title": "Dachgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "0b22bcf0-7777-4a79-824b-fc4f00e54a8e",
+      "modelId": "9bd91137-c170-445d-84e0-716cec4cc630",
+      "mediaId": "8c16b102-c283-425a-a2e9-8d0f58d3efbd",
+      "title": "Erdgeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "c696d3a9-d328-4470-a66e-6859c9a587db",
+      "modelId": "e7a0f60c-6053-4fca-ba14-ea1ae7f511da",
+      "mediaId": "4fa71f6c-08f5-4f98-b853-de98fe6c9fdf",
+      "title": "Dachgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "6911d9dc-7f1b-45eb-9356-1cf312d15188",
+      "modelId": "e7a0f60c-6053-4fca-ba14-ea1ae7f511da",
+      "mediaId": "dcc02a9d-ffcf-4d5a-b5af-69bd671af8ce",
+      "title": "Erdgeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "522453fa-1b6d-4d4c-ac4e-89faff5013f2",
+      "modelId": "5c133725-afa5-43c0-9c09-9c2a0075548e",
+      "mediaId": "0b5c80fe-d24e-4cfd-a4b2-0f213cd49392",
+      "title": "Dachgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "46a35e20-3433-44c0-8625-d50aab5529e1",
+      "modelId": "5c133725-afa5-43c0-9c09-9c2a0075548e",
+      "mediaId": "e73c8208-6b1c-4121-89aa-2a677fda95f6",
+      "title": "Erdgeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "112bddea-be30-4227-8ef9-2d76d6ee0dc0",
+      "modelId": "286e47b7-d6b2-4dac-a50f-acb6dd57530a",
+      "mediaId": "8f423ab9-263c-4827-9e2e-0186991c237b",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "044a5eaa-7412-4fdb-848c-291b09ee6599",
+      "modelId": "d0f2528f-b883-4903-97f6-f0bb63179a62",
+      "mediaId": "f513aa29-8346-46ab-89f7-73fe0377b7b9",
+      "title": "Grundriss",
+      "sortOrder": 0
+    },
+    {
+      "id": "4117b055-b9e6-48f9-9cd1-bf6e35da8f6a",
+      "modelId": "d0f2528f-b883-4903-97f6-f0bb63179a62",
+      "mediaId": "5d7ba51f-7fad-4a53-ac14-ba741e21ecf9",
+      "title": "Erdgeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "1c70475d-ff6b-4b23-b285-6b08ab43c79b",
+      "modelId": "d0f2528f-b883-4903-97f6-f0bb63179a62",
+      "mediaId": "f2bcce2c-f6cb-43a0-9206-f28c22bfa3eb",
+      "title": "Obergeschoss",
       "sortOrder": 2
     },
     {
-      "id": "bb5010a8-9131-436c-ade1-4b5fa34f7851",
-      "modelId": "bc41f693-e5f5-4a16-bf8b-d0ccdaf24834",
-      "mediaId": "8eebb331-337c-4058-92f5-abc84d5c50c9",
-      "title": "Kellergeschoss",
-      "sortOrder": 3
-    },
-    {
-      "id": "09f438b8-b4f5-491a-9aca-d433d1ad012c",
+      "id": "5d684fd6-353c-486c-9f31-5d33803aa524",
       "modelId": "d0f2528f-b883-4903-97f6-f0bb63179a62",
-      "mediaId": "38117bf3-f1f3-4e31-8002-6fedd7814552",
+      "mediaId": "8a2704e4-99dc-40ba-8bac-fc57275f8340",
       "title": "Erdgeschoss",
       "sortOrder": 3
     },
     {
-      "id": "355a1fa9-9d3e-4910-a310-a0c6230579c2",
+      "id": "4c1c7da0-9977-41a0-a4ae-12744d6fcbf9",
       "modelId": "d0f2528f-b883-4903-97f6-f0bb63179a62",
-      "mediaId": "fa57ebb4-1389-4f10-900e-751becaa1f4b",
+      "mediaId": "f5101671-e195-4952-accb-c8c1654b53c6",
       "title": "Obergeschoss",
       "sortOrder": 4
     },
     {
-      "id": "06992f03-adc9-4ddd-969a-d53ffd2cb6c2",
-      "modelId": "8945ad8d-411e-47b2-ad56-3356399f759d",
-      "mediaId": "4da1fc77-034a-44f9-b17d-9df27bc40941",
-      "title": "Erdgeschoss",
+      "id": "bb3e6289-c67c-4f4f-813d-2188ce7d520c",
+      "modelId": "5a4531c6-e140-4471-9dc4-96fd4f358c8f",
+      "mediaId": "5e128a62-5776-49c7-9388-39a8298c73a2",
+      "title": "Erdgeschoss (mit ELW)",
+      "sortOrder": 0
+    },
+    {
+      "id": "27c2b01f-9e56-4731-9f0d-ab0c2453838b",
+      "modelId": "5a4531c6-e140-4471-9dc4-96fd4f358c8f",
+      "mediaId": "a47cd5f4-5d09-49a5-bc7d-f3d804cd929a",
+      "title": "Erdgeschoss (mit ELW)",
+      "sortOrder": 1
+    },
+    {
+      "id": "308d2b73-16f5-4b58-9ab7-5dbdcb33c9cb",
+      "modelId": "5a4531c6-e140-4471-9dc4-96fd4f358c8f",
+      "mediaId": "ef2753d1-1848-4643-b9bb-fd8e8b3fe373",
+      "title": "Obergeschoss (mit ELW)",
+      "sortOrder": 2
+    },
+    {
+      "id": "066b1d25-664e-46e0-ab60-21c833e63214",
+      "modelId": "5a4531c6-e140-4471-9dc4-96fd4f358c8f",
+      "mediaId": "be553ae2-32cc-4460-82be-1f044a010156",
+      "title": "Grundriss (mit ELW)",
       "sortOrder": 3
     },
     {
-      "id": "b651a1df-3f45-48eb-97fa-ae4facd80fe7",
-      "modelId": "8945ad8d-411e-47b2-ad56-3356399f759d",
-      "mediaId": "12e5bced-7444-4d62-87d1-8e1d342ff831",
-      "title": "Obergeschoss",
+      "id": "c252f6a0-d602-4361-a290-06172dbb30bf",
+      "modelId": "5a4531c6-e140-4471-9dc4-96fd4f358c8f",
+      "mediaId": "509a39a8-54c8-4e2b-a68d-45aade2b556c",
+      "title": "Erdgeschoss (mit ELW)",
       "sortOrder": 4
+    },
+    {
+      "id": "434dd93e-2ad5-4e7f-81f4-c1a823b2a05b",
+      "modelId": "5a4531c6-e140-4471-9dc4-96fd4f358c8f",
+      "mediaId": "852952c1-9a57-4a9a-a1d1-e593602cebc7",
+      "title": "Obergeschoss (mit ELW)",
+      "sortOrder": 5
+    },
+    {
+      "id": "fc5e0dba-72c9-4cde-95e8-062ba5991c0a",
+      "modelId": "f07d020a-e1b2-45d2-aa29-be46c439c0ed",
+      "mediaId": "2b5aad2d-7e9c-4aaa-9081-20f04800adf7",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "ee2cd1a2-1ae2-4523-af6c-e82427884cfc",
+      "modelId": "f07d020a-e1b2-45d2-aa29-be46c439c0ed",
+      "mediaId": "8683db25-9bbe-4654-ba44-6c71148a30ff",
+      "title": "Erdgeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "d9924852-4b6b-414e-a8a3-4037213a5e01",
+      "modelId": "f07d020a-e1b2-45d2-aa29-be46c439c0ed",
+      "mediaId": "847d5919-dd03-4b79-bc66-e78a3ae624a4",
+      "title": "Erdgeschoss",
+      "sortOrder": 2
+    },
+    {
+      "id": "9b97d37f-0855-403f-a15c-d3cb37cf2a0d",
+      "modelId": "f07d020a-e1b2-45d2-aa29-be46c439c0ed",
+      "mediaId": "2756510e-23c1-4b52-9d97-aa5d53208d0b",
+      "title": "Obergeschoss",
+      "sortOrder": 3
+    },
+    {
+      "id": "28498651-24fe-43e9-b230-30935cc901db",
+      "modelId": "8945ad8d-411e-47b2-ad56-3356399f759d",
+      "mediaId": "4072845f-9215-4d7d-9f1a-b424e3d1fb6f",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "4e2b98a4-5bbf-4a10-ad5b-ca77a8f14509",
+      "modelId": "8945ad8d-411e-47b2-ad56-3356399f759d",
+      "mediaId": "730fd5a7-eb61-43bc-a91b-8ac022793205",
+      "title": "Obergeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "781cde71-158c-45f7-9132-ef2c8a388266",
+      "modelId": "74aa93a9-4c6b-4101-98f7-75f4644e4277",
+      "mediaId": "8ffc4101-8c96-4b78-b712-4cfdb1c787e7",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "d77b508b-9c43-45f4-8f28-0a0f5c7d65c8",
+      "modelId": "74aa93a9-4c6b-4101-98f7-75f4644e4277",
+      "mediaId": "5761745a-9e26-45d2-bb08-fa663c9588fd",
+      "title": "Obergeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "b498fc04-8545-4801-b994-abef12b6d50e",
+      "modelId": "680321bb-158e-4552-b625-69dffaf8ab1f",
+      "mediaId": "17d5ae19-becb-44a7-a8af-e4556a47f7ef",
+      "title": "Obergeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "5f5441aa-8a52-4a1c-962a-cb9c2d0f7b23",
+      "modelId": "680321bb-158e-4552-b625-69dffaf8ab1f",
+      "mediaId": "f8cd0163-d46d-4881-9cc5-bc0fbe300891",
+      "title": "Erdgeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "cb4a6d8b-21ac-46bf-9e8b-a3b084058a34",
+      "modelId": "680321bb-158e-4552-b625-69dffaf8ab1f",
+      "mediaId": "9056bdfe-0dca-42bc-8671-e258057c4d29",
+      "title": "Erdgeschoss (mit ELW)",
+      "sortOrder": 2
+    },
+    {
+      "id": "0964c3e0-abcd-42e0-a539-fcfbb4e31f84",
+      "modelId": "680321bb-158e-4552-b625-69dffaf8ab1f",
+      "mediaId": "11c445c2-e218-4eaf-b3d9-b080bf731260",
+      "title": "Obergeschoss (mit ELW)",
+      "sortOrder": 3
+    },
+    {
+      "id": "86a07115-7e9b-4551-a579-ef8fc2f40074",
+      "modelId": "0cf0efd6-1253-45d4-aaf4-04009c5b50ed",
+      "mediaId": "e4bde521-8e82-4d7c-aa7e-b4aec9f9274a",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "6835f64f-8806-4d57-a574-9dd788a64067",
+      "modelId": "0cf0efd6-1253-45d4-aaf4-04009c5b50ed",
+      "mediaId": "043b20c0-7c80-4e35-9cf2-ac2278e11150",
+      "title": "Obergeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "aedea007-b3b4-496a-b7c9-4d2179954ba6",
+      "modelId": "ffb4617b-3edf-4cb5-bfca-95390857aabf",
+      "mediaId": "a28c1a4d-2e92-4a3d-8ec8-79cea3321ea5",
+      "title": "Dachgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "1d9f4dd7-e3c3-476c-b861-2137283e91d1",
+      "modelId": "ffb4617b-3edf-4cb5-bfca-95390857aabf",
+      "mediaId": "56b86c52-85de-4e36-b016-af4d4ca171c3",
+      "title": "Erdgeschoss (mit ELW)",
+      "sortOrder": 1
+    },
+    {
+      "id": "ec1b4a92-9456-46b4-bac1-a9ae056ceb79",
+      "modelId": "7805d6c4-011f-410a-889d-081b403ed498",
+      "mediaId": "6f0ff670-39e6-4965-826b-e0deb7260d53",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "e1a3e538-672d-4aa7-b736-9e64ff8bd41c",
+      "modelId": "7805d6c4-011f-410a-889d-081b403ed498",
+      "mediaId": "614772ef-f41c-4259-bcd8-084976514cdf",
+      "title": "Obergeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "4d323747-77c4-4631-983f-dcc6bdbfdfad",
+      "modelId": "24ad03ba-ed7c-4cc4-8df8-0f4b75135274",
+      "mediaId": "fdd72350-119f-4344-8448-bc3d9c205e92",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "6f943683-0919-46f2-9e7e-8d23bcf12139",
+      "modelId": "24ad03ba-ed7c-4cc4-8df8-0f4b75135274",
+      "mediaId": "04573103-20b3-47be-8767-73f42d6335f4",
+      "title": "Obergeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "08b90a57-8dfe-4679-9079-d8ddc08170e7",
+      "modelId": "379a5a6f-66aa-4ca3-b0cd-b5f0d5ef0316",
+      "mediaId": "37a4d22e-cbfa-4268-8df2-8aed11d29c92",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "8540ba14-e902-4438-9abf-cb7d944a093c",
+      "modelId": "379a5a6f-66aa-4ca3-b0cd-b5f0d5ef0316",
+      "mediaId": "31b09758-2a17-4837-b769-7f687e74b66d",
+      "title": "Obergeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "4f431a44-04e0-4769-86b2-ff7205a9a69d",
+      "modelId": "1991fc2d-ed96-4027-bcfc-86cf677f1881",
+      "mediaId": "f852d88a-d011-4437-aef8-6235ff7994af",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "f114910e-16bd-455d-bfe7-a6189c212030",
+      "modelId": "1991fc2d-ed96-4027-bcfc-86cf677f1881",
+      "mediaId": "7b2d8648-1320-42ab-84b8-e46d3d99e5cb",
+      "title": "Obergeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "b6ffacbd-8a1d-4f30-8110-edeb721130ea",
+      "modelId": "9fb9fae2-1a50-48d8-8eb0-cf5376cb064f",
+      "mediaId": "dbe3135c-41ba-41b9-8a5b-4e5e7d39efa3",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "6dc46192-43c5-4921-9f15-00aa3b2dd011",
+      "modelId": "9fb9fae2-1a50-48d8-8eb0-cf5376cb064f",
+      "mediaId": "bf031be8-ac0b-46c0-83e1-1033a8df59af",
+      "title": "Erdgeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "80d14eb2-2bb0-4eeb-9ecf-572cc4318794",
+      "modelId": "9fb9fae2-1a50-48d8-8eb0-cf5376cb064f",
+      "mediaId": "8fd3fac2-c313-49d9-b816-568e5928af31",
+      "title": "Obergeschoss",
+      "sortOrder": 2
+    },
+    {
+      "id": "5666ba05-7220-4fba-be4e-21b2a4407e3a",
+      "modelId": "04b9ec39-0c92-431e-a96a-5ca17b90851e",
+      "mediaId": "ec940b0e-ebfe-4c06-b1de-45bbb8430959",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "af899fa1-a304-4679-b77a-45b88468e26b",
+      "modelId": "04b9ec39-0c92-431e-a96a-5ca17b90851e",
+      "mediaId": "1a68617b-781d-4fc9-b505-8b94666ba5ff",
+      "title": "Obergeschoss",
+      "sortOrder": 1
+    },
+    {
+      "id": "1ccb0d98-bd11-467c-8278-2ae276f0315c",
+      "modelId": "60bff901-0a34-40ae-b7de-6939b8da9122",
+      "mediaId": "446fe11a-a171-460d-86d2-b0d3833d6e12",
+      "title": "Erdgeschoss",
+      "sortOrder": 0
+    },
+    {
+      "id": "f754966c-d530-402e-8bc9-8ee6fc7fbeab",
+      "modelId": "60bff901-0a34-40ae-b7de-6939b8da9122",
+      "mediaId": "97768ad2-37ab-479c-a0df-e42959c4893e",
+      "title": "Obergeschoss",
+      "sortOrder": 1
     }
   ]
 }
