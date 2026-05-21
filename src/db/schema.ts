@@ -150,6 +150,9 @@ export const modelMedia = boholzSchema.table("model_media", {
 });
 
 // Floor Media (Renamed from house_floor for consistency)
+// Variant tag for layout / roof / ELW differentiation. Null = default plan.
+// Known values: "alternative", "elw", "elw_alternative", "flachdach".
+// The UI surfaces a segmented toggle when a model has ≥2 distinct variants.
 export const floorMedia = boholzSchema.table("floor_media", {
   id: uuid("id").primaryKey().defaultRandom(),
   modelId: uuid("model_id")
@@ -159,6 +162,8 @@ export const floorMedia = boholzSchema.table("floor_media", {
     .references(() => media.id)
     .notNull(),
   title: varchar("title"),
+  // Null = default; known values: "alternative", "elw", "elw_alternative", "flachdach".
+  variant: varchar("variant"),
   sortOrder: smallint("sort_order"),
 });
 

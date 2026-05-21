@@ -1,0 +1,1 @@
+ALTER TABLE "boholz"."floor_media" ADD COLUMN "variant" varchar;

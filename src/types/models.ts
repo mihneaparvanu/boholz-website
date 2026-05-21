@@ -57,7 +57,7 @@ export type HouseModel = BaseHouseModel & {
   floors: HouseFloor[];
 };
 
-export type HouseFloor = Pick<BaseFloorMedia, "title" | "sortOrder"> & {
+export type HouseFloor = Pick<BaseFloorMedia, "title" | "sortOrder" | "variant"> & {
   media: Pick<BaseMedia, "path" | "alt" | "width" | "height">;
 };
 

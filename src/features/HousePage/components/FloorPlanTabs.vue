@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "reka-ui";
 import { FileText, Download } from "lucide-vue-next";
 import type { HouseFloor } from "@/types/models";
@@ -8,21 +8,104 @@ const props = defineProps<{
   floors: HouseFloor[];
 }>();
 
-const activeKey = ref<string>(props.floors[0]?.title ?? "");
+// === Variant toggle ===
+// floor_media.variant differentiates layout/roof/ELW options:
+//   null              → "Standard"
+//   "alternative"     → "Alternative" (different layout of the same plan)
+//   "elw"             → "mit ELW"      (with Einliegerwohnung)
+//   "elw_alternative" → "ELW Alternative"
+//   "flachdach"       → "Flachdach"    (flat-roof variant)
+const VARIANT_LABELS: Record<string, string> = {
+  __default__: "Standard",
+  alternative: "Alternative",
+  elw: "mit ELW",
+  elw_alternative: "ELW Alternative",
+  flachdach: "Flachdach",
+};
+const variantKey = (v: string | null | undefined) => v ?? "__default__";
+
+const availableVariants = computed<string[]>(() => {
+  const set = new Set<string>();
+  for (const f of props.floors) set.add(variantKey(f.variant));
+  // Stable order: default first, then alphabetical
+  return [...set].sort((a, b) => {
+    if (a === "__default__") return -1;
+    if (b === "__default__") return 1;
+    return a.localeCompare(b);
+  });
+});
+
+const showVariantToggle = computed(() => availableVariants.value.length >= 2);
+
+// Default variant priority:
+//   1. Standard (null) if any floor has it
+//   2. Otherwise the most-common variant (so an ELW-only model lands on ELW)
+function pickDefaultVariant(floors: HouseFloor[]): string {
+  if (floors.some((f) => f.variant == null)) return "__default__";
+  const counts = new Map<string, number>();
+  for (const f of floors) {
+    const k = variantKey(f.variant);
+    counts.set(k, (counts.get(k) ?? 0) + 1);
+  }
+  let best = "__default__";
+  let max = -1;
+  for (const [k, n] of counts) {
+    if (n > max) { max = n; best = k; }
+  }
+  return best;
+}
+
+const activeVariant = ref<string>(pickDefaultVariant(props.floors));
+
+watch(
+  () => props.floors,
+  () => {
+    if (!availableVariants.value.includes(activeVariant.value)) {
+      activeVariant.value = availableVariants.value[0] ?? "__default__";
+    }
+  },
+);
+
+const visibleFloors = computed<HouseFloor[]>(() =>
+  props.floors.filter((f) => variantKey(f.variant) === activeVariant.value),
+);
+
+// Re-pin the etage tab when the variant set changes (or shrinks past current pin).
+const activeKey = ref<string>(visibleFloors.value[0]?.title ?? "");
+watch(visibleFloors, (next) => {
+  if (!next.find((f) => f.title === activeKey.value)) {
+    activeKey.value = next[0]?.title ?? "";
+  }
+});
 </script>
 
 <template>
   <div class="wrap">
     <div class="card">
+      <div v-if="showVariantToggle" class="variants" role="tablist" aria-label="Grundriss-Variante">
+        <button
+          v-for="v in availableVariants"
+          :key="v"
+          type="button"
+          role="tab"
+          :aria-selected="v === activeVariant"
+          class="variant"
+          :data-state="v === activeVariant ? 'active' : 'inactive'"
+          @click="activeVariant = v"
+        >
+          {{ VARIANT_LABELS[v] ?? v }}
+        </button>
+      </div>
+
       <TabsRoot
-        v-if="floors.length > 1"
+        v-if="visibleFloors.length > 1"
         v-model="activeKey"
-        :default-value="floors[0].title"
+        :default-value="visibleFloors[0].title"
         class="root"
       >
         <TabsList class="tabs" aria-label="Etagen">
           <TabsTrigger
-            v-for="floor in floors"
+            v-for="floor in visibleFloors"
             :key="floor.title"
             :value="floor.title"
             class="tab"
@@ -32,7 +115,7 @@ const activeKey = ref<string>(props.floors[0]?.title ?? "");
         </TabsList>
 
         <TabsContent
-          v-for="floor in floors"
+          v-for="floor in visibleFloors"
           :key="floor.title"
           :value="floor.title"
           class="panel"
@@ -48,14 +131,14 @@ const activeKey = ref<string>(props.floors[0]?.title ?? "");
         </TabsContent>
       </TabsRoot>
 
-      <div v-else-if="floors.length === 1" class="single">
-        <span class="caption">{{ floors[0].title }}</span>
+      <div v-else-if="visibleFloors.length === 1" class="single">
+        <span class="caption">{{ visibleFloors[0].title }}</span>
         <div class="plan">
           <img
-            :src="floors[0].media.path"
-            :alt="floors[0].media.alt || floors[0].title"
-            :width="floors[0].media.width ?? undefined"
-            :height="floors[0].media.height ?? undefined"
+            :src="visibleFloors[0].media.path"
+            :alt="visibleFloors[0].media.alt || visibleFloors[0].title"
+            :width="visibleFloors[0].media.width ?? undefined"
+            :height="visibleFloors[0].media.height ?? undefined"
           />
         </div>
       </div>
@@ -75,6 +158,52 @@ const activeKey = ref<string>(props.floors[0]?.title ?? "");
   border-radius: var(--radius-lg);
   background: var(--clr-surface-primary);
   padding: var(--spacing-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.variants {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  background: var(--clr-surface-secondary);
+  border-radius: var(--radius-full);
+}
+
+.variant {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-size: var(--fs-body-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--clr-content-secondary);
+  padding-block: var(--spacing-2);
+  padding-inline: var(--spacing-4);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition:
+    background 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.variant:hover {
+  color: var(--clr-content-primary);
+}
+
+.variant[data-state="active"] {
+  background: var(--clr-surface-primary);
+  color: var(--clr-content-primary);
+  box-shadow: var(--shadow-1);
+}
+
+.variant:focus-visible {
+  outline: 2px solid var(--clr-accent-primary);
+  outline-offset: 2px;
 }
 
 .root {
