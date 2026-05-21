@@ -1,3 +1,3 @@
-- [R2 Account ID Missing](project_r2_endpoint_blocker.md) — confirmed bucket=boholz-assets; account ID not in repo/env, must ask user
+- [R2 Account ID Missing](project_r2_endpoint_blocker.md) — bucket=boholz, account=294d3965b7100cc2d62ccf8cd24c588a (confirmed 2026-05-21)
 - [WP Import Pipeline](reference_pipeline.md) — file layout for Phase 2/3 scripts and rerun command
 - [User Decisions: Import Style](feedback_user_decisions.md) — duplication policy, dual-destination assets, low-res exceptions, YouTube poster handling

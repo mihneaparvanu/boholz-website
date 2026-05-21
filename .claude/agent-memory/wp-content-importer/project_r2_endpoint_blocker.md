@@ -7,7 +7,7 @@ metadata:
 
 The R2 S3-API endpoint `https://<ACCOUNT_ID>.r2.cloudflarestorage.com` is required to upload assets to R2. The 32-hex-char account ID is NOT in `.env`, NOT in `~/.aws/credentials` (no such file), NOT in wrangler config (not installed), and NOT recoverable from the public dev URL `pub-47ece1c9a40d42ad8886561941b959b5.r2.dev` (which is a per-bucket public hash, not the account ID).
 
-**Confirmed bucket name:** `boholz-assets` (recovered from past subagent jsonl logs at `C:\Users\m\.claude\projects\C--Users-m-Developer-Boholz-boholz-haus-frontend\.../subagents/...`).
+**Confirmed bucket name:** `boholz` (confirmed by user 2026-05-21; resolved an earlier note that said `boholz-assets`). The account ID is `294d3965b7100cc2d62ccf8cd24c588a`.
 
 **Why:** Every R2 import run hits this blocker. Without account ID, neither `aws s3 cp` nor the AWS SDK v3 / manual SigV4 can resolve the endpoint host.
 
@@ -15,5 +15,5 @@ The R2 S3-API endpoint `https://<ACCOUNT_ID>.r2.cloudflarestorage.com` is requir
 
 Once the account ID is in `.env`, the upload script at `design-audit/wp-inventory/r2-upload.mjs` is ready to run idempotently:
 ```
-R2_ACCOUNT_ID=<id> R2_BUCKET=boholz-assets node design-audit/wp-inventory/r2-upload.mjs
+R2_ACCOUNT_ID=294d3965b7100cc2d62ccf8cd24c588a R2_BUCKET=boholz node design-audit/wp-inventory/r2-upload.mjs
 ```

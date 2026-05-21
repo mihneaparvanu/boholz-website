@@ -18,7 +18,7 @@ The Phase 2/3 pipeline files live at `design-audit/wp-inventory/`:
 To re-run end-to-end after candidate changes:
 ```
 node design-audit/wp-inventory/import-pipeline.mjs
-R2_ACCOUNT_ID=<id> R2_BUCKET=boholz-assets node design-audit/wp-inventory/r2-upload.mjs
+R2_ACCOUNT_ID=294d3965b7100cc2d62ccf8cd24c588a R2_BUCKET=boholz node design-audit/wp-inventory/r2-upload.mjs
 ```
 
 Both scripts are idempotent — cached files skip download/upload work.
