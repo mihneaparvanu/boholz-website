@@ -1,0 +1,468 @@
+{
+  "generatedAt": "2026-05-21T03:37:22.801Z",
+  "summary": {
+    "mediaRowsToInsert": 151,
+    "modelMediaRowsToInsert": 42,
+    "floorMediaRowsToInsert": 78,
+    "categoryMediaRowsToInsert": 7,
+    "modelsAffected": 32,
+    "stagingReviewRows": 11,
+    "stockRows": 20
+  },
+  "modelsCovered": [
+    "bestseller-family-150",
+    "bestseller-freiraum-167",
+    "bestseller-komfort-116",
+    "bestseller-plus-223",
+    "bestseller-twin-138",
+    "bestseller-weitblick-140",
+    "bungalow-22-117",
+    "bungalow-22-134",
+    "bungalow-22-149",
+    "doppelhaus-28-299",
+    "doppelhaus-38-238-125",
+    "einfamilienhaus-22-141-190",
+    "einfamilienhaus-22-162-190",
+    "einfamilienhaus-22-173-190",
+    "einfamilienhaus-25-168-190",
+    "einfamilienhaus-28-182-170",
+    "einfamilienhaus-28-194-170",
+    "einfamilienhaus-35-146-150",
+    "einfamilienhaus-35-181-150",
+    "einfamilienhaus-38-115-125",
+    "einfamilienhaus-38-128-125",
+    "einfamilienhaus-38-138-125",
+    "einfamilienhaus-45-139-75",
+    "generationenhaus-28-264-160",
+    "kubus-0-166",
+    "kubus-0-190",
+    "kubus-0-278",
+    "pultdachhaus-21-349-225",
+    "stadtvilla-18-140",
+    "stadtvilla-22-157",
+    "stadtvilla-22-166",
+    "stadtvilla-22-173"
+  ],
+  "categoriesWithHero": [
+    {
+      "category": "doppelhaus",
+      "r2Key": "images/models/doppelhaus/38-238-125/gallery/doppelhaus-38-238-125-gallery-dh-238-38-125.webp"
+    },
+    {
+      "category": "kubus",
+      "r2Key": "images/models/kubus/0-166/gallery/kubus-0-166-gallery-kubus-166-0-0.webp"
+    },
+    {
+      "category": "pultdachhaus",
+      "r2Key": "images/models/pultdachhaus/21-349-225/gallery/pultdachhaus-21-349-225-gallery-pdh-elw-349-21-225.webp"
+    },
+    {
+      "category": "bungalow",
+      "r2Key": "images/models/bungalow/22-149/gallery/bungalow-22-149-gallery-bu-22-149.webp"
+    },
+    {
+      "category": "stadtvilla",
+      "r2Key": "images/models/stadtvilla/22-140-000/gallery/stadtvilla-22-140-000-gallery-neues-bild-nachhaltigkeit.webp"
+    },
+    {
+      "category": "einfamilienhaus",
+      "r2Key": "images/models/einfamilienhaus/32-150-170/gallery/einfamilienhaus-32-150-170-gallery-ehf-01.webp"
+    },
+    {
+      "category": "generationenhaus",
+      "r2Key": "images/models/generationenhaus/30-223-160/gallery/generationenhaus-30-223-160-gallery-gen-1.webp"
+    }
+  ],
+  "floorMediaTitles": [
+    {
+      "model": "generationenhaus-28-264-160",
+      "title": "Grundriss (mit ELW)",
+      "r2Key": "images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-generationenhaus-28-264-160-3d-1-xxl.webp"
+    },
+    {
+      "model": "generationenhaus-28-264-160",
+      "title": "Grundriss (mit ELW)",
+      "r2Key": "images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-generationenhaus-28-264-160-3d-2-xxl.webp"
+    },
+    {
+      "model": "generationenhaus-28-264-160",
+      "title": "Grundriss (mit ELW)",
+      "r2Key": "images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-generationenhaus-28-264-160-3d-3-xxl.webp"
+    },
+    {
+      "model": "generationenhaus-28-264-160",
+      "title": "Grundriss (mit ELW)",
+      "r2Key": "images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-generationenhaus-28-264-160-3d-4-xxl.webp"
+    },
+    {
+      "model": "generationenhaus-28-264-160",
+      "title": "Erdgeschoss (mit ELW)",
+      "r2Key": "images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "generationenhaus-28-264-160",
+      "title": "Obergeschoss (mit ELW)",
+      "r2Key": "images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "generationenhaus-28-264-160",
+      "title": "Grundriss (mit ELW)",
+      "r2Key": "images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-bodenplatte-expose-grundrisse300dpi-neu.webp"
+    },
+    {
+      "model": "generationenhaus-28-264-160",
+      "title": "Erdgeschoss (mit ELW)",
+      "r2Key": "images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-eg-elw.webp"
+    },
+    {
+      "model": "generationenhaus-28-264-160",
+      "title": "Obergeschoss (mit ELW)",
+      "r2Key": "images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-og-elw.webp"
+    },
+    {
+      "model": "generationenhaus-28-264-160",
+      "title": "Grundriss (mit ELW)",
+      "r2Key": "images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160.webp"
+    },
+    {
+      "model": "doppelhaus-38-238-125",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/doppelhaus/38-238-125/floor-plans/doppelhaus-38-238-125-floor-plan-dh-238-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "doppelhaus-38-238-125",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/doppelhaus/38-238-125/floor-plans/doppelhaus-38-238-125-floor-plan-dh-238-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "doppelhaus-28-299",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/doppelhaus/28-299/floor-plans/doppelhaus-28-299-floor-plan-dh-299-28-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "doppelhaus-28-299",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/doppelhaus/28-299/floor-plans/doppelhaus-28-299-floor-plan-dh-299-28-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "kubus-0-166",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/kubus/0-166/floor-plans/kubus-0-166-floor-plan-kubus-166-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "kubus-0-166",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/kubus/0-166/floor-plans/kubus-0-166-floor-plan-kubus-166-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "kubus-0-190",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/kubus/0-190/floor-plans/kubus-0-190-floor-plan-kubus-190-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "kubus-0-190",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/kubus/0-190/floor-plans/kubus-0-190-floor-plan-kubus-190-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "kubus-0-278",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/kubus/0-278/floor-plans/kubus-0-278-floor-plan-kubus-278-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "kubus-0-278",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/kubus/0-278/floor-plans/kubus-0-278-floor-plan-kubus-278-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "pultdachhaus-21-349-225",
+      "title": "Dachgeschoss (mit ELW)",
+      "r2Key": "images/models/pultdachhaus/21-349-225/floor-plans/pultdachhaus-21-349-225-floor-plan-pdh-elw-349-21-225-dg.webp"
+    },
+    {
+      "model": "pultdachhaus-21-349-225",
+      "title": "Erdgeschoss (mit ELW)",
+      "r2Key": "images/models/pultdachhaus/21-349-225/floor-plans/pultdachhaus-21-349-225-floor-plan-pdh-elw-349-21-225-eg-elw.webp"
+    },
+    {
+      "model": "pultdachhaus-21-349-225",
+      "title": "Grundriss (mit ELW)",
+      "r2Key": "images/models/pultdachhaus/21-349-225/floor-plans/pultdachhaus-21-349-225-floor-plan-pdh-elw-349-21-225-kg.webp"
+    },
+    {
+      "model": "bungalow-22-134",
+      "title": "Erdgeschoss (mit ELW)",
+      "r2Key": "images/models/bungalow/22-134/floor-plans/bungalow-22-134-floor-plan-bu-elw-134-22-0-eg-elw.webp"
+    },
+    {
+      "model": "bungalow-22-117",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/bungalow/22-117/floor-plans/bungalow-22-117-floor-plan-bu-22-117-eg.webp"
+    },
+    {
+      "model": "bestseller-freiraum-167",
+      "title": "Dachgeschoss",
+      "r2Key": "images/models/einfamilienhaus/30-168-160/floor-plans/einfamilienhaus-30-168-160-floor-plan-dg.webp"
+    },
+    {
+      "model": "bestseller-freiraum-167",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/einfamilienhaus/30-168-160/floor-plans/einfamilienhaus-30-168-160-floor-plan-eg.webp"
+    },
+    {
+      "model": "bestseller-weitblick-140",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/stadtvilla/22-140-000/floor-plans/stadtvilla-22-140-000-floor-plan-eg.webp"
+    },
+    {
+      "model": "bestseller-weitblick-140",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/stadtvilla/22-140-000/floor-plans/stadtvilla-22-140-000-floor-plan-og.webp"
+    },
+    {
+      "model": "bestseller-family-150",
+      "title": "Dachgeschoss",
+      "r2Key": "images/models/einfamilienhaus/32-150-170/floor-plans/einfamilienhaus-32-150-170-floor-plan-dg.webp"
+    },
+    {
+      "model": "bestseller-family-150",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/einfamilienhaus/32-150-170/floor-plans/einfamilienhaus-32-150-170-floor-plan-eg.webp"
+    },
+    {
+      "model": "bestseller-plus-223",
+      "title": "Dachgeschoss",
+      "r2Key": "images/models/generationenhaus/30-223-160/floor-plans/generationenhaus-30-223-160-floor-plan-dg.webp"
+    },
+    {
+      "model": "bestseller-plus-223",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/generationenhaus/30-223-160/floor-plans/generationenhaus-30-223-160-floor-plan-eg.webp"
+    },
+    {
+      "model": "bestseller-twin-138",
+      "title": "Dachgeschoss",
+      "r2Key": "images/models/doppelhaus/25-138-210/floor-plans/doppelhaus-25-138-210-floor-plan-dg.webp"
+    },
+    {
+      "model": "bestseller-twin-138",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/doppelhaus/25-138-210/floor-plans/doppelhaus-25-138-210-floor-plan-eg.webp"
+    },
+    {
+      "model": "bestseller-komfort-116",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/bungalow/22-116-000/floor-plans/bungalow-22-116-000-floor-plan-eg.webp"
+    },
+    {
+      "model": "stadtvilla-18-140",
+      "title": "Grundriss",
+      "r2Key": "images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-flachdach-kubus-145-0-0.webp"
+    },
+    {
+      "model": "stadtvilla-18-140",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-flachdach-sv-140-18-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "stadtvilla-18-140",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-flachdach-sv-140-18-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "stadtvilla-18-140",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-sv-140-18-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "stadtvilla-18-140",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-sv-140-18-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "stadtvilla-22-173",
+      "title": "Erdgeschoss (mit ELW)",
+      "r2Key": "images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0-eg-alternative.webp"
+    },
+    {
+      "model": "stadtvilla-22-173",
+      "title": "Erdgeschoss (mit ELW)",
+      "r2Key": "images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0-eg-elw-neu.webp"
+    },
+    {
+      "model": "stadtvilla-22-173",
+      "title": "Obergeschoss (mit ELW)",
+      "r2Key": "images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0-og-neu.webp"
+    },
+    {
+      "model": "stadtvilla-22-173",
+      "title": "Grundriss (mit ELW)",
+      "r2Key": "images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0.webp"
+    },
+    {
+      "model": "stadtvilla-22-173",
+      "title": "Erdgeschoss (mit ELW)",
+      "r2Key": "images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-sv-elw-173-22-0-eg-alternative.webp"
+    },
+    {
+      "model": "stadtvilla-22-173",
+      "title": "Obergeschoss (mit ELW)",
+      "r2Key": "images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-sv-elw-173-22-0-og-neu.webp"
+    },
+    {
+      "model": "stadtvilla-22-166",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "stadtvilla-22-166",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-22-0-bodenplatte-eg-alternativ-expose-grundriss300dpi-website-erdgeschoss-alternativ.webp"
+    },
+    {
+      "model": "stadtvilla-22-166",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-22-0-bodenplatte-eg-alternativ-expose-grundriss300dpi.webp"
+    },
+    {
+      "model": "stadtvilla-22-166",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-22-0-bodenplatte-expose-grundrisse300dpi-og.webp"
+    },
+    {
+      "model": "stadtvilla-22-157",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/stadtvilla/22-157/floor-plans/stadtvilla-22-157-floor-plan-sv-22-157-grundriss-eg.webp"
+    },
+    {
+      "model": "stadtvilla-22-157",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/stadtvilla/22-157/floor-plans/stadtvilla-22-157-floor-plan-sv-22-157-grundriss-og.webp"
+    },
+    {
+      "model": "einfamilienhaus-28-182-170",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/einfamilienhaus/28-182-170/floor-plans/einfamilienhaus-28-182-170-floor-plan-efh-182-28-170-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-28-182-170",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/einfamilienhaus/28-182-170/floor-plans/einfamilienhaus-28-182-170-floor-plan-efh-182-28-170-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-35-181-150",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-efh-181-35-150-og-m-elw.webp"
+    },
+    {
+      "model": "einfamilienhaus-35-181-150",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-efh-ho-181-35-150-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-35-181-150",
+      "title": "Erdgeschoss (mit ELW)",
+      "r2Key": "images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-elw-efh-181-35-150-eg-m-elw.webp"
+    },
+    {
+      "model": "einfamilienhaus-35-181-150",
+      "title": "Obergeschoss (mit ELW)",
+      "r2Key": "images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-elw-efh-181-35-150-og-m-elw.webp"
+    },
+    {
+      "model": "einfamilienhaus-22-141-190",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/einfamilienhaus/22-141-190/floor-plans/einfamilienhaus-22-141-190-floor-plan-efh-22-141-190-erdgeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-22-141-190",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/einfamilienhaus/22-141-190/floor-plans/einfamilienhaus-22-141-190-floor-plan-efh-22-141-190-obergeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-22-173-190",
+      "title": "Dachgeschoss",
+      "r2Key": "images/models/einfamilienhaus/22-173-190/floor-plans/einfamilienhaus-22-173-190-floor-plan-efh-22-173-190-dg.webp"
+    },
+    {
+      "model": "einfamilienhaus-22-173-190",
+      "title": "Erdgeschoss (mit ELW)",
+      "r2Key": "images/models/einfamilienhaus/22-173-190/floor-plans/einfamilienhaus-22-173-190-floor-plan-efh-elw-173-22-190-sd-bodenplatte-expose-grundriss300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-35-146-150",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/einfamilienhaus/35-146-150/floor-plans/einfamilienhaus-35-146-150-floor-plan-efh-146-35-150-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-35-146-150",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/einfamilienhaus/35-146-150/floor-plans/einfamilienhaus-35-146-150-floor-plan-efh-146-35-150-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-22-162-190",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/einfamilienhaus/22-162-190/floor-plans/einfamilienhaus-22-162-190-floor-plan-efh-ho-162-22-190-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-22-162-190",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/einfamilienhaus/22-162-190/floor-plans/einfamilienhaus-22-162-190-floor-plan-efh-ho-162-22-190-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-38-115-125",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-efh-115-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-38-115-125",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-efh-115-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-38-128-125",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/einfamilienhaus/38-128-125/floor-plans/einfamilienhaus-38-128-125-floor-plan-efh-128-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-38-128-125",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/einfamilienhaus/38-128-125/floor-plans/einfamilienhaus-38-128-125-floor-plan-efh-128-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-38-138-125",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-efh-138-38-125-bodenplatte-eg-alternativ-expose-grundriss300dpi-neu-website-erdgeschoss-alternative.webp"
+    },
+    {
+      "model": "einfamilienhaus-38-138-125",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-efh-38-138-125-eg.webp"
+    },
+    {
+      "model": "einfamilienhaus-38-138-125",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-efh-38-138-125-og.webp"
+    },
+    {
+      "model": "einfamilienhaus-45-139-75",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/einfamilienhaus/45-139-75/floor-plans/einfamilienhaus-45-139-75-floor-plan-efh-139-45-75-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-45-139-75",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/einfamilienhaus/45-139-75/floor-plans/einfamilienhaus-45-139-75-floor-plan-efh-139-45-75-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-25-168-190",
+      "title": "Erdgeschoss",
+      "r2Key": "images/models/einfamilienhaus/25-168-190/floor-plans/einfamilienhaus-25-168-190-floor-plan-efh-ho-168-25-190-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp"
+    },
+    {
+      "model": "einfamilienhaus-25-168-190",
+      "title": "Obergeschoss",
+      "r2Key": "images/models/einfamilienhaus/25-168-190/floor-plans/einfamilienhaus-25-168-190-floor-plan-efh-ho-168-25-190-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp"
+    }
+  ]
+}
