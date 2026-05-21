@@ -103,6 +103,7 @@ Animation: GSAP (in-viewport reveals) + Lenis (smooth scroll). Keep easings mini
 ## Conventions specific to this repo
 
 - **Workspace hygiene:** ad-hoc `bun x tsx` scripts created to inspect or fix DB state must be deleted (`rm -f`) once their output is captured. Do not leave `test-db.ts`, `fix-foo.ts`, etc. behind. Ad-hoc scripts go in `scripts/` (folder is created when needed) and the folder is removed when empty.
+- **Adding a new house model:** drop the source folder into `todo/houses-to-add/<Category>/<NAME>/` and invoke the `add-house-model` skill — it covers the R2-upload → DB-seed → cleanup pipeline.
 - **Dev-only content lives in `/dev/`** (planning docs, sandbox routes, migration guides). Never put experiments in `src/`. Never commit `/dev/` paths in a `main`-targeted push — `.githooks/pre-push` blocks it. Enable the hook once per clone: `git config core.hooksPath .githooks`.
 - **TypeScript:** no `any`. Three-layer model hierarchy (see `types-masterclass.md` for the full reasoning):
   1. **Entity types** — inferred via `InferSelectModel<typeof table>`, live in `src/types/models.ts`. One per DB table. Never hand-written.
