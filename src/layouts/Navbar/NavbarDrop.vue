@@ -157,13 +157,6 @@ const extraLinks = HOUSE_DROP_EXTRA_LINKS;
 
     li {
       width: fit-content;
-
-      &[data-bestseller="true"] a {
-        color: var(--clr-accent-secondary);
-        font-weight: var(--font-weight-medium);
-        background-color: var(--clr-accent-secondary);
-        padding: var(--spacing-0) var(--spacing-1);
-      }
     }
 
     a {
