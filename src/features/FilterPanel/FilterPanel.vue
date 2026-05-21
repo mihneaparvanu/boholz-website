@@ -182,6 +182,15 @@ const openSections = computed<string[]>(() => filterOptions.map((o) => o.id));
                 @click="handleOptionSelect(option, opt)"
               />
             </template>
+            <template v-if="option.kind === 'threshold'">
+              <OptionsButton
+                v-for="opt in option.options"
+                :key="opt.label"
+                :title="opt.label"
+                :selected="isSelected(option, opt.label)"
+                @click="handleOptionSelect(option, opt.label)"
+              />
+            </template>
           </FilterSection>
         </AccordionRoot>
       </div>

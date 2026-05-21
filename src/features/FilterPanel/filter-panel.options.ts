@@ -5,6 +5,7 @@ import type {
   EnumFilter,
   CountFilter,
   FilterOption,
+  ThresholdFilter,
 } from "./filter-panel.types";
 import { parseLivingArea } from "@/utils/parseLivingArea";
 
@@ -37,6 +38,11 @@ export const sortFields: SortField[] = [
     value: "bedroomCount",
     label: "Schlafzimmer",
     resolve: (m) => m.details?.bedroomCount ?? null,
+  },
+  {
+    value: "title",
+    label: "Name",
+    resolve: (m) => m.title,
   },
 ];
 
@@ -99,7 +105,52 @@ const roofType: EnumFilter = {
   resolve: (m) => m.details?.roofType ?? null,
 };
 
+const livingAreaThreshold: ThresholdFilter = {
+  id: "livingArea",
+  kind: "threshold",
+  label: "Wohnfläche",
+  options: [
+    {
+      label: "<150",
+      predicate: (m) => {
+        const a = parseLivingArea(m.livingArea);
+        return a !== null && a < 150;
+      },
+    },
+    {
+      label: "<170",
+      predicate: (m) => {
+        const a = parseLivingArea(m.livingArea);
+        return a !== null && a < 170;
+      },
+    },
+    {
+      label: "<200",
+      predicate: (m) => {
+        const a = parseLivingArea(m.livingArea);
+        return a !== null && a < 200;
+      },
+    },
+    {
+      label: ">200",
+      predicate: (m) => {
+        const a = parseLivingArea(m.livingArea);
+        return a !== null && a > 200;
+      },
+    },
+  ],
+};
+
+const allowsGrannyFlat: BooleanFilter = {
+  id: "allowsGrannyFlat",
+  kind: "boolean",
+  label: "Einliegerwohnung",
+  resolve: (m) => m.details?.allowsGrannyFlat ?? null,
+};
+
 export const filterOptions: FilterOption[] = [
+  livingAreaThreshold,
+  allowsGrannyFlat,
   hasGarage,
   hasKniestock,
   roofType,

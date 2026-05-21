@@ -42,7 +42,20 @@ export type CountFilter = {
   resolve: (m: HouseModel) => number | null;
 };
 
-export type FilterOption = BooleanFilter | EnumFilter | CountFilter;
+export type ThresholdFilter = {
+  id: string;
+  kind: "threshold";
+  label: string;
+  // Each option carries its own predicate so the URL can serialize a
+  // human-readable label ("<150") without needing range encoding.
+  options: Array<{ label: string; predicate: (m: HouseModel) => boolean }>;
+};
+
+export type FilterOption =
+  | BooleanFilter
+  | EnumFilter
+  | CountFilter
+  | ThresholdFilter;
 
 // The state machine:
 //   inactive  — no filters at all (initial)
@@ -62,9 +75,10 @@ export type FilterState =
 
 //prettier-ignore
 type ValueFor<F> =
-    F extends BooleanFilter ? boolean :
-    F extends CountFilter   ? number  :
-    F extends EnumFilter    ? string  :
+    F extends BooleanFilter   ? boolean :
+    F extends CountFilter     ? number  :
+    F extends EnumFilter      ? string  :
+    F extends ThresholdFilter ? string  :
     never;
 
 //prettier-ignore

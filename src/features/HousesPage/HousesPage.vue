@@ -62,15 +62,20 @@ const filteredModels = computed<HouseModel[]>(() =>
 //     user — the FilterPanel button shows the live preview count instead).
 //   confirmed         → show the filtered result.
 const displayModels = computed(() => {
-  switch (filterState.value.status) {
-    case "inactive":
-    case "pending":
-      return sortModels(categoryModels.value, activeSortOption.value);
-    case "confirmed":
-      return sortModels(filteredModels.value, activeSortOption.value);
-    default:
-      return sortModels(categoryModels.value, activeSortOption.value);
+  const base =
+    filterState.value.status === "confirmed"
+      ? filteredModels.value
+      : categoryModels.value;
+
+  if (activeSortOption.value !== null) {
+    return sortModels(base, activeSortOption.value);
   }
+
+  // No explicit sort: featured models lead, then the rest.
+  // Each partition still goes through the default sort (livingArea asc).
+  const featured = base.filter((m) => m.isFeatured);
+  const rest = base.filter((m) => !m.isFeatured);
+  return [...sortModels(featured, null), ...sortModels(rest, null)];
 });
 
 // Live preview count for the panel button — reflects pending state.
@@ -95,6 +100,13 @@ const filterModels = (
       });
     case "enum":
       return models.filter((m) => option.resolve(m) === (value as string));
+    case "threshold": {
+      const matchedOption = option.options.find(
+        (o) => o.label === (value as string),
+      );
+      if (!matchedOption) return models;
+      return models.filter((m) => matchedOption.predicate(m));
+    }
     default:
       return models;
   }
@@ -241,6 +253,9 @@ const parseFilters = (raw: string | null): ActiveFilter[] => {
         }
         case "enum":
           if (!option.options.includes(rawValue)) return null;
+          return { option, value: rawValue } as ActiveFilter;
+        case "threshold":
+          if (!option.options.some((o) => o.label === rawValue)) return null;
           return { option, value: rawValue } as ActiveFilter;
         default:
           return null;
