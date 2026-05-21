@@ -1,30 +1,5 @@
 {
-  "homepage": [
-    {
-      "path": "/images/homepage/overview-gallery-1.webp",
-      "file": "overview-gallery-1.webp"
-    },
-    {
-      "path": "/images/homepage/overview-gallery-2.webp",
-      "file": "overview-gallery-2.webp"
-    },
-    {
-      "path": "/images/homepage/overview-gallery-3.webp",
-      "file": "overview-gallery-3.webp"
-    },
-    {
-      "path": "/images/homepage/overview-gallery-4.webp",
-      "file": "overview-gallery-4.webp"
-    },
-    {
-      "path": "/images/homepage/overview-hero.webp",
-      "file": "overview-hero.webp"
-    },
-    {
-      "path": "/images/homepage/overview-side.webp",
-      "file": "overview-side.webp"
-    }
-  ],
+  "homepage": [],
   "stages": [
     {
       "path": "/images/stages/nearly-complete.webp",
@@ -49,40 +24,11 @@
       "file": "brochure-vertical.webp"
     },
     {
-      "path": "/images/brand/hero.jpg",
+      "path": "/images/brand/hero.webp",
       "file": "hero.jpg"
     }
   ],
-  "photography": [
-    {
-      "path": "/images/photography/niederkofler-01.jpg",
-      "file": "niederkofler-01.jpg"
-    },
-    {
-      "path": "/images/photography/niederkofler-02.jpg",
-      "file": "niederkofler-02.jpg"
-    },
-    {
-      "path": "/images/photography/niederkofler-03.jpg",
-      "file": "niederkofler-03.jpg"
-    },
-    {
-      "path": "/images/photography/niederkofler-04.jpg",
-      "file": "niederkofler-04.jpg"
-    },
-    {
-      "path": "/images/photography/niederkofler-05.jpg",
-      "file": "niederkofler-05.jpg"
-    },
-    {
-      "path": "/images/photography/niederkofler-06.jpg",
-      "file": "niederkofler-06.jpg"
-    },
-    {
-      "path": "/images/photography/niederkofler-07.jpg",
-      "file": "niederkofler-07.jpg"
-    }
-  ],
+  "photography": [],
   "lifestyle": [
     {
       "path": "/images/lifestyle/craftsmanship-factory.webp",
@@ -571,78 +517,7 @@
       "file": "multi-family-dombuehl-floor-plan-ground-1200x1255.jpg"
     }
   ],
-  "showhouses": [
-    {
-      "path": "/images/showhouses/model-house-exterior.jpg",
-      "file": "model-house-exterior.jpg"
-    },
-    {
-      "path": "/images/showhouses/model-house-front.jpg",
-      "file": "model-house-front.jpg"
-    },
-    {
-      "path": "/images/showhouses/sales-office-fuerth.jpg",
-      "file": "sales-office-fuerth.jpg"
-    },
-    {
-      "path": "/images/showhouses/showroom-bad-vilbel-night.jpg",
-      "file": "showroom-bad-vilbel-night.jpg"
-    },
-    {
-      "path": "/images/showhouses/showroom-fellbach-2.jpg",
-      "file": "showroom-fellbach-2.jpg"
-    },
-    {
-      "path": "/images/showhouses/showroom-fellbach.jpg",
-      "file": "showroom-fellbach.jpg"
-    }
-  ],
-  "team": [
-    {
-      "path": "/images/team/bernd-keller-2.jpg",
-      "file": "bernd-keller-2.jpg"
-    },
-    {
-      "path": "/images/team/bernd-keller.jpg",
-      "file": "bernd-keller.jpg"
-    },
-    {
-      "path": "/images/team/david-ludwig.jpg",
-      "file": "david-ludwig.jpg"
-    },
-    {
-      "path": "/images/team/franziska-vetters.jpg",
-      "file": "franziska-vetters.jpg"
-    },
-    {
-      "path": "/images/team/horst-hellmann.jpg",
-      "file": "horst-hellmann.jpg"
-    },
-    {
-      "path": "/images/team/jonas-prax.jpg",
-      "file": "jonas-prax.jpg"
-    },
-    {
-      "path": "/images/team/stiliyan-nenchev.jpg",
-      "file": "stiliyan-nenchev.jpg"
-    },
-    {
-      "path": "/images/team/veronika-czyz.jpg",
-      "file": "veronika-czyz.jpg"
-    },
-    {
-      "path": "/images/team/wilfried-bolz.jpg",
-      "file": "wilfried-bolz.jpg"
-    },
-    {
-      "path": "/images/team/zvezdelin-nenchev.jpg",
-      "file": "zvezdelin-nenchev.jpg"
-    }
-  ],
-  "construction": [
-    {
-      "path": "/images/construction/construction-progress-1.jpg",
-      "file": "construction-progress-1.jpg"
-    }
-  ]
+  "showhouses": [],
+  "team": [],
+  "construction": []
 }

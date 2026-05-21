@@ -18,9 +18,12 @@ interface Props {
   models: HouseModelCardProps[];
   /** 2 or 3 columns at desktop. Mobile is always 1, tablet always 2. */
   columns?: 2 | 3;
+  /** Suppress the bestseller star badge — set true when this grid renders
+   *  the bestseller listing itself (every card would otherwise be starred). */
+  hideStarBadge?: boolean;
 }
 
-const { models, columns = 3 } = Astro.props;
+const { models, columns = 3, hideStarBadge = false } = Astro.props;
 ---
 
 <div class="grid" data-cols={columns}>
@@ -28,14 +31,18 @@ const { models, columns = 3 } = Astro.props;
     models.map((m) => (
       <HouseModelCard
         client:load
+        id={m.id}
         slug={m.slug}
         name={m.name}
         code={m.code}
         image={m.image}
         imageAlt={m.imageAlt}
         specs={m.specs}
+        categoryID={m.categoryID}
+        isFeatured={m.isFeatured}
         priceHint={m.priceHint}
         href={m.href}
+        hideStarBadge={hideStarBadge}
       />
     ))
   }

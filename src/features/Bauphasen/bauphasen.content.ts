@@ -31,7 +31,7 @@ export const buildPhases: BuildPhase[] = [
       "Architektur, Bauantrag und Bemusterung — Ihr Haus nimmt Form an.",
     teaser: "Architektur, Bauantrag, Bemusterung — Ihr Haus nimmt Form an.",
     icon: "pencil",
-    imageURL: getMediaURL(`images/lifestyle/craftsmanship-factory.webp`),
+    imageURL: getMediaURL(`images/stock/lifestyle/craftsmanship-factory.webp`),
   },
   {
     slug: "bauphase",

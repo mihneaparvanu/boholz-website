@@ -13,7 +13,7 @@
  * translate + colour shift) hydrates as a single component.
  */
 import { computed } from "vue";
-import { ArrowUpRight, Ruler, Home as HomeIcon, Zap } from "lucide-vue-next";
+import { ArrowUpRight, Ruler, Home as HomeIcon, Zap, Star } from "lucide-vue-next";
 
 export type HouseModelSpec = {
   /** e.g. "134 m²", "4 Zimmer", "KfW 40" — kept as a pre-formatted string so
@@ -47,6 +47,9 @@ export type HouseModelCardProps = {
   priceHint?: string;
   /** Detail-page link override; defaults to `/haus/${slug}`. */
   href?: string;
+  /** Suppress the bestseller star badge — set true when the card is rendered
+   *  inside a bestseller listing (where every card would otherwise be starred). */
+  hideStarBadge?: boolean;
 };
 
 const props = withDefaults(defineProps<HouseModelCardProps>(), {
@@ -73,6 +76,13 @@ const iconFor = (kind: HouseModelSpec["kind"]) => {
     <a :href="linkHref" class="link" :aria-label="`${name} ansehen`">
       <figure class="media">
         <img :src="image" :alt="imageAlt" loading="lazy" decoding="async" />
+        <span
+          v-if="isFeatured && !hideStarBadge"
+          class="featured-badge"
+          aria-label="Bestseller"
+        >
+          <Star :size="14" :stroke-width="2.25" fill="currentColor" />
+        </span>
       </figure>
 
       <div class="body">
@@ -155,6 +165,23 @@ const iconFor = (kind: HouseModelSpec["kind"]) => {
   display: block;
   transition: transform 600ms cubic-bezier(0.2, 0.6, 0.2, 1);
   will-change: transform;
+}
+
+.featured-badge {
+  position: absolute;
+  top: var(--spacing-3);
+  right: var(--spacing-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--clr-accent-primary);
+  color: var(--clr-pure-white);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.2);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .link:hover .media img,

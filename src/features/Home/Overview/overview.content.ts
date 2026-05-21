@@ -13,7 +13,7 @@ export const featuredCard: OverviewCardData = {
     "Massive Kreuzlagenholz-Wände, präzise im Werk vorgefertigt — jedes Detail vom Meister geprüft, jedes Haus gebaut für Generationen.",
   featured: true,
   image: {
-    url: getMediaURL("/images/lifestyle/craftsmanship-factory.webp"),
+    url: getMediaURL("/images/stock/lifestyle/craftsmanship-factory.webp"),
     alt: "BoHolz Fachkraft bei der Vorfertigung eines Holzelements im Werk",
     width: 2560,
     height: 1664,
@@ -47,7 +47,7 @@ export const overviewCardsSecondary: OverviewCardData[] = [
     subheading:
       "Mindestens KfW-40-Standard serienmäßig — niedrige Energiekosten ab dem ersten Tag, förderfähig zum Bauantrag.",
     image: {
-      url: getMediaURL("/images/lifestyle/energy-efficiency-heatpump.webp"),
+      url: getMediaURL("/images/stock/lifestyle/energy-efficiency-heatpump.webp"),
       alt: "Moderne Luft-Wärmepumpe an der Fassade eines BoHolz Hauses",
       width: 2688,
       height: 1536,
@@ -58,7 +58,7 @@ export const overviewCardsSecondary: OverviewCardData[] = [
     subheading:
       "Vom Grundriss bis zur Materialwahl in Ihrem Tempo geplant — gemeinsam mit unseren Architekten, nicht gegen sie.",
     image: {
-      url: getMediaURL("/images/lifestyle/house-planning-office.webp"),
+      url: getMediaURL("/images/stock/lifestyle/house-planning-office.webp"),
       alt: "Architektin bespricht einen Hausgrundriss am Planungstisch",
       width: 4608,
       height: 3584,
@@ -69,7 +69,7 @@ export const overviewCardsSecondary: OverviewCardData[] = [
     subheading:
       "Vernetzte Haustechnik vorbereitet — Heizung, Licht und Sicherheit von einer Hand, ohne Nachrüst-Kabelsalat.",
     image: {
-      url: getMediaURL("/images/lifestyle/smart-living.webp"),
+      url: getMediaURL("/images/stock/lifestyle/smart-living.webp"),
       alt: "Smart-Home-Steuerung in einem modernen Wohnraum",
       width: 2048,
       height: 1374,

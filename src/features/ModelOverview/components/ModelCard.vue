@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
+import { Star } from "lucide-vue-next";
 import {
   formatSquareMeters,
   formatCurrency,
@@ -10,6 +11,9 @@ import ImagePlaceholder from "@/components/ui/ImagePlaceholder.vue";
 
 const props = defineProps<{
   model: HouseModel;
+  /** Suppress the bestseller star badge — set true when the card is rendered
+   *  inside a bestseller listing (where every card would otherwise be starred). */
+  hideStarBadge?: boolean;
 }>();
 
 const heroMediaItem = computed(
@@ -21,16 +25,25 @@ const heroImage = computed(() => heroMediaItem.value?.path);
 
 <template>
   <div class="card-wrapper">
-    <img
-      v-if="heroImage"
-      class="image"
-      :src="heroImage"
-      :alt="model.title"
-      :width="heroMediaItem?.width"
-      :height="heroMediaItem?.height"
-    />
-    <div v-else class="image">
-      <ImagePlaceholder />
+    <div class="image-wrapper">
+      <img
+        v-if="heroImage"
+        class="image"
+        :src="heroImage"
+        :alt="model.title"
+        :width="heroMediaItem?.width"
+        :height="heroMediaItem?.height"
+      />
+      <div v-else class="image">
+        <ImagePlaceholder />
+      </div>
+      <span
+        v-if="model.isFeatured && !hideStarBadge"
+        class="featured-badge"
+        aria-label="Bestseller"
+      >
+        <Star :size="14" :stroke-width="2.25" fill="currentColor" />
+      </span>
     </div>
     <div class="content-wrapper">
       <div class="title-surface">
@@ -61,15 +74,43 @@ const heroImage = computed(() => heroMediaItem.value?.path);
   }
 }
 
-.image {
+.image-wrapper {
+  position: relative;
   width: 100%;
   height: 80%;
+
+  @media (--mobile) {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.image {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 
   @media (--mobile) {
     height: auto;
     aspect-ratio: 4 / 3;
   }
+}
+
+.featured-badge {
+  position: absolute;
+  top: var(--spacing-3);
+  right: var(--spacing-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--clr-accent-primary);
+  color: var(--clr-pure-white);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.2);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .content-wrapper {

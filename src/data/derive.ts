@@ -13,7 +13,7 @@ import type {
 } from "@/components/sections/HouseModelCard.vue";
 import { getMediaURL } from "@/utils/media";
 
-const FALLBACK_IMAGE_PATH = "/images/pages/uber-uns/value-1.jpg";
+const FALLBACK_IMAGE_PATH = "/images/pages/uber-uns/value-1.webp";
 
 /**
  * HouseModel → HouseModelCardProps.

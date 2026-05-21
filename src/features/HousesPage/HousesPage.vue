@@ -372,7 +372,10 @@ watch(
         :key="model.id"
         :href="ROUTES.house(model.slug)"
       >
-        <ModelCard :model="model" />
+        <ModelCard
+          :model="model"
+          :hide-star-badge="selectedCategory?.id === BESTSELLER_CATEGORY_ID"
+        />
       </a>
     </div>
 

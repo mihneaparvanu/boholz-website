@@ -7,7 +7,7 @@ import { ArrowRight, ChevronDown } from "lucide-vue-next";
 import { ROUTES } from "@/utils/routes";
 import { getMediaURL } from "@/utils/media";
 
-const heroIMG = getMediaURL("/images/brand/hero.jpg");
+const heroIMG = getMediaURL("/images/brand/hero.webp");
 
 const props = defineProps<{
   slides: HeroSlide[];

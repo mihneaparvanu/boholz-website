@@ -148,8 +148,10 @@ const nextDisabled = computed(() => !canNext.value);
           :image-alt="m.imageAlt"
           :specs="m.specs"
           :category-i-d="m.categoryID"
+          :is-featured="m.isFeatured"
           :price-hint="m.priceHint"
           :href="m.href"
+          :hide-star-badge="selected?.slug === 'bestseller'"
         />
       </div>
       <!-- A trailing spacer keeps the last card's right-edge breathing room
