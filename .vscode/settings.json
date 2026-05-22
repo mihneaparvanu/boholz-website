@@ -20,5 +20,6 @@
     // Docs nest under README.md
     "README.md": "agent.md, development.md"
   },
-  "python.terminal.useEnvFile": true
+  "python.terminal.useEnvFile": true,
+  "astro.content-intellisense": true
 }

@@ -21,8 +21,9 @@ defineProps<{
       <h1 class="title">{{ model.title }}</h1>
       <p v-if="model.price" class="price">
         <span class="ab">ab</span>
-        <span class="amount">{{ formatCurrency(model.price) }}</span>
+        <span class="amount">{{ formatCurrency(model.price) }}* </span>
       </p>
+      <p>inklusive Bodenplatte</p>
     </header>
 
     <p v-if="lede" class="lede">{{ lede }}</p>
@@ -34,6 +35,12 @@ defineProps<{
       <Button variant="tertiary" size="md" href="/katalog">
         Katalog bestellen
       </Button>
+      <p class="footnote" v-if="model.price">
+        *Die Preise gelten für die Ausbaustufe „fast fertig“ in der
+        Energieeffizienzklasse 55 nach den aktuellen Bau- und
+        Leistungsbeschreibung Stand 03/2026. Gültig nur bei Bauort in
+        Deutschland.
+      </p>
     </div>
   </aside>
 </template>
@@ -80,6 +87,12 @@ defineProps<{
   display: inline-flex;
   align-items: baseline;
   gap: var(--spacing-1);
+}
+
+.footnote {
+  margin: 0;
+  font-size: calc(var(--fs-body-sm) * 0.7);
+  color: var(--clr-content-secondary);
 }
 
 .ab {

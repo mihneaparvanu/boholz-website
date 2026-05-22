@@ -5,22 +5,16 @@
     <span>Geprüfte Qualität · Zertifizierte Sicherheit</span>
     <div class="badges" aria-label="Qualitätssiegel">
       <svg class="badge" aria-hidden="true">
-        <use href="#badge-iso-color" />
-      </svg>
-      <svg class="badge" aria-hidden="true">
-        <use href="#badge-bdf-color" />
+        <use href="#badge-qdf-color" />
       </svg>
       <svg class="badge" aria-hidden="true">
         <use href="#badge-gdf-color" />
       </svg>
       <svg class="badge" aria-hidden="true">
-        <use href="#badge-qdf-color" />
-      </svg>
-      <svg class="badge" aria-hidden="true">
         <use href="#badge-ral-color" />
       </svg>
       <svg class="badge" aria-hidden="true">
-        <use href="#badge-holz-klima-color" />
+        <use href="#badge-bdf-color" />
       </svg>
     </div>
   </div>
@@ -29,7 +23,7 @@
 <style scoped>
 .proof {
   /* Override per usage by setting `--proof-color` on any ancestor. */
-  color: var(--proof-color, var(--clr-content-primary));
+  color: var(--proof-color, var(--clr-content-tertiary));
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -57,7 +51,6 @@
 .badge {
   height: var(--fs-h3);
   width: auto;
-  aspect-ratio: var(--badge-aspect, auto);
 }
 
 /* per-symbol aspect ratios so the SVG reserves the right horizontal slot.
@@ -69,18 +62,11 @@
   aspect-ratio: 474 / 512;
 } /* bdf        */
 .badge:nth-child(3) {
-  aspect-ratio: 709 / 512;
+  aspect-ratio: 100 / 200;
 } /* gdf        */
 .badge:nth-child(4) {
-  aspect-ratio: 469 / 512;
+  aspect-ratio: 300 / 300;
 } /* qdf        */
-.badge:nth-child(5) {
-  aspect-ratio: 256 / 120;
-} /* ral — cropped to RAL Gütezeichen only (no Holzhausbau frame) */
-.badge:nth-child(6) {
-  aspect-ratio: 1 / 1;
-  height: var(--fs-h2);
-} /* holz-klima — Holz Rettet Klima 2030, oversized per client request */
 
 @media (--below-desktop) {
   /* Eyebrow drops to tertiary tone — the proof line is supporting copy,
