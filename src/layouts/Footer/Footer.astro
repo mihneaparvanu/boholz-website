@@ -52,7 +52,7 @@ const currentYear = new Date().getFullYear();
       <ul class="badges">
         {
           FOOTER_CERTIFICATIONS.map((c) => (
-            <li>
+            <li data-size={c.size ?? "default"}>
               <svg
                 class="badge"
                 style={`aspect-ratio: ${c.aspect};`}
@@ -216,10 +216,36 @@ const currentYear = new Date().getFullYear();
   }
 
   .badge {
-    /* Color sprite carries its own fills; no currentColor styling here. */
-    height: 40px;
+    /* Color sprite carries its own fills; no currentColor styling here.
+       Height is driven by the parent <li>'s data-size so re-ordering the
+       certifications list never depends on nth-child arithmetic. */
+    height: var(--badge-h, 40px);
     width: auto;
     transition: opacity 200ms ease;
+  }
+
+  /* Per-badge visual mass — each tier ships mobile / tablet / desktop
+     heights so a "wide" mark (narrow-aspect, e.g. RAL or Creditreform)
+     reads at the same perceived weight as a square neighbour, and the
+     oversized Holz-Rettet-Klima mark stays the section's anchor. */
+  .badges li[data-size="default"] { --badge-h: 32px; }
+  .badges li[data-size="wide"]    { --badge-h: 48px; }
+  .badges li[data-size="tall"]    { --badge-h: 40px; }
+
+  @media (--from-tablet) {
+    .badges li[data-size="default"] { --badge-h: 40px; }
+    .badges li[data-size="wide"]    { --badge-h: 56px; }
+    .badges li[data-size="tall"]    { --badge-h: 60px; }
+  }
+
+  @media (--from-desktop) {
+    .badges li[data-size="default"] { --badge-h: 48px; }
+    .badges li[data-size="wide"]    { --badge-h: 68px; }
+    .badges li[data-size="tall"]    { --badge-h: 72px; }
+
+    .badges {
+      column-gap: var(--spacing-3);
+    }
   }
 
   /* Quiet by default, brighten on hover to confirm interactivity would be
@@ -231,15 +257,8 @@ const currentYear = new Date().getFullYear();
     opacity: 1;
   }
 
-  /* Holz Rettet Klima sits at position 6 — oversize per client request. */
-  .badges li:nth-child(6) .badge {
-    height: 60px;
-  }
-
-  /* Mobile: keep all six certs on a single horizontal row. Shrink the
-     badges so six fit comfortably across a 360–430px viewport, tighten
-     the column gap, and scale-down the oversize Holz Rettet Klima mark
-     proportionally so the rhythm holds. */
+  /* Mobile: keep all certs on a single horizontal row. Tighter gaps and
+     the data-size mobile heights above already keep the rhythm honest. */
   @media (--mobile) {
     .badges {
       flex-wrap: nowrap;
@@ -250,24 +269,6 @@ const currentYear = new Date().getFullYear();
     .badges li {
       flex-shrink: 1;
       min-width: 0;
-    }
-    .badge {
-      height: 32px;
-    }
-    .badges li:nth-child(6) .badge {
-      height: 40px;
-    }
-  }
-
-  @media (--from-desktop) {
-    .badge {
-      height: 48px;
-    }
-    .badges li:nth-child(6) .badge {
-      height: 72px;
-    }
-    .badges {
-      column-gap: var(--spacing-3);
     }
   }
 

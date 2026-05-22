@@ -26,14 +26,25 @@ const copy = {
       "Sie verkaufen ein Produkt, hinter dem ein gewachsenes Familienunternehmen mit jahrzehntelanger Erfahrung steht.",
   },
   uberUnsPartnerLede: {
-    with: "BoHolz-Haus ist die Vertriebsgesellschaft, Keitel Haus der Produzent. Was Sie unterschreiben, hat ein Gesicht — und 90 Jahre Holzbau hinter sich.",
+    with: "Ein Verbund aus fachlicher Kompetenz, Wissen und jahrelanger Erfahrung — BoHolz-Haus übernimmt Vertrieb und Begleitung, Keitel-Haus die Produktion. Was Sie unterschreiben, hat ein Gesicht und 90 Jahre Holzbau hinter sich.",
     without:
-      "BoHolz-Haus übernimmt Vertrieb und Begleitung; produziert wird in unserer eigenen Manufaktur in Rot am See-Brettheim. Was Sie unterschreiben, hat ein Gesicht — und 90 Jahre Holzbau hinter sich.",
+      "Ein Verbund aus fachlicher Kompetenz, Wissen und jahrelanger Erfahrung. BoHolz-Haus übernimmt Vertrieb und Begleitung; produziert wird in unserer eigenen Manufaktur in Rot am See-Brettheim. Was Sie unterschreiben, hat ein Gesicht — und 90 Jahre Holzbau hinter sich.",
+  },
+  // Italic opener for the first paragraph of the partner section — the
+  // "premium Vertriebspartner" tagline the client asked us to lead with.
+  uberUnsLeadProseOpener: {
+    with: "Ihr Premium Vertriebspartner BoHolz-Haus.",
+    without: "Ihr Premium Vertriebspartner BoHolz-Haus.",
   },
   uberUnsLeadProse: {
-    with: "BoHolz-Haus begleitet Sie von der ersten Idee bis zum fertigen Zuhause — persönlich, transparent und mit festen Ansprechpartnern an Ihrer Seite. Jeder Entwurf entsteht individuell und wird gemeinsam mit Ihnen geplant. Gefertigt werden unsere Häuser von unserem erfahrenen Partner Keitel-Haus — einem familiengeführten Holzbauunternehmen mit über 90 Jahren Erfahrung im Fertighausbau. Traditionelles Handwerk, moderne Fertigung und nachhaltige Bauweise bilden dabei die Grundlage jedes Hauses.",
+    with: "Als Vertriebsgesellschaft hat BoHolz-Haus höchste Ansprüche an Qualität und Nachhaltigkeit beim Hausbau. Deshalb beraten und begleiten wir Sie umfassend zu allen Fragen und Wünschen rund um Ihr individuelles Traumhaus.",
     without:
       "BoHolz-Haus begleitet Sie von der ersten Idee bis zum fertigen Zuhause — persönlich, transparent und mit festen Ansprechpartnern an Ihrer Seite. Jeder Entwurf entsteht individuell und wird gemeinsam mit Ihnen geplant. Traditionelles Handwerk, moderne Fertigung und nachhaltige Bauweise bilden dabei die Grundlage jedes Hauses.",
+  },
+  uberUnsLeadProseSecond: {
+    with: "Unsere erfahrenen Hausberater sorgen dafür, dass von der Planung Ihres BoHolz-Fertighauses bis zum Abschluss Ihres Hausvertrags alles zu Ihrer vollsten Zufriedenheit abläuft. Dabei geben wir Ihnen wichtige Informationen und Tipps — beginnend bei der aktuellen KfW-Förderung bis zur Finanzierung.",
+    without:
+      "Unsere erfahrenen Hausberater begleiten Sie persönlich — von der Planung Ihres Fertighauses bis zum Abschluss des Hausvertrags. Dabei geben wir Ihnen wichtige Informationen und Tipps zu Förderprogrammen und zur Finanzierung.",
   },
   uberUnsStatCaption: {
     with: "Erfahrung unseres Partners Keitel Haus aus Rot am See-Brettheim.",
@@ -79,7 +90,7 @@ const copy = {
     without: "Qualität & Expertise im Fertighausbau.",
   },
   uberUnsPartnerPullQuote: {
-    with: "Traditionelles Handwerk, moderne Fertigung und nachhaltige Bauweise bilden die Grundlage jedes Hauses.",
+    with: "Mit diesen umfassenden Beratungsleistungen legen wir den Grundstein für Ihr Traumhaus.",
     without:
       "Traditionelles Handwerk, moderne Fertigung und nachhaltige Bauweise bilden die Grundlage jedes Hauses.",
   },
@@ -95,11 +106,11 @@ const copy = {
 const arrayCopy = {
   uberUnsKeitelProse: {
     with: [
-      "Deshalb setzen wir bei BoHolz-Haus auf die Erfahrung und Kompetenz unseres langjährigen Partners Keitel-Haus.",
-      "Das familiengeführte Unternehmen aus Rot am See-Brettheim beschäftigt sich seit über 90 Jahren mit dem nachhaltigen Baustoff Holz und zählt zu den erfahrenen Herstellern im modernen Fertighausbau. Von der individuellen Planung bis zur hochwertigen Fertigung entstehen Häuser, die Qualität, Energieeffizienz und Wohnkomfort vereinen.",
-      "Gemeinsam realisieren wir maßgeschneiderte Wohnkonzepte – vom klassischen Einfamilienhaus bis hin zu individuellen Lösungen für modernes Wohnen und Arbeiten unter einem Dach.",
-      "Dabei steht nicht die Masse im Mittelpunkt, sondern jedes einzelne Zuhause. Persönliche Beratung, transparente Leistungen, hochwertige Materialien und nachhaltige Bauweise bilden die Grundlage jedes Projekts.",
-      "Als wirtschaftlich solides Familienunternehmen mit jahrzehntelanger Erfahrung bietet Keitel-Haus zudem ein hohes Maß an Sicherheit und Verlässlichkeit — ein wichtiger Faktor für alle, die sorgenfrei bauen möchten.",
+      "Für uns steht die absolute Zufriedenheit unserer Kunden im Mittelpunkt. Deshalb setzen wir von BoHolz-Haus als Premium-Vertriebspartner auf die Kompetenz unseres renommierten Partners Keitel-Haus — von der detaillierten Planung bis zur kompletten Fertigstellung übernimmt Keitel-Haus alle Arbeiten aus einer Hand.",
+      "Keitel-Haus ist ein renommiertes Familienunternehmen mit Sitz in 74585 Rot am See-Brettheim (bei Rothenburg o.d. Tauber). Seit über 90 Jahren widmet sich Keitel-Haus dem nachhaltigen Baustoff Holz und nutzt dessen Vorzüge täglich im qualitativ hochwertigen Fertighausbau.",
+      "Keitel-Haus plant und realisiert maßgeschneiderte Wohnprojekte — vom Einfamilien- bis zum Generationenhaus. Auch spezielle Wünsche wie Kombinationen von Wohn- und Arbeitsbereichen oder individuelle Erweiterungen setzt Keitel-Haus mit BoHolz-Haus gerne um.",
+      "Als Familienunternehmen mit 90-jähriger Geschichte legt Keitel-Haus großen Wert auf eine Unternehmenskultur mit festen Prinzipien: Qualität vor Quantität, Individualität vor Standardlösungen, umfassende Beratung vor Überredung, transparente Baubeschreibung vor Kleingedrucktem.",
+      "Als finanziell solides Unternehmen, das ausschließlich mit eigenen Mitteln operiert, ist Keitel-Haus unabhängig von externen Finanzierungspartnern. Das gibt Ihnen gerade in der heutigen Zeit die nötige Sicherheit — so fließen alle Ressourcen gezielt in Qualität, Nachhaltigkeit und Ausstattung der Häuser.",
     ],
     without: [
       "Bei BoHolz-Haus steht die Zufriedenheit unserer Bauherren an erster Stelle.",

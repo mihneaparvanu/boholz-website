@@ -45,28 +45,28 @@ export const bungalowContent: LandingPageContent = {
 
   benefits: [
     {
-      icon: "pencil",
-      title: "Flexibel planbar",
-      body: "Auf Anbau mit Aufzug, barrierefreien Zugang und stufenlose Übergänge zugeschnitten — jedes Detail nach Maß.",
-      tone: "bg",
+      icon: "leaf",
+      title: "Ruhig & geborgen",
+      body: "Holz reguliert das Raumklima auf natürliche Weise — wohnen in entspannter Atmosphäre, das ganze Jahr.",
+      tone: "forest",
     },
     {
       icon: "shield",
       title: "Altersgerecht & sicher",
       body: "Komfortabel geplant — mit Fokus auf Sicherheit, Bewegungsfreiheit und langfristige Selbstständigkeit.",
-      tone: "petrol",
+      tone: "sage",
     },
     {
       icon: "zap",
       title: "Modern & energieeffizient",
       body: "Smart-Home, dauerhaft wartungsarm und KfW-förderfähig — niedrige Betriebskosten ab dem ersten Tag.",
-      tone: "oliv",
+      tone: "leaf",
     },
     {
-      icon: "leaf",
-      title: "Ruhig & geborgen",
-      body: "Holz reguliert das Raumklima auf natürliche Weise — wohnen in entspannter Atmosphäre, das ganze Jahr.",
-      tone: "grun",
+      icon: "pencil",
+      title: "Flexibel planbar",
+      body: "Auf Anbau mit Aufzug, barrierefreien Zugang und stufenlose Übergänge zugeschnitten — jedes Detail nach Maß.",
+      tone: "surface",
     },
   ],
 

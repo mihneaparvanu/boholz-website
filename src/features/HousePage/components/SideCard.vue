@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { House } from "lucide-vue-next";
+import { House, Check } from "lucide-vue-next";
 import Button from "@/components/ui/Button.vue";
 import type { HouseModel } from "@/types/models";
 import { formatCurrency } from "@/utils/format";
@@ -19,11 +19,16 @@ defineProps<{
 
     <header class="head">
       <h1 class="title">{{ model.title }}</h1>
-      <p v-if="model.price" class="price">
-        <span class="ab">ab</span>
-        <span class="amount">{{ formatCurrency(model.price) }}* </span>
-      </p>
-      <p>inklusive Bodenplatte</p>
+      <template v-if="model.price">
+        <p class="price">
+          <span class="ab">ab</span>
+          <span class="amount">{{ formatCurrency(model.price) }}*</span>
+        </p>
+        <p class="included">
+          <Check :size="14" :stroke-width="2.25" aria-hidden="true" />
+          <span>inklusive Bodenplatte</span>
+        </p>
+      </template>
     </header>
 
     <p v-if="lede" class="lede">{{ lede }}</p>
@@ -87,6 +92,22 @@ defineProps<{
   display: inline-flex;
   align-items: baseline;
   gap: var(--spacing-1);
+}
+
+/* Value tag under the price — visually distinct from body copy so it reads
+   as a positive inclusion rather than a duplicated disclaimer. */
+.included {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-body-sm);
+  color: var(--clr-content-secondary);
+}
+
+.included :deep(svg) {
+  flex-shrink: 0;
+  color: var(--pastell-oliv-alt);
 }
 
 .footnote {

@@ -15,6 +15,14 @@
   --pastell-grün: rgba(181, 177, 151, 1);
   --pastell-oliv: rgba(139, 147, 133, 1);
   --pastell-oliv-alt: rgba(63, 93, 40, 1);
+
+  /* Vorteile palette — full-saturation brand tones used by BenefitsRow on
+     the /wohnen/* landing pages. Forest is dark (carries light text); sage
+     and leaf are light (carry primary text). The fourth slot uses
+     --clr-surface-primary directly. Sourced from the print campaign. */
+  --vorteil-forest: rgb(62, 76, 60);
+  --vorteil-sage: rgb(226, 231, 220);
+  --vorteil-leaf: rgb(208, 226, 170);
   --light-stone: rgba(179, 170, 163, 1);
   --stone: rgba(149, 137, 126, 1);
   --stone-alt: rgba(127, 70, 26, 1);

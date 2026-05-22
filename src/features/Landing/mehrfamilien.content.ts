@@ -47,28 +47,28 @@ export const mehrfamilienContent: LandingPageContent = {
 
   benefits: [
     {
-      icon: "layers",
-      title: "Flexible Grundrisse",
-      body: "Individuelle Planung für Familien jeder Größe — vom Generationenhaus bis zum kompakten Wohnblock.",
-      tone: "bg",
-    },
-    {
-      icon: "key-round",
-      title: "Schlüsselfertig gebaut",
-      body: "Festpreis, klare Kosten, termintreue Übergabe — auch bei mehreren Einheiten unter einem Dach.",
-      tone: "petrol",
-    },
-    {
       icon: "leaf",
       title: "Nachhaltig aus Holz",
       body: "Gesundes Raumklima und natürliche Materialien — CO₂-speichernd, regional gefertigt.",
-      tone: "grun",
+      tone: "forest",
+    },
+    {
+      icon: "layers",
+      title: "Flexible Grundrisse",
+      body: "Individuelle Planung für Familien jeder Größe — vom Generationenhaus bis zum kompakten Wohnblock.",
+      tone: "sage",
     },
     {
       icon: "building-2",
       title: "2 bis 16 Wohneinheiten",
       body: "Perfekt für Familien, Investoren oder Gemeinschaftsprojekte — skalierbar in Holzbauweise.",
-      tone: "oliv",
+      tone: "leaf",
+    },
+    {
+      icon: "key-round",
+      title: "Schlüsselfertig gebaut",
+      body: "Festpreis, klare Kosten, termintreue Übergabe — auch bei mehreren Einheiten unter einem Dach.",
+      tone: "surface",
     },
   ],
 

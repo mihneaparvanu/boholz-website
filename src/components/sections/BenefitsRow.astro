@@ -2,24 +2,37 @@
 /**
  * BenefitsRow — 4-up row of brand benefits ("Ihre Vorteile auf einen Blick").
  * Each card carries a Lucide icon, short title, one-line body, and a
- * restrained pastel-tint background drawn from the brand palette.
+ * full-saturation brand colour drawn from the print campaign palette.
  *
- * The old marketing page used the same four pastels at full saturation —
- * which read like 2010 brochure. Here the tints are diluted with the page
- * surface via color-mix() so each card is *suggestive* of its hue rather
- * than declaring it. Hairline border on top, no shadow.
+ * Tones (used left-to-right in the landing content):
+ *   forest  — deep brand green (light text)
+ *   sage    — pale sage (dark text)
+ *   leaf    — pale yellow-green (dark text)
+ *   surface — page surface, hairline-bordered (dark text)
+ *
+ * The legacy pastel tones (bg/petrol/grun/oliv) are kept for any older
+ * consumer, but the three landing pages all run on the new four-tone scale.
  *
  * Breakpoints: 1-up < 500 → 2x2 tablet → 4-up desktop.
  */
 import { getIcon, type IconName } from "@/utils/icons";
 
-export type BenefitTone = "bg" | "petrol" | "grun" | "oliv";
+export type BenefitTone =
+  | "forest"
+  | "sage"
+  | "leaf"
+  | "surface"
+  // Legacy diluted-pastel tones — keep for backwards compatibility.
+  | "bg"
+  | "petrol"
+  | "grun"
+  | "oliv";
 
 export interface Benefit {
   icon: IconName;
   title: string;
   body: string;
-  /** Pastel tint key — maps to a token. */
+  /** Brand colour key. */
   tone: BenefitTone;
 }
 
@@ -72,20 +85,63 @@ const { items } = Astro.props as Props;
   }
 
   .card {
-    /* Asymmetric padding-block: more top than bottom so the icon visually
-       sits in its own air, and the title→body block hangs from above. */
     padding: var(--spacing-4) var(--spacing-3) var(--spacing-3);
     display: flex;
     flex-direction: column;
     gap: var(--spacing-2);
     border-radius: var(--radius-lg);
-    /* Pastel base, diluted with the page surface so cards stay quiet.
-       30% pastel + 70% surface keeps the tone visible without shouting. */
-    background: color-mix(in srgb, var(--card-tint) 22%, var(--clr-surface-primary));
-    border: 1px solid color-mix(in srgb, var(--card-tint) 42%, transparent);
+    background: var(--card-bg);
+    color: var(--card-fg);
+    border: 1px solid var(--card-border);
     min-width: 0;
-    /* For a long card title that wraps to 2 lines, keep the row aligned. */
     height: 100%;
+  }
+
+  /* ── New full-saturation palette ───────────────────────────────────── */
+
+  .card[data-tone="forest"] {
+    --card-bg: var(--vorteil-forest);
+    --card-fg: var(--clr-pure-white);
+    --card-fg-soft: rgba(255, 255, 255, 0.78);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --card-icon-bg: rgba(255, 255, 255, 0.14);
+  }
+
+  .card[data-tone="sage"] {
+    --card-bg: var(--vorteil-sage);
+    --card-fg: var(--vorteil-forest);
+    --card-fg-soft: color-mix(in srgb, var(--vorteil-forest) 78%, transparent);
+    --card-border: color-mix(in srgb, var(--vorteil-forest) 14%, transparent);
+    --card-icon-bg: color-mix(in srgb, var(--vorteil-forest) 10%, transparent);
+  }
+
+  .card[data-tone="leaf"] {
+    --card-bg: var(--vorteil-leaf);
+    --card-fg: var(--vorteil-forest);
+    --card-fg-soft: color-mix(in srgb, var(--vorteil-forest) 78%, transparent);
+    --card-border: color-mix(in srgb, var(--vorteil-forest) 18%, transparent);
+    --card-icon-bg: color-mix(in srgb, var(--vorteil-forest) 12%, transparent);
+  }
+
+  .card[data-tone="surface"] {
+    --card-bg: var(--clr-surface-primary);
+    --card-fg: var(--clr-content-primary);
+    --card-fg-soft: var(--clr-content-secondary);
+    --card-border: var(--clr-border-secondary);
+    --card-icon-bg: var(--clr-surface-secondary);
+  }
+
+  /* ── Legacy diluted pastel tones (older callers) ───────────────────── */
+
+  .card[data-tone="bg"],
+  .card[data-tone="petrol"],
+  .card[data-tone="grun"],
+  .card[data-tone="oliv"] {
+    --card-fg: var(--clr-content-primary);
+    --card-fg-soft: var(--clr-content-secondary);
+    --card-border: color-mix(in srgb, var(--card-tint) 42%, transparent);
+    --card-bg: color-mix(in srgb, var(--card-tint) 22%, var(--clr-surface-primary));
+    --card-icon-bg: color-mix(in srgb, var(--card-tint) 55%, var(--clr-surface-primary));
   }
 
   .card[data-tone="bg"]      { --card-tint: var(--pastell-bg); }
@@ -93,18 +149,16 @@ const { items } = Astro.props as Props;
   .card[data-tone="grun"]    { --card-tint: var(--pastell-grün); }
   .card[data-tone="oliv"]    { --card-tint: var(--pastell-oliv); }
 
+  /* ── Inner pieces ──────────────────────────────────────────────────── */
+
   .icon {
-    /* Inner radius (md) = outer (lg) – padding step. */
     width: var(--control-height-md);
     height: var(--control-height-md);
     display: inline-grid;
     place-items: center;
     border-radius: var(--radius-md);
-    /* Slightly stronger fill than the card so the glyph reads as the
-       card's "accent moment" without using --clr-accent (saved for the
-       page's true single primary action). */
-    background: color-mix(in srgb, var(--card-tint) 55%, var(--clr-surface-primary));
-    color: var(--clr-content-primary);
+    background: var(--card-icon-bg);
+    color: var(--card-fg);
     margin-block-end: var(--spacing-1);
   }
 
@@ -114,14 +168,14 @@ const { items } = Astro.props as Props;
     font-weight: var(--font-weight-medium);
     line-height: var(--lh-heading);
     letter-spacing: var(--ls-heading);
-    color: var(--clr-content-primary);
+    color: var(--card-fg);
   }
 
   .body {
     margin: 0;
     font-size: var(--fs-body-sm);
     line-height: var(--lh-body);
-    color: var(--clr-content-secondary);
+    color: var(--card-fg-soft);
     max-width: 28ch;
   }
 </style>

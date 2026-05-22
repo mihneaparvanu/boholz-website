@@ -30,15 +30,11 @@ const description = model.description?.trim() || null;
 const lede = description ? (description.match(/^[^.!?]+[.!?]/)?.[0] ?? description) : null;
 const hasCategoryDescription = Boolean(model.category?.description);
 
-const leistungen = [
-  "Schlüsselfertiger Innenausbau",
-  "Dreifachverglasung mit Aluminium-Abdeckung",
-  "Fußbodenheizung in allen Wohnräumen",
-  "Wärmepumpe mit Warmwasserspeicher",
-  "Kontrollierte Wohnraumlüftung mit Wärmerückgewinnung",
-  "Holzfaserdämmung im Wand- und Dachaufbau",
-  "Smart-Home-Vorbereitung KNX-fähig",
-];
+// Client copy (2026-05): a single advisory paragraph instead of a bulleted
+// hard-coded spec list — the actual Leistungsumfang is determined per
+// project together with the Fachberater.
+const leistungenCopy =
+  "Je nach Ihren individuellen Bedürfnissen können wir verschiedene Gewerke und Leistungsumfänge anbieten. Gerne berät Sie unser Fachberater hierzu ausführlich und erstellt gemeinsam mit Ihnen ein passendes Konzept.";
 ---
 
 <Layout title={`${model.title} – BoHolz Haus`}>
@@ -69,9 +65,7 @@ const leistungen = [
       <DetailsGrid model={model} />
     </AccordionItem>
     <AccordionItem client:visible label="Leistungsumfang">
-      <ul class="leistungen">
-        {leistungen.map((item) => <li>{item}</li>)}
-      </ul>
+      <p class="prose">{leistungenCopy}</p>
     </AccordionItem>
   </section>
 
@@ -153,20 +147,6 @@ const leistungen = [
 
   .prose:last-child {
     margin-bottom: 0;
-  }
-
-  .leistungen {
-    margin: 0;
-    padding-inline-start: var(--spacing-3);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-1);
-    color: var(--clr-content-secondary);
-    line-height: var(--lh-body);
-  }
-
-  .leistungen li::marker {
-    color: var(--clr-content-quaternary);
   }
 
   .empty {

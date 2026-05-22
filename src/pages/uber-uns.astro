@@ -43,8 +43,8 @@ const keitelProse = keitelArray("uberUnsKeitelProse");
   <section id="partner" class="section">
     <EyebrowHeadingLede
       eyebrow="Zwei starke Partner"
-      heading="Vertrieb mit Haltung,"
-      highlight="Holzbau mit Erfahrung."
+      heading="Ein Verbund aus fachlicher Kompetenz,"
+      highlight="Wissen und jahrelanger Erfahrung."
       lede={keitel("uberUnsPartnerLede")}
     >
       <Fragment slot="eyebrow-icon">
@@ -58,9 +58,11 @@ const keitelProse = keitelArray("uberUnsKeitelProse");
       </aside>
 
       <p class="lead">
-        <i class="open">Wir sind die Vertriebsgesellschaft hinter Ihrem
-        BoHolz-Haus.</i> {keitel("uberUnsLeadProse")}
+        <i class="open">{keitel("uberUnsLeadProseOpener")}</i>
+        {" "}{keitel("uberUnsLeadProse")}
       </p>
+
+      <p>{keitel("uberUnsLeadProseSecond")}</p>
 
       <blockquote class="pull">
         {keitel("uberUnsPartnerPullQuote")}

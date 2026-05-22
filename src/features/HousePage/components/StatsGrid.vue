@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Scan, Grid2X2, BedDouble, ShowerHead } from "lucide-vue-next";
+import { Scan } from "lucide-vue-next";
 import type { DisplayItemConfig } from "./house-page.types";
 import type { HouseModel } from "@/types/models";
 import StatCard from "./StatCard.vue";
@@ -9,27 +9,15 @@ const props = defineProps<{
   model: HouseModel;
 }>();
 
+// Per client (2026-05): hide Schlafzimmer / Zimmer / Badezimmer from the
+// front-end. Data stays in the DB; only the visible stats grid trims down to
+// the single area figure. Restore the full config to re-expose room counts.
 const statsConfig: DisplayItemConfig[] = [
   {
     label: "Fläche",
     icon: Scan,
     resolve: (m) => m.livingArea,
     format: formatSquareMeters,
-  },
-  {
-    label: "Schlafzimmer",
-    icon: BedDouble,
-    resolve: (m) => m.details?.bedroomCount,
-  },
-  {
-    label: "Zimmer",
-    icon: Grid2X2,
-    resolve: (m) => m.details?.levelCount,
-  },
-  {
-    label: "Badezimmer",
-    icon: ShowerHead,
-    resolve: (m) => m.details?.bathroomCount,
   },
 ];
 
@@ -60,14 +48,13 @@ const stats = statsConfig
 </template>
 
 <style scoped>
+/* auto-fill keeps the grid graceful whether there's one stat or four —
+   single card spans whatever room it needs without sitting awkwardly in a
+   half-width column. */
 .items-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: var(--spacing-3);
   width: 100%;
-
-  @media (--mobile) {
-    grid-template-columns: 1fr;
-  }
 }
 </style>

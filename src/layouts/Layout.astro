@@ -3,7 +3,6 @@ import "@/style/reset.css";
 import "@/style/design-system.css";
 import "@/style/wrapper.css";
 
-import qualityBadgesSprite from "@/icons/qualityBadges.svg?raw";
 import qualityBadgesColorSprite from "@/icons/qualityBadgesColor.svg?raw";
 
 import Navbar from "./Navbar/Navbar.vue";
@@ -33,7 +32,6 @@ const showhouses = await getLocations({ kind: "showhouse" });
     <title>{title}</title>
   </head>
   <body>
-    <Fragment set:html={qualityBadgesSprite} />
     <Fragment set:html={qualityBadgesColorSprite} />
     <Navbar
       client:load
