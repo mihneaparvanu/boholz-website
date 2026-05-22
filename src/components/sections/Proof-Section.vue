@@ -1,24 +1,8 @@
 <script setup lang="ts">
-// Data-driven badge row — matches the per-badge size pattern used in the
-// footer (no nth-child arithmetic, re-ordering is safe). Aspect values
-// mirror each symbol's viewBox inside `qualityBadgesColor.svg`.
-//
-// Holz-Rettet-Klima isn't included here — that mark belongs to the
-// sustainability message, not the "Geprüfte Qualität" trust strip.
-interface ProofBadge {
-  id: string;
-  label: string;
-  aspect: string;
-  size?: "default" | "wide";
-}
-
-const badges: ProofBadge[] = [
-  { id: "badge-qdf-color", label: "Qualitätsgemeinschaft Deutscher Fertigbau", aspect: "469 / 512" },
-  { id: "badge-gdf-color", label: "Gütegemeinschaft Deutsche Fertigbau", aspect: "709 / 512" },
-  { id: "badge-ral-color", label: "RAL Gütezeichen", aspect: "256 / 120", size: "wide" },
-  { id: "badge-bdf-color", label: "Bundesverband Deutscher Fertigbau", aspect: "474 / 512" },
-  { id: "badge-creditreform-color", label: "Creditreform Bonitätszertifikat", aspect: "388 / 512" },
-];
+// Single source of truth for both this strip and the footer's "Geprüfte
+// Qualität" row — both rows read from `src/data/quality-badges.ts`. The
+// strip uses the filtered PROOF_BADGES (omits ISO and Holz-Rettet-Klima).
+import { PROOF_BADGES as badges } from "@/data/quality-badges";
 </script>
 
 <template>
