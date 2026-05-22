@@ -17,16 +17,9 @@
  */
 import { getIcon, type IconName } from "@/utils/icons";
 
-export type BenefitTone =
-  | "forest"
-  | "sage"
-  | "leaf"
-  | "surface"
-  // Legacy diluted-pastel tones — keep for backwards compatibility.
-  | "bg"
-  | "petrol"
-  | "grun"
-  | "oliv";
+// Tones: forest/sage/leaf/surface drive the current full-saturation
+// palette; bg/petrol/grun/oliv are kept for legacy diluted-pastel callers.
+export type BenefitTone = "forest" | "sage" | "leaf" | "surface" | "bg" | "petrol" | "grun" | "oliv";
 
 export interface Benefit {
   icon: IconName;
