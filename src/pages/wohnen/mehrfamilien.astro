@@ -1,22 +1,14 @@
 ---
 /**
- * Landing page · `/landing/bungalow`
+ * Landing page · `/wohnen/mehrfamilien`
  *
- * Phase-2 page, built as a pure content swap of the canonical
- * `/landing/uebersicht` template. Same section order, same frontmatter
- * loaders, same DOM — only the imported content module differs.
- *
- * Per-page deltas (all driven by `bungalow.content.ts`, not hardcoded):
- *   - `content.hero.preferredCategorySlug = "bungalow"` — hero photo
- *     resolves from a featured bungalow model's `isHero` media, with
- *     graceful fallback if the bungalow category isn't seeded yet.
- *   - `content.houses.categorySlugs = ["bungalow"]` — house showcase is
- *     scoped to bungalow typology; empty-state copy handles zero results.
- *   - `content.closingCta.tone = "accent"` — deep-blue closing band.
- *   - `content.leadForm.interestOptions` — bungalow-relevant defaults.
- *
- * Audience: barrier-free / senior-comfort / single-level living.
- * Voice: reassuring, dignified, never patronising.
+ * Page 2 of the campaign landing series. Pattern-matches `uebersicht.astro`
+ * — same section order, same frontmatter loaders. Only the imported content
+ * module differs:
+ *   - hero.preferredCategorySlug = "mehrfamilienhaus" (drives DB hero lookup)
+ *   - houses.categorySlugs = ["mehrfamilienhaus", "doppelhaus"]
+ *   - leadForm.interestOptions pre-selected for the MFH audience
+ *   - closingCta.tone = "surface" (page 3 is the accent-toned one)
  */
 import Layout from "@/layouts/Layout.astro";
 import { getMediaURL } from "@/utils/media";
@@ -38,7 +30,7 @@ import Button from "@/components/ui/Button.vue";
 import { getCategories, getModels } from "@/data/loaders";
 import { toHouseModelCard } from "@/data/derive";
 
-import { bungalowContent as content } from "@/features/Landing/bungalow.content";
+import { mehrfamilienContent as content } from "@/features/Landing/mehrfamilien.content";
 
 const categories = await getCategories();
 const allModels = await getModels();
@@ -55,8 +47,10 @@ const filteredModels = allModels
 
 const houseCards = filteredModels.map((m) => toHouseModelCard(m));
 
+// Hero image — try live DB first (featured model in preferred category,
+// pick its hero photo), fall back to the page-specific static asset.
 
-const heroImage = getMediaURL(content.hero.imageFallbackPath);
+const heroImage =  getMediaURL(content.hero.imageFallbackPath);
 const imageBandImage = getMediaURL(content.imageBand.imageFallbackPath);
 const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath);
 ---

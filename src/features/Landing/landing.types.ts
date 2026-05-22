@@ -1,6 +1,6 @@
 /**
  * Shared content shape for the three campaign landing pages
- * (`/landing/uebersicht`, `/landing/mehrfamilien`, `/landing/bungalow`).
+ * (`/wohnen/uebersicht`, `/wohnen/mehrfamilien`, `/wohnen/bungalow`).
  *
  * The shape mirrors the section-component composition documented in
  * `design-audit/2026-05-16/LANDING-PAGES-PLAN.md`: every landing page is the

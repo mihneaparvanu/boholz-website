@@ -1,5 +1,5 @@
 /**
- * Page 3 — `/landing/bungalow`
+ * Page 3 — `/wohnen/bungalow`
  *
  * Barrier-free / senior-comfort campaign. The audience here is older
  * homeowners planning a downsize, or mobility-constrained buyers planning

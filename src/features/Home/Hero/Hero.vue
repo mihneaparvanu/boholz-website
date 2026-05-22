@@ -27,7 +27,7 @@ const props = defineProps<{
         </p>
       </div>
       <div class="action">
-        <Button :href="ROUTES.landing.uebersicht">
+        <Button :href="ROUTES.wohnen.uebersicht">
           Häuser entdecken
           <template #trailing> <ArrowRight /> </template>
         </Button>

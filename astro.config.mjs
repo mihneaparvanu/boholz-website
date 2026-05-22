@@ -10,9 +10,13 @@ export default defineConfig({
   output: "server",
   adapter: node({ mode: "standalone" }),
   // Routes renamed 2026-05-18; redirects keep old links + bookmarks alive.
+  // Typology landing pages moved from /landing/* → /wohnen/* on 2026-05-22.
   redirects: {
     "/unser-versprechen": "/bauen-mit-boholz",
     "/dein-zuhause": "/ihr-neues-zuhause",
+    "/landing/uebersicht": "/wohnen/uebersicht",
+    "/landing/bungalow": "/wohnen/bungalow",
+    "/landing/mehrfamilien": "/wohnen/mehrfamilien",
   },
   vite: {
     plugins: [vanillaExtractPlugin()],

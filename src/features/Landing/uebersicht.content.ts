@@ -1,5 +1,5 @@
 /**
- * Page 1 — `/landing/uebersicht`
+ * Page 1 — `/wohnen/uebersicht`
  *
  * Generic premium-Fertighaus campaign. Audience-agnostic; aimed at someone
  * arriving from a paid search ad for "Fertighaus aus Holz" without a

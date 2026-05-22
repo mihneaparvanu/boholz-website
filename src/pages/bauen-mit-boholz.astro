@@ -15,17 +15,19 @@ import { ArrowRight, BookOpen } from "lucide-vue-next";
 import { getMediaURL } from "@/utils/media";
 import FeatureCardPair from "@/features/Advantage/FeatureCardPair.vue";
 import LiteYouTube from "@/features/Advantage/LiteYouTube.vue";
+import ZigZag, { type ZigZagBlock } from "@/components/sections/ZigZag.astro";
 import type { FeatureCard } from "@/features/Advantage/advantage.types";
 import { keitel } from "@/content/keitel";
 
 // ── Section index — drives the SectionNavigator's overview + sticky rail.
 const sections = [
   { id: "tradition", eyebrow: "01", label: "Tradition & Innovation" },
-  { id: "gruende", eyebrow: "02", label: "16 gute Gründe" },
-  { id: "nachhaltigkeit", eyebrow: "03", label: "Nachhaltigkeit" },
-  { id: "holzfaserdaemmung", eyebrow: "04", label: "Holzfaserdämmung" },
-  { id: "wandaufbau", eyebrow: "05", label: "Wandaufbau" },
-  { id: "technik", eyebrow: "06", label: "Energietechnik" },
+  { id: "beweggruende", eyebrow: "02", label: "Beweggründe" },
+  { id: "gruende", eyebrow: "03", label: "16 gute Gründe" },
+  { id: "nachhaltigkeit", eyebrow: "04", label: "Nachhaltigkeit" },
+  { id: "holzfaserdaemmung", eyebrow: "05", label: "Holzfaserdämmung" },
+  { id: "wandaufbau", eyebrow: "06", label: "Wandaufbau" },
+  { id: "technik", eyebrow: "07", label: "Energietechnik" },
 ];
 
 // ── R2 image URLs for the advantage subsections.
@@ -90,6 +92,91 @@ const winter: FeatureCard = {
   imageAlt:
     "Winterlicher Wärmeerhalt — Holzfaserdämmung hält die Heizenergie im Haus",
 };
+
+// ── Zig-zag editorial block — copy lifted from the old boholz-haus.de
+// "Bauen mit uns" page per client request. Six alternating image / text
+// rows with a "Mehr erfahren" CTA each. Reuses existing R2 imagery for
+// thematic fit; client can swap images later.
+const zigzagBlocks: ZigZagBlock[] = [
+  {
+    eyebrow: "Holz rettet Klima – aktiver Klimaschutz mit Wohlfühlfaktor",
+    title: "Nachhaltigkeit bei BoHolz-Haus",
+    body: [
+      "Lebendigkeit – das ist es, was Holz für uns als Rohstoff für den Bau Ihres Eigenheims so besonders macht. Schon seit Jahrhunderten wird Holz auch aufgrund seiner Beständigkeit verwendet.",
+    ],
+    closing: "Ein Baustoff, der Generationen überdauert.",
+    image: getMediaURL("/images/content/advantage/nachhaltigkeit/hero.webp"),
+    imageAlt: "Junger Trieb im Boden — nachhaltiger Holzbau bei BoHolz-Haus",
+    cta: { href: "#nachhaltigkeit" },
+  },
+  {
+    eyebrow: "Mit gutem Gewissen gefördert",
+    title: "Ihre Förderung für den Hausbau",
+    body: [
+      "Staatliche Förderungen durch die Kreditanstalt für Wiederaufbau (kurz: KfW) sind immer wieder Thema. Besonders familienfreundliche Förderprogramme erfahren wachsende Beliebtheit bei künftigen Bauherrinnen und Bauherren.",
+    ],
+    closing: "Wir begleiten Sie durch den Antragsdschungel.",
+    image: getMediaURL("/images/stock/lifestyle/smart-living.webp"),
+    imageAlt:
+      "Familienleben in einem modernen, energieeffizienten BoHolz-Zuhause",
+    cta: { href: "/kontakt" },
+  },
+  {
+    eyebrow: "Vier Ausbaustufen für jeden Bedarf",
+    title: "Ausbaustufen für Ihr BoHolz-Haus",
+    body: [
+      "Jeder Bauherr ist anders. Eine Familie möchte am liebsten in ein schlüsselfertiges Haus einziehen, andere können und möchten den Innenausbau ganz oder teilweise selbst vornehmen.",
+    ],
+    closing: "Vom Ausbauhaus bis schlüsselfertig — Sie entscheiden.",
+    image: getMediaURL("/images/stock/lifestyle/house-planning-office.webp"),
+    imageAlt:
+      "Schlüsselübergabe — schlüsselfertiges BoHolz-Haus nach Wunsch",
+    cta: { href: "/kontakt" },
+  },
+  {
+    eyebrow: "Von außen gut gedämmt",
+    title: "Der Wandaufbau der BoHolz-Häuser",
+    body: [
+      "Den Alltagslärm draußen lassen – das ist es, was unsere gedämmten Außenwände ausmacht. Und nicht nur darin sind sie gut: Sie bringen auch gesundes Wohlfühlklima in Ihre vier Wände.",
+      "BoHolz-Haus-Außenwände verfügen über einen Grundputz aus Armierungsmasse und einem vollflächigen Gittergewebe.",
+    ],
+    closing: "Diffusionsoffen, leise, dauerhaft.",
+    image: getMediaURL("/images/content/advantage/wandaufbau/hero.webp"),
+    imageAlt:
+      "ECO Nature Wandaufbau — diffusionsoffener Mehrschichtaufbau für KfW-Effizienzhäuser",
+    cta: { href: "#wandaufbau" },
+  },
+  {
+    eyebrow: "Unser oberstes Ziel ist die Zufriedenheit",
+    title: "Qualität bei BoHolz-Haus",
+    body: [
+      "Dicht gefolgt von unserem hohen Qualitätsstandard, den wir Ihnen bieten können.",
+      "Unser starker Partner Keitel-Haus greift auf jahrelanges und generationenübergreifendes Wissen rund um den Fertighausbau zurück und gewährleistet handwerkliche Wertarbeit im traditionellen Sinne.",
+    ],
+    closing: "Wertarbeit, die man fühlt — vom ersten Span bis zur Schlüsselübergabe.",
+    image: getMediaURL("/images/stock/lifestyle/wooden-logs.webp"),
+    imageAlt: "Massive Holzbalken im BoHolz Werk — traditionelle Handwerksqualität",
+    cta: { href: "/uber-uns" },
+  },
+  {
+    title: "Gute Gründe für ein BoHolz Fertighaus",
+    body: [],
+    bullets: [
+      "Individualität als oberstes Maß",
+      "Energiesparend in die Zukunft starten",
+      "Ausbaustufen genau nach Ihren Bedürfnissen",
+      "Gut für Ihren Geldbeutel",
+      "Zeitersparnis",
+      "Ihr Traumhaus made in Germany",
+      "Sicherheit für Sie und Ihr Bauprojekt",
+      "Unser wichtigstes Ziel: Ihre Zufriedenheit",
+    ],
+    image: getMediaURL("/images/stock/lifestyle/craftsmanship-factory.webp"),
+    imageAlt:
+      "Junges Paar entspannt im eigenen BoHolz-Wohnzimmer — gute Gründe für ein BoHolz-Fertighaus",
+    cta: { label: "Beratung vereinbaren", href: "/kontakt" },
+  },
+];
 
 // ── Section 6 — Wandaufbau editorial copy + Vorteile bullets.
 //
@@ -337,10 +424,19 @@ Grundlage unserer Häuser. So verbinden wir traditionelle Wertarbeit mit innovat
     </div>
   </Block>
 
+  <!-- 2b. Sechs Beweggründe (zig-zag) — copy from the legacy WP "Bauen
+       mit uns" page, redesigned with our editorial language. Lives between
+       Tradition and "16 gute Gründe" so the page reads:
+         01 Tradition → 02 Sechs Beweggründe (zig-zag) → 03 16 gute Gründe →
+         04 Nachhaltigkeit → 05 Holzfaserdämmung → 06 Wandaufbau → 07 Technik. -->
+  <Block id="beweggruende" eyebrow="02 — Sechs Beweggründe" heading="Was BoHolz-Haus" highlight="für Sie tut." lede="Sechs editoriale Beweggründe — von Nachhaltigkeit über Förderung bis zur Qualität, die hinter jedem unserer Häuser steht.">
+    <ZigZag blocks={zigzagBlocks} />
+  </Block>
+
   <!-- 3. 16 gute Gründe ------------------------------------------------ -->
   <Block
     id="gruende"
-    eyebrow="02 — 16 gute Gründe"
+    eyebrow="03 — 16 gute Gründe"
     heading="Was in jedem BoHolz Fertighaus"
     highlight="serienmäßig steckt."
     lede="Vom diffusionsoffenen Wandaufbau bis zur barrierefreien Dusche — sechzehn Details, die wir bereits im Standard liefern."
@@ -359,11 +455,21 @@ Grundlage unserer Häuser. So verbinden wir traditionelle Wertarbeit mit innovat
   <Block
     id="nachhaltigkeit"
     tone="band"
-    eyebrow="03 — Nachhaltigkeit"
+    eyebrow="04 — Nachhaltigkeit"
     heading="Wohnträume mit aktivem"
     highlight="Umweltschutz."
     lede="Bei BoHolz Haus verbinden wir Ihre Wohnträume mit aktivem Umweltschutz. Unsere individuellen Fertighäuser aus Holz sind nicht nur Ihr persönliches Zuhause, sondern auch ein Beitrag zu einer besseren Zukunft."
   >
+    <p class="editorial-prose">
+      Wir bauen mit Holz, weil es der einzige Baustoff ist, der CO₂ über die
+      gesamte Lebensdauer des Hauses speichert. Vom Dachstuhl bis zur
+      Holzfaserdämmung — jeder Quadratmeter unserer Häuser bindet aktiv
+      Kohlenstoff.
+      <span class="primary">
+        Ein Zuhause, das das Klima schützt, statt es zu belasten.
+      </span>
+    </p>
+
     <div class="media-pair">
       <figure class="media-hero">
         <img
@@ -416,7 +522,7 @@ Grundlage unserer Häuser. So verbinden wir traditionelle Wertarbeit mit innovat
   <!-- 5. Holzfaserdämmung ─ Sommer / Winter ---------------------------- -->
   <Block
     id="holzfaserdaemmung"
-    eyebrow="04 — Holzfaserdämmung"
+    eyebrow="05 — Holzfaserdämmung"
     heading="Wärmeschutz im Winter. Hitzeschutz im Sommer."
     lede="Unsere diffusionsoffene Holzfaserdämmung sorgt ganzjährig für ein angenehmes Raumklima.
 Sie schützt im Sommer zuverlässig vor Hitze, speichert im Winter die Wärme im Haus und
@@ -470,7 +576,7 @@ unterstützt gleichzeitig eine natürliche Feuchtigkeitsregulierung der Wandkons
   <Block
     id="wandaufbau"
     tone="band"
-    eyebrow="05 — Wandaufbau"
+    eyebrow="06 — Wandaufbau"
     heading="Natürlich gedämmt. Ganzjährig geschützt."
     lede="Ein energieeffizientes Zuhause beginnt bei der Gebäudehülle. Deshalb setzt BoHolz-Haus
 konsequent auf nachhaltige Materialien und einen durchdachten, diffusionsoffenen
@@ -534,7 +640,7 @@ Wandaufbau mit hervorragenden Dämmeigenschaften.
   <!-- 7. Haus- & Energietechnik ---------------------------------------- -->
   <Block
     id="technik"
-    eyebrow="06 — Energietechnik"
+    eyebrow="07 — Energietechnik"
     heading="Wärmepumpen, Photovoltaik,"
     highlight="gesundes Raumklima."
     lede="Dank gut gedämmter Außenwände bieten unsere Häuser von Anfang an umweltschonende Materialien und energieeffiziente Bauweise. Drei Bausteine, die Nachhaltigkeit konkret machen."

@@ -14,9 +14,12 @@ export const ROUTES = {
   impressum: "/impressum",
   datenschutz: "/datenschutz",
   cookies: "/cookies",
-  landing: {
-    uebersicht: "/landing/uebersicht",
-    bungalow: "/landing/bungalow",
-    mehrfamilien: "/landing/mehrfamilien",
+  // German URL parent for typology landing pages — "wohnen" reads warm
+  // and reserved without dev-jargon. The old `/landing/*` URLs redirect
+  // here via `astro.config.mjs#redirects`.
+  wohnen: {
+    uebersicht: "/wohnen/uebersicht",
+    bungalow: "/wohnen/bungalow",
+    mehrfamilien: "/wohnen/mehrfamilien",
   },
 } as const;

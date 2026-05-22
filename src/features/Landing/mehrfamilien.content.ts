@@ -1,5 +1,5 @@
 /**
- * Page 2 — `/landing/mehrfamilien`
+ * Page 2 — `/wohnen/mehrfamilien`
  *
  * Multi-family / investment-oriented campaign. Targets two distinct
  * intents under one umbrella:
