@@ -1,0 +1,3 @@
+- fix favicon to use BoHolz b
+- fix RAL badge to use full height
+- implement cookie consent
