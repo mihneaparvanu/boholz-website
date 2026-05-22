@@ -233,10 +233,7 @@ watch(isPanelOpen, (open, wasOpen) => {
     return;
   }
   if (!open && wasOpen) {
-    if (
-      filterState.value.status === "pending" &&
-      snapshotBeforeOpen !== null
-    ) {
+    if (filterState.value.status === "pending" && snapshotBeforeOpen !== null) {
       filterState.value = snapshotBeforeOpen;
     }
     snapshotBeforeOpen = null;
@@ -470,7 +467,9 @@ watch(
      covered by the FloatingCategoryMenu. Matches the floating bar's inset
      + a touch of breathing room. */
   @media (--below-desktop) {
-    padding-block-end: calc(var(--spacing-7) + env(safe-area-inset-bottom, 0px));
+    padding-block-end: calc(
+      var(--spacing-7) + env(safe-area-inset-bottom, 0px)
+    );
   }
 
   .controls-wrapper {

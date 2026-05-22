@@ -2,7 +2,7 @@
 import EditorialCard from "@/components/ui/EditorialCard.vue";
 import type { FeatureCard } from "./advantage.types";
 
-const props = defineProps<{
+defineProps<{
   left: FeatureCard;
   right: FeatureCard;
   /**
@@ -11,6 +11,12 @@ const props = defineProps<{
    * Use when one option is the recommended upgrade (e.g. ECO Nature Plus).
    */
   accent?: "none" | "left" | "right";
+  /**
+   * Override the image aspect ratio on both cards. Use for technical
+   * diagrams that should sit taller than the default 4 / 3 (e.g. vertical
+   * wall cross-sections in the Wandaufbau pair).
+   */
+  imageAspect?: string;
 }>();
 
 function toImage(card: FeatureCard): { src: string; alt: string } {
@@ -27,6 +33,7 @@ function toImage(card: FeatureCard): { src: string; alt: string } {
       :description="left.lede"
       :bullets="left.bullets"
       :image="toImage(left)"
+      :image-aspect="imageAspect"
       :accent="accent === 'left'"
     />
     <EditorialCard
@@ -36,6 +43,7 @@ function toImage(card: FeatureCard): { src: string; alt: string } {
       :description="right.lede"
       :bullets="right.bullets"
       :image="toImage(right)"
+      :image-aspect="imageAspect"
       :accent="accent === 'right'"
     />
   </div>

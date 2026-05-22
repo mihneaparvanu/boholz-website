@@ -9,6 +9,9 @@ const props = defineProps<{
   icon?: IconName;
   description?: string;
   image?: { src: string; alt: string };
+  /** Aspect ratio for the image frame. Default 4 / 3 (landscape). Pass
+      "3 / 4" for portrait diagrams (e.g. wall cross-sections). */
+  imageAspect?: string;
   /** When set, an italic-serif ordinal renders in the header (01, 02…). */
   step?: number;
   /** Optional supporting bullet list — checkmark each. */
@@ -17,9 +20,7 @@ const props = defineProps<{
   accent?: boolean;
 }>();
 
-const IconComponent = computed(() =>
-  props.icon ? getIcon(props.icon) : null,
-);
+const IconComponent = computed(() => (props.icon ? getIcon(props.icon) : null));
 
 const stepLabel = computed(() =>
   props.step != null ? String(props.step).padStart(2, "0") : null,
@@ -28,13 +29,19 @@ const stepLabel = computed(() =>
 
 <template>
   <article class="card" :data-accent="accent || undefined">
-    <figure v-if="image" class="frame">
+    <figure
+      v-if="image"
+      class="frame"
+      :style="imageAspect ? { aspectRatio: imageAspect } : undefined"
+    >
       <img :src="image.src" :alt="image.alt" loading="lazy" />
     </figure>
 
     <div class="body">
       <header class="head">
-        <span v-if="stepLabel" class="num" aria-hidden="true">{{ stepLabel }}</span>
+        <span v-if="stepLabel" class="num" aria-hidden="true">{{
+          stepLabel
+        }}</span>
         <span v-if="eyebrow && !stepLabel" class="eyebrow">
           <component
             v-if="IconComponent"
@@ -60,7 +67,12 @@ const stepLabel = computed(() =>
 
       <ul v-if="bullets && bullets.length" class="bullets">
         <li v-for="point in bullets" :key="point">
-          <Check class="check" :size="16" :stroke-width="2" aria-hidden="true" />
+          <Check
+            class="check"
+            :size="16"
+            :stroke-width="2"
+            aria-hidden="true"
+          />
           <span>{{ point }}</span>
         </li>
       </ul>
@@ -87,8 +99,16 @@ const stepLabel = computed(() =>
 }
 
 .card[data-accent] {
-  border-color: color-mix(in srgb, var(--clr-accent-secondary) 28%, var(--clr-border-secondary));
-  background: color-mix(in srgb, var(--clr-accent-secondary) 3%, var(--clr-surface-primary));
+  border-color: color-mix(
+    in srgb,
+    var(--clr-accent-secondary) 28%,
+    var(--clr-border-secondary)
+  );
+  background: color-mix(
+    in srgb,
+    var(--clr-accent-secondary) 3%,
+    var(--clr-surface-primary)
+  );
 }
 
 .frame {

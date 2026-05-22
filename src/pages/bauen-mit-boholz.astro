@@ -44,6 +44,12 @@ const nachhaltigkeitVideoPoster = getMediaURL(
   "/images/content/advantage/nachhaltigkeit/video-poster.webp",
 );
 const holzfaserHero = getMediaURL("/images/photography/timber-grain.webp");
+const holzfaserFlyerCover = getMediaURL(
+  "/images/pages/bauen-mit-boholz/flyer-holzfaserdaemmung-cover.webp",
+);
+const holzfaserFlyerPDF = getMediaURL(
+  "/images/pages/bauen-mit-boholz/flyer-holzfaserdaemmung.pdf",
+);
 const wandaufbauHero = getMediaURL(
   "/images/content/advantage/wandaufbau/hero.webp",
 );
@@ -84,6 +90,19 @@ const winter: FeatureCard = {
   imageAlt:
     "Winterlicher Wärmeerhalt — Holzfaserdämmung hält die Heizenergie im Haus",
 };
+
+// ── Section 6 — Wandaufbau editorial copy + Vorteile bullets.
+//
+// Per client brief: long block of body copy broken into bite-sized
+// blocks with icons. The intro + sub-paragraph each lead with body
+// colour (secondary) and finish with a highlighted last sentence in
+// primary — gives the eye a beat to land on the most important line.
+const wandaufbauVorteile: IconListItem[] = [
+  { icon: "layers", label: "Diffusionsoffener Wandaufbau" },
+  { icon: "leaf", label: "Natürliche und nachhaltige Materialien" },
+  { icon: "thermometer", label: "Angenehmes Raumklima zu jeder Jahreszeit" },
+  { icon: "shield", label: "Effektiver Schutz vor Feuchtigkeit und Schimmelbildung" },
+];
 
 // ── Section 6 — Wandaufbau Vergleich (ECO Nature vs ECO Nature Plus).
 const ecoNature: FeatureCard = {
@@ -411,7 +430,40 @@ unterstützt gleichzeitig eine natürliche Feuchtigkeitsregulierung der Wandkons
       />
     </figure>
     <FeatureCardPair client:visible left={sommer} right={winter} />
-    <p class="footnote">* Optionale Ausstattung — auf Wunsch verfügbar.</p>
+
+     <p class="footnote">* Optionale Ausstattung — auf Wunsch verfügbar.</p>
+
+    <!-- Print flyer · A4 PDF with cover preview + download CTA. Placed at
+         the end of the Holzfaserdämmung section because the flyer's content
+         is the same subject — gives the reader a take-home version. -->
+    <aside class="flyer" aria-labelledby="flyer-title">
+      <a class="flyer-cover" href={holzfaserFlyerPDF} target="_blank" rel="noopener">
+        <img
+          src={holzfaserFlyerCover}
+          alt="Vorschau auf den BoHolz-Flyer: Holzfaserdämmung im Detail"
+          loading="lazy"
+          width="1743"
+          height="2400"
+        />
+      </a>
+      <div class="flyer-body">
+        <p class="flyer-eyebrow">Print-Flyer · PDF</p>
+        <h3 id="flyer-title" class="flyer-heading">Holzfaserdämmung im Detail</h3>
+        <p class="flyer-lede">
+          Alle Eigenschaften kompakt im A4-Format zum Mitnehmen oder Ausdrucken
+          — ideal für Ihren Beratungstermin oder zum Weitergeben an Familie und
+          Bauplaner.
+        </p>
+        <p class="flyer-meta">PDF · A4 · ca. 4 MB</p>
+        <div class="flyer-actions">
+          <Button variant="primary" size="md" href={holzfaserFlyerPDF}>
+            Flyer herunterladen
+          </Button>
+        </div>
+      </div>
+    </aside>
+
+   
   </Block>
 
   <!-- 6. Wandaufbau ---------------------------------------------------- -->
@@ -433,12 +485,43 @@ Wandaufbau mit hervorragenden Dämmeigenschaften.
       />
     </figure>
 
+    <p class="editorial-prose">
+      Unsere Außenwand „ECO Nature" schützt zuverlässig vor Kälte, sommerlicher
+      Hitze, Lärm und Feuchtigkeit – und schafft gleichzeitig ein gesundes und
+      angenehmes Wohnklima.
+      <span class="primary">
+        Durch den Einsatz ökologischer Holzfaserdämmung entsteht ein
+        nachhaltiges Zuhause mit hoher Energieeffizienz und natürlicher
+        Wohnqualität.
+      </span>
+    </p>
+
     <FeatureCardPair
       client:visible
       left={ecoNature}
       right={ecoNaturePlus}
       accent="right"
+      imageAspect="3 / 4"
     />
+
+    <div class="wandaufbau-followups">
+      <article class="follow-card">
+        <h4 class="follow-heading">Diffusionsoffen &amp; wohngesund</h4>
+        <p class="editorial-prose">
+          Im Gegensatz zu vielen herkömmlichen Bauweisen ermöglicht unser
+          Wandaufbau einen natürlichen Feuchtigkeitsaustausch.
+          <span class="primary">
+            Dadurch bleibt das Raumklima das ganze Jahr über angenehm und
+            ausgeglichen – ohne auf moderne Energieeffizienz zu verzichten.
+          </span>
+        </p>
+      </article>
+
+      <article class="follow-card">
+        <h4 class="follow-heading">Ihre Vorteile auf einen Blick</h4>
+        <IconList client:visible items={wandaufbauVorteile} columns={2} density="comfortable" />
+      </article>
+    </div>
 
     <details class="layers-details">
       <summary>Schicht für Schicht — alle Werte im Detail</summary>
@@ -645,5 +728,137 @@ Wandaufbau mit hervorragenden Dämmeigenschaften.
 
   .layers-inner {
     padding-block-start: var(--spacing-4);
+  }
+
+  /* ── Flyer download card — lives at the foot of section 04.
+        Layout: A4 cover image left, copy + CTA right. Drops to a single
+        column under tablet so the cover doesn't squeeze the text. The
+        cover is a clickable link to the PDF; the explicit button is the
+        primary affordance so screen readers don't only hit the image. ── */
+  .flyer {
+    display: grid;
+    grid-template-columns: minmax(180px, 220px) 1fr;
+    gap: var(--spacing-5);
+    align-items: start;
+    margin-block-start: var(--spacing-5);
+    padding: var(--spacing-4);
+    border: 1px solid var(--clr-border-secondary);
+    border-radius: var(--radius-lg);
+    background: var(--clr-surface-primary);
+  }
+
+  @media (--below-desktop) {
+    .flyer {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-3);
+    }
+  }
+
+  .flyer-cover {
+    display: block;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-2);
+    transition: transform 240ms ease;
+  }
+
+  .flyer-cover:hover,
+  .flyer-cover:focus-visible {
+    transform: translateY(-2px);
+  }
+
+  .flyer-cover img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1743 / 2400;
+    object-fit: cover;
+  }
+
+  .flyer-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .flyer-eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: var(--fs-body-sm);
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--clr-content-tertiary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .flyer-heading {
+    margin: 0;
+    font-size: var(--fs-h5);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+  }
+
+  .flyer-lede {
+    margin: 0;
+    color: var(--clr-content-secondary);
+    line-height: var(--lh-body);
+  }
+
+  .flyer-meta {
+    margin: 0;
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-tertiary);
+  }
+
+  .flyer-actions {
+    margin-block-start: var(--spacing-2);
+  }
+
+  /* ── Editorial prose: secondary body, primary last-sentence emphasis.
+        Per the client brief — adds a final-line highlight to every body
+        paragraph so the eye lands on the most important claim. ── */
+  .editorial-prose {
+    margin: 0;
+    color: var(--clr-content-secondary);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    max-width: 70ch;
+  }
+
+  .editorial-prose .primary {
+    color: var(--clr-content-primary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* ── Wandaufbau follow-ups: two short cards under the comparison pair.
+        "Diffusionsoffen & wohngesund" reads as a value-statement paragraph;
+        "Ihre Vorteile" anchors with a 4-bullet IconList. Stacked under
+        tablet, side-by-side from desktop. ── */
+  .wandaufbau-followups {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+    margin-block-start: var(--spacing-5);
+  }
+
+  @media (--from-desktop) {
+    .wandaufbau-followups {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-5);
+    }
+  }
+
+  .follow-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .follow-heading {
+    margin: 0;
+    font-size: var(--fs-h6);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
   }
 </style>

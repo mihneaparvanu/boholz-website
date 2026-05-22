@@ -18,6 +18,18 @@ import {
 
 const locations = await getLocations();
 
+// Match showhouse content cards by slug to live DB locations so each card
+// can render the matching location's hero image. Falls back to the existing
+// VideoPlaceholder when no hero is found.
+const showhouseHeroBySlug = new Map<string, string>(
+  locations
+    .filter((l) => l.kind === "showhouse")
+    .flatMap((l) => {
+      const hero = l.media.find((m) => m.isHero)?.media.path;
+      return hero ? [[l.slug, hero] as const] : [];
+    }),
+);
+
 const mapsURL = (address: string): string =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 ---
@@ -66,22 +78,37 @@ const mapsURL = (address: string): string =>
 
     <div class="card-grid musterhaus-grid">
       {
-        musterhaeuser.map((h) => (
-          <article class="musterhaus">
-            <VideoPlaceholder
-              client:visible
-              slotId={`musterhaus-${h.slug}`}
-              aspectRatio="16/9"
-              variant="film"
-              label="Bildmaterial folgt"
-            />
-            <header class="head">
-              <h3 class="name">{h.name}</h3>
-              <p class="region">{h.state}</p>
-            </header>
-            <p class="body">{h.address}</p>
-          </article>
-        ))
+        musterhaeuser.map((h) => {
+          const heroSrc = showhouseHeroBySlug.get(h.slug);
+          return (
+            <article class="musterhaus">
+              {heroSrc ? (
+                <figure class="cover">
+                  <img
+                    src={heroSrc}
+                    alt={`${h.name} – Außenansicht`}
+                    loading="lazy"
+                    width="800"
+                    height="450"
+                  />
+                </figure>
+              ) : (
+                <VideoPlaceholder
+                  client:visible
+                  slotId={`musterhaus-${h.slug}`}
+                  aspectRatio="16/9"
+                  variant="film"
+                  label="Bildmaterial folgt"
+                />
+              )}
+              <header class="head">
+                <h3 class="name">{h.name}</h3>
+                <p class="region">{h.state}</p>
+              </header>
+              <p class="body">{h.address}</p>
+            </article>
+          );
+        })
       }
     </div>
   </section>
@@ -242,6 +269,23 @@ const mapsURL = (address: string): string =>
     display: flex;
     flex-direction: column;
     gap: var(--spacing-3);
+  }
+
+  /* Card cover image — matches the VideoPlaceholder it replaces (16:9,
+     lg radius) so existing card rhythm/padding stays intact. */
+  .musterhaus .cover {
+    margin: 0;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--clr-surface-secondary);
+  }
+
+  .musterhaus .cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .musterhaus .head {
