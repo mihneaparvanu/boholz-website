@@ -23,8 +23,12 @@ const sections = [
   { id: "kontakt", label: "Kontakt" },
 ];
 
-const descriptionPlaceholder =
-  "Kompaktes Einfamilienhaus mit klarer Architektur — geeignet für Bauplätze mit moderater Breite. Die Räume sind so geschnitten, dass sich Wohnen, Arbeiten und Rückzug klar gliedern.";
+// Use the model's own description; if it's empty, show nothing rather than
+// a generic placeholder shared across every house page.
+const description = model.description?.trim() || null;
+// First-sentence summary for the narrow SideCard.
+const lede = description ? (description.match(/^[^.!?]+[.!?]/)?.[0] ?? description) : null;
+const hasCategoryDescription = Boolean(model.category?.description);
 
 const leistungen = [
   "Schlüsselfertiger Innenausbau",
@@ -43,11 +47,7 @@ const leistungen = [
   <section id="hausansichten" class="hero-zone">
     <div class="hero-grid">
       <HeroGallery client:load model={model} />
-      <SideCard
-        client:load
-        model={model}
-        descriptionPlaceholder={descriptionPlaceholder}
-      />
+      <SideCard client:load model={model} lede={lede} />
     </div>
   </section>
 
@@ -57,10 +57,14 @@ const leistungen = [
 
   <section id="informationen" class="info">
     <h2 class="section-title">Informationen</h2>
-    <AccordionItem client:visible label="Beschreibung">
-      <p class="prose">{descriptionPlaceholder}</p>
-      <p class="prose" set:html={model.category?.description ?? ""} />
-    </AccordionItem>
+    {(description || hasCategoryDescription) && (
+      <AccordionItem client:visible label="Beschreibung">
+        {description && <p class="prose">{description}</p>}
+        {hasCategoryDescription && (
+          <p class="prose" set:html={model.category?.description} />
+        )}
+      </AccordionItem>
+    )}
     <AccordionItem client:visible label="Details">
       <DetailsGrid model={model} />
     </AccordionItem>

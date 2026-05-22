@@ -19,11 +19,45 @@ import {
 } from "@/features/FilterPanel/filter-panel.options";
 import { BESTSELLER_CATEGORY_ID } from "@/data/constants";
 import { parseLivingArea } from "@/utils/parseLivingArea";
+import { HOUSE_DROP_EXTRA_LINKS } from "@/layouts/Navbar/navbar.content";
 
 const props = defineProps<{
   models: HouseModel[];
   categories: HouseCategory[];
 }>();
+
+// Extra landing-page links (e.g. Mehrfamilienhäuser) shown alongside DB
+// categories. Each link mirrors another category's thumbnail/hero so the
+// visual fits the row; clicking navigates to the landing page rather than
+// filtering the catalog. Single source of truth: navbar.content.ts.
+type ExtraLinkVM = {
+  label: string;
+  path: string;
+  category: HouseCategory;
+};
+
+const extraLinks = computed<ExtraLinkVM[]>(() =>
+  HOUSE_DROP_EXTRA_LINKS.flatMap((link) => {
+    const mirror = props.categories.find(
+      (c) => c.slug === link.mirrorCategorySlug,
+    );
+    if (!mirror) return [];
+    return [
+      {
+        label: link.label,
+        path: link.path,
+        // Synthetic id/name/slug so the thumbnail never matches the
+        // selected category and shows the extra link's own label.
+        category: {
+          ...mirror,
+          id: `extra:${link.path}`,
+          name: link.label,
+          slug: `extra:${link.path}`,
+        },
+      },
+    ];
+  }),
+);
 
 const selectedCategory = ref<HouseCategory | null>(props.categories[0] ?? null);
 const isPanelOpen = ref(false);
@@ -351,6 +385,15 @@ watch(
           @click="handleCategorySelect(category)"
           :data-is-selected="category.id === selectedCategory?.id"
         />
+        <a
+          v-for="link in extraLinks"
+          :key="link.path"
+          :href="link.path"
+          class="extra-thumb"
+          :aria-label="link.label"
+        >
+          <CategoryThumbnail :category="link.category" />
+        </a>
       </div>
       <div class="filter-buttons-wrapper">
         <SortButton
@@ -413,6 +456,7 @@ watch(
       class="floating-menu"
       :categories="props.categories"
       :selected-id="selectedCategory?.id"
+      :extra-links="extraLinks.map((l) => ({ label: l.label, path: l.path }))"
       @select="handleCategorySelect"
     />
   </div>
@@ -422,10 +466,10 @@ watch(
 .houses-page-wrapper {
   grid-column: content;
 
-  /* Mobile: leave room at the bottom so the last card isn't covered by
-     the FloatingCategoryMenu. Matches the floating bar's inset + a touch
-     of breathing room. */
-  @media (--mobile) {
+  /* Mobile + tablet: leave room at the bottom so the last card isn't
+     covered by the FloatingCategoryMenu. Matches the floating bar's inset
+     + a touch of breathing room. */
+  @media (--below-desktop) {
     padding-block-end: calc(var(--spacing-7) + env(safe-area-inset-bottom, 0px));
   }
 
@@ -444,22 +488,32 @@ watch(
 
     .categories-wrapper {
       width: 100%;
-      display: grid;
-      gap: var(--spacing-4);
-      grid-template-columns: repeat(2, 1fr);
+      display: none;
+      gap: var(--spacing-3);
 
-      @media (--from-tablet) {
+      /* Inline category circles are desktop+ only — mobile + tablet use
+         the FloatingCategoryMenu at the bottom of the viewport instead. */
+      @media (--from-desktop) {
         display: flex;
-        gap: var(--spacing-3);
       }
 
       padding-block: var(--spacing-4);
+    }
 
-      /* Mobile uses the FloatingCategoryMenu instead — keep the inline grid
-         out of the document flow so the catalog starts at the filter row. */
-      @media (--mobile) {
-        display: none;
-      }
+    /* Anchor wrapper for landing-page extras (e.g. Mehrfamilienhäuser).
+       Inherits its visual from the nested CategoryThumbnail; we just
+       strip default link styles so the row reads as one consistent
+       sequence of circles. */
+    .extra-thumb {
+      display: inline-flex;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .extra-thumb:focus-visible {
+      outline: 2px solid var(--clr-accent-secondary);
+      outline-offset: 4px;
+      border-radius: var(--radius-full);
     }
 
     .filter-buttons-wrapper {

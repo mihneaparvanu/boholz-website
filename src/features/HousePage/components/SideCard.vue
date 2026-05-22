@@ -4,9 +4,9 @@ import Button from "@/components/ui/Button.vue";
 import type { HouseModel } from "@/types/models";
 import { formatCurrency } from "@/utils/format";
 
-const props = defineProps<{
+defineProps<{
   model: HouseModel;
-  descriptionPlaceholder: string;
+  lede: string | null;
 }>();
 </script>
 
@@ -25,7 +25,7 @@ const props = defineProps<{
       </p>
     </header>
 
-    <p class="lede">{{ descriptionPlaceholder }}</p>
+    <p v-if="lede" class="lede">{{ lede }}</p>
 
     <div class="actions">
       <Button variant="primary" size="md" href="/kontakt">

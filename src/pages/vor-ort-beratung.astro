@@ -15,8 +15,8 @@ import {
   buerosBY,
 } from "./vor-ort-beratung.content";
 
-// Map shows offices + headquarters — Musterhäuser have their own dedicated pages.
-const locations = await getLocations({ exceptKind: "showhouse" });
+
+const locations = await getLocations();
 
 const mapsURL = (address: string): string =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;

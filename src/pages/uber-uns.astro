@@ -10,18 +10,27 @@ import Divider from "@/components/ui/Divider.astro";
 import StatBlock from "@/components/ui/StatBlock.vue";
 import IconList from "@/components/ui/IconList.vue";
 import Button from "@/components/ui/Button.vue";
-import { HeartHandshake, Compass, Sparkles } from "lucide-vue-next";
-import { keitel } from "@/content/keitel";
+import LiteYouTube from "@/features/Advantage/LiteYouTube.vue";
+import PremiumPartnerBadge from "@/components/brand/PremiumPartnerBadge.vue";
+import { HeartHandshake, Compass, Sparkles, HardHat } from "lucide-vue-next";
+import { keitel, keitelArray } from "@/content/keitel";
 import { whatWeDoItems } from "./uber-uns.content";
+
+// "So entsteht ein Keitel-Haus" — https://www.youtube.com/watch?v=4zgslK2L3po
+const KEITEL_VIDEO_ID = "4zgslK2L3po";
+// Hotlinked from YouTube's CDN. If we later want a normalised R2 asset, swap
+// to `getMediaURL("/images/pages/uber-uns/keitel-video-poster.webp")`.
+const keitelVideoPoster = `https://i.ytimg.com/vi/${KEITEL_VIDEO_ID}/maxresdefault.jpg`;
+const keitelProse = keitelArray("uberUnsKeitelProse");
 ---
 
 <Layout title="Über Uns – BoHolz Haus">
   <div class="full-width">
     <PageHero
       eyebrow="Über uns"
-      title="Zwei Familienunternehmen."
+      title="Zwei starke Partner."
       highlight="Ein Maßstab."
-      subtitle="Ihr Haus, exakt nach Maß — geplant in Bad Kissingen, gebaut in Rot am See."
+      subtitle="Genauso will ich wohnen."
       image={getMediaURL("/images/pages/uber-uns/hero-partner-2000x776.webp")}
       imageAlt="BoHolz und Keitel-Haus — zwei Familienunternehmen, ein Maßstab"
       align="center"
@@ -35,7 +44,7 @@ import { whatWeDoItems } from "./uber-uns.content";
     <EyebrowHeadingLede
       eyebrow="Zwei starke Partner"
       heading="Vertrieb mit Haltung,"
-      highlight="Produktion mit Erfahrung."
+      highlight="Holzbau mit Erfahrung."
       lede={keitel("uberUnsPartnerLede")}
     >
       <Fragment slot="eyebrow-icon">
@@ -44,14 +53,23 @@ import { whatWeDoItems } from "./uber-uns.content";
     </EyebrowHeadingLede>
 
     <div class="prose">
+      <aside class="lede-badge" aria-label="BoHolz × Keitel-Haus Premium Partner">
+        <PremiumPartnerBadge client:visible width="120px" />
+      </aside>
+
       <p class="lead">
         <i class="open">Wir sind die Vertriebsgesellschaft hinter Ihrem
         BoHolz-Haus.</i> {keitel("uberUnsLeadProse")}
       </p>
 
+      <blockquote class="pull">
+        {keitel("uberUnsPartnerPullQuote")}
+      </blockquote>
+
       <p>
-        Vom Einfamilien- bis zum Generationenhaus, vom Wohn-Arbeits-Hybrid bis
-        zur Erweiterung — gemeinsam realisieren wir jedes Projekt nach Maß.
+        Ob Einfamilienhaus, Mehrgenerationenhaus oder individuelles
+        Wohnkonzept: Gemeinsam realisieren wir Häuser, die so individuell sind
+        wie die Menschen, die darin leben.
       </p>
     </div>
   </section>
@@ -81,8 +99,48 @@ import { whatWeDoItems } from "./uber-uns.content";
     />
   </section>
 
-  <!-- 04 — Unsere Werte (alternating tone — secondary band) -->
-  <Divider index={4} label="Werte" />
+  <!-- 04 — Unser starker Partner Keitel-Haus -->
+  <Divider index={4} label="Partner" />
+
+  <section id="keitel" class="section">
+    <EyebrowHeadingLede
+      eyebrow={keitel("uberUnsKeitelEyebrow")}
+      heading={keitel("uberUnsKeitelHeading")}
+      highlight={keitel("uberUnsKeitelHighlight")}
+      lede={keitel("uberUnsKeitelLede")}
+    >
+      <Fragment slot="eyebrow-icon">
+        <HardHat :size={14} :stroke-width={2} />
+      </Fragment>
+    </EyebrowHeadingLede>
+
+    <div class="prose">
+      <aside class="lede-badge" aria-label="BoHolz × Keitel-Haus Premium Partner">
+        <PremiumPartnerBadge client:visible width="120px" />
+      </aside>
+
+      {keitelProse.slice(0, 2).map((p) => <p>{p}</p>)}
+
+      <blockquote class="pull">
+        {keitel("uberUnsKeitelPullQuote")}
+      </blockquote>
+
+      {keitelProse.slice(2).map((p) => <p>{p}</p>)}
+    </div>
+
+    <div class="video-wrap">
+      <LiteYouTube
+        client:visible
+        videoId={KEITEL_VIDEO_ID}
+        posterURL={keitelVideoPoster}
+        label={keitel("uberUnsKeitelVideoLabel")}
+        caption={keitel("uberUnsKeitelVideoCaption")}
+      />
+    </div>
+  </section>
+
+  <!-- 05 — Unsere Werte (alternating tone — secondary band) -->
+  <Divider index={5} label="Werte" />
 
   <div class="band full-width">
     <section id="werte" class="section band-inner">
@@ -150,8 +208,8 @@ import { whatWeDoItems } from "./uber-uns.content";
     />
   </section>
 
-  <!-- 07 — Was wir tun (alternating tone — secondary band) -->
-  <Divider index={7} label="Was wir tun" />
+  <!-- 08 — Was wir tun (alternating tone — secondary band) -->
+  <Divider index={8} label="Was wir tun" />
 
   <div class="band full-width">
     <section id="was-wir-tun" class="section band-inner">
@@ -360,5 +418,51 @@ import { whatWeDoItems } from "./uber-uns.content";
      header and the list itself. */
   .list-wrap {
     margin-block-start: var(--spacing-4);
+  }
+
+  /* Keitel partner section video frame — sits below the prose with
+     extra breathing room, bounded so it doesn't outgrow the column
+     on wide viewports. */
+  .video-wrap {
+    margin-block-start: var(--spacing-5);
+    max-width: 64rem;
+    margin-inline: auto;
+  }
+
+  /* ── Lede badge cameo: floats right inside the prose column so the
+        Premium-Partner SVG sits alongside the opening copy. On mobile
+        the float collapses to a centered block above the prose so the
+        narrow column doesn't choke on a 120px aside. ── */
+  .lede-badge {
+    float: inline-end;
+    width: 120px;
+    margin-inline-start: var(--spacing-4);
+    margin-block-end: var(--spacing-2);
+    shape-outside: margin-box;
+  }
+
+  @media (--mobile) {
+    .lede-badge {
+      float: none;
+      display: flex;
+      justify-content: center;
+      width: auto;
+      margin: 0 auto var(--spacing-3);
+    }
+  }
+
+  /* ── Pull-quote callout: serif italic sentence pulled from the body
+        copy, left rule for emphasis. Sits between paragraphs to break
+        rhythm and give the section a visual handhold. ── */
+  .pull {
+    border-inline-start: 2px solid var(--clr-border-secondary);
+    padding-inline-start: var(--spacing-3);
+    margin-block: var(--spacing-4);
+    margin-inline: 0;
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-size: var(--fs-body-lg);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
   }
 </style>

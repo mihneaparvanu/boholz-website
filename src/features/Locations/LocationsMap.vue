@@ -38,9 +38,11 @@ const selected = ref<LocationWithAgents | null>(null);
       :center="GERMANY_CENTER"
       :zoom="GERMANY_ZOOM"
       :max-bounds="GERMANY_BOUNDS"
-      :attribution-control="{ compact: true }"
+      :attribution-control="{
+        compact: true,
+      }"
     >
-      <MglNavigationControl position="top-right" :show-compass="false" />
+      <MglNavigationControl position="top-right" :show-compass="true" />
 
       <LocationMarker
         v-for="loc in validLocations"

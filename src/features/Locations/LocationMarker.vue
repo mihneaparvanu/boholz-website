@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { MglMarker } from "@indoorequal/vue-maplibre-gl";
 import type { LocationWithAgents } from "@/types/models";
+import { House } from "lucide-vue-next";
 
 const props = defineProps<{ location: LocationWithAgents; active: boolean }>();
 defineEmits<{ select: [] }>();
@@ -23,7 +24,17 @@ const coordinates = computed<[number, number]>(() => [
         :aria-label="`Standort ${location.title}`"
         @click.stop="$emit('select')"
       >
-        <svg width="28" height="36" viewBox="0 0 32 40" aria-hidden="true">
+        <div v-if="location.kind === 'showhouse'" class="house-icon">
+          <House size="20" aria-hidden="true" />
+        </div>
+
+        <svg
+          v-if="location.kind === 'office'"
+          width="28"
+          height="36"
+          viewBox="0 0 32 40"
+          aria-hidden="true"
+        >
           <path
             class="body"
             d="M16 0C7.163 0 0 7.163 0 16c0 10 16 24 16 24S32 26 32 16C32 7.163 24.837 0 16 0z"
@@ -67,5 +78,13 @@ const coordinates = computed<[number, number]>(() => [
 
 .dot {
   fill: var(--clr-surface-primary);
+}
+
+.house-icon {
+  background-color: var(--clr-accent-primary);
+  transition: background-color 160ms ease;
+  padding: var(--spacing-1);
+  border-radius: 50%;
+  color: var(--clr-surface-primary);
 }
 </style>

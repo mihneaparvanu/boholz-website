@@ -14,10 +14,18 @@
 import { computed, onBeforeUnmount, ref, watch } from "vue";
 import type { HouseCategory } from "@/types/models";
 
+interface ExtraLink {
+  label: string;
+  path: string;
+}
+
 const props = defineProps<{
   categories: HouseCategory[];
   /** Currently selected category id (driven by the parent). */
   selectedId: string | null | undefined;
+  /** Anchor pills appended after the category pills (landing-page links
+      such as Mehrfamilienhäuser). They navigate, never filter. */
+  extraLinks?: ExtraLink[];
 }>();
 
 const emit = defineEmits<{
@@ -83,6 +91,9 @@ watch(activeId, (id) => {
           {{ cat.name }}
         </button>
       </li>
+      <li v-for="link in extraLinks ?? []" :key="link.path">
+        <a :href="link.path" class="pill pill-link">{{ link.label }}</a>
+      </li>
     </ul>
   </nav>
 </template>
@@ -98,6 +109,11 @@ watch(activeId, (id) => {
   /* Wrapper itself is pointer-transparent so taps outside the pill cluster
      fall through to whatever's beneath; the .pills element re-enables. */
   pointer-events: none;
+
+  /* Mobile + tablet only — desktop uses the inline category grid above. */
+  @media (--from-desktop) {
+    display: none;
+  }
 }
 
 .pills {

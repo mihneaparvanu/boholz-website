@@ -1,11 +1,15 @@
 <script setup lang="ts">
+import { computed, ref } from "vue";
 import { Motion, AnimatePresence } from "motion-v";
 import { Star } from "lucide-vue-next";
 import type { HouseCategory, Location } from "@/types/models";
 import { ROUTES } from "@/utils/routes";
 import { useCategoryGallery } from "@/composables/useCategoryGallery";
 import TitleLinks from "./TitleLinks.vue";
-import { HOUSE_DROP_EXTRA_LINKS } from "./navbar.content";
+import {
+  HOUSE_DROP_EXTRA_LINKS,
+  type HouseDropExtraLink,
+} from "./navbar.content";
 
 const props = defineProps<{
   categories: HouseCategory[];
@@ -22,6 +26,38 @@ const ctaLinks = [
   { label: "Kontakt", href: ROUTES.contact },
 ];
 const extraLinks = HOUSE_DROP_EXTRA_LINKS;
+
+// When the user is hovering an extra link (e.g. Mehrfamilienhäuser), the
+// showcase image mirrors another category's hero, but the title and click
+// destination stay tied to the extra link itself.
+const hoveredExtraLink = ref<HouseDropExtraLink | null>(null);
+
+function hoverCategory(category: HouseCategory) {
+  hoveredExtraLink.value = null;
+  select(category);
+}
+
+function hoverExtraLink(link: HouseDropExtraLink) {
+  hoveredExtraLink.value = link;
+  if (link.mirrorCategorySlug) {
+    const mirror = props.categories.find(
+      (c) => c.slug === link.mirrorCategorySlug,
+    );
+    if (mirror) select(mirror);
+  }
+}
+
+const showcaseTitle = computed(
+  () => hoveredExtraLink.value?.label ?? selected.value.name,
+);
+const showcaseHref = computed(
+  () =>
+    hoveredExtraLink.value?.path ??
+    `/hauser?category=${selected.value.slug}`,
+);
+const showcaseKey = computed(
+  () => hoveredExtraLink.value?.path ?? selected.value.id,
+);
 </script>
 
 <template>
@@ -36,7 +72,7 @@ const extraLinks = HOUSE_DROP_EXTRA_LINKS;
           :initial="{ opacity: 0, x: -8 }"
           :animate="{ opacity: 1, x: 0 }"
           :transition="{ duration: 0.32, delay: 0.05 + i * 0.035, ease: EASE }"
-          @mouseenter="select(category)"
+          @mouseenter="hoverCategory(category)"
         >
           <a :href="`/hauser?category=${category.slug}`">
             <span class="label">{{ category.name }}</span>
@@ -59,7 +95,6 @@ const extraLinks = HOUSE_DROP_EXTRA_LINKS;
           v-for="(link, j) in extraLinks"
           :key="link.path"
           tag="li"
-          :data-bestseller="link.path === 'bestseller' ? 'true' : null"
           :initial="{ opacity: 0, x: -8 }"
           :animate="{ opacity: 1, x: 0 }"
           :transition="{
@@ -67,6 +102,7 @@ const extraLinks = HOUSE_DROP_EXTRA_LINKS;
             delay: 0.05 + (props.categories.length + j) * 0.035,
             ease: EASE,
           }"
+          @mouseenter="hoverExtraLink(link)"
         >
           <a :href="link.path">{{ link.label }}</a>
         </Motion>
@@ -93,18 +129,18 @@ const extraLinks = HOUSE_DROP_EXTRA_LINKS;
     </div>
     <AnimatePresence mode="wait">
       <Motion
-        :key="selected.id"
+        :key="showcaseKey"
         tag="a"
         class="category-showcase"
-        :href="`/hauser?category=${selected.slug}`"
+        :href="showcaseHref"
         :initial="{ opacity: 0, scale: 1.02 }"
         :animate="{ opacity: 1, scale: 1 }"
         :exit="{ opacity: 0, scale: 1.02 }"
         :transition="{ duration: 0.32, ease: EASE }"
       >
         <div class="text-content">
-          <h3 class="title">{{ selected.name }}</h3>
-          <p>{{ `Entdecken Sie alle ${selected.name}` }}</p>
+          <h3 class="title">{{ showcaseTitle }}</h3>
+          <p>{{ `Entdecken Sie alle ${showcaseTitle}` }}</p>
         </div>
         <div class="image-wrapper">
           <img

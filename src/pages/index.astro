@@ -45,6 +45,7 @@ import { toHouseModelCard } from "@/data/derive";
 
 import { uebersichtContent as content } from "@/features/Landing/uebersicht.content";
 import ProofSection from "@/components/sections/Proof-Section.vue";
+import PremiumPartnerBadge from "@/components/brand/PremiumPartnerBadge.vue";
 import TrustBadges from "@/features/Home/TrustBadges/TrustBadges.vue";
 import { trustBadges } from "@/features/Home/TrustBadges/trust-badges.content";
 import { homeSections } from "@/features/Home/home.content";
@@ -102,6 +103,8 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     <TrustBadges client:visible badges={trustBadges} />
   </Block>
 
+ 
+  
   <!-- ── 02 · Benefits row ─────────────────────────────────────── -->
   <Block
     id="vorteile"
@@ -318,5 +321,24 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     color: var(--clr-content-secondary);
     font-size: var(--fs-body);
     line-height: var(--lh-body);
+  }
+
+  /* Premium Partner badge — small centered mark sitting between the trust
+     band and the benefits row. Restrained on purpose so it reads as a
+     trust signal, not a hero element. */
+  .premium-partner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-2);
+    text-align: center;
+  }
+
+  .premium-partner p {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: var(--fs-body-sm);
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--clr-content-secondary);
   }
 </style>
