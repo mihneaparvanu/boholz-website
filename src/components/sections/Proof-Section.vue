@@ -1,20 +1,40 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+// Data-driven badge row — matches the per-badge size pattern used in the
+// footer (no nth-child arithmetic, re-ordering is safe). Aspect values
+// mirror each symbol's viewBox inside `qualityBadgesColor.svg`.
+//
+// Holz-Rettet-Klima isn't included here — that mark belongs to the
+// sustainability message, not the "Geprüfte Qualität" trust strip.
+interface ProofBadge {
+  id: string;
+  label: string;
+  aspect: string;
+  size?: "default" | "wide";
+}
+
+const badges: ProofBadge[] = [
+  { id: "badge-qdf-color", label: "Qualitätsgemeinschaft Deutscher Fertigbau", aspect: "469 / 512" },
+  { id: "badge-gdf-color", label: "Gütegemeinschaft Deutsche Fertigbau", aspect: "709 / 512" },
+  { id: "badge-ral-color", label: "RAL Gütezeichen", aspect: "256 / 120", size: "wide" },
+  { id: "badge-bdf-color", label: "Bundesverband Deutscher Fertigbau", aspect: "474 / 512" },
+  { id: "badge-creditreform-color", label: "Creditreform Bonitätszertifikat", aspect: "388 / 512" },
+];
+</script>
 
 <template>
   <div class="proof">
     <span>Geprüfte Qualität · Zertifizierte Sicherheit</span>
     <div class="badges" aria-label="Qualitätssiegel">
-      <svg class="badge" aria-hidden="true">
-        <use href="#badge-qdf-color" />
-      </svg>
-      <svg class="badge" aria-hidden="true">
-        <use href="#badge-gdf-color" />
-      </svg>
-      <svg class="badge" aria-hidden="true">
-        <use href="#badge-ral-color" />
-      </svg>
-      <svg class="badge" aria-hidden="true">
-        <use href="#badge-bdf-color" />
+      <svg
+        v-for="b in badges"
+        :key="b.id"
+        class="badge"
+        :data-size="b.size ?? 'default'"
+        :style="{ aspectRatio: b.aspect }"
+        role="img"
+        :aria-label="b.label"
+      >
+        <use :href="`#${b.id}`" />
       </svg>
     </div>
   </div>
@@ -32,7 +52,6 @@
   span {
     text-transform: uppercase;
     font-size: var(--fs-body-sm);
-
     font-weight: var(--font-weight-medium);
     color: inherit;
     opacity: 0.9;
@@ -48,46 +67,35 @@
   flex-wrap: wrap;
 }
 
+/* Per-badge visual mass — `wide` lifts narrow-aspect marks (RAL) so their
+   content reads at the same perceived weight as the squarer neighbours. */
 .badge {
-  height: var(--fs-h3);
+  height: var(--badge-h, var(--fs-h3));
   width: auto;
 }
 
-/* per-symbol aspect ratios so the SVG reserves the right horizontal slot.
-   Values mirror the viewBox of each <symbol> in qualityBadgesColor.svg. */
-.badge:nth-child(1) {
-  aspect-ratio: 560 / 512;
-} /* iso        */
-.badge:nth-child(2) {
-  aspect-ratio: 474 / 512;
-} /* bdf        */
-.badge:nth-child(3) {
-  aspect-ratio: 100 / 200;
-} /* gdf        */
-.badge:nth-child(4) {
-  aspect-ratio: 300 / 300;
-} /* qdf        */
+.badge[data-size="default"] { --badge-h: var(--fs-h3); }
+.badge[data-size="wide"]    { --badge-h: var(--fs-h2); }
 
 @media (--below-desktop) {
-  /* Eyebrow drops to tertiary tone — the proof line is supporting copy,
-     not headline beat. */
+  /* Eyebrow drops to tertiary tone — proof line is supporting copy, not
+     headline beat. Shrink heights so all five fit one row on narrow
+     viewports without forcing a wrap. */
   .proof span {
     color: var(--clr-content-tertiary);
     opacity: 1;
   }
 
-  /* Six badges across a 360–430px viewport. Shrink the badge floor to
-     36–40px and tighten the row gap so they hold one line. The oversize
-     holz-klima badge scales down proportionally so it stays a hair larger
-     than the others without dominating. */
   .badges {
     flex-wrap: nowrap;
     justify-content: space-between;
-    gap: var(--spacing-4);
+    gap: var(--spacing-3);
   }
 
+  .badge[data-size="default"] { --badge-h: var(--fs-h4); }
+  .badge[data-size="wide"]    { --badge-h: var(--fs-h3); }
+
   .badge {
-    height: var(--fs-h4);
     flex-shrink: 1;
     min-width: 0;
   }
