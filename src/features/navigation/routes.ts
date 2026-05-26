@@ -10,7 +10,7 @@ export const ROUTES = {
   newsArticle: (slug: string) => `/news/${slug}`,
   contact: "/kontakt",
   catalog: "/katalog",
-  onsite: "vor-ort-beratung",
+  onsite: "/vor-ort-beratung",
   impressum: "/impressum",
   datenschutz: "/datenschutz",
   cookies: "/cookies",

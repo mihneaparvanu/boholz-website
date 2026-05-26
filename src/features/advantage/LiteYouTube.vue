@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { Play } from "lucide-vue-next";
 
 const props = withDefaults(
   defineProps<{
@@ -77,7 +76,9 @@ function warm() {
         <img :src="posterURL" :alt="label" loading="lazy" />
         <span class="scrim" aria-hidden="true" />
         <span class="play" aria-hidden="true">
-          <Play :size="28" :stroke-width="2" fill="currentColor" />
+          <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11.04-6.86a1 1 0 0 0 0-1.72L9.5 4.28a1 1 0 0 0-1.5.86Z" />
+          </svg>
         </span>
       </button>
     </div>
@@ -167,19 +168,17 @@ function warm() {
   place-items: center;
 }
 
-.play :deep(svg) {
-  /* The chip itself — circular glass affordance over imagery. A dark base
-     keeps the white play glyph legible regardless of poster brightness;
-     the soft drop shadow guarantees separation on busy scenes. */
+.play-icon {
+  width: 28px;
+  height: 28px;
   padding: var(--spacing-3);
+  box-sizing: content-box;
   background: color-mix(in srgb, #000 55%, transparent);
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--clr-pure-white) 18%, transparent);
   backdrop-filter: blur(6px) saturate(120%);
   -webkit-backdrop-filter: blur(6px) saturate(120%);
   box-shadow: 0 6px 24px color-mix(in srgb, #000 36%, transparent);
-  /* Optical adjustment — Play triangle is right-heavy; nudge it 1.5px left
-     inside the chip so it reads centred. */
   margin-inline-start: 1.5px;
   transition:
     transform 200ms ease,
@@ -187,11 +186,8 @@ function warm() {
     border-color 200ms ease;
 }
 
-/* Mobile: poster crops smaller, so the chip needs to read as a clear
-   affordance against a tighter frame. Larger inner padding bumps the chip's
-   visual footprint without changing the icon size. */
 @media (--mobile) {
-  .play :deep(svg) {
+  .play-icon {
     padding: var(--spacing-4);
   }
 }
@@ -210,8 +206,8 @@ function warm() {
   );
 }
 
-.poster:hover .play :deep(svg),
-.poster:focus-visible .play :deep(svg) {
+.poster:hover .play-icon,
+.poster:focus-visible .play-icon {
   background: color-mix(in srgb, #000 65%, transparent);
   transform: scale(1.06);
 }
@@ -233,14 +229,14 @@ function warm() {
 @media (prefers-reduced-motion: reduce) {
   .poster img,
   .scrim,
-  .play :deep(svg) {
+  .play-icon {
     transition: none;
   }
 
   .poster:hover img,
   .poster:focus-visible img,
-  .poster:hover .play :deep(svg),
-  .poster:focus-visible .play :deep(svg) {
+  .poster:hover .play-icon,
+  .poster:focus-visible .play-icon {
     transform: none;
   }
 }

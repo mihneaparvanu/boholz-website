@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { Menu, X, ChevronRight } from "lucide-vue-next";
 
 import NavbarLogo from "./parts/NavbarLogo.vue";
+import { ROUTES } from "@/features/navigation/routes";
 
 import { PRIMARY_NAV } from "./navbar.content";
 
@@ -82,6 +83,14 @@ function handleNavClick(event: MouseEvent, href: string) {
         </a>
       </li>
     </ul>
+
+    <a
+      class="onsite-cta"
+      :href="ROUTES.onsite"
+      @click="handleNavClick($event, ROUTES.onsite)"
+    >
+      Vor Ort Beratung
+    </a>
   </div>
 </template>
 
@@ -204,5 +213,24 @@ function handleNavClick(event: MouseEvent, href: string) {
   height: var(--sz-base);
   color: var(--clr-content-tertiary);
   transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.onsite-cta {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-3);
+  background: var(--clr-accent-secondary);
+  color: var(--clr-pure-white);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--fs-body);
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: background 160ms ease;
+}
+
+.onsite-cta:hover,
+.onsite-cta:focus-visible {
+  background: var(--clr-accent-secondary-hover, color-mix(in srgb, var(--clr-accent-secondary) 85%, #000));
 }
 </style>
