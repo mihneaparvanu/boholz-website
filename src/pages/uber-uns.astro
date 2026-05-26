@@ -13,12 +13,7 @@ import Button from "@/ui/primitives/Button.vue";
 import LiteYouTube from "@/features/advantage/LiteYouTube.vue";
 import PremiumPartnerBadge from "@/ui/icons/PremiumPartnerBadge.vue";
 import { HeartHandshake, Compass, HardHat } from "lucide-vue-next";
-import {
-  keitel,
-  keitelArray,
-  keitelPrinciples,
-  keitelFinancial,
-} from "@/features/faq/keitel";
+import { keitel, keitelArray } from "@/features/faq/keitel";
 import { whatWeDoItems } from "./uber-uns.content";
 
 // "So entsteht ein Keitel-Haus" — https://www.youtube.com/watch?v=4zgslK2L3po
@@ -27,7 +22,6 @@ const KEITEL_VIDEO_ID = "4zgslK2L3po";
 // to `getMediaURL("/images/pages/uber-uns/keitel-video-poster.webp")`.
 const keitelVideoPoster = `https://i.ytimg.com/vi/${KEITEL_VIDEO_ID}/maxresdefault.jpg`;
 const keitelIntroProse = keitelArray("uberUnsKeitelIntroProse");
-const keitelOutroProse = keitelArray("uberUnsKeitelOutroProse");
 ---
 
 <Layout title="Über Uns – BoHolz Haus">
@@ -113,59 +107,48 @@ const keitelOutroProse = keitelArray("uberUnsKeitelOutroProse");
       </aside>
 
       {keitelIntroProse.map((p) => <p>{p}</p>)}
+
+      <p>
+        Auch spezielle Wünsche wie Kombinationen von Wohn- und Arbeitsbereichen
+        oder individuelle Erweiterungen setzt Keitel Haus mit seinem Partner
+        BoHolz Haus gerne um. Ein weiterer Vorteil für alle Bauherren:
+      </p>
     </div>
 
-    {/*
-      Principles block — four dualistic statements lifted out of what was
-      previously a single sentence. The "X vor Y" form is the comparison
-      itself, so each pair gets its own cell rather than being forced into
-      a left-bad / right-good ComparisonBlock. PrinciplesGrid (already used
-      directly above for the service steps) would feel mechanical to repeat;
-      this typographic pair-grid is the right cadence for value statements
-      — primary term dominant, "vor X" hairline-quiet. Lives outside
-      `.prose` so it escapes the 70ch editorial measure and reads at the
-      section's natural width.
-    */}
-    <ol class="principles" role="list" aria-label="Vier feste Prinzipien">
-      {keitelPrinciples.map((p, i) => (
-        <li class="principle">
-          <span class="index" aria-hidden="true">
-            {String(i + 1).padStart(2, "0")}
-          </span>
-          <p class="primary">{p.primary}</p>
-          <p class="counter">
-            <span class="vor" aria-hidden="true">vor</span>
-            {" "}{p.counter}
-          </p>
-        </li>
-      ))}
-    </ol>
-
-    {/*
-      Financial-independence callout — the "100 % Eigenmittel" claim was
-      previously buried in prose; surfaced here as a StatBlock so it reads
-      as a substantive highlight without being flashy. Centred, single-up,
-      bounded — sits between the principles and the closing prose as its
-      own beat. Shield icon (registered in src/lib/icons.ts) reads as
-      stability / protection without being on-the-nose like a coin or
-      bank-vault glyph would be.
-    */}
-    <aside class="financial" aria-label="Finanzielle Eigenständigkeit">
-      <StatBlock
-        value={keitelFinancial.value}
-        label={keitelFinancial.label}
-        caption={keitelFinancial.caption}
-        icon="shield"
-        align="center"
-        client:visible
-      />
-    </aside>
-
-    {keitelOutroProse.length > 0 && (
-      <div class="prose outro">
-        {keitelOutroProse.map((p) => <p>{p}</p>)}
+    <dl class="keitel-values">
+      <div class="value-pair">
+        <dt>Tradition</dt>
+        <dd>
+          Als Familienunternehmen mit 90-jähriger Geschichte legt Keitel Haus
+          großen Wert auf eine Unternehmenskultur, die auf festen Prinzipien
+          beruht.
+        </dd>
       </div>
-    )}
+      <div class="value-pair">
+        <dt>Qualität</dt>
+        <dd>
+          Qualität geht vor Quantität, Individualität vor
+          Standardlösungen, umfassende Beratung vor Überredung,
+          transparente Baubeschreibung vor Kleingedrucktem.
+        </dd>
+      </div>
+      <div class="value-pair">
+        <dt>Sicherheit</dt>
+        <dd>
+          Als finanziell solides Unternehmen, das ausschließlich mit eigenen
+          Mitteln operiert, ist Keitel-Haus unabhängig von externen
+          Finanzierungspartnern.
+        </dd>
+      </div>
+      <div class="value-pair">
+        <dt>Nachhaltigkeit</dt>
+        <dd>
+          Das ist gerade in der heutigen Zeit enorm wichtig und gibt Ihnen die
+          nötige Sicherheit. So fließen alle Ressourcen gezielt in die Qualität,
+          Nachhaltigkeit und Ausstattung der Häuser.
+        </dd>
+      </div>
+    </dl>
 
     <div class="video-wrap">
       <LiteYouTube
@@ -471,109 +454,52 @@ const keitelOutroProse = keitelArray("uberUnsKeitelOutroProse");
     margin-inline: auto;
   }
 
-  /* ============================================================
-     Principles block — four "X vor Y" pairs as a typographic
-     pair-grid. Hairlines-only (no boxes, no shadows), primary term
-     dominant, "vor" rendered as a serif-italic connector at
-     content-tertiary tone so the eye lands on the primary first.
-     1-up mobile → 2-up tablet+. Brand value statements deserve
-     their own beat between the intro prose and the financial
-     callout.
-     ============================================================ */
-  .principles {
-    list-style: none;
-    margin: var(--spacing-5) 0 0 0;
-    padding: 0;
+  .keitel-values {
     display: grid;
     grid-template-columns: 1fr;
     gap: 0;
+    margin-block-start: var(--spacing-5);
     border-block-start: 1px solid var(--clr-border-secondary);
   }
 
   @media (--from-tablet) {
-    .principles {
+    .keitel-values {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
-  .principle {
-    /* Each cell carries its own bottom + start hairline; the grid
-       carries the top. Same rule logic as PrinciplesGrid so the two
-       blocks share a visual language across the page. */
+  .value-pair {
     border-block-end: 1px solid var(--clr-border-secondary);
     padding: var(--spacing-4) var(--spacing-3) var(--spacing-4) 0;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-1);
+    gap: var(--spacing-2);
     min-width: 0;
   }
 
   @media (--from-tablet) {
-    .principle {
+    .value-pair {
       padding: var(--spacing-4);
       border-inline-start: 1px solid var(--clr-border-secondary);
     }
-    .principle:nth-child(odd) {
+    .value-pair:nth-child(odd) {
       border-inline-start: 0;
     }
   }
 
-  .principle .index {
-    font-family: var(--font-secondary);
-    font-style: italic;
+  .value-pair dt {
     font-size: var(--fs-h5);
-    line-height: 1;
-    color: var(--clr-content-tertiary);
-    margin-block-end: var(--spacing-2);
-  }
-
-  .principle .primary {
-    margin: 0;
-    font-size: var(--fs-h4);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--ls-heading);
     line-height: var(--lh-heading);
     color: var(--clr-content-primary);
   }
 
-  .principle .counter {
+  .value-pair dd {
     margin: 0;
     font-size: var(--fs-body);
     line-height: var(--lh-body);
-    color: var(--clr-content-tertiary);
-  }
-
-  /* "vor" connector — serif italic, lighter tone, so the eye reads
-     the primary term first and only then registers the counterpoint. */
-  .principle .vor {
-    font-family: var(--font-secondary);
-    font-style: italic;
-    color: var(--clr-content-quaternary);
-    margin-inline-end: 0.15em;
-  }
-
-  /* ============================================================
-     Financial callout — a single StatBlock, centred, framed by
-     hairlines above and below so it sits between the principles
-     grid and the closing prose as its own beat. No card, no fill;
-     restraint is the brand register. The StatBlock's own caption
-     carries the substance; the hairlines + width clamp do the
-     framing work.
-     ============================================================ */
-  .financial {
-    margin-block-start: var(--spacing-6);
-    padding-block: var(--spacing-5);
-    border-block: 1px solid var(--clr-border-secondary);
-    display: grid;
-    place-items: center;
-  }
-
-  /* Outro prose — a short closing paragraph between the financial
-     callout and the video. Reset the top margin since `.prose` adds
-     `margin-block-start` by default and we want it spaced from the
-     callout, not double-spaced. */
-  .prose.outro {
-    margin-block-start: var(--spacing-5);
+    color: var(--clr-content-secondary);
   }
 
   /* ── Lede badge cameo: floats right inside the prose column so the

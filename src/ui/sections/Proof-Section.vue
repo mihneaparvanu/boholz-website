@@ -78,9 +78,9 @@ import { PROOF_CERTIFICATIONS as certifications } from "@/features/certification
     gap: var(--spacing-3);
   }
 
-  .badge[data-size="default"] { --badge-h: var(--fs-h3); }
-  .badge[data-size="wide"]    { --badge-h: var(--fs-h2); }
-  .badge[data-size="tall"]    { --badge-h: var(--fs-h2); }
+  .badge[data-size="default"] { --badge-h: var(--fs-h2); }
+  .badge[data-size="wide"]    { --badge-h: var(--fs-h1); }
+  .badge[data-size="tall"]    { --badge-h: var(--fs-h1); }
 
   .badge {
     flex-shrink: 1;
