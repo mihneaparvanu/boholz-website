@@ -3,8 +3,7 @@ import type { Section } from "@/features/section-navigator/SectionNavigator.vue"
 export const sections: Section[] = [
   { id: "karte", eyebrow: "01", label: "Karte" },
   { id: "musterhaeuser", eyebrow: "02", label: "Musterhäuser" },
-  { id: "bueros-bw", eyebrow: "03", label: "Büros Baden-Württemberg" },
-  { id: "bueros-by", eyebrow: "04", label: "Büros Bayern" },
+  { id: "bueros", eyebrow: "03", label: "Vertriebsbüros" },
 ];
 
 export type Showhouse = {
@@ -85,3 +84,5 @@ export const buerosBY: Buero[] = [
     address: "Bühler Ring, Vasbühl, 97440 Werneck",
   },
 ];
+
+export const allBueros: Buero[] = [...buerosBW, ...buerosBY];

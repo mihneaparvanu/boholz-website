@@ -1,18 +1,14 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import LocationsMap from "@/features/locations/LocationsMap.vue";
-import PageHero from "@/ui/sections/PageHero.astro";
 import CTASection from "@/ui/sections/CTASection.astro";
-import SectionNavigator from "@/features/section-navigator/SectionNavigator.vue";
 import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
 import VideoPlaceholder from "@/ui/primitives/VideoPlaceholder.vue";
 import { Building2, Home, MapPin } from "lucide-vue-next";
 import { getLocations } from "@/db/loaders";
 import {
-  sections,
   musterhaeuser,
-  buerosBW,
-  buerosBY,
+  allBueros,
 } from "./vor-ort-beratung.content";
 
 
@@ -35,41 +31,18 @@ const mapsURL = (address: string): string =>
 ---
 
 <Layout title="Vor-Ort-Beratung – BoHolz Haus">
-  <PageHero
-    eyebrow="Karte & Standorte"
-    title="Vor Ort"
-    highlight="Beratung."
-    subtitle="Holz, Pläne, Beratung — auf Wunsch ein Termin außerhalb der Öffnungszeiten. Drei Musterhäuser, zehn Vertriebsbüros, eine Zentrale in Bad Kissingen."
-    align="center"
-  />
+  <!-- Map first — full-width hero-style -->
+  <div class="map-hero full-width">
+    <LocationsMap client:only="vue" locations={locations} />
+  </div>
 
-  <SectionNavigator client:load pageTitle="Vor-Ort-Beratung" sections={sections} stickyOffset={64} />
-
-  <!-- 02. Karte -->
-  <section id="karte" class="page-section">
-    <EyebrowHeadingLede
-      eyebrow="Karte"
-      heading="Alle Standorte auf"
-      highlight="einen Blick."
-      lede="Klicken Sie auf einen Marker, um die Adresse und die Ansprechpartner des jeweiligen Standorts einzublenden."
-    >
-      <Fragment slot="eyebrow-icon">
-        <MapPin :size={14} :stroke-width={2} />
-      </Fragment>
-    </EyebrowHeadingLede>
-
-    <div class="map-frame">
-      <LocationsMap client:only="vue" locations={locations} />
-    </div>
-  </section>
-
-  <!-- 03. Musterhäuser -->
+  <!-- Musterhäuser -->
   <section id="musterhaeuser" class="page-section">
     <EyebrowHeadingLede
       eyebrow="Musterhäuser"
-      heading="Drei Häuser zum"
+      heading="Häuser zum"
       highlight="Anfassen."
-      lede="Spüren Sie Materialien, Wandstärken und Lichtführung vor Ort. Bildmaterial folgt — bis dahin ein Platzhalter."
+      lede="Spüren Sie Materialien, Wandstärken und Lichtführung vor Ort."
     >
       <Fragment slot="eyebrow-icon">
         <Home :size={14} :stroke-width={2} />
@@ -113,13 +86,13 @@ const mapsURL = (address: string): string =>
     </div>
   </section>
 
-  <!-- 04. Vertriebsbüros Baden-Württemberg -->
-  <section id="bueros-bw" class="page-section">
+  <!-- Vertriebsbüros -->
+  <section id="bueros" class="page-section">
     <EyebrowHeadingLede
-      eyebrow="Vertriebsbüros · Baden-Württemberg"
-      heading="Sechs Standorte"
-      highlight="im Süden."
-      lede="Von Bonndorf im Schwarzwald bis Schwäbisch Gmünd — Beratung in Wohnortnähe."
+      eyebrow="Vertriebsbüros"
+      heading="Zehn Standorte,"
+      highlight="ein Anspruch."
+      lede="Von Bonndorf im Schwarzwald bis München — Beratung in Wohnortnähe, mit der Zentrale in Bad Kissingen."
     >
       <Fragment slot="eyebrow-icon">
         <Building2 :size={14} :stroke-width={2} />
@@ -128,51 +101,7 @@ const mapsURL = (address: string): string =>
 
     <ul class="card-grid office-grid" role="list">
       {
-        buerosBW.map((o) => (
-          <li>
-            <article class="office">
-              <span class="office-icon" aria-hidden="true">
-                <Building2 :size={18} :stroke-width={1.75} />
-              </span>
-              <h3 class="office-name">{o.name}</h3>
-              <p class="office-address">
-                <span class="address-glyph" aria-hidden="true">
-                  <MapPin :size={14} :stroke-width={1.75} />
-                </span>
-                <span>{o.address}</span>
-              </p>
-              <a
-                class="office-link"
-                href={mapsURL(o.address)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Standort öffnen
-                <span class="arrow" aria-hidden="true">→</span>
-              </a>
-            </article>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-
-  <!-- 05. Vertriebsbüros Bayern -->
-  <section id="bueros-by" class="page-section">
-    <EyebrowHeadingLede
-      eyebrow="Vertriebsbüros · Bayern"
-      heading="Vier Standorte rund um die"
-      highlight="Zentrale."
-      lede="Hammelburg, Werneck, München — und die Zentrale in Bad Kissingen, in der alle Fäden zusammenlaufen."
-    >
-      <Fragment slot="eyebrow-icon">
-        <Building2 :size={14} :stroke-width={2} />
-      </Fragment>
-    </EyebrowHeadingLede>
-
-    <ul class="card-grid office-grid" role="list">
-      {
-        buerosBY.map((o) => (
+        allBueros.map((o) => (
           <li>
             <article class="office">
               <span class="office-icon" aria-hidden="true">
@@ -232,11 +161,22 @@ const mapsURL = (address: string): string =>
     border-block-start: none;
   }
 
-  /* ---------- Map ----------
-     LocationsMap's internal wrapper is 70vh tall and clips its corners — we
-     just give it the column it lives in. No extra chrome around the map. */
-  .map-frame {
+  /* ---------- Map hero ---------- */
+  .map-hero {
     width: 100%;
+    padding-inline: 0;
+  }
+
+  .map-hero :global(.map-wrapper) {
+    height: 70vh;
+    min-height: 420px;
+    border-radius: 0;
+  }
+
+  @media (--from-desktop) {
+    .map-hero :global(.map-wrapper) {
+      height: 55vh;
+    }
   }
 
   /* ---------- Card grids ----------
