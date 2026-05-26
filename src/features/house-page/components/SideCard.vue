@@ -4,6 +4,7 @@ import Button from "@/ui/primitives/Button.vue";
 import type { HouseModel } from "@/db/models";
 import { formatCurrency } from "@/lib/format";
 import { includesFoundation } from "@/lib/derive";
+import { ROUTES } from "@/features/navigation/routes";
 
 defineProps<{
   model: HouseModel;
@@ -13,10 +14,10 @@ defineProps<{
 
 <template>
   <aside class="card">
-    <div v-if="model.category" class="eyebrow">
+    <a v-if="model.category" class="eyebrow" :href="`${ROUTES.houses}?category=${model.category.slug}`">
       <House :size="14" :stroke-width="2" aria-hidden="true" />
       <span>{{ model.category.name }}</span>
-    </div>
+    </a>
 
     <header class="head">
       <h1 class="title">{{ model.title }}</h1>
@@ -74,6 +75,12 @@ defineProps<{
   font-weight: var(--font-weight-medium);
   letter-spacing: var(--tracking-eyebrow);
   color: var(--clr-content-secondary);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.eyebrow:hover {
+  color: var(--clr-accent-secondary);
 }
 
 .head {
