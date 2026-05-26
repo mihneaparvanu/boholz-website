@@ -286,8 +286,14 @@ const heroImage = bauphasenHeroImageURL;
   /* ── Card row ── */
   .cards {
     display: grid;
-    grid-template-columns:repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: var(--spacing-4);
+  }
+
+  @media (--from-desktop) {
+    .cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   /* ── Phase composite (image stacked above EditorialCard) ── */
