@@ -8,8 +8,9 @@
 //    follow-up decision (JSON column vs pivot table); flagged with `// TODO: roof variant`.
 //  - The new generationenhaus-22-280 model also needs an INSERT into house_models first.
 
-import { db } from "../../src/db/db";
-import { sql } from "drizzle-orm";
+import { sql } from 'drizzle-orm';
+
+import { db } from '../../src/db/db';
 
 const DRY_RUN = process.env.DRY === "1";
 

@@ -1,6 +1,7 @@
-import { getMediaURL } from "@/utils/media";
-import type { Section } from "@/components/ui/SectionNavigator.vue";
-import type { IconListItem } from "@/components/ui/IconList.vue";
+import { getMediaURL } from '@/lib/media';
+
+import type { Section } from "@/features/section-navigator/SectionNavigator.vue";
+import type { IconListItem } from "@/ui/primitives/IconList.vue";
 
 export const sections: Section[] = [
   { id: "ablauf", eyebrow: "01", label: "Der Ablauf" },

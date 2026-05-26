@@ -28,6 +28,44 @@ work in that area:
 
 Node ≥ 22.12 is required (`.node-version`).
 
+## Source structure
+
+```
+src/
+├── db/           schema, client, loaders, model types
+├── features/     domain slices (own state, data, business logic)
+├── layouts/      Layout.astro (page shell)
+├── lib/          cross-feature utilities (≤8 files)
+├── pages/        Astro routes
+└── ui/           design system (no domain knowledge)
+    ├── style/    CSS tokens, resets, breakpoints
+    ├── primitives/  atoms (Button, Card, FAQAccordion…)
+    ├── sections/    section bands (PageHero, Block, ZigZag, Section…)
+    └── icons/       icon components (BoholzLogo, GermanyFlag…)
+```
+
+**6 top-level dirs.** Each has a one-line rule. No `utils/`, no `components/`, no `composables/`.
+
+### The features-vs-ui test
+
+- **Owns state, fetches data, or has domain knowledge** → `features/<name>/`
+- **Pure presentational primitive (no domain)** → `ui/primitives/`
+- **Pure presentational section band (composes into a page)** → `ui/sections/`
+- If a component starts in `ui/` but grows domain logic, promote it to a feature.
+
+### Naming
+
+- **Folders:** kebab-case always. `house-page`, not `HousePage`.
+- **Files:** kebab-case for `.ts`; PascalCase for component files (`.vue`, `.astro`).
+- **No `utils`, `helpers`, `misc`, `common`, `shared`.** Each file is named for its domain.
+
+### Co-location
+
+- A file lives next to its single consumer. Only when a second consumer appears does it graduate to a shared location (`lib/` or `ui/`).
+- Single-page content → next to the page: `pages/karriere.content.ts`.
+- Feature-scoped content → inside the feature: `features/bauphasen/bauphasen.content.ts`.
+- Cross-feature content → `features/<shared-feature>/` or a dedicated content module.
+
 ## Architecture
 
 ### Rendering model
@@ -39,50 +77,41 @@ Astro pages (`src/pages/`) run on the server with `output: "server"` and the `@a
 ### Data layer
 
 - **Postgres + Drizzle ORM.** Schema lives in `src/db/schema.ts` under a dedicated `boholz` Postgres schema (`pgSchema("boholz")`). All tables go through `boholzSchema.table(...)`.
-- **Single source of truth for images:** the `media` table. Every entity (categories, models, floors, agents, news) joins to `media` via a pivot table (`category_media`, `model_media`, `floor_media`, `agent_media`, `news_media`) carrying flags like `isThumbnail`, `isHero`, `sortOrder`. When a thumbnail or hero fails to render, look at the pivot row, not the `media` row.
-- **DB client** in `src/db/db.ts` is a lazy Proxy singleton — no connection is opened at build time, only on first query. Works under both Astro's `import.meta.env` and Node's `process.env`.
-- **All loaders live in `src/data/loaders.ts`.** They use Drizzle's `db.query.*` with nested `with:` and resolve every `media.path` through `getMediaURL()` (which prepends `PUBLIC_ASSETS_URL`) before returning. Client components must always receive fully-resolved URLs — they don't have access to env vars.
-- **Virtual `BESTSELLER_CATEGORY`** (`src/data/loaders.ts`) is not in the DB; it's appended client-side and resolved by filtering `houseModels.isFeatured`. Keep this contract intact when changing category logic.
+- **Single source of truth for images:** the `media` table. Every entity joins to `media` via a pivot table (`category_media`, `model_media`, `floor_media`, `agent_media`, `news_media`) carrying flags like `isThumbnail`, `isHero`, `sortOrder`. When a thumbnail or hero fails to render, look at the pivot row, not the `media` row.
+- **DB client** in `src/db/db.ts` is a lazy Proxy singleton — no connection at build time, only on first query.
+- **All loaders live in `src/db/loaders.ts`.** They use Drizzle's `db.query.*` with nested `with:` and resolve every `media.path` through `getMediaURL()` (from `src/lib/media.ts`) before returning. Client components must always receive fully-resolved URLs.
+- **Entity types** live in `src/db/models.ts`, inferred from the schema.
+- **Virtual `BESTSELLER_CATEGORY`** is not in the DB; it's resolved client-side by filtering `houseModels.isFeatured`. The constant lives in `src/lib/constants.ts`.
 
 ### Media / assets
 
-Media files live in Cloudflare R2 (S3-compatible). `PUBLIC_ASSETS_URL` in `.env` is the R2 bucket base URL. Use the AWS CLI pointed at `https://<ACCOUNT_ID>.r2.cloudflarestorage.com` with the dev `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` for bucket operations. The DB stores only the path; `getMediaURL()` joins them.
+Media files live in Cloudflare R2 (S3-compatible). `PUBLIC_ASSETS_URL` in `.env` is the R2 bucket base URL. The DB stores only the path; `getMediaURL()` (in `src/lib/media.ts`) joins them.
 
 ### Routing
 
-File-based via `src/pages/`. German-language slugs (e.g. `hauser.astro`, `vor-ort-beratung.astro`, `uber-uns.astro`). Dynamic detail pages: `haus/[slug].astro` and `news/[slug].astro`. The shared `layouts/Layout.astro` fetches `getCategories()` and `getShowhouses()` for the global nav on every page; pass `categories` as a prop to avoid the extra query when the page already has them.
+File-based via `src/pages/`. German-language slugs (e.g. `hauser.astro`, `vor-ort-beratung.astro`, `uber-uns.astro`). Dynamic detail pages: `haus/[slug].astro` and `news/[slug].astro`. Route constants live in `src/features/navigation/routes.ts`. The shared `layouts/Layout.astro` fetches `getCategories()` and `getShowhouses()` for the global nav on every page.
 
 ### Features
 
-`src/features/<Feature>/` for self-contained, mostly-Vue feature areas (e.g. `Locations`, `HousePage`, `HousesPage`, `CategorySlider`, `FilterPanel`, `NewsPage`). `src/layouts/Navbar` and `src/layouts/Footer` are likewise feature-shaped.
+`src/features/<feature>/` for self-contained, kebab-case feature areas. Key features:
 
-`src/components/` holds cross-feature primitives, grouped by intent:
-
-- `components/ui/` — reusable UI atoms (`Card`, `SortButton`, `ImagePlaceholder`). No business logic, no feature coupling.
-- `components/brand/` — brand-specific marks (`BoholzLogo`).
-
-Single-caller components live next to their consumer (e.g. `TitleLinks` in `layouts/Navbar/`), not under `components/`. Promote to `components/ui/` only when a second feature needs it.
-
-### Content / data placement
-
-Three tiers — pick the smallest that still fits. The content file lives as close to its only consumer as possible; the moment a second consumer appears, it graduates to `src/content/`.
-
-- **Single page, no feature folder** → next to the page as `<page>.content.ts` (e.g. `src/pages/karriere.content.ts`, `src/pages/vor-ort-beratung.content.ts`).
-- **Inside a feature folder** → next to the component as `<feature>.content.ts` and `<feature>.types.ts` (e.g. `features/Home/home.content.ts`, `features/Home/BuildingStages/building-stages.content.ts`).
-- **Shared by 2+ pages or features** → `src/content/<topic>.ts` with the types declared in the same file (e.g. `content/qa.ts` exports `Question`, `QuestionCategory`, `qaCategories`). When this content eventually moves to the DB, the file becomes the seed shape.
-
-Naming is kebab-case, suffix `.content.ts` (or just `.ts` inside `src/content/` since the folder name already signals intent). DB entity types stay in `src/types/models.ts`. Don't pre-emptively split content into `models/` + `data/` folders — types live next to the data they describe.
+- `navigation/` — navbar, footer, `routes.ts`
+- `house-page/`, `houses-page/`, `news-page/` — page-backing features
+- `home/` — homepage components (TrustBadges, BuildingStages, Overview — multi-page)
+- `landing/` — shared landing page template content (types + per-variant `.content.ts`)
+- `section-navigator/` — scroll spy, click-lock, navbar-sync rail
+- `locations/`, `filter-panel/`, `category-slider/`, `faq/`, `contact-forms/`, etc.
 
 ### Styling
 
 Two layered systems — do not mix them inside one file:
 
-1. **Global CSS** in `src/style/` (`reset.css`, `design-system.css`, `wrapper.css`, `fonts.css`, `breakpoints.css`, `content-page.css`, `legal.css`). The design tokens — colors, typography scale — live as CSS custom properties in `design-system.css`. Use these tokens directly in `.astro` / `.vue` `<style>` blocks for page-level styling.
-2. **Vanilla Extract** (`.css.ts` files, co-located with the component) for component styling per `development.md`. Use `recipe()` for variants and extract prop types with `RecipeVariants<typeof myRecipe>`. Never hardcode a token value that exists in the theme contract.
+1. **Global CSS** in `src/ui/style/` (`reset.css`, `design-system.css`, `wrapper.css`, `fonts.css`, `breakpoints.css`, `legal.css`). Design tokens live as CSS custom properties in `design-system.css`.
+2. **Vanilla Extract** (`.css.ts` files, co-located with the component) for component styling.
 
-**No BEM, ever.** Class names must be short, semantic, local — `.head`, `.title`, `.cell`, `.muted`, `.active`. Never `.card__head`, `.card__title--muted`, `.cell--hero`. Vue `<style scoped>` and Vanilla Extract already give you the namespacing — the _file_ is the namespace. Repeating the component name inside class names is dead weight. Modifiers are separate classes (`class="pin active"`, not `class="pin pin--active"`) toggled with `:class="{ active }"`. Style state via attributes (`[data-state="open"]`) or chained selectors (`.pin.active .body`), never via `--modifier` suffixes.
+**No BEM, ever.** Class names must be short, semantic, local — `.head`, `.title`, `.cell`, `.muted`, `.active`. Vue `<style scoped>` and Vanilla Extract already give you the namespacing. Modifiers are separate classes toggled with `:class="{ active }"`. Style state via attributes (`[data-state="open"]`) or chained selectors (`.pin.active .body`).
 
-**Breakpoints — always use the `@custom-media` tokens from `src/style/breakpoints.css`.** Never hardcode pixel values in `@media` queries. The tokens are registered globally via `postcss-global-data` and work inside `<style scoped>` blocks.
+**Breakpoints — always use the `@custom-media` tokens from `src/ui/style/breakpoints.css`.** Never hardcode pixel values in `@media` queries. The tokens are registered globally via `postcss-global-data` and work inside `<style scoped>` blocks.
 
 | When you want…                 | Use                        |
 | ------------------------------ | -------------------------- |
@@ -94,32 +123,36 @@ Two layered systems — do not mix them inside one file:
 | Desktop and up                 | `@media (--from-desktop)`  |
 | Anything narrower than desktop | `@media (--below-desktop)` |
 
-If a layout needs a breakpoint not covered by these tokens, **add a new `@custom-media` to `breakpoints.css`** rather than inlining a pixel value. The point is one source of truth — refactoring breakpoints should be a one-file change.
+If a layout needs a breakpoint not covered by these tokens, **add a new `@custom-media` to `breakpoints.css`** rather than inlining a pixel value.
 
-For accessible interactive primitives (dialogs, dropdowns, navigation menus, etc.) use **Reka UI** (`reka-ui`) for behavior and style it with Vanilla Extract — Reka is headless and ships no visuals.
+For accessible interactive primitives (dialogs, dropdowns, navigation menus, etc.) use **Reka UI** (`reka-ui`) for behavior and style it with Vanilla Extract.
 
-Animation: GSAP (in-viewport reveals) + Lenis (smooth scroll). Keep easings minimal; the brand is precision, not bounce.
+Animation: `motion-v` (Vue port of Framer Motion) for transitions; native scroll with `position: sticky` and custom intersection-observer composables (`useScrollSpy`, `useScrollDirection`) for scroll-driven UI. Keep easings minimal; the brand is precision, not bounce.
 
-## Conventions specific to this repo
+## Conventions
 
-- **Workspace hygiene:** ad-hoc `bun x tsx` scripts created to inspect or fix DB state must be deleted (`rm -f`) once their output is captured. Do not leave `test-db.ts`, `fix-foo.ts`, etc. behind. Ad-hoc scripts go in `scripts/` (folder is created when needed) and the folder is removed when empty.
-- **Adding a new house model:** drop the source folder into `todo/houses-to-add/<Category>/<NAME>/` and invoke the `add-house-model` skill — it covers the R2-upload → DB-seed → cleanup pipeline.
-- **Dev-only content lives in `/dev/`** (planning docs, sandbox routes, migration guides). Never put experiments in `src/`. Never commit `/dev/` paths in a `main`-targeted push — `.githooks/pre-push` blocks it. Enable the hook once per clone: `git config core.hooksPath .githooks`.
-- **TypeScript:** no `any`. Three-layer model hierarchy (see `types-masterclass.md` for the full reasoning):
-  1. **Entity types** — inferred via `InferSelectModel<typeof table>`, live in `src/types/models.ts`. One per DB table. Never hand-written.
-  2. **Composite types** — entity + relations (e.g. `HouseModel & { media: Media[] }`). Named at the project level when reused; declared at the feature level otherwise.
-  3. **View models** — per-feature display shapes derived via `Pick` / `Omit` / `Awaited<ReturnType<typeof loader>>[number]`. Co-located in `src/features/<Feature>/types.ts`. Loaders' return shape _is_ the view model — derive, don't duplicate.
+- **Workspace hygiene:** ad-hoc `bun x tsx` scripts must be deleted once their output is captured. Ad-hoc scripts go in `scripts/` (folder is created when needed) and the folder is removed when empty.
+- **Adding a new house model:** drop the source folder into `todo/houses-to-add/<Category>/<NAME>/` and invoke the `add-house-model` skill.
+- **Dev-only content lives in `/dev/`** (planning docs, sandbox routes). Never put experiments in `src/`. Never commit `/dev/` paths in a `main`-targeted push — `.githooks/pre-push` blocks it. Enable the hook once per clone: `git config core.hooksPath .githooks`.
+- **TypeScript:** no `any`. Entity types in `src/db/models.ts` (inferred from schema). View models derived via `Pick`/`Omit`/`Awaited<ReturnType<>>`, co-located in `features/<feature>/types.ts`. Name a type when its name communicates intent that the structure doesn't.
+- **German umlauts in identifiers:** replace `ue/oe/ae/ss` in slugs and asset filenames.
+- **Image assets:** prefer WebP; minimum 1200px on shortest side; strip EXIF GPS but preserve ICC color profiles.
+- **SVGs:** logos and icons are implemented as components in `ui/icons/`, not raw `<img>` references.
 
-  Rule: **name a type when its name communicates intent that the structure doesn't.** Use `Pick`/`Omit`/`Partial`/`Record` aggressively; let TS infer one-off local shapes. Brand IDs (`Brand<string, "UserId">`) only where confusing two ID types would be a real bug. Zod schemas at trust boundaries (forms, API, env); not for internal data.
+## How to add a new page
 
-- **German umlauts in identifiers:** replace `ü → ue`, `ö → oe`, `ä → ae`, `ß → ss` in slugs and asset filenames.
-- **Image assets:** prefer WebP; minimum 1200px on shortest side; strip EXIF GPS but preserve ICC color profiles. Naming pattern when creating/renaming assets: `{category}_{house-slug}_{type}_{dimensions}.{ext}` (see `agent.md` for the full asset pipeline).
-- **SVGs:** logos and icons are implemented as components, not raw `<img>` references.
+1. Create `src/pages/<slug>.astro`. Import `Layout` from `@/layouts/Layout.astro`.
+2. If the page has static content, create `src/pages/<slug>.content.ts` next to it.
+3. Use section components from `@/ui/sections/` and primitives from `@/ui/primitives/`.
+
+## How to add a new feature
+
+1. Create `src/features/<kebab-name>/` with the main component and a `.types.ts` if needed.
+2. Keep content, composables, and sub-components inside the feature folder.
+3. Only graduate shared utilities to `lib/` when a second feature needs them.
 
 ## Reference files
 
-- `development.md` — fuller tech-stack brief and styling rules
-- `agent.md` — asset pipeline (WordPress export → sorted R2 library), house categories, naming standard
-- `types-masterclass.md` — comprehensive TS type-modeling guide (vs Swift/SwiftUI). Read once when working on type-heavy refactors; the conventions above are the TL;DR.
-- `maps-masterclass.md`, `reka-select.md`, `fouc-layout-masterclass.md` — deeper notes on specific subsystems
+- `docs/development.md` — fuller tech-stack brief and styling rules
+- `docs/agent.md` — asset pipeline, house categories, naming standard
 - `drizzle/` — generated SQL migrations; the schema source is `src/db/schema.ts`

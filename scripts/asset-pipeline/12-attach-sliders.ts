@@ -2,9 +2,10 @@
 // in that category. One media row per slider image, referenced from N pivots.
 // New pivots get sortOrder = (existing max + 1 + index), isHero/isThumbnail false.
 
-import manifest from "../../image-manifest.json";
-import { db } from "../../src/db/db";
-import { sql } from "drizzle-orm";
+import { sql } from 'drizzle-orm';
+
+import manifest from '../../image-manifest.json';
+import { db } from '../../src/db/db';
 
 const DRY_RUN = process.env.DRY === "1";
 

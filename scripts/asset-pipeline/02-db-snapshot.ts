@@ -1,12 +1,7 @@
-import { db } from "../../src/db/db";
+import { db } from '../../src/db/db';
 import {
-  houseCategories,
-  houseModels,
-  media,
-  modelMedia,
-  categoryMedia,
-  floorMedia,
-} from "../../src/db/schema";
+    categoryMedia, floorMedia, houseCategories, houseModels, media, modelMedia
+} from '../../src/db/schema';
 
 const categories = await db.select().from(houseCategories);
 const models = await db.select().from(houseModels);

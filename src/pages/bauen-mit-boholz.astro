@@ -1,23 +1,23 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import PageHero from "@/components/sections/PageHero.astro";
-import CTASection from "@/components/sections/CTASection.astro";
-import Block from "@/components/sections/Block.astro";
-import SectionNavigator from "@/components/ui/SectionNavigator.vue";
+import PageHero from "@/ui/sections/PageHero.astro";
+import CTASection from "@/ui/sections/CTASection.astro";
+import Block from "@/ui/sections/Block.astro";
+import SectionNavigator from "@/features/section-navigator/SectionNavigator.vue";
 import DefinitionList, {
   type DefinitionItem,
-} from "@/components/ui/DefinitionList.astro";
-import StatBlock from "@/components/ui/StatBlock.vue";
-import IconList, { type IconListItem } from "@/components/ui/IconList.vue";
-import EditorialCard from "@/components/ui/EditorialCard.vue";
-import Button from "@/components/ui/Button.vue";
+} from "@/ui/primitives/DefinitionList.astro";
+import StatBlock from "@/ui/primitives/StatBlock.vue";
+import IconList, { type IconListItem } from "@/ui/primitives/IconList.vue";
+import EditorialCard from "@/ui/primitives/EditorialCard.vue";
+import Button from "@/ui/primitives/Button.vue";
 import { ArrowRight, BookOpen } from "lucide-vue-next";
-import { getMediaURL } from "@/utils/media";
-import FeatureCardPair from "@/features/Advantage/FeatureCardPair.vue";
-import LiteYouTube from "@/features/Advantage/LiteYouTube.vue";
-import ZigZag, { type ZigZagBlock } from "@/components/sections/ZigZag.astro";
-import type { FeatureCard } from "@/features/Advantage/advantage.types";
-import { keitel } from "@/content/keitel";
+import { getMediaURL } from "@/lib/media";
+import FeatureCardPair from "@/features/advantage/FeatureCardPair.vue";
+import LiteYouTube from "@/features/advantage/LiteYouTube.vue";
+import ZigZag, { type ZigZagBlock } from "@/ui/sections/ZigZag.astro";
+import type { FeatureCard } from "@/features/advantage/advantage.types";
+import { keitel } from "@/features/faq/keitel";
 
 // ── Section index — drives the SectionNavigator's overview + sticky rail.
 const sections = [

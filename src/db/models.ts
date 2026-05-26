@@ -1,19 +1,8 @@
 import type { InferSelectModel } from "drizzle-orm";
 import {
-  houseModels,
-  houseDetails,
-  modelMedia,
-  houseCategories,
-  categoryMedia,
-  floorMedia,
-  media,
-  news,
-  newsMedia,
-  locations,
-  locationAgents,
-  locationMedia,
-  agents,
-} from "@/db/schema";
+    agents, categoryMedia, floorMedia, houseCategories, houseDetails, houseModels, locationAgents,
+    locationMedia, locations, media, modelMedia, news, newsMedia
+} from '@/db/schema';
 
 // Raw table row types — one per table
 export type BaseHouseModel = InferSelectModel<typeof houseModels>;

@@ -1,0 +1,112 @@
+---
+/**
+ * AudienceBlock — editorial roster of audience personas
+ * ("Für wen geeignet?"). Each row: icon + large label on the left,
+ * description on the right, separated by hairline rules above and below.
+ *
+ * The old marketing page rendered this as four boxed cards in a row —
+ * over-articulated. This is the same content as a near-editorial list,
+ * the way a newspaper would set it: typography does the work, lines
+ * carry the rhythm. Reuses neither IconList nor FeatureGrid because
+ * the desired vertical+horizontal split (label left, desc right) and
+ * the hairline-between-row pattern is structurally different.
+ *
+ * Mobile: single column, label sits above its description; hairlines
+ * survive.
+ */
+import { getIcon, type IconName } from "@/lib/icons";
+
+export interface AudienceItem {
+  icon: IconName;
+  label: string;
+  description: string;
+}
+
+interface Props {
+  items: AudienceItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="list" role="list">
+  {
+    items.map((item) => {
+      const Icon = getIcon(item.icon);
+      return (
+        <li class="row">
+          <div class="lhs">
+            <span class="icon" aria-hidden="true">
+              <Icon size={18} strokeWidth={1.75} />
+            </span>
+            <span class="label">{item.label}</span>
+          </div>
+          <p class="desc">{item.description}</p>
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style>
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* Hairline above the first row so the block is bounded top + bottom. */
+    border-block-start: 1px solid var(--clr-border-secondary);
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-1);
+    padding-block: var(--spacing-3);
+    border-block-end: 1px solid var(--clr-border-secondary);
+    min-width: 0;
+  }
+
+  @media (--from-tablet) {
+    .row {
+      grid-template-columns: minmax(18rem, 1fr) minmax(0, 2fr);
+      gap: var(--spacing-4);
+      align-items: baseline;
+      padding-block: var(--spacing-4);
+    }
+  }
+
+  .lhs {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    min-width: 0;
+  }
+
+  .icon {
+    /* Sized to optically match the label's cap height. */
+    width: var(--sz-xl);
+    height: var(--sz-xl);
+    display: inline-grid;
+    place-items: center;
+    color: var(--clr-content-tertiary);
+    flex-shrink: 0;
+  }
+
+  .label {
+    font-size: var(--fs-h5);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: var(--ls-heading);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+    min-width: 0;
+  }
+
+  .desc {
+    margin: 0;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--clr-content-secondary);
+    max-width: 56ch;
+  }
+</style>

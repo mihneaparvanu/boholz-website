@@ -1,0 +1,361 @@
+@import "/src/ui/style/fonts.css";
+@import "/src/ui/style/breakpoints.css";
+
+:root {
+  /* --- Colors--- */
+
+  /* Base */
+
+  --boholz-blau: rgba(145, 172, 190, 1);
+  --boholz-grun: rgba(162, 164, 131, 1);
+  --boholz-blau-alt: rgba(10, 120, 194, 1);
+  --boholz-blau-alt-deep: rgba(15, 89, 138, 1);
+  --pastell-bg: rgba(234, 236, 227, 1);
+  --pastell-petrol: rgba(167, 185, 184, 1);
+  --pastell-grün: rgba(181, 177, 151, 1);
+  --pastell-oliv: rgba(139, 147, 133, 1);
+  --pastell-oliv-alt: rgba(63, 93, 40, 1);
+
+  /* Vorteile palette — full-saturation brand tones used by BenefitsRow on
+     the /wohnen/* landing pages. Forest is dark (carries light text); sage
+     and leaf are light (carry primary text). The fourth slot uses
+     --clr-surface-primary directly. Sourced from the print campaign. */
+  --vorteil-forest: rgb(62, 76, 60);
+  --vorteil-sage: rgb(226, 231, 220);
+  --vorteil-leaf: rgb(208, 226, 170);
+  --light-stone: rgba(179, 170, 163, 1);
+  --stone: rgba(149, 137, 126, 1);
+  --stone-alt: rgba(127, 70, 26, 1);
+  --terracotta: rgba(147, 38, 26, 1);
+  --dark-stone: rgba(28, 25, 23, 1);
+  --neutral-gray-100: rgba(26, 26, 26, 1);
+  --neutral-gray-200: rgba(64, 64, 64, 1);
+  --neutral-gray-300: rgba(84, 84, 84, 1);
+  --neutral-gray-400: rgba(112, 112, 112, 1);
+  --neutral-gray-500: rgba(176, 176, 176, 1);
+  --neutral-gray-600: rgba(207, 207, 207, 1);
+  --neutral-gray-700: rgba(237, 237, 237, 1);
+  --neutral-gray-800: rgba(245, 245, 245, 1);
+  --neutral-gray-900: rgba(252, 252, 252, 1);
+  --warm-gray-100: rgba(26, 23, 20, 1);
+  --warm-gray-200: rgba(42, 40, 38, 1);
+  --warm-gray-300: rgba(89, 88, 87, 1);
+  --warm-gray-400: rgba(122, 121, 120, 1);
+  --warm-gray-500: rgba(153, 151, 150, 1);
+  --warm-gray-600: rgba(191, 189, 187, 1);
+  --warm-gray-700: rgba(224, 222, 220, 1);
+  --warm-gray-800: rgba(245, 243, 240, 1);
+  --warm-gray-900: rgba(252, 251, 250, 1);
+  --cold-gray-100: rgba(21, 25, 28, 1);
+  --cold-gray-200: rgba(54, 60, 64, 1);
+  --cold-gray-300: rgba(76, 84, 89, 1);
+  --cold-gray-350: rgba(94, 102, 108, 1);
+  --cold-gray-400: rgba(126, 135, 140, 1);
+  --cold-gray-500: rgba(158, 164, 168, 1);
+  --cold-gray-600: rgba(186, 189, 191, 1);
+  --cold-gray-700: rgba(219, 222, 224, 1);
+  --cold-gray-800: rgba(242, 244, 245, 1);
+  --cold-gray-900: rgba(249, 251, 252, 1);
+
+  /* Semantics */
+
+  /* Overlay */
+  --clr-overlay: rgba(0, 0, 0, 0.2);
+  --clr-overlay-strong: rgba(0, 0, 0, 0.9);
+
+  /* Surface */
+  --clr-surface-primary: var(--neutral-gray-900);
+  --clr-surface-secondary: var(--neutral-gray-800);
+  --clr-surface-tertiary: var(--cold-gray-900);
+  --clr-surface-quaternary: var(--pastell-bg);
+
+  /* Pure white — for text/logo/border on photographic or dark overlays.
+     `--clr-surface-primary` is a warm off-white (#FCFCFC); use this when
+     you need true #FFFFFF for legibility over imagery. */
+  --clr-pure-white: #ffffff;
+  --clr-pure-white-soft: rgba(255, 255, 255, 0.85);
+
+  /* Content
+     primary/secondary/tertiary: all pass AA text (4.5:1+) on every surface.
+     quaternary: UI-only tier (3:1+ on all surfaces) — dividers, disabled
+     states, decorative-only; NEVER body text. */
+  --clr-content-primary: var(--neutral-gray-100);
+  --clr-content-secondary: var(--cold-gray-300);
+  --clr-content-tertiary: var(--cold-gray-350);
+  --clr-content-quaternary: var(--cold-gray-400);
+
+  /* Border */
+  --clr-border-primary: var(--cold-gray-800);
+  --clr-border-secondary: var(--cold-gray-700);
+  --clr-border-tertiary: var(--cold-gray-600);
+  --clr-border-quaternary: var(--cold-gray-400);
+
+  /* Accent */
+  --clr-accent-primary: var(--boholz-blau);
+  --clr-accent-secondary: var(--boholz-blau-alt-deep);
+
+  /* Status */
+  --clr-status-info: var(--boholz-blau-alt-deep);
+  --clr-status-success: var(--pastell-oliv-alt);
+  --clr-status-warning: var(--stone-alt);
+  --clr-status-error: var(--terracotta);
+
+  /* Spacing — fluid Fibonacci scale
+     One clamp drives the whole thing. All steps are Fibonacci × the unit.
+     unit: 3px @ 320px viewport → 5px @ 1440px viewport
+     spacing-4 (the workhorse padding): 24px → 40px (was fixed 32px)      */
+  --spacing-unit: clamp(3px, 0.2vw + 2.14px, 5px);
+
+  --spacing-0: var(--spacing-unit); /* 3→5px   */
+  --spacing-1: calc(var(--spacing-unit) * 2); /* 6→10px  */
+  --spacing-2: calc(var(--spacing-unit) * 3); /* 9→15px  */
+  --spacing-3: calc(var(--spacing-unit) * 5); /* 15→25px */
+  --spacing-4: calc(var(--spacing-unit) * 8); /* 24→40px */
+  --spacing-5: calc(var(--spacing-unit) * 13); /* 39→65px */
+  --spacing-6: calc(var(--spacing-unit) * 21); /* 63→105px */
+  --spacing-7: calc(var(--spacing-unit) * 34); /* 102→170px */
+  --spacing-8: calc(var(--spacing-unit) * 55); /* 165→275px */
+
+  /* --- Control Heights — fluid, same unit as spacing, non-Fibonacci multipliers
+     (Fibonacci is for gaps/padding; controls need their own rhythm)
+     At midpoint viewport (~880px) unit ≈ 4px, matching Apple HIG hit targets:
+     sm: 7×  → 21→35px  (compact secondary controls)
+     md: 9×  → 27→45px  (default buttons, selects, inputs)
+     lg: 13× → 39→65px  (primary CTAs — same multiplier as spacing-5)     */
+  --control-height-sm: calc(var(--spacing-unit) * 7);
+  --control-height-md: calc(var(--spacing-unit) * 9);
+  --control-height-lg: calc(var(--spacing-unit) * 13);
+
+  /* --- Border Radius — derived from spacing unit so radius scales with spacing
+     sm: 1×  →  3→5px
+     md: 2×  →  6→10px
+     lg: 3×  →  9→15px
+     xl: 5×  → 15→25px  (Fibonacci step, matches spacing-2/3 rhythm)   */
+  --radius-sm: calc(var(--spacing-unit) * 1);
+  --radius-md: calc(var(--spacing-unit) * 2);
+  --radius-lg: calc(var(--spacing-unit) * 3);
+  --radius-xl: calc(var(--spacing-unit) * 5);
+  --radius-full: 9999px;
+
+  /* --- Elevation
+     Two soft layered shadows. Use `--shadow-1` for hover-lift on small
+     floats (cards, badges); use `--shadow-2` for popovers, dropdowns,
+     menu lists. Color follows the content tone via `color-mix` so the
+     same token reads correctly on light or dark surfaces.
+
+     Focus ring is a third box-shadow, kept here so every interactive
+     primitive composes it the same way:
+       :focus-visible { box-shadow: var(--focus-ring); }                  */
+  --shadow-1:
+    0 1px 2px color-mix(in srgb, var(--clr-content-primary) 6%, transparent),
+    0 8px 24px color-mix(in srgb, var(--clr-content-primary) 8%, transparent);
+
+  --shadow-2:
+    0 1px 2px color-mix(in srgb, var(--clr-content-primary) 6%, transparent),
+    0 12px 36px color-mix(in srgb, var(--clr-content-primary) 10%, transparent);
+
+  --focus-ring: 0 0 0 3px
+    color-mix(in srgb, var(--clr-accent-primary) 28%, transparent);
+
+  /* --- Scrims
+     Linear-gradients tuned for photographic heroes / image bands. Name by
+     where the dark side lives. Compose with `background:` on the scrim
+     element (sitting absolutely over the photo):
+
+       .scrim { background: var(--scrim-bottom); }
+
+     Patterns:
+       --scrim-bottom        soft: transparent → 35% → 50% bottom. Use on
+                             desktop heroes where copy sits in the lower-
+                             left quadrant only.
+       --scrim-bottom-strong heavier two-stop tint → dark. Use on mobile
+                             heroes where the headline + CTA occupy a
+                             much larger share of the photo and need a
+                             flat readability floor.
+       --scrim-left          left-weighted: dark left → transparent right.
+                             Use for panoramic bands with a left-anchored
+                             headline.                                     */
+  --scrim-bottom: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 35%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+
+  --scrim-bottom-strong: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+
+  --scrim-left: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.25) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  /* --- Typography --- */
+
+  /* Fonts */
+
+  --font-din: "DIN";
+  --font-josefin: "Josefin Sans";
+  --font-instrument-serif: "Instrument Serif";
+
+  --font-primary: var(--font-din), system-ui, sans-serif;
+  --font-secondary: var(--font-instrument-serif), serif;
+
+  /* Font Size */
+
+  --fs-base: 0.875rem;
+  --fs-scale: 1.33333;
+
+  --fs-body-sm: calc(var(--fs-body) / 1.15);
+  --fs-body: clamp(0.8125rem, var(--fs-base) + 0.4vw, 1.125rem);
+  --fs-body-lg: calc(var(--fs-body) * 1.15);
+  --fs-h6: calc(var(--fs-body) * var(--fs-scale));
+  --fs-h5: calc(var(--fs-h6) * var(--fs-scale));
+  --fs-h4: calc(var(--fs-h5) * var(--fs-scale));
+  --fs-h3: calc(var(--fs-h4) * var(--fs-scale));
+  --fs-h2: calc(var(--fs-h3) * var(--fs-scale));
+  --fs-h1: calc(var(--fs-h2) * var(--fs-scale));
+
+  /* Responsive overrides — two variables recalibrate the whole system.
+
+     below-desktop (< 1024px): moderate compression for tablets + wide phones
+       --fs-scale 1.333→1.25: brings h1 from ~80px down to ~60px at 700px
+
+     mobile (< 500px): full compression for phones
+       --fs-scale 1.333→1.2: h1 ~47px at 375px viewport
+       --spacing-unit 3px→2px: spacing-4 drops from 24px to 16px           */
+  @media (--below-desktop) {
+    --fs-scale: 1.25;
+  }
+
+  @media (--mobile) {
+    --fs-scale: 1.2;
+    --spacing-unit: 3px;
+  }
+
+  /* Size System (Shared Scale) */
+  --sz-scale: var(--fs-scale);
+  --sz-base: 1em; /* Tie this to the active font-size automatically (the em trick!) */
+
+  --sz-xs: calc(var(--sz-sm) / var(--sz-scale));
+  --sz-sm: calc(var(--sz-base) / var(--sz-scale));
+  --sz-md: var(--sz-base);
+  --sz-lg: calc(var(--sz-md) * var(--sz-scale));
+  --sz-xl: calc(var(--sz-lg) * var(--sz-scale));
+  --sz-2xl: calc(var(--sz-xl) * var(--sz-scale));
+  --sz-3xl: calc(var(--sz-2xl) * var(--sz-scale));
+
+  /* Line Height */
+  --lh-tight: 1;
+  --lh-heading: 1.1;
+  --lh-body: 1.5;
+
+  /* Letter Spacing */
+  --ls-heading: -0.02em;
+  --ls-body: 0.02em;
+  /* Eyebrow / small-caps label tracking — used by SectionNavigator and the
+     §1.4 Eyebrow pattern. Mirrors the inline value already in PageHero.astro. */
+  --tracking-eyebrow: 0.12em;
+
+  /* Font weights — naming the inline numbers used across the system. */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Semantic weight tokens. Drives every h1–h6 in one place. */
+  --font-weight-heading: var(--font-weight-medium);
+
+  --navbar-height: var(--spacing-6);
+
+  /* Navbar logo width — named so we can tune mobile vs desktop independently
+     without hunting through `:deep(.logo)` rules. Desktop tracks the type
+     scale via --sz-3xl (~28–36px depending on viewport); mobile is a fixed
+     value chosen to feel present at 360–430px without dominating the bar.
+     Bumped 40→46 on 2026-05-18 — the mark felt undersized at 390px once the
+     trigger and Katalog CTA were on the same row. */
+  --navbar-logo: var(--sz-3xl);
+  --navbar-logo-mobile: 46px;
+}
+
+body {
+  font: 300 var(--fs-body)/var(--lh-body) var(--font-primary);
+  letter-spacing: var(--ls-body);
+  color: var(--clr-content-primary);
+  background-color: var(--clr-surface-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-heading);
+  letter-spacing: var(--ls-heading);
+}
+
+h1 {
+  font-size: var(--fs-h1);
+}
+
+h2 {
+  font-size: var(--fs-h3);
+}
+
+h3 {
+  font-size: var(--fs-h5);
+}
+
+h1,
+h2,
+h3 {
+  line-height: var(--lh-heading);
+}
+
+h4 {
+  font-size: var(--fs-h6);
+}
+
+h5 {
+  font-size: var(--fs-h5);
+}
+
+h6 {
+  font-size: var(--fs-h6);
+}
+
+h4,
+h5,
+h6 {
+  line-height: var(--lh-body);
+}
+
+@media (--mobile) {
+  :root {
+    --padding-inline: 20px;
+    --spacing-5: 40px;
+    --spacing-6: 64px;
+    --spacing-7: 96px;
+    --spacing-8: 144px;
+    --navbar-height: 84px;
+    --control-height-md: 44px;
+    --control-height-lg: 52px;
+  }
+}
+
+/* Italic heading highlights render in BoHolz brand blue site-wide. Double-class
+   selectors keep specificity above Vue/Astro scoped-style hashes that would
+   otherwise win on per-component .highlight / .index rules. */
+body em,
+body i:not(.open),
+body .highlight.highlight,
+body .index.index {
+  color: var(--clr-accent-primary);
+}

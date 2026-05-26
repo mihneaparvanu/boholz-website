@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import HousesPage from "@/features/HousesPage/HousesPage.vue";
-import { getCategories, getModels } from "@/data/loaders";
+import HousesPage from "@/features/houses-page/HousesPage.vue";
+import { getCategories, getModels } from "@/db/loaders";
 
 const [models, categories] = await Promise.all([getModels(), getCategories()]);
 ---

@@ -2,10 +2,11 @@
 // Writes back to image-manifest.json with status per asset.
 // Idempotent: re-running after success uploads 0 files.
 
-import manifest from "../../image-manifest.json";
-import { $ } from "bun";
-import { writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { $ } from 'bun';
+import { writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+import manifest from '../../image-manifest.json';
 
 const ENDPOINT = process.env.R2_ENDPOINT;
 const BUCKET = process.env.R2_BUCKET ?? manifest.bucket;

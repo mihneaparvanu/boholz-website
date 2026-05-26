@@ -1,16 +1,16 @@
 ---
-import "@/style/reset.css";
-import "@/style/design-system.css";
-import "@/style/wrapper.css";
+import "@/ui/style/reset.css";
+import "@/ui/style/design-system.css";
+import "@/ui/style/wrapper.css";
 
-import qualityBadgesColorSprite from "@/icons/qualityBadgesColor.svg?raw";
+import certificationsSprite from "@/features/certifications/certifications.svg?raw";
 
-import Navbar from "./Navbar/Navbar.vue";
-import Footer from "./Footer/Footer.astro";
-import CookieConsent from "../features/CookieConsent/CookieConsent.vue";
+import Navbar from "@/features/navigation/navbar/Navbar.vue";
+import Footer from "@/features/navigation/footer/Footer.astro";
+import CookieConsent from "@/features/cookie-consent/CookieConsent.vue";
 
-import { getCategories, getLocations } from "@/data/loaders";
-import type { HouseCategory } from "@/types/models";
+import { getCategories, getLocations } from "@/db/loaders";
+import type { HouseCategory } from "@/db/models";
 
 interface Props {
   title: string;
@@ -27,12 +27,11 @@ const showhouses = await getLocations({ kind: "showhouse" });
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
   </head>
   <body>
-    <Fragment set:html={qualityBadgesColorSprite} />
+    <Fragment set:html={certificationsSprite} />
     <Navbar
       client:load
       categories={categories}

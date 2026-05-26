@@ -16,9 +16,10 @@
 //      photo uploaded in script 18) to isHero=true isThumbnail=true so the
 //      model still has a hero.
 
-import { db } from "../../src/db/db";
-import { sql } from "drizzle-orm";
-import { $ } from "bun";
+import { $ } from 'bun';
+import { sql } from 'drizzle-orm';
+
+import { db } from '../../src/db/db';
 
 const DRY_RUN = process.env.DRY === "1";
 const BUCKET = process.env.R2_BUCKET!;

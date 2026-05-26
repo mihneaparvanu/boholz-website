@@ -2,8 +2,8 @@
 // Strategy: wipe category_media + model_media + floor_media + their media rows
 // (preserving news_media + location_media references), then INSERT fresh.
 
-import manifest from "../../image-manifest.json";
-import db from "../../dev/asset-audit/db-state.json";
+import db from '../../dev/asset-audit/db-state.json';
+import manifest from '../../image-manifest.json';
 
 type Asset = (typeof manifest.assets)[number];
 

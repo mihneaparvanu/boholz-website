@@ -10,9 +10,10 @@
 //       250 bytes apart (same plan with metadata variance) — keep the SHORT path,
 //       delete the LONG one's pivot + media + R2 object, rename (2)→canonical.
 
-import { db } from "../../src/db/db";
-import { sql } from "drizzle-orm";
-import { $ } from "bun";
+import { $ } from 'bun';
+import { sql } from 'drizzle-orm';
+
+import { db } from '../../src/db/db';
 
 const DRY_RUN = process.env.DRY === "1";
 const BUCKET = process.env.R2_BUCKET!;

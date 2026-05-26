@@ -1,12 +1,12 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getLocations } from "@/data/loaders";
+import { getLocations } from "@/db/loaders";
 
-import PageHero from "@/components/sections/PageHero.astro";
-import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
-import CTASection from "@/components/sections/CTASection.astro";
-import Button from "@/components/ui/Button.vue";
-import { ROUTES } from "@/utils/routes";
+import PageHero from "@/ui/sections/PageHero.astro";
+import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
+import CTASection from "@/ui/sections/CTASection.astro";
+import Button from "@/ui/primitives/Button.vue";
+import { ROUTES } from "@/features/navigation/routes";
 import { ArrowLeft, MapPin, Phone, Mail } from "lucide-vue-next";
 
 const { slug } = Astro.params;

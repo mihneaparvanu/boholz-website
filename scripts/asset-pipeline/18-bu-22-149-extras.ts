@@ -7,11 +7,12 @@
 // is added — the default variant stays unqualified; the future Flachdach
 // variant will be the one carrying the qualifier.
 
-import { db } from "../../src/db/db";
-import { sql } from "drizzle-orm";
-import { $ } from "bun";
-import sharp from "sharp";
-import { rm } from "node:fs/promises";
+import { $ } from 'bun';
+import { sql } from 'drizzle-orm';
+import { rm } from 'node:fs/promises';
+import sharp from 'sharp';
+
+import { db } from '../../src/db/db';
 
 const DRY_RUN = process.env.DRY === "1";
 const BUCKET = process.env.R2_BUCKET!;

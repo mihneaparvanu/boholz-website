@@ -1,0 +1,19 @@
+/* --- Josefin Sans --- */
+
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+/* --- Instrument Serif --- */
+
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
+
+/* --- DIN (DINish v4, OFL, variable font) ---
+   Single VF covers weights 300–800 plus the slant axis for italics.
+   See public/fonts/DIN/OFL.txt for the license. */
+
+@font-face {
+  font-family: "DIN";
+  src: url("/fonts/DIN/DINish.woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: oblique 0deg 12deg;
+  font-display: swap;
+}

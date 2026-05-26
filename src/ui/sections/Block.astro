@@ -1,0 +1,125 @@
+---
+/**
+ * Section primitive — one source of truth for the `.block` rhythm and the
+ * `.band` full-bleed tinted-surface variant that repeat across the
+ * marketing pages.
+ *
+ * - `tone="default"` renders a plain content-column `<section>`.
+ * - `tone="band"` wraps the section in a `.band.full-width` escape and
+ *   re-centres on `--content-max-width` via `.band-inner`.
+ *
+ * When `heading` is present the heading bundle renders via
+ * `EyebrowHeadingLede`. Otherwise the section collapses to its slot
+ * content (used by content-only beats like Proof-Section / VideoPlaceholder).
+ */
+import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
+
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  heading?: string;
+  highlight?: string;
+  lede?: string;
+  tone?: "default" | "band";
+  align?: "start" | "center";
+}
+
+const {
+  id,
+  eyebrow,
+  heading,
+  highlight,
+  lede,
+  tone = "default",
+  align = "start",
+} = Astro.props;
+
+const isBand = tone === "band";
+const sectionClass = isBand ? "block band-inner" : "block";
+---
+
+{isBand ? (
+  <div class="band full-width">
+    <section id={id} class={sectionClass}>
+      {heading && (
+        <EyebrowHeadingLede
+          eyebrow={eyebrow}
+          heading={heading}
+          highlight={highlight}
+          lede={lede}
+          align={align}
+        />
+      )}
+      <slot />
+      {Astro.slots.has("actions") && (
+        <div class="actions"><slot name="actions" /></div>
+      )}
+    </section>
+  </div>
+) : (
+  <section id={id} class={sectionClass}>
+    {heading && (
+      <EyebrowHeadingLede
+        eyebrow={eyebrow}
+        heading={heading}
+        highlight={highlight}
+        lede={lede}
+        align={align}
+      />
+    )}
+    <slot />
+    {Astro.slots.has("actions") && (
+      <div class="actions"><slot name="actions" /></div>
+    )}
+  </section>
+)}
+
+<style>
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-5);
+    padding-block: var(--spacing-6);
+    scroll-margin-block-start: var(--navbar-height);
+  }
+
+  .block:first-of-type {
+    padding-block-start: var(--spacing-5);
+  }
+
+  .band {
+    background: var(--clr-surface-secondary);
+    padding-inline: var(--padding-inline);
+  }
+
+  .band-inner {
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  /* Trailing CTA pair — pinned below the slot content, centred under the
+     content column. Mirrors the old-design "Persönliches Angebot · Katalog"
+     duo at the end of each marketing beat. */
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-2);
+  }
+
+  @media (--mobile) {
+    .block {
+      gap: var(--spacing-4);
+      padding-block: var(--spacing-5);
+    }
+    /* Stack the trailing CTA pair so each full-width Button sits on its
+       own row instead of being squeezed side-by-side. */
+    .actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+  }
+</style>

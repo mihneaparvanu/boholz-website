@@ -1,0 +1,185 @@
+---
+export interface Testimonial {
+  name: string;
+  role: string;
+  rating: number;
+  quote: string;
+}
+
+export interface CredentialBadge {
+  label: string;
+  sub?: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  highlight?: string;
+  lede?: string;
+  tone?: "olive" | "graphite" | "stone";
+  badges?: CredentialBadge[];
+  testimonials?: Testimonial[];
+}
+
+const {
+  eyebrow,
+  heading,
+  highlight,
+  lede,
+  tone = "olive",
+  badges = [],
+  testimonials = [],
+} = Astro.props;
+
+const toneMap = {
+  olive: "var(--clr-surface-olive, #3d4a3a)",
+  graphite: "var(--clr-surface-graphite, #2c2c2c)",
+  stone: "var(--clr-surface-stone, #4a4a42)",
+};
+---
+
+<section class="band full-width" style={`--band-bg: ${toneMap[tone]}`}>
+  <div class="inner">
+    <div class="heading-group">
+      {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+      <h2>
+        {heading}
+        {highlight && <span class="highlight"> {highlight}</span>}
+      </h2>
+      {lede && <p class="lede">{lede}</p>}
+    </div>
+
+    {testimonials.length > 0 && (
+      <div class="quotes">
+        {testimonials.map((t) => (
+          <blockquote class="quote">
+            <p>{t.quote}</p>
+            <footer>
+              <strong>{t.name}</strong>
+              <span>{t.role}</span>
+              <span class="stars" aria-label={`${t.rating} von 5 Sternen`}>
+                {"★".repeat(t.rating)}
+              </span>
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+    )}
+
+    {badges.length > 0 && (
+      <div class="badges">
+        {badges.map((b) => (
+          <span class="badge">
+            {b.label}
+            {b.sub && <span class="sub">{b.sub}</span>}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .band {
+    background: var(--band-bg);
+    color: var(--clr-surface-primary, #fff);
+    padding-block: var(--spacing-7, 4rem);
+    padding-inline: var(--padding-inline, 1.5rem);
+  }
+
+  .inner {
+    max-width: var(--content-max-width, 72rem);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-6, 3rem);
+  }
+
+  .heading-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-3, 1rem);
+    text-align: center;
+    max-width: 64ch;
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    font-size: var(--fs-body-sm, 0.875rem);
+    letter-spacing: var(--tracking-eyebrow, 0.08em);
+    opacity: 0.7;
+  }
+
+  h2 {
+    font-weight: var(--font-weight-medium, 500);
+  }
+
+  .highlight {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: var(--font-weight-medium, 500);
+    color: var(--highlight-color, currentColor);
+  }
+
+  .lede {
+    opacity: 0.8;
+    max-width: 56rem;
+  }
+
+  .quotes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: var(--spacing-5, 2rem);
+    width: 100%;
+  }
+
+  .quote {
+    margin: 0;
+    padding: var(--spacing-4, 1.5rem);
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md, 0.75rem);
+  }
+
+  .quote p {
+    margin: 0 0 var(--spacing-3, 1rem);
+    font-style: italic;
+    line-height: var(--lh-body, 1.6);
+  }
+
+  .quote footer {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2, 0.5rem);
+    font-size: var(--fs-body-sm, 0.875rem);
+    opacity: 0.8;
+  }
+
+  .stars {
+    color: #f5c518;
+  }
+
+  .badges {
+    display: flex;
+    gap: var(--spacing-3, 1rem);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-2, 0.5rem) var(--spacing-3, 1rem);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm, 0.5rem);
+    font-size: var(--fs-body-sm, 0.875rem);
+    font-weight: var(--font-weight-medium, 500);
+  }
+
+  .badge .sub {
+    font-size: var(--fs-detail, 0.75rem);
+    opacity: 0.7;
+  }
+</style>

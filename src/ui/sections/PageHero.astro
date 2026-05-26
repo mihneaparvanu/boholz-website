@@ -1,0 +1,238 @@
+---
+interface Props {
+  title: string;
+  highlight?: string;
+  subtitle?: string;
+  image?: string;
+  imageAlt?: string;
+  align?: "left" | "center";
+  eyebrow?: string;
+  /** Page context — "home" gives the hero a taller mobile floor (100dvh)
+   *  and aligns content to the top so the photo's faces stay visible. */
+  context?: "home" | "default";
+  /** Where the cropped hero image anchors when `object-fit: cover` trims it.
+   *  Accepts CSS `object-position` syntax — keywords (e.g. "bottom right",
+   *  "top left") or explicit values (e.g. "50% 30%", "center 20%"). */
+  imagePosition?: string;
+}
+
+const {
+  title,
+  highlight,
+  subtitle,
+  image,
+  imageAlt = "",
+  align = "center",
+  eyebrow,
+  context = "default",
+} = Astro.props;
+
+
+
+const hasImage = Boolean(image);
+---
+
+<section
+  class="hero"
+  data-align={align}
+  data-has-image={hasImage}
+  data-context={context}
+>
+  {
+    hasImage && (
+      <div class="bg">
+        <img src={image} alt={imageAlt} loading="eager" />
+        <div class="scrim" />
+      </div>
+    )
+  }
+
+  <div class="inner">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1>
+      {title}
+      {highlight && <span class="highlight"> {highlight}</span>}
+    </h1>
+    {subtitle && <p class="subtitle">{subtitle}</p>}
+    {
+      Astro.slots.has("actions") && (
+        <div class="actions">
+          <slot name="actions" />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: var(--hero-align, start);
+    padding-block: var(--spacing-5) var(--spacing-6);
+    padding-inline: var(--padding-inline, var(--spacing-4));
+  }
+
+  .hero[data-has-image="true"] {
+    min-height: 90dvh;
+  }
+
+  .hero[data-align="center"] .inner {
+    text-align: center;
+    margin-inline: auto;
+    align-items: center;
+  }
+
+  .hero[data-align="left"] .inner {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .hero[data-has-image="true"] {
+    color: var(--clr-pure-white);
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 70%;
+  }
+
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      var(--clr-overlay) 100%,
+      var(--clr-overlay-strong) 100%
+    );
+  }
+
+  .inner {
+    max-width: 90ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-secondary);
+    margin: 0;
+    /* Lift the eyebrow→h1 gap above the surrounding spacing-3 rhythm — the
+       small-caps tracking needs room. Adds to the parent's flex `gap`. */
+    margin-block-end: calc(var(--spacing-4) - var(--spacing-3));
+  }
+
+  .hero[data-has-image="true"] .eyebrow {
+    color: var(--clr-pure-white-soft);
+  }
+
+  h1 {
+    /* Weight inherited from the global h1–h6 rule (--font-weight-heading)
+       in design-system.css so tuning the token cascades to every hero. */
+    margin: 0;
+    font-size: var(--fs-h2);
+    text-wrap: balance;
+  }
+
+  .highlight {
+    font-family: var(--font-secondary);
+    font-weight: var(--font-weight-medium);
+    font-style: italic;
+    color: var(--highlight-color, var(--clr-accent-primary));
+  }
+
+  /* Over a photo, the default fallback flips to a soft white so the
+     italic stays readable on the scrim. Pages can still override by
+     setting --highlight-color inline. */
+  .hero[data-has-image="true"] .highlight {
+    color: var(--highlight-color, var(--clr-pure-white-soft));
+  }
+
+  .subtitle {
+    font-size: var(--fs-body-lg);
+    color: var(--clr-content-tertiary);
+    font-weight: var(--font-weight-medium);
+    max-width: 56rem;
+    text-wrap: balance;
+  }
+
+  .hero[data-has-image="true"] .subtitle {
+    color: var(--clr-pure-white-soft);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-2);
+  }
+
+  .hero[data-align="center"] .actions {
+    justify-content: center;
+  }
+
+  @media (--mobile) {
+    .hero {
+      /* Anchor copy near the top so the photo's faces stay visible. */
+      align-items: start;
+      padding-block: var(--spacing-6) var(--spacing-5);
+    }
+
+    /* Default mobile floor for non-home image heroes: at least 70dvh so
+       the photo gets vertical room. Home overrides to a full 100dvh. */
+    .hero[data-has-image="true"] {
+      min-height: 70dvh;
+    }
+
+    .hero[data-context="home"] {
+      min-height: 100dvh;
+      padding-block-start: var(--spacing-6);
+    }
+
+    /* Stack hero CTA pair vertically; full-width buttons line up. */
+    .actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      gap: var(--spacing-2);
+    }
+
+    /* Slightly tighter headline + subtitle to keep them off the
+       single-orphan threshold at 360–430px widths. */
+    h1 {
+      font-size: calc(var(--fs-h1) * 0.92);
+    }
+
+    .subtitle {
+      font-size: var(--fs-body);
+    }
+  }
+
+  /* Landscape phones — 36-40vh of a ~390px-tall viewport eats the screen
+     and pushes the headline/CTA below the fold. Cap with svh (stable
+     when the URL bar toggles) and trim the generous spacing-7 padding
+     so headline + lede + actions all fit above the fold. */
+  @media (--short) {
+    .hero {
+      padding-block: var(--spacing-4) var(--spacing-3);
+    }
+
+    .hero[data-has-image="true"] {
+      min-height: clamp(220px, 80svh, 360px);
+    }
+  }
+</style>

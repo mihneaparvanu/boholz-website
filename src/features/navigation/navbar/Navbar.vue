@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import type { HouseCategory, Location } from "@/types/models";
+import type { HouseCategory, Location } from "@/db/models";
 
 import NavbarDesktopTransparent from "./NavbarDesktopTransparent.vue";
 import NavbarDesktopSolid from "./NavbarDesktopSolid.vue";
 import NavbarMobile from "./NavbarMobile.vue";
 
-import { useScrolledPast } from "@/composables/useScrolledPast";
-import { useIsHeroPage } from "@/composables/useIsHeroPage";
-import { usePathname } from "@/composables/usePathname";
+import { useScrolledPast } from "@/features/navigation/navbar/useScrolledPast";
+import { useIsHeroPage } from "@/features/navigation/navbar/useIsHeroPage";
+import { usePathname } from "@/features/navigation/navbar/usePathname";
 
 const props = defineProps<{
   categories: HouseCategory[];

@@ -1,6 +1,7 @@
+import { sql } from 'drizzle-orm';
+
 // Post-migration verification: counts + sample paths + spot-check a few R2 keys
-import { db } from "../../src/db/db";
-import { sql } from "drizzle-orm";
+import { db } from '../../src/db/db';
 
 const tables = [
   "house_categories",

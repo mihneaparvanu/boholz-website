@@ -2,10 +2,11 @@
 // EXIF GPS stripped, ICC preserved. Output to dev/asset-audit/staging/<r2-key>.
 // Idempotent: skips entries whose output already exists.
 
-import sharp from "sharp";
-import mapping from "../../dev/asset-audit/mapping-final.json";
-import { mkdir, stat } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { mkdir, stat } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
+import sharp from 'sharp';
+
+import mapping from '../../dev/asset-audit/mapping-final.json';
 
 const STAGING = "dev/asset-audit/staging";
 const MAX_DIM = 2400;

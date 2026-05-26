@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Question } from "@/content/qa";
+import type { Question } from "@/features/faq/qa";
 
 defineProps<{
   q: Question;

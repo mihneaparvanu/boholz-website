@@ -7,8 +7,9 @@
 // After heuristic pass: if duplicates still remain within a model, append
 // numeric suffix " (2)", " (3)" to disambiguate.
 
-import { db } from "../../src/db/db";
-import { sql } from "drizzle-orm";
+import { sql } from 'drizzle-orm';
+
+import { db } from '../../src/db/db';
 
 const DRY_RUN = process.env.DRY === "1";
 

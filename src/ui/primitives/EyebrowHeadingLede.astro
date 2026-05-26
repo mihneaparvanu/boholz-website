@@ -1,0 +1,96 @@
+---
+import Eyebrow from "./Eyebrow.astro";
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  /** Optional italic-serif highlight appended to the heading. */
+  highlight?: string;
+  lede?: string;
+  align?: "start" | "center";
+  level?: "h1" | "h2";
+}
+
+const {
+  eyebrow,
+  heading,
+  highlight,
+  lede,
+  align = "start",
+  level = "h2",
+} = Astro.props;
+
+const Heading = level;
+---
+
+<header class="ehl" data-align={align} data-has-eyebrow={Boolean(eyebrow)}>
+  {eyebrow && (
+    <Eyebrow>
+      {Astro.slots.has("eyebrow-icon") && (
+        <Fragment slot="icon">
+          <slot name="eyebrow-icon" />
+        </Fragment>
+      )}
+      {eyebrow}
+    </Eyebrow>
+  )}
+  <Heading class="heading">
+    {heading}
+    {highlight && <span class="highlight"> {highlight}</span>}
+  </Heading>
+  {lede && <p class="lede">{lede}</p>}
+</header>
+
+<style>
+  .ehl {
+    display: flex;
+    flex-direction: column;
+    /* Default rhythm — heading ↔ lede sit close. */
+    gap: var(--spacing-3);
+    max-width: 70ch;
+  }
+
+  /* Eyebrow → heading rhythm is wider than heading → lede. Composes with
+     the .ehl flex gap (spacing-3) to give ~spacing-6 of breathing room.
+     Polish wave 1 bumped this generously — the small-caps tracking
+     needs real space, not a hairline. */
+  .ehl[data-has-eyebrow="true"] > :global(.eyebrow) {
+    margin-block-end: var(--spacing-3);
+  }
+
+  .ehl[data-align="center"] {
+    align-items: center;
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .heading {
+    margin: 0;
+    font-weight: var(--font-weight-heading);
+    letter-spacing: var(--ls-heading);
+    /* Even out the line wrap so the italic-serif highlight never ends up
+       stranded on its own line beneath a near-full-width first line.
+       Critical on mobile where two- and three-line German headings sit
+       directly above image grids/carousels. */
+    text-wrap: balance;
+  }
+
+  .highlight {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-weight: var(--font-weight-regular);
+  }
+
+  .lede {
+    font-size: var(--fs-body-lg);
+    color: var(--clr-content-secondary);
+    max-width: 60ch;
+    font-weight: var(--font-weight-medium);
+    margin: 0;
+    line-height: var(--lh-body);
+  } 
+
+  .ehl[data-align="center"] .lede {
+    margin-inline: auto;
+  }
+</style>

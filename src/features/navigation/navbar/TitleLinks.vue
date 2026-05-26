@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { Location } from "@/layouts/types/models";
-import { ROUTES } from "@/utils/routes";
+import type { Location } from "@/db/models";
+import { ROUTES } from "@/features/navigation/routes";
 
 const { showhouses } = defineProps<{
   showhouses: Location[];

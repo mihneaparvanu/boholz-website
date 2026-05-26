@@ -3,8 +3,8 @@ import { ref, watch } from "vue";
 import { Motion, AnimatePresence } from "motion-v";
 import { ChevronDown } from "lucide-vue-next";
 import type { NavLink } from "../../nav.types";
-import type { HouseCategory, Location } from "@/types/models";
-import { ROUTES } from "@/utils/routes";
+import type { HouseCategory, Location } from "@/db/models";
+import { ROUTES } from "@/features/navigation/routes";
 import NavbarDrop from "../NavbarDrop.vue";
 
 const props = defineProps<{

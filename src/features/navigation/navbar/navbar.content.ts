@@ -1,4 +1,5 @@
-import { ROUTES } from "@/utils/routes";
+import { ROUTES } from '@/features/navigation/routes';
+
 import type { NavLink } from "../nav.types";
 
 export const TRANSPARENT_NAV: NavLink[] = [

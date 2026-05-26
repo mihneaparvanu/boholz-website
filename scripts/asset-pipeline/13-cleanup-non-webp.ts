@@ -4,7 +4,7 @@
 //
 // Output: dev/asset-audit/cleanup-plan.json
 
-import { $ } from "bun";
+import { $ } from 'bun';
 
 const BUCKET = process.env.R2_BUCKET!;
 const ENDPOINT = process.env.R2_ENDPOINT!;

@@ -1,16 +1,17 @@
-import { db } from "@/db/db";
-import { not, inArray, eq } from "drizzle-orm";
-import { houseCategories, houseModels, news } from "@/db/schema";
+import { eq, inArray, not } from 'drizzle-orm';
+
+import { db } from '@/db/db';
+import { houseCategories, houseModels, news } from '@/db/schema';
+import { getMediaURL } from '@/lib/media';
+
 import type {
   HouseCategory,
   HouseModel,
   Location,
   LocationWithAgents,
   NewsArticle,
-} from "@/types/models";
-import type { HeroSlide } from "@/features/Home/Hero/hero.types";
-import { getMediaURL } from "@/utils/media";
-
+} from "@/db/models";
+import type { HeroSlide } from "@/features/home/Hero/hero.types";
 const HIDDEN_CATEGORY_SLUGS: string[] = [];
 const BESTSELLER_SLUG = "bestseller";
 

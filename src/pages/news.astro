@@ -1,7 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import NewsPage from "@/features/NewsPage/NewsPage.vue";
-import { getNews, getCategories } from "@/data/loaders";
+import NewsPage from "@/features/news-page/NewsPage.vue";
+import { getNews, getCategories } from "@/db/loaders";
 
 const [articles, categories] = await Promise.all([getNews(), getCategories()]);
 ---

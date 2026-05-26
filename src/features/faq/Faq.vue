@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { QuestionCategory } from "@/content/qa";
+import type { QuestionCategory } from "@/features/faq/qa";
 import FaqAccordion from "./FaqAccordion.vue";
 
 const props = defineProps<{

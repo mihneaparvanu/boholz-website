@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { HouseCategory, Location } from "@/types/models";
+import type { HouseCategory, Location } from "@/db/models";
 
 import NavbarLogo from "./parts/NavbarLogo.vue";
 import NavbarLinks from "./parts/NavbarLinks.vue";

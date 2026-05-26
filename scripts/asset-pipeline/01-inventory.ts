@@ -1,8 +1,8 @@
-import { readdir, stat } from "node:fs/promises";
-import { createHash } from "node:crypto";
-import { join, relative, extname, basename } from "node:path";
-import { createReadStream } from "node:fs";
-import sharp from "sharp";
+import { createHash } from 'node:crypto';
+import { createReadStream } from 'node:fs';
+import { readdir, stat } from 'node:fs/promises';
+import { basename, extname, join, relative } from 'node:path';
+import sharp from 'sharp';
 
 const ROOT = "public/images-client";
 const OUT = "dev/asset-audit/inventory.json";

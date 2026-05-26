@@ -1,4 +1,4 @@
-import type { Section } from "@/components/ui/SectionNavigator.vue";
+import type { Section } from "@/features/section-navigator/SectionNavigator.vue";
 
 export const sections: Section[] = [
   { id: "karte", eyebrow: "01", label: "Karte" },

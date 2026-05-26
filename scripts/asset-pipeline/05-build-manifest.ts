@@ -1,12 +1,13 @@
 // Build image-manifest.json from staged WebPs. Each entry has source path,
 // optimized sha256/size/dimensions, r2 key + url, matched DB references, status.
 
-import mapping from "../../dev/asset-audit/mapping-final.json";
-import sharp from "sharp";
-import { stat } from "node:fs/promises";
-import { createHash } from "node:crypto";
-import { createReadStream } from "node:fs";
-import { join } from "node:path";
+import { createHash } from 'node:crypto';
+import { createReadStream } from 'node:fs';
+import { stat } from 'node:fs/promises';
+import { join } from 'node:path';
+import sharp from 'sharp';
+
+import mapping from '../../dev/asset-audit/mapping-final.json';
 
 const STAGING = "dev/asset-audit/staging";
 const R2_PUBLIC = "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev";

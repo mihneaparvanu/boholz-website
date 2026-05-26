@@ -25,34 +25,34 @@
  * pages still render `closingCta` from their content modules.
  */
 import Layout from "@/layouts/Layout.astro";
-import Section from "@/layouts/Section.astro";
-import { getMediaURL } from "@/utils/media";
+import Section from "@/ui/sections/Section.astro";
+import { getMediaURL } from "@/lib/media";
 
-import PageHero from "@/components/sections/PageHero.astro";
-import Block from "@/components/sections/Block.astro";
-import BenefitsRow from "@/components/sections/BenefitsRow.astro";
-import HouseModelsCarousel from "@/components/sections/HouseModelsCarousel.vue";
-import ImageBand from "@/components/sections/ImageBand.astro";
-import AudienceBlock from "@/components/sections/AudienceBlock.astro";
-import TwoColumn from "@/components/sections/TwoColumn.astro";
-import TestimonialBand from "@/components/sections/TestimonialBand.astro";
-import LeadFormBand from "@/components/sections/LeadFormBand.vue";
+import PageHero from "@/ui/sections/PageHero.astro";
+import Block from "@/ui/sections/Block.astro";
+import BenefitsRow from "@/ui/sections/BenefitsRow.astro";
+import HouseModelsCarousel from "@/ui/sections/HouseModelsCarousel.vue";
+import ImageBand from "@/ui/sections/ImageBand.astro";
+import AudienceBlock from "@/ui/sections/AudienceBlock.astro";
+import TwoColumn from "@/ui/sections/TwoColumn.astro";
+import TestimonialBand from "@/ui/sections/TestimonialBand.astro";
+import LeadFormBand from "@/ui/sections/LeadFormBand.vue";
 
-import Button from "@/components/ui/Button.vue";
+import Button from "@/ui/primitives/Button.vue";
 
-import { getCategories, getModels } from "@/data/loaders";
-import { toHouseModelCard } from "@/data/derive";
+import { getCategories, getModels } from "@/db/loaders";
+import { toHouseModelCard } from "@/lib/derive";
 
-import { uebersichtContent as content } from "@/features/Landing/uebersicht.content";
-import ProofSection from "@/components/sections/Proof-Section.vue";
-import PremiumPartnerBadge from "@/components/brand/PremiumPartnerBadge.vue";
-import TrustBadges from "@/features/Home/TrustBadges/TrustBadges.vue";
-import { trustBadges } from "@/features/Home/TrustBadges/trust-badges.content";
-import { homeSections } from "@/features/Home/home.content";
-import Overview from "@/features/Home/Overview/Overview.vue";
-import { featuredCard, overviewCardsSecondary } from "@/features/Home/Overview/overview.content";
-import Faq from "@/features/Home/Faq/Faq.vue";
-import { qaCategories } from "@/content/qa";
+import { uebersichtContent as content } from "@/features/landing/uebersicht.content";
+import ProofSection from "@/ui/sections/Proof-Section.vue";
+import PremiumPartnerBadge from "@/ui/icons/PremiumPartnerBadge.vue";
+import TrustBadges from "@/features/home/TrustBadges/TrustBadges.vue";
+import { trustBadges } from "@/features/home/TrustBadges/trust-badges.content";
+import { homeSections } from "@/features/home/home.content";
+import Overview from "@/features/home/Overview/Overview.vue";
+import { featuredCard, overviewCardsSecondary } from "@/features/home/Overview/overview.content";
+import Faq from "@/features/faq/Faq.vue";
+import { qaCategories } from "@/features/faq/qa";
 
 
 const categories = await getCategories();
@@ -128,7 +128,7 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     {
       houseCards.length > 0 ? (
         <HouseModelsCarousel
-        categories={categories}
+          categories={categories}
           client:visible
           models={houseCards}
           ariaLabel="Empfohlene Hausmodelle"
@@ -211,10 +211,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
   </Block>
 
   {/* ── 07 · Testimonials (full-bleed dark band) ───────────────── */}
-  {/* Loader is now fail-soft: returns [] + logs to stderr on any error,
-     so a missing key or API failure won't 500 the page. Watch
-     `docker logs boholz-frontend` for the [googleReviews] prefix to
-     diagnose key issues. */}
 
   <div class="testimonials full-width"><TestimonialBand
     eyebrow={content.trust.eyebrow}

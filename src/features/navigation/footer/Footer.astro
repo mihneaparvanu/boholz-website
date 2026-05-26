@@ -1,16 +1,13 @@
 ---
-import FacebookIcon from "@/icons/Facebook.svg";
-import InstagramIcon from "@/icons/Instagram.svg";
-import YoutubeIcon from "@/icons/Youtube.svg";
-import LinkedinIcon from "@/icons/Linkedin.svg";
 
-import { ROUTES } from "@/utils/routes";
-import { FOOTER_NAV, FOOTER_CERTIFICATIONS } from "./footer.content";
+import { ROUTES } from "@/features/navigation/routes";
+import { FOOTER_NAV } from "./footer.content";
+import { CERTIFICATIONS } from "@/features/certifications/certifications";
 
-import BoholzLogo from "@/components/brand/BoholzLogo.vue";
-import GermanyFlag from "@/icons/GermanyFlag.vue";
-import PrivacyBtn from "@/components/ui/PrivacyBtn.vue";
-import Separator from "@/features/HousePage/components/Separator.vue";
+import BoholzLogo from "@/ui/icons/BoholzLogo.vue";
+import GermanyFlag from "@/ui/icons/GermanyFlag.vue";
+import PrivacyBtn from "@/ui/primitives/PrivacyBtn.vue";
+import Separator from "@/features/house-page/components/Separator.vue";
 
 const currentYear = new Date().getFullYear();
 ---
@@ -51,7 +48,7 @@ const currentYear = new Date().getFullYear();
       <span class="eyebrow" id="certs-label">Geprüfte Qualität</span>
       <ul class="badges">
         {
-          FOOTER_CERTIFICATIONS.map((c) => (
+          CERTIFICATIONS.map((c) => (
             <li data-size={c.size ?? "default"}>
               <svg
                 class="badge"

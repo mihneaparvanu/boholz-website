@@ -1,20 +1,20 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 
-import PageHero from "@/components/sections/PageHero.astro";
-import CTASection from "@/components/sections/CTASection.astro";
-import Block from "@/components/sections/Block.astro";
+import PageHero from "@/ui/sections/PageHero.astro";
+import CTASection from "@/ui/sections/CTASection.astro";
+import Block from "@/ui/sections/Block.astro";
 
-import SectionNavigator from "@/components/ui/SectionNavigator.vue";
-import EditorialCard from "@/components/ui/EditorialCard.vue";
-import IconList from "@/components/ui/IconList.vue";
-import Callout from "@/components/ui/Callout.vue";
-import BuildingStagesCarousel from "@/features/Home/BuildingStages/BuildingStagesCarousel.vue";
-import { buildingStages } from "@/features/Home/BuildingStages/building-stages.content";
+import SectionNavigator from "@/features/section-navigator/SectionNavigator.vue";
+import EditorialCard from "@/ui/primitives/EditorialCard.vue";
+import IconList from "@/ui/primitives/IconList.vue";
+import Callout from "@/ui/primitives/Callout.vue";
+import BuildingStagesCarousel from "@/features/home/BuildingStages/BuildingStagesCarousel.vue";
+import { buildingStages } from "@/features/home/BuildingStages/building-stages.content";
 import {
   buildPhases,
   bauphasenHeroImageURL,
-} from "@/features/Bauphasen/bauphasen.content";
+} from "@/features/bauphasen/bauphasen.content";
 import {
   sections,
   smartHomeFeatures,
@@ -250,7 +250,7 @@ const heroImage = bauphasenHeroImageURL;
           loading="lazy"
         />
         <svg class="sustain-badge" aria-label="Holz rettet Klima 2030">
-          <use href="#badge-holz-klima-color" />
+          <use href="#cert-holz-klima" />
         </svg>
       </figure>
       <figure class="sustain-frame">

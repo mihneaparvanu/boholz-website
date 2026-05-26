@@ -1,13 +1,13 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import LocationsMap from "@/features/Locations/LocationsMap.vue";
-import PageHero from "@/components/sections/PageHero.astro";
-import CTASection from "@/components/sections/CTASection.astro";
-import SectionNavigator from "@/components/ui/SectionNavigator.vue";
-import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
-import VideoPlaceholder from "@/components/ui/VideoPlaceholder.vue";
+import LocationsMap from "@/features/locations/LocationsMap.vue";
+import PageHero from "@/ui/sections/PageHero.astro";
+import CTASection from "@/ui/sections/CTASection.astro";
+import SectionNavigator from "@/features/section-navigator/SectionNavigator.vue";
+import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
+import VideoPlaceholder from "@/ui/primitives/VideoPlaceholder.vue";
 import { Building2, Home, MapPin } from "lucide-vue-next";
-import { getLocations } from "@/data/loaders";
+import { getLocations } from "@/db/loaders";
 import {
   sections,
   musterhaeuser,

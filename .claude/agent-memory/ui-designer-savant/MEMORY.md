@@ -13,3 +13,4 @@
 - [Landing pages house filter](project_landing-pages-house-filter.md) — featuredOnly flag + canonical filter expression; Mehrfamilien = doppelhaus+generationenhaus (no mehrfamilienhaus slug)
 - [Button mobile width rule](feedback_button_mobile_width.md) — global .btn = width 100% on (--mobile); inline rows stack their actions, navbar/toolbar CTAs opt out
 - [Homepage mobile polish 2026-05-18](project_homepage_mobile_polish_2026-05-18.md) — closing CTA removed from home, PageHero context prop, GermanyFlag, single-line cert rows, count-up bump
+- [/uber-uns Keitel section restructure](project_uber-uns-keitel-section.md) — pair-grid principles + StatBlock financial callout; new structured exports in keitel.ts

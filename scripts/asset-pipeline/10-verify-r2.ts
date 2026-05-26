@@ -1,5 +1,5 @@
 // HEAD-check every manifest URL. Report any non-200 or content-length mismatch.
-import manifest from "../../image-manifest.json";
+import manifest from '../../image-manifest.json';
 
 const R2_PUBLIC = "https://pub-47ece1c9a40d42ad8886561941b959b5.r2.dev";
 

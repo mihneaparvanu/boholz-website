@@ -1,19 +1,24 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getMediaURL } from "@/utils/media";
+import { getMediaURL } from "@/lib/media";
 
-import PageHero from "@/components/sections/PageHero.astro";
-import CTASection from "@/components/sections/CTASection.astro";
-import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
-import PullQuote from "@/components/ui/PullQuote.astro";
-import Divider from "@/components/ui/Divider.astro";
-import StatBlock from "@/components/ui/StatBlock.vue";
-import IconList from "@/components/ui/IconList.vue";
-import Button from "@/components/ui/Button.vue";
+import PageHero from "@/ui/sections/PageHero.astro";
+import CTASection from "@/ui/sections/CTASection.astro";
+import PrinciplesGrid from "@/ui/sections/PrinciplesGrid.astro";
+import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
+import PullQuote from "@/ui/primitives/PullQuote.astro";
+import Divider from "@/ui/primitives/Divider.astro";
+import StatBlock from "@/ui/primitives/StatBlock.vue";
+import Button from "@/ui/primitives/Button.vue";
 import LiteYouTube from "@/features/Advantage/LiteYouTube.vue";
-import PremiumPartnerBadge from "@/components/brand/PremiumPartnerBadge.vue";
-import { HeartHandshake, Compass, Sparkles, HardHat } from "lucide-vue-next";
-import { keitel, keitelArray } from "@/content/keitel";
+import PremiumPartnerBadge from "@/ui/icons/PremiumPartnerBadge.vue";
+import { HeartHandshake, Compass, HardHat } from "lucide-vue-next";
+import {
+  keitel,
+  keitelArray,
+  keitelPrinciples,
+  keitelFinancial,
+} from "@/features/faq/keitel";
 import { whatWeDoItems } from "./uber-uns.content";
 
 // "So entsteht ein Keitel-Haus" — https://www.youtube.com/watch?v=4zgslK2L3po
@@ -21,7 +26,8 @@ const KEITEL_VIDEO_ID = "4zgslK2L3po";
 // Hotlinked from YouTube's CDN. If we later want a normalised R2 asset, swap
 // to `getMediaURL("/images/pages/uber-uns/keitel-video-poster.webp")`.
 const keitelVideoPoster = `https://i.ytimg.com/vi/${KEITEL_VIDEO_ID}/maxresdefault.jpg`;
-const keitelProse = keitelArray("uberUnsKeitelProse");
+const keitelIntroProse = keitelArray("uberUnsKeitelIntroProse");
+const keitelOutroProse = keitelArray("uberUnsKeitelOutroProse");
 ---
 
 <Layout title="Über Uns – BoHolz Haus">
@@ -29,7 +35,7 @@ const keitelProse = keitelArray("uberUnsKeitelProse");
     <PageHero
       eyebrow="Über uns"
       title="Zwei starke Partner."
-      highlight="Ein Maßstab."
+      highlight="Ein Verbund aus fachlicher Kompetenz, Wissen und jahrelanger Erfahrung."
       subtitle="Genauso will ich wohnen."
       image={getMediaURL("/images/pages/uber-uns/hero-partner-2000x776.webp")}
       imageAlt="BoHolz und Keitel-Haus — zwei Familienunternehmen, ein Maßstab"
@@ -38,11 +44,9 @@ const keitelProse = keitelArray("uberUnsKeitelProse");
   </div>
 
   <!-- 02 — Zwei starke Partner -->
-  <Divider index={2} label="Partner" />
 
   <section id="partner" class="section">
     <EyebrowHeadingLede
-      eyebrow="Zwei starke Partner"
       heading="Ein Verbund aus fachlicher Kompetenz,"
       highlight="Wissen und jahrelanger Erfahrung."
       lede={keitel("uberUnsPartnerLede")}
@@ -67,16 +71,113 @@ const keitelProse = keitelArray("uberUnsKeitelProse");
       <blockquote class="pull">
         {keitel("uberUnsPartnerPullQuote")}
       </blockquote>
+    </div>
 
-      <p>
-        Ob Einfamilienhaus, Mehrgenerationenhaus oder individuelles
-        Wohnkonzept: Gemeinsam realisieren wir Häuser, die so individuell sind
-        wie die Menschen, die darin leben.
-      </p>
+    {/* Service-steps ladder — closes the partner section with the four
+        concrete deliverables that follow the "Grundstein" pull-quote.
+        Lives *outside* `.prose` so it escapes the 70ch editorial measure
+        and reads at the section's natural width — a structural beat,
+        not a paragraph. `PrinciplesGrid` is the editorial-quiet cadence
+        (no boxes, numbered 01–04, hairlines only) that mirrors the
+        "Vier Schritte zu Ihrem BoHolz-Haus" framing without adding a
+        second heading. Item shape: PrinciplesGrid expects `body`, the
+        content file authors `description` — map inline so the data file
+        stays consistent with any other consumer that uses the icon. */}
+    <div class="steps">
+      <PrinciplesGrid
+        columns={2}
+        items={whatWeDoItems.map(({ label, description }) => ({
+          label,
+          body: description ?? "",
+        }))}
+      />
     </div>
   </section>
 
-  <!-- 03 — Stats -->
+
+  <!-- 04 — Unser starker Partner Keitel-Haus -->
+  <section id="keitel" class="section">
+    <EyebrowHeadingLede
+      heading={keitel("uberUnsKeitelHeading")}
+      highlight={keitel("uberUnsKeitelHighlight")}
+      lede={keitel("uberUnsKeitelLede")}
+    >
+      <Fragment slot="eyebrow-icon">
+        <HardHat :size={14} :stroke-width={2} />
+      </Fragment>
+    </EyebrowHeadingLede>
+
+    <div class="prose">
+      <aside class="lede-badge" aria-label="BoHolz × Keitel-Haus Premium Partner">
+        <PremiumPartnerBadge client:visible width="120px" />
+      </aside>
+
+      {keitelIntroProse.map((p) => <p>{p}</p>)}
+    </div>
+
+    {/*
+      Principles block — four dualistic statements lifted out of what was
+      previously a single sentence. The "X vor Y" form is the comparison
+      itself, so each pair gets its own cell rather than being forced into
+      a left-bad / right-good ComparisonBlock. PrinciplesGrid (already used
+      directly above for the service steps) would feel mechanical to repeat;
+      this typographic pair-grid is the right cadence for value statements
+      — primary term dominant, "vor X" hairline-quiet. Lives outside
+      `.prose` so it escapes the 70ch editorial measure and reads at the
+      section's natural width.
+    */}
+    <ol class="principles" role="list" aria-label="Vier feste Prinzipien">
+      {keitelPrinciples.map((p, i) => (
+        <li class="principle">
+          <span class="index" aria-hidden="true">
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <p class="primary">{p.primary}</p>
+          <p class="counter">
+            <span class="vor" aria-hidden="true">vor</span>
+            {" "}{p.counter}
+          </p>
+        </li>
+      ))}
+    </ol>
+
+    {/*
+      Financial-independence callout — the "100 % Eigenmittel" claim was
+      previously buried in prose; surfaced here as a StatBlock so it reads
+      as a substantive highlight without being flashy. Centred, single-up,
+      bounded — sits between the principles and the closing prose as its
+      own beat. Shield icon (registered in src/lib/icons.ts) reads as
+      stability / protection without being on-the-nose like a coin or
+      bank-vault glyph would be.
+    */}
+    <aside class="financial" aria-label="Finanzielle Eigenständigkeit">
+      <StatBlock
+        value={keitelFinancial.value}
+        label={keitelFinancial.label}
+        caption={keitelFinancial.caption}
+        icon="shield"
+        align="center"
+        client:visible
+      />
+    </aside>
+
+    {keitelOutroProse.length > 0 && (
+      <div class="prose outro">
+        {keitelOutroProse.map((p) => <p>{p}</p>)}
+      </div>
+    )}
+
+    <div class="video-wrap">
+      <LiteYouTube
+        client:visible
+        videoId={KEITEL_VIDEO_ID}
+        posterURL={keitelVideoPoster}
+        label={keitel("uberUnsKeitelVideoLabel")}
+        caption={keitel("uberUnsKeitelVideoCaption")}
+      />
+    </div>
+  </section>
+ <!-- Stats -->
   <section class="stats" aria-label="BoHolz in Zahlen">
     <StatBlock
       value="90+"
@@ -101,48 +202,7 @@ const keitelProse = keitelArray("uberUnsKeitelProse");
     />
   </section>
 
-  <!-- 04 — Unser starker Partner Keitel-Haus -->
-  <Divider index={4} label="Partner" />
-
-  <section id="keitel" class="section">
-    <EyebrowHeadingLede
-      eyebrow={keitel("uberUnsKeitelEyebrow")}
-      heading={keitel("uberUnsKeitelHeading")}
-      highlight={keitel("uberUnsKeitelHighlight")}
-      lede={keitel("uberUnsKeitelLede")}
-    >
-      <Fragment slot="eyebrow-icon">
-        <HardHat :size={14} :stroke-width={2} />
-      </Fragment>
-    </EyebrowHeadingLede>
-
-    <div class="prose">
-      <aside class="lede-badge" aria-label="BoHolz × Keitel-Haus Premium Partner">
-        <PremiumPartnerBadge client:visible width="120px" />
-      </aside>
-
-      {keitelProse.slice(0, 2).map((p) => <p>{p}</p>)}
-
-      <blockquote class="pull">
-        {keitel("uberUnsKeitelPullQuote")}
-      </blockquote>
-
-      {keitelProse.slice(2).map((p) => <p>{p}</p>)}
-    </div>
-
-    <div class="video-wrap">
-      <LiteYouTube
-        client:visible
-        videoId={KEITEL_VIDEO_ID}
-        posterURL={keitelVideoPoster}
-        label={keitel("uberUnsKeitelVideoLabel")}
-        caption={keitel("uberUnsKeitelVideoCaption")}
-      />
-    </div>
-  </section>
-
-  <!-- 05 — Unsere Werte (alternating tone — secondary band) -->
-  <Divider index={5} label="Werte" />
+  <!-- Unsere Werte (alternating tone — secondary band) -->
 
   <div class="band full-width">
     <section id="werte" class="section band-inner">
@@ -209,28 +269,6 @@ const keitelProse = keitelArray("uberUnsKeitelProse");
       align="center"
     />
   </section>
-
-  <!-- 08 — Was wir tun (alternating tone — secondary band) -->
-  <Divider index={8} label="Was wir tun" />
-
-  <div class="band full-width">
-    <section id="was-wir-tun" class="section band-inner">
-      <EyebrowHeadingLede
-        eyebrow="Was wir tun"
-        heading="Vier Schritte zu Ihrem"
-        highlight="BoHolz-Haus."
-        lede={keitel("uberUnsWasWirTunLede")}
-      >
-        <Fragment slot="eyebrow-icon">
-          <Sparkles :size={14} :stroke-width={2} />
-        </Fragment>
-      </EyebrowHeadingLede>
-
-      <div class="list-wrap">
-        <IconList items={whatWeDoItems} columns={2} client:visible />
-      </div>
-    </section>
-  </div>
 
   <!-- 08 — CTA -->
   <!-- Wrapped in `.full-width` so the CTA escapes the wrapper's content
@@ -416,10 +454,12 @@ const keitelProse = keitelArray("uberUnsKeitelProse");
     padding-block: var(--spacing-6);
   }
 
-  /* IconList wrap — adds breathing room between the eyebrow
-     header and the list itself. */
-  .list-wrap {
-    margin-block-start: var(--spacing-4);
+  /* Service-steps ladder — sits between the partner prose and the
+     stats row. Breathing room above so the hairlines don't fight the
+     pull-quote's left rule; the section's own block padding plus the
+     stats row's padding handle the gap below. */
+  .steps {
+    margin-block-start: var(--spacing-5);
   }
 
   /* Keitel partner section video frame — sits below the prose with
@@ -429,6 +469,111 @@ const keitelProse = keitelArray("uberUnsKeitelProse");
     margin-block-start: var(--spacing-5);
     max-width: 64rem;
     margin-inline: auto;
+  }
+
+  /* ============================================================
+     Principles block — four "X vor Y" pairs as a typographic
+     pair-grid. Hairlines-only (no boxes, no shadows), primary term
+     dominant, "vor" rendered as a serif-italic connector at
+     content-tertiary tone so the eye lands on the primary first.
+     1-up mobile → 2-up tablet+. Brand value statements deserve
+     their own beat between the intro prose and the financial
+     callout.
+     ============================================================ */
+  .principles {
+    list-style: none;
+    margin: var(--spacing-5) 0 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-block-start: 1px solid var(--clr-border-secondary);
+  }
+
+  @media (--from-tablet) {
+    .principles {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .principle {
+    /* Each cell carries its own bottom + start hairline; the grid
+       carries the top. Same rule logic as PrinciplesGrid so the two
+       blocks share a visual language across the page. */
+    border-block-end: 1px solid var(--clr-border-secondary);
+    padding: var(--spacing-4) var(--spacing-3) var(--spacing-4) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    min-width: 0;
+  }
+
+  @media (--from-tablet) {
+    .principle {
+      padding: var(--spacing-4);
+      border-inline-start: 1px solid var(--clr-border-secondary);
+    }
+    .principle:nth-child(odd) {
+      border-inline-start: 0;
+    }
+  }
+
+  .principle .index {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-size: var(--fs-h5);
+    line-height: 1;
+    color: var(--clr-content-tertiary);
+    margin-block-end: var(--spacing-2);
+  }
+
+  .principle .primary {
+    margin: 0;
+    font-size: var(--fs-h4);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--ls-heading);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+  }
+
+  .principle .counter {
+    margin: 0;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--clr-content-tertiary);
+  }
+
+  /* "vor" connector — serif italic, lighter tone, so the eye reads
+     the primary term first and only then registers the counterpoint. */
+  .principle .vor {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    color: var(--clr-content-quaternary);
+    margin-inline-end: 0.15em;
+  }
+
+  /* ============================================================
+     Financial callout — a single StatBlock, centred, framed by
+     hairlines above and below so it sits between the principles
+     grid and the closing prose as its own beat. No card, no fill;
+     restraint is the brand register. The StatBlock's own caption
+     carries the substance; the hairlines + width clamp do the
+     framing work.
+     ============================================================ */
+  .financial {
+    margin-block-start: var(--spacing-6);
+    padding-block: var(--spacing-5);
+    border-block: 1px solid var(--clr-border-secondary);
+    display: grid;
+    place-items: center;
+  }
+
+  /* Outro prose — a short closing paragraph between the financial
+     callout and the video. Reset the top margin since `.prose` adds
+     `margin-block-start` by default and we want it spaced from the
+     callout, not double-spaced. */
+  .prose.outro {
+    margin-block-start: var(--spacing-5);
   }
 
   /* ── Lede badge cameo: floats right inside the prose column so the

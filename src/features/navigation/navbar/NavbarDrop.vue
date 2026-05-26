@@ -2,9 +2,9 @@
 import { computed, ref } from "vue";
 import { Motion, AnimatePresence } from "motion-v";
 import { Star } from "lucide-vue-next";
-import type { HouseCategory, Location } from "@/types/models";
-import { ROUTES } from "@/utils/routes";
-import { useCategoryGallery } from "@/composables/useCategoryGallery";
+import type { HouseCategory, Location } from "@/db/models";
+import { ROUTES } from "@/features/navigation/routes";
+import { useCategoryGallery } from "@/lib/useCategoryGallery";
 import TitleLinks from "./TitleLinks.vue";
 import {
   HOUSE_DROP_EXTRA_LINKS,

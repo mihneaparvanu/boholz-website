@@ -1,8 +1,9 @@
 // Set the bestseller houseCategory's category_media hero+thumbnail to the
 // SECOND gallery photo of bestseller-family-150 (alphabetical order).
 
-import { db } from "../../src/db/db";
-import { sql } from "drizzle-orm";
+import { sql } from 'drizzle-orm';
+
+import { db } from '../../src/db/db';
 
 const cat = await db.execute(sql`SELECT id FROM boholz.house_categories WHERE slug = 'bestseller'`);
 if (cat.length === 0) {

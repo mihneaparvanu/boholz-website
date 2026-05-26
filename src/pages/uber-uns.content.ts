@@ -1,4 +1,4 @@
-import type { IconListItem } from "@/components/ui/IconList.vue";
+import type { IconListItem } from "@/ui/primitives/IconList.vue";
 
 export const whatWeDoItems: IconListItem[] = [
   {

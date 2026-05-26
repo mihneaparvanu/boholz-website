@@ -1,9 +1,10 @@
 // Find R2 objects under images/ that aren't referenced in the live DB and aren't
+import { $ } from 'bun';
+import { sql } from 'drizzle-orm';
+
 // in the new manifest (staging-review + stock). Show count + sample, then delete.
-import manifest from "../../image-manifest.json";
-import { db } from "../../src/db/db";
-import { sql } from "drizzle-orm";
-import { $ } from "bun";
+import manifest from '../../image-manifest.json';
+import { db } from '../../src/db/db';
 
 const BUCKET = process.env.R2_BUCKET!;
 const ENDPOINT = process.env.R2_ENDPOINT!;

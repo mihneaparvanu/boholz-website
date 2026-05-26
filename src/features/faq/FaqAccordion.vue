@@ -7,7 +7,7 @@ import {
   AccordionContent,
 } from "reka-ui";
 import { Plus } from "lucide-vue-next";
-import type { Question } from "@/content/qa";
+import type { Question } from "@/features/faq/qa";
 
 /**
  * Homepage-local FAQ accordion. Mirrors the kit `<FAQAccordion>` visual

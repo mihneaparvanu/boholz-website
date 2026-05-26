@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import BoholzLogo from "@/components/brand/BoholzLogo.vue";
-import { ROUTES } from "@/utils/routes";
+import BoholzLogo from "@/ui/icons/BoholzLogo.vue";
+import { ROUTES } from "@/features/navigation/routes";
 
 withDefaults(
   defineProps<{

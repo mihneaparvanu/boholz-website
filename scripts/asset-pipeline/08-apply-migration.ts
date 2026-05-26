@@ -7,10 +7,11 @@
 // Run with DRY=1 to print the row counts and abort BEFORE writing.
 // Run without DRY=1 to apply. Wraps everything in a transaction.
 
-import manifest from "../../image-manifest.json";
-import db from "../../dev/asset-audit/db-state.json";
-import { db as drizzle } from "../../src/db/db";
-import { sql } from "drizzle-orm";
+import { sql } from 'drizzle-orm';
+
+import db from '../../dev/asset-audit/db-state.json';
+import manifest from '../../image-manifest.json';
+import { db as drizzle } from '../../src/db/db';
 
 const DRY_RUN = process.env.DRY === "1";
 const TX_MODE = process.env.TX === "0" ? false : true;

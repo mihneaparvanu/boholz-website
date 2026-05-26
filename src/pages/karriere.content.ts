@@ -1,6 +1,6 @@
-import type { IconListItem } from "@/components/ui/IconList.vue";
-import type { Section } from "@/components/ui/SectionNavigator.vue";
-import { keitel } from "@/content/keitel";
+import type { IconListItem } from "@/ui/primitives/IconList.vue";
+import type { Section } from "@/features/section-navigator/SectionNavigator.vue";
+import { keitel } from '@/features/faq/keitel';
 
 // Anchor ids are German-umlaut-normalised per CLAUDE.md (ü → ue, ä → ae).
 export const sections: Section[] = [

@@ -1,7 +1,7 @@
 module.exports = {
   plugins: [
     require("@csstools/postcss-global-data")({
-      files: ["./src/style/breakpoints.css"],
+      files: ["./src/ui/style/breakpoints.css"],
     }),
     require("postcss-custom-media")(),
     require("postcss-preset-env")({

@@ -1,15 +1,7 @@
+import { relations } from 'drizzle-orm';
 import {
-  pgSchema,
-  uuid,
-  text,
-  varchar,
-  integer,
-  numeric,
-  boolean,
-  timestamp,
-  smallint,
-} from "drizzle-orm/pg-core";
-import { relations } from "drizzle-orm";
+    boolean, integer, numeric, pgSchema, smallint, text, timestamp, uuid, varchar
+} from 'drizzle-orm/pg-core';
 
 export const boholzSchema = pgSchema("boholz");
 

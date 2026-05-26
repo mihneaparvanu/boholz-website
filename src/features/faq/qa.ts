@@ -2,7 +2,7 @@
 // Sourced from the production WordPress export (boholz-haus.de FAQ accordion).
 // Answers contain trusted internal HTML; render with v-html.
 // If this ever moves to the DB, this file is the seed shape.
-import { keitel } from "./keitel";
+import { keitel } from './keitel';
 
 export type Question = {
   id: string;

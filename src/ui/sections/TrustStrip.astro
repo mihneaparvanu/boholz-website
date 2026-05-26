@@ -1,0 +1,177 @@
+---
+import { getIcon, type IconName } from "@/lib/icons";
+
+export interface TrustBadge {
+  /** Wordmark / cert name — small caps will be applied. */
+  label: string;
+  /** Optional one-word qualifier shown smaller, e.g. "Förderung", "Siegel". */
+  caption?: string;
+  /** Optional Lucide icon — small mark to the left of the label. */
+  icon?: IconName;
+}
+
+interface Props {
+  /** Optional small-caps label centred above the row, e.g. "Geprüfte Qualität". */
+  eyebrow?: string;
+  badges: TrustBadge[];
+  /** Surface tone — defaults to a quiet tertiary surface. "transparent" uses
+   * hairline rules above and below instead of a background fill. */
+  tone?: "tertiary" | "quaternary" | "transparent";
+}
+
+const { eyebrow, badges, tone = "tertiary" } = Astro.props;
+---
+
+<section class="trust full-width" data-tone={tone} aria-label="Auszeichnungen und Zertifikate">
+  <div class="inner">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+
+    <ul class="row" role="list">
+      {badges.map((b) => {
+        const Icon = b.icon ? getIcon(b.icon) : null;
+        return (
+          <li class="item">
+            {Icon && <Icon size={16} strokeWidth={1.5} aria-hidden="true" class="icon" />}
+            <span class="label">{b.label}</span>
+            {b.caption && <span class="caption">{b.caption}</span>}
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .trust {
+    padding-block: var(--spacing-4);
+    padding-inline: var(--padding-inline);
+  }
+
+  .trust[data-tone="tertiary"] {
+    background: var(--clr-surface-tertiary);
+  }
+  .trust[data-tone="quaternary"] {
+    background: var(--clr-surface-quaternary);
+  }
+  /* Transparent variant gets hairline rules above and below — pure typographic
+     credentials strip, no surface fill. */
+  .trust[data-tone="transparent"] {
+    background: transparent;
+    border-block: 1px solid var(--clr-border-secondary);
+  }
+
+  .inner {
+    max-width: var(--content-max-width);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-3);
+  }
+
+  .eyebrow {
+    margin: 0;
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--clr-content-tertiary);
+  }
+
+  /* Horizontal row, hairline dividers between items. On wide screens it
+     evenly distributes; on tablet it wraps; on mobile it scrolls horizontally
+     so the credentials never crumple into a stack of 5 lines. */
+  .row {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: var(--spacing-4);
+    row-gap: var(--spacing-2);
+    width: 100%;
+  }
+
+  .item {
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--spacing-1);
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-secondary);
+    /* Hairline dividers between items — only on screens wide enough that the
+       row is single-line. On wrap we hide them to avoid orphaned dividers. */
+    padding-inline-end: var(--spacing-4);
+  }
+
+  .item:last-child {
+    padding-inline-end: 0;
+  }
+
+  .item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    inset-block: 20%;
+    inset-inline-end: 0;
+    width: 1px;
+    background: var(--clr-border-tertiary);
+  }
+
+  .icon {
+    color: var(--clr-content-tertiary);
+    /* Pull the icon up to optical baseline with the wordmark. */
+    align-self: center;
+    margin-inline-end: calc(var(--spacing-1) / 2);
+  }
+
+  .label {
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-secondary);
+    line-height: 1.2;
+  }
+
+  .caption {
+    font-family: var(--font-secondary);
+    font-style: italic;
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-tertiary);
+    letter-spacing: 0;
+    text-transform: none;
+    margin-inline-start: 2px;
+  }
+
+  /* Mobile: scroll horizontally rather than wrap into a tall stack — the
+     row reads as a credentials marquee. Snap to each item for tactile feel. */
+  @media (--mobile) {
+    .trust {
+      padding-block: var(--spacing-3);
+    }
+    .row {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      justify-content: flex-start;
+      scroll-snap-type: x proximity;
+      column-gap: var(--spacing-3);
+      /* Negative inline margin so items can scroll into the edge padding
+         without revealing the surface seam. */
+      margin-inline: calc(var(--padding-inline) * -1);
+      padding-inline: var(--padding-inline);
+      scrollbar-width: none;
+    }
+    .row::-webkit-scrollbar {
+      display: none;
+    }
+    .item {
+      scroll-snap-align: start;
+      flex-shrink: 0;
+      padding-inline-end: var(--spacing-3);
+    }
+    .item:not(:last-child)::after {
+      inset-block: 25%;
+    }
+  }
+</style>

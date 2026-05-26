@@ -3,12 +3,13 @@
 // model's gallery. No isHero / isThumbnail flags set — these are appended
 // to the end of the existing gallery.
 
-import { db } from "../../src/db/db";
-import { sql } from "drizzle-orm";
-import { $ } from "bun";
-import sharp from "sharp";
-import { readdir } from "node:fs/promises";
-import { join } from "node:path";
+import { $ } from 'bun';
+import { sql } from 'drizzle-orm';
+import { readdir } from 'node:fs/promises';
+import { join } from 'node:path';
+import sharp from 'sharp';
+
+import { db } from '../../src/db/db';
 
 const DRY_RUN = process.env.DRY === "1";
 const BUCKET = process.env.R2_BUCKET!;

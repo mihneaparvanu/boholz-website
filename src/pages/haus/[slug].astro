@@ -1,16 +1,16 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getModelBySlug } from "@/data/loaders";
+import { getModelBySlug } from "@/db/loaders";
 
-import HausPageNav from "@/features/HousePage/components/HausPageNav.vue";
-import HeroGallery from "@/features/HousePage/components/HeroGallery.vue";
-import SideCard from "@/features/HousePage/components/SideCard.vue";
-import FloorPlanTabs from "@/features/HousePage/components/FloorPlanTabs.vue";
-import StatsGrid from "@/features/HousePage/components/StatsGrid.vue";
-import AccordionItem from "@/features/HousePage/components/AccordionItem.vue";
-import DetailsGrid from "@/features/HousePage/components/DetailsGrid.vue";
-import CTASection from "@/components/sections/CTASection.astro";
-import Button from "@/components/ui/Button.vue";
+import HausPageNav from "@/features/house-page/components/HausPageNav.vue";
+import HeroGallery from "@/features/house-page/components/HeroGallery.vue";
+import SideCard from "@/features/house-page/components/SideCard.vue";
+import FloorPlanTabs from "@/features/house-page/components/FloorPlanTabs.vue";
+import StatsGrid from "@/features/house-page/components/StatsGrid.vue";
+import AccordionItem from "@/features/house-page/components/AccordionItem.vue";
+import DetailsGrid from "@/features/house-page/components/DetailsGrid.vue";
+import CTASection from "@/ui/sections/CTASection.astro";
+import Button from "@/ui/primitives/Button.vue";
 
 const { slug } = Astro.params;
 const model = await getModelBySlug(slug!);

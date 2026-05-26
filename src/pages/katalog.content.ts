@@ -1,11 +1,4 @@
-import {
-  Layers3,
-  Ruler,
-  Euro,
-  ImageIcon,
-  Compass,
-  type LucideIcon,
-} from "lucide-vue-next";
+import { Compass, Euro, ImageIcon, Layers3, Ruler, type LucideIcon } from 'lucide-vue-next';
 
 export type CatalogBenefit = {
   icon: LucideIcon;

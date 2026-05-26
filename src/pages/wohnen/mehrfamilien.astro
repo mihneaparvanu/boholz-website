@@ -11,26 +11,26 @@
  *   - closingCta.tone = "surface" (page 3 is the accent-toned one)
  */
 import Layout from "@/layouts/Layout.astro";
-import { getMediaURL } from "@/utils/media";
+import { getMediaURL } from "@/lib/media";
 
-import PageHero from "@/components/sections/PageHero.astro";
-import Block from "@/components/sections/Block.astro";
-import BenefitsRow from "@/components/sections/BenefitsRow.astro";
-import HouseModelsCarousel from "@/components/sections/HouseModelsCarousel.vue";
-import ImageBand from "@/components/sections/ImageBand.astro";
-import AudienceBlock from "@/components/sections/AudienceBlock.astro";
-import TwoColumn from "@/components/sections/TwoColumn.astro";
-import TestimonialBand from "@/components/sections/TestimonialBand.astro";
-import LeadFormBand from "@/components/sections/LeadFormBand.vue";
-import CTASection from "@/components/sections/CTASection.astro";
+import PageHero from "@/ui/sections/PageHero.astro";
+import Block from "@/ui/sections/Block.astro";
+import BenefitsRow from "@/ui/sections/BenefitsRow.astro";
+import HouseModelsCarousel from "@/ui/sections/HouseModelsCarousel.vue";
+import ImageBand from "@/ui/sections/ImageBand.astro";
+import AudienceBlock from "@/ui/sections/AudienceBlock.astro";
+import TwoColumn from "@/ui/sections/TwoColumn.astro";
+import TestimonialBand from "@/ui/sections/TestimonialBand.astro";
+import LeadFormBand from "@/ui/sections/LeadFormBand.vue";
+import CTASection from "@/ui/sections/CTASection.astro";
 
-import FAQAccordion from "@/components/ui/FAQAccordion.vue";
-import Button from "@/components/ui/Button.vue";
+import FAQAccordion from "@/ui/primitives/FAQAccordion.vue";
+import Button from "@/ui/primitives/Button.vue";
 
-import { getCategories, getModels } from "@/data/loaders";
-import { toHouseModelCard } from "@/data/derive";
+import { getCategories, getModels } from "@/db/loaders";
+import { toHouseModelCard } from "@/lib/derive";
 
-import { mehrfamilienContent as content } from "@/features/Landing/mehrfamilien.content";
+import { mehrfamilienContent as content } from "@/features/landing/mehrfamilien.content";
 
 const categories = await getCategories();
 const allModels = await getModels();

@@ -2,9 +2,10 @@
 // folder/file → canonical R2 key. Tries number permutations because
 // folder codes are sometimes reversed (BU/GH) vs DB modelCode.
 
-import inventory from "../../dev/asset-audit/inventory.json";
-import db from "../../dev/asset-audit/db-state.json";
-import { basename, extname } from "node:path";
+import { basename, extname } from 'node:path';
+
+import db from '../../dev/asset-audit/db-state.json';
+import inventory from '../../dev/asset-audit/inventory.json';
 
 type Inv = (typeof inventory)[number];
 type DBModel = (typeof db.models)[number];
