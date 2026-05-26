@@ -76,7 +76,7 @@ const categoryModels = computed<HouseModel[]>(() => {
   if (selectedCategory.value === null) {
     return props.models;
   }
-  if (selectedCategory.value.id === BESTSELLER_CATEGORY_ID) {
+  if (selectedCategory.value.slug === BESTSELLER_CATEGORY_ID) {
     return props.models.filter((m) => m.isFeatured);
   }
   return props.models.filter(
@@ -432,7 +432,7 @@ watch(
       >
         <ModelCard
           :model="model"
-          :hide-star-badge="selectedCategory?.id === BESTSELLER_CATEGORY_ID"
+          :hide-star-badge="selectedCategory?.slug === BESTSELLER_CATEGORY_ID"
         />
       </a>
     </div>
