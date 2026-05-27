@@ -77,6 +77,7 @@ const heroImage = computed(() => heroMediaItem.value?.path);
   position: relative;
   width: 100%;
   height: 80%;
+  flex-shrink: 0;
 
   @media (--mobile) {
     height: auto;
