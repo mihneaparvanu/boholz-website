@@ -5,6 +5,7 @@ import NavbarLogo from "./parts/NavbarLogo.vue";
 import NavbarLinks from "./parts/NavbarLinks.vue";
 
 import { PRIMARY_NAV } from "./navbar.content";
+import { ROUTES } from "@/features/navigation/routes";
 
 defineProps<{
   categories: HouseCategory[];
@@ -25,6 +26,7 @@ defineProps<{
         :showhouses="showhouses"
       />
     </div>
+    <a class="cta" :href="ROUTES.onsite">Vor Ort Beratung</a>
   </div>
 </template>
 
@@ -43,5 +45,28 @@ defineProps<{
   display: flex;
   align-items: center;
   gap: var(--spacing-4);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-1) var(--spacing-3);
+  background: var(--clr-accent-secondary);
+  color: var(--clr-pure-white);
+  font-size: var(--fs-body-sm);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  transition: background 160ms ease;
+}
+
+.cta:hover {
+  background: color-mix(in srgb, var(--clr-accent-secondary) 85%, #000);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--clr-accent-primary);
+  outline-offset: 2px;
 }
 </style>

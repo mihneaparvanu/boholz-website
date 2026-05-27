@@ -185,7 +185,7 @@ function handleNavClick(event: MouseEvent, href: string) {
 .items {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-3);
+  gap: var(--spacing-4);
 }
 
 .items a {
@@ -195,8 +195,10 @@ function handleNavClick(event: MouseEvent, href: string) {
   width: 100%;
   background: transparent;
   border: 0;
-  padding: 0;
+  padding: var(--spacing-1) 0;
   font: inherit;
+  font-size: var(--fs-h6);
+  font-weight: var(--font-weight-medium);
   color: var(--clr-content-primary);
   cursor: pointer;
   transition: color 160ms ease;

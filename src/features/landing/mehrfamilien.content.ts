@@ -151,7 +151,7 @@ export const mehrfamilienContent: LandingPageContent = {
     lede: "Zwei Familienunternehmen, 90 Jahre Holzbau, KfW-zertifizierte Bauweise — bewährt im Mehrfamilien-Segment.",
     tone: "olive",
     badges: [
-      { label: "Made in Germany" },
+      { label: "Made in Germany", flag: true },
       { label: "KfW 40", sub: "Förderfähig" },
     ],
     testimonials: [

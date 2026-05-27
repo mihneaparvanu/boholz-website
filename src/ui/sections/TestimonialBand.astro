@@ -9,6 +9,7 @@ export interface Testimonial {
 export interface CredentialBadge {
   label: string;
   sub?: string;
+  flag?: boolean;
 }
 
 interface Props {
@@ -70,6 +71,13 @@ const toneMap = {
       <div class="badges">
         {badges.map((b) => (
           <span class="badge">
+            {b.flag && (
+              <svg class="flag" height="14" viewBox="0 0 5 3" role="img" aria-label="Deutschland" preserveAspectRatio="xMidYMid meet">
+                <rect x="0" y="0" width="5" height="1" fill="#000" />
+                <rect x="0" y="1" width="5" height="1" fill="#DD0000" />
+                <rect x="0" y="2" width="5" height="1" fill="#FFCE00" />
+              </svg>
+            )}
             {b.label}
             {b.sub && <span class="sub">{b.sub}</span>}
           </span>
@@ -181,5 +189,11 @@ const toneMap = {
   .badge .sub {
     font-size: var(--fs-detail, 0.75rem);
     opacity: 0.7;
+  }
+
+  .badge .flag {
+    width: auto;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1px;
   }
 </style>

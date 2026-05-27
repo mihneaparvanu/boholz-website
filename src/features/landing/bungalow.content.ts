@@ -148,7 +148,7 @@ export const bungalowContent: LandingPageContent = {
     lede: "Zwei Familienunternehmen mit 90 Jahren Holzbau-Erfahrung — und einem klaren Blick für Bungalow-Details, die heute und morgen funktionieren.",
     tone: "olive",
     badges: [
-      { label: "Made in Germany" },
+      { label: "Made in Germany", flag: true },
       { label: "DIN 18040", sub: "Barrierefrei" },
     ],
     testimonials: [

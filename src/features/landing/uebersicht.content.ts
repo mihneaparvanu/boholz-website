@@ -192,7 +192,7 @@ export const uebersichtContent: LandingPageContent = {
     highlight: "im Holzfertigbau.",
     lede: "Vertrieb aus Bad Kissingen, Produktion in Rot am See — zwei Familienunternehmen, ein Maßstab.",
     tone: "olive",
-    badges: [{ label: "Made in Germany" }, { label: "KfW", sub: "Förderung" }],
+    badges: [{ label: "Made in Germany", flag: true }, { label: "KfW", sub: "Förderung" }],
     testimonials: [
       {
         name: "Olaf V.",
