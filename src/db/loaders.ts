@@ -35,9 +35,14 @@ function resolveMediaPaths<
 export const CATEGORY_ORDER = [
   "bestseller",
   "einfamilienhaus",
+  "stadtvilla",
   "bungalow",
+  "doppelhaus",
   "generationenhaus",
   "zweifamilienhaus",
+  "mehrfamilienhaus",
+  "kubus",
+  "pultdachhaus",
 ] as const satisfies readonly string[];
 
 export type CategorySlug = (typeof CATEGORY_ORDER)[number];
