@@ -174,29 +174,29 @@ const nextDisabled = computed(() => !canNext.value);
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  gap: var(--spacing-2);
+  gap: var(--spacing-5);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  margin-inline: calc(var(--padding-inline) * -1);
+  padding-inline: var(--padding-inline);
+  justify-content: flex-start;
+  gap: var(--spacing-5);
+  width: 100vw;
 
-  @media (--below-desktop) {
-    /* Native horizontal scroll, full-bleed across the section padding */
-    justify-content: flex-start;
-    gap: var(--spacing-3);
-    width: 100vw;
-    margin-inline: calc(var(--padding-inline) * -1);
-    padding-inline: var(--padding-inline);
-    overflow-x: auto;
-    overflow-y: hidden;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    > * {
-      scroll-snap-align: center;
-      flex: 0 0 auto;
-    }
+  > * {
+    scroll-snap-align: center;
+    flex: 0 0 auto;
   }
 }
 

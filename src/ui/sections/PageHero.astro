@@ -110,15 +110,14 @@ const hasImage = Boolean(image);
   .scrim {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      to top,
-      var(--clr-overlay) 100%,
-      var(--clr-overlay-strong) 100%
-    );
+    background: var(--scrim-bg, linear-gradient(to top,
+  var(--clr-overlay) 0%,
+  var(--clr-overlay-strong) 100%
+));
   }
 
   .inner {
-    max-width: 90ch;
+    max-width: 70ch;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-3);
@@ -149,9 +148,11 @@ const hasImage = Boolean(image);
   }
 
   .highlight {
+  font-size: var(--highlight-fs, var(--fs-h3));
     font-family: var(--font-secondary);
     font-weight: var(--font-weight-medium);
     font-style: italic;
+    line-height: var(--lh-tight);
     color: var(--highlight-color, var(--clr-accent-primary));
   }
 

@@ -1,8 +1,8 @@
-import { eq, inArray, not } from 'drizzle-orm';
+import { eq, inArray, not } from "drizzle-orm";
 
-import { db } from '@/db/db';
-import { houseCategories, houseModels, news } from '@/db/schema';
-import { getMediaURL } from '@/lib/media';
+import { db } from "@/db/db";
+import { houseCategories, houseModels, news } from "@/db/schema";
+import { getMediaURL } from "@/lib/media";
 
 import type {
   HouseCategory,
@@ -32,7 +32,18 @@ function resolveMediaPaths<
   }));
 }
 
+export const CATEGORY_ORDER = [
+  "bestseller",
+  "einfamilienhaus",
+  "bungalow",
+  "generationenhaus",
+  "zweifamilienhaus",
+] as const satisfies readonly string[];
+
+export type CategorySlug = (typeof CATEGORY_ORDER)[number];
+
 export async function getCategories(): Promise<HouseCategory[]> {
+  // 1. fetch
   const data = await db.query.houseCategories.findMany({
     where: not(inArray(houseCategories.slug, HIDDEN_CATEGORY_SLUGS)),
     with: {
@@ -43,16 +54,14 @@ export async function getCategories(): Promise<HouseCategory[]> {
     },
   });
 
+  // 2. resolve R2 paths
   const resolved = resolveMediaPaths(data as unknown as HouseCategory[]);
-  // Bestseller is a real DB row but we want it to lead the list regardless of insertion order. Sort it
-  // to the front here so every consumer — navbar dropdown, CategorySlider,
-  // HousesPage filter rail — receives the same canonical ordering without
-  // having to reimplement the rule.
-  return resolved.sort((a, b) => {
-    if (a.slug === BESTSELLER_SLUG) return -1;
-    if (b.slug === BESTSELLER_SLUG) return 1;
-    return 0;
-  });
+
+  // 3. sort by canonical order
+  const rank = new Map(CATEGORY_ORDER.map((s, i) => [s, i] as const));
+  return resolved.sort(
+    (a, b) => (rank.get(a.slug) ?? Infinity) - (rank.get(b.slug) ?? Infinity),
+  );
 }
 
 export async function getModels(): Promise<HouseModel[]> {

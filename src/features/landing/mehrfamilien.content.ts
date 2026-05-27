@@ -31,8 +31,7 @@ export const mehrfamilienContent: LandingPageContent = {
       "Flexible Wohnlösungen aus Holz — für Familien, die zusammen leben, ohne aufeinander zu wohnen. Vom Zweifamilien- bis zum 16-Einheiten-Haus.",
     imageAlt:
       "Mehrfamilienhaus von BoHolz Haus — großzügige Architekturvisualisierung mit mehreren Wohneinheiten",
-    imageFallbackPath:
-      "/images/models/generationenhaus/28-264-160/gallery/generationenhaus-28-264-160-gallery-hero.webp",
+    imageFallbackPath: "/images/landing/mehrfamilien/lifestyle-03.webp",
     preferredCategorySlug: "mehrfamilienhaus",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
     secondaryCta: { label: "Hauskatalog bestellen", href: "/katalog" },

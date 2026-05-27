@@ -63,7 +63,7 @@ const initials = computed(() =>
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-1);
+  gap: var(--spacing-2);
   cursor: pointer;
 
   &[data-is-selected="true"] {
@@ -105,7 +105,7 @@ const initials = computed(() =>
   .house-model-circle {
     position: relative;
     cursor: pointer;
-    --size: 64px;
+    --size: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,7 +124,7 @@ const initials = computed(() =>
     background: var(--clr-surface-secondary, var(--clr-surface-primary));
 
     @media (--below-desktop) {
-      --size: 68px;
+      --size: 80px;
     }
 
     img {

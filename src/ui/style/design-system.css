@@ -60,8 +60,8 @@
   /* Semantics */
 
   /* Overlay */
-  --clr-overlay: rgba(0, 0, 0, 0.2);
-  --clr-overlay-strong: rgba(0, 0, 0, 0.9);
+  --clr-overlay: rgba(0, 0, 0, 0.1);
+  --clr-overlay-strong: rgba(0, 0, 0, 0.28);
 
   /* Surface */
   --clr-surface-primary: var(--neutral-gray-900);

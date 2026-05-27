@@ -25,12 +25,11 @@ const keitelIntroProse = keitelArray("uberUnsKeitelIntroProse");
 ---
 
 <Layout title="Über Uns – BoHolz Haus">
-  <div class="full-width">
+  <div class="full-width hero-wrapper">
     <PageHero
       eyebrow="Über uns"
       title="Zwei starke Partner."
       highlight="Ein Verbund aus fachlicher Kompetenz, Wissen und jahrelanger Erfahrung."
-      subtitle="Genauso will ich wohnen."
       image={getMediaURL("/images/pages/uber-uns/hero-partner-2000x776.webp")}
       imageAlt="BoHolz und Keitel-Haus — zwei Familienunternehmen, ein Maßstab"
       align="center"
@@ -171,8 +170,8 @@ const keitelIntroProse = keitelArray("uberUnsKeitelIntroProse");
     />
     <StatBlock
       value="2"
-      label="Familienunternehmen"
-      caption="Vertrieb und Produktion aus einer Hand — von Bad Kissingen bis Baden-Württemberg."
+      label="Starke Partner"
+      caption="Ein Verbund aus fachlicher Kompetenz, Wissen und jahrerlanger Erfahrung."
       icon="heart-handshake"
       client:visible
     />
@@ -291,6 +290,11 @@ const keitelIntroProse = keitelArray("uberUnsKeitelIntroProse");
      ============================================================ */
   .section {
     padding-block: var(--spacing-5);
+  }
+
+  .hero-wrapper {
+    --highlight-fs: var(--fs-h4);
+    --scrim-bg: linear-gradient(to top, var(--clr-overlay) 35%, rgba(0, 0, 0, 0.55) 100%);
   }
 
   /* Alternating-tone band — wraps every other content section in a tinted
