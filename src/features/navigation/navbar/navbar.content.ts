@@ -19,8 +19,10 @@ export const PRIMARY_NAV: NavLink[] = [
 
 /**
  * Extra links rendered inside the "Häuser" dropdown alongside the DB-driven
- * category list. Use for landing/campaign pages that aren't real categories
- * (e.g. Mehrfamilienhäuser lives at /wohnen/mehrfamilien).
+ * category list. Reserved for landing/campaign pages that aren't real
+ * categories. Currently empty — Mehrfamilienhaus is now a real DB category
+ * that filters /hauser directly (the landing page /wohnen/mehrfamilien still
+ * exists for campaign traffic but isn't linked from the navbar).
  *
  * `mirrorCategorySlug` opts a non-category link into the showcase panel by
  * borrowing another category's hero image on hover. Link/title still point
@@ -30,10 +32,4 @@ export interface HouseDropExtraLink extends NavLink {
   mirrorCategorySlug?: string;
 }
 
-export const HOUSE_DROP_EXTRA_LINKS: HouseDropExtraLink[] = [
-  {
-    label: "Mehrfamilienhäuser",
-    path: ROUTES.wohnen.mehrfamilien,
-    mirrorCategorySlug: "generationenhaus",
-  },
-];
+export const HOUSE_DROP_EXTRA_LINKS: HouseDropExtraLink[] = [];

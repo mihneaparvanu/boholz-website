@@ -12,12 +12,7 @@ import type {
   NewsArticle,
 } from "@/db/models";
 import type { HeroSlide } from "@/features/home/hero/hero.types";
-// `mehrfamilienhaus` is treated as an umbrella typology — its 4 models
-// still surface via /wohnen/mehrfamilien (which queries by category slug),
-// but the category itself is hidden from the navbar / category slider /
-// hauser filter so the umbrella + its three concrete subtypes (doppelhaus,
-// generationenhaus, zweifamilienhaus) don't both appear as filter buttons.
-const HIDDEN_CATEGORY_SLUGS: string[] = ["mehrfamilienhaus"];
+const HIDDEN_CATEGORY_SLUGS: string[] = [];
 
 type PivotMediaRow = { media: { path: string } };
 type WithPivotMedia<M extends PivotMediaRow> = { media: M[] };
