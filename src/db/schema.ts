@@ -13,56 +13,104 @@ export const houseCategories = boholzSchema.table("house_categories", {
   description: text("description"),
 });
 
-// House Models
+/**
+ * House Models — front-end-driving record per typology model.
+ *
+ * Field-purpose layout (mirrors the canonical client PDF
+ * `dev/todo/houses/hausliste-homepage.md`):
+ *
+ *   1. Identity            — id, categoryId, title, slug, modelCode
+ *   2. PDF spec columns    — livingArea (Wohnfläche), roofPitch (Dachneigung)
+ *   3. Bestseller-only     — price (only Bestseller rows carry a price in the PDF)
+ *   4. Body copy           — description
+ *   5. Bestseller toggle   — isFeatured (bestseller membership; see lib/bestseller.ts)
+ *   6. Back-office only    — totalArea (Bruttofläche; not in the spec, not surfaced
+ *                            in UI; kept for internal reporting only)
+ *   7. Bookkeeping         — createdAt
+ */
 export const houseModels = boholzSchema.table("house_models", {
+  // 1. Identity
   id: uuid("id").primaryKey().defaultRandom(),
   categoryId: uuid("category_id").references(() => houseCategories.id),
   title: varchar("title").notNull(),
   slug: varchar("slug").notNull(),
   modelCode: varchar("model_code").notNull(),
-  roofPitch: integer("roof_pitch"),
+
+  // 2. PDF spec columns — surfaced on the detail page + filter
   livingArea: numeric("living_area"),
-  totalArea: numeric("total_area"),
+  roofPitch: integer("roof_pitch"),
+
+  // 3. Bestseller-only — only rendered for category === 'bestseller'
   price: numeric("price"),
+
+  // 4. Body copy
   description: text("description"),
+
+  // 5. Bestseller toggle — see src/lib/bestseller.ts
   isFeatured: boolean("is_featured").default(false),
+
+  // 6. Back-office only — not on detail page, not in filters
+  totalArea: numeric("total_area"),
+
+  // 7. Bookkeeping
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
-// House Details (1:1 with house_models)
+/**
+ * House Details — 1:1 supplement to a HouseModel.
+ *
+ * Field-purpose layout:
+ *
+ *   1. Identity              — id (== houseModels.id)
+ *   2. PDF spec columns      — floorCount, roofType, kniestock, netFloorAreaDin,
+ *                              totalLivingAreaWoflv, extensionDescription,
+ *                              allowsGrannyFlat. These power DetailsGrid + filter.
+ *   3. Legacy / deprecated   — levelCount (smallint, can't hold 1.5 — kept until
+ *                              the last call-site migrates to floorCount).
+ *   4. Back-office only      — bedroomCount, bathroomCount, familiesCount,
+ *                              width, length, height, hasGarage (legacy boolean
+ *                              superseded by extensionDescription), isBarrierFree,
+ *                              hasChildrenRoom. Kept for internal use, NOT
+ *                              surfaced on the detail page or in filters per
+ *                              `hausliste-homepage.md` § "Filter & Detail spec".
+ */
 export const houseDetails = boholzSchema.table("house_details", {
+  // 1. Identity (FK == house_models.id)
   id: uuid("id")
     .primaryKey()
     .references(() => houseModels.id)
     .notNull(),
-  levelCount: smallint("level_count"),
-  // Geschosse — accepts 1, 1.5, 2. Supersedes levelCount (smallint can't hold
-  // 1.5). levelCount is kept for back-compat until callers migrate.
+
+  // 2. PDF spec columns — surfaced on the detail page + filter
+  /** Geschosse — accepts 1, 1.5, 2 (numeric since smallint can't hold 1.5). */
   floorCount: numeric("floor_count"),
+  /** Dachform — Satteldach / Walmdach / Pultdach / Flachdach / "Flachdach, Attika". */
+  roofType: varchar("roof_type"),
+  /** Knee-wall height in cm; null = no kniestock. */
+  kniestock: smallint("kniestock"),
+  /** Net floor area per DIN 277 (m²). */
+  netFloorAreaDin: numeric("net_floor_area_din"),
+  /** Total living area per Wohnflächenverordnung (m²) — legally-binding number. */
+  totalLivingAreaWoflv: numeric("total_living_area_woflv"),
+  /** Anbau — free text describing any extension ("Erker 38°", "Garage", null). */
+  extensionDescription: varchar("extension_description"),
+  /** True when the floor plan supports an Einliegerwohnung on request. */
+  allowsGrannyFlat: boolean("allows_granny_flat").default(false),
+
+  // 3. Legacy / deprecated — use floorCount instead
+  /** @deprecated Use {@link floorCount}. Smallint can't hold 1.5. */
+  levelCount: smallint("level_count"),
+
+  // 4. Back-office only — NOT in the canonical spec; not in UI / filter
   bedroomCount: smallint("bedroom_count"),
   bathroomCount: smallint("bathroom_count"),
   familiesCount: smallint("families_count"),
-  // Dimensions (in meters)
   width: numeric("width"),
   length: numeric("length"),
   height: numeric("height"),
-  // Features
+  /** @deprecated Superseded by {@link extensionDescription}. */
   hasGarage: boolean("has_garage").default(false),
-  // Anbau — free text describing any extension ("Erker 38°", "Garage", null).
-  // UI picks an icon by regex on the value; supersedes the hasGarage boolean.
-  extensionDescription: varchar("extension_description"),
-  roofType: varchar("roof_type"),
-  // Kniestock height in cm; null = no kniestock
-  kniestock: smallint("kniestock"),
-  // Net floor area per DIN 277 (m²)
-  netFloorAreaDin: numeric("net_floor_area_din"),
-  // Total living area per Wohnflächenverordnung (m²) — legally-binding number
-  totalLivingAreaWoflv: numeric("total_living_area_woflv"),
-  // True when the floor plan supports an Einliegerwohnung on request
-  allowsGrannyFlat: boolean("allows_granny_flat").default(false),
-  // Accessibility
   isBarrierFree: boolean("is_barrier_free").default(false),
-  // Children's room (true = at least one dedicated children's room)
   hasChildrenRoom: boolean("has_children_room").default(false),
 });
 

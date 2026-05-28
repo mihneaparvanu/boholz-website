@@ -1,43 +1,30 @@
+/**
+ * Filter & sort options — canonical PDF-spec fields only.
+ *
+ * Mirrors `dev/todo/houses/hausliste-homepage.md` § "Filter & Detail spec".
+ * The 7 filter rows + 2 sort options below are the complete set the front-end
+ * exposes; legacy fields (bedroom/bathroom count, has-garage, price) remain
+ * in the DB for back-office use but are NOT surfaced here.
+ */
 import type {
   SortField,
   SortOption,
   BooleanFilter,
   EnumFilter,
-  CountFilter,
   FilterOption,
   ThresholdFilter,
 } from "./filter-panel.types";
-import { parseLivingArea } from '@/lib/parse-living-area';
+import { parseLivingArea } from "@/lib/parse-living-area";
 
-// Sorting
-// `livingArea` and `price` are stored as Postgres `numeric` -> string in
-// drizzle. Resolve them to `number | null` so comparators don't have to
-// guess at locale-compare semantics. Default sort + this resolve share
-// the same parser (parseLivingArea / Number) for consistency.
+// ─── Sorting ───────────────────────────────────────────────────────────────
+// Spec: Wohnfläche + Name only. Preis is bestseller-only and not a meaningful
+// catalogue-wide sort key. Geschosse is too coarse. Schlafzimmer is off-spec.
+
 export const sortFields: SortField[] = [
   {
     value: "livingArea",
     label: "Fläche",
     resolve: (m) => parseLivingArea(m.livingArea),
-  },
-  {
-    value: "price",
-    label: "Preis",
-    resolve: (m) => {
-      if (m.price == null) return null;
-      const n = Number(m.price);
-      return Number.isFinite(n) ? n : null;
-    },
-  },
-  {
-    value: "floorCount",
-    label: "Etagen",
-    resolve: (m) => m.details?.levelCount ?? null,
-  },
-  {
-    value: "bedroomCount",
-    label: "Schlafzimmer",
-    resolve: (m) => m.details?.bedroomCount ?? null,
   },
   {
     value: "title",
@@ -46,65 +33,28 @@ export const sortFields: SortField[] = [
   },
 ];
 
-const generateSortOptions = (fields: SortField[]): SortOption[] => {
-  return fields.flatMap((field) => [
+const generateSortOptions = (fields: SortField[]): SortOption[] =>
+  fields.flatMap((field) => [
     {
       value: `${field.value}-asc`,
-      label: field.label + " " + "↑",
+      label: `${field.label} ↑`,
       resolve: field.resolve,
       direction: "asc",
     },
     {
       value: `${field.value}-desc`,
-      label: field.label + " " + "↓",
+      label: `${field.label} ↓`,
       resolve: field.resolve,
       direction: "desc",
     },
   ]);
-};
 
 export const sortOptions = generateSortOptions(sortFields);
 
-// Filtering
+// ─── Filtering ─────────────────────────────────────────────────────────────
 // `id` is the dedup / URL key — keep it stable and unique across the array.
-const hasGarage: BooleanFilter = {
-  id: "hasGarage",
-  kind: "boolean",
-  label: "Garage",
-  resolve: (m) => m.details?.hasGarage ?? null,
-};
 
-const bedroomNumber: CountFilter = {
-  id: "bedroomCount",
-  kind: "count",
-  label: "Schlafzimmer",
-  values: [1, 2, 3],
-  resolve: (m) => m.details?.bedroomCount || null,
-};
-
-const bathroomCount: CountFilter = {
-  id: "bathroomCount",
-  kind: "count",
-  label: "Badezimmer",
-  values: [1, 2],
-  resolve: (m) => m.details?.bathroomCount || null,
-};
-
-const hasKniestock: BooleanFilter = {
-  id: "hasKniestock",
-  kind: "boolean",
-  label: "Kniestock",
-  resolve: (m) => (m.details != null ? m.details.kniestock != null : null),
-};
-
-const roofType: EnumFilter = {
-  id: "roofType",
-  kind: "enum",
-  label: "Dachtyp",
-  options: ["Satteldach", "Walmdach", "Flachdach", "Pultdach"],
-  resolve: (m) => m.details?.roofType ?? null,
-};
-
+/** Wohnfläche — kept threshold bands; covers 117–349 m² across the catalogue. */
 const livingAreaThreshold: ThresholdFilter = {
   id: "livingArea",
   kind: "threshold",
@@ -141,6 +91,84 @@ const livingAreaThreshold: ThresholdFilter = {
   ],
 };
 
+/** Geschosse — enum so German display "1,5" renders correctly on the chip. */
+const floors: EnumFilter = {
+  id: "floorCount",
+  kind: "enum",
+  label: "Geschosse",
+  options: ["1", "1,5", "2"],
+  resolve: (m) => {
+    if (m.details?.floorCount == null) return null;
+    const n = Number(m.details.floorCount);
+    if (!Number.isFinite(n)) return null;
+    return n.toString().replace(".", ",");
+  },
+};
+
+/** Dachform — covers every value present in the catalogue. */
+const roofType: EnumFilter = {
+  id: "roofType",
+  kind: "enum",
+  label: "Dachform",
+  options: ["Satteldach", "Walmdach", "Pultdach", "Flachdach", "Flachdach, Attika"],
+  resolve: (m) => m.details?.roofType ?? null,
+};
+
+/**
+ * Dachneigung — threshold bands rather than a continuous slider for now;
+ * matches the existing chip UI. The PDF only carries discrete pitches
+ * (22°, 25°, 28°, 35°, 38°, 45°), so three bands cover every case.
+ * Pitched-roof filter; Flachdach models return null and won't match.
+ */
+const roofPitch: ThresholdFilter = {
+  id: "roofPitch",
+  kind: "threshold",
+  label: "Dachneigung",
+  options: [
+    {
+      label: "≤22°",
+      predicate: (m) =>
+        m.roofPitch != null && Number(m.roofPitch) <= 22,
+    },
+    {
+      label: "25–35°",
+      predicate: (m) => {
+        if (m.roofPitch == null) return false;
+        const p = Number(m.roofPitch);
+        return p >= 25 && p <= 35;
+      },
+    },
+    {
+      label: "38–45°",
+      predicate: (m) => {
+        if (m.roofPitch == null) return false;
+        const p = Number(m.roofPitch);
+        return p >= 38 && p <= 45;
+      },
+    },
+  ],
+};
+
+const hasKniestock: BooleanFilter = {
+  id: "hasKniestock",
+  kind: "boolean",
+  label: "Kniestock",
+  resolve: (m) =>
+    m.details != null ? m.details.kniestock != null : null,
+};
+
+/** Anbau — presence toggle; the values themselves (Erker / Garage / ...) are
+ *  free text, so a boolean "vorhanden" is the safest cross-cutting filter. */
+const hasExtension: BooleanFilter = {
+  id: "hasExtension",
+  kind: "boolean",
+  label: "Anbau",
+  resolve: (m) =>
+    m.details != null
+      ? Boolean(m.details.extensionDescription?.trim())
+      : null,
+};
+
 const allowsGrannyFlat: BooleanFilter = {
   id: "allowsGrannyFlat",
   kind: "boolean",
@@ -150,10 +178,10 @@ const allowsGrannyFlat: BooleanFilter = {
 
 export const filterOptions: FilterOption[] = [
   livingAreaThreshold,
-  allowsGrannyFlat,
-  hasGarage,
-  hasKniestock,
+  floors,
   roofType,
-  bedroomNumber,
-  bathroomCount,
+  roofPitch,
+  hasKniestock,
+  hasExtension,
+  allowsGrannyFlat,
 ];
