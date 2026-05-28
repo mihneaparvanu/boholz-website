@@ -1,0 +1,326 @@
+---
+interface Props {
+  title: string;
+  highlight?: string;
+  subtitle?: string;
+  image?: string;
+  imageAlt?: string;
+  align?: "left" | "center";
+  eyebrow?: string;
+  /** Page context — "home" gives the hero a taller mobile floor (100dvh)
+   *  and aligns content to the top so the photo's faces stay visible. */
+  context?: "home" | "default";
+  /** Where the cropped hero image anchors when `object-fit: cover` trims it.
+   *  Accepts CSS `object-position` syntax — keywords (e.g. "bottom right",
+   *  "top left") or explicit values (e.g. "50% 30%", "center 20%"). */
+  imagePosition?: string;
+  /** Optional video background. `image` is used as the poster while it
+   *  buffers and as the fallback on browsers/devices that can't play it.
+   *  Provide mobile variants to swap to lighter encodes below 768px via
+   *  the inline runtime swap below. */
+  videoWebm?: string;
+  videoMp4?: string;
+  videoWebmMobile?: string;
+  videoMp4Mobile?: string;
+}
+
+const {
+  title,
+  highlight,
+  subtitle,
+  image,
+  imageAlt = "",
+  align = "center",
+  eyebrow,
+  context = "default",
+  videoWebm,
+  videoMp4,
+  videoWebmMobile,
+  videoMp4Mobile,
+} = Astro.props;
+
+
+
+const hasImage = Boolean(image);
+const hasVideo = Boolean(videoWebm || videoMp4);
+---
+
+<section
+  class="hero"
+  data-align={align}
+  data-has-image={hasImage}
+  data-context={context}
+>
+  {
+    hasImage && (
+      <div class="bg">
+        {hasVideo ? (
+          <video
+            class="bg-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster={image}
+            data-mobile-webm={videoWebmMobile}
+            data-mobile-mp4={videoMp4Mobile}
+          >
+            {videoWebm && <source src={videoWebm} type="video/webm" />}
+            {videoMp4 && <source src={videoMp4} type="video/mp4" />}
+          </video>
+        ) : (
+          <img src={image} alt={imageAlt} loading="eager" />
+        )}
+        <div class="scrim" />
+      </div>
+    )
+  }
+
+  <div class="inner">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1>
+      {title}
+      {highlight && <span class="highlight"> {highlight}</span>}
+    </h1>
+    {subtitle && <p class="subtitle">{subtitle}</p>}
+    {
+      Astro.slots.has("actions") && (
+        <div class="actions">
+          <slot name="actions" />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: var(--hero-align, start);
+    padding-block: var(--spacing-5) var(--spacing-6);
+    padding-inline: var(--padding-inline, var(--spacing-4));
+
+
+  .highlight {
+  font-size: var(var(--fs-h1));
+    font-family: var(--font-secondary);
+    font-weight: var(--font-weight-medium);
+    font-style: italic;
+    line-height: var(--lh-tight);
+    color: var(--clr-pure-white);
+  }
+  }
+
+  .hero[data-has-image="true"] {
+    min-height: 90dvh;
+  }
+
+  .hero[data-align="center"] .inner {
+    text-align: center;
+    margin-inline: auto;
+    align-items: center;
+  }
+
+  .hero[data-align="left"] .inner {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .hero[data-has-image="true"] {
+    color: var(--clr-pure-white);
+  }
+
+  .bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 70%;
+  }
+
+  .bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 70%;
+    display: block;
+  }
+
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background: var(--scrim-bg, linear-gradient(to top,
+  var(--clr-overlay) 0%,
+  var(--clr-overlay-strong) 100%
+));
+  }
+
+  .inner {
+    max-width: 70ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-secondary);
+    margin: 0;
+    /* Lift the eyebrow→h1 gap above the surrounding spacing-3 rhythm — the
+       small-caps tracking needs room. Adds to the parent's flex `gap`. */
+    margin-block-end: calc(var(--spacing-4) - var(--spacing-3));
+  }
+
+  .hero[data-has-image="true"] .eyebrow {
+    color: var(--clr-pure-white-soft);
+  }
+
+  h1 {
+    /* Weight inherited from the global h1–h6 rule (--font-weight-heading)
+       in design-system.css so tuning the token cascades to every hero. */
+    margin: 0;
+    font-size: var(--fs-h2);
+    text-wrap: balance;
+  }
+
+
+
+  .subtitle {
+    font-size: var(--fs-body-lg);
+    color: var(--clr-content-tertiary);
+    font-weight: var(--font-weight-medium);
+    max-width: 56rem;
+    text-wrap: balance;
+  }
+
+  .hero[data-has-image="true"] .subtitle {
+    color: var(--clr-pure-white-soft);
+  }
+
+  /* Subtitle backdrop card — sits behind the body copy to lift it off
+     the photo. Swap the look by overriding these tokens from the page:
+       --subtitle-bg          background (color / gradient / glass)
+       --subtitle-bg-blur     backdrop-filter blur radius
+       --subtitle-padding     padding inside the card
+       --subtitle-radius      corner radius
+       --subtitle-border      optional 1px border colour
+     Defaults below are off so non-home heroes don't get a card. */
+  .hero[data-has-image="true"] .subtitle {
+    background: var(--subtitle-bg, transparent);
+    backdrop-filter: blur(var(--subtitle-bg-blur, 0));
+    -webkit-backdrop-filter: blur(var(--subtitle-bg-blur, 0));
+    padding: var(--subtitle-padding, 0);
+    border-radius: var(--subtitle-radius, 0);
+    border: 1px solid var(--subtitle-border, transparent);
+    width: fit-content;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    margin-top: var(--spacing-2);
+  }
+
+  .hero[data-align="center"] .actions {
+    justify-content: center;
+  }
+
+  @media (--mobile) {
+    .hero {
+      /* Anchor copy near the top so the photo's faces stay visible. */
+      align-items: start;
+      padding-block: var(--spacing-3) var(--spacing-4);
+    }
+
+    .inner {
+      padding-block: var(--spacing-2);
+    }
+
+    /* Default mobile floor for non-home image heroes: at least 70dvh so
+       the photo gets vertical room. Home overrides to a full 100dvh. */
+    .hero[data-has-image="true"] {
+      min-height: 70dvh;
+    }
+
+    .hero[data-context="home"] {
+      min-height: 100dvh;
+      padding-block-start: var(--spacing-6);
+    }
+
+    /* Stack hero CTA pair vertically; full-width buttons line up. */
+    .actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      gap: var(--spacing-2);
+    }
+
+    /* Cap inner to the viewport column so a stubborn child (e.g. a long
+       nowrap button label) can never blow past the hero's padding. */
+    .inner {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    /* Hero headline + subtitle get a touch more weight on mobile —
+       this is the page's emotional anchor, not a label. */
+    h1 {
+      font-size: calc(var(--fs-h1) * 1.12);
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+    }
+
+    .highlight {
+      font-size: calc(var(--fs-h1) * 1.);
+    }
+
+    .subtitle {
+      font-size: calc(var(--fs-body-lg) * 1.05);
+      max-width: 100%;
+    }
+  }
+
+  /* Landscape phones — 36-40vh of a ~390px-tall viewport eats the screen
+     and pushes the headline/CTA below the fold. Cap with svh (stable
+     when the URL bar toggles) and trim the generous spacing-7 padding
+     so headline + lede + actions all fit above the fold. */
+  @media (--short) {
+    .hero {
+      padding-block: var(--spacing-4) var(--spacing-3);
+    }
+
+    .hero[data-has-image="true"] {
+      min-height: clamp(220px, 80svh, 360px);
+    }
+  }
+</style>
+
+<script>
+  // Swap to lighter mobile encodes below 768px to save cellular data.
+  // Runs once on load; reload after a rotation/resize is rare enough we
+  // don't bother re-evaluating.
+  const video = document.querySelector<HTMLVideoElement>(".bg-video");
+  if (video && window.matchMedia("(max-width: 768px)").matches) {
+    const mobileWebm = video.dataset.mobileWebm;
+    const mobileMp4 = video.dataset.mobileMp4;
+    const sources = video.querySelectorAll("source");
+    sources.forEach((s) => {
+      if (s.type === "video/webm" && mobileWebm) s.src = mobileWebm;
+      if (s.type === "video/mp4" && mobileMp4) s.src = mobileMp4;
+    });
+    if (mobileWebm || mobileMp4) video.load();
+  }
+</script>

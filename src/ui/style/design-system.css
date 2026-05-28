@@ -195,6 +195,18 @@
     rgba(0, 0, 0, 0) 100%
   );
 
+  /* --scrim-top: heavy at the top, fades to transparent before the
+     bottom edge. Use on mobile heroes where copy sits at the TOP of
+     the photo and the lower half should stay clean to reveal the
+     subject (e.g. a house). Pair with `--hero-align: end` flipped to
+     start, or with the home hero's mobile alignment. */
+  --scrim-top: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.6) 0%,
+    rgba(0, 0, 0, 0.35) 40%,
+    rgba(0, 0, 0, 0) 80%
+  );
+
   /* --- Typography --- */
 
   /* Fonts */

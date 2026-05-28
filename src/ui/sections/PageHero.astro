@@ -190,7 +190,11 @@ const hasImage = Boolean(image);
     .hero {
       /* Anchor copy near the top so the photo's faces stay visible. */
       align-items: start;
-      padding-block: var(--spacing-6) var(--spacing-5);
+      padding-block: var(--spacing-3) var(--spacing-4);
+    }
+
+    .inner {
+      padding-block: var(--spacing-2);
     }
 
     /* Default mobile floor for non-home image heroes: at least 70dvh so
@@ -212,14 +216,23 @@ const hasImage = Boolean(image);
       gap: var(--spacing-2);
     }
 
-    /* Slightly tighter headline + subtitle to keep them off the
-       single-orphan threshold at 360–430px widths. */
+    /* Cap inner to the viewport column so a stubborn child (e.g. a long
+       nowrap button label) can never blow past the hero's padding. */
+    .inner {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    /* Hero headline + subtitle get a touch more weight on mobile —
+       this is the page's emotional anchor, not a label. */
     h1 {
-      font-size: calc(var(--fs-h1) * 0.92);
+      font-size: var(--fs-h1);
+      line-height: 1.05;
     }
 
     .subtitle {
-      font-size: var(--fs-body);
+      font-size: calc(var(--fs-body-lg) * 1.05);
+      max-width: 100%;
     }
   }
 

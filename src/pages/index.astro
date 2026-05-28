@@ -25,10 +25,9 @@
  * pages still render `closingCta` from their content modules.
  */
 import Layout from "@/layouts/Layout.astro";
-import Section from "@/ui/sections/Section.astro";
 import { getMediaURL } from "@/lib/media";
 
-import PageHero from "@/ui/sections/PageHero.astro";
+import HomeHero from "@/features/home/hero/HomeHero.astro";
 import Block from "@/ui/sections/Block.astro";
 import BenefitsRow from "@/ui/sections/BenefitsRow.astro";
 import HouseModelsCarousel from "@/ui/sections/HouseModelsCarousel.vue";
@@ -45,7 +44,6 @@ import { toHouseModelCard } from "@/lib/derive";
 
 import { uebersichtContent as content } from "@/features/landing/uebersicht.content";
 import ProofSection from "@/ui/sections/Proof-Section.vue";
-import PremiumPartnerBadge from "@/ui/icons/PremiumPartnerBadge.vue";
 import TrustBadges from "@/features/home/TrustBadges/TrustBadges.vue";
 import { trustBadges } from "@/features/home/TrustBadges/trust-badges.content";
 import { homeSections } from "@/features/home/home.content";
@@ -60,7 +58,11 @@ const houseModels = await getModels();
 
 const houseCards = houseModels.map((m) => toHouseModelCard(m));
 
-const heroImage = getMediaURL(content.hero.imageFallbackPath);
+const heroImage = getMediaURL("/images/brand/home-hero.webp");
+const heroVideoWebm = getMediaURL("/videos/home/home-hero-1080.webm");
+const heroVideoMp4 = getMediaURL("/videos/home/home-hero-1080.mp4");
+const heroVideoWebmMobile = getMediaURL("/videos/home/home-hero-720.webm");
+const heroVideoMp4Mobile = getMediaURL("/videos/home/home-hero-720.mp4");
 const imageBandImage = getMediaURL(content.imageBand.imageFallbackPath);
 const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath);
 ---
@@ -68,7 +70,7 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
 <Layout title={content.seo.title} categories={categories}>
   <!-- ── 01 · Hero (full-bleed) ────────────────────────────────── -->
   <div class="full-width hero-wrap">
-    <PageHero
+    <HomeHero
       title={content.hero.title}
       highlight={content.hero.highlight}
       subtitle={content.hero.subtitle}
@@ -76,16 +78,17 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
       imageAlt={content.hero.imageAlt}
       align="left"
       context="home"
+      videoWebm={heroVideoWebm}
+      videoMp4={heroVideoMp4}
+      videoWebmMobile={heroVideoWebmMobile}
+      videoMp4Mobile={heroVideoMp4Mobile}
     >
       <Fragment slot="actions" class="actions">
-        <Button  variant="primary" size="lg" href={content.hero.primaryCta.href}>
-          {content.hero.primaryCta.label}
-        </Button>
         <Button variant="secondary" size="lg" href={content.hero.secondaryCta.href}>
           {content.hero.secondaryCta.label}
         </Button>
       </Fragment>
-    </PageHero>
+    </HomeHero>
   </div>
 
   <Block><ProofSection /></Block>
@@ -257,13 +260,61 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
      inside PageHero.astro. */
   .hero-wrap {
     --hero-align: end;
+    --subtitle-bg: rgba(255, 255, 255, 0.14);
+    --subtitle-bg-blur: 10px;
+    --subtitle-padding: var(--spacing-3) var(--spacing-4);
+    --subtitle-radius: var(--radius-md);
+    --subtitle-border: rgba(255, 255, 255, 0.24);
+    --scrim-bg: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.05) 0%,
+      rgba(0, 0, 0, 0.12) 100%
+    );
+  }
+
+  /* Tablet — H1 sits between mobile's emotional bump and the desktop
+     scale token. Native --fs-h2 at tablet caps around 38px; nudge to
+     ~46-50px so the headline still feels like a hero, not a card title. */
+  @media (--tablet) {
+    .hero-wrap :global(.hero h1) {
+      font-size: calc(var(--fs-h1) * 1.05);
+      line-height: 1.04;
+      letter-spacing: -0.01em;
+    }
+    .hero-wrap :global(.hero .highlight) {
+      font-size: calc(var(--fs-h1) * 1.05);
+    }
+  }
+
+  /* Single hero CTA — cap its width so the secondary button doesn't
+     stretch across the column on desktop. Mobile keeps the full-width
+     stretched layout from Button.vue's mobile rules. */
+  @media (--from-desktop) {
+    .hero-wrap :global(.actions > .btn) {
+      min-width: 220px;
+    }
   }
 
   @media (--mobile) {
-    /* Hide the secondary CTA on mobile — second child of the slotted
-       `.actions` container that PageHero renders. */
-    .hero-wrap :global(.actions > *:nth-child(2)) {
-      display: none;
+    /* Mobile hero override: copy sits at the TOP of the photo, so we flip
+       the scrim — light tint up top for legibility, fades out fast so the
+       house stays vivid. The glass-light subtitle card carries the readability
+       load, so the scrim itself can stay very subtle. */
+    .hero-wrap {
+      --scrim-bg: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.15) 0%,
+        rgba(0, 0, 0, 0.05) 75%
+      );
+    }
+
+    /* Trim the hero secondary CTA so it doesn't dominate the stack, but
+       keep enough padding-block to feel tappable. Targets the slotted
+       Button's inner `.btn`. */
+    .hero-wrap :global(.actions > .btn[data-size="lg"]) {
+      padding-block: var(--spacing-3);
+      font-size: var(--fs-body);
+      border-radius: var(--radius-md);
     }
 
     /* Center the hero copy on mobile even though desktop is `align="left"`.

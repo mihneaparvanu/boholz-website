@@ -31,10 +31,10 @@ type HeroCopy = {
 export const heroVariants = {
   // Variant 1 — the current launch copy. Default.
   current: {
-    title: "Premium-Fertighäuser",
+    title: "Premium Fertighäuser",
     highlight: "aus Holz.",
     subtitle:
-      "Nachhaltig, energieeffizient und individuell auf Sie zugeschnitten — vom ersten Entwurf bis zur Schlüsselübergabe begleitet von einem festen Ansprechpartner.",
+      "Wir bauen Premium-Fertighäuser aus Holz in Deutschland — nachhaltig, individuell, persönlich begleitet. Gemacht für Generationen zum Genießen, nicht nur zum Wohnen.",
   },
   // Variant 2 — the previous home hero (see `features/Home/Hero/Hero.vue`).
   classic: {
@@ -63,7 +63,7 @@ export const uebersichtContent: LandingPageContent = {
   slug: "uebersicht",
 
   seo: {
-    title: "Premium-Fertighäuser aus Holz · BoHolz Haus",
+    title: "Premium Fertighäuser aus Holz · BoHolz Haus",
     description:
       "Nachhaltige Fertighäuser aus Holz — energieeffizient, individuell geplant, schlüsselfertig übergeben. Vom Bungalow bis zum Mehrfamilienhaus.",
   },
@@ -192,7 +192,10 @@ export const uebersichtContent: LandingPageContent = {
     highlight: "im Holzfertigbau.",
     lede: "Vertrieb aus Bad Kissingen, Produktion in Rot am See — zwei Familienunternehmen, ein Maßstab.",
     tone: "olive",
-    badges: [{ label: "Made in Germany", flag: true }, { label: "KfW", sub: "Förderung" }],
+    badges: [
+      { label: "Made in Germany", flag: true },
+      { label: "KfW", sub: "Förderung" },
+    ],
     testimonials: [
       {
         name: "Olaf V.",

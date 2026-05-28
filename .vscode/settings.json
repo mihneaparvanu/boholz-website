@@ -16,9 +16,9 @@
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
     // Root config files nest under package.json
-    "package.json": "package-lock.json, tsconfig.json, astro.config.mjs, drizzle.config.ts, postcss.config.cjs, prettierrc.mjs, Dockerfile, LICENSE, .gitignore, .node-version",
+    "package.json": "package-lock.json, bun.lock, tsconfig.json, astro.config.mjs, drizzle.config.ts, postcss.config.cjs, prettierrc.mjs, Dockerfile, LICENSE, .gitignore, .node-version",
     // Docs nest under README.md
-    "README.md": "agent.md, development.md"
+    "README.md": "agent.md, development.md, CLAUDE.md"
   },
   "python.terminal.useEnvFile": true,
   "astro.content-intellisense": true

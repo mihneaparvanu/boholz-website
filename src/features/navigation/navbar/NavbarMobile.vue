@@ -102,7 +102,7 @@ function handleNavClick(event: MouseEvent, href: string) {
   /* No inline padding here — the .wrapper grid (via --padding-inline)
      already gives this row its edge gap. Doubling it pushed the CTA
      and trigger into overflow at 360–390px viewports. */
-  padding-block-start: var(--spacing-2);
+  padding-block: var(--spacing-2);
   gap: var(--spacing-2);
   height: 100%;
   color: var(--clr-content-primary);
@@ -233,6 +233,9 @@ function handleNavClick(event: MouseEvent, href: string) {
 
 .onsite-cta:hover,
 .onsite-cta:focus-visible {
-  background: var(--clr-accent-secondary-hover, color-mix(in srgb, var(--clr-accent-secondary) 85%, #000));
+  background: var(
+    --clr-accent-secondary-hover,
+    color-mix(in srgb, var(--clr-accent-secondary) 85%, #000)
+  );
 }
 </style>

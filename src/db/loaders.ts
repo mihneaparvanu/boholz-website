@@ -11,7 +11,7 @@ import type {
   LocationWithAgents,
   NewsArticle,
 } from "@/db/models";
-import type { HeroSlide } from "@/features/home/Hero/hero.types";
+import type { HeroSlide } from "@/features/home/hero/hero.types";
 const HIDDEN_CATEGORY_SLUGS: string[] = [];
 const BESTSELLER_SLUG = "bestseller";
 

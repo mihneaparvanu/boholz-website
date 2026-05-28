@@ -31,7 +31,7 @@ import { PROOF_CERTIFICATIONS as certifications } from "@/features/certification
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: var(--spacing-2);
+  gap: var(--spacing-4);
 
   span {
     text-transform: uppercase;
@@ -59,9 +59,15 @@ import { PROOF_CERTIFICATIONS as certifications } from "@/features/certification
   width: auto;
 }
 
-.badge[data-size="default"] { --badge-h: var(--fs-h2); }
-.badge[data-size="wide"]    { --badge-h: var(--fs-h1); }
-.badge[data-size="tall"]    { --badge-h: var(--fs-h1); }
+.badge[data-size="default"] {
+  --badge-h: var(--fs-h2);
+}
+.badge[data-size="wide"] {
+  --badge-h: var(--fs-h1);
+}
+.badge[data-size="tall"] {
+  --badge-h: var(--fs-h1);
+}
 
 @media (--below-desktop) {
   /* Eyebrow drops to tertiary tone — proof line is supporting copy, not
@@ -75,12 +81,18 @@ import { PROOF_CERTIFICATIONS as certifications } from "@/features/certification
   .badges {
     flex-wrap: nowrap;
     justify-content: space-between;
-    gap: var(--spacing-3);
+    gap: var(--spacing-4);
   }
 
-  .badge[data-size="default"] { --badge-h: var(--fs-h2); }
-  .badge[data-size="wide"]    { --badge-h: var(--fs-h1); }
-  .badge[data-size="tall"]    { --badge-h: var(--fs-h1); }
+  .badge[data-size="default"] {
+    --badge-h: var(--fs-h2);
+  }
+  .badge[data-size="wide"] {
+    --badge-h: var(--fs-h1);
+  }
+  .badge[data-size="tall"] {
+    --badge-h: var(--fs-h1);
+  }
 
   .badge {
     flex-shrink: 1;
