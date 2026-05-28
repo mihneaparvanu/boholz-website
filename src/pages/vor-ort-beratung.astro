@@ -6,10 +6,7 @@ import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
 import VideoPlaceholder from "@/ui/primitives/VideoPlaceholder.vue";
 import { Building2, Home, MapPin } from "lucide-vue-next";
 import { getLocations } from "@/db/loaders";
-import {
-  musterhaeuser,
-  allBueros,
-} from "./vor-ort-beratung.content";
+import { musterhaeuser } from "./vor-ort-beratung.content";
 
 
 const locations = await getLocations();
@@ -25,6 +22,24 @@ const showhouseHeroBySlug = new Map<string, string>(
       return hero ? [[l.slug, hero] as const] : [];
     }),
 );
+
+// Vertriebsbüros + Zentrale come straight from the DB. HQ leads, the rest
+// follow alphabetically by title.
+const offices = locations
+  .filter((l) => l.kind === "office" || l.kind === "headquarters")
+  .sort((a, b) => {
+    if (a.kind === "headquarters") return -1;
+    if (b.kind === "headquarters") return 1;
+    return a.title.localeCompare(b.title, "de");
+  })
+  .map((l) => ({
+    slug: l.slug,
+    name: l.title,
+    address: [l.address, [l.postalCode, l.city].filter(Boolean).join(" ")]
+      .filter(Boolean)
+      .join(", "),
+    heroSrc: l.media.find((m) => m.isHero)?.media.path ?? null,
+  }));
 
 const mapsURL = (address: string): string =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
@@ -101,9 +116,20 @@ const mapsURL = (address: string): string =>
 
     <ul class="card-grid office-grid" role="list">
       {
-        allBueros.map((o) => (
+        offices.map((o) => (
           <li>
             <article class="office">
+              {o.heroSrc && (
+                <figure class="office-cover">
+                  <img
+                    src={o.heroSrc}
+                    alt={`${o.name} – Hausreferenz`}
+                    loading="lazy"
+                    width="600"
+                    height="400"
+                  />
+                </figure>
+              )}
               <span class="office-icon" aria-hidden="true">
                 <Building2 :size={18} :stroke-width={1.75} />
               </span>
@@ -271,6 +297,24 @@ const mapsURL = (address: string): string =>
     background: var(--clr-surface-secondary);
     border: 1px solid var(--clr-border-secondary);
     border-radius: var(--radius-lg);
+  }
+
+  /* Cover image leads the card when the office has a linked house. Negative
+     margins pull the image flush to the card border so the inner padding
+     wraps just the text below it. */
+  .office-cover {
+    margin: calc(var(--spacing-4) * -1) calc(var(--spacing-4) * -1) var(--spacing-1);
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    background: var(--clr-surface-secondary);
+  }
+
+  .office-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .office-icon {
