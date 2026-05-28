@@ -128,7 +128,7 @@ const telHref = (s: string) => `tel:${s.replace(/[^\d+]/g, "")}`;
   font-size: var(--fs-body-sm);
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--clr-accent-primary);
+  color: var(--clr-accent-secondary);
 }
 
 .title {
@@ -165,7 +165,7 @@ const telHref = (s: string) => `tel:${s.replace(/[^\d+]/g, "")}`;
   text-decoration: none;
 }
 .contact-item:hover {
-  color: var(--clr-accent-primary);
+  color: var(--clr-accent-secondary);
 }
 
 .agents {
@@ -216,6 +216,6 @@ const telHref = (s: string) => `tel:${s.replace(/[^\d+]/g, "")}`;
   width: fit-content;
 }
 .agent-contact a:hover {
-  color: var(--clr-accent-primary);
+  color: var(--clr-accent-secondary);
 }
 </style>

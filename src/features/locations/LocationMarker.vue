@@ -67,13 +67,13 @@ const coordinates = computed<[number, number]>(() => [
 }
 
 .body {
-  fill: var(--clr-accent-primary);
+  fill: var(--clr-accent-secondary);
   transition: fill 160ms ease;
 }
 
 .pin:hover .body,
 .pin.active .body {
-  fill: var(--clr-accent-secondary);
+  fill: var(--clr-accent-primary);
 }
 
 .dot {
@@ -81,10 +81,15 @@ const coordinates = computed<[number, number]>(() => [
 }
 
 .house-icon {
-  background-color: var(--clr-accent-primary);
+  background-color: var(--clr-accent-secondary);
   transition: background-color 160ms ease;
   padding: var(--spacing-1);
   border-radius: 50%;
   color: var(--clr-surface-primary);
+}
+
+.pin:hover .house-icon,
+.pin.active .house-icon {
+  background-color: var(--clr-accent-primary);
 }
 </style>
