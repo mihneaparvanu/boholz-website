@@ -17,7 +17,7 @@ import {
   sortOptions,
   filterOptions,
 } from "@/features/filter-panel/filter-panel.options";
-import { BESTSELLER_CATEGORY_ID } from "@/lib/constants";
+import { isBestsellerCategory, getBestsellerModels } from "@/lib/bestseller";
 import { parseLivingArea } from "@/lib/parse-living-area";
 import { HOUSE_DROP_EXTRA_LINKS } from "@/features/navigation/navbar/navbar.content";
 
@@ -76,8 +76,8 @@ const categoryModels = computed<HouseModel[]>(() => {
   if (selectedCategory.value === null) {
     return props.models;
   }
-  if (selectedCategory.value.slug === BESTSELLER_CATEGORY_ID) {
-    return props.models.filter((m) => m.isFeatured);
+  if (isBestsellerCategory(selectedCategory.value)) {
+    return getBestsellerModels(props.models);
   }
   return props.models.filter(
     (m) => m.category?.id === selectedCategory.value?.id,
@@ -432,7 +432,7 @@ watch(
       >
         <ModelCard
           :model="model"
-          :hide-star-badge="selectedCategory?.slug === BESTSELLER_CATEGORY_ID"
+          :hide-star-badge="isBestsellerCategory(selectedCategory)"
         />
       </a>
     </div>

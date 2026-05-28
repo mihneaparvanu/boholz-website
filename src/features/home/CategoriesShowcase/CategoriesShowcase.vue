@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import type { HouseCategory } from "@/db/models";
-import { BESTSELLER_CATEGORY_ID } from "@/lib/constants";
+import { isBestsellerCategory } from "@/lib/bestseller";
 import CategorySlider from "@/features/category-slider/CategorySlider.vue";
 
 const props = defineProps<{
   categories: HouseCategory[];
 }>();
 
-// Bestseller is a virtual aggregate category — exclude it from the home showcase.
+// Bestseller is the umbrella — exclude it from the home typology showcase.
 const visibleCategories = computed(() =>
-  props.categories.filter((c) => c.id !== BESTSELLER_CATEGORY_ID),
+  props.categories.filter((c) => !isBestsellerCategory(c)),
 );
 </script>
 

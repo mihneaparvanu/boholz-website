@@ -18,7 +18,6 @@ import type { HeroSlide } from "@/features/home/hero/hero.types";
 // hauser filter so the umbrella + its three concrete subtypes (doppelhaus,
 // generationenhaus, zweifamilienhaus) don't both appear as filter buttons.
 const HIDDEN_CATEGORY_SLUGS: string[] = ["mehrfamilienhaus"];
-const BESTSELLER_SLUG = "bestseller";
 
 type PivotMediaRow = { media: { path: string } };
 type WithPivotMedia<M extends PivotMediaRow> = { media: M[] };

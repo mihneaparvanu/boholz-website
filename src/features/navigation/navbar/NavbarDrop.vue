@@ -5,6 +5,7 @@ import { Star } from "lucide-vue-next";
 import type { HouseCategory, Location } from "@/db/models";
 import { ROUTES } from "@/features/navigation/routes";
 import { useCategoryGallery } from "@/lib/useCategoryGallery";
+import { isBestsellerCategory } from "@/lib/bestseller";
 import TitleLinks from "./TitleLinks.vue";
 import {
   HOUSE_DROP_EXTRA_LINKS,
@@ -68,7 +69,7 @@ const showcaseKey = computed(
           v-for="(category, i) in props.categories"
           :key="category.id"
           tag="li"
-          :data-bestseller="category.slug === 'bestseller' ? 'true' : null"
+          :data-bestseller="isBestsellerCategory(category) ? 'true' : null"
           :initial="{ opacity: 0, x: -8 }"
           :animate="{ opacity: 1, x: 0 }"
           :transition="{ duration: 0.32, delay: 0.05 + i * 0.035, ease: EASE }"
@@ -77,7 +78,7 @@ const showcaseKey = computed(
           <a :href="`/hauser?category=${category.slug}`">
             <span class="label">{{ category.name }}</span>
             <span
-              v-if="category.slug === 'bestseller'"
+              v-if="isBestsellerCategory(category)"
               class="badge"
               aria-label="Beliebteste Auswahl"
               title="Beliebteste Auswahl"

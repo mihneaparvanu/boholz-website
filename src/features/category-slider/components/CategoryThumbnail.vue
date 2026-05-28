@@ -3,6 +3,7 @@ import { computed } from "vue";
 import { Star } from "lucide-vue-next";
 
 import type { HouseCategory } from "@/db/models";
+import { isBestsellerCategory } from "@/lib/bestseller";
 
 const props = defineProps<{
   category: HouseCategory;
@@ -16,7 +17,7 @@ const imageURL = computed(() => {
   return thumbnail.value?.media.path ?? "";
 });
 
-const isBestseller = computed(() => props.category.slug === "bestseller");
+const isBestseller = computed(() => isBestsellerCategory(props.category));
 
 const initials = computed(() =>
   props.category.name

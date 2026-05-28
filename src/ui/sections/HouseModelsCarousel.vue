@@ -19,6 +19,7 @@ import HouseModelCard from "./HouseModelCard.vue";
 import type { HouseModelCardProps } from "./HouseModelCard.vue";
 import CategoryThumbnail from "@/features/category-slider/components/CategoryThumbnail.vue";
 import type { HouseCategory } from "@/db/models";
+import { isBestsellerCategory, getBestsellerModels } from "@/lib/bestseller";
 
 const props = defineProps<{
   models: HouseModelCardProps[];
@@ -31,7 +32,7 @@ const props = defineProps<{
 // the canonical "start here" entry across every category surface. Falls
 // back to the first category if Bestseller hasn't been seeded yet.
 const selected = ref<HouseCategory | null>(
-  props.categories?.find((c) => c.slug === "bestseller") ??
+  props.categories?.find(isBestsellerCategory) ??
     props.categories?.[0] ??
     null,
 );
@@ -42,10 +43,8 @@ const select = (category: HouseCategory) => {
 
 const displayModels = computed(() => {
   if (!selected.value) return props.models;
-  // "Bestseller" is a virtual category — models aren't assigned to it via
-  // categoryID; they're flagged with `isFeatured`. Filter accordingly.
-  if (selected.value.slug === "bestseller") {
-    return props.models.filter((m) => m.isFeatured);
+  if (isBestsellerCategory(selected.value)) {
+    return getBestsellerModels(props.models);
   }
   return props.models.filter((m) => m.categoryID === selected.value?.id);
 });
@@ -152,7 +151,7 @@ const nextDisabled = computed(() => !canNext.value);
           :price-hint="m.priceHint"
           :price-caveat="m.priceCaveat"
           :href="m.href"
-          :hide-star-badge="selected?.slug === 'bestseller'"
+          :hide-star-badge="isBestsellerCategory(selected)"
         />
       </div>
       <!-- A trailing spacer keeps the last card's right-edge breathing room
