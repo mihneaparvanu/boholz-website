@@ -12,7 +12,14 @@ import type {
   NewsArticle,
 } from "@/db/models";
 import type { HeroSlide } from "@/features/home/hero/hero.types";
-const HIDDEN_CATEGORY_SLUGS: string[] = [];
+// MFH typologies are real DB rows but the client doesn't want them surfaced
+// in the navbar / category slider / hauser filter buttons. They still resolve
+// fine for direct routes (/wohnen/mehrfamilien) and any code that queries
+// models by category slug — only `getCategories()` consumers are affected.
+const HIDDEN_CATEGORY_SLUGS: string[] = [
+  "zweifamilienhaus",
+  "mehrfamilienhaus",
+];
 const BESTSELLER_SLUG = "bestseller";
 
 type PivotMediaRow = { media: { path: string } };
