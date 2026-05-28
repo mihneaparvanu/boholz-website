@@ -250,6 +250,7 @@ Also output to the parent a one-screen summary block:
 
 # Hard Rules
 
+- **Screenshots NEVER land in the project tree.** Write all per-element, per-state, and focus-order PNGs to `/tmp/a11y-report-<timestamp>/screenshots/` (or any `mktemp -d` location). The `REPORT.md` and `findings.json` you hand back to the parent should reference screenshots by absolute tempdir path. Do not create `./a11y-report/` inside the repo, do not nest a `screenshots/` directory under `dev/` or `docs/`, do not commit comparison stacks. The repo's `.gitignore` blocks root-level images as a backstop — work upstream of it. (See `CLAUDE.md → Conventions → Screenshots`.)
 - Compute ratios from runtime computed styles. Never from source code hex values when a live page is available.
 - Composite translucent layers correctly. `bg-white/60` over a gradient is NOT `#FFFFFF` — flatten it.
 - Dark mode is a separate pass. Don't infer. Toggle `prefers-color-scheme` and re-audit.

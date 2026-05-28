@@ -42,6 +42,7 @@ To query media manually in AWS CloudFlare R2, utilize standard S3 CLI configurat
 - **AWS CLI setup:** Since Cloudflare R2 is S3-compatible, point the AWS CLI (or SDK) endpoint URL directly to the R2 endpoint (`https://<ACCOUNT_ID>.r2.cloudflarestorage.com`) and use the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` from the dev `.env`.
 - **Database Modularity:** Separation of Database vs Media assets environments ensures we can swap buckets easily or use unmanaged CDNs if appropriate.
 - **Workspace Cleanliness:** Temporary scripts created during development / database inspection (e.g., using `npx tsx`) must be immediately deleted after execution to maintain a clean directory structure.
+- **Screenshots stay out of the tree.** Verification / debug screenshots from Playwright, MCP browser tools, or manual captures must be written to `/tmp/` (or an `mktemp -d` directory) — never to the repo root or any tracked path. The only images that belong in the project are real site assets under `public/` and icon SVGs under `src/ui/icons/`. Root-level `*.png`, `*.jpg`, `*.jpeg`, `*.gif`, `*.webp`, and `*.avif` are git-ignored as a backstop; do not work around the rule by nesting them in a subdir. See `CLAUDE.md` for the canonical statement of this rule.
 
 ## 4. Guiding Principles
 

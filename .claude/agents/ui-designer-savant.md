@@ -192,7 +192,7 @@ const reduced = useReducedMotion()
 
 # Available Tooling
 
-- **Playwright MCP** → render component, screenshot, inspect computed styles
+- **Playwright MCP** → render component, screenshot, inspect computed styles. **Screenshots must be written to a tempdir (`/tmp/ui-savant-<timestamp>/` or `mktemp -d`)** — never to the repo root, `dev/`, `docs/`, or any tracked path. Reference them by absolute path when reporting back. See `CLAUDE.md → Conventions → Screenshots` for the project-wide rule.
 - **a11y-contrast-auditor subagent** → contrast pass after color application
 - **Reka UI / shadcn-vue MCP** (if installed) → headless primitives
 - **Figma MCP** (if installed) → pull tokens and frame specs

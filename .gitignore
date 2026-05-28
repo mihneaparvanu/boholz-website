@@ -34,3 +34,14 @@ src/assets/nas-images/
 
 # jetbrains setting folder
 .idea/
+
+# Screenshot dump backstop — see CLAUDE.md → Conventions → Screenshots.
+# Verification/debug screenshots belong in /tmp, never in the tree.
+# Real site assets live under public/ and src/ui/icons/, which are unaffected
+# because these globs only match the repo root.
+/*.png
+/*.jpg
+/*.jpeg
+/*.gif
+/*.webp
+/*.avif
