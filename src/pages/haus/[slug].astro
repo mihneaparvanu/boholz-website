@@ -143,6 +143,9 @@ const leistungenCopy =
     margin: 0 0 var(--spacing-2);
     color: var(--clr-content-secondary);
     line-height: var(--lh-body);
+    /* Preserve `\n` paragraph breaks + bullet rows authored in the DB
+       description column without forcing markdown parsing on the server. */
+    white-space: pre-line;
   }
 
   .prose:last-child {
