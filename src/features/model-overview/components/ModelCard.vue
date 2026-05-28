@@ -1,12 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import {
-  formatSquareMeters,
-  formatCurrency,
-  formatDegrees,
-} from "@/lib/format";
+import { formatSquareMeters, formatCurrency } from "@/lib/format";
 import type { HouseModel } from "@/db/models";
 import ImagePlaceholder from "@/ui/primitives/ImagePlaceholder.vue";
+import RoofCapsule, { type RoofEntry } from "./RoofCapsule.vue";
 
 const props = defineProps<{
   model: HouseModel;
@@ -20,6 +17,14 @@ const heroMediaItem = computed(
 );
 
 const heroImage = computed(() => heroMediaItem.value?.path);
+
+// One entry per card today; the array shape leaves room for future
+// dual-roof variants (e.g. Stadtvilla available as Walmdach + Flachdach).
+const roofEntries = computed<RoofEntry[]>(() => {
+  const type = props.model.details?.roofType;
+  if (!type) return [];
+  return [{ type, pitch: props.model.roofPitch }];
+});
 </script>
 
 <template>
@@ -53,7 +58,7 @@ const heroImage = computed(() => heroMediaItem.value?.path);
       </div>
       <div class="price-rooms">
         <p v-if="model.price">{{ formatCurrency(model.price) }}</p>
-        <p v-if="model.roofPitch">{{ formatDegrees(model.roofPitch) }}</p>
+        <RoofCapsule v-if="roofEntries.length" :entries="roofEntries" />
       </div>
     </div>
   </div>
