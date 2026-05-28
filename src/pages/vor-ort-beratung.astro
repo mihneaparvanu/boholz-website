@@ -4,10 +4,11 @@ import LocationsMap from "@/features/locations/LocationsMap.vue";
 import CTASection from "@/ui/sections/CTASection.astro";
 import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
 import VideoPlaceholder from "@/ui/primitives/VideoPlaceholder.vue";
-import { Building2, Home, MapPin } from "lucide-vue-next";
+import { Building2, Home, MapPin, Phone, Mail, ArrowRight } from "lucide-vue-next";
 import { getLocations } from "@/db/loaders";
+import { getMediaURL } from "@/lib/media";
+import { ROUTES } from "@/features/navigation/routes";
 import { musterhaeuser } from "./vor-ort-beratung.content";
-
 
 const locations = await getLocations();
 
@@ -23,26 +24,45 @@ const showhouseHeroBySlug = new Map<string, string>(
     }),
 );
 
+// München's hero in the DB duplicates Villingen-Schwenningen. Override to a
+// distinct einfamilienhaus image until the seed is corrected upstream.
+const OFFICE_HERO_OVERRIDES: Record<string, string> = {
+  "vertriebsbuero-muenchen":
+    "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-efh-ho-166-22-190-betonoptikfassade.webp",
+};
+
 // Vertriebsbüros + Zentrale come straight from the DB. HQ leads, the rest
-// follow alphabetically by title.
+// follow alphabetically by title. Offices with no phone, email, and no agent
+// are dropped per the client brief (only the Eltville stub today).
 const offices = locations
   .filter((l) => l.kind === "office" || l.kind === "headquarters")
+  .filter((l) => l.phone || l.email || l.agents.length > 0)
   .sort((a, b) => {
     if (a.kind === "headquarters") return -1;
     if (b.kind === "headquarters") return 1;
     return a.title.localeCompare(b.title, "de");
   })
-  .map((l) => ({
-    slug: l.slug,
-    name: l.title,
-    address: [l.address, [l.postalCode, l.city].filter(Boolean).join(" ")]
-      .filter(Boolean)
-      .join(", "),
-    heroSrc: l.media.find((m) => m.isHero)?.media.path ?? null,
-  }));
+  .map((l) => {
+    const heroFromDB = l.media.find((m) => m.isHero)?.media.path ?? null;
+    const heroOverride = OFFICE_HERO_OVERRIDES[l.slug];
+    const heroSrc = heroOverride ? getMediaURL(heroOverride) : heroFromDB;
+    return {
+      slug: l.slug,
+      name: l.title,
+      address: [l.address, [l.postalCode, l.city].filter(Boolean).join(" ")]
+        .filter(Boolean)
+        .join(", "),
+      heroSrc,
+      phone: l.phone,
+      email: l.email,
+      agents: l.agents.map((a) => a.agent),
+    };
+  });
 
 const mapsURL = (address: string): string =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+
+const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
 ---
 
 <Layout title="Vor-Ort-Beratung – BoHolz Haus">
@@ -69,7 +89,7 @@ const mapsURL = (address: string): string =>
         musterhaeuser.map((h) => {
           const heroSrc = showhouseHeroBySlug.get(h.slug);
           return (
-            <article class="musterhaus">
+            <a class="musterhaus" href={ROUTES.musterhaus(h.slug)}>
               {heroSrc ? (
                 <figure class="cover">
                   <img
@@ -94,7 +114,11 @@ const mapsURL = (address: string): string =>
                 <p class="region">{h.state}</p>
               </header>
               <p class="body">{h.address}</p>
-            </article>
+              <span class="more">
+                Musterhaus besuchen
+                <ArrowRight :size={14} :stroke-width={2} aria-hidden="true" />
+              </span>
+            </a>
           );
         })
       }
@@ -140,6 +164,35 @@ const mapsURL = (address: string): string =>
                 </span>
                 <span>{o.address}</span>
               </p>
+
+              {o.agents.length > 0 && (
+                <section class="agents" aria-label="Ansprechpartner">
+                  <h4 class="agents-heading">Ansprechpartner</h4>
+                  <ul class="agents-list" role="list">
+                    {o.agents.map((a) => (
+                      <li class="agent">
+                        <div class="agent-name">{a.fullName}</div>
+                        {a.role && <div class="agent-role">{a.role}</div>}
+                        <div class="agent-contact">
+                          {a.phoneNumber && (
+                            <a href={telHref(a.phoneNumber)}>
+                              <Phone :size={12} :stroke-width={1.75} aria-hidden="true" />
+                              <span>{a.phoneNumber}</span>
+                            </a>
+                          )}
+                          {a.email && (
+                            <a href={`mailto:${a.email}`}>
+                              <Mail :size={12} :stroke-width={1.75} aria-hidden="true" />
+                              <span>{a.email}</span>
+                            </a>
+                          )}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
               <a
                 class="office-link"
                 href={mapsURL(o.address)}
@@ -201,7 +254,8 @@ const mapsURL = (address: string): string =>
 
   @media (--from-desktop) {
     .map-hero :global(.map-wrapper) {
-      height: 55vh;
+      height: 72vh;
+      max-height: 760px;
     }
   }
 
@@ -229,12 +283,43 @@ const mapsURL = (address: string): string =>
   }
 
   /* ---------- Musterhaus card ----------
-     Placeholder leads, then a compact head + body. Outer radius lg → matches
-     the VideoPlaceholder it contains; padding 4 → 2 gap reads as text only. */
+     Whole card is the link target — image, copy, and "Musterhaus besuchen"
+     affordance all sit inside one <a>. */
   .musterhaus {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-3);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .musterhaus:hover .cover img,
+  .musterhaus:focus-visible .cover img {
+    transform: scale(1.02);
+  }
+
+  .musterhaus:focus-visible {
+    outline: 2px solid var(--clr-accent-primary);
+    outline-offset: 4px;
+    border-radius: var(--radius-lg);
+  }
+
+  .musterhaus .more {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    margin-block-start: calc(var(--spacing-2) * -1);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-primary);
+    transition: gap 200ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms ease;
+  }
+
+  .musterhaus:hover .more,
+  .musterhaus:focus-visible .more {
+    gap: var(--spacing-2);
+    color: var(--clr-accent-secondary);
   }
 
   /* Card cover image — matches the VideoPlaceholder it replaces (16:9,
@@ -252,6 +337,7 @@ const mapsURL = (address: string): string =>
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .musterhaus .head {
@@ -348,6 +434,77 @@ const mapsURL = (address: string): string =>
     /* Optical alignment with first line of address text. */
     padding-block-start: 0.2em;
     color: var(--clr-content-tertiary);
+  }
+
+  /* ---------- Agents block inside office card ----------
+     The agent info that used to only show in the map pin popup. One block per
+     office, listed in the order returned by the loader (primary first). */
+  .agents {
+    margin-block-start: var(--spacing-1);
+    padding-block-start: var(--spacing-3);
+    border-block-start: 1px solid var(--clr-border-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .agents-heading {
+    margin: 0;
+    font-size: var(--fs-body-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow, 0.06em);
+    color: var(--clr-content-tertiary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .agents-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .agent {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .agent-name {
+    font-size: var(--fs-body);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-primary);
+    line-height: var(--lh-heading);
+  }
+
+  .agent-role {
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-tertiary);
+  }
+
+  .agent-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-block-start: var(--spacing-1);
+  }
+
+  .agent-contact a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-1);
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-secondary);
+    text-decoration: none;
+    line-height: var(--lh-body);
+    width: fit-content;
+    transition: color 160ms ease;
+  }
+
+  .agent-contact a:hover {
+    color: var(--clr-accent-secondary);
   }
 
   .office-link {
