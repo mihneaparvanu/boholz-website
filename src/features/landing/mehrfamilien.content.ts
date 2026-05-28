@@ -76,7 +76,12 @@ export const mehrfamilienContent: LandingPageContent = {
     heading: "Häuser für mehrere Familien",
     highlight: "im Überblick.",
     lede: "Vom Doppelhaus für zwei junge Familien bis zum Generationenhaus mit getrennten Wohneinheiten — alle Modelle dieser Typologie auf einen Blick.",
-    categorySlugs: ["doppelhaus", "generationenhaus", "mehrfamilienhaus"],
+    categorySlugs: [
+      "doppelhaus",
+      "generationenhaus",
+      "zweifamilienhaus",
+      "mehrfamilienhaus",
+    ],
     featuredOnly: false,
     maxItems: 99,
   },

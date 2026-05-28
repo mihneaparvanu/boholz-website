@@ -12,14 +12,12 @@ import type {
   NewsArticle,
 } from "@/db/models";
 import type { HeroSlide } from "@/features/home/hero/hero.types";
-// MFH typologies are real DB rows but the client doesn't want them surfaced
-// in the navbar / category slider / hauser filter buttons. They still resolve
-// fine for direct routes (/wohnen/mehrfamilien) and any code that queries
-// models by category slug — only `getCategories()` consumers are affected.
-const HIDDEN_CATEGORY_SLUGS: string[] = [
-  "zweifamilienhaus",
-  "mehrfamilienhaus",
-];
+// `mehrfamilienhaus` is treated as an umbrella typology — its 4 models
+// still surface via /wohnen/mehrfamilien (which queries by category slug),
+// but the category itself is hidden from the navbar / category slider /
+// hauser filter so the umbrella + its three concrete subtypes (doppelhaus,
+// generationenhaus, zweifamilienhaus) don't both appear as filter buttons.
+const HIDDEN_CATEGORY_SLUGS: string[] = ["mehrfamilienhaus"];
 const BESTSELLER_SLUG = "bestseller";
 
 type PivotMediaRow = { media: { path: string } };
