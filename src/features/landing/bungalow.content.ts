@@ -66,7 +66,7 @@ export const bungalowContent: LandingPageContent = {
       icon: "pencil",
       title: "Flexibel planbar",
       body: "Auf Anbau mit Aufzug, barrierefreien Zugang und stufenlose Übergänge zugeschnitten — jedes Detail nach Maß.",
-      tone: "surface",
+      tone: "accent",
     },
   ],
 

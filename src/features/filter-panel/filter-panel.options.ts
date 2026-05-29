@@ -14,6 +14,7 @@ import type {
   FilterOption,
   ThresholdFilter,
 } from "./filter-panel.types";
+import type { HouseModel } from "@/db/models";
 import { parseLivingArea } from "@/lib/parse-living-area";
 
 // ─── Sorting ───────────────────────────────────────────────────────────────
@@ -54,55 +55,69 @@ export const sortOptions = generateSortOptions(sortFields);
 // ─── Filtering ─────────────────────────────────────────────────────────────
 // `id` is the dedup / URL key — keep it stable and unique across the array.
 
-/** Wohnfläche — kept threshold bands; covers 117–349 m² across the catalogue. */
+/**
+ * Wohnfläche — minimum bands ("ab N m²"). Selecting a band keeps every model
+ * whose living area is that value or larger. Covers 115–1632 m² across the
+ * catalogue (most models 115–200, a few large Mehrfamilien push the top end).
+ */
 const livingAreaThreshold: ThresholdFilter = {
   id: "livingArea",
   kind: "threshold",
   label: "Wohnfläche",
   options: [
     {
-      label: "<150",
+      label: "ab 130 m²",
       predicate: (m) => {
         const a = parseLivingArea(m.livingArea);
-        return a !== null && a < 150;
+        return a !== null && a >= 130;
       },
     },
     {
-      label: "<170",
+      label: "ab 150 m²",
       predicate: (m) => {
         const a = parseLivingArea(m.livingArea);
-        return a !== null && a < 170;
+        return a !== null && a >= 150;
       },
     },
     {
-      label: "<200",
+      label: "ab 170 m²",
       predicate: (m) => {
         const a = parseLivingArea(m.livingArea);
-        return a !== null && a < 200;
+        return a !== null && a >= 170;
       },
     },
     {
-      label: ">200",
+      label: "ab 200 m²",
       predicate: (m) => {
         const a = parseLivingArea(m.livingArea);
-        return a !== null && a > 200;
+        return a !== null && a >= 200;
       },
     },
   ],
 };
 
-/** Geschosse — enum so German display "1,5" renders correctly on the chip. */
-const floors: EnumFilter = {
+/**
+ * Geschosse — "at most" bands ("bis N"). Selecting a band keeps every model
+ * with that floor count or fewer, so "bis 1,5" includes the single-storey
+ * (1) models too. Catalogue carries 1 / 1,5 / 2 / 3.
+ */
+const floorCountAtMost = (m: HouseModel, max: number): boolean => {
+  const fc = m.details?.floorCount;
+  if (fc == null) return false;
+  const n = Number(fc);
+  return Number.isFinite(n) && n <= max;
+};
+
+const floors: ThresholdFilter = {
   id: "floorCount",
-  kind: "enum",
+  kind: "threshold",
   label: "Geschosse",
-  options: ["1", "1,5", "2"],
-  resolve: (m) => {
-    if (m.details?.floorCount == null) return null;
-    const n = Number(m.details.floorCount);
-    if (!Number.isFinite(n)) return null;
-    return n.toString().replace(".", ",");
-  },
+  options: [
+    { label: "bis 1", predicate: (m) => floorCountAtMost(m, 1) },
+    { label: "bis 1,5", predicate: (m) => floorCountAtMost(m, 1.5) },
+    { label: "bis 2", predicate: (m) => floorCountAtMost(m, 2) },
+    { label: "bis 3", predicate: (m) => floorCountAtMost(m, 3) },
+  ],
 };
 
 /** Dachform — covers every value present in the catalogue. */

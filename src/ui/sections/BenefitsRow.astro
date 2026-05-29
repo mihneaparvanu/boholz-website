@@ -19,7 +19,7 @@ import { getIcon, type IconName } from "@/lib/icons";
 
 // Tones: forest/sage/leaf/surface drive the current full-saturation
 // palette; bg/petrol/grun/oliv are kept for legacy diluted-pastel callers.
-export type BenefitTone = "forest" | "sage" | "leaf" | "surface" | "bg" | "petrol" | "grun" | "oliv";
+export type BenefitTone = "forest" | "sage" | "leaf" | "surface" | "accent" | "bg" | "petrol" | "grun" | "oliv";
 
 export interface Benefit {
   icon: IconName;
@@ -122,6 +122,17 @@ const { items } = Astro.props as Props;
     --card-fg-soft: var(--clr-content-secondary);
     --card-border: var(--clr-border-secondary);
     --card-icon-bg: var(--clr-surface-secondary);
+  }
+
+  /* Accent — brand accent-primary fill (light dusty blue) with near-black
+     text per client direction. Black on accent-primary clears WCAG AA
+     comfortably (~8.9:1); white would have failed (~2.4:1), so text is dark. */
+  .card[data-tone="accent"] {
+    --card-bg: var(--clr-accent-primary);
+    --card-fg: rgba(0, 0, 0, 0.92);
+    --card-fg-soft: rgba(0, 0, 0, 0.72);
+    --card-border: rgba(0, 0, 0, 0.12);
+    --card-icon-bg: rgba(0, 0, 0, 0.08);
   }
 
   /* ── Legacy diluted pastel tones (older callers) ───────────────────── */

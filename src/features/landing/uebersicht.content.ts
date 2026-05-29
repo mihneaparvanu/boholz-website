@@ -111,7 +111,7 @@ export const uebersichtContent: LandingPageContent = {
       icon: "key-round",
       title: "Schlüsselfertig",
       body: "Fixe Abläufe, klare Kosten, termingerechte Übergabe.",
-      tone: "surface",
+      tone: "accent",
     },
   ],
 

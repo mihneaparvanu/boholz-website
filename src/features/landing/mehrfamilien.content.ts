@@ -67,7 +67,7 @@ export const mehrfamilienContent: LandingPageContent = {
       icon: "key-round",
       title: "Schlüsselfertig gebaut",
       body: "Festpreis, klare Kosten, termintreue Übergabe — auch bei mehreren Einheiten unter einem Dach.",
-      tone: "surface",
+      tone: "accent",
     },
   ],
 
