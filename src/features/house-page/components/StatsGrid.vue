@@ -18,13 +18,19 @@ const statsConfig: DisplayItemConfig[] = [
     icon: Scan,
     resolve: (m) => m.livingArea,
     format: formatSquareMeters,
+    // Mehrfamilienhaus concepts carry no fixed Wohnfläche — shown on request.
+    fallback: "auf Anfrage",
   },
 ];
 
 const stats = statsConfig
   .map((cfg) => {
     const raw = cfg.resolve(props.model);
-    if (raw == null) return null;
+    if (raw == null) {
+      return cfg.fallback
+        ? { label: cfg.label, icon: cfg.icon, value: cfg.fallback }
+        : null;
+    }
     return {
       label: cfg.label,
       icon: cfg.icon,

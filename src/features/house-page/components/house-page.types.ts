@@ -12,4 +12,7 @@ export interface DisplayItemConfig {
   icon: LucideIcon;
   resolve: (model: HouseModel) => string | number | boolean | null | undefined;
   format?: (raw: string | number | boolean) => string;
+  /** Shown when `resolve` yields null/undefined. Without it, the stat is
+   *  dropped entirely (e.g. the MFH concepts whose Fläche is "auf Anfrage"). */
+  fallback?: string;
 }
