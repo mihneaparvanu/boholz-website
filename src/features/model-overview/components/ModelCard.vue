@@ -52,8 +52,8 @@ const roofEntries = computed<RoofEntry[]>(() => {
     <div class="content-wrapper">
       <div class="title-surface">
         <h3 class="title">{{ model.title }}</h3>
-        <p v-if="model.livingArea">
-          {{ formatSquareMeters(model.livingArea) }}
+        <p>
+          {{ model.livingArea ? formatSquareMeters(model.livingArea) : "auf Anfrage" }}
         </p>
       </div>
       <div class="price-rooms">
