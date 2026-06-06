@@ -89,28 +89,4 @@ export const qaCategories: QuestionCategory[] = [
       },
     ],
   },
-  {
-    id: "finanzierung",
-    title: "Kosten & Finanzierung",
-    questions: [
-      {
-        id: "kosten",
-        question: "Was kostet ein Fertighaus?",
-        answer:
-          "<p>Im mittleren Preissegment kostet ein komplettes, schlüsselfertiges Fertighaus zwischen 2.400 und 3.000 Euro pro Quadratmeter.</p>",
-      },
-      {
-        id: "finanzierung",
-        question: "Wie finanziere ich ein Fertighaus von BoHolz?",
-        answer:
-          "<p>Wir beraten Sie umfassend zu verschiedenen Finanzierungsoptionen und empfehlen Ihnen auf Wunsch geeignete Finanzierungsmöglichkeiten.</p>",
-      },
-      {
-        id: "eigenkapital",
-        question: "Wie viel Eigenkapital benötigt man für seinen Hausbau?",
-        answer:
-          "<p>Experten von Banken wie der Sparkasse empfehlen mindestens 20–30 % der Gesamtkosten als Eigenkapital einzubringen. Idealerweise sollten Sie 10–15 % für die Nebenkosten und weitere 10–15 % für den Kaufpreis selbst aufbringen können.</p>",
-      },
-    ],
-  },
 ];

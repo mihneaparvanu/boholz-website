@@ -7,7 +7,6 @@ import Block from "@/ui/sections/Block.astro";
 
 import SectionNavigator from "@/features/section-navigator/SectionNavigator.vue";
 import EditorialCard from "@/ui/primitives/EditorialCard.vue";
-import IconList from "@/ui/primitives/IconList.vue";
 import Callout from "@/ui/primitives/Callout.vue";
 import BuildingStagesCarousel from "@/features/home/BuildingStages/BuildingStagesCarousel.vue";
 import { buildingStages } from "@/features/home/BuildingStages/building-stages.content";
@@ -17,7 +16,6 @@ import {
 } from "@/features/bauphasen/bauphasen.content";
 import {
   sections,
-  smartHomeFeatures,
   architekturBeats,
   nachhaltigkeitImageA,
   nachhaltigkeitImageB,
@@ -156,21 +154,10 @@ const heroImage = bauphasenHeroImageURL;
     </div>
   </Block>
 
-  <!-- 03 · Smart Home ────────────────────────────────────── -->
-  <Block
-    id="smart-home"
-    eyebrow="03 · Smart Home"
-    heading="Komfort, auf Ihre Bedürfnisse"
-    highlight="zugeschnitten."
-    lede="Tauchen Sie ein in den ultimativen Komfort einer Smart-Home-Installation, die ab Werk mitgeplant und sauber integriert wird."
-  >
-    <IconList client:visible items={smartHomeFeatures} columns={2} />
-  </Block>
-
-  <!-- 04 · Finanzierung & Förderung ─────────────────────── -->
+  <!-- 03 · Finanzierung & Förderung ─────────────────────── -->
   <Block
     id="finanzierung"
-    eyebrow="04 · Finanzierung"
+    eyebrow="03 · Finanzierung"
     heading="Staatliche Förderungen,"
     highlight="klar erklärt."
     lede="Förderkredite der Kreditanstalt für Wiederaufbau (KfW) sind eine attraktive Möglichkeit, Ihren Hausbau finanziell zu unterstützen — gut kombinierbar untereinander."
@@ -225,7 +212,7 @@ const heroImage = bauphasenHeroImageURL;
   <!-- 05 · Ausbaustufen ──────────────────────────────────── -->
   <Block
     id="ausbaustufen"
-    eyebrow="05 · Ausbaustufen"
+    eyebrow="04 · Ausbaustufen"
     heading="Wählen Sie, wie weit"
     highlight="wir gehen."
     lede="Jeder Bauherr ist anders. Wählen Sie die Ausbaustufe, die am besten zu Ihren Fähigkeiten und Ihrem Budget passt — vom Rohbau bis schlüsselfertig."
@@ -237,7 +224,7 @@ const heroImage = bauphasenHeroImageURL;
   <Block
     id="nachhaltigkeit"
     tone="band"
-    eyebrow="06 · Nachhaltigkeit"
+    eyebrow="05 · Nachhaltigkeit"
     heading="Gebaut für"
     highlight="Generationen."
     lede="Jedes BoHolz-Haus bindet im Schnitt rund 30 Tonnen CO₂ in seinen Wänden — als KfW 40 oder KfW 55 ausgelegt, Schicht für Schicht aus regional gewachsenem Holz. Nachhaltigkeit ist hier kein Etikett, sondern Bauweise."

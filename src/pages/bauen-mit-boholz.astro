@@ -7,7 +7,6 @@ import SectionNavigator from "@/features/section-navigator/SectionNavigator.vue"
 import DefinitionList, {
   type DefinitionItem,
 } from "@/ui/primitives/DefinitionList.astro";
-import StatBlock from "@/ui/primitives/StatBlock.vue";
 import IconList, { type IconListItem } from "@/ui/primitives/IconList.vue";
 import EditorialCard from "@/ui/primitives/EditorialCard.vue";
 import Button from "@/ui/primitives/Button.vue";
@@ -135,10 +134,10 @@ const zigzagBlocks: ZigZagBlock[] = [
   },
   {
     eyebrow: "Von außen gut gedämmt",
-    title: "Der Wandaufbau der BoHolz-Häuser",
+    title: "Innovativer Wandaufbau mit hervorragenden Dämmeigenschaften",
     body: [
-      "Den Alltagslärm draußen lassen – das ist es, was unsere gedämmten Außenwände ausmacht. Und nicht nur darin sind sie gut: Sie bringen auch gesundes Wohlfühlklima in Ihre vier Wände.",
-      "BoHolz-Haus-Außenwände verfügen über einen Grundputz aus Armierungsmasse und einem vollflächigen Gittergewebe.",
+      "Die Gebäudehülle hat einen entscheidenden Einfluss auf den Energieverbrauch eines Hauses. Eine hochwertige Dämmung reduziert Wärmeverluste, senkt den Heizwärmebedarf und sorgt für dauerhaft niedrigere Energiekosten.",
+      "Deshalb setzt BoHolz-Haus konsequent auf Holz als natürlichen, nachwachsenden Baustoff. In Kombination mit modernen Wandaufbauten entstehen energieeffiziente Häuser, die Nachhaltigkeit, Wohnkomfort und Wirtschaftlichkeit optimal miteinander verbinden.",
     ],
     closing: "Diffusionsoffen, leise, dauerhaft.",
     image: getMediaURL("/images/content/advantage/wandaufbau/hero.webp"),
@@ -305,12 +304,15 @@ const sechzehnGruende: IconListItem[] = [
   },
 ];
 
-// ── Section 7 — ECO Nature Wandaufbau (KfW 55).
+// ── Section 7 — Wandaufbau Schichten, von außen nach innen.
+// Beide Wände teilen dieselbe ökologische Schichtfolge; nur Holzrahmen +
+// Dämmung (200 → 240 mm) und der daraus resultierende U-Wert unterscheiden
+// sich. Werte 1:1 aus dem Werksaufbau übernommen (KfW 55 / KfW 40).
 const ecoNatureLayers: DefinitionItem[] = [
   {
     term: "Außenputz",
     description:
-      "Hochwertiger, diffusionsoffener Silikonharz-Edelputz, helle Tönung",
+      "Hochwertiger, diffusionsoffener Silikonharz-Edelputz, helle Tönung, durchgefärbt",
   },
   {
     term: "Armierung",
@@ -322,9 +324,13 @@ const ecoNatureLayers: DefinitionItem[] = [
     description: "60 mm — sommerlicher Hitzeschutz, diffusionsoffen",
   },
   {
-    term: "Holzrahmen",
+    term: "Holzrahmenkonstruktion",
+    description: "200 mm",
+  },
+  {
+    term: "Dämmung",
     description:
-      "200 mm Holzrahmenkonstruktion mit ökologischer Knauf Insulation (WLG 035)",
+      "200 mm ökologische Knauf Insulation (WLG 035) zwischen den Rahmen",
   },
   {
     term: "OSB4-Platte",
@@ -332,7 +338,7 @@ const ecoNatureLayers: DefinitionItem[] = [
   },
   {
     term: "Luftdichtheitsebene",
-    description: "0,2 mm — kontrolliert den Feuchteübergang",
+    description: "0,2 mm (Papier oder Vlies) — kontrolliert den Feuchteübergang",
   },
   {
     term: "Innenbeplankung",
@@ -341,6 +347,52 @@ const ecoNatureLayers: DefinitionItem[] = [
   {
     term: "U-Wert",
     description: "0,164 W/(m²K)",
+  },
+  {
+    term: "Brandschutz",
+    description: "F30-B",
+  },
+];
+
+const ecoNaturePlusLayers: DefinitionItem[] = [
+  {
+    term: "Außenputz",
+    description:
+      "Hochwertiger, diffusionsoffener Silikonharz-Edelputz, helle Tönung, durchgefärbt",
+  },
+  {
+    term: "Armierung",
+    description:
+      "Grundputz aus Armierungsmasse und vollflächiges Gittergewebe",
+  },
+  {
+    term: "Holzfaserdämmplatte",
+    description: "60 mm — sommerlicher Hitzeschutz, diffusionsoffen",
+  },
+  {
+    term: "Holzrahmenkonstruktion",
+    description: "240 mm",
+  },
+  {
+    term: "Dämmung",
+    description:
+      "240 mm ökologische Knauf Insulation (WLG 035) zwischen den Rahmen",
+  },
+  {
+    term: "OSB4-Platte",
+    description: "12 mm — aussteifende Beplankung",
+  },
+  {
+    term: "Luftdichtheitsebene",
+    description: "0,2 mm (Papier oder Vlies) — kontrolliert den Feuchteübergang",
+  },
+  {
+    term: "Innenbeplankung",
+    description: "12,5 mm Gipskarton Feuerschutzplatte",
+  },
+  {
+    term: "U-Wert",
+    description: "0,143 W/(m²K)",
   },
   {
     term: "Brandschutz",
@@ -486,37 +538,6 @@ Grundlage unserer Häuser. So verbinden wir traditionelle Wertarbeit mit innovat
         caption="Wie wir bauen und warum — drei Minuten Werksrundgang."
       />
     </div>
-
-    <!-- Three numbers that quantify the BoHolz Holzbau approach. -->
-    <div class="stats-trio">
-      <div class="stats">
-        <StatBlock
-          client:visible
-          value="30 t"
-          label="CO₂ je Haus"
-          caption="Durchschnittliche Kohlenstoffbindung im Holzbau — entlastet die Atmosphäre über die gesamte Lebensdauer."
-          icon="leaf"
-        />
-        <StatBlock
-          client:visible
-          value="11 h"
-          label="Phasenverschiebung"
-          caption="Holzfaserdämmung verzögert sommerliche Hitze um elf Stunden — der Innenraum bleibt nachts kühl."
-          icon="thermometer"
-        />
-        <StatBlock
-          client:visible
-          value="92 %"
-          label="Temperaturpuffer"
-          caption="Anteil der äußeren Temperaturschwankung, der dank des Wandaufbaus nicht im Inneren ankommt."
-          icon="shield"
-        />
-      </div>
-      <p class="footnote">
-        Plus: Lambda-Nennwert 0,036 W/(mK), spezifische Wärmekapazität 2100 J/(kg·K),
-        hoher Schallschutz, dampfdiffusionsoffen und baubiologisch hervorragend.
-      </p>
-    </div>
   </Block>
 
   <!-- 5. Holzfaserdämmung ─ Sommer / Winter ---------------------------- -->
@@ -632,7 +653,16 @@ Wandaufbau mit hervorragenden Dämmeigenschaften.
     <details class="layers-details">
       <summary>Schicht für Schicht — alle Werte im Detail</summary>
       <div class="layers-inner">
-        <DefinitionList items={ecoNatureLayers} layout="grid" />
+        <div class="layers-grid">
+          <section class="layers-col">
+            <h4 class="layers-col-title">ECO Nature <span>· KfW 55</span></h4>
+            <DefinitionList items={ecoNatureLayers} layout="grid" />
+          </section>
+          <section class="layers-col">
+            <h4 class="layers-col-title">ECO Nature Plus <span>· KfW 40</span></h4>
+            <DefinitionList items={ecoNaturePlusLayers} layout="grid" />
+          </section>
+        </div>
       </div>
     </details>
   </Block>
@@ -671,40 +701,12 @@ Wandaufbau mit hervorragenden Dämmeigenschaften.
 </Layout>
 
 <style>
-  /* Stats trio nested inside the Nachhaltigkeit band. */
-  .stats-trio {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-3);
-    width: 100%;
-  }
-
-  .stats-trio .footnote {
-    margin: 0;
-    max-width: 64ch;
-  }
-
   /* Quiet inline fine-print — used for "*Optional" notes under callouts. */
   .footnote {
     margin: var(--spacing-3) 0 0 0;
     font-size: var(--fs-body-sm);
     color: var(--clr-content-tertiary);
     line-height: var(--lh-body);
-  }
-
-  /* Stats trio — three columns from tablet up. */
-  .stats {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-4);
-    --stat-icon-color: var(--pastell-grün);
-  }
-
-  @media (--from-tablet) {
-    .stats {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--spacing-5);
-    }
   }
 
   /* Tradition → Modernisierung → Zertifizierungen — three editorial cards. */
@@ -834,6 +836,32 @@ Wandaufbau mit hervorragenden Dämmeigenschaften.
 
   .layers-inner {
     padding-block-start: var(--spacing-4);
+  }
+
+  /* Two wall types side by side from desktop; stacked below. */
+  .layers-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-5);
+  }
+
+  @media (--from-desktop) {
+    .layers-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--spacing-6);
+    }
+  }
+
+  .layers-col-title {
+    margin: 0 0 var(--spacing-3);
+    font-size: var(--fs-body);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-primary);
+  }
+
+  .layers-col-title span {
+    color: var(--clr-content-tertiary);
+    font-weight: var(--font-weight-regular);
   }
 
   /* ── Flyer download card — lives at the foot of section 04.

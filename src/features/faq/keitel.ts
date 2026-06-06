@@ -31,7 +31,6 @@ const strings: Record<string, string> = {
   uberUnsKeitelVideoCaption: "Einblick in die Keitel-Fertigung",
   uberUnsKeitelVideoLabel: "Video abspielen",
 
-  uberUnsQuoteAuthor: "Keitel Haus",
   uberUnsStatCaption: "Jahre Erfahrung im Fertighausbau",
   uberUnsWasWirTunLede:
     "Wir bauen Fertighäuser in höchster Qualität — nachhaltig, individuell und mit Leidenschaft.",

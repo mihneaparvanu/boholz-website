@@ -121,6 +121,9 @@ export const agents = boholzSchema.table("agents", {
   slug: varchar("slug").notNull(),
   role: varchar("role"),
   phoneNumber: varchar("phone_number"),
+  // Second line where a contact carries both a mobile and a shared office
+  // number (e.g. Musterhaus Vertriebspartner). Nullable — most agents have one.
+  phoneSecondary: varchar("phone_secondary"),
   email: varchar("email"),
   bio: text("bio"),
 });
