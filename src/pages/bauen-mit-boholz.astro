@@ -62,9 +62,9 @@ const sommer: FeatureCard = {
   lede:
     "Die Holzfaserdämmplatte verzögert sommerliche Hitze um Stunden — Schlafräume bleiben kühl, wenn die Außentemperatur kippt.",
   bullets: [
-    "11 Stunden Phasenverschiebung — die Hitze kommt erst nachts an, wenn es draußen längst kühl ist",
-    "92 % Temperaturpuffer gegenüber außen — der Innenraum schwingt kaum mit",
-    "Hohe spezifische Wärmekapazität (2100 J/(kg·K)) — die Wand speichert, gibt langsam ab",
+    "11 Stunden Phasenverschiebung — das entspricht über 50 cm Mineraldämmung; die Hitze erreicht den Innenraum erst abends, wenn es draußen längst kühl ist",
+    "92 % Temperaturpuffer (TAV 8 %) — bei 40 °C Außendifferenz kommen nur 3,2 °C im Innenraum an",
+    "Hohe Wärmespeicherkapazität (2100 J/(kg·K)) — angenehme Dachgeschosstemperaturen ohne stromintensive Klimageräte",
   ],
   icon: "sun",
   imageURL: getMediaURL(
@@ -80,9 +80,9 @@ const winter: FeatureCard = {
   lede:
     "Diffusionsoffen und dämmstark zugleich — die Holzfaser hält die Heizenergie im Haus und reguliert dabei die Raumfeuchte ganz natürlich.",
   bullets: [
-    "Lambda-Nennwert 0,036 W/(mK) — exzellenter Dämmwert für KfW 40 / KfW 55",
+    "Lambda-Nennwert 0,036 W/(mK) (Bemessungswert 0,038) — exzellenter Dämmwert für KfW 40 / KfW 55",
     "Diffusionsoffen — Feuchtigkeit kann nach außen, ohne dass Wärme entweicht",
-    "Baubiologisch hervorragend — gesundes Raumklima ohne Mineralfaser",
+    "GUTEX Thermoflex — von ÖKO-TEST mit „Sehr gut“ ausgezeichnet, baubiologisch hervorragend",
   ],
   icon: "thermometer",
   imageURL: getMediaURL(
@@ -91,6 +91,19 @@ const winter: FeatureCard = {
   imageAlt:
     "Winterlicher Wärmeerhalt — Holzfaserdämmung hält die Heizenergie im Haus",
 };
+
+// Vorteile der flexiblen Holzfaserdämmung — übernommen von der alten
+// boholz-haus.de Seite "Flexible Holzfaserdämmung".
+const holzfaserVorteile: IconListItem[] = [
+  { icon: "thermometer", label: "Hervorragende Dämmleistung (λ 0,036 W/(mK))" },
+  { icon: "sun", label: "Ausgezeichneter sommerlicher Hitzeschutz" },
+  { icon: "home", label: "Winterlicher Kälteschutz durch hohe Wärmespeicherkapazität" },
+  { icon: "shield", label: "Hoher Schallschutz" },
+  { icon: "layers", label: "Feuchtigkeitsregulierend & dampfdiffusionsoffen" },
+  { icon: "tree-deciduous", label: "Nachhaltiger Rohstoff Holz" },
+  { icon: "leaf", label: "Baubiologisch hervorragend — gesundes Raumklima" },
+  { icon: "award", label: "GUTEX Thermoflex — ÖKO-TEST „Sehr gut“" },
+];
 
 // ── Zig-zag editorial block — copy lifted from the old boholz-haus.de
 // "Bauen mit uns" page per client request. Six alternating image / text
@@ -558,7 +571,26 @@ unterstützt gleichzeitig eine natürliche Feuchtigkeitsregulierung der Wandkons
     </figure>
     <FeatureCardPair client:visible left={sommer} right={winter} />
 
-     <p class="footnote">* Optionale Ausstattung — auf Wunsch verfügbar.</p>
+    <div class="wandaufbau-followups">
+      <article class="follow-card">
+        <h4 class="follow-heading">So funktioniert das Hitzeschutzschild</h4>
+        <p class="editorial-prose">
+          An heißen Sommertagen entstehen zwischen Dachziegeln und Dämmebene bis
+          zu 80 °C. Die 24 cm starke Holzfaserdämmung zwischen den Sparren dämpft
+          diese Spitzen so stark, dass sie den Innenraum erst rund 11 Stunden
+          später erreichen — am Abend.
+          <span class="primary">
+            Bis dahin gibt die Dämmung die gespeicherte Wärme längst wieder an
+            die kühle Nachtluft ab. Im Wohnraum kommt sie gar nicht erst an.
+          </span>
+        </p>
+      </article>
+
+      <article class="follow-card">
+        <h4 class="follow-heading">Ihre Vorteile auf einen Blick</h4>
+        <IconList client:visible items={holzfaserVorteile} columns={2} density="comfortable" />
+      </article>
+    </div>
 
     <!-- Print flyer · A4 PDF with cover preview + download CTA. Placed at
          the end of the Holzfaserdämmung section because the flyer's content
@@ -701,14 +733,6 @@ Wandaufbau mit hervorragenden Dämmeigenschaften.
 </Layout>
 
 <style>
-  /* Quiet inline fine-print — used for "*Optional" notes under callouts. */
-  .footnote {
-    margin: var(--spacing-3) 0 0 0;
-    font-size: var(--fs-body-sm);
-    color: var(--clr-content-tertiary);
-    line-height: var(--lh-body);
-  }
-
   /* Tradition → Modernisierung → Zertifizierungen — three editorial cards. */
   .steps {
     display: grid;
