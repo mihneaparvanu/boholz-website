@@ -12,17 +12,16 @@ beim Einpflegen der neuen Pultdach-Unterlagen sind zwei Sachen aufgetaucht – k
 
 ## 1) Pultdachhaus 193-0 = Kubus 0-190 mit Pultdach?
 
-Im Ordner liegt ein Außenbild mit dem Dateinamen `3356_SchaeferHaus_Sommer_2020_Kubus_193_0_0_AV_03_1_KI.jpg`, der Ordner heißt aber „PDH – 193-0". Das passt zu folgendem schon hinterlegten Modell:
+Wir hatten ja schon mal über das Thema gesprochen und uns darauf geeinigt, es vorerst nur als **Kubus** zu führen. Jetzt liegt aber im neuen Ordner ein Außenbild mit dem Dateinamen `3356_SchaeferHaus_Sommer_2020_Kubus_193_0_0_AV_03_1_KI.jpg` (Ordner: „PDH – 193-0") – sonst keine weiteren Unterlagen.
 
 | Modell                    | Kategorie    | Wohnfläche | Dachform          |
 | :------------------------ | :----------- | :--------- | :---------------- |
 | Kubus 0-190               | Kubus        | 190 m²     | Flachdach, Attika |
 | Pultdachhaus 193-0 (neu?) | Pultdachhaus | 193 m² (?) | Pultdach (?)      |
 
-Sieht für mich nach **demselben Baukörper, nur mit Pultdach** aus – also keine zwei Modelle. Bevor ich es als zweites Modell anlege:
+Für mich sieht das weiterhin nach **demselben Baukörper, nur mit Pultdach** aus – also keine zwei Modelle, und wir lassen es einfach bei „Kubus 0-190" wie besprochen.
 
-- Eigenes Modell oder nur Variante vom Kubus 0-190?
-- Falls eigenes Modell: brauche **Wohnfläche, Bruttofläche, Dachneigung, Geschosse, Kniestock, Wohnfläche nach WoFlV, Nettogrundfläche DIN 277, Anbau-Optionen, ELW ja/nein** plus eine kurze Beschreibung (3-5 Sätze) und die Grundrisse.
+Falls es **doch ein eigenes Modell** sein soll, brauche ich zum Differenzieren: **Wohnfläche, Bruttofläche, Dachneigung, Geschosse, Kniestock, Wohnfläche nach WoFlV, Nettogrundfläche DIN 277, Anbau-Optionen, ELW ja/nein** plus eine kurze Beschreibung (3–5 Sätze) und die Grundrisse.
 
 ## 2) Vier MFH ohne Wohnfläche & Dachneigung
 
