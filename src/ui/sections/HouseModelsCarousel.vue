@@ -149,7 +149,7 @@ const nextDisabled = computed(() => !canNext.value);
           :category-i-d="m.categoryID"
           :is-featured="m.isFeatured"
           :price-hint="m.priceHint"
-          :price-caveat="m.priceCaveat"
+          :price-caveats="m.priceCaveats"
           :href="m.href"
           :hide-star-badge="isBestsellerCategory(selected)"
         />

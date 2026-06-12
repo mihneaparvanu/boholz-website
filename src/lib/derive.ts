@@ -16,15 +16,16 @@ import { getMediaURL } from "@/lib/media";
 const FALLBACK_IMAGE_PATH = "/images/pages/uber-uns/value-1.webp";
 
 /**
- * Models whose advertised price already includes the foundation slab —
- * surfaced under the price as a small "inkl. Bodenplatte" line on the card.
- * Slug-keyed because slugs are stable across price changes.
+ * Inclusions surfaced under the price for bestseller models — their advertised
+ * price already covers these. Client (2026-06): apply to ALL bestsellers
+ * (`isFeatured`), not a hard-coded slug list. The listing card uses the
+ * abbreviated "inkl." wording; the detail-page SideCard spells it out.
  */
-const FOUNDATION_INCLUDED_SLUGS = new Set<string>(["bestseller-komfort-116"]);
+const BESTSELLER_INCLUSIONS = ["inkl. Bodenplatte", "inkl. Architektenleistung"];
 
-/** Predicate so consumers don't need to know the slug list directly. */
-export function includesFoundation(slug: string): boolean {
-  return FOUNDATION_INCLUDED_SLUGS.has(slug);
+/** True when the model is a bestseller (drives the price inclusions). */
+export function isBestseller(m: Pick<HouseModel, "isFeatured">): boolean {
+  return m.isFeatured ?? false;
 }
 
 /**
@@ -40,14 +41,14 @@ export function toHouseModelCard(m: HouseModel): HouseModelCardProps {
     id: m.id,
     slug: m.slug,
     name: m.title,
-    code: `${(m.category?.name ?? "Hausmodell").toUpperCase()} · ${m.modelCode}`,
+    code: `${(m.category?.name ?? "Hausmodell").toUpperCase()} · ${formatModelCode(m.modelCode)}`,
     image: src,
     imageAlt: alt,
     categoryID: m.category?.id ?? "",
     isFeatured: m.isFeatured ?? false,
     specs: specsFor(m),
     priceHint: priceHintFor(m),
-    priceCaveat: priceCaveatFor(m),
+    priceCaveats: priceCaveatsFor(m),
   };
 }
 
@@ -61,10 +62,9 @@ function specsFor(m: HouseModel): HouseModelSpec[] {
     specs.push({ kind: "area", value: `${area.toLocaleString("de-DE")} m²` });
   }
 
-  if (m.details?.bedroomCount != null) {
-    specs.push({ kind: "rooms", value: `${m.details.bedroomCount} Zimmer` });
-  } else if (m.details?.familiesCount != null && m.details.familiesCount > 1) {
-    // Multi-family models surface unit count instead of bedrooms.
+  // Client (2026-06): drop the "X Zimmer" chip everywhere. Multi-family /
+  // two-family models keep their unit count ("X Einheiten").
+  if (m.details?.familiesCount != null && m.details.familiesCount > 1) {
     specs.push({
       kind: "rooms",
       value: `${m.details.familiesCount} Einheiten`,
@@ -72,12 +72,25 @@ function specsFor(m: HouseModel): HouseModelSpec[] {
   }
 
   // KfW efficiency isn't a structured field today — stand in with the
-  // typology label until a real column lands.
+  // typology label until a real column lands. Client (2026-06): bestsellers
+  // advertise only "KfW 55".
   if (m.category?.name) {
-    specs.push({ kind: "efficiency", value: "KfW 40 / 55" });
+    specs.push({
+      kind: "efficiency",
+      value: isBestseller(m) ? "KfW 55" : "KfW 40 / 55",
+    });
   }
 
   return specs.slice(0, 3);
+}
+
+/**
+ * Model code as shown on the card overline. Client (2026-06): drop a trailing
+ * "-000" placeholder segment (e.g. "22-116-000" → "22-116"). Real third
+ * segments (e.g. "-225") are left intact.
+ */
+function formatModelCode(code: string | null): string {
+  return (code ?? "").replace(/-000$/, "");
 }
 
 function priceHintFor(m: HouseModel): string | undefined {
@@ -90,8 +103,8 @@ function priceHintFor(m: HouseModel): string | undefined {
   return m.isFeatured ? `${base}*` : base;
 }
 
-function priceCaveatFor(m: HouseModel): string | undefined {
-  return FOUNDATION_INCLUDED_SLUGS.has(m.slug) ? "inkl. Bodenplatte" : undefined;
+function priceCaveatsFor(m: HouseModel): string[] {
+  return isBestseller(m) ? BESTSELLER_INCLUSIONS : [];
 }
 
 function pickImage(m: HouseModel): { src: string; alt: string } {

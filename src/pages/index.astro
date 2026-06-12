@@ -58,11 +58,10 @@ const houseModels = await getModels();
 
 const houseCards = houseModels.map((m) => toHouseModelCard(m));
 
-const heroImage = getMediaURL("/images/brand/home-hero.webp");
-const heroVideoWebm = getMediaURL("/videos/home/home-hero-1080.webm");
-const heroVideoMp4 = getMediaURL("/videos/home/home-hero-1080.mp4");
-const heroVideoWebmMobile = getMediaURL("/videos/home/home-hero-720.webm");
-const heroVideoMp4Mobile = getMediaURL("/videos/home/home-hero-720.mp4");
+// Client (2026-06): bring back the wood-cladding house render for the hero,
+// same mountain/lake background. Reverts from the white-house video back to the
+// static `hero.webp` image (the prior render).
+const heroImage = getMediaURL("/images/brand/hero.webp");
 const imageBandImage = getMediaURL(content.imageBand.imageFallbackPath);
 const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath);
 ---
@@ -78,10 +77,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
       imageAlt={content.hero.imageAlt}
       align="left"
       context="home"
-      videoWebm={heroVideoWebm}
-      videoMp4={heroVideoMp4}
-      videoWebmMobile={heroVideoWebmMobile}
-      videoMp4Mobile={heroVideoMp4Mobile}
     >
       <Fragment slot="actions" class="actions">
         <Button variant="secondary" size="lg" href={content.hero.secondaryCta.href}>

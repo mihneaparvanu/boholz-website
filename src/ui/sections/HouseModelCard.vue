@@ -45,8 +45,9 @@ export type HouseModelCardProps = {
   isFeatured?: boolean;
   /** Optional "ab 290.000 €" hint. */
   priceHint?: string;
-  /** Small note rendered under the price — e.g. "inkl. Bodenplatte". */
-  priceCaveat?: string;
+  /** Small notes rendered under the price — e.g. ["inkl. Bodenplatte",
+   *  "inkl. Architektenleistung"]. One line each. */
+  priceCaveats?: string[];
   /** Detail-page link override; defaults to `/haus/${slug}`. */
   href?: string;
   /** Suppress the bestseller star badge — set true when the card is rendered
@@ -56,7 +57,7 @@ export type HouseModelCardProps = {
 
 const props = withDefaults(defineProps<HouseModelCardProps>(), {
   priceHint: undefined,
-  priceCaveat: undefined,
+  priceCaveats: () => [],
   href: undefined,
 });
 
@@ -115,7 +116,12 @@ const iconFor = (kind: HouseModelSpec["kind"]) => {
               class="price price-placeholder"
               aria-hidden="true"
             ></span>
-            <span v-if="priceCaveat" class="price-caveat">{{ priceCaveat }}</span>
+            <span
+              v-for="caveat in priceCaveats"
+              :key="caveat"
+              class="price-caveat"
+              >{{ caveat }}</span
+            >
           </div>
           <span class="cta" aria-hidden="true">
             <ArrowUpRight :size="18" :stroke-width="1.75" />

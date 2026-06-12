@@ -3,7 +3,6 @@ import { House, Check } from "lucide-vue-next";
 import Button from "@/ui/primitives/Button.vue";
 import type { HouseModel } from "@/db/models";
 import { formatCurrency } from "@/lib/format";
-import { includesFoundation } from "@/lib/derive";
 import { ROUTES } from "@/features/navigation/routes";
 
 defineProps<{
@@ -28,10 +27,16 @@ defineProps<{
             {{ formatCurrency(model.price) }}<template v-if="model.isFeatured">*</template>
           </span>
         </p>
-        <p v-if="includesFoundation(model.slug)" class="included">
-          <Check :size="14" :stroke-width="2.25" aria-hidden="true" />
-          <span>inklusive Bodenplatte</span>
-        </p>
+        <template v-if="model.isFeatured">
+          <p class="included">
+            <Check :size="14" :stroke-width="2.25" aria-hidden="true" />
+            <span>inklusive Bodenplatte</span>
+          </p>
+          <p class="included">
+            <Check :size="14" :stroke-width="2.25" aria-hidden="true" />
+            <span>inklusive Architektenleistung</span>
+          </p>
+        </template>
       </template>
     </header>
 
