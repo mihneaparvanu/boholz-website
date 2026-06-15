@@ -1,10 +1,12 @@
 <script setup lang="ts">
 type Variant = "primary" | "secondary" | "tertiary" | "ghost";
+type Tone = "primary" | "secondary";
 type Size = "sm" | "md" | "lg";
 
 withDefaults(
   defineProps<{
     variant?: Variant;
+    tone?: Tone;
     size?: Size;
     href?: string;
     type?: "button" | "submit" | "reset";
@@ -13,6 +15,7 @@ withDefaults(
   }>(),
   {
     variant: "primary",
+    tone: "primary",
     size: "md",
     type: "button",
   },
@@ -29,6 +32,7 @@ withDefaults(
     :aria-label="ariaLabel"
     class="btn"
     :data-variant="variant"
+    :data-tone="tone"
     :data-size="size"
   >
     <span v-if="$slots.leading" class="btn-icon"><slot name="leading" /></span>
@@ -41,6 +45,8 @@ withDefaults(
 
 <style scoped>
 .btn {
+  --btn-accent: var(--clr-accent-primary);
+  --btn-accent-hover: var(--clr-accent-secondary);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -60,10 +66,14 @@ withDefaults(
     transform 80ms ease;
 }
 
+.btn[data-tone="secondary"] {
+  --btn-accent: var(--clr-accent-secondary);
+  --btn-accent-hover: var(--clr-accent-primary);
+}
+
 .btn:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px
-    color-mix(in srgb, var(--clr-accent-primary) 28%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--btn-accent) 28%, transparent);
 }
 
 /* Override global `a:hover { opacity: 0.7 }` from reset.css — the button
@@ -157,25 +167,28 @@ a.btn:hover {
   }
 }
 
-/* ── Variants ────────────────────────────────────── */
+/* ── Variants ──────────────────────────────────────
+   Variants read --btn-accent / --btn-accent-hover so they automatically
+   respect the `tone` prop. Default tone = primary (accent-primary base,
+   accent-secondary hover); tone="secondary" swaps the pair. */
 .btn[data-variant="primary"] {
-  background: var(--clr-accent-primary);
+  background: var(--btn-accent);
   color: var(--clr-surface-primary);
-  border-color: var(--clr-accent-primary);
+  border-color: var(--btn-accent);
 }
 .btn[data-variant="primary"]:hover:not([disabled], [aria-disabled="true"]) {
-  background: var(--clr-accent-secondary);
-  border-color: var(--clr-accent-secondary);
+  background: var(--btn-accent-hover);
+  border-color: var(--btn-accent-hover);
   color: var(--clr-surface-primary);
 }
 
 .btn[data-variant="secondary"] {
   background: var(--clr-surface-primary);
-  color: var(--clr-accent-secondary);
+  color: var(--btn-accent);
 }
 .btn[data-variant="secondary"]:hover:not([disabled], [aria-disabled="true"]) {
-  background: var(--clr-accent-secondary);
-  border-color: var(--clr-accent-secondary);
+  background: var(--btn-accent);
+  border-color: var(--btn-accent);
   color: var(--clr-surface-primary);
 }
 
@@ -185,17 +198,17 @@ a.btn:hover {
   border-color: var(--clr-border-secondary);
 }
 .btn[data-variant="tertiary"]:hover:not([disabled], [aria-disabled="true"]) {
-  color: var(--clr-accent-secondary);
-  border-color: var(--clr-accent-secondary);
+  color: var(--btn-accent);
+  border-color: var(--btn-accent);
 }
 
 .btn[data-variant="ghost"] {
   background: transparent;
-  color: var(--clr-accent-primary);
+  color: var(--btn-accent);
   border-color: transparent;
 }
 .btn[data-variant="ghost"]:hover:not([disabled], [aria-disabled="true"]) {
-  color: var(--clr-accent-secondary);
-  background: color-mix(in srgb, var(--clr-accent-primary) 8%, transparent);
+  color: var(--btn-accent-hover);
+  background: color-mix(in srgb, var(--btn-accent) 8%, transparent);
 }
 </style>

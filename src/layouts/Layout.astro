@@ -7,7 +7,7 @@ import certificationsSprite from "@/features/certifications/certifications.svg?r
 
 import Navbar from "@/features/navigation/navbar/Navbar.vue";
 import Footer from "@/features/navigation/footer/Footer.astro";
-import CookieConsent from "@/features/cookie-consent/CookieConsent.vue";
+import ConsentBanner from "@/features/consent/ConsentBanner.vue";
 
 import { getCategories, getLocations } from "@/db/loaders";
 import type { HouseCategory } from "@/db/models";
@@ -38,7 +38,7 @@ const showhouses = await getLocations({ kind: "showhouse" });
       showhouses={showhouses}
     />
     <main class="wrapper">
-      <CookieConsent client:visible/>
+      <ConsentBanner client:visible />
       <slot />
       <Footer />
     </main>
