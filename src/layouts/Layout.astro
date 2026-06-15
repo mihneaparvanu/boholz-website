@@ -8,6 +8,7 @@ import certificationsSprite from "@/features/certifications/certifications.svg?r
 import Navbar from "@/features/navigation/navbar/Navbar.vue";
 import Footer from "@/features/navigation/footer/Footer.astro";
 import ConsentBanner from "@/features/consent/ConsentBanner.vue";
+import { readConsent, COOKIE_NAME } from "@/features/consent/consent";
 
 import { getCategories, getLocations } from "@/db/loaders";
 import type { HouseCategory } from "@/db/models";
@@ -21,6 +22,12 @@ interface Props {
 const { title, categories: categoriesProp, isHero = false } = Astro.props;
 const categories = categoriesProp ?? (await getCategories());
 const showhouses = await getLocations({ kind: "showhouse" });
+
+const rawConsent = Astro.cookies.get(COOKIE_NAME)?.value ?? null;
+const consent = readConsent(rawConsent);
+const showBanner = consent === null;
+const loadGTM = consent !== null && (consent.analytics || consent.marketing);
+const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
 ---
 
 <html lang="de" data-hero={isHero ? "true" : "false"}>
@@ -29,6 +36,12 @@ const showhouses = await getLocations({ kind: "showhouse" });
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
+    {loadGTM && GTM_ID && (
+      <>
+        <script is:inline set:html={`window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`} />
+        <script is:inline async src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`} />
+      </>
+    )}
   </head>
   <body>
     <Fragment set:html={certificationsSprite} />
@@ -38,7 +51,7 @@ const showhouses = await getLocations({ kind: "showhouse" });
       showhouses={showhouses}
     />
     <main class="wrapper">
-      <ConsentBanner client:visible />
+      {showBanner && <ConsentBanner client:visible />}
       <slot />
       <Footer />
     </main>
