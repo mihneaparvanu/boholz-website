@@ -27,7 +27,7 @@ const rawConsent = Astro.cookies.get(COOKIE_NAME)?.value ?? null;
 const consent = readConsent(rawConsent);
 // Consent banner disabled for now (was a dev-only feature). Re-enable by
 // restoring: const showBanner = consent === null;
-const showBanner = false;
+const showBanner = true;
 const loadGTM = consent !== null && (consent.analytics || consent.marketing);
 const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
 ---
@@ -53,7 +53,7 @@ const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
       showhouses={showhouses}
     />
     <main class="wrapper">
-      {showBanner && <ConsentBanner client:visible />}
+      {showBanner && <ConsentBanner gtmId={GTM_ID} client:visible />}
       <slot />
       <Footer />
     </main>

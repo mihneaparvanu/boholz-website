@@ -23,12 +23,13 @@
   .title {
     font-family: var(--font-secondary);
     font-style: italic;
-    font-size: var(--fs-h5);
+    font-size: var(--fs-h4);
     line-height: var(--lh-body);
   }
 
   .disclaimer {
     color: var(--clr-content-tertiary);
+    font-size: var(--fs-body-lg);
   }
 }
 </style>

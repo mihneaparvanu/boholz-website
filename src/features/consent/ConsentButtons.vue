@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import Button from "@/ui/primitives/Button.vue";
+
+const emit = defineEmits<{
+  choose: [preset: "all" | "middle" | "essential"];
+}>();
 </script>
 
 <template>
   <div class="btns">
     <Button
-      size="sm"
+      @click="emit('choose', 'all')"
+      size="md
       variant="primary"
       tone="secondary"
       aria-label="Alle Cookies akzeptieren, einschließlich Statistik und Marketing"
@@ -13,7 +18,8 @@ import Button from "@/ui/primitives/Button.vue";
       Alle akzeptieren
     </Button>
     <Button
-      size="sm"
+      @click="emit('choose', 'middle')"
+      size="md"
       variant="primary"
       tone="secondary"
       aria-label="Nur essenzielle und Statistik-Cookies akzeptieren"
@@ -21,7 +27,8 @@ import Button from "@/ui/primitives/Button.vue";
       Statistik erlauben
     </Button>
     <Button
-      size="sm"
+      @click="emit('choose', 'essential')"
+      size="md"
       variant="primary"
       tone="secondary"
       aria-label="Nur essenzielle Cookies akzeptieren, Statistik und Marketing ablehnen"
