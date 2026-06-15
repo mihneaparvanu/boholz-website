@@ -35,10 +35,19 @@ import Button from "@/ui/primitives/Button.vue";
 .btns {
   display: flex;
   gap: var(--spacing-3);
-  flex-wrap: nowrap;
 
+  /* Equal columns: `flex: 1` (basis 0) makes width content-independent, and
+     `min-width: 0` lets them shrink past the buttons' `white-space: nowrap`
+     min-content width instead of overflowing the row. */
   & > * {
-    width: 100%;
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Mobile: stack so each button is full-width — the pattern Button.vue
+     documents for inline button rows (avoids the squeezed/overflowing row). */
+  @media (--mobile) {
+    flex-direction: column;
   }
 }
 </style>
