@@ -17,7 +17,7 @@ const activePreset = computed<PresetKey | null>(() => {
 const DISPLAY = {
   all: { label: "Alle akzeptiert", tone: "ok" },
   middle: { label: "Statistik aktiv", tone: "ok" },
-  essential: { label: "Statistik aktiv", tone: "warn" },
+  essential: { label: "Nur essenzielle", tone: "warn" },
 } as const satisfies Record<PresetKey, { label: string; tone: "ok" | "warn" }>;
 
 const display = computed(() =>
@@ -61,7 +61,7 @@ withDefaults(
         />
       </svg>
     </span>
-    Ihre Privatsphäre-Einstellungen
+    {{ display.label }}
   </button>
 </template>
 

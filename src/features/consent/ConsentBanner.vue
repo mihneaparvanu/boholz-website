@@ -1,17 +1,19 @@
 <script setup lang="ts">
 import ConsentHeader from "./ConsentHeader.vue";
 import ConsentButtons from "./ConsentButtons.vue";
-import { CONSENT_PRESETS } from "./consent.zod";
+import { CONSENT_PRESETS, type ConsentV1 } from "./consent.zod";
 import { injectGTM, writeConsent } from "./consent";
 import { useConsentBanner } from "./useConsentBanner";
 
 const props = defineProps<{
   gtmId: string;
   initialOpen: boolean;
+  initialConsent: ConsentV1 | null;
 }>();
 
-const { open, hide, setConsent } = useConsentBanner();
+const { open, consent, hide, setConsent } = useConsentBanner();
 open.value = props.initialOpen;
+consent.value = props.initialConsent;
 
 function onChoose(preset: "all" | "middle" | "essential") {
   const consent = CONSENT_PRESETS[preset];

@@ -51,7 +51,12 @@ const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
       showhouses={showhouses}
     />
     <main class="wrapper">
-      <ConsentBanner gtmId={GTM_ID} initialOpen={showBanner} client:load />
+      <ConsentBanner
+        gtmId={GTM_ID}
+        initialOpen={showBanner}
+        initialConsent={consent}
+        client:load
+      />
       <slot />
       <Footer />
     </main>
