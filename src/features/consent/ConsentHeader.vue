@@ -30,6 +30,11 @@
   .disclaimer {
     color: var(--clr-content-tertiary);
     font-size: var(--fs-body-lg);
+
+    a {
+      color: var(--clr-accent-secondary);
+      font-weight: 500;
+    }
   }
 }
 </style>

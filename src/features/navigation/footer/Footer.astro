@@ -6,7 +6,7 @@ import { CERTIFICATIONS } from "@/features/certifications/certifications";
 
 import BoholzLogo from "@/ui/icons/BoholzLogo.vue";
 import GermanyFlag from "@/ui/icons/GermanyFlag.vue";
-import PrivacyBtn from "@/ui/primitives/PrivacyBtn.vue";
+import ConsentSettingsButton from "@/features/consent/ConsentSettingsButton.vue";
 import Separator from "@/features/house-page/components/Separator.vue";
 
 const currentYear = new Date().getFullYear();
@@ -36,10 +36,7 @@ const currentYear = new Date().getFullYear();
         <li><a href={ROUTES.datenschutz}>Datenschutz</a></li>
         <li><a href={ROUTES.cookies}>Cookies</a></li>
         <li>
-          <a href="">
-            <span class="privacy-icon"><PrivacyBtn /></span>
-            Ihre Privatsphäre-Einstellungen
-          </a>
+          <ConsentSettingsButton client:load />
         </li>
       </ul>
     </nav>
@@ -169,14 +166,7 @@ const currentYear = new Date().getFullYear();
     font-weight: var(--font-weight-medium);
   }
 
-  .list.privacy a {
-    font-weight: var(--font-weight-regular);
-    color: var(--clr-content-secondary);
-  }
 
-  .privacy-icon {
-    padding-inline-end: var(--spacing-0);
-  }
 
   /* --- Certifications row -------------------------------------------- */
 

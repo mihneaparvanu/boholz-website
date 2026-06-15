@@ -1,26 +1,31 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import ConsentHeader from "./ConsentHeader.vue";
 import ConsentButtons from "./ConsentButtons.vue";
 import { CONSENT_PRESETS } from "./consent.zod";
 import { injectGTM, writeConsent } from "./consent";
-const noticeVisible = ref(true);
+import { useConsentBanner } from "./useConsentBanner";
+
 const props = defineProps<{
   gtmId: string;
+  initialOpen: boolean;
 }>();
+
+const { open, hide, setConsent } = useConsentBanner();
+open.value = props.initialOpen;
 
 function onChoose(preset: "all" | "middle" | "essential") {
   const consent = CONSENT_PRESETS[preset];
   writeConsent(consent);
+  setConsent(consent);
   if (consent.analytics || consent.marketing) {
     injectGTM(props.gtmId);
   }
-  noticeVisible.value = false;
+  hide();
 }
 </script>
 
 <template>
-  <div v-if="noticeVisible" class="popup">
+  <div v-if="open" class="popup">
     <ConsentHeader />
     <ConsentButtons @choose="onChoose" />
   </div>
