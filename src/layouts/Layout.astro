@@ -25,9 +25,7 @@ const showhouses = await getLocations({ kind: "showhouse" });
 
 const rawConsent = Astro.cookies.get(COOKIE_NAME)?.value ?? null;
 const consent = readConsent(rawConsent);
-// Consent banner disabled for now (was a dev-only feature). Re-enable by
-// restoring: const showBanner = consent === null;
-const showBanner = true;
+const showBanner = consent === null;
 const loadGTM = consent !== null && (consent.analytics || consent.marketing);
 const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
 ---

@@ -10,7 +10,7 @@ const emit = defineEmits<{
   <div class="btns">
     <Button
       @click="emit('choose', 'all')"
-      size="md
+      size="md"
       variant="primary"
       tone="secondary"
       aria-label="Alle Cookies akzeptieren, einschließlich Statistik und Marketing"

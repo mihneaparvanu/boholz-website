@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { inject, ref } from "vue";
+import { ref } from "vue";
 import ConsentHeader from "./ConsentHeader.vue";
 import ConsentButtons from "./ConsentButtons.vue";
-import { CONSENT_PRESETS } from "./consent.zod.ts";
-import { injectGTM, writeConsent } from "./consent.ts";
+import { CONSENT_PRESETS } from "./consent.zod";
+import { injectGTM, writeConsent } from "./consent";
 const noticeVisible = ref(true);
 const props = defineProps<{
   gtmId: string;
@@ -15,6 +15,7 @@ function onChoose(preset: "all" | "middle" | "essential") {
   if (consent.analytics || consent.marketing) {
     injectGTM(props.gtmId);
   }
+  noticeVisible.value = false;
 }
 </script>
 
