@@ -36,7 +36,16 @@ defineProps<{
             <Check :size="14" :stroke-width="2.25" aria-hidden="true" />
             <span>inklusive Architektenleistung</span>
           </p>
+          <p class="included">
+            <Check :size="14" :stroke-width="2.25" aria-hidden="true" />
+            <span>KfW 40 &amp; QNG optional</span>
+          </p>
         </template>
+      </template>
+      <template v-else>
+        <p class="price">
+          <span class="amount">Preis auf Anfrage</span>
+        </p>
       </template>
     </header>
 

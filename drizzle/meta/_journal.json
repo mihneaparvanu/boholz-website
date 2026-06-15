@@ -127,6 +127,13 @@
       "when": 1781250122674,
       "tag": "0017_pultdachhaus_description",
       "breakpoints": true
+    },
+    {
+      "idx": 18,
+      "version": "7",
+      "when": 1781526888703,
+      "tag": "0018_client_changes_15062026",
+      "breakpoints": true
     }
   ]
 }

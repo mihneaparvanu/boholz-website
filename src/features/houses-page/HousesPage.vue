@@ -17,7 +17,11 @@ import {
   sortOptions,
   filterOptions,
 } from "@/features/filter-panel/filter-panel.options";
-import { isBestsellerCategory, getBestsellerModels } from "@/lib/bestseller";
+import {
+  isBestsellerCategory,
+  getBestsellerModels,
+  BESTSELLER_LAST_SLUG,
+} from "@/lib/bestseller";
 import { parseLivingArea } from "@/lib/parse-living-area";
 import { HOUSE_DROP_EXTRA_LINKS } from "@/features/navigation/navbar/navbar.content";
 
@@ -110,9 +114,21 @@ const displayModels = computed(() => {
 
   // No explicit sort: featured models lead, then the rest.
   // Each partition still goes through the default sort (livingArea asc).
-  const featured = base.filter((m) => m.isFeatured);
-  const rest = base.filter((m) => !m.isFeatured);
-  return [...sortModels(featured, null), ...sortModels(rest, null)];
+  const featured = sortModels(
+    base.filter((m) => m.isFeatured),
+    null,
+  );
+  const rest = sortModels(
+    base.filter((m) => !m.isFeatured),
+    null,
+  );
+  // Client (2026-06-15): the Bungalow Komfort 116 sits last (far right) in the
+  // bestseller row — pin it after the default livingArea sort.
+  const featuredOrdered = [
+    ...featured.filter((m) => m.slug !== BESTSELLER_LAST_SLUG),
+    ...featured.filter((m) => m.slug === BESTSELLER_LAST_SLUG),
+  ];
+  return [...featuredOrdered, ...rest];
 });
 
 // Live preview count for the panel button — reflects pending state.

@@ -58,6 +58,7 @@ const roofEntries = computed<RoofEntry[]>(() => {
       </div>
       <div class="price-rooms">
         <p v-if="model.price">{{ formatCurrency(model.price) }}</p>
+        <p v-else class="on-request">Preis auf Anfrage</p>
         <RoofCapsule v-if="roofEntries.length" :entries="roofEntries" />
       </div>
     </div>
@@ -144,5 +145,11 @@ const roofEntries = computed<RoofEntry[]>(() => {
   align-items: end;
   gap: var(--spacing-1);
   grid-area: price-rooms;
+}
+
+.on-request {
+  font-size: var(--fs-body-sm);
+  color: var(--clr-content-secondary);
+  white-space: nowrap;
 }
 </style>

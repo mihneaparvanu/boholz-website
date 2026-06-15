@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import { MglMarker } from "@indoorequal/vue-maplibre-gl";
 import type { LocationWithAgents } from "@/db/models";
-import { House } from "lucide-vue-next";
+import { House, Building2 } from "lucide-vue-next";
 
 const props = defineProps<{ location: LocationWithAgents; active: boolean }>();
 defineEmits<{ select: [] }>();
@@ -26,6 +26,10 @@ const coordinates = computed<[number, number]>(() => [
       >
         <div v-if="location.kind === 'showhouse'" class="house-icon">
           <House size="20" aria-hidden="true" />
+        </div>
+
+        <div v-else-if="location.kind === 'headquarters'" class="building-icon">
+          <Building2 size="20" aria-hidden="true" />
         </div>
 
         <svg
@@ -80,7 +84,8 @@ const coordinates = computed<[number, number]>(() => [
   fill: var(--clr-surface-primary);
 }
 
-.house-icon {
+.house-icon,
+.building-icon {
   background-color: var(--clr-accent-secondary);
   transition: background-color 160ms ease;
   padding: var(--spacing-1);
@@ -89,7 +94,9 @@ const coordinates = computed<[number, number]>(() => [
 }
 
 .pin:hover .house-icon,
-.pin.active .house-icon {
+.pin.active .house-icon,
+.pin:hover .building-icon,
+.pin.active .building-icon {
   background-color: var(--clr-accent-primary);
 }
 </style>

@@ -23,6 +23,13 @@ const FALLBACK_IMAGE_PATH = "/images/pages/uber-uns/value-1.webp";
  */
 const BESTSELLER_INCLUSIONS = ["inkl. Bodenplatte", "inkl. Architektenleistung"];
 
+/**
+ * Client (2026-06-15): bestsellers additionally advertise that KfW 40 and the
+ * QNG quality seal are optionally available (on top of the standard KfW 55).
+ * Surfaced as a note line under the price, next to the inclusions.
+ */
+const BESTSELLER_KFW_OPTION = "KfW 40 & QNG optional";
+
 /** True when the model is a bestseller (drives the price inclusions). */
 export function isBestseller(m: Pick<HouseModel, "isFeatured">): boolean {
   return m.isFeatured ?? false;
@@ -94,9 +101,12 @@ function formatModelCode(code: string | null): string {
 }
 
 function priceHintFor(m: HouseModel): string | undefined {
-  if (m.price == null) return undefined;
-  const price = Number(m.price);
-  if (!Number.isFinite(price) || price <= 0) return undefined;
+  const price = m.price == null ? NaN : Number(m.price);
+  if (!Number.isFinite(price) || price <= 0) {
+    // Client (2026-06-15): non-bestseller models carry no figure — advertise
+    // "Preis auf Anfrage" instead of an empty slot. Bestsellers always price.
+    return isBestseller(m) ? undefined : "Preis auf Anfrage";
+  }
   const base = `ab ${price.toLocaleString("de-DE")} €`;
   // Featured models carry an asterisk; the disclaimer it references lives
   // on the haus detail page (SideCard.vue), not on the listing pages.
@@ -104,7 +114,9 @@ function priceHintFor(m: HouseModel): string | undefined {
 }
 
 function priceCaveatsFor(m: HouseModel): string[] {
-  return isBestseller(m) ? BESTSELLER_INCLUSIONS : [];
+  return isBestseller(m)
+    ? [...BESTSELLER_INCLUSIONS, BESTSELLER_KFW_OPTION]
+    : [];
 }
 
 function pickImage(m: HouseModel): { src: string; alt: string } {
