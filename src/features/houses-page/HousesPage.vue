@@ -499,9 +499,12 @@ watch(
     gap: var(--spacing-1);
     padding-block: var(--spacing-3);
 
-    @media (--from-wide) {
-      flex-direction: row;
-      align-items: stretch;
+    /* Desktop+: keep the filter controls stacked *below* the full-width
+       category row rather than crammed beside it (the previous --from-wide
+       row flip), and give the whole control band more breathing room. */
+    @media (--from-desktop) {
+      gap: var(--spacing-3);
+      padding-block-end: var(--spacing-5);
     }
 
     .categories-wrapper {
@@ -545,6 +548,14 @@ watch(
          the thumb expects it. */
       @media (--mobile) {
         align-self: flex-end;
+      }
+
+      /* Desktop+: the Sort + Filtern cluster sits on its own row directly
+         below the full-width category buttons, pinned to the trailing edge
+         with a little top padding so it reads as a deliberate control band. */
+      @media (--from-desktop) {
+        align-self: flex-end;
+        padding-block-start: var(--spacing-2);
       }
 
       .filter-trigger {
