@@ -551,10 +551,11 @@ watch(
       }
 
       /* Desktop+: the Sort + Filtern cluster sits on its own row directly
-         below the full-width category buttons, pinned to the trailing edge
-         with a little top padding so it reads as a deliberate control band. */
+         below the full-width category buttons, left-aligned with the
+         category row and a little top padding so it reads as a deliberate
+         control band. */
       @media (--from-desktop) {
-        align-self: flex-end;
+        align-self: flex-start;
         padding-block-start: var(--spacing-2);
       }
 
