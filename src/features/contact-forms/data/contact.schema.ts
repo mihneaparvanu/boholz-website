@@ -16,6 +16,10 @@ export const contactFormSections: FormSection[] = [
           { value: "stadtvilla", label: "Stadtvilla" },
           { value: "generationenhaus", label: "Generationenhaus" },
           { value: "bungalow", label: "Bungalow" },
+          { value: "doppelhaus", label: "Doppelhaus" },
+          { value: "zweifamilienhaus", label: "Zweifamilienhaus" },
+          { value: "mehrfamilienhaus", label: "Mehrfamilienhaus" },
+          { value: "pultdachhaus", label: "Pultdachhaus" },
         ],
       },
       {

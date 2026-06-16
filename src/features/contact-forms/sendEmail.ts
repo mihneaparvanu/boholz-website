@@ -22,10 +22,11 @@ const devRouting: EmailRouting = {
   from: `noreply@${devDomain}`,
 };
 
-export const emailConfig = process.env.NODE_ENV === "production" ? prodRouting : devRouting();
+export const emailConfig =
+  process.env.NODE_ENV === "production" ? prodRouting : devRouting;
 
 export async function sendEmail(
-  content: EmailContent
+  content: EmailContent,
 ): Promise<{ ok: boolean; error?: string }> {
   const completeEmail: Email = { ...emailConfig, ...content };
 
@@ -34,6 +35,6 @@ export async function sendEmail(
     htmlLength: completeEmail.html.length,
     textLength: completeEmail.text.length,
   });
-  
+
   return { ok: true };
 }
