@@ -24,7 +24,7 @@ this, every lead is silently dropped.
   inbox. The client may follow up personally; brochure delivery never depends on
   it.
 - **Sender = `noreply@boholz-haus.de`** (professional From — no generic
-  address). Sending *as* the domain needs DKIM authorization, so:
+  address). Sending _as_ the domain needs DKIM authorization, so:
   - **Preferred: Microsoft 365 Graph** `sendMail` (app-only / client-credentials)
     via their existing Outlook — free, perfect SPF/DKIM alignment. **Blocked on a
     one-time Global-Admin consent** (`Mail.Send` application permission). Access
