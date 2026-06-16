@@ -2,6 +2,7 @@ import type { APIRoute } from "astro";
 import { contactSchema } from "@/features/contact-forms/data/contact.zod";
 import { verifyTurnstile } from "@/features/contact-forms/verifyTurnstile";
 import type { Email } from "@/features/contact-forms/sendEmail";
+import {emailConfig} from "@/features/contact-forms/sendEmail";
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   const body = (await request.json()) as Record<string, unknown>;
@@ -31,7 +32,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return Response.json({ errors: result.error.flatten() }, { status: 422 });
   }
 
-  console.log(result.data);
+
+
   const email: Email = {
     to: "info@boholz-haus.de",
   };
