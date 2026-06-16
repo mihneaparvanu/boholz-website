@@ -1,6 +1,6 @@
 /**
  * Resolve a stored `media.path` (e.g. "/images/showhouses/.../hero.webp")
- * to its public URL on R2 (or whatever PUBLIC_ASSETS_URL points at).
+ * to its public URL on the self-hosted MinIO bucket (PUBLIC_ASSETS_URL).
  *
  * Reads `process.env` first (Node SSR runtime) so the host's `.env` —
  * loaded via `--env-file` at container start — always wins. This matters
