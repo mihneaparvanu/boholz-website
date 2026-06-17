@@ -134,6 +134,13 @@
       "when": 1781526888703,
       "tag": "0018_client_changes_15062026",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1781690023655,
+      "tag": "0019_lumpy_korg",
+      "breakpoints": true
     }
   ]
 }

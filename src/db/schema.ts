@@ -1,7 +1,16 @@
-import { relations } from 'drizzle-orm';
+import { relations } from "drizzle-orm";
 import {
-    boolean, integer, numeric, pgSchema, smallint, text, timestamp, uuid, varchar
-} from 'drizzle-orm/pg-core';
+  boolean,
+  integer,
+  numeric,
+  pgSchema,
+  smallint,
+  text,
+  timestamp,
+  uuid,
+  varchar,
+  jsonb,
+} from "drizzle-orm/pg-core";
 
 export const boholzSchema = pgSchema("boholz");
 
@@ -153,7 +162,7 @@ export const locations = boholzSchema.table("locations", {
 
 export const media = boholzSchema.table("media", {
   id: uuid("id").primaryKey().defaultRandom(),
-  path: text("path").notNull(), // ONLY table that holds an image path
+  path: text("path").notNull(),
   alt: text("alt"),
   width: integer("width"),
   height: integer("height"),
@@ -277,6 +286,22 @@ export const newsMedia = boholzSchema.table("news_media", {
     .notNull(),
   isHero: boolean("is_hero").default(false),
   sortOrder: integer("sort_order").default(0),
+});
+
+export const leadFormType = boholzSchema.enum("lead_form_type", [
+  "contact",
+  "catalog",
+]);
+
+export const leads = boholzSchema.table("leads", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  formType: leadFormType("form_type").notNull(),
+  payload: jsonb("payload").notNull(),
+  error: text("error"),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  resolvedAt: timestamp("resolved_at", { withTimezone: true }),
 });
 
 // --- Relations ---

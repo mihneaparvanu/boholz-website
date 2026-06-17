@@ -7,6 +7,8 @@ import {
   type EmailContent,
 } from "@/features/contact-forms/sendEmail";
 import { buildNotification } from "@/features/contact-forms/notificationEmail";
+import { db } from "@/db/db";
+import { leads } from "@/db/schema";
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   const body = (await request.json()) as Record<string, unknown>;
@@ -49,6 +51,12 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const sent = await sendEmail(emailContent);
 
   if (!sent.ok) {
+    await db.insert(leads).values({
+      formType: "contact",
+      payload: d,
+      error: sent.error,
+    });
+
     return Response.json({ ok: false, error: sent.error }, { status: 500 });
   }
 

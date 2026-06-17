@@ -1,8 +1,20 @@
 import type { InferSelectModel } from "drizzle-orm";
 import {
-    agents, categoryMedia, floorMedia, houseCategories, houseDetails, houseModels, locationAgents,
-    locationMedia, locations, media, modelMedia, news, newsMedia
-} from '@/db/schema';
+  agents,
+  categoryMedia,
+  floorMedia,
+  houseCategories,
+  houseDetails,
+  houseModels,
+  leads,
+  locationAgents,
+  locationMedia,
+  locations,
+  media,
+  modelMedia,
+  news,
+  newsMedia,
+} from "@/db/schema";
 
 // Raw table row types — one per table
 export type BaseHouseModel = InferSelectModel<typeof houseModels>;
@@ -16,6 +28,7 @@ export type BaseNews = InferSelectModel<typeof news>;
 export type BaseNewsMedia = InferSelectModel<typeof newsMedia>;
 export type Location = InferSelectModel<typeof locations>;
 export type Agent = InferSelectModel<typeof agents>;
+export type Lead = InferSelectModel<typeof leads>;
 export type BaseLocationAgent = InferSelectModel<typeof locationAgents>;
 export type BaseLocationMedia = InferSelectModel<typeof locationMedia>;
 
@@ -46,7 +59,10 @@ export type HouseModel = BaseHouseModel & {
   floors: HouseFloor[];
 };
 
-export type HouseFloor = Pick<BaseFloorMedia, "title" | "sortOrder" | "variant"> & {
+export type HouseFloor = Pick<
+  BaseFloorMedia,
+  "title" | "sortOrder" | "variant"
+> & {
   media: Pick<BaseMedia, "path" | "alt" | "width" | "height">;
 };
 
