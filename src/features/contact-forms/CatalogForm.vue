@@ -16,6 +16,7 @@ import ConsentField from "./components/ConsentField.vue";
 const state = reactive({ ...emptyCatalogForm });
 
 const brochureUrl = getMediaURL("/pdf/boholz-hauskatalog.pdf");
+const brochureCoverUrl = getMediaURL("/pdf/boholz-hauskatalog-cover.webp");
 
 const turnstileToken = ref("");
 const SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
@@ -117,6 +118,16 @@ async function onSubmit() {
       Ihre Katalog-Anfrage ist bei uns eingegangen. Sie können den Hauskatalog
       direkt hier herunterladen — wir melden uns zudem persönlich bei Ihnen.
     </p>
+
+    <img
+      :src="brochureCoverUrl"
+      alt="BoHolz Hauskatalog — Titelseite"
+      class="cover"
+      width="240"
+      height="339"
+      loading="lazy"
+    />
+
     <a :href="brochureUrl" download class="download">
       Hauskatalog herunterladen (PDF)
     </a>
@@ -157,6 +168,16 @@ form {
   padding: var(--spacing-4);
   background: color-mix(in srgb, var(--clr-accent-secondary) 10%, transparent);
   border-radius: var(--radius-sm);
+}
+
+.cover {
+  align-self: center;
+  width: 240px;
+  height: auto;
+  margin-block: var(--spacing-3) var(--spacing-2);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 16px
+    color-mix(in srgb, var(--clr-content-primary) 12%, transparent);
 }
 
 .submit {
