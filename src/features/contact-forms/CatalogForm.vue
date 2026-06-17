@@ -12,7 +12,6 @@ import TextField from "./components/TextField.vue";
 import RadioField from "./components/RadioField.vue";
 import ConsentField from "./components/ConsentField.vue";
 
-
 const state = reactive({ ...emptyCatalogForm });
 
 const brochureUrl = getMediaURL("/pdf/boholz-hauskatalog.pdf");
@@ -159,7 +158,6 @@ form {
   font-size: var(--fs-body-sm);
   margin: 0;
 }
-
 
 .success {
   display: flex;
