@@ -7,12 +7,15 @@ import {
 } from "./data/catalog.schema";
 import { catalogSchema, emptyCatalogForm } from "./data/catalog.zod";
 import { type FormField } from "./types/contact.types";
+import { getMediaURL } from "@/lib/media";
 import TextField from "./components/TextField.vue";
 import RadioField from "./components/RadioField.vue";
 import ConsentField from "./components/ConsentField.vue";
 
 
 const state = reactive({ ...emptyCatalogForm });
+
+const brochureUrl = getMediaURL("/pdf/boholz-hauskatalog.pdf");
 
 const turnstileToken = ref("");
 const SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
@@ -110,8 +113,13 @@ async function onSubmit() {
 
   <div v-else class="success" role="status">
     <h3>Vielen Dank!</h3>
-    <p>Ihre Katalog-Anfrage ist bei uns eingegangen.</p>
-    <!-- brochure download link will go here in the next task -->
+    <p>
+      Ihre Katalog-Anfrage ist bei uns eingegangen. Sie können den Hauskatalog
+      direkt hier herunterladen — wir melden uns zudem persönlich bei Ihnen.
+    </p>
+    <a :href="brochureUrl" download class="download">
+      Hauskatalog herunterladen (PDF)
+    </a>
   </div>
 </template>
 
@@ -191,5 +199,38 @@ form {
 
 .submit:disabled:hover {
   background: var(--clr-border-secondary);
+}
+
+.download {
+  align-self: flex-start;
+  width: 100%;
+  text-align: center;
+  padding: var(--spacing-2) var(--spacing-3);
+  margin-block-start: var(--spacing-2);
+  background: var(--clr-accent-secondary);
+  color: var(--clr-surface-primary);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease,
+    transform 80ms ease;
+}
+
+.download:hover {
+  background: var(--clr-accent-primary);
+}
+
+.download:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px
+    color-mix(in srgb, var(--clr-accent-primary) 30%, transparent);
+}
+
+.download:active {
+  transform: translateY(1px);
 }
 </style>
