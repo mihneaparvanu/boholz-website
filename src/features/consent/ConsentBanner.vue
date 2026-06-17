@@ -6,7 +6,7 @@ import { injectGTM, writeConsent } from "./consent";
 import { useConsentBanner } from "./useConsentBanner";
 
 const props = defineProps<{
-  gtmId: string;
+  gtmId?: string;
   initialOpen: boolean;
   initialConsent: ConsentV1 | null;
 }>();
@@ -19,7 +19,7 @@ function onChoose(preset: "all" | "middle" | "essential") {
   const consent = CONSENT_PRESETS[preset];
   writeConsent(consent);
   setConsent(consent);
-  if (consent.analytics || consent.marketing) {
+  if (props.gtmId && (consent.analytics || consent.marketing)) {
     injectGTM(props.gtmId);
   }
   hide();

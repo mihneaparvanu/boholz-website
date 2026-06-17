@@ -5,7 +5,8 @@ export async function verifyTurnstile(
   token: string,
   remoteip?: string,
 ): Promise<{ success: boolean; errorCodes: string[]; hostname?: string }> {
-  const secret = process.env.TURNSTILE_SECRET;
+  const secret =
+    process.env.TURNSTILE_SECRET ?? import.meta.env.TURNSTILE_SECRET;
   if (!secret) throw new Error("TURNSTILE_SECRET is not set");
 
   const body = new URLSearchParams();

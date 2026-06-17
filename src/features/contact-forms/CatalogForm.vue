@@ -1,18 +1,24 @@
 <script setup lang="ts">
-import { reactive, computed } from "vue";
+import { reactive, computed, ref } from "vue";
+import VueTurnstile from "vue-turnstile";
 import {
   catalogContactSection,
-  catalogVersandSection,
-  catalogPostalSection,
   catalogConsentSection,
 } from "./data/catalog.schema";
-import { emptyCatalogForm } from "./data/catalog.zod";
+import { catalogSchema, emptyCatalogForm } from "./data/catalog.zod";
 import { type FormField } from "./types/contact.types";
 import TextField from "./components/TextField.vue";
 import RadioField from "./components/RadioField.vue";
 import ConsentField from "./components/ConsentField.vue";
 
+
 const state = reactive({ ...emptyCatalogForm });
+
+const turnstileToken = ref("");
+const SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const submitting = ref(false);
+const submitError = ref<string | null>(null);
+const submitSuccess = ref(false);
 
 const fieldComponents: Record<FormField["type"], unknown> = {
   text: TextField,
@@ -23,12 +29,44 @@ const fieldComponents: Record<FormField["type"], unknown> = {
   consent: ConsentField,
 };
 
-const wantsPostal = computed(() => state.versandart === "post");
+const isValid = computed(() => catalogSchema.safeParse(state).success);
+
+async function onSubmit() {
+  submitError.value = null;
+  submitting.value = true;
+
+  try {
+    const res = await fetch("/api/catalog", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...state,
+        turnstileToken: turnstileToken.value,
+      }),
+    });
+
+    if (res.ok) {
+      submitSuccess.value = true;
+      return;
+    }
+
+    submitError.value =
+      res.status === 422
+        ? "Bitte überprüfen Sie Ihre Eingaben."
+        : res.status === 403
+          ? "Sicherheitsprüfung fehlgeschlagen. Bitte laden Sie die Seite neu."
+          : "Es ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.";
+  } catch {
+    submitError.value =
+      "Verbindungsfehler. Bitte prüfen Sie Ihre Internetverbindung.";
+  } finally {
+    submitting.value = false;
+  }
+}
 </script>
 
 <template>
-  <form novalidate>
-    <!-- Kontaktdaten -->
+  <form v-if="!submitSuccess" novalidate @submit.prevent="onSubmit">
     <div class="group" :aria-labelledby="`section-${catalogContactSection.id}`">
       <h3 :id="`section-${catalogContactSection.id}`" class="heading">
         {{ catalogContactSection.heading }}
@@ -42,41 +80,6 @@ const wantsPostal = computed(() => state.versandart === "post");
       />
     </div>
 
-    <!-- Versandart -->
-    <div class="group" :aria-labelledby="`section-${catalogVersandSection.id}`">
-      <h3 :id="`section-${catalogVersandSection.id}`" class="heading">
-        {{ catalogVersandSection.heading }}
-      </h3>
-      <component
-        v-for="f in catalogVersandSection.fields"
-        :key="f.name"
-        :is="fieldComponents[f.type]"
-        :field="f"
-        v-model="state[f.name as keyof typeof state]"
-      />
-    </div>
-
-    <!-- Postanschrift — revealed only when Postversand is chosen.
-         Minimal v-if; Zod schema only validates address fields when
-         versandart === "post". -->
-    <div
-      v-if="wantsPostal"
-      class="group postal"
-      :aria-labelledby="`section-${catalogPostalSection.id}`"
-    >
-      <h3 :id="`section-${catalogPostalSection.id}`" class="heading">
-        {{ catalogPostalSection.heading }}
-      </h3>
-      <component
-        v-for="f in catalogPostalSection.fields"
-        :key="f.name"
-        :is="fieldComponents[f.type]"
-        :field="f"
-        v-model="state[f.name as keyof typeof state]"
-      />
-    </div>
-
-    <!-- Einwilligung -->
     <div class="group">
       <component
         v-for="f in catalogConsentSection.fields"
@@ -87,8 +90,29 @@ const wantsPostal = computed(() => state.versandart === "post");
       />
     </div>
 
-    <button type="submit" class="submit">Katalog anfordern</button>
+    <VueTurnstile
+      v-model="turnstileToken"
+      :site-key="SITE_KEY"
+      theme="light"
+      language="de"
+    />
+
+    <p v-if="submitError" class="error" role="alert">{{ submitError }}</p>
+
+    <button
+      type="submit"
+      class="submit"
+      :disabled="!turnstileToken || !isValid || submitting"
+    >
+      {{ submitting ? "Wird gesendet..." : "Katalog anfordern" }}
+    </button>
   </form>
+
+  <div v-else class="success" role="status">
+    <h3>Vielen Dank!</h3>
+    <p>Ihre Katalog-Anfrage ist bei uns eingegangen.</p>
+    <!-- brochure download link will go here in the next task -->
+  </div>
 </template>
 
 <style scoped>
@@ -111,40 +135,34 @@ form {
   color: var(--clr-content-primary);
 }
 
-/* Postal reveal: subtle entry so the new block doesn't snap in.
-   Just opacity + a small offset — height animations on auto are
-   what we always avoid. */
-.postal {
-  animation: postal-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+.error {
+  color: var(--clr-status-warning);
+  font-size: var(--fs-body-sm);
+  margin: 0;
 }
-@keyframes postal-in {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .postal {
-    animation: none;
-  }
+
+
+.success {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4);
+  background: color-mix(in srgb, var(--clr-accent-secondary) 10%, transparent);
+  border-radius: var(--radius-sm);
 }
 
 .submit {
   align-self: flex-start;
-  height: var(--control-height-md);
-  padding-inline: var(--spacing-3);
-  margin-block-start: var(--spacing-1);
-  background: var(--clr-accent-primary);
+  padding: var(--spacing-2) var(--spacing-3);
+  margin-block-start: var(--spacing-2);
+  background: var(--clr-accent-secondary);
   color: var(--clr-surface-primary);
   border: none;
   border-radius: var(--radius-sm);
   font: inherit;
   font-weight: 500;
   cursor: pointer;
+  width: 100%;
   transition:
     background 160ms ease,
     box-shadow 160ms ease,
@@ -152,7 +170,7 @@ form {
 }
 
 .submit:hover {
-  background: var(--clr-accent-secondary);
+  background: var(--clr-accent-primary);
 }
 
 .submit:focus-visible {
@@ -163,5 +181,15 @@ form {
 
 .submit:active {
   transform: translateY(1px);
+}
+
+.submit:disabled {
+  background: var(--clr-border-secondary);
+  color: var(--clr-content-tertiary);
+  cursor: not-allowed;
+}
+
+.submit:disabled:hover {
+  background: var(--clr-border-secondary);
 }
 </style>
