@@ -5,7 +5,7 @@ import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
 
 import CatalogForm from "@/features/contact-forms/CatalogForm.vue";
 
-import { BookOpen, Mail } from "lucide-vue-next";
+import { BookOpen, Download } from "lucide-vue-next";
 
 import { benefits } from "./katalog.content";
 ---
@@ -20,13 +20,13 @@ import { benefits } from "./katalog.content";
   <section id="anfordern" class="section form-section">
     <div class="form-col">
       <EyebrowHeadingLede
-        eyebrow="Bestellen"
+        eyebrow="Sofort verfügbar"
         heading="Hauskatalog"
         highlight="kostenfrei anfordern."
-        lede="Wenige Angaben genügen — wir senden Ihnen den Katalog per E-Mail oder Post. Werktags meist binnen 24 Stunden."
+        lede="Wenige Angaben genügen — direkt nach dem Absenden steht Ihr Hauskatalog als PDF zum Herunterladen bereit."
       >
         <Fragment slot="eyebrow-icon">
-          <Mail :size={14} :stroke-width={2} />
+          <Download :size={14} :stroke-width={2} />
         </Fragment>
       </EyebrowHeadingLede>
 
