@@ -20,15 +20,11 @@ import type {
   Testimonial,
   CredentialBadge,
 } from "@/ui/sections/TestimonialBand.astro";
-import type {
-  ContactInfo,
-  InterestOption,
-} from "@/ui/sections/LeadFormBand.vue";
 import type { FAQItem } from "@/ui/primitives/FAQAccordion.vue";
 
 /* ── Re-exports — content files import everything from this module ─── */
 export type { Benefit, AudienceItem, Testimonial, CredentialBadge };
-export type { ContactInfo, InterestOption, FAQItem };
+export type { FAQItem };
 
 /* ── Hero ─────────────────────────────────────────────────────────── */
 
@@ -192,15 +188,17 @@ export interface LandingFAQ {
 
 /* ── Lead form ────────────────────────────────────────────────────── */
 
+/**
+ * Heading-bundle for the lead form section. The form itself is the shared
+ * `<ContactForm />` (Turnstile + zod + leads fallback); per-page intent
+ * signals like interestOptions were dropped when we consolidated onto one
+ * pipeline.
+ */
 export interface LandingLeadForm {
   eyebrow?: string;
   heading: string;
   highlight?: string;
   lede?: string;
-  subCopy?: string;
-  contact: ContactInfo;
-  interestOptions?: InterestOption[];
-  tone?: "pastell" | "tertiary" | "quaternary";
 }
 
 /* ── Closing CTA ──────────────────────────────────────────────────── */

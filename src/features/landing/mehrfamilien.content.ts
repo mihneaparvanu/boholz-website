@@ -211,31 +211,6 @@ export const mehrfamilienContent: LandingPageContent = {
     heading: "Anfordern und",
     highlight: "Hauskatalog bestellen.",
     lede: "Wir sind für Sie da — stellen Sie uns Ihre Fragen oder fordern Sie Ihr persönliches Angebot an.",
-    contact: {
-      phone: "0971 / 78 55 57 15",
-      email: "info@boholz-haus.de",
-    },
-    // Multi-family decision points — disambiguate the two intents the
-    // page funnels (Generationen-Eigennutz vs. Renditeobjekt) and surface
-    // the levers that actually move the planning: typology, Einheiten,
-    // Eingänge, Nutzung, KfW. German voice, no marketing fluff.
-    interestOptions: [
-      { value: "doppelhaus", label: "Doppelhaus (2 Einheiten)" },
-      { value: "generationenhaus", label: "Generationenhaus" },
-      { value: "mfh-klein", label: "Mehrfamilienhaus (3–6 Einheiten)" },
-      { value: "mfh-gross", label: "Mehrfamilienhaus (ab 7 Einheiten)" },
-      {
-        value: "eingaenge-getrennt",
-        label: "Getrennte Eingänge je Wohneinheit",
-      },
-      { value: "eigennutzung", label: "Eigennutzung im Familienverbund" },
-      { value: "vermietung", label: "Eigennutzung mit Vermietung" },
-      { value: "investment", label: "Reines Renditeobjekt" },
-      { value: "kfw-foerderung", label: "Beratung zu KfW-Förderung" },
-      { value: "individuell", label: "Individuelle Planung" },
-      { value: "unsure", label: "Noch unentschieden" },
-    ],
-    tone: "pastell",
   },
 
   closingCta: {

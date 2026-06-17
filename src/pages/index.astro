@@ -18,7 +18,7 @@
  *   6. TwoColumn           — sustainability narrative (image + copy)
  *   7. TestimonialBand     — dark olive band with 3 quotes + badges
  *   8. FAQAccordion        — 3–6 page-specific FAQs
- *   9. LeadFormBand        — split rail + form, pre-selected interest
+ *   9. ContactForm         — shared form (Turnstile + zod + leads fallback)
  *
  * Note: the closing CTA block was removed from the homepage on 2026-05-18
  * (client feedback) — the lead form is the page's final beat. Other landing
@@ -35,7 +35,7 @@ import ImageBand from "@/ui/sections/ImageBand.astro";
 import AudienceBlock from "@/ui/sections/AudienceBlock.astro";
 import TwoColumn from "@/ui/sections/TwoColumn.astro";
 import Reviews from "@/features/reviews/Reviews.astro";
-import LeadFormBand from "@/ui/sections/LeadFormBand.vue";
+import ContactForm from "@/features/contact-forms/ContactForm.vue";
 
 import Button from "@/ui/primitives/Button.vue";
 
@@ -235,18 +235,19 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     <Faq client:visible categories={qaCategories} />
   </Block>
 
-  <!-- ── 09 · Lead form (full-bleed) — last beat on the page ────── -->
-  <LeadFormBand
-    client:visible
+  <!-- ── 09 · Lead form (full-bleed band) — last beat on the page ── -->
+  <Block
+    id="anfordern"
+    tone="band"
     eyebrow={content.leadForm.eyebrow}
     heading={content.leadForm.heading}
     highlight={content.leadForm.highlight}
     lede={content.leadForm.lede}
-    subCopy={content.leadForm.subCopy}
-    contact={content.leadForm.contact}
-    interestOptions={content.leadForm.interestOptions}
-    tone={content.leadForm.tone}
-  />
+  >
+    <div class="form-wrap">
+      <ContactForm client:visible />
+    </div>
+  </Block>
 </Layout>
 
 <style>
@@ -382,5 +383,14 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     font-size: var(--fs-body-sm);
     letter-spacing: var(--tracking-eyebrow);
     color: var(--clr-content-secondary);
+  }
+
+  /* Lead-form wrapper — constrain the ContactForm to a comfortable measure
+     inside the centered band. */
+  .form-wrap {
+    max-width: 36rem;
+    width: 100%;
+    margin-inline: auto;
+    margin-block-start: var(--spacing-4);
   }
 </style>

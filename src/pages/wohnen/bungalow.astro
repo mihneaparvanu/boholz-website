@@ -13,7 +13,6 @@
  *   - `content.houses.categorySlugs = ["bungalow"]` — house showcase is
  *     scoped to bungalow typology; empty-state copy handles zero results.
  *   - `content.closingCta.tone = "accent"` — deep-blue closing band.
- *   - `content.leadForm.interestOptions` — bungalow-relevant defaults.
  *
  * Audience: barrier-free / senior-comfort / single-level living.
  * Voice: reassuring, dignified, never patronising.
@@ -29,7 +28,7 @@ import ImageBand from "@/ui/sections/ImageBand.astro";
 import AudienceBlock from "@/ui/sections/AudienceBlock.astro";
 import TwoColumn from "@/ui/sections/TwoColumn.astro";
 import TestimonialBand from "@/ui/sections/TestimonialBand.astro";
-import LeadFormBand from "@/ui/sections/LeadFormBand.vue";
+import ContactForm from "@/features/contact-forms/ContactForm.vue";
 import CTASection from "@/ui/sections/CTASection.astro";
 
 import FAQAccordion from "@/ui/primitives/FAQAccordion.vue";
@@ -202,18 +201,19 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     </div>
   </Block>
 
-  <!-- ── 09 · Lead form (full-bleed) ────────────────────────────── -->
-  <LeadFormBand
-    client:visible
+  <!-- ── 09 · Lead form (full-bleed band) ───────────────────────── -->
+  <Block
+    id="anfordern"
+    tone="band"
     eyebrow={content.leadForm.eyebrow}
     heading={content.leadForm.heading}
     highlight={content.leadForm.highlight}
     lede={content.leadForm.lede}
-    subCopy={content.leadForm.subCopy}
-    contact={content.leadForm.contact}
-    interestOptions={content.leadForm.interestOptions}
-    tone={content.leadForm.tone}
-  />
+  >
+    <div class="form-wrap">
+      <ContactForm client:visible />
+    </div>
+  </Block>
 
   <!-- ── 10 · Closing CTA ───────────────────────────────────────── -->
   <div class="full-width">
@@ -278,5 +278,14 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
     max-width: 56rem;
     width: 100%;
     margin-inline: auto;
+  }
+
+  /* Lead-form wrapper — constrain the ContactForm to a comfortable measure
+     inside the centered band. */
+  .form-wrap {
+    max-width: 36rem;
+    width: 100%;
+    margin-inline: auto;
+    margin-block-start: var(--spacing-4);
   }
 </style>

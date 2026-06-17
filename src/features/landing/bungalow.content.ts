@@ -208,25 +208,6 @@ export const bungalowContent: LandingPageContent = {
     heading: "Anfordern und",
     highlight: "Hauskatalog bestellen.",
     lede: "Wir sind für Sie da — stellen Sie uns Ihre Fragen oder fordern Sie Ihr persönliches Angebot an.",
-    contact: {
-      phone: "0971 / 78 55 57 15",
-      email: "info@boholz-haus.de",
-    },
-    // Bungalow-specific decision points — help a one-level-living interest
-    // converge on what they're actually planning. Size → accessibility →
-    // outdoor → grundstück → fallback. German voice, precise.
-    interestOptions: [
-      { value: "bungalow-kompakt", label: "Kompakter Bungalow (bis 100 m²)" },
-      { value: "bungalow-mittel", label: "Bungalow 100–130 m²" },
-      { value: "bungalow-gross", label: "Bungalow ab 130 m²" },
-      { value: "altersgerecht", label: "Altersgerecht / barrierefrei planen" },
-      { value: "garage-carport", label: "Mit Garage oder Carport" },
-      { value: "grundstueck-vorhanden", label: "Grundstück bereits vorhanden" },
-      { value: "grundstueck-suche", label: "Grundstückssuche gewünscht" },
-      { value: "individuell", label: "Individuelle Planung" },
-      { value: "unsure", label: "Noch unentschieden" },
-    ],
-    tone: "pastell",
   },
 
   closingCta: {

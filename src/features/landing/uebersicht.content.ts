@@ -252,19 +252,6 @@ export const uebersichtContent: LandingPageContent = {
     heading: "Anfordern und",
     highlight: "Hauskatalog bestellen.",
     lede: "Wir sind für Sie da — stellen Sie uns Ihre Fragen oder fordern Sie Ihr persönliches Angebot an.",
-    contact: {
-      phone: "0971 / 78 55 57 15",
-      email: "info@boholz-haus.de",
-    },
-    interestOptions: [
-      { value: "bungalow", label: "Bungalow" },
-      { value: "efh", label: "Einfamilienhaus" },
-      { value: "doppelhaus", label: "Doppelhaus" },
-      { value: "mfh", label: "Mehrfamilienhaus" },
-      { value: "individuell", label: "Individuelle Planung" },
-      { value: "unsure", label: "Noch unentschieden" },
-    ],
-    tone: "pastell",
   },
 
   closingCta: {
