@@ -1,0 +1,666 @@
+---
+import "@/style/reset.css";
+import "@/style/design-system.css";
+import "@/style/wrapper.css";
+
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+import Divider from "@/components/ui/Divider.astro";
+import Badge from "@/components/ui/Badge.astro";
+import EyebrowHeadingLede from "@/components/ui/EyebrowHeadingLede.astro";
+import PullQuote from "@/components/ui/PullQuote.astro";
+
+import VideoPlaceholder from "@/components/ui/VideoPlaceholder.vue";
+import Callout from "@/components/ui/Callout.vue";
+import StatBlock from "@/components/ui/StatBlock.vue";
+import IconList from "@/components/ui/IconList.vue";
+import EditorialCard from "@/components/ui/EditorialCard.vue";
+import FAQAccordion from "@/components/ui/FAQAccordion.vue";
+import ComparisonBlock from "@/components/ui/ComparisonBlock.vue";
+import Button from "@/components/ui/Button.vue";
+import ZigZag from "@/components/ui/ZigZag.vue";
+import { getMediaURL } from "@/utils/media";
+
+import { Leaf } from "lucide-vue-next";
+import type { IconListItem } from "@/components/ui/IconList.vue";
+
+// Sandbox — bypasses Layout.astro to avoid DB calls.
+
+const stats = [
+  { value: "90", label: "Jahre Erfahrung", icon: "award" as const },
+  {
+    value: "30 t",
+    label: "CO₂ je Haus",
+    icon: "leaf" as const,
+    caption: "Speicherung im Holzbau über den Lebenszyklus.",
+  },
+  { value: "KfW 40", label: "Effizienzklasse", icon: "zap" as const },
+  { value: "16", label: "Gute Gründe", icon: "shield" as const },
+];
+
+const audienceItems: IconListItem[] = [
+  {
+    icon: "users",
+    label: "Familien",
+    description: "Platz für Kinder, Gemeinschaft & Geborgenheit.",
+  },
+  {
+    icon: "heart-handshake",
+    label: "Senioren",
+    description: "Komfortabel & barrierefrei — fürs Leben geplant.",
+  },
+  {
+    icon: "building-2",
+    label: "Mehrgenerationen",
+    description: "Gemeinsam wohnen, getrennt leben — perfekt vereint.",
+  },
+  {
+    icon: "trending-up",
+    label: "Investoren",
+    description: "Langlebige Substanz mit klarer Renditeperspektive.",
+  },
+];
+
+const sixteenReasons: IconListItem[] = [
+  { icon: "shield", label: "Qualität geprüft" },
+  { icon: "award", label: "QDF-zertifiziert" },
+  { icon: "leaf", label: "CO₂-Speicher" },
+  { icon: "tree-deciduous", label: "PEFC-Holz" },
+  { icon: "zap", label: "KfW-fähig" },
+  { icon: "wrench", label: "Festpreis" },
+  { icon: "hammer", label: "Werksbau" },
+  { icon: "key-square", label: "Schlüsselfertig" },
+  { icon: "compass", label: "Standortplanung" },
+  { icon: "building-2", label: "Bauantrag" },
+  { icon: "users", label: "Familien-Beratung" },
+  { icon: "heart-handshake", label: "Persönlich" },
+  { icon: "trending-up", label: "Wertbeständig" },
+  { icon: "shield", label: "Garantie" },
+  { icon: "award", label: "Qualitätsbadge" },
+  { icon: "leaf", label: "Klimaneutral" },
+];
+
+const steps = [
+  {
+    step: 1,
+    title: "Konzept",
+    description:
+      "Beratung, Grundriss-Skizze und ein realistisches Budget — gemeinsam in zwei Wochen.",
+    icon: "compass" as const,
+  },
+  {
+    step: 2,
+    title: "Planung",
+    description:
+      "Architektur, Statik und Genehmigungsplanung. Wir koordinieren alle Gewerke.",
+    icon: "hammer" as const,
+  },
+  {
+    step: 3,
+    title: "Bau & Übergabe",
+    description:
+      "Vorfertigung im Werk, Montage in 1–3 Tagen, schlüsselfertige Übergabe.",
+    icon: "key-square" as const,
+  },
+];
+
+const faqItems = [
+  {
+    question: "Wie lange dauert der Bau eines BoHolz-Hauses?",
+    answer:
+      "Die Vorfertigung im Werk dauert üblicherweise 6 bis 10 Wochen. Die Montage vor Ort ist in 1 bis 3 Tagen abgeschlossen, der schlüsselfertige Ausbau benötigt weitere 8 bis 12 Wochen.",
+  },
+  {
+    question: "Welche Ausbaustufen bietet BoHolz an?",
+    answer:
+      "Wir bieten vier Ausbaustufen — vom Bausatzhaus bis schlüsselfertig. Jede Stufe ist klar definiert; Sie wissen vor Vertragsunterzeichnung exakt, welche Leistungen enthalten sind.",
+  },
+  {
+    question: "Ist mein Haus KfW-förderfähig?",
+    answer:
+      "Alle BoHolz-Häuser werden mindestens in KfW-40-Qualität gebaut. Höhere Effizienzstufen (KfW 40 Plus, QNG-Plus) sind als Aufpreisoptionen verfügbar.",
+  },
+];
+
+const comparison = {
+  left: {
+    title: "Konventioneller Massivbau",
+    caption: "Stein auf Stein, vor Ort gebaut",
+    items: [
+      "Bauzeit 12 bis 18 Monate vor Ort",
+      "Witterungsabhängige Qualitätsschwankungen",
+      "Höhere CO₂-Bilanz durch Beton und Brennprozesse",
+      "Bauphasenstress über den Winter",
+    ],
+  },
+  right: {
+    title: "BoHolz-Hausbau",
+    caption: "Vorgefertigt, präzise, planbar",
+    items: [
+      "Vorfertigung im Werk in 6 bis 10 Wochen",
+      "Montage in 1 bis 3 Tagen — unabhängig vom Wetter",
+      "30 Tonnen CO₂-Speicher pro Haus",
+      "Festpreisgarantie und Fertigstellungstermin",
+    ],
+  },
+};
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Sandbox — BoHolz Component Library</title>
+  </head>
+  <body>
+    <header class="faux-nav">BoHolz Haus — Component Library</header>
+
+    <main class="wrapper">
+      <section class="page-hero">
+        <p class="page-eyebrow">Phase 2 · Build kit</p>
+        <h1>Komponenten-Bibliothek</h1>
+        <p class="page-lede">
+          Atomare Foundations, Primitives und Compositions. Jede Komponente
+          rendert in einem realistischen Kontext.
+        </p>
+      </section>
+
+      <!-- ██████ SECTIONS — composite blocks built from multiple components ██████ -->
+      <div class="kind-banner">
+        <span class="kind-banner-eyebrow">Sections</span>
+        <h2 class="kind-banner-title">Composite blocks</h2>
+        <p class="kind-banner-lede">
+          Editorial layouts that compose atoms into reusable page sections.
+        </p>
+      </div>
+
+      <!-- ════ S1 · ZigZag ════ -->
+      <section class="group" id="zigzag">
+        <Divider label="ZigZag" />
+        <div class="stack">
+          <ZigZag>
+            <Fragment slot="copy">
+              <Eyebrow>01 · Architektur</Eyebrow>
+              <h3 class="zigzag-heading">
+                Jedes Haus erzählt seine eigene Geschichte.
+              </h3>
+              <p class="zigzag-body">
+                Von der Grundrissgestaltung bis zur Fassadenauswahl — bei uns
+                haben Sie die Freiheit, Ihren Hausentwurf mit eigenen Ideen
+                und Gestaltungswünschen zu individualisieren.
+              </p>
+            </Fragment>
+            <img
+              slot="media"
+              src={getMediaURL("/images/pages/uber-uns/value-1.jpg")}
+              alt="BoHolz Architektur"
+              class="zigzag-img"
+            />
+            <Fragment slot="actions">
+              <Button client:load variant="secondary" size="sm" href="/dein-zuhause">
+                Mehr erfahren
+              </Button>
+            </Fragment>
+          </ZigZag>
+
+          <ZigZag media-side="start">
+            <Fragment slot="copy">
+              <Eyebrow tone="accent">02 · Material</Eyebrow>
+              <h3 class="zigzag-heading">
+                Holz, das CO₂ speichert — ein Leben lang.
+              </h3>
+              <p class="zigzag-body">
+                Wir bauen mit zertifiziertem PEFC-Holz aus heimischen Wäldern.
+                Jedes Haus speichert rund 30 Tonnen CO₂ über seinen
+                Lebenszyklus.
+              </p>
+            </Fragment>
+            <img
+              slot="media"
+              src={getMediaURL("/images/pages/uber-uns/value-2.jpg")}
+              alt="Massivholz aus heimischen Wäldern"
+              class="zigzag-img"
+            />
+          </ZigZag>
+        </div>
+      </section>
+
+      <!-- ════ S2 · EyebrowHeadingLede ════ -->
+      <section class="group" id="ehl">
+        <Divider label="EyebrowHeadingLede" />
+        <div class="stack">
+          <EyebrowHeadingLede
+            eyebrow="Nachhaltigkeit"
+            heading="Holz speichert CO₂."
+            highlight="Wir bauen mit Verantwortung."
+            lede="Bei BoHolz Haus verbinden wir Ihre Wohnträume mit aktivem Umweltschutz. Jedes Haus ist ein langlebiger Kohlenstoffspeicher — über Generationen hinweg."
+          />
+          <EyebrowHeadingLede
+            eyebrow="Über uns"
+            heading="Neunzig Jahre Erfahrung,"
+            highlight="im Familienbesitz."
+            lede="Seit 1934 bauen wir Häuser, die Generationen überdauern. Heute in vierter Generation."
+            align="center"
+          />
+        </div>
+      </section>
+
+      <!-- ════ S3 · ComparisonBlock ════ -->
+      <section class="group" id="comparison">
+        <Divider label="ComparisonBlock" />
+        <ComparisonBlock
+          client:load
+          left={comparison.left}
+          right={comparison.right}
+        />
+      </section>
+
+      <!-- ██████ COMPONENTS — atomic primitives ██████ -->
+      <div class="kind-banner">
+        <span class="kind-banner-eyebrow">Components</span>
+        <h2 class="kind-banner-title">Atomic primitives</h2>
+        <p class="kind-banner-lede">
+          Foundational atoms — the building blocks of every section above.
+        </p>
+      </div>
+
+      <!-- ════ 1 · Eyebrow ════ -->
+      <section class="group" id="eyebrow">
+        <Divider index={1} label="Eyebrow" />
+        <div class="row">
+          <div class="col">
+            <Eyebrow>Nachhaltigkeit</Eyebrow>
+            <Eyebrow tone="secondary">Tone secondary</Eyebrow>
+            <Eyebrow tone="accent">Tone accent</Eyebrow>
+          </div>
+          <div class="col">
+            <Eyebrow>
+              <Leaf slot="icon" size={14} strokeWidth={2} aria-hidden="true" />
+              Mit Lucide-Icon
+            </Eyebrow>
+            <Eyebrow as="h4">Als H4</Eyebrow>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════ 2 · Divider ════ -->
+      <section class="group" id="divider">
+        <Divider index={2} label="Divider" />
+        <div class="stack">
+          <Divider index={1} label="Unser Versprechen" />
+          <Divider index={12} label="Sechzehn gute Gründe" />
+          <Divider label="Nur Label" />
+          <Divider index={3} />
+          <Divider />
+        </div>
+      </section>
+
+      <!-- ════ 3 · Badge ════ -->
+      <section class="group" id="badge">
+        <Divider index={3} label="Badge" />
+        <div class="badges">
+          <Badge>KfW 40</Badge>
+          <Badge variant="outline">Made in Germany</Badge>
+          <Badge variant="accent">QNG-Plus</Badge>
+          <Badge size="sm" variant="default">EFH</Badge>
+          <Badge size="sm" variant="outline">MFH</Badge>
+          <Badge size="sm" variant="accent">Neu</Badge>
+        </div>
+      </section>
+
+      <!-- ════ 4 · Button (audit) ════ -->
+      <section class="group" id="button">
+        <Divider index={4} label="Button (existing, audit)" />
+        <div class="badges">
+          <Button client:load variant="primary" size="md">Beratungstermin vereinbaren</Button>
+          <Button client:load variant="secondary" size="md">Katalog bestellen</Button>
+          <Button client:load variant="tertiary" size="md">Mehr erfahren</Button>
+          <Button client:load variant="ghost" size="md">Abbrechen</Button>
+        </div>
+        <div class="badges">
+          <Button client:load variant="primary" size="sm">Small</Button>
+          <Button client:load variant="primary" size="md">Medium</Button>
+          <Button client:load variant="primary" size="lg">Large</Button>
+        </div>
+      </section>
+
+      <!-- ════ 5 · Callout ════ -->
+      <section class="group" id="callout">
+        <Divider index={5} label="Callout" />
+        <div class="stack">
+          <Callout client:load tone="note" title="Hinweis">
+            <p>
+              KfW-Förderung wird einmalig zum Bauantrag geprüft. Die genaue
+              Förderhöhe richtet sich nach der zum Zeitpunkt des Antrags
+              gültigen Förderlandschaft.
+            </p>
+          </Callout>
+          <Callout client:load tone="tip" title="Tipp">
+            <p>
+              Frühe Beratung spart bis zu 8 % der Bausumme — die meisten
+              Einsparungen entstehen in der Konzeptphase, nicht auf der
+              Baustelle.
+            </p>
+          </Callout>
+          <Callout client:load tone="important" title="Wichtig">
+            <p>
+              Ein Rechtsanspruch auf staatliche Förderprogramme besteht nicht.
+              Bitte sprechen Sie mit Ihrem Fachberater über aktuelle Konditionen.
+            </p>
+          </Callout>
+          <Callout client:load tone="warning" title="Achtung">
+            <p>
+              Bei reinen Bausatz-Stufen entfällt der Festpreis für
+              Folgegewerke. Diese Risiken müssen wir gemeinsam absichern.
+            </p>
+          </Callout>
+        </div>
+      </section>
+
+      <!-- ════ 6 · StatBlock ════ -->
+      <section class="group" id="stat">
+        <Divider index={6} label="StatBlock" />
+        <div class="stat-grid">
+          {stats.map((s) => (
+            <StatBlock
+              client:load
+              value={s.value}
+              label={s.label}
+              caption={s.caption}
+              icon={s.icon}
+            />
+          ))}
+        </div>
+      </section>
+
+      <!-- ════ 7 · IconList ════ -->
+      <section class="group" id="iconlist">
+        <Divider index={7} label="IconList" />
+
+        <Eyebrow>Eine Spalte, comfortable</Eyebrow>
+        <IconList client:load items={audienceItems} />
+
+        <Eyebrow>Zwei Spalten, tight</Eyebrow>
+        <IconList
+          client:load
+          items={audienceItems}
+          columns={2}
+          density="tight"
+        />
+
+        <Eyebrow>Vier Spalten (sechzehn gute Gründe)</Eyebrow>
+        <IconList
+          client:load
+          items={sixteenReasons}
+          columns={4}
+          density="tight"
+        />
+      </section>
+
+      <!-- ════ 8 · PullQuote ════ -->
+      <section class="group" id="pullquote">
+        <Divider index={8} label="PullQuote" />
+        <PullQuote
+          quote="Qualität geht vor Quantität. Wir bauen keine Häuser, wir bauen Zuhause — und das spüren unsere Kunden in jeder Faserrichtung."
+          author="Hans Boholz"
+          role="Geschäftsführer & Inhaber"
+        />
+        <PullQuote
+          quote="Ein Haus, das uns überdauert."
+          align="center"
+        />
+      </section>
+
+      <!-- ════ 9 · EditorialCard ════ -->
+      <section class="group" id="editorialcard">
+        <Divider index={9} label="EditorialCard" />
+        <div class="step-grid">
+          {steps.map((s) => (
+            <EditorialCard
+              client:load
+              step={s.step}
+              title={s.title}
+              description={s.description}
+              icon={s.icon}
+            />
+          ))}
+        </div>
+      </section>
+
+      <!-- ════ 10 · FAQAccordion ════ -->
+      <section class="group" id="faq">
+        <Divider index={10} label="FAQAccordion" />
+        <FAQAccordion client:load items={faqItems} type="single" />
+      </section>
+
+      <!-- ════ 11 · VideoPlaceholder ════ -->
+      <section class="group" id="video">
+        <Divider index={11} label="VideoPlaceholder" />
+
+        <Eyebrow>16:9 — Standard Werksrundgang</Eyebrow>
+        <VideoPlaceholder
+          client:load
+          slotId="versprechen-werksrundgang"
+          aspectRatio="16/9"
+          label="Werksrundgang"
+          caption="Bald verfügbar — drei Minuten durch die Fertigung."
+        />
+
+        <Eyebrow>21:9 — Cinematic Hero</Eyebrow>
+        <VideoPlaceholder
+          client:load
+          slotId="campaign-bungalow-hero"
+          aspectRatio="21/9"
+          variant="film"
+          label="Bungalow-Kampagne"
+        />
+
+        <div class="video-row">
+          <div>
+            <Eyebrow>1:1 — Square</Eyebrow>
+            <VideoPlaceholder
+              client:load
+              slotId="news-square"
+              aspectRatio="1/1"
+              variant="video"
+              label="News-Reel"
+            />
+          </div>
+          <div>
+            <Eyebrow>4:5 — Portrait</Eyebrow>
+            <VideoPlaceholder
+              client:load
+              slotId="testimonial-portrait"
+              aspectRatio="4/5"
+              label="Testimonial"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  .faux-nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    height: 64px;
+    background: var(--clr-surface-primary);
+    border-block-end: 1px solid var(--clr-border-secondary);
+    display: flex;
+    align-items: center;
+    padding-inline: var(--padding-inline);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-content-primary);
+  }
+
+  .page-hero {
+    padding-block: var(--spacing-6) var(--spacing-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    max-width: 64ch;
+  }
+
+  .page-eyebrow {
+    font-size: var(--fs-body-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--clr-content-tertiary);
+    font-weight: var(--font-weight-medium);
+    margin: 0;
+    /* Match the system rhythm: eyebrow→h1 wider than h1→lede. */
+    margin-block-end: calc(var(--spacing-4) - var(--spacing-3));
+  }
+
+  .page-hero h1 {
+    font-weight: var(--font-weight-light);
+    margin: 0;
+  }
+
+  .page-lede {
+    font-size: var(--fs-body-lg);
+    color: var(--clr-content-secondary);
+    margin: 0;
+  }
+
+  .group {
+    padding-block: var(--spacing-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+
+  .kind-banner {
+    margin-block: var(--spacing-7) var(--spacing-4);
+    padding-block: var(--spacing-4);
+    border-block: 2px solid var(--clr-content-primary);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .kind-banner-eyebrow {
+    font-size: var(--fs-body-sm);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--clr-content-tertiary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .kind-banner-title {
+    margin: 0;
+    font-size: var(--fs-h2);
+    font-weight: var(--font-weight-light);
+    letter-spacing: var(--ls-heading);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+  }
+
+  .kind-banner-lede {
+    margin: 0;
+    font-size: var(--fs-body);
+    color: var(--clr-content-secondary);
+    max-width: 60ch;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+  @media (--from-tablet) {
+    .row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    align-items: flex-start;
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .zigzag-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    display: block;
+  }
+
+  .zigzag-heading {
+    margin: 0;
+    font-size: var(--fs-h3);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: var(--ls-heading);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+  }
+
+  .zigzag-body {
+    margin: 0;
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+    color: var(--clr-content-secondary);
+    max-width: 60ch;
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-2);
+    align-items: center;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+  @media (--from-tablet) {
+    .stat-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (--from-desktop) {
+    .stat-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .step-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-3);
+  }
+  @media (--from-desktop) {
+    .step-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .video-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+  @media (--from-tablet) {
+    .video-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .video-row > div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+</style>
