@@ -98,6 +98,7 @@ async function onSubmit() {
       :site-key="SITE_KEY"
       theme="light"
       language="de"
+      size="flexible"
     />
 
     <p v-if="submitError" class="error" role="alert">{{ submitError }}</p>

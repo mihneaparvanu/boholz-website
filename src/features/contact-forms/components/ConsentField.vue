@@ -33,6 +33,13 @@ const model = defineModel<boolean>();
   line-height: var(--lh-body);
 }
 
+/* Keep the consent sentence on ~2 even lines (cap line length + balance the
+   wrap) instead of a long line with an orphaned "zu. *" on a third row. */
+.consent > span {
+  max-width: 52ch;
+  text-wrap: balance;
+}
+
 .required {
   color: var(--clr-accent-primary);
   margin-inline-start: var(--spacing-0);
