@@ -184,7 +184,9 @@ a.btn:hover {
 
 .btn[data-variant="secondary"] {
   background: var(--clr-surface-primary);
-  color: var(--btn-accent);
+  /* Deeper accent for WCAG text contrast on the off-white surface
+     (accent-primary/boholz-blau was borderline on these CTAs). */
+  color: var(--clr-accent-secondary);
 }
 .btn[data-variant="secondary"]:hover:not([disabled], [aria-disabled="true"]) {
   background: var(--btn-accent);

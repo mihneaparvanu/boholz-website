@@ -29,15 +29,10 @@ const model = defineModel<boolean>();
   gap: var(--spacing-1);
   color: var(--clr-content-secondary);
   cursor: pointer;
-  font-size: var(--fs-body-sm);
+  /* Full form width; slightly larger + medium weight for readability. */
+  font-size: var(--fs-body);
+  font-weight: var(--font-weight-medium);
   line-height: var(--lh-body);
-}
-
-/* Keep the consent sentence on ~2 even lines (cap line length + balance the
-   wrap) instead of a long line with an orphaned "zu. *" on a third row. */
-.consent > span {
-  max-width: 52ch;
-  text-wrap: balance;
 }
 
 .required {
