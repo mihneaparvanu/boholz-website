@@ -5,6 +5,8 @@ import vue from "@astrojs/vue";
 
 // https://astro.build/config
 export default defineConfig({
+  // Canonical origin — absolute URLs for sitemap.xml + canonical links.
+  site: "https://boholz-haus.de",
   integrations: [vue()],
   output: "server",
   adapter: node({ mode: "standalone" }),
@@ -18,6 +20,9 @@ export default defineConfig({
     "/landing/mehrfamilien": "/wohnen/mehrfamilien",
   },
   vite: {
+    // Minify CSS with Lightning CSS (more aggressive than the esbuild default).
+    // The PostCSS transform pipeline (preset-env, custom-media) still runs first.
+    build: { cssMinify: "lightningcss" },
     ssr: {
       // maplibre-gl uses browser-only APIs (window, Worker, WebGL).
       // noExternal forces Vite to bundle it rather than handing it to Node.

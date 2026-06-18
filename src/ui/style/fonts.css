@@ -1,10 +1,12 @@
-/* --- Josefin Sans --- */
+/* --- Josefin Sans (self-hosted via @fontsource-variable; was fonts.googleapis.com) --- */
 
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+@import "@fontsource-variable/josefin-sans/wght.css";
+@import "@fontsource-variable/josefin-sans/wght-italic.css";
 
-/* --- Instrument Serif --- */
+/* --- Instrument Serif (self-hosted via @fontsource; was fonts.googleapis.com) --- */
 
-@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
+@import "@fontsource/instrument-serif/400.css";
+@import "@fontsource/instrument-serif/400-italic.css";
 
 /* --- DIN (DINish v4, OFL, variable font) ---
    Single VF covers weights 300–800 plus the slant axis for italics.

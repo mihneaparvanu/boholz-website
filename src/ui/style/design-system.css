@@ -212,7 +212,7 @@
   /* Fonts */
 
   --font-din: "DIN";
-  --font-josefin: "Josefin Sans";
+  --font-josefin: "Josefin Sans Variable", "Josefin Sans";
   --font-instrument-serif: "Instrument Serif";
 
   --font-primary: var(--font-din), system-ui, sans-serif;
