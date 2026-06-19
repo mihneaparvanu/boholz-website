@@ -1,5 +1,7 @@
 import type { ContactFormState } from "./data/contact.zod";
 
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
 export function buildNotification(d: ContactFormState): {
   subject: string;
   html: string;
@@ -46,9 +48,9 @@ function html(d: ContactFormState): string {
                 <div style="border-top:1px solid #eaeaea;margin:24px 0;"></div>
 
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;line-height:1.6;">
-                  <tr><td style="padding:6px 0;color:#666;width:160px;">Haustyp</td><td style="padding:6px 0;font-weight:bold;">${d.houseType}</td></tr>
+                  <tr><td style="padding:6px 0;color:#666;width:160px;">Haustyp</td><td style="padding:6px 0;font-weight:bold;">${cap(d.houseType)}</td></tr>
                   <tr><td style="padding:6px 0;color:#666;">Wohnfläche</td><td style="padding:6px 0;">${d.livingArea} m²</td></tr>
-                  <tr><td style="padding:6px 0;color:#666;">Förderung gewünscht</td><td style="padding:6px 0;">${d.wantsFunding}</td></tr>
+                  <tr><td style="padding:6px 0;color:#666;">Förderung gewünscht</td><td style="padding:6px 0;">${cap(d.wantsFunding)}</td></tr>
                 </table>
 
                 <p style="margin:32px 0 0 0;padding:16px;background:#f8f8f8;border-radius:4px;font-size:13px;color:#666;line-height:1.5;">
@@ -79,7 +81,7 @@ ${d.street}
 ${d.postalCode} ${d.city}
 
 Anfrage:
-Haustyp: ${d.houseType}
+Haustyp: ${cap(d.houseType)}
 Wohnfläche: ${d.livingArea} m²
-Förderung gewünscht: ${d.wantsFunding}`;
+Förderung gewünscht: ${cap(d.wantsFunding)}`;
 }
