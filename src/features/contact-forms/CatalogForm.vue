@@ -49,6 +49,7 @@ async function onSubmit() {
     });
 
     if (res.ok) {
+      window.dataLayer?.push({ event: "generate_lead", form_type: "katalog" });
       submitSuccess.value = true;
       return;
     }
