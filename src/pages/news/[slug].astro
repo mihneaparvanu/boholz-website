@@ -80,6 +80,9 @@ const contentHtml = article.content ? await marked(article.content) : null;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-2);
+    max-width: 80ch;
+    width: 100%;
+    margin-inline: auto;
   }
 
   .back-link {
@@ -109,7 +112,9 @@ const contentHtml = article.content ? await marked(article.content) : null;
   .article-content {
     font-size: var(--fs-body);
     line-height: 1.7;
-    max-width: 72ch;
+    max-width: 80ch;
+    width: 100%;
+    margin-inline: auto;
 
     :global(h2) {
       font-size: var(--fs-h4);

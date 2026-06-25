@@ -5,7 +5,7 @@ export const whatWeDoItems: IconListItem[] = [
     icon: "users",
     label: "Planen Ihres Traumhauses mit unseren Bauberatern",
     description:
-      "Vom ersten Entwurf bis zum unterschriebenen Vertrag begleitet Sie ein erfahrener Hausberater — persönlich, präzise, ohne Umwege.",
+      "Vom ersten Entwurf bis zum Einzug begleitet Sie ein erfahrener Hausberater — persönlich, präzise, ohne Umwege.",
   },
   {
     icon: "map-pin",
@@ -21,8 +21,8 @@ export const whatWeDoItems: IconListItem[] = [
   },
   {
     icon: "key-round",
-    label: "Abschluss des Hausvertrages",
+    label: "Begleitung bis zur Schlüsselübergabe",
     description:
-      "Klare Konditionen, transparente Leistungsbeschreibung, ein Ansprechpartner durchgängig.",
+      "Klare Konditionen, transparente Leistungsbeschreibung — ein Ansprechpartner vom Vertrag bis zum Einzug.",
   },
 ];

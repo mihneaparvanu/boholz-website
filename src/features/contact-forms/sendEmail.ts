@@ -12,7 +12,7 @@ export type EmailContent = Omit<Email, "to" | "from">;
 
 const domain = process.env.MAIN_DOMAIN || "boholz-haus.de";
 const prodRouting: EmailRouting = {
-  to: `info@${domain}`,
+  to: `info@${domain},leads@${domain}`,
   from: `noreply@${domain}`,
 };
 
@@ -53,15 +53,17 @@ export async function sendEmail(
 
   const from = completeEmail.from;
   const to = process.env.LEAD_EMAIL_TO || completeEmail.to;
+  const recipients = to
+    .split(",")
+    .map((a) => a.trim())
+    .filter(Boolean);
   const payload = {
     message: {
       subject: completeEmail.subject,
       body: { contentType: "HTML", content: completeEmail.html },
-      toRecipients: [
-        {
-          emailAddress: { address: to },
-        },
-      ],
+      toRecipients: recipients.map((address) => ({
+        emailAddress: { address },
+      })),
       ...(completeEmail.replyTo
         ? { replyTo: [{ emailAddress: { address: completeEmail.replyTo } }] }
         : {}),
