@@ -39,6 +39,8 @@ function html(d: CatalogFormState): string {
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;line-height:1.6;">
                   <tr><td style="padding:6px 0;color:#666;width:160px;">Name</td><td style="padding:6px 0;font-weight:bold;">${d.name}</td></tr>
                   <tr><td style="padding:6px 0;color:#666;">E-Mail</td><td style="padding:6px 0;"><a href="mailto:${d.email}" style="color:#1a1a1a;">${d.email}</a></td></tr>
+                  <tr><td style="padding:6px 0;color:#666;">PLZ</td><td style="padding:6px 0;">${d.postalCode}</td></tr>
+                  <tr><td style="padding:6px 0;color:#666;">Ort</td><td style="padding:6px 0;">${d.city}</td></tr>
                 </table>
 
                 <p style="margin:32px 0 0 0;padding:16px;background:#f8f8f8;border-radius:4px;font-size:13px;color:#666;line-height:1.5;">
@@ -61,5 +63,7 @@ function html(d: CatalogFormState): string {
 
 function text(d: CatalogFormState): string {
   return `Name: ${d.name}
-E-Mail: ${d.email}`;
+E-Mail: ${d.email}
+PLZ: ${d.postalCode}
+Ort: ${d.city}`;
 }

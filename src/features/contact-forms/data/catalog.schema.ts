@@ -20,6 +20,20 @@ export const catalogContactSection: FormSection = {
       autocomplete: "email",
       required: true,
     },
+    {
+      type: "text",
+      name: "postalCode",
+      label: "PLZ",
+      autocomplete: "postal-code",
+      required: true,
+    },
+    {
+      type: "text",
+      name: "city",
+      label: "Ort",
+      autocomplete: "address-level2",
+      required: true,
+    },
   ],
 };
 
