@@ -1,8 +1,9 @@
 /**
  * Canonical certification marks.
  *
- * Whitelist locked by the client revision (PDF, 2026-05) — only the six
- * marks below may appear in the public proof strip and footer.
+ * Whitelist per the client revisions — the marks below may appear in the
+ * public proof strip and footer. "Holz rettet Klima" was re-added in the
+ * 2026-07 revision (PDF), having been dropped in the 2026-05 one.
  *
  * Each entry points at a `<symbol id>` inside `certifications.svg`,
  * inlined site-wide by `layouts/Layout.astro`.
@@ -24,7 +25,7 @@ export interface Certification {
 }
 
 /**
- * The whitelisted six. Order matches the client's PDF screenshot.
+ * Order matches the client's PDF screenshot.
  * cert-gdf is the simple square Gütegemeinschaft mark; cert-din-1052 is
  * the separate combined Keitel-Haus / DIN 1052 / Holztafelbau / GDF badge.
  */
@@ -62,11 +63,12 @@ export const CERTIFICATIONS: Certification[] = [
     aspect: "388 / 512",
     size: "wide",
   },
+  {
+    id: "cert-holz-klima",
+    label: "Holz rettet Klima",
+    aspect: "1 / 1",
+  },
 ];
 
-/**
- * Proof strip = full list. The previous filter (omit ISO + Holz-Rettet-Klima)
- * is no longer needed because those marks were removed from the whitelist
- * entirely.
- */
+/** Proof strip = full list. */
 export const PROOF_CERTIFICATIONS: Certification[] = CERTIFICATIONS;

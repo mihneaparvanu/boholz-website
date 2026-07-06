@@ -18,13 +18,14 @@ export const musterhaeuser: Showhouse[] = [
     slug: "bad-vilbel",
     name: "Musterhaus Bad Vilbel",
     address:
-      "Besuchen Sie unser Ausstellungshaus in der Fertighauswelt Bad Vilbel.",
+      "Besuchen Sie unser Ausstellungshaus in der Musterhausausstellung Eigenheim und Garten in Bad Vilbel.",
     state: "Hessen",
   },
   {
     slug: "fellbach",
     name: "Musterhaus Fellbach",
-    address: "Höhenstraße – Platz 36, 70736 Fellbach.",
+    address:
+      "Besuchen Sie unser Ausstellungshaus in der Musterhausausstellung Traumhaus in Fellbach.",
     state: "Baden-Württemberg",
   },
 ];

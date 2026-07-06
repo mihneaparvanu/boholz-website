@@ -11,16 +11,6 @@ const props = defineProps<{
 const heroMedia = computed(
   () => props.article.media.find((m) => m.isHero)?.media,
 );
-
-const formattedDate = computed(() => {
-  const date = props.article.publishedAt;
-  if (!date) return null;
-  return new Intl.DateTimeFormat("de-DE", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  }).format(new Date(date));
-});
 </script>
 
 <template>
@@ -36,7 +26,6 @@ const formattedDate = computed(() => {
       <ImagePlaceholder v-else />
     </div>
     <div class="content">
-      <time v-if="formattedDate" class="date">{{ formattedDate }}</time>
       <h3 class="title">{{ article.title }}</h3>
       <p v-if="article.excerpt" class="excerpt">{{ article.excerpt }}</p>
     </div>
@@ -74,11 +63,6 @@ const formattedDate = computed(() => {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-1);
-}
-
-.date {
-  font-size: var(--fs-body-sm);
-  color: var(--clr-content-tertiary);
 }
 
 .title {

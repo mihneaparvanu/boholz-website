@@ -26,9 +26,11 @@ export const architekturBeats: ArchBeat[] = [
     eyebrow: "Grundriss",
     heading: "Frei gestalten — bis zur letzten Wand.",
     body: "Offener Wohnbereich, separates Homeoffice, Einliegerwohnung oder großzügige Terrasse — Ihr Grundriss folgt Ihrem Leben, nicht einem Katalog. Wir planen die Räume so, wie Sie sie täglich nutzen werden.",
-    imageURL: getMediaURL("/images/landing/uebersicht/lifestyle-01.webp"),
+    imageURL: getMediaURL(
+      "/images/models/kubus/0-190/gallery/kubus-0-190-gallery-kubus-190-0-0.webp",
+    ),
     imageAlt:
-      "Offener Wohnbereich mit großzügiger Tageslichtführung — individuell geplanter Grundriss",
+      "BoHolz Kubus 0-190 — modernes Kubushaus mit individuell geplantem Grundriss",
   },
   {
     eyebrow: "Fassade",
