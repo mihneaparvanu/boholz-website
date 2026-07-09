@@ -11,6 +11,16 @@ const props = defineProps<{
 const heroMedia = computed(
   () => props.article.media.find((m) => m.isHero)?.media,
 );
+
+// Month kicker above the headline, derived from publishedAt so it always
+// matches the article's date without editors hand-typing it in the title.
+const monthLabel = computed(() =>
+  props.article.publishedAt
+    ? new Intl.DateTimeFormat("de-DE", { month: "long" }).format(
+        new Date(props.article.publishedAt),
+      )
+    : null,
+);
 </script>
 
 <template>
@@ -26,6 +36,7 @@ const heroMedia = computed(
       <ImagePlaceholder v-else />
     </div>
     <div class="content">
+      <span v-if="monthLabel" class="kicker">{{ monthLabel }}</span>
       <h3 class="title">{{ article.title }}</h3>
       <p v-if="article.excerpt" class="excerpt">{{ article.excerpt }}</p>
     </div>
@@ -63,6 +74,14 @@ const heroMedia = computed(
   display: flex;
   flex-direction: column;
   gap: var(--spacing-1);
+}
+
+.kicker {
+  font-size: var(--fs-body-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--clr-content-tertiary);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
 }
 
 .title {
