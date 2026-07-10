@@ -14,8 +14,12 @@ const heroMedia = computed(
 
 // Month kicker above the headline, derived from publishedAt so it always
 // matches the article's date without editors hand-typing it in the title.
+// Evergreen posts (not tied to a month, e.g. the KfW funding notice) opt
+// out via slug so they don't get a misleading month label.
+const EVERGREEN_SLUGS = new Set(["foerdertoepfe"]);
+
 const monthLabel = computed(() =>
-  props.article.publishedAt
+  props.article.publishedAt && !EVERGREEN_SLUGS.has(props.article.slug)
     ? new Intl.DateTimeFormat("de-DE", { month: "long" }).format(
         new Date(props.article.publishedAt),
       )
