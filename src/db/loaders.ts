@@ -140,7 +140,10 @@ export async function getNews(): Promise<NewsArticle[]> {
         orderBy: (newsMedia, { asc }) => [asc(newsMedia.sortOrder)],
       },
     },
-    orderBy: (news, { desc }) => [desc(news.publishedAt)],
+    // Soonest upcoming event first (ascending by date). Postgres sorts NULLs
+    // last on ASC, so evergreen posts (no event date, e.g. the KfW funding
+    // notice) sink to the bottom automatically.
+    orderBy: (news, { asc }) => [asc(news.publishedAt)],
   });
 
   return resolveMediaPaths(data as unknown as NewsArticle[]);
