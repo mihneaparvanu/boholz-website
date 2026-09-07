@@ -45,6 +45,12 @@ const nachhaltigkeitVideoPoster = getMediaURL(
   "/images/content/advantage/nachhaltigkeit/video-poster.webp",
 );
 const holzfaserHero = getMediaURL("/images/photography/forest-sunlight.webp");
+const phonestripFlyerCover = getMediaURL(
+  "/images/pages/bauen-mit-boholz/flyer-phonestrip-cover.webp",
+);
+const phonestripFlyerPDF = getMediaURL(
+  "/images/pages/bauen-mit-boholz/flyer-phonestrip.pdf",
+);
 const wandaufbauHero = getMediaURL(
   "/images/content/advantage/wandaufbau/hero.webp",
 );
@@ -586,8 +592,34 @@ unterstützt gleichzeitig eine natürliche Feuchtigkeitsregulierung der Wandkons
       </article>
     </div>
 
-    {/* Holzfaserdämmung-Flyer (PDF-Download) entfernt aufgrund Gesetzesänderung
-        (Kundenwunsch, 2026-09). Platzhalter für künftigen PhoneStrip-Einschub. */}
+    {/* Holzfaserdämmung-Flyer entfernt (Gesetzesänderung, 2026-09); durch den
+        PhoneStrip-Flyer ersetzt (Kundenwunsch). */}
+    <aside class="flyer" aria-labelledby="flyer-title">
+      <a class="flyer-cover" href={phonestripFlyerPDF} target="_blank" rel="noopener">
+        <img
+          src={phonestripFlyerCover}
+          alt="Vorschau auf den BoHolz-Flyer: Schallschutz mit PhoneStrip"
+          loading="lazy"
+          width="1702"
+          height="2400"
+        />
+      </a>
+      <div class="flyer-body">
+        <p class="flyer-eyebrow">Print-Flyer · PDF</p>
+        <h3 id="flyer-title" class="flyer-heading">Schallschutz mit PhoneStrip</h3>
+        <p class="flyer-lede">
+          Die innovativen PhoneStrip-Entkopplungsstreifen reduzieren die
+          Schallübertragung zwischen den Geschossen spürbar — alle Details
+          kompakt im A4-Format zum Mitnehmen oder Ausdrucken.
+        </p>
+        <p class="flyer-meta">PDF · A4 · ca. 0,7 MB</p>
+        <div class="flyer-actions">
+          <Button variant="primary" size="md" href={phonestripFlyerPDF}>
+            Flyer herunterladen
+          </Button>
+        </div>
+      </div>
+    </aside>
 
    
   </Block>
