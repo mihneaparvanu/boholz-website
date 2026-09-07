@@ -60,5 +60,78 @@ const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
       <slot />
       <Footer />
     </main>
+    {/* AI-image notice: stamps a small "KI-generiert" label onto any of the
+        registered AI-rendered images wherever they appear (EmpCo/UWG). Add a
+        path to AI_IMAGES to cover a new AI image site-wide. */}
+    <script is:inline>
+      (function () {
+        var AI_IMAGES = [
+          "landing/mehrfamilien/lifestyle-03.webp",
+          "stock/lifestyle/craftsmanship-factory.webp",
+          "stock/lifestyle/energy-efficiency-heatpump.webp",
+          "stock/lifestyle/house-planning-office.webp",
+        ];
+        var isAi = function (src) {
+          return !!src && AI_IMAGES.some(function (a) { return src.indexOf(a) !== -1; });
+        };
+        var tracked = [];
+        function makeBadge() {
+          var b = document.createElement("span");
+          b.textContent = "KI-generiert";
+          b.style.cssText =
+            "position:fixed;z-index:50;padding:2px 7px;font-size:0.68rem;font-weight:500;" +
+            "line-height:1.25;letter-spacing:.01em;font-family:inherit;color:#1c1a17;" +
+            "background:rgba(255,255,255,.82);border-radius:999px;backdrop-filter:blur(6px);" +
+            "-webkit-backdrop-filter:blur(6px);pointer-events:none;white-space:nowrap;" +
+            "box-shadow:0 1px 3px rgba(0,0,0,.18);display:none";
+          document.body.appendChild(b);
+          return b;
+        }
+        function ensure(img) {
+          if (img.__aiTagged) return;
+          var src = img.currentSrc || img.src || img.getAttribute("src") || "";
+          if (!isAi(src)) return;
+          img.__aiTagged = true;
+          var rec = { img: img, el: makeBadge() };
+          tracked.push(rec);
+          img.addEventListener("load", position);
+          position();
+        }
+        function position() {
+          for (var i = 0; i < tracked.length; i++) {
+            var img = tracked[i].img, el = tracked[i].el;
+            var r = img.getBoundingClientRect();
+            var vis = r.width > 4 && r.height > 4 && r.bottom > 0 && r.top < innerHeight;
+            if (!vis) { el.style.display = "none"; continue; }
+            el.style.display = "inline-flex";
+            el.style.left = Math.round(r.left + 8) + "px";
+            el.style.top = Math.round(r.bottom - el.offsetHeight - 8) + "px";
+          }
+        }
+        function scan(root) {
+          var imgs = (root || document).querySelectorAll ? (root || document).querySelectorAll("img") : [];
+          for (var i = 0; i < imgs.length; i++) ensure(imgs[i]);
+        }
+        function boot() {
+          scan();
+          new MutationObserver(function (muts) {
+            for (var i = 0; i < muts.length; i++) {
+              var an = muts[i].addedNodes;
+              for (var j = 0; j < an.length; j++) {
+                var n = an[j];
+                if (n.nodeType !== 1) continue;
+                if (n.tagName === "IMG") ensure(n);
+                else scan(n);
+              }
+            }
+          }).observe(document.documentElement, { childList: true, subtree: true });
+          addEventListener("scroll", position, { passive: true });
+          addEventListener("resize", position);
+          var n = 0, t = setInterval(function () { position(); if (++n > 12) clearInterval(t); }, 400);
+        }
+        if (document.readyState === "loading") addEventListener("DOMContentLoaded", boot);
+        else boot();
+      })();
+    </script>
   </body>
 </html>
