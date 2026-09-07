@@ -45,12 +45,6 @@ const nachhaltigkeitVideoPoster = getMediaURL(
   "/images/content/advantage/nachhaltigkeit/video-poster.webp",
 );
 const holzfaserHero = getMediaURL("/images/photography/forest-sunlight.webp");
-const holzfaserFlyerCover = getMediaURL(
-  "/images/pages/bauen-mit-boholz/flyer-holzfaserdaemmung-cover.webp",
-);
-const holzfaserFlyerPDF = getMediaURL(
-  "/images/pages/bauen-mit-boholz/flyer-holzfaserdaemmung.pdf",
-);
 const wandaufbauHero = getMediaURL(
   "/images/content/advantage/wandaufbau/hero.webp",
 );
@@ -592,35 +586,8 @@ unterstützt gleichzeitig eine natürliche Feuchtigkeitsregulierung der Wandkons
       </article>
     </div>
 
-    <!-- Print flyer · A4 PDF with cover preview + download CTA. Placed at
-         the end of the Holzfaserdämmung section because the flyer's content
-         is the same subject — gives the reader a take-home version. -->
-    <aside class="flyer" aria-labelledby="flyer-title">
-      <a class="flyer-cover" href={holzfaserFlyerPDF} target="_blank" rel="noopener">
-        <img
-          src={holzfaserFlyerCover}
-          alt="Vorschau auf den BoHolz-Flyer: Holzfaserdämmung im Detail"
-          loading="lazy"
-          width="1743"
-          height="2400"
-        />
-      </a>
-      <div class="flyer-body">
-        <p class="flyer-eyebrow">Print-Flyer · PDF</p>
-        <h3 id="flyer-title" class="flyer-heading">Holzfaserdämmung im Detail</h3>
-        <p class="flyer-lede">
-          Alle Eigenschaften kompakt im A4-Format zum Mitnehmen oder Ausdrucken
-          — ideal für Ihren Beratungstermin oder zum Weitergeben an Familie und
-          Bauplaner.
-        </p>
-        <p class="flyer-meta">PDF · A4 · ca. 4 MB</p>
-        <div class="flyer-actions">
-          <Button variant="primary" size="md" href={holzfaserFlyerPDF}>
-            Flyer herunterladen
-          </Button>
-        </div>
-      </div>
-    </aside>
+    {/* Holzfaserdämmung-Flyer (PDF-Download) entfernt aufgrund Gesetzesänderung
+        (Kundenwunsch, 2026-09). Platzhalter für künftigen PhoneStrip-Einschub. */}
 
    
   </Block>
