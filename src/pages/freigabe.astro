@@ -1,0 +1,167 @@
+---
+// Private, unlisted review page for the client to scan the freshly-replaced
+// house images before they go live. Gated by a secret ?key= token and marked
+// noindex — not linked anywhere. Renders live from the DB (incl. hidden houses).
+import { db } from "@/db/db";
+import { houseModels } from "@/db/schema";
+import { inArray } from "drizzle-orm";
+import { getMediaURL } from "@/lib/media";
+
+const KEY = "vorschau-7fQ2k9";
+if (Astro.url.searchParams.get("key") !== KEY) {
+  return new Response("Not found", { status: 404 });
+}
+
+const SLUGS = [
+  "bungalow-22-134", "doppelhaus-38-238-125",
+  "einfamilienhaus-22-162-190", "einfamilienhaus-22-173-190", "einfamilienhaus-28-182-170",
+  "einfamilienhaus-35-146-150", "einfamilienhaus-35-181-150", "einfamilienhaus-38-115-125",
+  "einfamilienhaus-38-128-125", "einfamilienhaus-38-138-125", "einfamilienhaus-45-139-75",
+  "kubus-0-140", "kubus-0-166", "kubus-0-190", "stadtvilla-22-157", "stadtvilla-22-166",
+];
+
+const rows = await db.query.houseModels.findMany({
+  where: inArray(houseModels.slug, SLUGS),
+  with: {
+    media: { with: { media: true } },
+    floors: { with: { media: true } },
+  },
+});
+
+const caption = (alt: string | null, fallback: string) => {
+  if (!alt) return fallback;
+  const i = alt.indexOf(" – ");
+  return i >= 0 ? alt.slice(i + 3) : alt;
+};
+
+const houses = rows
+  .map((m: any) => ({
+    name: m.title as string,
+    gallery: [...m.media]
+      .sort((a: any, b: any) => Number(b.isHero) - Number(a.isHero) || (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
+      .map((x: any) => ({ url: getMediaURL(x.media.path), label: caption(x.media.alt, "Außenansicht") })),
+    floors: [...m.floors]
+      .sort((a: any, b: any) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
+      .map((f: any) => ({ url: getMediaURL(f.media.path), label: caption(f.media.alt, f.title ?? "Grundriss") })),
+  }))
+  .sort((a, b) => a.name.localeCompare(b.name, "de"));
+
+const total = houses.length;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Freigegebene Häuser · BoHolz-Haus</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" />
+    <style>
+      :root {
+        --ground:#FAF9F7; --surface:#FFFFFF; --surface-2:#EAECE3; --ink:#1A1A1A; --muted:#5E666C;
+        --line:#E3E1DC; --accent:#0F598A; --accent-soft:#91ACBE; --olive:#3F5D28; --olive-soft:#E6ECDD;
+        --serif:"Instrument Serif",Georgia,serif; --sans:"Josefin Sans",system-ui,sans-serif;
+      }
+      @media (prefers-color-scheme: dark) { :root:not([data-theme=light]) {
+        --ground:#15191C; --surface:#1B2024; --surface-2:#222A2E; --ink:#F2F4F5; --muted:#9EA4A8;
+        --line:#333B40; --accent:#91ACBE; --accent-soft:#0F598A; --olive:#9DBE7E; --olive-soft:#26301A;
+      }}
+      * { box-sizing:border-box; }
+      body { margin:0; background:var(--ground); color:var(--ink); font-family:var(--sans); line-height:1.5; -webkit-font-smoothing:antialiased; }
+      img { max-width:100%; }
+      header.top { position:sticky; top:0; z-index:10; background:color-mix(in srgb,var(--ground) 90%,transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+      .top-in { max-width:1180px; margin:0 auto; padding:14px 22px; display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; }
+      .logo { font-family:var(--serif); font-size:22px; margin-right:auto; }
+      .logo .dot { color:var(--accent); }
+      .progress { font-size:13px; color:var(--muted); }
+      .progress b { color:var(--olive); font-weight:600; }
+      .wrap { max-width:1180px; margin:0 auto; padding:30px 22px 90px; }
+      .eyebrow { font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin:0 0 8px; }
+      h1 { font-family:var(--serif); font-weight:400; font-size:clamp(30px,5vw,46px); line-height:1.05; margin:0 0 12px; text-wrap:balance; }
+      .lede { color:var(--muted); font-size:15.5px; max-width:60ch; margin:0 0 8px; }
+      .note { display:inline-flex; align-items:center; gap:8px; margin-top:16px; padding:7px 14px; border:1px solid var(--line); border-radius:999px; background:var(--surface); font-size:13px; color:var(--muted); }
+      .note .d { width:7px; height:7px; border-radius:50%; background:var(--accent-soft); }
+      .house { margin-top:40px; padding-top:22px; border-top:1px solid var(--line); }
+      .hhead { display:flex; align-items:center; gap:14px; margin-bottom:18px; flex-wrap:wrap; }
+      .hname { font-family:var(--serif); font-size:26px; }
+      .count { font-size:12px; color:var(--muted); font-variant-numeric:tabular-nums; }
+      .chk { margin-left:auto; display:inline-flex; align-items:center; gap:8px; font-size:13.5px; color:var(--muted); cursor:pointer; user-select:none; border:1px solid var(--line); background:var(--surface); border-radius:999px; padding:6px 13px; }
+      .chk .box { width:17px; height:17px; border-radius:5px; border:1.5px solid var(--accent-soft); display:inline-flex; align-items:center; justify-content:center; color:transparent; font-size:12px; transition:.12s; }
+      .chk.on { color:var(--olive); border-color:var(--olive); }
+      .chk.on .box { background:var(--olive); border-color:var(--olive); color:#fff; }
+      .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:18px; }
+      figure { margin:0; background:var(--surface); border:1px solid var(--line); border-radius:14px; overflow:hidden; transition:box-shadow .15s; }
+      figure:hover { box-shadow:0 10px 30px rgba(15,89,138,.09); }
+      figure img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+      figure.floor img { object-fit:contain; background:var(--surface-2); }
+      figcaption { font-size:13px; color:var(--muted); padding:10px 13px; border-top:1px solid var(--line); }
+      figcaption b { color:var(--ink); font-weight:500; }
+      [hidden] { display:none !important; }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <div class="top-in">
+        <div class="logo"><b>BoHolz</b>-Haus <span class="dot">·</span> Freigabe</div>
+        <div class="progress"><b id="pc">0</b> / {total} geprüft</div>
+      </div>
+    </header>
+    <div class="wrap">
+      <p class="eyebrow">Vorschau vor Veröffentlichung</p>
+      <h1>Ihre freigegebenen Häuser</h1>
+      <p class="lede">Hier sehen Sie die neuen Bilder für alle Häuser, so wie sie online gehen werden – Außenansicht und Grundrisse je Haus. Die neuen Bilder ersetzen die bisherigen vollständig.</p>
+      <p class="lede">Bitte kurz durchsehen. Sie können jedes geprüfte Haus rechts abhaken. Sobald Sie grünes Licht geben, gehen alle Häuser mit einem Klick live.</p>
+      <span class="note"><span class="d"></span> Alle Häuser sind aktuell noch offline.</span>
+
+      <div id="root">
+        {houses.map((h) => (
+          <section class="house" data-name={h.name}>
+            <div class="hhead">
+              <span class="hname">{h.name}</span>
+              <span class="count">{h.gallery.length + h.floors.length} Bilder</span>
+              <span class="chk" role="button" tabindex="0">
+                <span class="box">✓</span><span class="t">als geprüft markieren</span>
+              </span>
+            </div>
+            <div class="grid">
+              {h.gallery.map((g) => (
+                <figure><img loading="lazy" src={g.url} alt={g.label} /><figcaption><b>{g.label}</b></figcaption></figure>
+              ))}
+              {h.floors.map((f) => (
+                <figure class="floor"><img loading="lazy" src={f.url} alt={f.label} /><figcaption><b>{f.label}</b></figcaption></figure>
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+
+    <script is:inline>
+      (function () {
+        var KEY = "boholz_freigabe_geprueft";
+        var done = {};
+        try { done = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) {}
+        function upd() {
+          var n = Object.keys(done).filter(function (k) { return done[k]; }).length;
+          document.getElementById("pc").textContent = n;
+        }
+        document.querySelectorAll("section.house").forEach(function (sec) {
+          var name = sec.dataset.name, chk = sec.querySelector(".chk"), t = chk.querySelector(".t");
+          if (done[name]) { chk.classList.add("on"); t.textContent = "geprüft"; }
+          function toggle() {
+            done[name] = !done[name];
+            chk.classList.toggle("on", done[name]);
+            t.textContent = done[name] ? "geprüft" : "als geprüft markieren";
+            try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {}
+            upd();
+          }
+          chk.addEventListener("click", toggle);
+          chk.addEventListener("keydown", function (e) { if (e.key === " " || e.key === "Enter") { e.preventDefault(); toggle(); } });
+        });
+        upd();
+      })();
+    </script>
+  </body>
+</html>
