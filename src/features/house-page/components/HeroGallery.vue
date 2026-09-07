@@ -39,6 +39,7 @@ const next = (): void => {
         :width="slides[index].width ?? undefined"
         :height="slides[index].height ?? undefined"
       />
+      <span v-if="slides[index]?.isAi" class="ai-badge">KI generiert</span>
     </div>
 
     <div v-if="count > 1" class="paginator">
@@ -84,6 +85,24 @@ const next = (): void => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.ai-badge {
+  position: absolute;
+  inset-block-start: var(--spacing-3);
+  inset-inline-start: var(--spacing-3);
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: var(--fs-body-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+  color: var(--clr-content-primary);
+  background: var(--clr-pure-white-soft);
+  border-radius: var(--radius-full);
+  backdrop-filter: blur(6px);
+  box-shadow: var(--shadow-1);
+  pointer-events: none;
 }
 
 @media (--mobile) {

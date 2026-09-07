@@ -170,6 +170,9 @@ export const media = boholzSchema.table("media", {
   alt: text("alt"),
   width: integer("width"),
   height: integer("height"),
+  // AI-generated / rendered image — surfaces a mandatory "KI generiert" notice
+  // in the UI (EmpCo/UWG transparency). Set via the media-marking tool.
+  isAi: boolean("is_ai").notNull().default(false),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
