@@ -40,10 +40,9 @@ export const homeSections = {
     eyebrow: "Auszeichnung",
     navLabel: "Auszeichnung",
     heading1: "Besser gebaut.",
-    heading2: "Schneller geliefert.",
     highlight: "Sorgenfrei gelebt.",
     subheading:
-      "BoHolz vereint meisterhafte Präzision mit höchster Energieeffizienz. Für Sie bedeutet das: schneller Einzug, erstklassige Lebensqualität und dauerhaft niedrige Energiekosten.",
+      "BoHolz-Haus verbindet präzise Vorfertigung in Holzbauweise mit durchdachter Planung und abgestimmter Haustechnik. So entstehen klar definierte Leistungen, strukturierte Abläufe und ein Zuhause, das zu Ihren Bedürfnissen passt.",
   },
   bauphasen: {
     id: "bauphasen",

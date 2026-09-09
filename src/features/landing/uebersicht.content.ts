@@ -34,7 +34,7 @@ export const heroVariants = {
     title: "Premium Fertighäuser",
     highlight: "aus Holz.",
     subtitle:
-      "Wir bauen Premium-Fertighäuser aus Holz in Deutschland — nachhaltig, individuell, persönlich begleitet. Gemacht für Generationen zum Genießen, nicht nur zum Wohnen.",
+      "Wir bauen Premium-Fertighäuser aus Holz in Deutschland – persönlich begleitet von der ersten Idee bis zur Hausübergabe. Für ein Zuhause, das zu Ihnen und Ihrer Lebenssituation passt.",
   },
   // Variant 2 — the previous home hero (see `features/Home/Hero/Hero.vue`).
   classic: {
@@ -85,32 +85,32 @@ export const uebersichtContent: LandingPageContent = {
     eyebrow: "Ihre Vorteile",
     heading: "Premium-Fertighäuser",
     highlight: "auf einen Blick.",
-    lede: "Nachhaltig, energieeffizient, individuell planbar — vier Eigenschaften, die jedes BoHolz-Haus auszeichnen.",
+    lede: "Durchdachte Holzbauweise, definierte Effizienzhausstandards, individuelle Planung und klar beschriebene Ausbaustufen – vier Merkmale, die jedes BoHolz-Haus auszeichnen.",
   },
 
   benefits: [
     {
       icon: "leaf",
-      title: "Nachhaltig & ökologisch",
-      body: "Holz aus verantwortungsvoller Forstwirtschaft – wohngesund und langlebig.",
+      title: "Holzbauweise",
+      body: "Diffusionsoffene Außenwände mit Holzfaserdämmplatte und konkret ausgewiesenen Dämmwerten.",
       tone: "forest",
     },
     {
       icon: "zap",
-      title: "Energieeffizient",
-      body: "Zukunftssicher bauen mit QNG Siegel und von den aktuellen KfW- Förderung profitieren.",
+      title: "Effizienzhausstandard",
+      body: "KfW 55 im angebotenen Standard. KfW 40 und QNG sind abhängig vom Bauvorhaben optional möglich.",
       tone: "sage",
     },
     {
       icon: "pencil",
       title: "Individuelle Planung",
-      body: "Architektenhaus mit persönlichem Grundriss – Ihr Stil, Ihr Zuhause.",
+      body: "Persönlich geplanter Grundriss – abgestimmt auf Ihre Wünsche, Ihre Lebenssituation und Ihr Grundstück.",
       tone: "leaf",
     },
     {
       icon: "key-round",
-      title: "Schlüsselfertig",
-      body: "Fixe Abläufe, klare Kosten, termingerechte Übergabe.",
+      title: "Schlüsselfertige Ausführung",
+      body: "Klar festgelegte Leistungen und strukturierte Abläufe gemäß unserer Bau- und Leistungsbeschreibung.",
       tone: "accent",
     },
   ],
@@ -172,16 +172,17 @@ export const uebersichtContent: LandingPageContent = {
   },
 
   sustainability: {
-    eyebrow: "Gefördert und effizient",
-    title: "Nachhaltig bauen",
-    highlight: "mit Holz.",
+    eyebrow: "Individuelle Planung",
+    title: "Persönlich geplant.",
+    highlight: "Für Sie gemacht.",
+    subtitle: "Ein Zuhause, das Ihre Handschrift trägt.",
     paragraphs: [
-      "Mit moderner Haustechnik erfüllen wir alle Standards für QNG-Siegel und KfW-Förderungen — und schaffen so Wohnkomfort für die Zukunft.",
-      "Profitieren Sie von den staatlichen Förderungen. Wir beraten Sie umfassend, welche Programme zu Ihrem Vorhaben passen.",
+      "Aus Ihren Vorstellungen entsteht individuelle Architektur. Gemeinsam entwickeln wir einen Grundriss, wählen die passende Ausbaustufe und gestalten die Details, die aus einem Haus Ihr Zuhause machen.",
+      "Beginnen Sie jetzt mit der Planung Ihres BoHolz-Hauses – persönlich begleitet von der ersten Idee bis zur Umsetzung.",
     ],
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
     imageAlt:
-      "Holzfertighaus in naturnaher Umgebung — Symbolbild für nachhaltigen Holzbau",
+      "Naturnahes Wohnen — persönlich geplantes Zuhause von BoHolz-Haus",
     reverse: false,
     cta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
