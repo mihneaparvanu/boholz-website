@@ -31,7 +31,7 @@ export const qaCategories: QuestionCategory[] = [
         id: "materialien",
         question: "Welche Materialien verwendet BoHolz Haus?",
         answer:
-          "<p>BoHolz Haus verwendet für den Bau seiner Fertighäuser primär Holz als Hauptbaustoff, insbesondere für die tragende Konstruktion. Die Außenwände bestehen aus einer Holzrahmenkonstruktion, die mit Holzfaserdämmplatten für eine effektive Wärmedämmung ausgestattet ist. Zusätzlich kommen weitere natürliche und ökologische Materialien zum Einsatz, um ein gesundes Raumklima und eine hohe Energieeffizienz zu gewährleisten.</p>",
+          "<p>BoHolz Haus verwendet für den Bau seiner Fertighäuser primär Holz als Hauptbaustoff, insbesondere für die tragende Konstruktion. Die Außenwände bestehen aus einer Holzrahmenkonstruktion, die mit Holzfaserdämmplatten für eine effektive Wärmedämmung ausgestattet ist. Zusätzlich kommen weitere natürliche Materialien zum Einsatz, um ein angenehmes Raumklima und eine hohe Energieeffizienz zu gewährleisten.</p>",
       },
       {
         id: "richtiger-haustyp",
