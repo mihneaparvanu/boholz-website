@@ -208,8 +208,8 @@ export interface LandingClosingCta {
   title: string;
   highlight?: string;
   subtitle?: string;
-  /** `surface` (default), `accent` (deep blue), or `image` (with imageFallbackPath). */
-  tone?: "surface" | "accent" | "image";
+  /** `surface` (default), `accent` (light brand blue), `brand` (deep brand blue #0F598A), or `image` (with imageFallbackPath). */
+  tone?: "surface" | "accent" | "brand" | "image";
   imageFallbackPath?: string;
   imageAlt?: string;
   primaryCta: LandingCta;
@@ -227,7 +227,7 @@ export interface LandingSeo {
 
 export interface LandingPageContent {
   /** Route slug — used for the page's URL and as the content key. */
-  slug: "uebersicht" | "mehrfamilien" | "bungalow";
+  slug: "uebersicht" | "mehrfamilien" | "bungalow" | "einfamilienhaus";
   seo: LandingSeo;
   hero: LandingHero;
   benefitsIntro: LandingBenefitsIntro;

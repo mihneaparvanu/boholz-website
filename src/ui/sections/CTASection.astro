@@ -1,5 +1,5 @@
 ---
-type Tone = "surface" | "accent" | "image";
+type Tone = "surface" | "accent" | "brand" | "image";
 
 interface Props {
   title: string;
@@ -71,6 +71,14 @@ const resolvedTone: Tone = image ? "image" : tone;
     color: var(--clr-pure-white);
   }
 
+  /* Deep brand blue (boholz-blau-alt-deep / #0F598A). Used as a flat,
+     image-free colour block to break the page flow — dark panel, white
+     text, no photo. */
+  .cta[data-tone="brand"] {
+    background: var(--clr-accent-secondary);
+    color: var(--clr-pure-white);
+  }
+
   .cta[data-tone="image"] {
     color: var(--clr-pure-white);
   }
@@ -117,6 +125,7 @@ const resolvedTone: Tone = image ? "image" : tone;
 
   /* Eyebrow over dark surfaces — keep it readable. */
   .cta[data-tone="accent"] .eyebrow,
+  .cta[data-tone="brand"] .eyebrow,
   .cta[data-tone="image"] .eyebrow {
     color: var(--clr-pure-white-soft);
   }
@@ -147,6 +156,7 @@ const resolvedTone: Tone = image ? "image" : tone;
      vanish. Promote it to white so the headline reads as two parts again.
      The double-class selector matches the global rule's specificity. */
   .cta[data-tone="accent"] .highlight.highlight,
+  .cta[data-tone="brand"] .highlight.highlight,
   .cta[data-tone="image"] .highlight.highlight {
     color: var(--clr-pure-white);
   }
@@ -162,6 +172,7 @@ const resolvedTone: Tone = image ? "image" : tone;
   }
 
   .cta[data-tone="accent"] .subtitle,
+  .cta[data-tone="brand"] .subtitle,
   .cta[data-tone="image"] .subtitle {
     color: var(--clr-pure-white-soft);
   }
@@ -188,12 +199,14 @@ const resolvedTone: Tone = image ? "image" : tone;
      action reads against the saturated surface. `:global` lets the rule
      reach the scoped Button.vue internals. */
   .cta[data-tone="accent"] :global(.btn[data-variant="ghost"]),
+  .cta[data-tone="brand"] :global(.btn[data-variant="ghost"]),
   .cta[data-tone="image"] :global(.btn[data-variant="ghost"]) {
     color: var(--clr-pure-white);
     border-color: var(--clr-pure-white-soft);
   }
 
   .cta[data-tone="accent"] :global(.btn[data-variant="ghost"]:hover),
+  .cta[data-tone="brand"] :global(.btn[data-variant="ghost"]:hover),
   .cta[data-tone="image"] :global(.btn[data-variant="ghost"]:hover) {
     background: var(--clr-pure-white);
     color: var(--clr-content-primary);

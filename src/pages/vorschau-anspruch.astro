@@ -29,15 +29,15 @@ import Button from "@/ui/primitives/Button.vue";
 import { getCategories, getModels } from "@/db/loaders";
 import { toHouseModelCard } from "@/lib/derive";
 
-import { uebersichtContent as content } from "@/features/landing/uebersicht.content";
+import { einfamilienhausContent as content } from "@/features/landing/einfamilienhaus.content";
 import ProofSection from "@/ui/sections/Proof-Section.vue";
 import TrustBadges from "@/features/home/TrustBadges/TrustBadges.vue";
 import { trustBadges } from "@/features/home/TrustBadges/trust-badges.content";
 import { homeSections } from "@/features/home/home.content";
 
 const heroOverride = {
-  title: "Fertighäuser in Zimmermannsqualität für Menschen mit",
-  highlight: "Anspruch.",
+  title: content.hero.title,
+  highlight: content.hero.highlight ?? "",
 };
 
 const categories = await getCategories();
@@ -60,14 +60,7 @@ const imageBandImage = getMediaURL(content.imageBand.imageFallbackPath);
 const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath);
 ---
 
-<Layout title={`${heroOverride.title} ${heroOverride.highlight}`} categories={categories}>
-  <!-- Dev-only preview banner. Sits above the hero so the client can flip
-       back to the standard variant without clearing the URL. -->
-  <aside class="preview-banner full-width">
-    <span>Vorschau · Alternative Hero-Headline</span>
-    <a href="/">← Zur Standard-Variante</a>
-  </aside>
-
+<Layout title={content.seo.title} categories={categories}>
   <div class="full-width">
     <PageHero
       eyebrow={content.hero.eyebrow}
@@ -252,45 +245,6 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
 </Layout>
 
 <style>
-  /* Thin preview banner — full-bleed via the wrapper grid escape
-     (`.full-width`). Sits above the sticky navbar so it scrolls away
-     naturally with the hero. Uses accent-secondary for the link (small
-     element, per the project accent-tier rule). */
-  .preview-banner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-3);
-    padding-block: var(--spacing-1);
-    padding-inline: var(--padding-inline);
-    background: var(--clr-surface-secondary);
-    border-block-end: 1px solid var(--clr-border-secondary);
-    font-size: var(--fs-body-sm);
-    color: var(--clr-content-secondary);
-    text-align: center;
-  }
-
-  .preview-banner span {
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-eyebrow);
-    font-weight: var(--font-weight-medium);
-  }
-
-  .preview-banner a {
-    color: var(--clr-accent-secondary);
-    font-weight: var(--font-weight-medium);
-    text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--clr-accent-secondary) 40%, transparent);
-    text-underline-offset: 2px;
-    transition: text-decoration-color 160ms ease;
-  }
-
-  .preview-banner a:hover,
-  .preview-banner a:focus-visible {
-    text-decoration-color: var(--clr-accent-secondary);
-  }
-
   .empty {
     margin: 0;
     padding: var(--spacing-3) 0;
