@@ -219,7 +219,7 @@ export const mehrfamilienContent: LandingPageContent = {
     highlight: "für mehrere Generationen.",
     subtitle:
       "Jetzt unverbindlich beraten lassen oder direkt ein Angebot anfordern.",
-    tone: "surface",
+    tone: "brand",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
     secondaryCta: { label: "Imagebroschüre bestellen", href: "/katalog" },
   },

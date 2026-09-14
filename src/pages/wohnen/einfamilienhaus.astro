@@ -1,13 +1,12 @@
 ---
 /**
- * Hero-headline preview variant of `/`.
+ * Einfamilienhaus landing — `/wohnen/einfamilienhaus`.
  *
- * Identical to `index.astro` in every section except the PageHero
- * title/highlight, plus a thin dev banner at the very top so the client
- * can toggle between the two variants. Not linked from the navbar.
- *
- * Title:     "Fertighäuser in Zimmermannsqualität für Menschen mit"
- * Highlight: "Anspruch."   (italic-blue per PageHero contract)
+ * The Google-Ads landing page for the Einfamilienhaus category. Reuses the
+ * home/übersicht section composition but is driven entirely by
+ * `einfamilienhaus.content.ts` (hero, cards, carousel scoped to
+ * Einfamilienhaus, FAQ, deep-blue closing CTA). Old paths
+ * (/vorschau-anspruch, /wohnen/uebersicht, /landing/uebersicht) 301 here.
  */
 import Layout from "@/layouts/Layout.astro";
 import { getMediaURL } from "@/lib/media";

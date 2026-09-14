@@ -12,13 +12,15 @@ export default defineConfig({
   adapter: node({ mode: "standalone" }),
   // Routes renamed 2026-05-18; redirects keep old links + bookmarks alive.
   // Typology landing pages moved from /landing/* → /wohnen/* on 2026-05-22.
-  // The Übersicht landing page was folded into /vorschau-anspruch; point both
-  // its old /landing and /wohnen paths there so no ad/bookmark 404s (2026-09-04).
+  // The übersicht/vorschau landing became the Einfamilienhaus landing and moved
+  // to /wohnen/einfamilienhaus (2026-09-14); point every old path there so no
+  // ad/bookmark 404s and no redirect chains.
   redirects: {
     "/unser-versprechen": "/bauen-mit-boholz",
     "/dein-zuhause": "/ihr-neues-zuhause",
-    "/landing/uebersicht": "/vorschau-anspruch",
-    "/wohnen/uebersicht": "/vorschau-anspruch",
+    "/vorschau-anspruch": "/wohnen/einfamilienhaus",
+    "/landing/uebersicht": "/wohnen/einfamilienhaus",
+    "/wohnen/uebersicht": "/wohnen/einfamilienhaus",
     "/landing/bungalow": "/wohnen/bungalow",
     "/landing/mehrfamilien": "/wohnen/mehrfamilien",
   },
