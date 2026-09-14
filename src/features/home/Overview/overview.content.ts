@@ -34,7 +34,7 @@ export const overviewCardsSecondary: OverviewCardData[] = [
   {
     heading: "Echtes Holz",
     subheading:
-      "Wir bauen mit Holz aus PEFC-zertifizierter, nachhaltiger Forstwirtschaft – ein nachwachsender Rohstoff, der CO₂ während des Wachstums bindet.",
+      "Wir bauen mit Holz aus PEFC-zertifizierter Forstwirtschaft – ein natürlicher Baustoff.",
     image: {
       url: getMediaURL("/images/photography/log-stack.webp"),
       alt: "Gestapelte Holzstämme aus zertifizierter Forstwirtschaft",

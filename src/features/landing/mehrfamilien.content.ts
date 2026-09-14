@@ -47,8 +47,8 @@ export const mehrfamilienContent: LandingPageContent = {
   benefits: [
     {
       icon: "leaf",
-      title: "Nachhaltig aus Holz",
-      body: "Gesundes Raumklima und natürliche Materialien — CO₂-speichernd, regional gefertigt.",
+      title: "Gebaut aus Holz",
+      body: "Angenehmes Raumklima und natürliche Materialien — regional gefertigt.",
       tone: "forest",
     },
     {
@@ -135,7 +135,7 @@ export const mehrfamilienContent: LandingPageContent = {
     title: "Mehr Raum,",
     highlight: "mehr Möglichkeiten.",
     paragraphs: [
-      "Ob für Familien oder als Investition — ein Mehrfamilienhaus bietet Platz, Flexibilität und nachhaltige Wertbeständigkeit.",
+      "Ob für Familien oder als Investition — ein Mehrfamilienhaus bietet Platz, Flexibilität und langfristige Wertbeständigkeit.",
       "Bo Holz Haus baut energieeffizient nach KfW-40/55-Standard, mit bis zu 16 Wohneinheiten unter einem Dach.",
     ],
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-01.webp",
