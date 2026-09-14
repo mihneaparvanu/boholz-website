@@ -216,7 +216,7 @@ export const bungalowContent: LandingPageContent = {
     highlight: "Starten Sie Ihr Projekt.",
     subtitle:
       "Jetzt unverbindlich beraten lassen oder direkt ein Angebot anfordern.",
-    tone: "accent",
+    tone: "brand",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
     secondaryCta: { label: "Imagebroschüre bestellen", href: "/katalog" },
   },

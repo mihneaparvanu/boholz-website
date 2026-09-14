@@ -4,7 +4,8 @@ import { getNews, getModels, getLocations } from "@/db/loaders";
 // Fallback origin if `site` is somehow unset (it's configured in astro.config.mjs).
 const FALLBACK_SITE = "https://boholz-haus.de";
 
-// Static, indexable routes. Excludes api/*, 404, and vorschau-anspruch (preview).
+// Static, indexable routes. Excludes api/*, 404, and the hidden /wohnen/*
+// category placeholders.
 const STATIC_PATHS = [
   "/",
   "/hauser",
@@ -16,6 +17,7 @@ const STATIC_PATHS = [
   "/vor-ort-beratung",
   "/bauen-mit-boholz",
   "/ihr-neues-zuhause",
+  "/wohnen/einfamilienhaus",
   "/wohnen/bungalow",
   "/wohnen/mehrfamilien",
   "/impressum",

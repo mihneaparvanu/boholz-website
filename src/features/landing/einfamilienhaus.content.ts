@@ -1,5 +1,5 @@
 /**
- * Einfamilienhaus landing — served at `/vorschau-anspruch` (used as a
+ * Einfamilienhaus landing — served at `/wohnen/einfamilienhaus` (the
  * Google-Ads landing target for the Einfamilienhaus category).
  *
  * Scoped entirely to the Einfamilienhaus typology: hero, benefit cards,
