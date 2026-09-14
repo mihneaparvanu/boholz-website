@@ -79,7 +79,7 @@ const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
           var b = document.createElement("span");
           b.textContent = "KI-generiert";
           b.style.cssText =
-            "position:fixed;z-index:50;padding:2px 7px;font-size:0.68rem;font-weight:500;" +
+            "position:absolute;z-index:50;padding:2px 7px;font-size:0.68rem;font-weight:500;" +
             "line-height:1.25;letter-spacing:.01em;font-family:inherit;color:#1c1a17;" +
             "background:rgba(255,255,255,.82);border-radius:999px;backdrop-filter:blur(6px);" +
             "-webkit-backdrop-filter:blur(6px);pointer-events:none;white-space:nowrap;" +
@@ -98,14 +98,19 @@ const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
           position();
         }
         function position() {
+          // Anchor the badge in DOCUMENT coordinates (position:absolute), not
+          // viewport coordinates. This way it scrolls together with its image
+          // natively — no per-frame JS on scroll, so no lag. We only recompute
+          // on load/resize/layout-settle.
+          var sx = window.pageXOffset, sy = window.pageYOffset;
           for (var i = 0; i < tracked.length; i++) {
             var img = tracked[i].img, el = tracked[i].el;
             var r = img.getBoundingClientRect();
-            var vis = r.width > 4 && r.height > 4 && r.bottom > 0 && r.top < innerHeight;
+            var vis = r.width > 4 && r.height > 4;
             if (!vis) { el.style.display = "none"; continue; }
             el.style.display = "inline-flex";
-            el.style.left = Math.round(r.left + 8) + "px";
-            el.style.top = Math.round(r.bottom - el.offsetHeight - 8) + "px";
+            el.style.left = Math.round(r.left + sx + 8) + "px";
+            el.style.top = Math.round(r.bottom + sy - el.offsetHeight - 8) + "px";
           }
         }
         function scan(root) {
@@ -125,7 +130,9 @@ const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
               }
             }
           }).observe(document.documentElement, { childList: true, subtree: true });
-          addEventListener("scroll", position, { passive: true });
+          // No scroll listener: the badge is absolutely positioned in document
+          // space, so it tracks its image during scroll without JS. Recompute
+          // only when layout can actually change.
           addEventListener("resize", position);
           var n = 0, t = setInterval(function () { position(); if (++n > 12) clearInterval(t); }, 400);
         }
