@@ -15,7 +15,7 @@ const strings: Record<string, string> = {
     "Ihr Premium Vertriebspartner: gemeinsam mit Keitel Haus bauen wir Premium-Fertighäuser aus Holz — von der ersten Skizze bis zur Schlüsselübergabe.",
   uberUnsLeadProseOpener: "Als Vertriebsgesellschaft hat",
   uberUnsLeadProse:
-    "BoHolz Haus höchste Ansprüche an Qualität und Nachhaltigkeit beim Hausbau.",
+    "BoHolz Haus höchste Ansprüche an Qualität beim Hausbau.",
   uberUnsLeadProseSecond:
     "Deshalb beraten und begleiten wir Sie umfassend zu allen Fragen und Wünschen rund um Ihr individuelles Traumhaus. Unsere erfahrenen Hausberater sorgen dafür, dass von der Planung Ihres BoHolz Fertighauses bis zum Abschluss Ihres Hausvertrags alles zu Ihrer vollsten Zufriedenheit abläuft. Dabei geben wir Ihnen wichtige Informationen und Tipps, beginnend bei der aktuellen Förderung von KfW Baudarlehen, bis zur Finanzierung.",
   uberUnsPartnerPullQuote:
@@ -33,7 +33,7 @@ const strings: Record<string, string> = {
 
   uberUnsStatCaption: "Jahre Erfahrung im Fertighausbau",
   uberUnsWasWirTunLede:
-    "Wir bauen Fertighäuser in höchster Qualität — nachhaltig, individuell und mit Leidenschaft.",
+    "Wir bauen Fertighäuser in höchster Qualität — individuell und mit Leidenschaft.",
 };
 
 const arrays: Record<string, string[]> = {
@@ -44,7 +44,7 @@ const arrays: Record<string, string[]> = {
   // If another page begins consuming these strings, keep them in sync.
   uberUnsKeitelProse: [
     "Deshalb setzen wir von BoHolz Haus als Premium Vertriebspartner auf die Kompetenz unseres renommierten Partners Keitel Haus. Keitel Haus übernimmt von der detaillierten Planung Ihres Hauses bis zur kompletten Fertigstellung alle Arbeiten aus einer Hand. Keitel Haus ist ein renommiertes Familienunternehmen mit Sitz in 74585 Rot am See-Brettheim (bei Rothenburg o.d. Tauber).",
-    " Seit über 90 Jahren widmet sich Keitel-Haus intensiv dem nachhaltigen Baustoff Holz und nutzt dessen Vorzüge täglich im qualitativ hochwertigen Fertighausbau — von Einfamilien- bis zu Generationenhäusern.",
+    " Seit über 90 Jahren widmet sich Keitel-Haus intensiv dem Baustoff Holz und nutzt dessen Vorzüge täglich im qualitativ hochwertigen Fertighausbau — von Einfamilien- bis zu Generationenhäusern.",
     "Auch spezielle Wünsche wie Kombinationen von Wohn- und Arbeitsbereichen oder individuelle Erweiterungen setzt Keitel Haus mit seinem Partner BoHolz Haus gerne um.Ein weiterer Vorteil für alle Bauherren:",
   ],
 
@@ -54,7 +54,7 @@ const arrays: Record<string, string[]> = {
   // editorial weight then transfers to the structured principles block.
   uberUnsKeitelIntroProse: [
     "Deshalb setzen wir von BoHolz Haus als Premium-Vertriebspartner auf die Kompetenz unseres renommierten Partners Keitel-Haus. Keitel-Haus übernimmt von der detaillierten Planung Ihres Hauses bis zur kompletten Fertigstellung alle Arbeiten aus einer Hand — ein Familienunternehmen mit Sitz in Rot am See-Brettheim, unweit von Rothenburg o. d. Tauber.",
-    "Seit über 90 Jahren widmet sich Keitel-Haus dem nachhaltigen Baustoff Holz und nutzt dessen Vorzüge täglich im qualitativ hochwertigen Fertighausbau — von Einfamilien- bis zu Generationenhäusern.",
+    "Seit über 90 Jahren widmet sich Keitel-Haus dem Baustoff Holz und nutzt dessen Vorzüge täglich im qualitativ hochwertigen Fertighausbau — von Einfamilien- bis zu Generationenhäusern.",
   ],
 
   // New: closing prose between the financial callout and the video block.
@@ -99,7 +99,7 @@ export const keitelFinancial: KeitelFinancial = {
   value: "100 %",
   label: "Eigenmittel",
   caption:
-    "Als finanziell solides Unternehmen operiert Keitel-Haus ausschließlich mit eigenen Mitteln — unabhängig von externen Finanzierungspartnern. Alle Ressourcen fließen gezielt in Qualität, Nachhaltigkeit und Ausstattung der Häuser.",
+    "Als finanziell solides Unternehmen operiert Keitel-Haus ausschließlich mit eigenen Mitteln — unabhängig von externen Finanzierungspartnern. Alle Ressourcen fließen gezielt in Qualität und Ausstattung der Häuser.",
 };
 
 export function keitel(key: string): string {
