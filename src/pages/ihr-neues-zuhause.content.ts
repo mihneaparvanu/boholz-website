@@ -7,7 +7,7 @@ export const sections: Section[] = [
   { id: "architektur", eyebrow: "02", label: "Architektur" },
   { id: "finanzierung", eyebrow: "03", label: "Finanzierung" },
   { id: "ausbaustufen", eyebrow: "04", label: "Ausbaustufen" },
-  { id: "nachhaltigkeit", eyebrow: "05", label: "Nachhaltigkeit" },
+  { id: "nachhaltigkeit", eyebrow: "05", label: "Werkstoff Holz" },
 ];
 
 // Architektur — three editorial beats, alternating image/text. The

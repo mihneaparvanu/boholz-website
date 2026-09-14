@@ -48,7 +48,7 @@ export const heroVariants = {
     title: "Fertighäuser von",
     highlight: "BoHolz-Haus.",
     subtitle:
-      "Nachhaltiger Holzbau, präzise gefertigt in Deutschland — Ihr Traumhaus, individuell geplant und schlüsselfertig übergeben.",
+      "Präzise gefertigter Holzbau aus Deutschland — Ihr Traumhaus, individuell geplant und schlüsselfertig übergeben.",
   },
 } as const satisfies Record<string, HeroCopy>;
 
@@ -65,7 +65,7 @@ export const uebersichtContent: LandingPageContent = {
   seo: {
     title: "Premium Fertighäuser aus Holz · BoHolz Haus",
     description:
-      "Nachhaltige Fertighäuser aus Holz — energieeffizient, individuell geplant, schlüsselfertig übergeben. Vom Bungalow bis zum Mehrfamilienhaus.",
+      "Fertighäuser aus Holz — energieeffizient, individuell geplant, schlüsselfertig übergeben. Vom Bungalow bis zum Mehrfamilienhaus.",
   },
 
   hero: {

@@ -19,7 +19,7 @@ export const bungalowContent: LandingPageContent = {
   seo: {
     title: "Barrierefreie Bungalows aus Holz · BoHolz Haus",
     description:
-      "Bungalow als Fertighaus aus Holz — altersgerecht, rollstuhlgerecht oder einfach bequem. Komfort, Sicherheit und nachhaltiges Wohnen auf einer Ebene.",
+      "Bungalow als Fertighaus aus Holz — altersgerecht, rollstuhlgerecht oder einfach bequem. Komfort, Sicherheit und Wohnen auf einer Ebene.",
   },
 
   hero: {
@@ -27,7 +27,7 @@ export const bungalowContent: LandingPageContent = {
     title: "Ihr Bungalow als",
     highlight: "Fertighaus aus Holz.",
     subtitle:
-      "Ob altersgerecht, rollstuhlgerecht oder einfach bequem — ein BoHolz-Bungalow bietet Ihnen Sicherheit, Unabhängigkeit und nachhaltiges Wohnen auf einer Ebene.",
+      "Ob altersgerecht, rollstuhlgerecht oder einfach bequem — ein BoHolz-Bungalow bietet Ihnen Sicherheit, Unabhängigkeit und komfortables Wohnen auf einer Ebene.",
     imageAlt:
       "BoHolz-Bungalow Schäfer-Haus 134/22 — ebenerdiges Wohnen auf einer Ebene",
     imageFallbackPath: "/images/landing/bungalow/hero.webp",
