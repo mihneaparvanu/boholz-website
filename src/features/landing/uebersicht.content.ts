@@ -237,7 +237,7 @@ export const uebersichtContent: LandingPageContent = {
         id: "foerderung-kfw-40",
         question: "Welche Förderungen gibt es für ein KfW 40 Haus?",
         answer:
-          "Aktuell sind die KfW-Klassen 40, 40-Plus und Nachhaltigkeitsklasse förderfähig. Wir beraten Sie zu KfW-Krediten, BEG-Zuschüssen und regionalen Programmen — passend zu Ihrem Standort.",
+          "Aktuell sind die KfW-Klassen 40, 40-Plus und die QNG-Förderung förderfähig. Wir beraten Sie zu KfW-Krediten, BEG-Zuschüssen und regionalen Programmen — passend zu Ihrem Standort.",
       },
       {
         id: "was-kostet",
