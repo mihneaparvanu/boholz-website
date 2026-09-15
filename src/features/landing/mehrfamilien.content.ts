@@ -101,7 +101,7 @@ export const mehrfamilienContent: LandingPageContent = {
     eyebrow: "Für wen geeignet",
     heading: "Vier Motive.",
     highlight: "Ein flexibles Konzept.",
-    lede: "Ob Familienprojekt oder Renditeobjekt — wir entwickeln das Mehrfamilienhaus, das Ihre Anforderungen trägt.",
+    lede: "Ob Familienprojekt oder Vermietungsobjekt — wir entwickeln das Mehrfamilienhaus, das Ihre Anforderungen trägt.",
     items: [
       {
         icon: "users",
@@ -119,7 +119,7 @@ export const mehrfamilienContent: LandingPageContent = {
         icon: "trending-up",
         label: "Investoren",
         description:
-          "Wertbeständige Holzbauweise nach KfW 40 — niedrige Betriebskosten, hohe Förderfähigkeit, langfristige Rendite.",
+          "Wertbeständige Holzbauweise nach KfW 40 — niedrige Betriebskosten und hohe Förderfähigkeit.",
       },
       {
         icon: "building-2",
@@ -135,7 +135,7 @@ export const mehrfamilienContent: LandingPageContent = {
     title: "Mehr Raum,",
     highlight: "mehr Möglichkeiten.",
     paragraphs: [
-      "Ob für Familien oder als Investition — ein Mehrfamilienhaus bietet Platz, Flexibilität und langfristige Wertbeständigkeit.",
+      "Ob für Familien oder zur Vermietung — ein Mehrfamilienhaus bietet Platz, Flexibilität und langfristige Wertbeständigkeit.",
       "Bo Holz Haus baut energieeffizient nach KfW-40/55-Standard, mit bis zu 16 Wohneinheiten unter einem Dach.",
     ],
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-01.webp",
