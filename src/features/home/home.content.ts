@@ -24,7 +24,7 @@ export const homeSections = {
     heading2: "präzise gedacht.",
     highlight: "Modell wählen.",
     subheading:
-      "Vom Bungalow bis zur Stadtvilla — barrierefreie Fertighäuser aus Holz, gebaut mit Zimmermannskunst und höchster Energieeffizienz.",
+      "Vom Bungalow bis zur Stadtvilla — barrierefreie Fertighäuser aus Holz, gebaut mit Zimmermannskunst im Effizienzhaus-Standard (KfW 55, KfW 40 optional).",
   },
   trust: {
     id: "vertrauen",
@@ -33,7 +33,7 @@ export const homeSections = {
     heading1: "Ihr Vertrauen",
     highlight: "fest verankert.",
     subheading:
-      "Wir bauen nicht nur Häuser, wir bauen Sicherheit. Mit zertifizierter Qualität aus Deutschland und Garantien, auf die Sie sich verlassen können.",
+      "Wir bauen nicht nur Häuser, wir bauen Sicherheit. Mit hochwertiger Fertigung aus Deutschland und klaren vertraglichen Zusagen, auf die Sie sich verlassen können.",
   },
   overview: {
     id: "auszeichnung",
