@@ -166,7 +166,7 @@ export const uebersichtContent: LandingPageContent = {
         icon: "trending-up",
         label: "Investoren",
         description:
-          "Wertbeständige Holzbauweise mit KfW-Förderung — ein langfristig rentables Renditeobjekt.",
+          "Wertbeständige Holzbauweise mit KfW-Förderung — durchdacht geplant für die langfristige Vermietung.",
       },
     ],
   },

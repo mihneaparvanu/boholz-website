@@ -124,7 +124,7 @@ export const einfamilienhausContent: LandingPageContent = {
         icon: "trending-up",
         label: "Umsteiger",
         description:
-          "Vom Miethaus ins Eigentum – ein individuell geplantes Einfamilienhaus mit KfW-Förderung als wertbeständige Investition.",
+          "Vom Miethaus ins Eigentum – ein individuell geplantes Einfamilienhaus mit KfW-Förderung und langfristiger Wertbeständigkeit.",
       },
     ],
   },
