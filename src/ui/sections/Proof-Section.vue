@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // Single source of truth for both this strip and the footer's "Geprüfte
 // Qualität" row — both read from `features/certifications/certifications.ts`.
-// The strip uses the filtered PROOF_CERTIFICATIONS (omits ISO and Holz-Rettet-Klima).
+// The strip uses PROOF_CERTIFICATIONS (the full certification whitelist,
+// incl. the new Holz-und-Klima mark).
 import { PROOF_CERTIFICATIONS as certifications } from "@/features/certifications/certifications";
 </script>
 
