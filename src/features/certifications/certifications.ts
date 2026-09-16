@@ -2,8 +2,9 @@
  * Canonical certification marks.
  *
  * Whitelist per the client revisions — the marks below may appear in the
- * public proof strip and footer. "Holz rettet Klima" was re-added in the
- * 2026-07 revision (PDF), having been dropped in the 2026-05 one.
+ * public proof strip and footer. The former "Holz rettet Klima" seal was
+ * retired by the scheme and replaced with the new "Holz und Klima" mark
+ * (holz-und-klima.de) on 2026-09-16; the symbol id stays `cert-holz-klima`.
  *
  * Each entry points at a `<symbol id>` inside `certifications.svg`,
  * inlined site-wide by `layouts/Layout.astro`.
@@ -65,8 +66,9 @@ export const CERTIFICATIONS: Certification[] = [
   },
   {
     id: "cert-holz-klima",
-    label: "Holz rettet Klima",
-    aspect: "1 / 1",
+    label: "Holz und Klima",
+    aspect: "703.61 / 832.14",
+    size: "tall",
   },
 ];
 
