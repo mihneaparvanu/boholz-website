@@ -16,6 +16,7 @@
 import Layout from "@/layouts/Layout.astro";
 import { getMediaURL } from "@/lib/media";
 
+import LandingHero from "./LandingHero.astro";
 import PageHero from "@/ui/sections/PageHero.astro";
 import Block from "@/ui/sections/Block.astro";
 import BenefitsRow from "@/ui/sections/BenefitsRow.astro";
@@ -101,6 +102,11 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
   <!-- Value proposition -->
   <!-- ── 01 · Hero (full-bleed) ────────────────────────────────── -->
   <div class="full-width">
+    <LandingHero 
+    heading={hero.title}
+    body={hero.subtitle}
+    warrantyText={hero.eyebrow}
+    />
     <PageHero
       eyebrow={hero.eyebrow}
       title={hero.title}

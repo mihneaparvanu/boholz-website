@@ -1,0 +1,15 @@
+---
+interface Props {
+    heading: string,
+    body: string,
+    warrantyText?: string,
+}
+
+const { heading, body, warrantyText } = Astro.props;
+---
+
+<div class="landing-hero">
+    <span>{warrantyText}</span>
+    <h1>{heading}</h1>
+    <p>{body}</p>
+</div>
