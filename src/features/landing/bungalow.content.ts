@@ -14,8 +14,6 @@
 import type { LandingPageContent } from "./landing.types";
 
 export const bungalowContent: LandingPageContent = {
-  slug: "bungalow",
-
   seo: {
     title: "Barrierefreie Bungalows aus Holz · BoHolz Haus",
     description:

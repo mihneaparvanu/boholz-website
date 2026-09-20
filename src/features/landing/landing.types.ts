@@ -243,8 +243,6 @@ export interface LandingSeo {
 /* ── Top-level shape ──────────────────────────────────────────────── */
 
 export interface LandingPageContent {
-  /** Route slug — used for the page's URL and as the content key. */
-  slug: "uebersicht" | "mehrfamilien" | "bungalow" | "einfamilienhaus";
   seo: LandingSeo;
   hero: LandingHero;
   benefitsIntro: LandingBenefitsIntro;

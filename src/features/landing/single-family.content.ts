@@ -15,8 +15,6 @@
 import type { LandingPageContent } from "./landing.types";
 
 export const singleFamilyContent: LandingPageContent = {
-  slug: "einfamilienhaus",
-
   seo: {
     title: "Einfamilienhaus aus Holz bauen · BoHolz Haus",
     description:

@@ -15,8 +15,6 @@
 import type { LandingPageContent } from "./landing.types";
 
 export const multiFamilyContent: LandingPageContent = {
-  slug: "mehrfamilien",
-
   seo: {
     title: "Mehrfamilien- & Generationenhäuser · BoHolz Haus",
     description:

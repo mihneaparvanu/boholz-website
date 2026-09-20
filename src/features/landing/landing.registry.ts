@@ -3,12 +3,16 @@ import { bungalowContent } from "./bungalow.content";
 import { multiFamilyContent } from "./multi-family.content";
 import type { LandingPageContent } from "./landing.types";
 
-type LandingPageCategory = "einfamilienhaus" | "bungalow" | "mehrfamilienhaus";
-
-type LandingPage = Record<LandingPageCategory, LandingPageContent>;
-
-export const landingPages: LandingPage = {
+export const landingPages = {
   einfamilienhaus: singleFamilyContent,
   bungalow: bungalowContent,
-  mehrfamilienhaus: multiFamilyContent,
-};
+  mehrfamilien: multiFamilyContent,
+} satisfies Record<string, LandingPageContent>;
+
+export type LandingCategory = keyof typeof landingPages;
+
+export function isLandingCategory(
+  value: string | undefined,
+): value is LandingCategory {
+  return value !== undefined && value in landingPages;
+}
