@@ -80,7 +80,7 @@ export const bungalowContent: LandingPageContent = {
     maxItems: 99,
   },
 
-  imageBand: {
+  featureVisual: {
     eyebrow: "Komfort und Sicherheit",
     heading: "Ein Zuhause,",
     highlight: "das mit Ihnen lebt.",
@@ -124,7 +124,7 @@ export const bungalowContent: LandingPageContent = {
     ],
   },
 
-  sustainability: {
+  featureBody: {
     eyebrow: "Barrierefreies Wohnen",
     title: "Komfort und Sicherheit",
     highlight: "für jedes Alter.",
@@ -139,7 +139,7 @@ export const bungalowContent: LandingPageContent = {
     cta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
-  trust: {
+  testimonials: {
     eyebrow: "Erfahrung im barrierefreien Bauen",
     heading: "Wohnen ohne Hindernisse,",
     highlight: "geplant mit Erfahrung.",
@@ -208,7 +208,7 @@ export const bungalowContent: LandingPageContent = {
     lede: "Name, E-Mail und Ort genügen — Sie erhalten den Katalog sofort als PDF. Kein Anruf, kein Verkaufsdruck.",
   },
 
-  closingCta: {
+  midPageCta: {
     eyebrow: "Kostenlos und unverbindlich",
     title: "Holen Sie sich jetzt den",
     highlight: "Hauskatalog.",

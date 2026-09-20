@@ -60,13 +60,13 @@ const {
   benefitsIntro,
   benefits,
   houses,
-  imageBand,
+  featureVisual,
   audience,
-  sustainability,
-  trust,
+  featureBody,
+  testimonials,
   faq,
   leadForm,
-  closingCta,
+  midPageCta,
 } = content;
 
 /* Parked, not dead: the guarantee/stat row ("18 Monate Festpreis") is being
@@ -93,8 +93,8 @@ const filteredModels = allModels
 const houseCards = filteredModels.map((m) => toHouseModelCard(m));
 
 const heroImage = getMediaURL(hero.imageFallbackPath);
-const imageBandImage = getMediaURL(imageBand.imageFallbackPath);
-const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
+const featureVisualImage = getMediaURL(featureVisual.imageFallbackPath);
+const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
 ---
 
 {/* noindex: these pages exist to receive Google Ads traffic. Left indexable
@@ -156,36 +156,36 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
 
   <!-- ═══════════════════════ FEATURE · Meet <HouseCategory> ═══════════════════════ -->
   <!-- Meet the category — visual -->
-  <!-- ── 05 · Image band (full-bleed lifestyle) ─────────────────── -->
+  <!-- ── 05 · Feature visual (full-bleed lifestyle band) ────────── -->
   <ImageBand
-    eyebrow={imageBand.eyebrow}
-    heading={imageBand.heading}
-    highlight={imageBand.highlight}
-    lede={imageBand.lede}
-    image={imageBandImage}
-    imageAlt={imageBand.imageAlt}
+    eyebrow={featureVisual.eyebrow}
+    heading={featureVisual.heading}
+    highlight={featureVisual.highlight}
+    lede={featureVisual.lede}
+    image={featureVisualImage}
+    imageAlt={featureVisual.imageAlt}
     rule
   />
 
   <!-- Meet the category — body -->
-  <!-- ── 07 · Sustainability (two-column) ───────────────────────── -->
+  <!-- ── 07 · Feature body (two-column prose) ───────────────────── -->
   <Block id="nachhaltigkeit">
     <TwoColumn
-      eyebrow={sustainability.eyebrow}
-      title={sustainability.title}
-      highlight={sustainability.highlight}
-      subtitle={sustainability.subtitle}
-      image={sustainabilityImage}
-      imageAlt={sustainability.imageAlt}
-      reverse={sustainability.reverse}
+      eyebrow={featureBody.eyebrow}
+      title={featureBody.title}
+      highlight={featureBody.highlight}
+      subtitle={featureBody.subtitle}
+      image={featureBodyImage}
+      imageAlt={featureBody.imageAlt}
+      reverse={featureBody.reverse}
     >
       <div class="prose">
-        {sustainability.paragraphs.map((p) => <p>{p}</p>)}
+        {featureBody.paragraphs.map((p) => <p>{p}</p>)}
       </div>
-      {sustainability.cta && (
+      {featureBody.cta && (
         <Fragment slot="actions">
-          <Button client:load variant="primary" size="md" href={sustainability.cta.href}>
-            {sustainability.cta.label}
+          <Button client:load variant="primary" size="md" href={featureBody.cta.href}>
+            {featureBody.cta.label}
           </Button>
         </Fragment>
       )}
@@ -198,21 +198,21 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
        rather than leaving the page, which is the whole point of a landing. -->
   <div class="full-width">
     <CTASection
-      eyebrow={closingCta.eyebrow}
-      title={closingCta.title}
-      highlight={closingCta.highlight}
-      subtitle={closingCta.subtitle}
-      tone={closingCta.tone}
-      image={closingCta.imageFallbackPath ? getMediaURL(closingCta.imageFallbackPath) : undefined}
-      imageAlt={closingCta.imageAlt ?? ""}
+      eyebrow={midPageCta.eyebrow}
+      title={midPageCta.title}
+      highlight={midPageCta.highlight}
+      subtitle={midPageCta.subtitle}
+      tone={midPageCta.tone}
+      image={midPageCta.imageFallbackPath ? getMediaURL(midPageCta.imageFallbackPath) : undefined}
+      imageAlt={midPageCta.imageAlt ?? ""}
     >
       <Fragment slot="actions">
-        <Button client:load variant="primary" size="lg" href={closingCta.primaryCta.href}>
-          {closingCta.primaryCta.label}
+        <Button client:load variant="primary" size="lg" href={midPageCta.primaryCta.href}>
+          {midPageCta.primaryCta.label}
         </Button>
-        {closingCta.secondaryCta && (
-          <Button client:load variant="secondary" size="lg" href={closingCta.secondaryCta.href}>
-            {closingCta.secondaryCta.label}
+        {midPageCta.secondaryCta && (
+          <Button client:load variant="secondary" size="lg" href={midPageCta.secondaryCta.href}>
+            {midPageCta.secondaryCta.label}
           </Button>
         )}
       </Fragment>
@@ -299,13 +299,13 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
   <!-- Social proof, placed immediately before the ask -->
   <!-- ── 09 · Testimonials (full-bleed dark band) ───────────────── -->
   <TestimonialBand
-    eyebrow={trust.eyebrow}
-    heading={trust.heading}
-    highlight={trust.highlight}
-    lede={trust.lede}
-    tone={trust.tone}
-    badges={trust.badges}
-    testimonials={trust.testimonials}
+    eyebrow={testimonials.eyebrow}
+    heading={testimonials.heading}
+    highlight={testimonials.highlight}
+    lede={testimonials.lede}
+    tone={testimonials.tone}
+    badges={testimonials.badges}
+    testimonials={testimonials.testimonials}
   />
 
 

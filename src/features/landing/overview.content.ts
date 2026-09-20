@@ -126,7 +126,7 @@ export const overviewContent: LandingPageContent = {
     maxItems: 99,
   },
 
-  imageBand: {
+  featureVisual: {
     eyebrow: "Größe und Passform",
     heading: "Für jedes Leben",
     highlight: "das passende Haus.",
@@ -170,7 +170,7 @@ export const overviewContent: LandingPageContent = {
     ],
   },
 
-  sustainability: {
+  featureBody: {
     eyebrow: "Individuelle Planung",
     title: "Persönlich geplant.",
     highlight: "Für Sie gemacht.",
@@ -186,7 +186,7 @@ export const overviewContent: LandingPageContent = {
     cta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
-  trust: {
+  testimonials: {
     eyebrow: "Langjährige Erfahrung",
     heading: "Langjährige Erfahrung",
     highlight: "im Holzfertigbau.",
@@ -254,7 +254,7 @@ export const overviewContent: LandingPageContent = {
     lede: "Wir sind für Sie da — stellen Sie uns Ihre Fragen oder fordern Sie Ihr persönliches Angebot an.",
   },
 
-  closingCta: {
+  midPageCta: {
     eyebrow: "Nächster Schritt",
     title: "Bereit für Ihr",
     highlight: "Traumhaus?",

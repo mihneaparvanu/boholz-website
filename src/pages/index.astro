@@ -62,8 +62,8 @@ const houseCards = houseModels.map((m) => toHouseModelCard(m));
 // same mountain/lake background. Reverts from the white-house video back to the
 // static `hero.webp` image (the prior render).
 const heroImage = getMediaURL("/images/brand/hero.webp");
-const imageBandImage = getMediaURL(content.imageBand.imageFallbackPath);
-const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath);
+const imageBandImage = getMediaURL(content.featureVisual.imageFallbackPath);
+const sustainabilityImage = getMediaURL(content.featureBody.imageFallbackPath);
 ---
 
 <Layout title={content.seo.title} categories={categories}>
@@ -157,12 +157,12 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
 
   <!-- ── 04 · Image band (full-bleed lifestyle) ─────────────────── -->
   <ImageBand
-    eyebrow={content.imageBand.eyebrow}
-    heading={content.imageBand.heading}
-    highlight={content.imageBand.highlight}
-    lede={content.imageBand.lede}
+    eyebrow={content.featureVisual.eyebrow}
+    heading={content.featureVisual.heading}
+    highlight={content.featureVisual.highlight}
+    lede={content.featureVisual.lede}
     image={imageBandImage}
-    imageAlt={content.imageBand.imageAlt}
+    imageAlt={content.featureVisual.imageAlt}
     rule
   />
 
@@ -188,21 +188,21 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
   <!-- ── 06 · Sustainability (two-column) ───────────────────────── -->
   <Block id="nachhaltigkeit">
     <TwoColumn
-      eyebrow={content.sustainability.eyebrow}
-      title={content.sustainability.title}
-      highlight={content.sustainability.highlight}
-      subtitle={content.sustainability.subtitle}
+      eyebrow={content.featureBody.eyebrow}
+      title={content.featureBody.title}
+      highlight={content.featureBody.highlight}
+      subtitle={content.featureBody.subtitle}
       image={sustainabilityImage}
-      imageAlt={content.sustainability.imageAlt}
-      reverse={content.sustainability.reverse}
+      imageAlt={content.featureBody.imageAlt}
+      reverse={content.featureBody.reverse}
     >
       <div class="prose">
-        {content.sustainability.paragraphs.map((p) => <p>{p}</p>)}
+        {content.featureBody.paragraphs.map((p) => <p>{p}</p>)}
       </div>
-      {content.sustainability.cta && (
+      {content.featureBody.cta && (
         <Fragment slot="actions">
-          <Button client:load variant="primary" size="md" href={content.sustainability.cta.href}>
-            {content.sustainability.cta.label}
+          <Button client:load variant="primary" size="md" href={content.featureBody.cta.href}>
+            {content.featureBody.cta.label}
           </Button>
         </Fragment>
       )}
@@ -213,12 +213,12 @@ const sustainabilityImage = getMediaURL(content.sustainability.imageFallbackPath
         Same "Langjährige Erfahrung im Holzfertigbau" copy as before; the
         review cards render under the subtitle. ──────────────────────── */}
   <Reviews
-    eyebrow={content.trust.eyebrow}
-    heading={content.trust.heading}
-    highlight={content.trust.highlight}
-    lede={content.trust.lede}
-    tone={content.trust.tone}
-    badges={content.trust.badges}
+    eyebrow={content.testimonials.eyebrow}
+    heading={content.testimonials.heading}
+    highlight={content.testimonials.highlight}
+    lede={content.testimonials.lede}
+    tone={content.testimonials.tone}
+    badges={content.testimonials.badges}
   />
 
 

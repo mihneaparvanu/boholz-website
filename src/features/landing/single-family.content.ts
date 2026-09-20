@@ -82,7 +82,7 @@ export const singleFamilyContent: LandingPageContent = {
     maxItems: 99,
   },
 
-  imageBand: {
+  featureVisual: {
     eyebrow: "Für die ganze Familie",
     heading: "Ein Zuhause,",
     highlight: "das mitwächst.",
@@ -127,7 +127,7 @@ export const singleFamilyContent: LandingPageContent = {
     ],
   },
 
-  sustainability: {
+  featureBody: {
     eyebrow: "Individuelle Planung",
     title: "Persönlich geplant.",
     highlight: "Für Ihre Familie.",
@@ -144,7 +144,7 @@ export const singleFamilyContent: LandingPageContent = {
     cta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
-  trust: {
+  testimonials: {
     eyebrow: "Langjährige Erfahrung",
     heading: "Langjährige Erfahrung",
     highlight: "im Holzfertigbau.",
@@ -212,7 +212,7 @@ export const singleFamilyContent: LandingPageContent = {
     lede: "Name, E-Mail und Ort genügen — Sie erhalten den Katalog sofort als PDF. Kein Anruf, kein Verkaufsdruck.",
   },
 
-  closingCta: {
+  midPageCta: {
     eyebrow: "Kostenlos und unverbindlich",
     title: "Holen Sie sich jetzt den",
     highlight: "Hauskatalog.",

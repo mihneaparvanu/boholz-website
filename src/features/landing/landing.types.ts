@@ -114,9 +114,9 @@ export interface LandingHouseShowcase {
   maxItems: number;
 }
 
-/* ── Image band ───────────────────────────────────────────────────── */
+/* ── Feature visual — "meet the category" photo (ImageBand) ─────── */
 
-export interface LandingImageBand {
+export interface LandingFeatureVisual {
   eyebrow?: string;
   heading: string;
   highlight?: string;
@@ -143,7 +143,7 @@ export interface LandingAudienceBlock {
   items: AudienceItem[];
 }
 
-/* ── Sustainability / two-column ──────────────────────────────────── */
+/* ── Feature body — "meet the category" prose (TwoColumn) ───────── */
 
 /**
  * Mirrors `sections/TwoColumn.astro` prop shape with the body copy split
@@ -151,7 +151,7 @@ export interface LandingAudienceBlock {
  * data. The page renders each paragraph as a `<p>` inside the default
  * slot.
  */
-export interface LandingSustainability {
+export interface LandingFeatureBody {
   eyebrow?: string;
   title: string;
   highlight?: string;
@@ -164,9 +164,9 @@ export interface LandingSustainability {
   cta?: LandingCta;
 }
 
-/* ── Trust band (TestimonialBand.astro) ───────────────────────────── */
+/* ── Testimonial band (TestimonialBand.astro) ─────────────────────── */
 
-export interface LandingTrust {
+export interface LandingTestimonials {
   eyebrow?: string;
   heading: string;
   highlight?: string;
@@ -180,7 +180,7 @@ export interface LandingTrust {
 
 /**
  * The stat-card row ("100% Made in Germany", "18 Monate Festpreis").
- * Distinct from `LandingTrust` above: that one is the testimonial band,
+ * Distinct from `LandingTestimonials` above: that one is the testimonial band,
  * this one is the numeric proof strip. Every landing page renders it;
  * a page only sets this field to *override* `defaultTrustStats`.
  */
@@ -218,9 +218,9 @@ export interface LandingLeadForm {
   lede?: string;
 }
 
-/* ── Closing CTA ──────────────────────────────────────────────────── */
+/* ── Mid-page CTA — the first ask, after the feature beat ─────────── */
 
-export interface LandingClosingCta {
+export interface LandingMidPageCta {
   eyebrow?: string;
   title: string;
   highlight?: string;
@@ -268,15 +268,15 @@ export interface LandingPageContent {
   benefitsIntro: LandingBenefitsIntro;
   benefits: LandingBenefits;
   houses: LandingHouseShowcase;
-  imageBand: LandingImageBand;
+  featureVisual: LandingFeatureVisual;
   audience: LandingAudienceBlock;
-  sustainability: LandingSustainability;
-  trust: LandingTrust;
+  featureBody: LandingFeatureBody;
+  testimonials: LandingTestimonials;
   /** Optional override; falls back to `defaultTrustStats`. */
   trustStats?: LandingTrustStats;
   faq: LandingFAQ;
   /** LP-only photo gallery. Omit to render no gallery section. */
   gallery?: LandingGallery;
   leadForm: LandingLeadForm;
-  closingCta: LandingClosingCta;
+  midPageCta: LandingMidPageCta;
 }

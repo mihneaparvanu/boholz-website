@@ -54,7 +54,7 @@ export const templateDemoContent: LandingPageContent = {
     maxItems: 99,
   },
 
-  imageBand: {
+  featureVisual: {
     eyebrow: "Here goes the eyebrow",
     heading: "Here goes the image",
     highlight: "band.",
@@ -77,7 +77,7 @@ export const templateDemoContent: LandingPageContent = {
     ],
   },
 
-  sustainability: {
+  featureBody: {
     eyebrow: "Here goes the eyebrow",
     title: "Here goes the two-column",
     highlight: "feature.",
@@ -89,7 +89,7 @@ export const templateDemoContent: LandingPageContent = {
     cta: { label: "Section CTA", href: "/kontakt" },
   },
 
-  trust: {
+  testimonials: {
     eyebrow: "Here goes the eyebrow",
     heading: "Here goes the trust",
     highlight: "band.",
@@ -140,7 +140,7 @@ export const templateDemoContent: LandingPageContent = {
     lede: LOREM,
   },
 
-  closingCta: {
+  midPageCta: {
     eyebrow: "Here goes the eyebrow",
     title: "Here goes the closing",
     highlight: "CTA.",

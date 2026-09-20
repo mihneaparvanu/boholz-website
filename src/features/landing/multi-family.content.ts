@@ -84,7 +84,7 @@ export const multiFamilyContent: LandingPageContent = {
     maxItems: 99,
   },
 
-  imageBand: {
+  featureVisual: {
     eyebrow: "Gemeinsam wohnen",
     heading: "Nah genug für die Familie,",
     highlight: "weit genug für sich selbst.",
@@ -128,7 +128,7 @@ export const multiFamilyContent: LandingPageContent = {
     ],
   },
 
-  sustainability: {
+  featureBody: {
     eyebrow: "Mehr Raum, mehr Möglichkeiten",
     title: "Mehr Raum,",
     highlight: "mehr Möglichkeiten.",
@@ -143,7 +143,7 @@ export const multiFamilyContent: LandingPageContent = {
     cta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
-  trust: {
+  testimonials: {
     eyebrow: "Erfahrung im Mehrwohnungsbau",
     heading: "Holzfertigbau",
     highlight: "für mehrere Familien.",
@@ -211,7 +211,7 @@ export const multiFamilyContent: LandingPageContent = {
     lede: "Name, E-Mail und Ort genügen — Sie erhalten den Katalog sofort als PDF. Kein Anruf, kein Verkaufsdruck.",
   },
 
-  closingCta: {
+  midPageCta: {
     eyebrow: "Kostenlos und unverbindlich",
     title: "Holen Sie sich jetzt den",
     highlight: "Hauskatalog.",
