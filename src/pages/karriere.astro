@@ -23,7 +23,7 @@ import Callout from "@/ui/primitives/Callout.vue";
 import IconList from "@/ui/primitives/IconList.vue";
 import SectionNavigator from "@/features/section-navigator/SectionNavigator.vue";
 
-import { sections, taetigkeitsfeld, vorteile } from "./karriere.content";
+import { sections, roleAreas, careerBenefits } from "./karriere.content";
 ---
 
 <Layout title="Karriere – BoHolz Haus">
@@ -39,7 +39,7 @@ import { sections, taetigkeitsfeld, vorteile } from "./karriere.content";
     <SectionNavigator client:load pageTitle="Karriere" sections={sections} />
 
     <!-- ── 01 — Tätigkeitsfeld ─────────────────────────────────────────── -->
-    <section id="taetigkeitsfeld" class="section" aria-labelledby="h-taetigkeitsfeld">
+    <section id="roleAreas" class="section" aria-labelledby="h-roleAreas">
       <EyebrowHeadingLede
         eyebrow="01 — Tätigkeitsfeld"
         heading="Was Sie bei uns"
@@ -48,7 +48,7 @@ import { sections, taetigkeitsfeld, vorteile } from "./karriere.content";
       />
       <div class="block">
         <!-- PLACEHOLDER COPY — needs sign-off (4 IconList items) -->
-        <IconList client:visible items={taetigkeitsfeld} />
+        <IconList client:visible items={roleAreas} />
       </div>
     </section>
 
@@ -62,7 +62,7 @@ import { sections, taetigkeitsfeld, vorteile } from "./karriere.content";
       />
       <div class="block">
         <!-- PLACEHOLDER COPY — needs sign-off (5 IconList items) -->
-        <IconList client:visible items={vorteile} />
+        <IconList client:visible items={careerBenefits} />
       </div>
     </section>
 

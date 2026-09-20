@@ -67,7 +67,7 @@ const woflvArea = computed<string | null>(() =>
     : null,
 );
 
-const anbau = computed<string | null>(() =>
+const extension = computed<string | null>(() =>
   d?.extensionDescription?.trim() ? d.extensionDescription.trim() : null,
 );
 
@@ -96,7 +96,7 @@ const rows = computed<Row[]>(() => {
     out.push({ label: "Netto-Grundfläche (DIN 277)", icon: Square, value: dinArea.value });
   if (woflvArea.value)
     out.push({ label: "Gesamtwohnfläche (WoFlV)", icon: Ruler, value: woflvArea.value });
-  if (anbau.value) out.push({ label: "Anbau", icon: Hammer, value: anbau.value });
+  if (extension.value) out.push({ label: "Anbau", icon: Hammer, value: extension.value });
   if (granny.value)
     out.push({ label: "Einliegerwohnung", icon: KeyRound, value: granny.value });
   if (price.value) out.push({ label: "Preis", icon: Coins, value: price.value });

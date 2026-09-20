@@ -4,13 +4,13 @@ import { keitel } from '@/features/faq/keitel';
 
 // Anchor ids are German-umlaut-normalised per CLAUDE.md (ü → ue, ä → ae).
 export const sections: Section[] = [
-  { id: "taetigkeitsfeld", eyebrow: "01", label: "Tätigkeitsfeld" },
+  { id: "roleAreas", eyebrow: "01", label: "Tätigkeitsfeld" },
   { id: "vorteile", eyebrow: "02", label: "Ihre Vorteile" },
   { id: "stellen", eyebrow: "03", label: "Offene Stellen" },
 ];
 
 // PLACEHOLDER COPY — brand-toned but needs sign-off.
-export const taetigkeitsfeld: IconListItem[] = [
+export const roleAreas: IconListItem[] = [
   {
     icon: "heart-handshake",
     label: "Wohnträume verwirklichen",
@@ -38,7 +38,7 @@ export const taetigkeitsfeld: IconListItem[] = [
 ];
 
 // PLACEHOLDER COPY — brand-toned but needs sign-off.
-export const vorteile: IconListItem[] = [
+export const careerBenefits: IconListItem[] = [
   {
     icon: "award",
     label: "90 Jahre Holzbau-Kompetenz",

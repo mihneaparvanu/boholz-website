@@ -14,7 +14,7 @@
  */
 import type { LandingPageContent } from "./landing.types";
 
-export const einfamilienhausContent: LandingPageContent = {
+export const singleFamilyContent: LandingPageContent = {
   slug: "einfamilienhaus",
 
   seo: {

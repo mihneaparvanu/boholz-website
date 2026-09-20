@@ -16,7 +16,7 @@ import type { LandingPageContent } from "./landing.types";
 /**
  * Hero copy variants — only `title` / `highlight` / `subtitle` differ across
  * variants. Eyebrow, image, CTAs and category preferences are page-level
- * (declared once on `uebersichtContent.hero`).
+ * (declared once on `overviewContent.hero`).
  *
  * To switch variants on the homepage, change a single line below:
  *   `export const heroVariant: HeroVariantKey = "current";`
@@ -59,7 +59,7 @@ export type HeroVariantKey = keyof typeof heroVariants;
  */
 export const heroVariant: HeroVariantKey = "current";
 
-export const uebersichtContent: LandingPageContent = {
+export const overviewContent: LandingPageContent = {
   slug: "uebersicht",
 
   seo: {

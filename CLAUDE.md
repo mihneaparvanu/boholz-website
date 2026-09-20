@@ -63,7 +63,7 @@ src/
 
 - A file lives next to its single consumer. Only when a second consumer appears does it graduate to a shared location (`lib/` or `ui/`).
 - Single-page content → next to the page: `pages/karriere.content.ts`.
-- Feature-scoped content → inside the feature: `features/bauphasen/bauphasen.content.ts`.
+- Feature-scoped content → inside the feature: `features/build-phases/build-phases.content.ts`.
 - Cross-feature content → `features/<shared-feature>/` or a dedicated content module.
 
 ## Architecture

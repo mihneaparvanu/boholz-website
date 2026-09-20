@@ -35,23 +35,23 @@ const sections = [
 // "sun-through-trees" frames on one page. They're now diversified: the page
 // keeps the forest at the top, then transitions to craftsmanship and material
 // detail as the reader descends.
-const nachhaltigkeitHero = getMediaURL(
+const sustainabilityHero = getMediaURL(
   "/images/stock/lifestyle/house-planning-office.webp",
 );
-const nachhaltigkeitManufaktur = getMediaURL(
+const sustainabilityWorkshop = getMediaURL(
   "/images/stock/lifestyle/craftsmanship-factory.webp",
 );
-const nachhaltigkeitVideoPoster = getMediaURL(
+const sustainabilityVideoPoster = getMediaURL(
   "/images/content/advantage/nachhaltigkeit/video-poster.webp",
 );
-const holzfaserHero = getMediaURL("/images/photography/forest-sunlight.webp");
+const woodFibreHero = getMediaURL("/images/photography/forest-sunlight.webp");
 const phonestripFlyerCover = getMediaURL(
   "/images/pages/bauen-mit-boholz/flyer-phonestrip-cover.webp",
 );
 const phonestripFlyerPDF = getMediaURL(
   "/images/pages/bauen-mit-boholz/flyer-phonestrip.pdf",
 );
-const wandaufbauHero = getMediaURL(
+const wallAssemblyHero = getMediaURL(
   "/images/content/advantage/wandaufbau/hero.webp",
 );
 
@@ -94,7 +94,7 @@ const winter: FeatureCard = {
 
 // Vorteile der flexiblen Holzfaserdämmung — übernommen von der alten
 // boholz-haus.de Seite "Flexible Holzfaserdämmung".
-const holzfaserVorteile: IconListItem[] = [
+const woodFibreBenefits: IconListItem[] = [
   { icon: "thermometer", label: "Hervorragende Dämmleistung (λ 0,036 W/(mK))" },
   { icon: "sun", label: "Ausgezeichneter sommerlicher Hitzeschutz" },
   { icon: "home", label: "Winterlicher Kälteschutz durch hohe Wärmespeicherkapazität" },
@@ -196,7 +196,7 @@ const zigzagBlocks: ZigZagBlock[] = [
 // blocks with icons. The intro + sub-paragraph each lead with body
 // colour (secondary) and finish with a highlighted last sentence in
 // primary — gives the eye a beat to land on the most important line.
-const wandaufbauVorteile: IconListItem[] = [
+const wallAssemblyBenefits: IconListItem[] = [
   { icon: "layers", label: "Diffusionsoffener Wandaufbau" },
   { icon: "leaf", label: "Natürliche Materialien" },
   { icon: "thermometer", label: "Angenehmes Raumklima zu jeder Jahreszeit" },
@@ -444,7 +444,7 @@ const technik: IconListItem[] = [
       title="Mit Vertrauen bauen, mit Qualität"
       highlight="wohnen."
       subtitle="Höchste Bauqualität. Persönliche Begleitung – vom ersten Entwurf bis zum Einzug."
-      image={nachhaltigkeitHero}
+      image={sustainabilityHero}
       imageAlt="BoHolz Holzbau in der Manufaktur — gelebter Qualitätsanspruch"
       align="center"
     />
@@ -537,7 +537,7 @@ Grundlage unserer Häuser. So verbinden wir traditionelle Wertarbeit mit innovat
     <div class="media-pair">
       <figure class="media-hero">
         <img
-          src={nachhaltigkeitManufaktur}
+          src={sustainabilityWorkshop}
           alt="Holzbauweise im BoHolz Werk — von der Materialwahl bis zur Fertigung"
           loading="lazy"
         />
@@ -545,7 +545,7 @@ Grundlage unserer Häuser. So verbinden wir traditionelle Wertarbeit mit innovat
       <LiteYouTube
         client:visible
         videoId="0abnY3Re-tU"
-        posterURL={nachhaltigkeitVideoPoster}
+        posterURL={sustainabilityVideoPoster}
         label="BoHolz — Fertigung erleben"
         caption="Wie wir bauen und warum — drei Minuten Werksrundgang."
       />
@@ -563,7 +563,7 @@ unterstützt gleichzeitig eine natürliche Feuchtigkeitsregulierung der Wandkons
   >
     <figure class="hero-image">
       <img
-        src={holzfaserHero}
+        src={woodFibreHero}
         alt="Sonnenlicht in einem heimischen Wald — Rohstoff Holz aus regionaler Forstwirtschaft"
         loading="lazy"
       />
@@ -587,7 +587,7 @@ unterstützt gleichzeitig eine natürliche Feuchtigkeitsregulierung der Wandkons
 
       <article class="follow-card">
         <h4 class="follow-heading">Ihre Vorteile auf einen Blick</h4>
-        <IconList client:visible items={holzfaserVorteile} columns={2} density="comfortable" />
+        <IconList client:visible items={woodFibreBenefits} columns={2} density="comfortable" />
       </article>
     </div>
 
@@ -636,7 +636,7 @@ Wandaufbau mit hervorragenden Dämmeigenschaften.
   >
     <figure class="hero-image">
       <img
-        src={wandaufbauHero}
+        src={wallAssemblyHero}
         alt="Holz-Aktiv-Wand Wandaufbau — diffusionsoffener Mehrschichtaufbau für KfW-Effizienzhäuser"
         loading="lazy"
       />
@@ -675,7 +675,7 @@ Wandaufbau mit hervorragenden Dämmeigenschaften.
 
       <article class="follow-card">
         <h4 class="follow-heading">Ihre Vorteile auf einen Blick</h4>
-        <IconList client:visible items={wandaufbauVorteile} columns={2} density="comfortable" />
+        <IconList client:visible items={wallAssemblyBenefits} columns={2} density="comfortable" />
       </article>
     </div>
 

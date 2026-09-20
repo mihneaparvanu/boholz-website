@@ -4,7 +4,7 @@ import type { IconName } from "@/lib/icons";
  * One narrative phase in the BoHolz build journey.
  *
  * The same shape feeds two surfaces:
- *  - Homepage compact strip (`BauphasenStrip.vue`) — image + index + title + 1-line copy.
+ *  - Homepage compact strip (`BuildPhasesStrip.vue`) — image + index + title + 1-line copy.
  *  - `/dein-zuhause` "01 · Der Ablauf" — EditorialCards (rich bullet lists alongside the visual).
  *
  * `description` is the long-form copy used inside the cards on /dein-zuhause.

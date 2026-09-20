@@ -14,7 +14,7 @@
  */
 import type { LandingPageContent } from "./landing.types";
 
-export const mehrfamilienContent: LandingPageContent = {
+export const multiFamilyContent: LandingPageContent = {
   slug: "mehrfamilien",
 
   seo: {

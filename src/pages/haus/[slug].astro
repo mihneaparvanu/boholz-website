@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import { getModelBySlug } from "@/db/loaders";
 
-import HausPageNav from "@/features/house-page/components/HausPageNav.vue";
+import HousePageNav from "@/features/house-page/components/HousePageNav.vue";
 import HeroGallery from "@/features/house-page/components/HeroGallery.vue";
 import SideCard from "@/features/house-page/components/SideCard.vue";
 import FloorPlanTabs from "@/features/house-page/components/FloorPlanTabs.vue";
@@ -38,7 +38,7 @@ const leistungenCopy =
 ---
 
 <Layout title={`${model.title} – BoHolz Haus`}>
-  <HausPageNav client:load sections={sections} />
+  <HousePageNav client:load sections={sections} />
 
   <section id="hausansichten" class="hero-zone">
     <div class="hero-grid">
