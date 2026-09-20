@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { getNewsBySlug, getCategories } from "@/db/loaders";
+import { toMetaDescription } from "@/lib/format";
 import { ROUTES } from "@/features/navigation/routes";
 import { marked } from "marked";
 
@@ -25,7 +26,11 @@ const formattedDate = article.publishedAt
 const contentHtml = article.content ? await marked(article.content) : null;
 ---
 
-<Layout title={`${article.title} – BoHolz Haus`} categories={categories}>
+<Layout
+  title={`${article.title} – BoHolz Haus`}
+  description={toMetaDescription(article.excerpt)}
+  categories={categories}
+>
   <article class="news-detail">
     {
       heroMedia && (

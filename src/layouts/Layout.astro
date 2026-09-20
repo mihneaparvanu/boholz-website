@@ -15,11 +15,34 @@ import type { HouseCategory } from "@/db/models";
 
 interface Props {
   title: string;
+  /** Meta description. ~150-160 chars; omitted entirely when not supplied,
+   *  which is better than an empty tag — Google then writes its own. */
+  description?: string;
   categories?: HouseCategory[];
   isHero?: boolean;
+  /**
+   * Keep the page out of the index. Set on pages that exist to receive paid
+   * traffic (the `/wohnen/*` landings) — they'd otherwise compete with
+   * `/hauser` and the model pages for the same German keywords.
+   */
+  noindex?: boolean;
 }
 
-const { title, categories: categoriesProp, isHero = false } = Astro.props;
+const {
+  title,
+  description,
+  categories: categoriesProp,
+  isHero = false,
+  noindex = false,
+} = Astro.props;
+
+/**
+ * Canonical URL — origin from `site` in astro.config.mjs, path from the
+ * request with query strings dropped, so `?utm_source=…` and `?gclid=…`
+ * (which every ad click carries) don't fragment the page's identity.
+ */
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
 const categories = categoriesProp ?? (await getCategories());
 const showhouses = await getLocations({ kind: "showhouse" });
 
@@ -36,6 +59,9 @@ const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
     {loadGTM && GTM_ID && (
       <>
         <script is:inline set:html={`window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`} />

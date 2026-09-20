@@ -1,6 +1,5 @@
 import type { APIRoute } from "astro";
 import { getNews, getModels, getLocations } from "@/db/loaders";
-import { landingCategories } from "@/features/landing/landing.registry";
 import { ROUTES } from "@/features/navigation/routes";
 
 // Fallback origin if `site` is somehow unset (it's configured in astro.config.mjs).
@@ -25,9 +24,11 @@ const STATIC_PATHS: string[] = [
   ROUTES.cookies,
 ];
 
-// Derived from the landing registry: adding a landing page is one line there
-// and it appears here automatically — no second list to keep in sync.
-const LANDING_PATHS: string[] = landingCategories.map(ROUTES.landing);
+// The /wohnen/* landings are deliberately absent. They are paid-traffic
+// pages carrying `noindex` (see LandingPage.astro), so submitting them here
+// would ask Google to index pages we've told it to skip — a contradictory
+// signal. Organic coverage for these typologies lives on /hauser and the
+// model pages.
 
 type Entry = { loc: string; lastmod?: string };
 
@@ -55,9 +56,7 @@ const xml = (s: string): string =>
 export const GET: APIRoute = async ({ site }) => {
   const base = (site?.toString() ?? FALLBACK_SITE).replace(/\/$/, "");
 
-  const entries: Entry[] = [...STATIC_PATHS, ...LANDING_PATHS].map((p) => ({
-    loc: base + p,
-  }));
+  const entries: Entry[] = STATIC_PATHS.map((p) => ({ loc: base + p }));
 
   const [news, models, showhouses] = await Promise.all([
     getNews(),

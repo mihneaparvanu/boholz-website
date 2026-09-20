@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { getModelBySlug } from "@/db/loaders";
+import { toMetaDescription } from "@/lib/format";
 
 import HousePageNav from "@/features/house-page/components/HousePageNav.vue";
 import HeroGallery from "@/features/house-page/components/HeroGallery.vue";
@@ -37,7 +38,10 @@ const leistungenCopy =
   "Je nach Ihren individuellen Bedürfnissen können wir verschiedene Gewerke und Leistungsumfänge anbieten. Gerne berät Sie unser Fachberater hierzu ausführlich und erstellt gemeinsam mit Ihnen ein passendes Konzept.";
 ---
 
-<Layout title={`${model.title} – BoHolz Haus`}>
+<Layout
+  title={`${model.title} – BoHolz Haus`}
+  description={toMetaDescription(model.description)}
+>
   <HousePageNav client:load sections={sections} />
 
   <section id="hausansichten" class="hero-zone">

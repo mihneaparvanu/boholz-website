@@ -97,7 +97,16 @@ const imageBandImage = getMediaURL(imageBand.imageFallbackPath);
 const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
 ---
 
-<Layout title={seo.title} categories={categories}>
+{/* noindex: these pages exist to receive Google Ads traffic. Left indexable
+    they compete with /hauser and /haus/<slug> for the same German keywords,
+    and organic depth belongs on those pages, which carry no conversion
+    mandate. `follow` is deliberate — links out still pass authority. */}
+<Layout
+  title={seo.title}
+  description={seo.description}
+  categories={categories}
+  noindex
+>
 
   {/* ================================================================
        LANDING-PAGE STRUCTURE — target blueprint (annotate + iterate)
