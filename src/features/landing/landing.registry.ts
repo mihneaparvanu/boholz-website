@@ -1,12 +1,15 @@
 import { singleFamilyContent } from "./single-family.content";
 import { bungalowContent } from "./bungalow.content";
 import { multiFamilyContent } from "./multi-family.content";
+import { templateDemoContent } from "./template-demo.content";
 import type { LandingPageContent } from "./landing.types";
 
 export const landingPages = {
   einfamilienhaus: singleFamilyContent,
   bungalow: bungalowContent,
   mehrfamilien: multiFamilyContent,
+  // Structural preview only (/wohnen/template) — dev review, not for prod.
+  template: templateDemoContent,
 } satisfies Record<string, LandingPageContent>;
 
 export type LandingCategory = keyof typeof landingPages;

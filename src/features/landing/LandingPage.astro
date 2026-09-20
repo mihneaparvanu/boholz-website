@@ -37,6 +37,7 @@ import { toHouseModelCard } from "@/lib/derive";
 
 import type { LandingPageContent } from "./landing.types";
 import { defaultTrustStats } from "./landing.defaults";
+import LandingGallery from "./LandingGallery.astro";
 
 interface Props {
   content: LandingPageContent;
@@ -84,6 +85,20 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
 ---
 
 <Layout title={seo.title} categories={categories}>
+
+  {/* ================================================================
+       LANDING-PAGE STRUCTURE — target blueprint (annotate + iterate)
+       ----------------------------------------------------------------
+       # HERO      value proposition + quality badges + guarantee time
+       # FEATURE   Meet <HouseCategory>: body + most common FAQs of this type
+       # BENEFITS  the four benefits (+ audience use-cases)
+       # GALLERY   LP-only photo gallery  (content.gallery — created per page)
+       # FORM      lead magnet: "Download our house catalog for free! Enter your email"
+       Existing sections are kept, grouped and reordered under these headings.
+     ================================================================ */}
+
+  <!-- ═══════════════════════ HERO · value proposition + quality badges + guarantee ═══════════════════════ -->
+  <!-- Value proposition -->
   <!-- ── 01 · Hero (full-bleed) ────────────────────────────────── -->
   <div class="full-width">
     <PageHero
@@ -106,22 +121,65 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
     </PageHero>
   </div>
 
+  <!-- Quality badges (certification marks) -->
   <!-- ── 02 · Proof strip (certification marks) ─────────────────── -->
   <Block>
     <ProofSection />
   </Block>
 
-  <!-- ── 03 · Benefits row ─────────────────────────────────────── -->
+  <!-- Guarantee time they offer (e.g. 18 Monate Festpreis) -->
+  <!-- ── 08 · Trust stats (numeric proof row) ──────────────────── -->
   <Block
-    id="vorteile"
-    eyebrow={benefitsIntro.eyebrow}
-    heading={benefitsIntro.heading}
-    highlight={benefitsIntro.highlight}
-    lede={benefitsIntro.lede}
+    id="vertrauen"
+    tone="band"
+    eyebrow={trustStats.eyebrow}
+    heading={trustStats.heading}
+    highlight={trustStats.highlight}
+    lede={trustStats.lede}
+    align="center"
   >
-    <BenefitsRow items={benefits} />
+    <TrustBadges client:visible badges={trustStats.badges} />
   </Block>
 
+  <!-- ═══════════════════════ FEATURE · Meet <HouseCategory> ═══════════════════════ -->
+  <!-- Meet the category — visual -->
+  <!-- ── 05 · Image band (full-bleed lifestyle) ─────────────────── -->
+  <ImageBand
+    eyebrow={imageBand.eyebrow}
+    heading={imageBand.heading}
+    highlight={imageBand.highlight}
+    lede={imageBand.lede}
+    image={imageBandImage}
+    imageAlt={imageBand.imageAlt}
+    rule
+  />
+
+  <!-- Meet the category — body -->
+  <!-- ── 07 · Sustainability (two-column) ───────────────────────── -->
+  <Block id="nachhaltigkeit">
+    <TwoColumn
+      eyebrow={sustainability.eyebrow}
+      title={sustainability.title}
+      highlight={sustainability.highlight}
+      subtitle={sustainability.subtitle}
+      image={sustainabilityImage}
+      imageAlt={sustainability.imageAlt}
+      reverse={sustainability.reverse}
+    >
+      <div class="prose">
+        {sustainability.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+      {sustainability.cta && (
+        <Fragment slot="actions">
+          <Button client:load variant="primary" size="md" href={sustainability.cta.href}>
+            {sustainability.cta.label}
+          </Button>
+        </Fragment>
+      )}
+    </TwoColumn>
+  </Block>
+
+  <!-- The models of this category -->
   <!-- ── 04 · House showcase ───────────────────────────────────── -->
   <Block
     id="hausmodelle"
@@ -148,16 +206,34 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
     }
   </Block>
 
-  <!-- ── 05 · Image band (full-bleed lifestyle) ─────────────────── -->
-  <ImageBand
-    eyebrow={imageBand.eyebrow}
-    heading={imageBand.heading}
-    highlight={imageBand.highlight}
-    lede={imageBand.lede}
-    image={imageBandImage}
-    imageAlt={imageBand.imageAlt}
-    rule
-  />
+  <!-- Most common FAQs about this type of house -->
+  <!-- ── 10 · FAQ ──────────────────────────────────────────────── -->
+  <Block
+    id="faq"
+    eyebrow={faq.eyebrow}
+    heading={faq.heading}
+    highlight={faq.highlight}
+  >
+    <div class="faq-wrap">
+      <FAQAccordion
+        client:visible
+        items={faq.items}
+        defaultOpen={faq.defaultOpen}
+      />
+    </div>
+  </Block>
+
+  <!-- ═══════════════════════ BENEFITS ═══════════════════════ -->
+  <!-- ── 03 · Benefits row ─────────────────────────────────────── -->
+  <Block
+    id="vorteile"
+    eyebrow={benefitsIntro.eyebrow}
+    heading={benefitsIntro.heading}
+    highlight={benefitsIntro.highlight}
+    lede={benefitsIntro.lede}
+  >
+    <BenefitsRow items={benefits} />
+  </Block>
 
   <!-- ── 06 · Audience block ───────────────────────────────────── -->
   <Block
@@ -178,43 +254,23 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
     </Fragment>
   </Block>
 
-  <!-- ── 07 · Sustainability (two-column) ───────────────────────── -->
-  <Block id="nachhaltigkeit">
-    <TwoColumn
-      eyebrow={sustainability.eyebrow}
-      title={sustainability.title}
-      highlight={sustainability.highlight}
-      subtitle={sustainability.subtitle}
-      image={sustainabilityImage}
-      imageAlt={sustainability.imageAlt}
-      reverse={sustainability.reverse}
+  <!-- ═══════════════════════ GALLERY · LP-only (new) ═══════════════════════ -->
+
+  <!-- Gallery: LP-only. Renders only when the page defines content.gallery.
+       (New section — gallery content is created per landing page.) -->
+  {content.gallery && (
+    <Block
+      id="galerie"
+      eyebrow={content.gallery.eyebrow}
+      heading={content.gallery.heading}
+      highlight={content.gallery.highlight}
+      lede={content.gallery.lede}
     >
-      <div class="prose">
-        {sustainability.paragraphs.map((p) => <p>{p}</p>)}
-      </div>
-      {sustainability.cta && (
-        <Fragment slot="actions">
-          <Button client:load variant="primary" size="md" href={sustainability.cta.href}>
-            {sustainability.cta.label}
-          </Button>
-        </Fragment>
-      )}
-    </TwoColumn>
-  </Block>
+      <LandingGallery images={content.gallery.images} />
+    </Block>
+  )}
 
-  <!-- ── 08 · Trust stats (numeric proof row) ──────────────────── -->
-  <Block
-    id="vertrauen"
-    tone="band"
-    eyebrow={trustStats.eyebrow}
-    heading={trustStats.heading}
-    highlight={trustStats.highlight}
-    lede={trustStats.lede}
-    align="center"
-  >
-    <TrustBadges client:visible badges={trustStats.badges} />
-  </Block>
-
+  <!-- ═══════════════════════ FORM · lead magnet — free house catalog ═══════════════════════ -->
   <!-- ── 09 · Testimonials (full-bleed dark band) ───────────────── -->
   <TestimonialBand
     eyebrow={trust.eyebrow}
@@ -226,22 +282,8 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
     testimonials={trust.testimonials}
   />
 
-  <!-- ── 10 · FAQ ──────────────────────────────────────────────── -->
-  <Block
-    id="faq"
-    eyebrow={faq.eyebrow}
-    heading={faq.heading}
-    highlight={faq.highlight}
-  >
-    <div class="faq-wrap">
-      <FAQAccordion
-        client:visible
-        items={faq.items}
-        defaultOpen={faq.defaultOpen}
-      />
-    </div>
-  </Block>
-
+  <!-- Lead magnet: 'Download our house catalog for free! Enter your email.'
+       TODO: consider swapping ContactForm for an email-only catalog form. -->
   <!-- ── 11 · Lead form (full-bleed band) ───────────────────────── -->
   <Block
     id="anfordern"

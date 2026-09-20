@@ -233,6 +233,26 @@ export interface LandingClosingCta {
   secondaryCta?: LandingCta;
 }
 
+/* ── Gallery (LP-only) ────────────────────────────────────────────── */
+
+/**
+ * A photo gallery unique to landing pages. Optional on the content shape:
+ * a page that omits `gallery` renders no gallery section. `src` is a media
+ * path resolved through `getMediaURL()` at render time.
+ */
+export interface LandingGalleryImage {
+  src: string;
+  alt: string;
+}
+
+export interface LandingGallery {
+  eyebrow?: string;
+  heading: string;
+  highlight?: string;
+  lede?: string;
+  images: LandingGalleryImage[];
+}
+
 /* ── SEO ──────────────────────────────────────────────────────────── */
 
 export interface LandingSeo {
@@ -255,6 +275,8 @@ export interface LandingPageContent {
   /** Optional override; falls back to `defaultTrustStats`. */
   trustStats?: LandingTrustStats;
   faq: LandingFAQ;
+  /** LP-only photo gallery. Omit to render no gallery section. */
+  gallery?: LandingGallery;
   leadForm: LandingLeadForm;
   closingCta: LandingClosingCta;
 }
