@@ -12,7 +12,7 @@ const { showhouses } = defineProps<{
     <p class="title">Musterhäuser</p>
     <ul class="links">
       <li v-for="showhouse in showhouses" :key="showhouse.id">
-        <a :href="ROUTES.musterhaus(showhouse.slug)">{{ showhouse.title }}</a>
+        <a :href="ROUTES.showhouse(showhouse.slug)">{{ showhouse.title }}</a>
       </li>
     </ul>
   </div>

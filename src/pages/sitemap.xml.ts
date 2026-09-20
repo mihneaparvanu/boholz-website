@@ -1,29 +1,33 @@
 import type { APIRoute } from "astro";
 import { getNews, getModels, getLocations } from "@/db/loaders";
+import { landingCategories } from "@/features/landing/landing.registry";
+import { ROUTES } from "@/features/navigation/routes";
 
 // Fallback origin if `site` is somehow unset (it's configured in astro.config.mjs).
 const FALLBACK_SITE = "https://boholz-haus.de";
 
-// Static, indexable routes. Excludes api/*, 404, and the hidden /wohnen/*
-// category placeholders.
-const STATIC_PATHS = [
-  "/",
-  "/hauser",
-  "/news",
-  "/kontakt",
-  "/katalog",
-  "/karriere",
-  "/uber-uns",
-  "/vor-ort-beratung",
-  "/bauen-mit-boholz",
-  "/ihr-neues-zuhause",
-  "/wohnen/einfamilienhaus",
-  "/wohnen/bungalow",
-  "/wohnen/mehrfamilien",
-  "/impressum",
-  "/datenschutz",
-  "/cookies",
+// Static, indexable routes. Every path comes from ROUTES, so changing a URL
+// is a single edit there and the sitemap follows. Excludes api/*, 404, and
+// /freigabe (internal approval page).
+const STATIC_PATHS: string[] = [
+  ROUTES.home,
+  ROUTES.houses,
+  ROUTES.news,
+  ROUTES.contact,
+  ROUTES.catalog,
+  ROUTES.career,
+  ROUTES.about,
+  ROUTES.onsite,
+  ROUTES.promise,
+  ROUTES.yourHouse,
+  ROUTES.imprint,
+  ROUTES.privacy,
+  ROUTES.cookies,
 ];
+
+// Derived from the landing registry: adding a landing page is one line there
+// and it appears here automatically — no second list to keep in sync.
+const LANDING_PATHS: string[] = landingCategories.map(ROUTES.landing);
 
 type Entry = { loc: string; lastmod?: string };
 
@@ -51,7 +55,9 @@ const xml = (s: string): string =>
 export const GET: APIRoute = async ({ site }) => {
   const base = (site?.toString() ?? FALLBACK_SITE).replace(/\/$/, "");
 
-  const entries: Entry[] = STATIC_PATHS.map((p) => ({ loc: base + p }));
+  const entries: Entry[] = [...STATIC_PATHS, ...LANDING_PATHS].map((p) => ({
+    loc: base + p,
+  }));
 
   const [news, models, showhouses] = await Promise.all([
     getNews(),
@@ -61,15 +67,18 @@ export const GET: APIRoute = async ({ site }) => {
 
   for (const n of news) {
     entries.push({
-      loc: `${base}/news/${n.slug}`,
+      loc: base + ROUTES.newsArticle(n.slug),
       lastmod: iso(n.publishedAt ?? n.createdAt),
     });
   }
   for (const m of models) {
-    entries.push({ loc: `${base}/haus/${m.slug}`, lastmod: iso(m.createdAt) });
+    entries.push({
+      loc: base + ROUTES.house(m.slug),
+      lastmod: iso(m.createdAt),
+    });
   }
   for (const s of showhouses) {
-    entries.push({ loc: `${base}/musterhaus/${s.slug}` });
+    entries.push({ loc: base + ROUTES.showhouse(s.slug) });
   }
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>

@@ -1,16 +1,26 @@
 ---
-// Placeholder scaffolds for the upcoming per-category landing pages (SEO
-// engagement). These exist so the routes are reserved, but are intentionally
-// BLANK + noindex + unlinked (not in nav or sitemap) until the real landings
-// are built from the dynamic template. Existing static pages
-// (wohnen/bungalow.astro, wohnen/mehrfamilien.astro) take routing precedence
-// and are unaffected. 404 for any slug not in the reserved set.
+/**
+ * Every typology landing page — `/wohnen/<category>`.
+ *
+ * The route is a lookup and nothing else: `landing.registry.ts` decides which
+ * categories exist, `LandingPage.astro` decides what a landing page looks
+ * like. A new landing page is a new `.content.ts` plus one registry line;
+ * this file never changes.
+ *
+ * Deliberately decoupled from the DB's `house_categories` — the registry is
+ * a curated subset (no bestseller, no category without written copy).
+ */
+import LandingPage from "@/features/landing/LandingPage.astro";
+import {
+  isLandingCategory,
+  landingPages,
+} from "@/features/landing/landing.registry";
 
-import Layout from "@/layouts/Layout.astro";
+const { category } = Astro.params;
 
+if (!isLandingCategory(category)) {
+  return new Response("Not found", { status: 404 });
+}
 ---
 
-<Layout title="Landing page structure">
- 
-
-</Layout>
+<LandingPage content={landingPages[category]} />

@@ -60,7 +60,6 @@ export type HeroVariantKey = keyof typeof heroVariants;
 export const heroVariant: HeroVariantKey = "current";
 
 export const overviewContent: LandingPageContent = {
-  slug: "uebersicht",
 
   seo: {
     title: "Premium Fertighäuser aus Holz · BoHolz Haus",
