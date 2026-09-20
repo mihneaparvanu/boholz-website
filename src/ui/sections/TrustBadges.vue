@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import TrustStatCard from "./TrustStatCard.vue";
-import type { TrustBadge } from "./trust-badges.content";
+import type { TrustBadge } from "@/features/trust/trust-badges.content";
 
 defineProps<{
   badges: TrustBadge[];

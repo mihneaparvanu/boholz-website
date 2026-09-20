@@ -21,9 +21,10 @@ import type {
   CredentialBadge,
 } from "@/ui/sections/TestimonialBand.astro";
 import type { FAQItem } from "@/ui/primitives/FAQAccordion.vue";
+import type { TrustBadge } from "@/features/trust/trust-badges.content";
 
 /* ── Re-exports — content files import everything from this module ─── */
-export type { Benefit, AudienceItem, Testimonial, CredentialBadge };
+export type { Benefit, AudienceItem, Testimonial, CredentialBadge, TrustBadge };
 export type { FAQItem };
 
 /* ── Hero ─────────────────────────────────────────────────────────── */
@@ -175,6 +176,22 @@ export interface LandingTrust {
   testimonials: Testimonial[];
 }
 
+/* ── Trust stats (ui/sections/TrustBadges.vue) ────────────────────── */
+
+/**
+ * The stat-card row ("100% Made in Germany", "18 Monate Festpreis").
+ * Distinct from `LandingTrust` above: that one is the testimonial band,
+ * this one is the numeric proof strip. Every landing page renders it;
+ * a page only sets this field to *override* `defaultTrustStats`.
+ */
+export interface LandingTrustStats {
+  eyebrow?: string;
+  heading: string;
+  highlight?: string;
+  lede?: string;
+  badges: TrustBadge[];
+}
+
 /* ── FAQ ──────────────────────────────────────────────────────────── */
 
 export interface LandingFAQ {
@@ -237,6 +254,8 @@ export interface LandingPageContent {
   audience: LandingAudienceBlock;
   sustainability: LandingSustainability;
   trust: LandingTrust;
+  /** Optional override; falls back to `defaultTrustStats`. */
+  trustStats?: LandingTrustStats;
   faq: LandingFAQ;
   leadForm: LandingLeadForm;
   closingCta: LandingClosingCta;
