@@ -30,8 +30,8 @@ export const bungalowContent: LandingPageContent = {
       "BoHolz-Bungalow Schäfer-Haus 134/22 — ebenerdiges Wohnen auf einer Ebene",
     imageFallbackPath: "/images/landing/bungalow/hero.webp",
     preferredCategorySlug: "bungalow",
-    primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
-    secondaryCta: { label: "Imagebroschüre bestellen", href: "/katalog" },
+    primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
+    secondaryCta: { label: "Persönliche Beratung", href: "/kontakt" },
   },
 
   benefitsIntro: {
@@ -202,20 +202,20 @@ export const bungalowContent: LandingPageContent = {
   },
 
   leadForm: {
-    eyebrow: "Ihr persönliches Angebot",
-    heading: "Anfordern und",
-    highlight: "Imagebroschüre bestellen.",
-    lede: "Wir sind für Sie da — stellen Sie uns Ihre Fragen oder fordern Sie Ihr persönliches Angebot an.",
+    eyebrow: "Kostenloser Hauskatalog",
+    heading: "Bungalow-Katalog jetzt",
+    highlight: "gratis herunterladen.",
+    lede: "Name, E-Mail und Ort genügen — Sie erhalten den Katalog sofort als PDF. Kein Anruf, kein Verkaufsdruck.",
   },
 
   closingCta: {
-    eyebrow: "Nächster Schritt",
-    title: "Leben ohne Grenzen.",
-    highlight: "Starten Sie Ihr Projekt.",
+    eyebrow: "Kostenlos und unverbindlich",
+    title: "Holen Sie sich jetzt den",
+    highlight: "Hauskatalog.",
     subtitle:
-      "Jetzt unverbindlich beraten lassen oder direkt ein Angebot anfordern.",
+      "Alle Grundrisse, Ausstattungen und Preise für Ihren Bungalow — als PDF, direkt nach dem Absenden.",
     tone: "brand",
-    primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
-    secondaryCta: { label: "Imagebroschüre bestellen", href: "/katalog" },
+    primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
+    secondaryCta: { label: "Persönliche Beratung", href: "/kontakt" },
   },
 };

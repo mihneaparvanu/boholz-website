@@ -3,10 +3,18 @@
  * The landing-page template — one skeleton, many pages.
  *
  * Every `/wohnen/<category>` route renders this component and differs only
- * by the `LandingPageContent` it passes in. Section order is fixed:
+ * by the `LandingPageContent` it passes in. Grouped into five conversion
+ * beats (see the blueprint block in the markup below):
  *
- *   hero → proof → benefits → houses → image-band → audience →
- *   sustainability → trust-stats → testimonials → FAQ → lead-form → CTA
+ *   HERO      hero + certification marks
+ *   FEATURE   image band → category body → mid-page CTA
+ *   GALLERY   optional, LP-only (renders when `content.gallery` is set)
+ *   BENEFITS  models → benefits → audience
+ *   FORM      testimonials → FAQ → brochure form (#anfordern)
+ *
+ * Primary CTAs anchor to #anfordern rather than navigating away — paid
+ * traffic should convert here, not elsewhere on the site. Secondary CTAs
+ * still offer /kontakt for people who want a conversation instead.
  *
  * The component owns its own data loading (categories + models) so routes
  * stay a single lookup. No copy is hardcoded here: strings come from the
@@ -25,7 +33,7 @@ import ImageBand from "@/ui/sections/ImageBand.astro";
 import AudienceBlock from "@/ui/sections/AudienceBlock.astro";
 import TwoColumn from "@/ui/sections/TwoColumn.astro";
 import TestimonialBand from "@/ui/sections/TestimonialBand.astro";
-import ContactForm from "@/features/contact-forms/ContactForm.vue";
+import CatalogForm from "@/features/contact-forms/CatalogForm.vue";
 import CTASection from "@/ui/sections/CTASection.astro";
 import FAQAccordion from "@/ui/primitives/FAQAccordion.vue";
 import Button from "@/ui/primitives/Button.vue";
@@ -61,8 +69,12 @@ const {
   closingCta,
 } = content;
 
-/* Shared across every page unless the content file overrides it. */
+/* Parked, not dead: the guarantee/stat row ("18 Monate Festpreis") is being
+   folded into the hero redesign rather than standing as its own band, so the
+   content hook and component stay wired up and ready. */
 const trustStats = content.trustStats ?? defaultTrustStats;
+void trustStats;
+void TrustBadges;
 
 
 const categories = await getCategories();
@@ -133,20 +145,6 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
     <ProofSection />
   </Block>
 
-  <!-- Guarantee time they offer (e.g. 18 Monate Festpreis) -->
-  <!-- ── 08 · Trust stats (numeric proof row) ──────────────────── -->
-  <Block
-    id="vertrauen"
-    tone="band"
-    eyebrow={trustStats.eyebrow}
-    heading={trustStats.heading}
-    highlight={trustStats.highlight}
-    lede={trustStats.lede}
-    align="center"
-  >
-    <TrustBadges client:visible badges={trustStats.badges} />
-  </Block>
-
   <!-- ═══════════════════════ FEATURE · Meet <HouseCategory> ═══════════════════════ -->
   <!-- Meet the category — visual -->
   <!-- ── 05 · Image band (full-bleed lifestyle) ─────────────────── -->
@@ -185,6 +183,50 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
     </TwoColumn>
   </Block>
 
+  <!-- ═══════════════════════ MID-PAGE CTA · "get the house catalog now" ═══════════════════════ -->
+  <!-- Moved up from the page foot. The category has just been explained, so
+       this is the first natural moment to ask — and it anchors to #anfordern
+       rather than leaving the page, which is the whole point of a landing. -->
+  <div class="full-width">
+    <CTASection
+      eyebrow={closingCta.eyebrow}
+      title={closingCta.title}
+      highlight={closingCta.highlight}
+      subtitle={closingCta.subtitle}
+      tone={closingCta.tone}
+      image={closingCta.imageFallbackPath ? getMediaURL(closingCta.imageFallbackPath) : undefined}
+      imageAlt={closingCta.imageAlt ?? ""}
+    >
+      <Fragment slot="actions">
+        <Button client:load variant="primary" size="lg" href={closingCta.primaryCta.href}>
+          {closingCta.primaryCta.label}
+        </Button>
+        {closingCta.secondaryCta && (
+          <Button client:load variant="secondary" size="lg" href={closingCta.secondaryCta.href}>
+            {closingCta.secondaryCta.label}
+          </Button>
+        )}
+      </Fragment>
+    </CTASection>
+  </div>
+
+    <!-- ═══════════════════════ GALLERY · LP-only (new) ═══════════════════════ -->
+
+  <!-- Gallery: LP-only. Renders only when the page defines content.gallery.
+       (New section — gallery content is created per landing page.) -->
+  {content.gallery && (
+    <Block
+      id="galerie"
+      eyebrow={content.gallery.eyebrow}
+      heading={content.gallery.heading}
+      highlight={content.gallery.highlight}
+      lede={content.gallery.lede}
+    >
+      <LandingGallery images={content.gallery.images} />
+    </Block>
+  )}
+
+
   <!-- The models of this category -->
   <!-- ── 04 · House showcase ───────────────────────────────────── -->
   <Block
@@ -212,22 +254,6 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
     }
   </Block>
 
-  <!-- Most common FAQs about this type of house -->
-  <!-- ── 10 · FAQ ──────────────────────────────────────────────── -->
-  <Block
-    id="faq"
-    eyebrow={faq.eyebrow}
-    heading={faq.heading}
-    highlight={faq.highlight}
-  >
-    <div class="faq-wrap">
-      <FAQAccordion
-        client:visible
-        items={faq.items}
-        defaultOpen={faq.defaultOpen}
-      />
-    </div>
-  </Block>
 
   <!-- ═══════════════════════ BENEFITS ═══════════════════════ -->
   <!-- ── 03 · Benefits row ─────────────────────────────────────── -->
@@ -260,23 +286,8 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
     </Fragment>
   </Block>
 
-  <!-- ═══════════════════════ GALLERY · LP-only (new) ═══════════════════════ -->
 
-  <!-- Gallery: LP-only. Renders only when the page defines content.gallery.
-       (New section — gallery content is created per landing page.) -->
-  {content.gallery && (
-    <Block
-      id="galerie"
-      eyebrow={content.gallery.eyebrow}
-      heading={content.gallery.heading}
-      highlight={content.gallery.highlight}
-      lede={content.gallery.lede}
-    >
-      <LandingGallery images={content.gallery.images} />
-    </Block>
-  )}
-
-  <!-- ═══════════════════════ FORM · lead magnet — free house catalog ═══════════════════════ -->
+  <!-- Social proof, placed immediately before the ask -->
   <!-- ── 09 · Testimonials (full-bleed dark band) ───────────────── -->
   <TestimonialBand
     eyebrow={trust.eyebrow}
@@ -288,8 +299,28 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
     testimonials={trust.testimonials}
   />
 
-  <!-- Lead magnet: 'Download our house catalog for free! Enter your email.'
-       TODO: consider swapping ContactForm for an email-only catalog form. -->
+
+  <!-- Most common FAQs about this type of house -->
+  <!-- ── 10 · FAQ ──────────────────────────────────────────────── -->
+  <Block
+    id="faq"
+    eyebrow={faq.eyebrow}
+    heading={faq.heading}
+    highlight={faq.highlight}
+  >
+    <div class="faq-wrap">
+      <FAQAccordion
+        client:visible
+        items={faq.items}
+        defaultOpen={faq.defaultOpen}
+      />
+    </div>
+  </Block>
+
+  <!-- ═══════════════════════ FORM · lead magnet — free house catalog ═══════════════════════ -->
+  <!-- Lead magnet: "Download our house catalog for free."
+       The brochure form (name / e-mail / PLZ / Ort) — posts to /api/catalog,
+       reveals the PDF on success and fires generate_lead. -->
   <!-- ── 11 · Lead form (full-bleed band) ───────────────────────── -->
   <Block
     id="anfordern"
@@ -300,33 +331,10 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
     lede={leadForm.lede}
   >
     <div class="form-wrap">
-      <ContactForm client:visible />
+      <CatalogForm client:visible />
     </div>
   </Block>
 
-  <!-- ── 12 · Closing CTA ───────────────────────────────────────── -->
-  <div class="full-width">
-    <CTASection
-      eyebrow={closingCta.eyebrow}
-      title={closingCta.title}
-      highlight={closingCta.highlight}
-      subtitle={closingCta.subtitle}
-      tone={closingCta.tone}
-      image={closingCta.imageFallbackPath ? getMediaURL(closingCta.imageFallbackPath) : undefined}
-      imageAlt={closingCta.imageAlt ?? ""}
-    >
-      <Fragment slot="actions">
-        <Button client:load variant="primary" size="lg" href={closingCta.primaryCta.href}>
-          {closingCta.primaryCta.label}
-        </Button>
-        {closingCta.secondaryCta && (
-          <Button client:load variant="secondary" size="lg" href={closingCta.secondaryCta.href}>
-            {closingCta.secondaryCta.label}
-          </Button>
-        )}
-      </Fragment>
-    </CTASection>
-  </div>
 </Layout>
 
 <style>
@@ -369,7 +377,7 @@ const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
     margin-inline: auto;
   }
 
-  /* Lead-form wrapper — constrain the ContactForm to a comfortable measure
+  /* Lead-form wrapper — constrain the CatalogForm to a comfortable measure
      inside the centered band. */
   .form-wrap {
     max-width: 36rem;

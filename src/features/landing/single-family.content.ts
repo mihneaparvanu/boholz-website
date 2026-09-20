@@ -32,8 +32,8 @@ export const singleFamilyContent: LandingPageContent = {
     imageFallbackPath:
       "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-hero.webp",
     preferredCategorySlug: "einfamilienhaus",
-    primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
-    secondaryCta: { label: "Imagebroschüre bestellen", href: "/katalog" },
+    primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
+    secondaryCta: { label: "Persönliche Beratung", href: "/kontakt" },
   },
 
   benefitsIntro: {
@@ -206,20 +206,20 @@ export const singleFamilyContent: LandingPageContent = {
   },
 
   leadForm: {
-    eyebrow: "Ihr persönliches Angebot",
-    heading: "Einfamilienhaus anfragen und",
-    highlight: "Imagebroschüre bestellen.",
-    lede: "Wir sind für Sie da — stellen Sie uns Ihre Fragen oder fordern Sie Ihr persönliches Angebot für Ihr Einfamilienhaus an.",
+    eyebrow: "Kostenloser Hauskatalog",
+    heading: "Einfamilienhaus-Katalog jetzt",
+    highlight: "gratis herunterladen.",
+    lede: "Name, E-Mail und Ort genügen — Sie erhalten den Katalog sofort als PDF. Kein Anruf, kein Verkaufsdruck.",
   },
 
   closingCta: {
-    eyebrow: "Nächster Schritt",
-    title: "Bereit für Ihr",
-    highlight: "Einfamilienhaus?",
+    eyebrow: "Kostenlos und unverbindlich",
+    title: "Holen Sie sich jetzt den",
+    highlight: "Hauskatalog.",
     subtitle:
-      "Lassen Sie sich unverbindlich beraten — oder fordern Sie direkt ein Angebot an.",
+      "Alle Grundrisse, Ausstattungen und Preise für Ihr Einfamilienhaus — als PDF, direkt nach dem Absenden.",
     tone: "brand",
-    primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
-    secondaryCta: { label: "Imagebroschüre bestellen", href: "/katalog" },
+    primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
+    secondaryCta: { label: "Persönliche Beratung", href: "/kontakt" },
   },
 };

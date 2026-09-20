@@ -26,8 +26,8 @@ export const templateDemoContent: LandingPageContent = {
     imageAlt: "Placeholder image — mountain Einfamilienhaus",
     imageFallbackPath: IMG,
     preferredCategorySlug: "einfamilienhaus",
-    primaryCta: { label: "Primary CTA", href: "/kontakt" },
-    secondaryCta: { label: "Secondary CTA", href: "/katalog" },
+    primaryCta: { label: "Get the house catalog now", href: "#anfordern" },
+    secondaryCta: { label: "Secondary CTA", href: "/kontakt" },
   },
 
   benefitsIntro: {
@@ -135,8 +135,8 @@ export const templateDemoContent: LandingPageContent = {
 
   leadForm: {
     eyebrow: "Here goes the eyebrow",
-    heading: "Here goes the lead",
-    highlight: "form.",
+    heading: "Download our house catalog",
+    highlight: "for free.",
     lede: LOREM,
   },
 
@@ -146,7 +146,7 @@ export const templateDemoContent: LandingPageContent = {
     highlight: "CTA.",
     subtitle: LOREM,
     tone: "brand",
-    primaryCta: { label: "Primary CTA", href: "/kontakt" },
-    secondaryCta: { label: "Secondary CTA", href: "/katalog" },
+    primaryCta: { label: "Get the house catalog now", href: "#anfordern" },
+    secondaryCta: { label: "Secondary CTA", href: "/kontakt" },
   },
 };
