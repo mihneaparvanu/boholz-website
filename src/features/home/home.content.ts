@@ -44,7 +44,7 @@ export const homeSections = {
     subheading:
       "BoHolz-Haus verbindet präzise Vorfertigung in Holzbauweise mit durchdachter Planung und abgestimmter Haustechnik. So entstehen klar definierte Leistungen, strukturierte Abläufe und ein Zuhause, das zu Ihren Bedürfnissen passt.",
   },
-  bauphasen: {
+  buildPhases: {
     id: "bauphasen",
     eyebrow: "Bauphasen",
     navLabel: "Bauphasen",

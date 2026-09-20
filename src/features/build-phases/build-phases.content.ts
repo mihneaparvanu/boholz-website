@@ -1,6 +1,6 @@
 import { getMediaURL } from '@/lib/media';
 
-import type { BuildPhase } from "./bauphasen.types";
+import type { BuildPhase } from "./build-phases.types";
 
 const base = "/images/content/bauphasen";
 
@@ -46,4 +46,4 @@ export const buildPhases: BuildPhase[] = [
 ];
 
 /** Hero used at the top of /dein-zuhause. */
-export const bauphasenHeroImageURL = getMediaURL(`${base}/hero.webp`);
+export const buildPhasesHeroImageURL = getMediaURL(`${base}/hero.webp`);

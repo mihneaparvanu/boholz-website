@@ -89,7 +89,7 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
         musterhaeuser.map((h) => {
           const heroSrc = showhouseHeroBySlug.get(h.slug);
           return (
-            <a class="musterhaus" href={ROUTES.musterhaus(h.slug)}>
+            <a class="musterhaus" href={ROUTES.showhouse(h.slug)}>
               {heroSrc ? (
                 <figure class="cover">
                   <img

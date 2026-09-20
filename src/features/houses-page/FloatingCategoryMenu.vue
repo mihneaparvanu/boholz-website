@@ -6,9 +6,9 @@
  * away regardless of scroll position.
  *
  * Same click-lock + horizontal-scroll-on-active mechanics as
- * HausPageNav so behaviour is consistent across both floating bars.
+ * HousePageNav so behaviour is consistent across both floating bars.
  * Active pill uses accent-primary (the brand's foreground signal on
- * /hauser, per client direction); HausPageNav defaults to
+ * /hauser, per client direction); HousePageNav defaults to
  * accent-secondary on /haus.
  */
 import { computed, onBeforeUnmount, ref, watch } from "vue";
@@ -119,7 +119,7 @@ watch(activeId, (id) => {
 .pills {
   /* position: relative so pill.offsetLeft resolves against this scroll
      container, keeping the active-pill centering math accurate (see
-     HausPageNav / SectionNavigator for the same pattern). */
+     HousePageNav / SectionNavigator for the same pattern). */
   position: relative;
   display: flex;
   gap: var(--spacing-1);

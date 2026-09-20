@@ -1,0 +1,332 @@
+---
+/**
+ * The landing-page template — one skeleton, many pages.
+ *
+ * Every `/wohnen/<category>` route renders this component and differs only
+ * by the `LandingPageContent` it passes in. Section order is fixed:
+ *
+ *   hero → proof → benefits → houses → image-band → audience →
+ *   sustainability → trust-stats → testimonials → FAQ → lead-form → CTA
+ *
+ * The component owns its own data loading (categories + models) so routes
+ * stay a single lookup. No copy is hardcoded here: strings come from the
+ * page's content module, or from `landing.defaults.ts` for the sections
+ * every page shares.
+ */
+import Layout from "@/layouts/Layout.astro";
+import { getMediaURL } from "@/lib/media";
+
+import PageHero from "@/ui/sections/PageHero.astro";
+import Block from "@/ui/sections/Block.astro";
+import BenefitsRow from "@/ui/sections/BenefitsRow.astro";
+import HouseModelsCarousel from "@/ui/sections/HouseModelsCarousel.vue";
+import ImageBand from "@/ui/sections/ImageBand.astro";
+import AudienceBlock from "@/ui/sections/AudienceBlock.astro";
+import TwoColumn from "@/ui/sections/TwoColumn.astro";
+import TestimonialBand from "@/ui/sections/TestimonialBand.astro";
+import ContactForm from "@/features/contact-forms/ContactForm.vue";
+import CTASection from "@/ui/sections/CTASection.astro";
+import FAQAccordion from "@/ui/primitives/FAQAccordion.vue";
+import Button from "@/ui/primitives/Button.vue";
+
+import ProofSection from "@/ui/sections/Proof-Section.vue";
+import TrustBadges from "@/ui/sections/TrustBadges.vue";
+
+import { getCategories, getModels } from "@/db/loaders";
+import { toHouseModelCard } from "@/lib/derive";
+
+import type { LandingPageContent } from "./landing.types";
+import { defaultTrustStats } from "./landing.defaults";
+
+interface Props {
+  content: LandingPageContent;
+}
+const { content } = Astro.props;
+
+/* The anatomy of a landing page, in render order. */
+const {
+  seo,
+  hero,
+  benefitsIntro,
+  benefits,
+  houses,
+  imageBand,
+  audience,
+  sustainability,
+  trust,
+  faq,
+  leadForm,
+  closingCta,
+} = content;
+
+/* Shared across every page unless the content file overrides it. */
+const trustStats = content.trustStats ?? defaultTrustStats;
+
+
+const categories = await getCategories();
+const allModels = await getModels();
+
+const featuredOnly = houses.featuredOnly ?? true;
+const filteredModels = allModels
+  .filter((m) => (featuredOnly ? m.isFeatured : true))
+  .filter((m) =>
+    houses.categorySlugs === null
+      ? true
+      : houses.categorySlugs.includes(m.category?.slug ?? ""),
+  )
+  .slice(0, houses.maxItems);
+
+const houseCards = filteredModels.map((m) => toHouseModelCard(m));
+
+const heroImage = getMediaURL(hero.imageFallbackPath);
+const imageBandImage = getMediaURL(imageBand.imageFallbackPath);
+const sustainabilityImage = getMediaURL(sustainability.imageFallbackPath);
+---
+
+<Layout title={seo.title} categories={categories}>
+  <!-- ── 01 · Hero (full-bleed) ────────────────────────────────── -->
+  <div class="full-width">
+    <PageHero
+      eyebrow={hero.eyebrow}
+      title={hero.title}
+      highlight={hero.highlight}
+      subtitle={hero.subtitle}
+      image={heroImage}
+      imageAlt={hero.imageAlt}
+      align="center"
+    >
+      <Fragment slot="actions">
+        <Button client:load variant="primary" size="lg" href={hero.primaryCta.href}>
+          {hero.primaryCta.label}
+        </Button>
+        <Button client:load variant="secondary" size="lg" href={hero.secondaryCta.href}>
+          {hero.secondaryCta.label}
+        </Button>
+      </Fragment>
+    </PageHero>
+  </div>
+
+  <!-- ── 02 · Proof strip (certification marks) ─────────────────── -->
+  <Block>
+    <ProofSection />
+  </Block>
+
+  <!-- ── 03 · Benefits row ─────────────────────────────────────── -->
+  <Block
+    id="vorteile"
+    eyebrow={benefitsIntro.eyebrow}
+    heading={benefitsIntro.heading}
+    highlight={benefitsIntro.highlight}
+    lede={benefitsIntro.lede}
+  >
+    <BenefitsRow items={benefits} />
+  </Block>
+
+  <!-- ── 04 · House showcase ───────────────────────────────────── -->
+  <Block
+    id="hausmodelle"
+    eyebrow={houses.eyebrow}
+    heading={houses.heading}
+    highlight={houses.highlight}
+    lede={houses.lede}
+  >
+    {
+      houseCards.length > 0 ? (
+        <HouseModelsCarousel
+          client:visible
+          models={houseCards}
+          ariaLabel="Empfohlene Hausmodelle"
+        />
+      ) : (
+        <p class="empty">
+          Aktuell keine empfohlenen Modelle für diese Kategorie.
+          Bitte sehen Sie sich
+          <a href="/hauser"> die vollständige Übersicht </a>
+          an.
+        </p>
+      )
+    }
+  </Block>
+
+  <!-- ── 05 · Image band (full-bleed lifestyle) ─────────────────── -->
+  <ImageBand
+    eyebrow={imageBand.eyebrow}
+    heading={imageBand.heading}
+    highlight={imageBand.highlight}
+    lede={imageBand.lede}
+    image={imageBandImage}
+    imageAlt={imageBand.imageAlt}
+    rule
+  />
+
+  <!-- ── 06 · Audience block ───────────────────────────────────── -->
+  <Block
+    id="zielgruppen"
+    eyebrow={audience.eyebrow}
+    heading={audience.heading}
+    highlight={audience.highlight}
+    lede={audience.lede}
+  >
+    <AudienceBlock items={audience.items} />
+    <Fragment slot="actions">
+      <Button client:load variant="primary" size="md" href={hero.primaryCta.href}>
+        {hero.primaryCta.label}
+      </Button>
+      <Button client:load variant="ghost" size="md" href={hero.secondaryCta.href}>
+        {hero.secondaryCta.label}
+      </Button>
+    </Fragment>
+  </Block>
+
+  <!-- ── 07 · Sustainability (two-column) ───────────────────────── -->
+  <Block id="nachhaltigkeit">
+    <TwoColumn
+      eyebrow={sustainability.eyebrow}
+      title={sustainability.title}
+      highlight={sustainability.highlight}
+      subtitle={sustainability.subtitle}
+      image={sustainabilityImage}
+      imageAlt={sustainability.imageAlt}
+      reverse={sustainability.reverse}
+    >
+      <div class="prose">
+        {sustainability.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+      {sustainability.cta && (
+        <Fragment slot="actions">
+          <Button client:load variant="primary" size="md" href={sustainability.cta.href}>
+            {sustainability.cta.label}
+          </Button>
+        </Fragment>
+      )}
+    </TwoColumn>
+  </Block>
+
+  <!-- ── 08 · Trust stats (numeric proof row) ──────────────────── -->
+  <Block
+    id="vertrauen"
+    tone="band"
+    eyebrow={trustStats.eyebrow}
+    heading={trustStats.heading}
+    highlight={trustStats.highlight}
+    lede={trustStats.lede}
+    align="center"
+  >
+    <TrustBadges client:visible badges={trustStats.badges} />
+  </Block>
+
+  <!-- ── 09 · Testimonials (full-bleed dark band) ───────────────── -->
+  <TestimonialBand
+    eyebrow={trust.eyebrow}
+    heading={trust.heading}
+    highlight={trust.highlight}
+    lede={trust.lede}
+    tone={trust.tone}
+    badges={trust.badges}
+    testimonials={trust.testimonials}
+  />
+
+  <!-- ── 10 · FAQ ──────────────────────────────────────────────── -->
+  <Block
+    id="faq"
+    eyebrow={faq.eyebrow}
+    heading={faq.heading}
+    highlight={faq.highlight}
+  >
+    <div class="faq-wrap">
+      <FAQAccordion
+        client:visible
+        items={faq.items}
+        defaultOpen={faq.defaultOpen}
+      />
+    </div>
+  </Block>
+
+  <!-- ── 11 · Lead form (full-bleed band) ───────────────────────── -->
+  <Block
+    id="anfordern"
+    tone="band"
+    eyebrow={leadForm.eyebrow}
+    heading={leadForm.heading}
+    highlight={leadForm.highlight}
+    lede={leadForm.lede}
+  >
+    <div class="form-wrap">
+      <ContactForm client:visible />
+    </div>
+  </Block>
+
+  <!-- ── 12 · Closing CTA ───────────────────────────────────────── -->
+  <div class="full-width">
+    <CTASection
+      eyebrow={closingCta.eyebrow}
+      title={closingCta.title}
+      highlight={closingCta.highlight}
+      subtitle={closingCta.subtitle}
+      tone={closingCta.tone}
+      image={closingCta.imageFallbackPath ? getMediaURL(closingCta.imageFallbackPath) : undefined}
+      imageAlt={closingCta.imageAlt ?? ""}
+    >
+      <Fragment slot="actions">
+        <Button client:load variant="primary" size="lg" href={closingCta.primaryCta.href}>
+          {closingCta.primaryCta.label}
+        </Button>
+        {closingCta.secondaryCta && (
+          <Button client:load variant="secondary" size="lg" href={closingCta.secondaryCta.href}>
+            {closingCta.secondaryCta.label}
+          </Button>
+        )}
+      </Fragment>
+    </CTASection>
+  </div>
+</Layout>
+
+<style>
+  /* Empty-state copy when no DB models match the page's category filter. */
+  .empty {
+    margin: 0;
+    padding: var(--spacing-3) 0;
+    color: var(--clr-content-tertiary);
+    font-size: var(--fs-body);
+    text-align: center;
+  }
+
+  .empty a {
+    color: var(--clr-accent-secondary);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--clr-accent-secondary) 40%, transparent);
+    text-underline-offset: 2px;
+  }
+
+  /* Sustainability paragraphs — vertical stack inside TwoColumn's default
+     slot. Width is governed by TwoColumn's content column. */
+  .prose {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    max-width: 64ch;
+  }
+
+  .prose p {
+    margin: 0;
+    color: var(--clr-content-secondary);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+
+  /* FAQ accordion — bounded width on wide displays for legibility. */
+  .faq-wrap {
+    max-width: 56rem;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  /* Lead-form wrapper — constrain the ContactForm to a comfortable measure
+     inside the centered band. */
+  .form-wrap {
+    max-width: 36rem;
+    width: 100%;
+    margin-inline: auto;
+    margin-block-start: var(--spacing-4);
+  }
+</style>

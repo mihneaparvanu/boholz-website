@@ -1,47 +1,26 @@
 ---
-// Placeholder scaffolds for the upcoming per-category landing pages (SEO
-// engagement). These exist so the routes are reserved, but are intentionally
-// BLANK + noindex + unlinked (not in nav or sitemap) until the real landings
-// are built from the dynamic template. Existing static pages
-// (wohnen/bungalow.astro, wohnen/mehrfamilien.astro) take routing precedence
-// and are unaffected. 404 for any slug not in the reserved set.
-const RESERVED = new Set([
-  "stadtvilla",
-  "kubus",
-  "doppelhaus",
-  "generationenhaus",
-  "bestseller",
-]);
+/**
+ * Every typology landing page — `/wohnen/<category>`.
+ *
+ * The route is a lookup and nothing else: `landing.registry.ts` decides which
+ * categories exist, `LandingPage.astro` decides what a landing page looks
+ * like. A new landing page is a new `.content.ts` plus one registry line;
+ * this file never changes.
+ *
+ * Deliberately decoupled from the DB's `house_categories` — the registry is
+ * a curated subset (no bestseller, no category without written copy).
+ */
+import LandingPage from "@/features/landing/LandingPage.astro";
+import {
+  isLandingCategory,
+  landingPages,
+} from "@/features/landing/landing.registry";
 
 const { category } = Astro.params;
-if (!category || !RESERVED.has(category)) {
+
+if (!isLandingCategory(category)) {
   return new Response("Not found", { status: 404 });
 }
-const label = category.charAt(0).toUpperCase() + category.slice(1);
 ---
 
-<!doctype html>
-<html lang="de">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="robots" content="noindex, nofollow" />
-    <title>Wohnen: {label} · in Vorbereitung</title>
-    <style>
-      body { margin: 0; min-height: 100vh; display: grid; place-items: center;
-        background: #faf9f7; color: #1a1a1a;
-        font-family: "Josefin Sans", system-ui, sans-serif; }
-      .card { text-align: center; padding: 2rem; }
-      .eyebrow { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: #0f598a; margin: 0 0 .5rem; }
-      h1 { font-family: Georgia, serif; font-weight: 400; font-size: 2rem; margin: 0 0 .5rem; }
-      p.note { color: #5e666c; margin: 0; }
-    </style>
-  </head>
-  <body>
-    <main class="card">
-      <p class="eyebrow">BoHolz-Haus · Wohnen</p>
-      <h1>{label}</h1>
-      <p class="note">Landingpage in Vorbereitung.</p>
-    </main>
-  </body>
-</html>
+<LandingPage content={landingPages[category]} />

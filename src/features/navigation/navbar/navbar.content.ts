@@ -13,7 +13,7 @@ export const PRIMARY_NAV: NavLink[] = [
   { label: "Ihr Neues Zuhause", path: ROUTES.yourHouse },
   { label: "Bauen mit BoHolz", path: ROUTES.promise },
   { label: "News", path: ROUTES.news },
-  { label: "Über Uns", path: ROUTES.aboutUS },
+  { label: "Über Uns", path: ROUTES.about },
   { label: "Kontakt", path: ROUTES.contact },
 ];
 

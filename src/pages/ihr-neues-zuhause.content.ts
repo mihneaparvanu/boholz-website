@@ -54,10 +54,10 @@ export const architekturBeats: ArchBeat[] = [
   },
 ];
 
-export const nachhaltigkeitImageA = getMediaURL(
+export const sustainabilityImageA = getMediaURL(
   "/images/content/advantage/nachhaltigkeit/hero.webp",
 );
-export const nachhaltigkeitImageB = getMediaURL(
+export const sustainabilityImageB = getMediaURL(
   "/images/photography/log-stack.webp",
 );
 

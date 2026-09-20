@@ -12,17 +12,17 @@ import BuildingStagesCarousel from "@/features/home/BuildingStages/BuildingStage
 import { buildingStages } from "@/features/home/BuildingStages/building-stages.content";
 import {
   buildPhases,
-  bauphasenHeroImageURL,
-} from "@/features/bauphasen/bauphasen.content";
+  buildPhasesHeroImageURL,
+} from "@/features/build-phases/build-phases.content";
 import {
   sections,
   architekturBeats,
-  nachhaltigkeitImageA,
-  nachhaltigkeitImageB,
+  sustainabilityImageA,
+  sustainabilityImageB,
   ctaImage,
 } from "./ihr-neues-zuhause.content";
 
-const heroImage = bauphasenHeroImageURL;
+const heroImage = buildPhasesHeroImageURL;
 ---
 
 <Layout title="Ihr Neues Zuhause – BoHolz Haus">
@@ -232,14 +232,14 @@ const heroImage = bauphasenHeroImageURL;
     <div class="sustain-pair">
       <figure class="sustain-frame">
         <img
-          src={nachhaltigkeitImageA}
+          src={sustainabilityImageA}
           alt="Holzbauweise — BoHolz Manufaktur"
           loading="lazy"
         />
       </figure>
       <figure class="sustain-frame">
         <img
-          src={nachhaltigkeitImageB}
+          src={sustainabilityImageB}
           alt="Gestapelte Holzstämme — Rohstoff aus regionalen Wäldern"
           loading="lazy"
         />

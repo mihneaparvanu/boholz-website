@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { getIcon, type IconName } from "@/lib/icons";
-import { useCountUp, parseCountTarget } from "@/features/home/TrustBadges/useCountUp";
+import { useCountUp, parseCountTarget } from "./useCountUp";
 import GermanyFlag from "@/ui/icons/GermanyFlag.vue";
 
 const props = withDefaults(

@@ -2,11 +2,11 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useScrollSpy } from "@/lib/useScrollSpy";
 
-export type HausSection = { id: string; label: string };
+export type HouseSection = { id: string; label: string };
 
 const props = withDefaults(
   defineProps<{
-    sections: HausSection[];
+    sections: HouseSection[];
     /**
      * Active-pill background tone. Defaults to "secondary" for the haus
      * detail (Danwood) layout. Pass "primary" on /hauser so the active pill
