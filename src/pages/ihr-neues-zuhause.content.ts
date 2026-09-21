@@ -61,4 +61,4 @@ export const sustainabilityImageB = getMediaURL(
   "/images/photography/log-stack.webp",
 );
 
-export const ctaImage = getMediaURL("/pdf/boholz-imagebroschuere-cover.webp");
+export const ctaImage = getMediaURL("/images/brand/home-hero.webp");
