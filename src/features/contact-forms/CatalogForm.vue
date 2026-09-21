@@ -18,7 +18,7 @@ const state = reactive({ ...emptyCatalogForm });
 // swapped. Bump the date whenever /pdf/boholz-imagebroschuere.pdf is replaced.
 const brochureUrl =
   getMediaURL("/pdf/boholz-imagebroschuere.pdf") + "?v=2026-08-17";
-const brochureCoverUrl = getMediaURL("/pdf/boholz-imagebroschuere-cover-2026.webp");
+const brochureCoverUrl = getMediaURL("/pdf/boholz-imagebroschuere-cover.webp");
 
 const turnstileToken = ref("");
 const SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
