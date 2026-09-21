@@ -2,6 +2,9 @@
 import Layout from "@/layouts/Layout.astro";
 import { getModelBySlug } from "@/db/loaders";
 import { toMetaDescription } from "@/lib/format";
+import { ROUTES } from "@/features/navigation/routes";
+import JsonLd from "@/features/seo/JsonLd.astro";
+import { productSchema, breadcrumbSchema } from "@/features/seo/structured-data";
 
 import HousePageNav from "@/features/house-page/components/HousePageNav.vue";
 import HeroGallery from "@/features/house-page/components/HeroGallery.vue";
@@ -36,12 +39,31 @@ const hasCategoryDescription = Boolean(model.category?.description);
 // project together with the Fachberater.
 const leistungenCopy =
   "Je nach Ihren individuellen Bedürfnissen können wir verschiedene Gewerke und Leistungsumfänge anbieten. Gerne berät Sie unser Fachberater hierzu ausführlich und erstellt gemeinsam mit Ihnen ein passendes Konzept.";
+
+/* Loaders already resolve media.path through getMediaURL(), so these are
+   absolute — which both og:image and schema.org require. */
+const galleryImages = model.media
+  .map((m) => m.media?.path)
+  .filter((p): p is string => Boolean(p));
+const heroImage =
+  model.media.find((m) => m.isHero)?.media?.path ?? galleryImages[0];
+
+/* Supplies the hierarchy the flat /haus/<slug> URL doesn't imply, and
+   renders as the path line above the search result. */
+const breadcrumb = breadcrumbSchema([
+  { name: "Startseite", path: ROUTES.home },
+  { name: "Häuser", path: ROUTES.houses },
+  { name: model.title, path: ROUTES.house(model.slug) },
+]);
 ---
 
 <Layout
   title={`${model.title} – BoHolz Haus`}
   description={toMetaDescription(model.description)}
+  ogImage={heroImage}
 >
+  <JsonLd data={productSchema(model, galleryImages)} />
+  <JsonLd data={breadcrumb} />
   <HousePageNav client:load sections={sections} />
 
   <section id="hausansichten" class="hero-zone">

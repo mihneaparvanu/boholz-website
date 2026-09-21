@@ -11,6 +11,9 @@ import ConsentBanner from "@/features/consent/ConsentBanner.vue";
 import { readConsent, COOKIE_NAME } from "@/features/consent/consent";
 
 import { getCategories, getLocations } from "@/db/loaders";
+import { getMediaURL } from "@/lib/media";
+import JsonLd from "@/features/seo/JsonLd.astro";
+import { organizationSchema } from "@/features/seo/structured-data";
 import type { HouseCategory } from "@/db/models";
 
 interface Props {
@@ -26,6 +29,12 @@ interface Props {
    * `/hauser` and the model pages for the same German keywords.
    */
   noindex?: boolean;
+  /**
+   * Preview image for shared links (WhatsApp, LinkedIn, Slack…). Must be an
+   * absolute URL — `getMediaURL()` returns one. Pages that have a hero
+   * should pass it; everything else falls back to the brand image.
+   */
+  ogImage?: string;
 }
 
 const {
@@ -34,6 +43,7 @@ const {
   categories: categoriesProp,
   isHero = false,
   noindex = false,
+  ogImage,
 } = Astro.props;
 
 /**
@@ -42,6 +52,14 @@ const {
  * (which every ad click carries) don't fragment the page's identity.
  */
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+/**
+ * Link-preview image. TODO: replace with a purpose-made 1200×630 brand card —
+ * this is a real photo, so it crops differently across platforms. Any image
+ * beats none: without og:image a shared link renders as a bare URL.
+ */
+const socialImage =
+  ogImage ?? getMediaURL("/images/pages/uber-uns/value-1.webp");
 
 const categories = categoriesProp ?? (await getCategories());
 const showhouses = await getLocations({ kind: "showhouse" });
@@ -62,6 +80,20 @@ const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, follow" />}
+
+    {/* Link previews. Read by WhatsApp, LinkedIn, Facebook, Slack, iMessage —
+        none of which look at <meta name="description">, which is why the same
+        sentence is declared twice. */}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BoHolz Haus" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:title" content={title} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    {description && <meta property="og:description" content={description} />}
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <JsonLd data={organizationSchema()} />
     {loadGTM && GTM_ID && (
       <>
         <script is:inline set:html={`window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`} />

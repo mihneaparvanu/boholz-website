@@ -1,0 +1,21 @@
+---
+/**
+ * Emits a schema.org JSON-LD block.
+ *
+ * `set:html` with `JSON.stringify` rather than interpolation: the payload is
+ * a script body, not markup, so Astro must not HTML-escape it — an escaped
+ * `&quot;` would make the JSON unparseable and the block silently ignored.
+ *
+ * The one real injection risk is a `</script>` sequence inside a DB string
+ * (a house description, say) closing the tag early, so `<` is escaped to its
+ * unicode form, which JSON parsers read identically.
+ */
+interface Props {
+  data: Record<string, unknown>;
+}
+
+const { data } = Astro.props;
+const json = JSON.stringify(data).replace(/</g, "\\u003c");
+---
+
+<script type="application/ld+json" is:inline set:html={json} />
