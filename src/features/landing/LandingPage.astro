@@ -25,7 +25,6 @@ import Layout from "@/layouts/Layout.astro";
 import { getMediaURL } from "@/lib/media";
 
 import LandingHero from "./LandingHero.astro";
-import PageHero from "@/ui/sections/PageHero.astro";
 import Block from "@/ui/sections/Block.astro";
 import BenefitsRow from "@/ui/sections/BenefitsRow.astro";
 import HouseModelsCarousel from "@/ui/sections/HouseModelsCarousel.vue";
@@ -123,29 +122,17 @@ const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
   <!-- Value proposition -->
   <!-- ── 01 · Hero (full-bleed) ────────────────────────────────── -->
   <div class="full-width">
-    <!-- <LandingHero
-    heading={hero.title}
-    body={hero.subtitle}
-    warrantyText={hero.eyebrow}
-    /> -->
-    <PageHero
+    <LandingHero
       eyebrow={hero.eyebrow}
-      title={hero.title}
+      heading={hero.title}
       highlight={hero.highlight}
-      subtitle={hero.subtitle}
+      body={hero.subtitle}
       image={heroImage}
       imageAlt={hero.imageAlt}
-      align="center"
-    >
-      <Fragment slot="actions">
-        <Button client:load variant="primary" size="lg" href={hero.primaryCta.href}>
-          {hero.primaryCta.label}
-        </Button>
-        <Button client:load variant="secondary" size="lg" href={hero.secondaryCta.href}>
-          {hero.secondaryCta.label}
-        </Button>
-      </Fragment>
-    </PageHero>
+      primaryCta={hero.primaryCta}
+      secondaryCta={hero.secondaryCta}
+      guarantees={trustStats.badges}
+    />
   </div>
 
   <!-- Quality badges (certification marks) -->
