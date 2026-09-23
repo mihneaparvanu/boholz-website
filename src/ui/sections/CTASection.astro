@@ -2,9 +2,9 @@
 type Tone = "surface" | "accent" | "brand" | "image";
 
 interface Props {
-  title: string;
+  heading: string;
   highlight?: string;
-  subtitle?: string;
+  lede?: string;
   tone?: Tone;
   image?: string;
   imageAlt?: string;
@@ -13,9 +13,9 @@ interface Props {
 }
 
 const {
-  title,
+  heading,
   highlight,
-  subtitle,
+  lede,
   tone = "surface",
   image,
   imageAlt = "",
@@ -38,10 +38,10 @@ const resolvedTone: Tone = image ? "image" : tone;
   <div class="inner">
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}
     <h2>
-      {title}
+      {heading}
       {highlight && <span class="highlight"> {highlight}</span>}
     </h2>
-    {subtitle && <p class="subtitle">{subtitle}</p>}
+    {lede && <p class="subtitle">{lede}</p>}
     {
       Astro.slots.has("actions") && (
         <div class="actions">

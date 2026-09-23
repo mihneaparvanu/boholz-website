@@ -23,9 +23,9 @@ export const singleFamilyContent: LandingPageContent = {
 
   hero: {
     eyebrow: "Ihr Einfamilienhaus aus Holz",
-    title: "Das Einfamilienhaus,",
+    heading: "Das Einfamilienhaus,",
     highlight: "das zu Ihnen passt.",
-    subtitle:
+    lede:
       "Wir bauen Ihr Einfamilienhaus aus Holz in Deutschland – individuell geplant und schlüsselfertig übergeben. Ein Zuhause, das genau zu Ihrer Familie, Ihrem Alltag und Ihrem Grundstück passt.",
     imageAlt:
       "Modernes Einfamilienhaus in Holzbauweise von BoHolz Haus — klare Architektur mit Holzfassade",
@@ -129,9 +129,9 @@ export const singleFamilyContent: LandingPageContent = {
 
   featureBody: {
     eyebrow: "Individuelle Planung",
-    title: "Persönlich geplant.",
+    heading: "Persönlich geplant.",
     highlight: "Für Ihre Familie.",
-    subtitle: "Ein Einfamilienhaus, das Ihre Handschrift trägt.",
+    lede: "Ein Einfamilienhaus, das Ihre Handschrift trägt.",
     paragraphs: [
       "Aus Ihren Vorstellungen entsteht individuelle Architektur. Gemeinsam entwickeln wir den Grundriss Ihres Einfamilienhauses, wählen die passende Ausbaustufe und gestalten die Details, die aus einem Haus Ihr Zuhause machen.",
       "Beginnen Sie jetzt mit der Planung Ihres Einfamilienhauses – persönlich begleitet von der ersten Idee bis zur Umsetzung.",
@@ -214,9 +214,9 @@ export const singleFamilyContent: LandingPageContent = {
 
   midPageCta: {
     eyebrow: "Kostenlos und unverbindlich",
-    title: "Holen Sie sich jetzt den",
+    heading: "Holen Sie sich jetzt den",
     highlight: "Hauskatalog.",
-    subtitle:
+    lede:
       "Alle Grundrisse, Ausstattungen und Preise für Ihr Einfamilienhaus — als PDF, direkt nach dem Absenden.",
     tone: "brand",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },

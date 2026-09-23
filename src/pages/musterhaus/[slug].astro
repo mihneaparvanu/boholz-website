@@ -31,9 +31,9 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
   <div class="full-width">
     <PageHero
       eyebrow="Musterhaus"
-      title={showhouse.title.replace("Musterhaus ", "")}
+      heading={showhouse.title.replace("Musterhaus ", "")}
       highlight="erleben."
-      subtitle={showhouse.address ?? `Musterhaus in ${showhouse.city}`}
+      lede={showhouse.address ?? `Musterhaus in ${showhouse.city}`}
       image={hero?.path}
       imageAlt={hero?.alt ?? showhouse.title}
       align="center"
@@ -130,9 +130,9 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
 
   <div class="full-width">
     <CTASection
-      title="Lust auf einen"
+      heading="Lust auf einen"
       highlight="Termin?"
-      subtitle="Sprechen Sie mit uns — Beratung im Musterhaus oder Vor-Ort-Termin auf Ihrem Bauplatz."
+      lede="Sprechen Sie mit uns — Beratung im Musterhaus oder Vor-Ort-Termin auf Ihrem Bauplatz."
     >
       <Fragment slot="actions">
         <Button variant="primary" size="lg" href="/kontakt">Termin vereinbaren</Button>

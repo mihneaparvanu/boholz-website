@@ -22,9 +22,9 @@ export const bungalowContent: LandingPageContent = {
 
   hero: {
     eyebrow: "Barrierefrei Wohnen",
-    title: "Ihr Bungalow als",
+    heading: "Ihr Bungalow als",
     highlight: "Fertighaus aus Holz.",
-    subtitle:
+    lede:
       "Ob altersgerecht, rollstuhlgerecht oder einfach bequem — ein BoHolz-Bungalow bietet Ihnen Sicherheit, Unabhängigkeit und komfortables Wohnen auf einer Ebene.",
     imageAlt:
       "BoHolz-Bungalow Schäfer-Haus 134/22 — ebenerdiges Wohnen auf einer Ebene",
@@ -126,7 +126,7 @@ export const bungalowContent: LandingPageContent = {
 
   featureBody: {
     eyebrow: "Barrierefreies Wohnen",
-    title: "Komfort und Sicherheit",
+    heading: "Komfort und Sicherheit",
     highlight: "für jedes Alter.",
     paragraphs: [
       "Ein barrierefreies Zuhause bedeutet mehr als stufenlose Übergänge — es steht für Unabhängigkeit, Sicherheit und täglichen Komfort.",
@@ -210,9 +210,9 @@ export const bungalowContent: LandingPageContent = {
 
   midPageCta: {
     eyebrow: "Kostenlos und unverbindlich",
-    title: "Holen Sie sich jetzt den",
+    heading: "Holen Sie sich jetzt den",
     highlight: "Hauskatalog.",
-    subtitle:
+    lede:
       "Alle Grundrisse, Ausstattungen und Preise für Ihren Bungalow — als PDF, direkt nach dem Absenden.",
     tone: "brand",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },

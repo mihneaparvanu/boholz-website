@@ -23,9 +23,9 @@ export const multiFamilyContent: LandingPageContent = {
 
   hero: {
     eyebrow: "Mehr Raum für Familien",
-    title: "Ihr Haus für",
+    heading: "Ihr Haus für",
     highlight: "mehrere Generationen.",
-    subtitle:
+    lede:
       "Flexible Wohnlösungen aus Holz — für Familien, die zusammen leben, ohne aufeinander zu wohnen. Vom Zweifamilien- bis zum 16-Einheiten-Haus.",
     imageAlt:
       "Mehrfamilienhaus von BoHolz Haus — großzügige Architekturvisualisierung mit mehreren Wohneinheiten",
@@ -130,7 +130,7 @@ export const multiFamilyContent: LandingPageContent = {
 
   featureBody: {
     eyebrow: "Mehr Raum, mehr Möglichkeiten",
-    title: "Mehr Raum,",
+    heading: "Mehr Raum,",
     highlight: "mehr Möglichkeiten.",
     paragraphs: [
       "Ob für Familien oder zur Vermietung — ein Mehrfamilienhaus bietet Platz, Flexibilität und langfristige Wertbeständigkeit.",
@@ -213,9 +213,9 @@ export const multiFamilyContent: LandingPageContent = {
 
   midPageCta: {
     eyebrow: "Kostenlos und unverbindlich",
-    title: "Holen Sie sich jetzt den",
+    heading: "Holen Sie sich jetzt den",
     highlight: "Hauskatalog.",
-    subtitle:
+    lede:
       "Alle Grundrisse, Ausstattungen und Preise für Ihr Mehrfamilienhaus — als PDF, direkt nach dem Absenden.",
     tone: "brand",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },

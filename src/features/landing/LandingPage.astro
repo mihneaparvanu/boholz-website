@@ -6,11 +6,12 @@
  * by the `LandingPageContent` it passes in. Grouped into five conversion
  * beats (see the blueprint block in the markup below):
  *
- *   HERO      hero + certification marks
- *   FEATURE   image band → category body
+ *   HERO      hero → certification marks
+ *   SHOW      model carousel → category body (two-column prose)
  *   GALLERY   optional, LP-only (renders when `content.gallery` is set)
- *   BENEFITS  models → benefits → audience
- *   FORM      testimonials → CTA (single catalog ask) → FAQ → brochure form (#anfordern)
+ *   ASK       single catalog CTA — one button, anchored to #anfordern
+ *   BENEFITS  benefits row → audience
+ *   FORM      testimonials → FAQ → brochure form (#anfordern)
  *
  * Primary CTAs anchor to #anfordern rather than navigating away — paid
  * traffic should convert here, not elsewhere on the site. Secondary CTAs
@@ -28,7 +29,6 @@ import LandingHero from "./LandingHero.astro";
 import Block from "@/ui/sections/Block.astro";
 import BenefitsRow from "@/ui/sections/BenefitsRow.astro";
 import HouseModelsCarousel from "@/ui/sections/HouseModelsCarousel.vue";
-import ImageBand from "@/ui/sections/ImageBand.astro";
 import AudienceBlock from "@/ui/sections/AudienceBlock.astro";
 import TwoColumn from "@/ui/sections/TwoColumn.astro";
 import TestimonialBand from "@/ui/sections/TestimonialBand.astro";
@@ -59,7 +59,6 @@ const {
   benefitsIntro,
   benefits,
   houses,
-  featureVisual,
   audience,
   featureBody,
   testimonials,
@@ -92,7 +91,6 @@ const filteredModels = allModels
 const houseCards = filteredModels.map((m) => toHouseModelCard(m));
 
 const heroImage = getMediaURL(hero.imageFallbackPath);
-const featureVisualImage = getMediaURL(featureVisual.imageFallbackPath);
 const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
 ---
 
@@ -124,9 +122,9 @@ const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
   <div class="full-width">
     <LandingHero
       eyebrow={hero.eyebrow}
-      heading={hero.title}
+      heading={hero.heading}
       highlight={hero.highlight}
-      body={hero.subtitle}
+      lede={hero.lede}
       image={heroImage}
       imageAlt={hero.imageAlt}
       primaryCta={hero.primaryCta}
@@ -141,27 +139,39 @@ const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
     <ProofSection />
   </Block>
 
-  <!-- ═══════════════════════ FEATURE · Meet <HouseCategory> ═══════════════════════ -->
-  <!-- Meet the category — visual -->
-  <!-- ── 05 · Feature visual (full-bleed lifestyle band) ────────── -->
-  <ImageBand
-    eyebrow={featureVisual.eyebrow}
-    heading={featureVisual.heading}
-    highlight={featureVisual.highlight}
-    lede={featureVisual.lede}
-    image={featureVisualImage}
-    imageAlt={featureVisual.imageAlt}
-    rule
-  />
+  <!-- ═══════════════════════ SHOW · the models of this category ═══════════════════════ -->
+  <Block
+    id="hausmodelle"
+    eyebrow={houses.eyebrow}
+    heading={houses.heading}
+    highlight={houses.highlight}
+    lede={houses.lede}
+  >
+    {
+      houseCards.length > 0 ? (
+        <HouseModelsCarousel
+          client:visible
+          models={houseCards}
+          ariaLabel="Hausmodelle dieser Kategorie"
+        />
+      ) : (
+        <p class="empty">
+          Aktuell keine Modelle in dieser Kategorie. Bitte sehen Sie sich
+          <a href="/hauser"> die vollständige Übersicht </a>
+          an.
+        </p>
+      )
+    }
+  </Block>
 
   <!-- Meet the category — body -->
   <!-- ── 07 · Feature body (two-column prose) ───────────────────── -->
   <Block id="nachhaltigkeit">
     <TwoColumn
       eyebrow={featureBody.eyebrow}
-      title={featureBody.title}
+      heading={featureBody.heading}
       highlight={featureBody.highlight}
-      subtitle={featureBody.subtitle}
+      lede={featureBody.lede}
       image={featureBodyImage}
       imageAlt={featureBody.imageAlt}
       reverse={featureBody.reverse}
@@ -195,35 +205,28 @@ const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
       <LandingGallery images={content.gallery.images} />
     </Block>
   )}
-
-
-  <!-- The models of this category -->
-  <!-- ── 04 · House showcase ───────────────────────────────────── -->
-  <Block
-    id="hausmodelle"
-    eyebrow={houses.eyebrow}
-    heading={houses.heading}
-    highlight={houses.highlight}
-    lede={houses.lede}
-  >
-    {
-      houseCards.length > 0 ? (
-        <HouseModelsCarousel
-          client:visible
-          models={houseCards}
-          ariaLabel="Empfohlene Hausmodelle"
-        />
-      ) : (
-        <p class="empty">
-          Aktuell keine empfohlenen Modelle für diese Kategorie.
-          Bitte sehen Sie sich
-          <a href="/hauser"> die vollständige Übersicht </a>
-          an.
-        </p>
-      )
-    }
-  </Block>
-
+  
+  <!-- ═══════════════════════ ASK · single catalog CTA ═══════════════════════ -->
+  <!-- One button only: get the catalog. Sits after the gallery so the ask
+       lands once the category has actually been shown, and anchors to
+       #anfordern rather than sending paid traffic off the page. -->
+  <div class="full-width">
+    <CTASection
+      eyebrow={midPageCta.eyebrow}
+      heading={midPageCta.heading}
+      highlight={midPageCta.highlight}
+      lede={midPageCta.lede}
+      tone={midPageCta.tone}
+      image={midPageCta.imageFallbackPath ? getMediaURL(midPageCta.imageFallbackPath) : undefined}
+      imageAlt={midPageCta.imageAlt ?? ""}
+    >
+      <Fragment slot="actions">
+        <Button client:load variant="primary" size="lg" href={midPageCta.primaryCta.href}>
+          {midPageCta.primaryCta.label}
+        </Button>
+      </Fragment>
+    </CTASection>
+  </div>
 
   <!-- ═══════════════════════ BENEFITS ═══════════════════════ -->
   <!-- ── 03 · Benefits row ─────────────────────────────────────── -->
@@ -269,26 +272,7 @@ const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
     testimonials={testimonials.testimonials}
   />
 
-  <!-- ═══════════════════════ CTA · single catalog ask, straight after the emotional social proof ═══════════════════════ -->
-  <!-- Placed right after the testimonials so the emotional peak is followed
-       instantly by one clear ask. One button only: get the catalog. -->
-  <div class="full-width">
-    <CTASection
-      eyebrow={midPageCta.eyebrow}
-      title={midPageCta.title}
-      highlight={midPageCta.highlight}
-      subtitle={midPageCta.subtitle}
-      tone={midPageCta.tone}
-      image={midPageCta.imageFallbackPath ? getMediaURL(midPageCta.imageFallbackPath) : undefined}
-      imageAlt={midPageCta.imageAlt ?? ""}
-    >
-      <Fragment slot="actions">
-        <Button client:load variant="primary" size="lg" href={midPageCta.primaryCta.href}>
-          {midPageCta.primaryCta.label}
-        </Button>
-      </Fragment>
-    </CTASection>
-  </div>
+
 
 
   <!-- Most common FAQs about this type of house -->

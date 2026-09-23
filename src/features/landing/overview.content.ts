@@ -23,31 +23,31 @@ import type { LandingPageContent } from "./landing.types";
  * Valid keys: `current` (default), `classic`, `brand`.
  */
 type HeroCopy = {
-  title: string;
+  heading: string;
   highlight: string;
-  subtitle: string;
+  lede: string;
 };
 
 export const heroVariants = {
   // Variant 1 — the current launch copy. Default.
   current: {
-    title: "Premium Fertighäuser",
+    heading: "Premium Fertighäuser",
     highlight: "aus Holz.",
-    subtitle:
+    lede:
       "Wir bauen Premium-Fertighäuser aus Holz in Deutschland – persönlich begleitet von der ersten Idee bis zur Hausübergabe. Für ein Zuhause, das zu Ihnen und Ihrer Lebenssituation passt.",
   },
   // Variant 2 — the previous home hero (see `features/Home/Hero/Hero.vue`).
   classic: {
-    title: "Fertighäuser in Zimmermannsqualität.",
+    heading: "Fertighäuser in Zimmermannsqualität.",
     highlight: "Für Generationen.",
-    subtitle:
+    lede:
       "Unsere barrierefreien Fertighäuser aus Holz vereinen höchste Energieeffizienz mit meisterhaftem Handwerk. So sparen Sie Energiekosten und gewinnen wertvolle Lebensqualität für die ganze Familie.",
   },
   // Variant 3 — brand-led new copy.
   brand: {
-    title: "Fertighäuser von",
+    heading: "Fertighäuser von",
     highlight: "BoHolz-Haus.",
-    subtitle:
+    lede:
       "Präzise gefertigter Holzbau aus Deutschland — Ihr Traumhaus, individuell geplant und schlüsselfertig übergeben.",
   },
 } as const satisfies Record<string, HeroCopy>;
@@ -69,9 +69,9 @@ export const overviewContent: LandingPageContent = {
 
   hero: {
     eyebrow: "Finden Sie jetzt Ihr Traumhaus",
-    title: heroVariants[heroVariant].title,
+    heading: heroVariants[heroVariant].heading,
     highlight: heroVariants[heroVariant].highlight,
-    subtitle: heroVariants[heroVariant].subtitle,
+    lede: heroVariants[heroVariant].lede,
     imageAlt:
       "Premium-Stadtvilla in Holzbauweise von BoHolz Haus — moderne Architektur mit klaren Linien",
     imageFallbackPath: "/images/brand/hero.webp",
@@ -172,9 +172,9 @@ export const overviewContent: LandingPageContent = {
 
   featureBody: {
     eyebrow: "Individuelle Planung",
-    title: "Persönlich geplant.",
+    heading: "Persönlich geplant.",
     highlight: "Für Sie gemacht.",
-    subtitle: "Ein Zuhause, das Ihre Handschrift trägt.",
+    lede: "Ein Zuhause, das Ihre Handschrift trägt.",
     paragraphs: [
       "Aus Ihren Vorstellungen entsteht individuelle Architektur. Gemeinsam entwickeln wir einen Grundriss, wählen die passende Ausbaustufe und gestalten die Details, die aus einem Haus Ihr Zuhause machen.",
       "Beginnen Sie jetzt mit der Planung Ihres BoHolz-Hauses – persönlich begleitet von der ersten Idee bis zur Umsetzung.",
@@ -256,9 +256,9 @@ export const overviewContent: LandingPageContent = {
 
   midPageCta: {
     eyebrow: "Nächster Schritt",
-    title: "Bereit für Ihr",
+    heading: "Bereit für Ihr",
     highlight: "Traumhaus?",
-    subtitle:
+    lede:
       "Sie sind unverbindlich beraten — oder direkt ein Angebot anfordern.",
     tone: "surface",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },

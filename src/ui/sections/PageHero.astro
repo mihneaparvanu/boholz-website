@@ -1,8 +1,8 @@
 ---
 interface Props {
-  title: string;
+  heading: string;
   highlight?: string;
-  subtitle?: string;
+  lede?: string;
   image?: string;
   imageAlt?: string;
   align?: "left" | "center";
@@ -17,9 +17,9 @@ interface Props {
 }
 
 const {
-  title,
+  heading,
   highlight,
-  subtitle,
+  lede,
   image,
   imageAlt = "",
   align = "center",
@@ -50,10 +50,10 @@ const hasImage = Boolean(image);
   <div class="inner">
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}
     <h1>
-      {title}
+      {heading}
       {highlight && <span class="highlight"> {highlight}</span>}
     </h1>
-    {subtitle && <p class="subtitle">{subtitle}</p>}
+    {lede && <p class="subtitle">{lede}</p>}
     {
       Astro.slots.has("actions") && (
         <div class="actions">

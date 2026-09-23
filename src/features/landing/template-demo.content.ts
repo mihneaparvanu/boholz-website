@@ -20,9 +20,9 @@ export const templateDemoContent: LandingPageContent = {
 
   hero: {
     eyebrow: "Here goes the eyebrow",
-    title: "Here goes the hero",
+    heading: "Here goes the hero",
     highlight: "headline.",
-    subtitle: LOREM,
+    lede: LOREM,
     imageAlt: "Placeholder image — mountain Einfamilienhaus",
     imageFallbackPath: IMG,
     preferredCategorySlug: "einfamilienhaus",
@@ -79,9 +79,9 @@ export const templateDemoContent: LandingPageContent = {
 
   featureBody: {
     eyebrow: "Here goes the eyebrow",
-    title: "Here goes the two-column",
+    heading: "Here goes the two-column",
     highlight: "feature.",
-    subtitle: "Here goes the subtitle.",
+    lede: "Here goes the subtitle.",
     paragraphs: [LOREM, LOREM],
     imageFallbackPath: IMG,
     imageAlt: "Placeholder image — mountain Einfamilienhaus",
@@ -142,9 +142,9 @@ export const templateDemoContent: LandingPageContent = {
 
   midPageCta: {
     eyebrow: "Here goes the eyebrow",
-    title: "Here goes the closing",
+    heading: "Here goes the closing",
     highlight: "CTA.",
-    subtitle: LOREM,
+    lede: LOREM,
     tone: "brand",
     primaryCta: { label: "Get the house catalog now", href: "#anfordern" },
     secondaryCta: { label: "Secondary CTA", href: "/kontakt" },

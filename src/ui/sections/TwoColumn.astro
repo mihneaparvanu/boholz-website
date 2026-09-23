@@ -1,8 +1,8 @@
 ---
 interface Props {
-  title: string;
+  heading: string;
   highlight?: string;
-  subtitle?: string;
+  lede?: string;
   image: string;
   imageAlt: string;
   reverse?: boolean;
@@ -10,9 +10,9 @@ interface Props {
 }
 
 const {
-  title,
+  heading,
   highlight,
-  subtitle,
+  lede,
   image,
   imageAlt,
   reverse = false,
@@ -28,10 +28,10 @@ const {
   <div class="content">
     {eyebrow && <p class="eyebrow">{eyebrow}</p>}
     <h2>
-      {title}
+      {heading}
       {highlight && <span class="highlight"> {highlight}</span>}
     </h2>
-    {subtitle && <p class="subtitle">{subtitle}</p>}
+    {lede && <p class="subtitle">{lede}</p>}
     {
       Astro.slots.has("default") && (
         <div class="body">

@@ -19,7 +19,7 @@ interface Props {
   heading: string;
   /** Italic-serif accent appended to the heading. */
   highlight?: string;
-  body: string;
+  lede: string;
   /** Already resolved through getMediaURL() by the caller. */
   image: string;
   imageAlt?: string;
@@ -33,7 +33,7 @@ const {
   eyebrow,
   heading,
   highlight,
-  body,
+  lede,
   image,
   imageAlt = "",
   primaryCta,
@@ -56,7 +56,7 @@ const {
       {highlight && <span class="highlight"> {highlight}</span>}
     </h1>
 
-    <p class="body">{body}</p>
+    <p class="body">{lede}</p>
 
     {
       (primaryCta || secondaryCta) && (

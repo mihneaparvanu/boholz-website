@@ -37,10 +37,10 @@ export type { FAQItem };
  */
 export interface LandingHero {
   eyebrow: string;
-  title: string;
+  heading: string;
   /** Italic-serif accent appended to the title. */
   highlight?: string;
-  subtitle: string;
+  lede: string;
   imageAlt: string;
   /**
    * Static R2 path used as a fallback if the DB has no hero for the
@@ -153,9 +153,9 @@ export interface LandingAudienceBlock {
  */
 export interface LandingFeatureBody {
   eyebrow?: string;
-  title: string;
+  heading: string;
   highlight?: string;
-  subtitle?: string;
+  lede?: string;
   paragraphs: string[];
   imageFallbackPath: string;
   imageAlt: string;
@@ -222,9 +222,9 @@ export interface LandingLeadForm {
 
 export interface LandingMidPageCta {
   eyebrow?: string;
-  title: string;
+  heading: string;
   highlight?: string;
-  subtitle?: string;
+  lede?: string;
   /** `surface` (default), `accent` (light brand blue), `brand` (deep brand blue #0F598A), or `image` (with imageFallbackPath). */
   tone?: "surface" | "accent" | "brand" | "image";
   imageFallbackPath?: string;
