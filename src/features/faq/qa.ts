@@ -25,13 +25,13 @@ export const qaCategories: QuestionCategory[] = [
         id: "was-ist-fertighaus",
         question: "Was ist ein Fertighaus?",
         answer:
-          "<p>Ein Fertighaus ist ein Wohngebäude, dessen wesentliche Bauteile industriell vorgefertigt und anschließend auf dem Grundstück montiert werden. Es zeichnet sich durch eine kürzere Bauzeit, präzise Planung und oft höhere Energieeffizienz im Vergleich zu konventionell gebauten Häusern aus. Fertighäuser bieten eine große Vielfalt an Designs und Anpassungsmöglichkeiten, sodass sie individuell auf die Bedürfnisse der Bauherren zugeschnitten werden können.</p>",
+          "<p>Bei einem Fertighaus werden wesentliche Bauteile im Werk vorgefertigt und anschließend auf dem Grundstück montiert. Die Vorfertigung ermöglicht klar abgestimmte Planungs- und Montageabläufe. Architektur, Grundriss und Ausstattung können dabei innerhalb der technischen und baurechtlichen Möglichkeiten individuell geplant werden.</p>",
       },
       {
         id: "materialien",
         question: "Welche Materialien verwendet BoHolz Haus?",
         answer:
-          "<p>BoHolz Haus verwendet für den Bau seiner Fertighäuser primär Holz als Hauptbaustoff, insbesondere für die tragende Konstruktion. Die Außenwände bestehen aus einer Holzrahmenkonstruktion, die mit Holzfaserdämmplatten für eine effektive Wärmedämmung ausgestattet ist. Zusätzlich kommen weitere natürliche Materialien zum Einsatz, um ein angenehmes Raumklima und eine hohe Energieeffizienz zu gewährleisten.</p>",
+          "<p>Holz bildet einen wesentlichen Bestandteil der Wand-, Decken- und Dachkonstruktionen unserer Fertighäuser. Die Außenwände verbinden eine Holzrahmenkonstruktion mit einer 60 mm starken Holzfaserdämmplatte, einem Dämmstoff der Wärmeleitgruppe 035, einer OSB-4-Platte, einer Luftdichtheitsebene sowie einer Gipskarton-Feuerschutzplatte. Der genaue Aufbau und die jeweiligen Materialstärken richten sich nach der gewählten Wandausführung.</p>",
       },
       {
         id: "richtiger-haustyp",
