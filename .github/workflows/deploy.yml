@@ -133,10 +133,9 @@ jobs:
             set -euo pipefail
 
             APP_DIR="${{ secrets.DEPLOY_PATH }}"
-            CONTAINER="boholz-frontend"
+            CONTAINER="boholz-website-dev"
             NETWORK="web-network"
             DB_CONTAINER="sn-c1-db"
-            HOST_PORT="${{ vars.HOST_PORT || '4321' }}"
 
             # Runtime secrets (DATABASE_URL, S3 creds, TURNSTILE_SECRET_KEY)
             # live here and are read by node at boot — never baked into the
