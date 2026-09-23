@@ -157,11 +157,14 @@ jobs:
             docker pull "$IMAGE"
 
             docker rm -f "$CONTAINER" 2>/dev/null || true
+            # No published host port: the gateway (sn-c1-gateway) reaches the
+            # container by name on web-network and the tunnel routes
+            # dev.boholz-haus.de → it. A -p would also trip `set -u` here,
+            # since HOST_PORT is no longer defined.
             docker run -d \
               --name "$CONTAINER" \
               --restart unless-stopped \
               --network "$NETWORK" \
-              -p "${HOST_PORT}:4321" \
               --env-file "$APP_DIR/.env" \
               "$IMAGE"
 
