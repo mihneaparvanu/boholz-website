@@ -117,8 +117,6 @@ const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
      ================================================================ */}
 
   <!-- ═══════════════════════ HERO · value proposition + quality badges + guarantee ═══════════════════════ -->
-  <!-- Value proposition -->
-  <!-- ── 01 · Hero (full-bleed) ────────────────────────────────── -->
   <div class="full-width">
     <LandingHero
       eyebrow={hero.eyebrow}
@@ -134,10 +132,34 @@ const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
   </div>
 
   <!-- Quality badges (certification marks) -->
-  <!-- ── 02 · Proof strip (certification marks) ─────────────────── -->
   <Block>
     <ProofSection />
   </Block>
+
+    <!-- Meet the category — body -->
+  <Block id="nachhaltigkeit">
+    <TwoColumn
+      eyebrow={featureBody.eyebrow}
+      heading={featureBody.heading}
+      highlight={featureBody.highlight}
+      lede={featureBody.lede}
+      image={featureBodyImage}
+      imageAlt={featureBody.imageAlt}
+      reverse={featureBody.reverse}
+    >
+      <div class="prose">
+        {featureBody.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+      {featureBody.cta && (
+        <Fragment slot="actions">
+          <Button client:load variant="primary" size="md" href={featureBody.cta.href}>
+            {featureBody.cta.label}
+          </Button>
+        </Fragment>
+      )}
+    </TwoColumn>
+  </Block>
+
 
   <!-- ═══════════════════════ SHOW · the models of this category ═══════════════════════ -->
   <Block
@@ -163,32 +185,6 @@ const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
       )
     }
   </Block>
-
-  <!-- Meet the category — body -->
-  <!-- ── 07 · Feature body (two-column prose) ───────────────────── -->
-  <Block id="nachhaltigkeit">
-    <TwoColumn
-      eyebrow={featureBody.eyebrow}
-      heading={featureBody.heading}
-      highlight={featureBody.highlight}
-      lede={featureBody.lede}
-      image={featureBodyImage}
-      imageAlt={featureBody.imageAlt}
-      reverse={featureBody.reverse}
-    >
-      <div class="prose">
-        {featureBody.paragraphs.map((p) => <p>{p}</p>)}
-      </div>
-      {featureBody.cta && (
-        <Fragment slot="actions">
-          <Button client:load variant="primary" size="md" href={featureBody.cta.href}>
-            {featureBody.cta.label}
-          </Button>
-        </Fragment>
-      )}
-    </TwoColumn>
-  </Block>
-
 
     <!-- ═══════════════════════ GALLERY · LP-only (new) ═══════════════════════ -->
 

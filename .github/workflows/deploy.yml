@@ -21,7 +21,9 @@ name: Build & deploy (dev)
 #   PUBLIC_GTM_ID              GTM-XXXXXXX
 #   DEPLOY_ENABLED             "true" to turn the deploy job on (leave unset
 #                              until a built image has been verified)
-#   HOST_PORT                  host port → container 4321 (default 4321)
+#
+# The container publishes no host port — sn-c1-gateway routes
+# dev.boholz-haus.de to it by name on web-network.
 #
 # REPO SECRETS
 #   DEPLOY_HOST      the dev box, e.g. dev.boholz-haus.de
