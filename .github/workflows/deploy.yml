@@ -1,21 +1,41 @@
 name: Build & deploy (dev)
 
-# Pipeline:
-#   1. Build image with Railpack (BuildKit inside the runner)
-#   2. Push image to GHCR as ghcr.io/<owner>/<repo>:dev  + :dev-<sha>
-#   3. SSH into the dev host and (re)run the container against the new image.
+# Push to `dev` → build the image from ./Dockerfile → push to GHCR (private)
+# → SSH into the dev box → pull → restart the container.
 #
-# REQUIRED GITHUB SECRETS (Repo → Settings → Secrets and variables → Actions):
-#   DEPLOY_HOST     e.g. sn-c1.example.com   (the dev box, public-reachable)
-#   DEPLOY_USER     e.g. m
-#   DEPLOY_SSH_KEY  full private key (PEM) authorised on the dev host
-#   DEPLOY_PATH     e.g. /opt/clients/boholz/boholz-website/apps/boholz-web-front
-#                   (must contain a runtime .env file at $DEPLOY_PATH/.env)
+# WHY THE DOCKERFILE AND NOT RAILPACK
+#   Astro/Vite inline PUBLIC_* vars into the client bundle at BUILD time, so
+#   they must be present during `bun run build` — passing them at `docker run`
+#   does nothing. Railpack ignores ./Dockerfile and never received them, which
+#   shipped images with an empty PUBLIC_ASSETS_URL (every photo 404s). The
+#   Dockerfile takes them as ARGs, so we build with it and pass --build-arg.
 #
-# REPO VARIABLES (Settings → Variables → Actions):
-#   DEPLOY_ENABLED  set to "true" to enable the deploy job. Until then the
-#                   workflow only builds + pushes (safe to add secrets first).
-#   HOST_PORT       host port → container's 4321 (default 4321)
+#   These three are NOT secrets — they are readable in View-Source — so they
+#   live in repo Variables, not Secrets. Never pass a real secret as a build
+#   arg: it is permanently visible in `docker history`. Build-time secrets
+#   (none needed here) belong in a BuildKit `--mount=type=secret`.
+#
+# REPO VARIABLES  (Settings → Secrets and variables → Actions → Variables)
+#   PUBLIC_ASSETS_URL          https://boholz.sadnights.dev/m
+#   PUBLIC_TURNSTILE_SITE_KEY  Cloudflare Turnstile site key
+#   PUBLIC_GTM_ID              GTM-XXXXXXX
+#   DEPLOY_ENABLED             "true" to turn the deploy job on (leave unset
+#                              until a built image has been verified)
+#   HOST_PORT                  host port → container 4321 (default 4321)
+#
+# REPO SECRETS
+#   DEPLOY_HOST      the dev box, e.g. dev.boholz-haus.de
+#   DEPLOY_USER      ssh user (must be the same user that ran `docker login`)
+#   DEPLOY_SSH_KEY   full private key, PEM
+#   DEPLOY_PATH      dir on the box holding the runtime .env
+#   DEPLOY_PORT      optional, defaults to 22
+#
+# VERIFY A BUILD BEFORE ENABLING DEPLOY
+#   docker pull ghcr.io/<owner>/<repo>:dev
+#   docker run --rm --entrypoint sh ghcr.io/<owner>/<repo>:dev \
+#     -c "grep -rl 'boholz.sadnights.dev' dist/client | head"
+#   No hits ⇒ PUBLIC_ASSETS_URL did not bake in; do not deploy.
+#   docker history --no-trunc <image>   ⇒ confirm no secret leaked in.
 
 on:
   push:
@@ -35,42 +55,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     outputs:
-      image_lc: ${{ steps.meta.outputs.image_lc }}
+      image: ${{ steps.meta.outputs.image }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
-
-      - name: Start BuildKit daemon
-        run: |
-          docker run --rm --privileged -d --name buildkit moby/buildkit:latest
-          echo "BUILDKIT_HOST=docker-container://buildkit" >> "$GITHUB_ENV"
-
-      - name: Compute lowercase image name
+      # GHCR requires a lowercase path; GitHub owner/repo may not be.
+      - name: Compute image name
         id: meta
         run: |
-          IMAGE_LC=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
-          echo "image_lc=$IMAGE_LC" >> "$GITHUB_OUTPUT"
-          echo "IMAGE_LC=$IMAGE_LC" >> "$GITHUB_ENV"
+          IMAGE="${REGISTRY}/$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')"
+          echo "image=$IMAGE" >> "$GITHUB_OUTPUT"
 
-      - name: Install Railpack CLI
-        run: |
-          curl -sSL https://railpack.com/install.sh | bash
-          echo "$HOME/.railpack/bin" >> "$GITHUB_PATH"
+      # Provides the BuildKit builder that build-push-action drives. Replaces
+      # the hand-rolled `docker run --privileged moby/buildkit` we used before.
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Build image
-        run: |
-          railpack build . \
-            --name "$REGISTRY/$IMAGE_LC:dev-${{ github.sha }}"
-
-      - name: Tag rolling :dev
-        run: |
-          docker tag "$REGISTRY/$IMAGE_LC:dev-${{ github.sha }}" \
-                     "$REGISTRY/$IMAGE_LC:dev"
-
+      # Must precede the build: build-push-action pushes as part of the build.
       - name: Log in to GHCR
         uses: docker/login-action@v3
         with:
@@ -78,27 +81,48 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push images
+      # :dev is the rolling tag the server pulls. :dev-<sha> is immutable and
+      # is what you roll back to — a tag moves, a sha-pinned tag never does.
+      - name: Build & push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: |
+            ${{ steps.meta.outputs.image }}:dev
+            ${{ steps.meta.outputs.image }}:dev-${{ github.sha }}
+          build-args: |
+            PUBLIC_ASSETS_URL=${{ vars.PUBLIC_ASSETS_URL }}
+            PUBLIC_TURNSTILE_SITE_KEY=${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
+            PUBLIC_GTM_ID=${{ vars.PUBLIC_GTM_ID }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Summary
         run: |
-          docker push "$REGISTRY/$IMAGE_LC:dev-${{ github.sha }}"
-          docker push "$REGISTRY/$IMAGE_LC:dev"
+          {
+            echo "### Image pushed"
+            echo '```'
+            echo "${{ steps.meta.outputs.image }}:dev"
+            echo "${{ steps.meta.outputs.image }}:dev-${{ github.sha }}"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
   deploy:
     name: Deploy to dev host
     runs-on: ubuntu-latest
     needs: build
-    # Auto-deploy disabled 2026-06-18 — deploys are done manually on the box
-    # (docker build with PUBLIC_* build-args). Railpack ignores the Dockerfile,
-    # so a CI deploy would ship an image without the baked PUBLIC_* vars.
-    # Re-enable by restoring:  if: ${{ vars.DEPLOY_ENABLED == 'true' }}
-    if: false
+    # No separate quality gate is needed: `docker build` runs `bun run build`,
+    # so a broken build produces no image and `needs: build` stops us here.
+    if: ${{ vars.DEPLOY_ENABLED == 'true' }}
     timeout-minutes: 10
 
     steps:
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
         env:
-          IMAGE: ghcr.io/${{ needs.build.outputs.image_lc }}:dev
+          IMAGE: ${{ needs.build.outputs.image }}:dev
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
@@ -111,24 +135,28 @@ jobs:
             APP_DIR="${{ secrets.DEPLOY_PATH }}"
             CONTAINER="boholz-frontend"
             NETWORK="web-network"
+            DB_CONTAINER="sn-c1-db"
             HOST_PORT="${{ vars.HOST_PORT || '4321' }}"
 
+            # Runtime secrets (DATABASE_URL, S3 creds, TURNSTILE_SECRET_KEY)
+            # live here and are read by node at boot — never baked into the
+            # image. Missing file means a container that starts and then 500s
+            # on the first DB query, so fail loudly instead.
             if [ ! -f "$APP_DIR/.env" ]; then
-              echo "ERROR: $APP_DIR/.env is missing on the host at $APP_DIR" >&2
+              echo "ERROR: missing $APP_DIR/.env on the host" >&2
               exit 1
             fi
 
-            # Double-check that our shared web-network exists
             docker network inspect "$NETWORK" >/dev/null 2>&1 \
               || docker network create "$NETWORK"
-              
-            # Ensure the database container is linked to this network
-            docker network connect "$NETWORK" boholz-db 2>/dev/null || true
 
-            # Pull down the finished image built by GitHub
+            # The app resolves the DB by container name (DATABASE_URL points at
+            # sn-c1-db), which only works if both sit on this network. Already
+            # attached ⇒ this errors harmlessly.
+            docker network connect "$NETWORK" "$DB_CONTAINER" 2>/dev/null || true
+
             docker pull "$IMAGE"
 
-            # Remove old container and stand up the fresh one
             docker rm -f "$CONTAINER" 2>/dev/null || true
             docker run -d \
               --name "$CONTAINER" \
@@ -138,6 +166,21 @@ jobs:
               --env-file "$APP_DIR/.env" \
               "$IMAGE"
 
-            # Housekeeping
-            docker image prune -f
-            docker ps --filter "name=$CONTAINER"
+            # Don't report success just because `docker run` returned. Poll
+            # until the app actually answers, and dump logs if it never does.
+            echo "Waiting for the app to respond…"
+            for i in $(seq 1 30); do
+              if docker exec "$CONTAINER" node -e \
+                   "fetch('http://127.0.0.1:4321/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))" \
+                   2>/dev/null; then
+                echo "Healthy after ${i}s."
+                docker image prune -f
+                docker ps --filter "name=$CONTAINER"
+                exit 0
+              fi
+              sleep 1
+            done
+
+            echo "ERROR: app did not become healthy in 30s. Recent logs:" >&2
+            docker logs --tail 50 "$CONTAINER" >&2
+            exit 1
