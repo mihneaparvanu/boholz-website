@@ -47,7 +47,7 @@ export const bungalowContent: LandingPageContent = {
     {
       icon: "leaf",
       title: "Ruhig & geborgen",
-      body: "Holz reguliert das Raumklima auf natürliche Weise — wohnen in entspannter Atmosphäre, das ganze Jahr.",
+      body: "Aufeinander abgestimmte Wand-, Decken- und Dachkonstruktionen bilden die Grundlage für ein angenehmes Wohngefühl.",
       tone: "forest",
     },
     {
@@ -119,9 +119,9 @@ export const bungalowContent: LandingPageContent = {
       },
       {
         icon: "leaf",
-        label: "Naturnah und langlebig",
+        label: "Vielseitig einsetzbar",
         description:
-          "Holz reguliert Feuchtigkeit, dämpft Geräusche und altert würdevoll — ein Material, das mit Ihrem Leben mitspielt.",
+          "Holz lässt sich vielseitig verarbeiten und bildet einen wesentlichen Bestandteil unserer Wand-, Decken- und Dachkonstruktionen.",
       },
     ],
   },
