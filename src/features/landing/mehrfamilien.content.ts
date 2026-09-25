@@ -138,9 +138,9 @@ export const mehrfamilienContent: LandingPageContent = {
       "Ob für Familien oder zur Vermietung – ein Mehrfamilienhaus bietet Platz und Flexibilität.",
       "Bo Holz Haus baut energieeffizient nach KfW-40/55-Standard, mit bis zu 16 Wohneinheiten unter einem Dach.",
     ],
-    imageFallbackPath: "/images/landing/uebersicht/lifestyle-01.webp",
+    imageFallbackPath: "/images/models/zweifamilienhaus/22-282-0/gallery/zweifamilienhaus-22-282-0-gallery-hero.webp",
     imageAlt:
-      "Stadtvilla mit Einliegerwohnung in Holzbauweise — Zweifamilien-Konzept unter einem Dach",
+      "Zweifamilienhaus 22-280 in Holzbauweise von BoHolz Haus",
     reverse: false,
     cta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
