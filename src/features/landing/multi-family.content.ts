@@ -45,8 +45,8 @@ export const multiFamilyContent: LandingPageContent = {
   benefits: [
     {
       icon: "leaf",
-      title: "Gebaut aus Holz",
-      body: "Angenehmes Raumklima und natürliche Materialien — regional gefertigt.",
+      title: "Ruhig & geborgen",
+      body: "Aufeinander abgestimmte Wand-, Decken- und Dachkonstruktionen bilden die Grundlage für ein angenehmes Wohngefühl.",
       tone: "forest",
     },
     {
@@ -117,7 +117,7 @@ export const multiFamilyContent: LandingPageContent = {
         icon: "trending-up",
         label: "Investoren",
         description:
-          "Wertbeständige Holzbauweise nach KfW 40 — niedrige Betriebskosten und hohe Förderfähigkeit.",
+          "KfW Effizienzhaus 40 – niedrige Betriebskosten und Förderfähigkeit der KfW-Bank.",
       },
       {
         icon: "building-2",
@@ -133,7 +133,7 @@ export const multiFamilyContent: LandingPageContent = {
     heading: "Mehr Raum,",
     highlight: "mehr Möglichkeiten.",
     paragraphs: [
-      "Ob für Familien oder zur Vermietung — ein Mehrfamilienhaus bietet Platz, Flexibilität und langfristige Wertbeständigkeit.",
+      "Ob für Familien oder zur Vermietung – ein Mehrfamilienhaus bietet Platz und Flexibilität.",
       "Bo Holz Haus baut energieeffizient nach KfW-40/55-Standard, mit bis zu 16 Wohneinheiten unter einem Dach.",
     ],
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-01.webp",

@@ -54,7 +54,7 @@ export const careerBenefits: IconListItem[] = [
     icon: "sparkles",
     label: "Starke Alleinstellungsmerkmale",
     description:
-      "Premium-Holzbau, klare Ausbaustufen, ausgezeichnetes Preis-Leistungs-Verhältnis — Argumente, die im Verkaufsgespräch tragen.",
+      "Holzbauweise, klar definierte Ausbaustufen und individuelle Planungsmöglichkeiten – überzeugende Argumente für das Verkaufsgespräch.",
   },
   {
     icon: "heart-handshake",
