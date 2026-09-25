@@ -13,7 +13,6 @@ import Button from "@/ui/primitives/Button.vue";
 import { ArrowRight, BookOpen } from "lucide-vue-next";
 import { getMediaURL } from "@/lib/media";
 import FeatureCardPair from "@/features/advantage/FeatureCardPair.vue";
-import LiteYouTube from "@/features/advantage/LiteYouTube.vue";
 import ZigZag, { type ZigZagBlock } from "@/ui/sections/ZigZag.astro";
 import type { FeatureCard } from "@/features/advantage/advantage.types";
 import { keitel } from "@/features/faq/keitel";
@@ -40,9 +39,6 @@ const sustainabilityHero = getMediaURL(
 );
 const sustainabilityWorkshop = getMediaURL(
   "/images/stock/lifestyle/craftsmanship-factory.webp",
-);
-const sustainabilityVideoPoster = getMediaURL(
-  "/images/content/advantage/nachhaltigkeit/video-poster.webp",
 );
 const woodFibreHero = getMediaURL("/images/photography/forest-sunlight.webp");
 const phonestripFlyerCover = getMediaURL(
@@ -521,22 +517,13 @@ Grundlage unserer Häuser. So verbinden wir traditionelle Wertarbeit mit innovat
       </span>
     </p>
 
-    <div class="media-pair">
-      <figure class="media-hero">
-        <img
-          src={sustainabilityWorkshop}
-          alt="Holzbauweise im BoHolz Werk — von der Materialwahl bis zur Fertigung"
-          loading="lazy"
-        />
-      </figure>
-      <LiteYouTube
-        client:visible
-        videoId="0abnY3Re-tU"
-        posterURL={sustainabilityVideoPoster}
-        label="BoHolz — Fertigung erleben"
-        caption="Wie wir bauen und warum — drei Minuten Werksrundgang."
+    <figure class="hero-image">
+      <img
+        src={sustainabilityWorkshop}
+        alt="Holzbauweise im BoHolz Werk — von der Materialwahl bis zur Fertigung"
+        loading="lazy"
       />
-    </div>
+    </figure>
   </Block>
 
   <!-- 5. Holzfaserdämmung ─ Sommer / Winter ---------------------------- -->

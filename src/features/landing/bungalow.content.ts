@@ -85,7 +85,7 @@ export const bungalowContent: LandingPageContent = {
     heading: "Ein Zuhause,",
     highlight: "das mit Ihnen lebt.",
     lede: "Helle Räume, breite Türen, ebenerdiger Garten — ein Bungalow, der heute funktioniert und morgen mitwächst.",
-    imageFallbackPath: "/images/landing/uebersicht/lifestyle-04.webp",
+    imageFallbackPath: "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-exterior-2026.webp",
     imageAlt:
       "Modernistischer Kubus-Bungalow von BoHolz — klare Geometrie, ebenerdige Architektur",
     allowPlaceholder: true,
