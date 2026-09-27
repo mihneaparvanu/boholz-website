@@ -2,16 +2,24 @@
 /**
  * Detail page "Technische Daten" — canonical PDF-spec fields only.
  *
- * Order (per `dev/todo/houses/hausliste-homepage.md` § 27):
- *   Etagen → Roof (Dachform + Dachneigung) → Kniestock → Netto-Grundfläche DIN
- *   → Gesamtwohnfläche WoFlV → Anbau → Einliegerwohnung [→ Preis (bestseller)]
+ * Order (per `dev/todo/houses/hausliste-homepage.md` § 27, with Fläche
+ * prepended):
+ *   Fläche → Etagen → Roof (Dachform + Dachneigung) → Kniestock →
+ *   Netto-Grundfläche DIN → Gesamtwohnfläche WoFlV → Anbau →
+ *   Einliegerwohnung [→ Preis (bestseller)]
  *
  * NULL rows are suppressed so the layout adapts to each typology (e.g.
  * Stadtvillen have no Kniestock by design — that row just doesn't render).
  *
- * Wohnfläche is NOT here — it lives in the hero StatsGrid above this section.
+ * Fläche used to live in a separate `StatsGrid` above this section. Once the
+ * client hid Zimmer/Schlafzimmer/Bad (2026-05) that grid rendered a single
+ * card, so the headline area figure now leads this table instead — the three
+ * area figures (Fläche, DIN 277, WoFlV) are different standards and belong
+ * adjacent, each under its own name.
+ *
  * Price is only rendered for bestseller-category models (the only PDF rows
- * with a populated price column).
+ * with a populated price column). It also appears in SideCard; that
+ * duplication is per the client spec above, not an oversight.
  */
 import { computed, type Component } from "vue";
 import {
@@ -23,10 +31,15 @@ import {
   Hammer,
   KeyRound,
   Coins,
+  Scan,
 } from "lucide-vue-next";
 import type { HouseModel } from "@/db/models";
 import { isBestsellerCategory } from "@/lib/bestseller";
-import { formatBoolean, formatCurrency } from "@/lib/format";
+import {
+  formatBoolean,
+  formatCurrency,
+  formatSquareMeters,
+} from "@/lib/format";
 import DetailRow from "./DetailRow.vue";
 import RoofCapsule from "@/features/model-overview/components/RoofCapsule.vue";
 
@@ -36,6 +49,13 @@ const props = defineProps<{
 
 const m = props.model;
 const d = m.details;
+
+/** Fläche — the headline area figure, first row. Mehrfamilienhaus concepts
+ *  carry no fixed Wohnfläche, so they read "auf Anfrage" instead of vanishing
+ *  (every other row here is suppressed when null; this one never is). */
+const livingArea = computed<string>(() =>
+  m.livingArea != null ? formatSquareMeters(m.livingArea) : "auf Anfrage",
+);
 
 /** Etagen — Geschosse stored as numeric (1, 1.5, 2). German comma display. */
 const floors = computed<string | null>(() => {
@@ -88,6 +108,7 @@ type Row = { label: string; icon: Component; value: string };
 
 const rows = computed<Row[]>(() => {
   const out: Row[] = [];
+  out.push({ label: "Fläche", icon: Scan, value: livingArea.value });
   if (floors.value) out.push({ label: "Etagen", icon: Layers, value: floors.value });
   // Roof gets its own slot in the template — no flat string value.
   if (kniestock.value)

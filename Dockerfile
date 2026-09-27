@@ -9,13 +9,13 @@
 # without Railpack.
 # ─────────────────────────────────────────────────────────────────────────────
 
-FROM oven/bun:1.3-alpine AS deps
+FROM oven/bun:alpine AS deps
 WORKDIR /app
 # Lockfile-only install first → cache layer survives source edits.
 COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
-FROM oven/bun:1.3-alpine AS builder
+FROM oven/bun:alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -30,7 +30,7 @@ ENV PUBLIC_ASSETS_URL=$PUBLIC_ASSETS_URL \
     PUBLIC_GTM_ID=$PUBLIC_GTM_ID
 RUN bun run build
 
-FROM node:22-alpine AS runner
+FROM node:lts-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0

@@ -10,8 +10,6 @@ import HousePageNav from "@/features/house-page/components/HousePageNav.vue";
 import HeroGallery from "@/features/house-page/components/HeroGallery.vue";
 import SideCard from "@/features/house-page/components/SideCard.vue";
 import FloorPlanTabs from "@/features/house-page/components/FloorPlanTabs.vue";
-import StatsGrid from "@/features/house-page/components/StatsGrid.vue";
-import AccordionItem from "@/features/house-page/components/AccordionItem.vue";
 import DetailsGrid from "@/features/house-page/components/DetailsGrid.vue";
 import CTASection from "@/ui/sections/CTASection.astro";
 import Button from "@/ui/primitives/Button.vue";
@@ -20,9 +18,12 @@ const { slug } = Astro.params;
 const model = await getModelBySlug(slug!);
 if (!model) return Astro.redirect("/hauser");
 
+// Must match the section ids rendered below — HousePageNav scroll-spies on
+// these, and an id that doesn't exist silently breaks the rail.
 const sections = [
   { id: "hausansichten", label: "Hausansichten" },
-  { id: "informationen", label: "Informationen" },
+  { id: "beschreibung", label: "Beschreibung" },
+  { id: "daten", label: "Daten" },
   { id: "grundrisse", label: "Grundrisse" },
   { id: "kontakt", label: "Kontakt" },
 ];
@@ -73,26 +74,24 @@ const breadcrumb = breadcrumbSchema([
     </div>
   </section>
 
-  <section class="stats">
-    <StatsGrid model={model} />
-  </section>
+  {/* Everything below the gallery is flat — no accordions. Someone on a model
+      page is comparing houses, and the figures they compare on (Fläche,
+      Etagen, Wohnfläche, Einliegerwohnung) should not cost a click, or sit
+      only in the desktop SideCard where mobile never sees them in context. */}
 
-  <section id="informationen" class="info">
-    <h2 class="section-title">Informationen</h2>
-    {(description || hasCategoryDescription) && (
-      <AccordionItem client:visible label="Beschreibung">
-        {description && <p class="prose">{description}</p>}
-        {hasCategoryDescription && (
-          <p class="prose" set:html={model.category?.description} />
-        )}
-      </AccordionItem>
-    )}
-    <AccordionItem client:visible label="Details">
-      <DetailsGrid model={model} />
-    </AccordionItem>
-    <AccordionItem client:visible label="Leistungsumfang">
-      <p class="prose">{leistungenCopy}</p>
-    </AccordionItem>
+  {(description || hasCategoryDescription) && (
+    <section id="beschreibung" class="info">
+      <h2 class="section-title">Beschreibung</h2>
+      {description && <p class="prose">{description}</p>}
+      {hasCategoryDescription && (
+        <p class="prose" set:html={model.category?.description} />
+      )}
+    </section>
+  )}
+
+  <section id="daten" class="info">
+    <h2 class="section-title">Daten & Ausstattung</h2>
+    <DetailsGrid model={model} />
   </section>
 
   <section id="grundrisse" class="floors">
@@ -102,6 +101,12 @@ const breadcrumb = breadcrumbSchema([
     ) : (
       <p class="empty">Grundrisse folgen in Kürze.</p>
     )}
+  </section>
+
+  {/* Scope note — reads as the last word before the ask, not as a spec. */}
+  <section class="info">
+    <h2 class="section-title">Leistungsumfang</h2>
+    <p class="prose">{leistungenCopy}</p>
   </section>
 
   <section id="kontakt">
@@ -146,9 +151,6 @@ const breadcrumb = breadcrumbSchema([
     }
   }
 
-  .stats {
-    padding-block: var(--spacing-4);
-  }
 
   .info,
   .floors {
