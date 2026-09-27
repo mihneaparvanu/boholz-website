@@ -75,7 +75,7 @@ const { blocks } = Astro.props;
             <div class="actions">
               <Button client:visible variant="secondary" size="md" href={b.cta.href}>
                 {b.cta.label ?? "Mehr erfahren"}
-                <ArrowRight slot="trailing" :size="14" :stroke-width="2" />
+                <ArrowRight slot="trailing" size={14} strokeWidth={2} />
               </Button>
             </div>
           )}

@@ -80,7 +80,7 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
       lede="Spüren Sie Materialien, Wandstärken und Lichtführung vor Ort."
     >
       <Fragment slot="eyebrow-icon">
-        <Home :size={14} :stroke-width={2} />
+        <Home size={14} strokeWidth={2} />
       </Fragment>
     </EyebrowHeadingLede>
 
@@ -116,7 +116,7 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
               <p class="body">{h.address}</p>
               <span class="more">
                 Musterhaus besuchen
-                <ArrowRight :size={14} :stroke-width={2} aria-hidden="true" />
+                <ArrowRight size={14} strokeWidth={2} aria-hidden="true" />
               </span>
             </a>
           );
@@ -134,7 +134,7 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
       lede="Von Bonndorf im Schwarzwald bis München — Beratung in Wohnortnähe, mit der Zentrale in Bad Kissingen."
     >
       <Fragment slot="eyebrow-icon">
-        <Building2 :size={14} :stroke-width={2} />
+        <Building2 size={14} strokeWidth={2} />
       </Fragment>
     </EyebrowHeadingLede>
 
@@ -155,12 +155,12 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
                 </figure>
               )}
               <span class="office-icon" aria-hidden="true">
-                <Building2 :size={18} :stroke-width={1.75} />
+                <Building2 size={18} strokeWidth={1.75} />
               </span>
               <h3 class="office-name">{o.name}</h3>
               <p class="office-address">
                 <span class="address-glyph" aria-hidden="true">
-                  <MapPin :size={14} :stroke-width={1.75} />
+                  <MapPin size={14} strokeWidth={1.75} />
                 </span>
                 <span>{o.address}</span>
               </p>
@@ -176,13 +176,13 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
                         <div class="agent-contact">
                           {a.phoneNumber && (
                             <a href={telHref(a.phoneNumber)}>
-                              <Phone :size={12} :stroke-width={1.75} aria-hidden="true" />
+                              <Phone size={12} strokeWidth={1.75} aria-hidden="true" />
                               <span>{a.phoneNumber}</span>
                             </a>
                           )}
                           {a.email && (
                             <a href={`mailto:${a.email}`}>
-                              <Mail :size={12} :stroke-width={1.75} aria-hidden="true" />
+                              <Mail size={12} strokeWidth={1.75} aria-hidden="true" />
                               <span>{a.email}</span>
                             </a>
                           )}

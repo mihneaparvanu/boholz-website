@@ -42,7 +42,7 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
 
   <section class="back">
     <a class="back-link" href={ROUTES.onsite}>
-      <ArrowLeft :size={14} :stroke-width={2} aria-hidden="true" />
+      <ArrowLeft size={14} strokeWidth={2} aria-hidden="true" />
       <span>Alle Musterhäuser</span>
     </a>
   </section>
@@ -55,18 +55,18 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
     />
     <ul class="meta">
       <li>
-        <MapPin :size={16} :stroke-width={1.75} aria-hidden="true" />
+        <MapPin size={16} strokeWidth={1.75} aria-hidden="true" />
         <span>{showhouse.address ?? `${showhouse.city}, ${showhouse.country}`}</span>
       </li>
       {showhouse.phone && (
         <li>
-          <Phone :size={16} :stroke-width={1.75} aria-hidden="true" />
+          <Phone size={16} strokeWidth={1.75} aria-hidden="true" />
           <a href={`tel:${showhouse.phone}`}>{showhouse.phone}</a>
         </li>
       )}
       {showhouse.email && (
         <li>
-          <Mail :size={16} :stroke-width={1.75} aria-hidden="true" />
+          <Mail size={16} strokeWidth={1.75} aria-hidden="true" />
           <a href={`mailto:${showhouse.email}`}>{showhouse.email}</a>
         </li>
       )}
@@ -88,19 +88,19 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
             <div class="agent-contact">
               {a.phoneNumber && (
                 <a href={telHref(a.phoneNumber)}>
-                  <Phone :size={14} :stroke-width={1.75} aria-hidden="true" />
+                  <Phone size={14} strokeWidth={1.75} aria-hidden="true" />
                   <span>{a.phoneNumber}</span>
                 </a>
               )}
               {a.phoneSecondary && (
                 <a href={telHref(a.phoneSecondary)}>
-                  <Phone :size={14} :stroke-width={1.75} aria-hidden="true" />
+                  <Phone size={14} strokeWidth={1.75} aria-hidden="true" />
                   <span>{a.phoneSecondary}</span>
                 </a>
               )}
               {a.email && (
                 <a href={`mailto:${a.email}`}>
-                  <Mail :size={14} :stroke-width={1.75} aria-hidden="true" />
+                  <Mail size={14} strokeWidth={1.75} aria-hidden="true" />
                   <span>{a.email}</span>
                 </a>
               )}
