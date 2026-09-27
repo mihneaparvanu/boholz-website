@@ -64,7 +64,12 @@ export async function getCategories(): Promise<HouseCategory[]> {
   const resolved = resolveMediaPaths(data as unknown as HouseCategory[]);
 
   // 3. sort by canonical order
-  const rank = new Map(CATEGORY_ORDER.map((s, i) => [s, i] as const));
+  // Keyed as <string, number> on purpose. `CATEGORY_ORDER as const` would
+  // otherwise infer the key as the CategorySlug literal union, and DB rows
+  // arrive with `slug: string` — so a category seeded after this list was
+  // written wouldn't type-check here. It sorts to Infinity (last) instead,
+  // which is the intended behaviour for an unranked category.
+  const rank = new Map<string, number>(CATEGORY_ORDER.map((s, i) => [s, i]));
   return resolved.sort(
     (a, b) => (rank.get(a.slug) ?? Infinity) - (rank.get(b.slug) ?? Infinity),
   );

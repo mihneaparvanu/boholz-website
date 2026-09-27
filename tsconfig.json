@@ -1,7 +1,12 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
+  // `dev/` is scratch space, not shipped code — see CLAUDE.md. Its sandbox
+  // pages still import `@/components/*` and `@/utils/*`, a structure that
+  // predates the ui/ + lib/ reorg, so type-checking them produced ~52 errors
+  // that buried real ones in src/. They are reference-only (their README says
+  // to copy a file into src/pages/ to view it, which would need a port first).
+  "exclude": ["dist", "dev"],
   "compilerOptions": {
     "jsx": "preserve",
     "paths": {
