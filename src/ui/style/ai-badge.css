@@ -1,0 +1,54 @@
+/*
+ * AI-image notice — „KI-generiert" (EmpCo/UWG).
+ *
+ * Pure CSS, zero JavaScript. Each registered AI image gets a badge rendered as
+ * an `::after` on its **direct** wrapper (`:has(> img[src*=…])`), positioned
+ * absolutely inside that wrapper — so it sits on the image and scrolls with it
+ * natively. No scroll listeners, no getBoundingClientRect, no layout thrash.
+ *
+ * TO REGISTER A NEW AI IMAGE: add its path substring to BOTH lists below
+ * (the `position: relative` list and the `::after` list). Keep them in sync.
+ *
+ * The `> img` combinator matches only the image's immediate parent, so no
+ * ancestor is ever double-badged. Wrappers already positioned (e.g. a hero
+ * `.bg` layer) keep their own positioning and still anchor the badge.
+ */
+
+:is(figure, div, li, picture, a):has(> img[src*="landing/mehrfamilien/lifestyle-03"]),
+:is(figure, div, li, picture, a):has(> img[src*="stock/lifestyle/craftsmanship-factory"]),
+:is(figure, div, li, picture, a):has(> img[src*="stock/lifestyle/energy-efficiency-heatpump"]),
+:is(figure, div, li, picture, a):has(> img[src*="stock/lifestyle/house-planning-office"]) {
+  position: relative;
+}
+
+:is(figure, div, li, picture, a):has(> img[src*="landing/mehrfamilien/lifestyle-03"])::after,
+:is(figure, div, li, picture, a):has(> img[src*="stock/lifestyle/craftsmanship-factory"])::after,
+:is(figure, div, li, picture, a):has(> img[src*="stock/lifestyle/energy-efficiency-heatpump"])::after,
+:is(figure, div, li, picture, a):has(> img[src*="stock/lifestyle/house-planning-office"])::after {
+  content: "KI-generiert";
+
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  z-index: 2;
+
+  padding: 2px 7px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+
+  color: #1c1a17;
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: 999px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  pointer-events: none;
+  /* Promote to its own compositor layer — GPU-composited, never repainted
+     on scroll (it's not JS-positioned; this just keeps it cheap). */
+  transform: translateZ(0);
+  will-change: transform;
+}
