@@ -10,17 +10,35 @@ import { PROOF_CERTIFICATIONS as certifications } from "@/features/certification
   <div class="proof">
     <span>Geprüfte Qualität · Zertifizierte Sicherheit</span>
     <div class="badges" aria-label="Qualitätssiegel">
-      <svg
-        v-for="c in certifications"
-        :key="c.id"
-        class="badge"
-        :data-size="c.size ?? 'default'"
-        :style="{ aspectRatio: c.aspect }"
-        role="img"
-        :aria-label="c.label"
-      >
-        <use :href="`#${c.id}`" />
-      </svg>
+      <template v-for="c in certifications" :key="c.id">
+        <a
+          v-if="c.href"
+          :href="c.href"
+          target="_blank"
+          rel="noopener noreferrer"
+          :aria-label="`${c.label} — mehr erfahren`"
+        >
+          <svg
+            class="badge"
+            :data-size="c.size ?? 'default'"
+            :style="{ aspectRatio: c.aspect }"
+            role="img"
+            :aria-label="c.label"
+          >
+            <use :href="`#${c.id}`" />
+          </svg>
+        </a>
+        <svg
+          v-else
+          class="badge"
+          :data-size="c.size ?? 'default'"
+          :style="{ aspectRatio: c.aspect }"
+          role="img"
+          :aria-label="c.label"
+        >
+          <use :href="`#${c.id}`" />
+        </svg>
+      </template>
     </div>
   </div>
 </template>
