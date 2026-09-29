@@ -23,6 +23,12 @@ export interface Certification {
    * neighbours.
    */
   size?: "default" | "wide" | "tall";
+  /**
+   * When set, the badge is wrapped in a link to this URL (opens in a new tab).
+   * Used for marks that point at an external initiative site (e.g. Holz und
+   * Klima → holz-und-klima.de).
+   */
+  href?: string;
 }
 
 /**
@@ -69,6 +75,7 @@ export const CERTIFICATIONS: Certification[] = [
     label: "Holz und Klima",
     aspect: "703.61 / 832.14",
     size: "tall",
+    href: "https://holz-und-klima.de/",
   },
 ];
 

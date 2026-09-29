@@ -45,8 +45,8 @@ const currentYear = new Date().getFullYear();
       <span class="eyebrow" id="certs-label">Geprüfte Qualität</span>
       <ul class="badges">
         {
-          CERTIFICATIONS.map((c) => (
-            <li data-size={c.size ?? "default"}>
+          CERTIFICATIONS.map((c) => {
+            const svg = (
               <svg
                 class="badge"
                 style={`aspect-ratio: ${c.aspect};`}
@@ -55,8 +55,24 @@ const currentYear = new Date().getFullYear();
               >
                 <use href={`#${c.id}`} />
               </svg>
-            </li>
-          ))
+            );
+            return (
+              <li data-size={c.size ?? "default"}>
+                {c.href ? (
+                  <a
+                    href={c.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${c.label} — mehr erfahren`}
+                  >
+                    {svg}
+                  </a>
+                ) : (
+                  svg
+                )}
+              </li>
+            );
+          })
         }
       </ul>
     </section>
