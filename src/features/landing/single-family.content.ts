@@ -1,71 +1,62 @@
 /**
- * Einfamilienhaus landing — served at `/wohnen/einfamilienhaus` (the
- * Google-Ads landing target for the Einfamilienhaus category).
+ * Landing content — Einfamilienhaus (/wohnen/einfamilienhaus).
  *
- * Scoped entirely to the Einfamilienhaus typology: hero, benefit cards,
- * house carousel, image band, audience, feature two-column, FAQ and copy
- * all speak to a single-family-home buyer only. The house carousel is
- * filtered to `categorySlugs: ["einfamilienhaus"]` with `featuredOnly:
- * false` so the full sub-catalogue (13 visible models) shows.
- *
- * Kept deliberately free of environmental / sustainability claims
- * (EmpCo-clean): Holz is described as a material and its factual physical
- * properties, never as a climate benefit.
+ * Copy source: Marketing (Mario Beckstein), "Landingpage-Texte: Einfamilien-
+ * haus", Stand 29.09.2026. EmpCo/UWG-clean (no environmental/superlative
+ * claims, no unbacked prices; EH40 only as the optional upgrade). DRAFT —
+ * pending BoHolz (Christoph) + legal sign-off; the routes are noindex.
  */
 import type { LandingPageContent } from "./landing.types";
 
 export const singleFamilyContent: LandingPageContent = {
   seo: {
-    title: "Einfamilienhaus aus Holz bauen · BoHolz Haus",
+    title: "Einfamilienhaus aus Holz bauen | BoHolz-Haus",
     description:
-      "Ihr Einfamilienhaus aus Holz — individuell geplant, schlüsselfertig übergeben. Freie Grundrissplanung, definierte Effizienzhausstandards und persönliche Begleitung von der ersten Idee bis zur Übergabe.",
+      "Ihr Einfamilienhaus aus Holz: individuell geplant, in Rot am See gefertigt und auf Wunsch schlüsselfertig übergeben. Jetzt Hauskatalog kostenlos anfordern.",
+    focusKeyword: "Einfamilienhaus aus Holz",
   },
 
   hero: {
-    eyebrow: "Ihr Einfamilienhaus aus Holz",
-    heading: "Das Einfamilienhaus,",
-    highlight: "das zu Ihnen passt.",
-    lede:
-      "Wir bauen Ihr Einfamilienhaus aus Holz in Deutschland – individuell geplant und schlüsselfertig übergeben. Ein Zuhause, das genau zu Ihrer Familie, Ihrem Alltag und Ihrem Grundstück passt.",
-    imageAlt:
-      "Modernes Einfamilienhaus in Holzbauweise von BoHolz Haus — klare Architektur mit Holzfassade",
-    imageFallbackPath:
-      "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-hero.webp",
+    eyebrow: "Einfamilienhaus aus Holz",
+    heading: "Ein Zuhause,",
+    highlight: "in dem Ihre Familie wächst.",
+    lede: "Der erste Kaffee auf der eigenen Terrasse, Kinderlachen im Garten, ein Zimmer für jeden – so fühlt sich Ankommen an. Wir planen Ihr Einfamilienhaus in Holzbauweise individuell und übergeben es auf Wunsch schlüsselfertig.",
+    imageAlt: "Einfamilienhaus aus Holz von BoHolz-Haus",
+    imageFallbackPath: "/images/brand/hero.webp",
     preferredCategorySlug: "einfamilienhaus",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
-    secondaryCta: { label: "Persönliche Beratung", href: "/kontakt" },
+    secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
   benefitsIntro: {
     eyebrow: "Ihre Vorteile",
-    heading: "Ihr Einfamilienhaus",
-    highlight: "auf einen Blick.",
-    lede: "Frei geplanter Grundriss, durchdachte Holzbauweise, definierte Effizienzhausstandards und klar beschriebene Ausbaustufen – vier Merkmale, die jedes Einfamilienhaus von BoHolz auszeichnen.",
+    heading: "Worauf Sie sich",
+    highlight: "verlassen können.",
+    lede: "Vier Punkte, die jedes BoHolz-Einfamilienhaus ausmachen.",
   },
-
   benefits: [
     {
       icon: "pencil",
       title: "Frei geplanter Grundriss",
-      body: "Ihr Einfamilienhaus entsteht nach Ihren Wünschen – Raumaufteilung, Zimmerzahl und Wohnfläche werden individuell auf Ihre Familie zugeschnitten.",
+      body: "Raumaufteilung, Zimmerzahl und Wohnfläche richten sich nach Ihrer Familie – vom Hauswirtschaftsraum bis zur Speisekammer.",
       tone: "leaf",
     },
     {
-      icon: "leaf",
-      title: "Holzbauweise",
-      body: "Diffusionsoffene Außenwände mit Holzfaserdämmplatte und konkret ausgewiesenen Dämmwerten – für ein angenehmes Raumklima im ganzen Haus.",
+      icon: "layers",
+      title: "Klar beschriebener Wandaufbau",
+      body: "Holz-Aktiv-Wand mit 60 mm Holzfaserdämmplatte und Holzrahmenkonstruktion: U-Wert 0,164 W/(m²K), in der Plus-Variante 0,143 W/(m²K).",
       tone: "forest",
     },
     {
-      icon: "zap",
-      title: "Effizienzhausstandard",
-      body: "Diffusionsoffener Wandaufbau mit ausgewiesenen Dämmwerten; auf Wunsch als Effizienzhaus 40, optional mit QNG.",
+      icon: "hammer",
+      title: "Vier Ausbaustufen",
+      body: "Vom Ausbauhaus für handwerklich Begabte bis zur schlüsselfertigen Übergabe – Sie entscheiden, wie viel Sie selbst übernehmen.",
       tone: "sage",
     },
     {
-      icon: "key-round",
-      title: "Schlüsselfertige Ausführung",
-      body: "Klar festgelegte Leistungen und strukturierte Abläufe gemäß unserer Bau- und Leistungsbeschreibung – bis zur Übergabe Ihres Einfamilienhauses.",
+      icon: "award",
+      title: "Made in Germany",
+      body: "Gefertigt bei unserem Partner Keitel-Haus in Rot am See-Brettheim – eine Werksbesichtigung ist nach Vereinbarung möglich.",
       tone: "accent",
     },
   ],
@@ -74,109 +65,77 @@ export const singleFamilyContent: LandingPageContent = {
     eyebrow: "Hausmodelle",
     heading: "Unsere",
     highlight: "Einfamilienhäuser.",
-    lede: "Vom kompakten Grundriss bis zum großzügigen Familienhaus – eine Auswahl unserer Einfamilienhaus-Modelle, jedes individuell anpassbar.",
-    // Einfamilienhaus only. featuredOnly OFF so the full sub-catalogue
-    // (13 visible EFH models) shows, not just the 2 bestsellers.
+    lede: "Vom kompakten Familienhaus bis zum Entwurf mit Einliegerwohnung – mit Satteldach, Erker oder Zwerchhaus, jeder Entwurf individuell anpassbar.",
     categorySlugs: ["einfamilienhaus"],
     featuredOnly: false,
     maxItems: 99,
   },
 
   featureVisual: {
-    eyebrow: "Für die ganze Familie",
-    heading: "Ein Zuhause,",
-    highlight: "das mitwächst.",
-    lede: "Kinderzimmer, Homeoffice, Rückzugsort – wir planen Ihr Einfamilienhaus so, dass es zu jeder Lebensphase Ihrer Familie passt.",
-    imageFallbackPath:
-      "/images/models/einfamilienhaus/35-146-150/gallery/einfamilienhaus-35-146-150-gallery-exterior-2026.webp",
-    imageAlt:
-      "BoHolz Einfamilienhaus mit Garten — Zuhause für die ganze Familie",
+    eyebrow: "Eindrücke",
+    heading: "Einfamilienhäuser von BoHolz",
+    highlight: "in Bildern.",
+    lede: "Ansichten und Visualisierungen unserer Entwürfe. Abbildungen können Sonderausstattungen enthalten.",
+    imageFallbackPath: "/images/landing/uebersicht/lifestyle-04.webp",
+    imageAlt: "Einfamilienhaus von BoHolz-Haus",
     allowPlaceholder: true,
+  },
+
+  featureBody: {
+    eyebrow: "Individuelle Planung",
+    heading: "Ihr Grundriss.",
+    highlight: "Ihre Handschrift.",
+    lede: "Kein Haus nach Raster – sondern eines, das zu Ihrem Alltag passt.",
+    paragraphs: [
+      "Unsere Hausentwürfe sind Ideen, keine Vorgaben. Sie wünschen sich mehr Platz im Wohnbereich, ein zusätzliches Kinderzimmer oder ein ruhiges Arbeitszimmer? Gemeinsam verändern wir jeden Entwurf, bis er zu Ihnen passt.",
+      "Von der ersten Skizze über die Bemusterung bis zur Schlüsselübergabe begleiten wir Sie persönlich – bis Sie sagen: „Genau so will ich wohnen.“",
+    ],
+    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
+    imageAlt: "Individuell geplantes Einfamilienhaus von BoHolz-Haus",
+    reverse: false,
   },
 
   audience: {
     eyebrow: "Für wen geeignet",
     heading: "Das Einfamilienhaus",
-    highlight: "für jede Lebenslage.",
-    lede: "Ob junge Familie oder Bauherren mit klarer Vorstellung – Ihr Einfamilienhaus planen wir passend zu Ihrer Lebenssituation.",
+    highlight: "für Ihre Lebenssituation.",
+    lede: "Ob junge Familie, Paar oder mit Arbeitsplatz zu Hause – wir planen so, wie Sie leben.",
     items: [
       {
         icon: "users",
         label: "Familien",
         description:
-          "Großzügige Grundrisse mit Kinderzimmern, Gemeinschaftsflächen und Rückzugsorten – ein Haus, das mit den Kindern mitwächst.",
+          "Kinderzimmer, Rückzugsorte und eine offene Wohnküche als Treffpunkt – Platz für den Alltag mit Kindern.",
       },
       {
         icon: "heart-handshake",
         label: "Paare",
         description:
-          "Der erste gemeinsame Neubau – kompakt oder großzügig, exakt auf Ihre Pläne für die nächsten Jahre zugeschnitten.",
+          "Kompakt geplant oder mit Reserve für später – Ihr erstes gemeinsames Haus, zugeschnitten auf Ihre Pläne.",
       },
       {
         icon: "briefcase",
         label: "Homeoffice",
         description:
-          "Ein separates Arbeitszimmer oder ein flexibler Raum, der Wohnen und Arbeiten unter einem Dach klar voneinander trennt.",
+          "Ein separates Arbeitszimmer im Erdgeschoss, das Wohnen und Arbeiten klar voneinander trennt.",
       },
       {
-        icon: "trending-up",
-        label: "Umsteiger",
+        icon: "home",
+        label: "Mehrere Generationen",
         description:
-          "Vom Miethaus ins Eigentum – ein individuell geplantes Einfamilienhaus mit KfW-Förderung.",
+          "Ausgewählte Entwürfe sind mit Einliegerwohnung planbar – für Eltern, erwachsene Kinder oder zur Vermietung.",
       },
     ],
-  },
-
-  featureBody: {
-    eyebrow: "Individuelle Planung",
-    heading: "Persönlich geplant.",
-    highlight: "Für Ihre Familie.",
-    lede: "Ein Einfamilienhaus, das Ihre Handschrift trägt.",
-    paragraphs: [
-      "Aus Ihren Vorstellungen entsteht individuelle Architektur. Gemeinsam entwickeln wir den Grundriss Ihres Einfamilienhauses, wählen die passende Ausbaustufe und gestalten die Details, die aus einem Haus Ihr Zuhause machen.",
-      "Beginnen Sie jetzt mit der Planung Ihres Einfamilienhauses – persönlich begleitet von der ersten Idee bis zur Umsetzung.",
-    ],
-    imageFallbackPath:
-      "/images/models/einfamilienhaus/32-150-170/gallery/einfamilienhaus-32-150-170-gallery-ehf-02.webp",
-    imageAlt:
-      "Einfamilienhaus mit Holzfassade — persönlich geplantes Zuhause von BoHolz-Haus",
-    reverse: false,
-    cta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
   testimonials: {
-    eyebrow: "Langjährige Erfahrung",
-    heading: "Langjährige Erfahrung",
-    highlight: "im Holzfertigbau.",
-    lede: "Vertrieb aus Bad Kissingen, Produktion in Rot am See – zwei Partner mit einem gemeinsamen Anspruch an jedes Haus.",
+    eyebrow: "Stimmen unserer Bauherren",
+    heading: "Was Bauherren",
+    highlight: "über uns sagen.",
+    lede: "Vertrieb aus Bad Kissingen, Fertigung bei Keitel-Haus in Rot am See-Brettheim – zwei Partner mit einem gemeinsamen Anspruch an jedes Haus.",
     tone: "olive",
-    badges: [
-      { label: "Made in Germany", flag: true },
-      { label: "KfW", sub: "Förderung" },
-    ],
-    testimonials: [
-      {
-        name: "Olaf V.",
-        role: "Kunde",
-        rating: 5,
-        quote:
-          "Habe ein Musterhaus besichtigt und war begeistert von der Qualität. Sowohl auch vom Kundenservice am Telefon. Kann ich nur weiterempfehlen.",
-      },
-      {
-        name: "Khalid T.",
-        role: "Kunde",
-        rating: 5,
-        quote:
-          "Fachlich kompetente Beratung. In den Verkaufsgesprächen fühlt alles sehr fair an. Lief alles vom Erstgespräch bis zum Hausvertrag rund.",
-      },
-      {
-        name: "Christina K.",
-        role: "Kundin",
-        rating: 5,
-        quote:
-          "Super und nette Beratung — auf jede Frage eine Antwort. Lief alles sehr professionell ab.",
-      },
-    ],
+    badges: [{ label: "Made in Germany" }],
+    testimonials: [],
   },
 
   faq: {
@@ -185,41 +144,75 @@ export const singleFamilyContent: LandingPageContent = {
     highlight: "Einfamilienhaus.",
     items: [
       {
-        id: "efh-individuell-planen",
+        id: "individuell",
         question: "Kann ich mein Einfamilienhaus individuell planen?",
         answer:
-          "Ja. Jedes Einfamilienhaus beginnt mit einer persönlichen Planungsphase — Grundriss, Fassade, Materialien und Ausbaustufe werden gemeinsam mit unserem Architekturteam auf Sie zugeschnitten.",
+          "Ja. Jeder unserer Entwürfe dient als Ausgangspunkt – Grundriss, Fassade, Dachform und Ausstattung passen wir gemeinsam mit Ihnen an. Für die Architekturleistungen empfehlen wir Ihnen auf Wunsch das Planungsbüro Brettheim.",
       },
       {
-        id: "efh-was-kostet",
+        id: "kosten",
         question: "Was kostet ein Einfamilienhaus aus Holz?",
         answer:
-          "Der Preis hängt von Größe, Ausstattung und Ausbaustufe ab. Preisbeispiele finden Sie bei unseren Bestseller-Häusern; Ihr individuelles Angebot erstellen wir auf Grundlage Ihrer Planung.",
+          "Der Preis hängt von Größe, Grundriss, Ausbaustufe und Ausstattung ab. Preisbeispiele finden Sie bei unseren Bestseller-Häusern; Ihr individuelles Angebot erstellen wir auf Grundlage Ihrer Planung.",
       },
       {
-        id: "efh-foerderung",
-        question: "Welche Förderungen gibt es für ein Einfamilienhaus?",
+        id: "energie",
+        question:
+          "Welchen Energiestandard haben Ihre Häuser – und welche Förderung ist möglich?",
         answer:
-          "Unsere Häuser erfüllen die Anforderungen des GEG; als Effizienzhaus 40 und mit QNG planen wir auf Wunsch. Wir beraten Sie zu KfW-Krediten, BEG-Zuschüssen und regionalen Programmen — passend zu Ihrem Standort.",
+          "Unsere Häuser erfüllen die Anforderungen des Gebäudeenergiegesetzes (GEG). Auf Wunsch planen wir als Effizienzhaus 40, optional mit QNG-Zertifizierung – Voraussetzung für bestimmte KfW-Förderprogramme. Welche Förderung für Ihr Vorhaben infrage kommt, besprechen wir gemeinsam.",
+      },
+      {
+        id: "ausbaustufen",
+        question: "Was bedeuten die vier Ausbaustufen?",
+        answer:
+          "Sie wählen zwischen Ausbauhaus, Technikfertig, Fast fertig und Schlüsselfertig. Je früher die Übergabe, desto mehr Arbeiten können Sie in Eigenleistung übernehmen.",
+      },
+      {
+        id: "besichtigen",
+        question: "Kann ich ein BoHolz-Haus vorher besichtigen?",
+        answer:
+          "Ja. In unseren Musterhäusern in Bad Vilbel und Fellbach erleben Sie Bauweise und Ausstattung vor Ort. Nach Vereinbarung können Sie auch das Werk von Keitel-Haus in Rot am See-Brettheim besuchen.",
+      },
+    ],
+  },
+
+  seoText: {
+    heading:
+      "Einfamilienhaus aus Holz bauen – individuell geplant mit BoHolz-Haus",
+    sections: [
+      {
+        heading: "Ein Einfamilienhaus, das zu Ihrem Leben passt",
+        body: "Ein Einfamilienhaus ist für viele der Ort, an dem Familie ihren Mittelpunkt findet. Deshalb planen wir bei BoHolz-Haus nicht nach Raster, sondern nach Ihrem Alltag. Unsere Entwürfe – vom kompakten Familienhaus mit Satteldach bis zum großzügigen Haus mit Einliegerwohnung – sind Ausgangspunkte. Sie wünschen sich eine offene Wohnküche, ein Gäste- oder Arbeitszimmer im Erdgeschoss, einen Elternbereich mit Ankleide oder eine Speisekammer? All das planen wir gemeinsam mit Ihnen ein. Auch Dachform, Kniestock, Fassade und Carport oder Garage stimmen wir auf Ihre Wünsche und auf den Bebauungsplan Ihres Grundstücks ab.",
+      },
+      {
+        heading: "Mit Homeoffice, Einliegerwohnung oder kompakt geplant",
+        body: "Viele unserer Einfamilienhaus-Entwürfe denken über den heutigen Alltag hinaus. Beim Einfamilienhaus 22-162-190 liegt das Homeoffice in einem separaten Bereich im Erdgeschoss, sodass Sie auch bei Trubel ungestört arbeiten können. Die Entwürfe 35-181-150, 22-173-190 und 28-194-170 sind mit Einliegerwohnung planbar – für Eltern, erwachsene Kinder, als Büro oder zur Vermietung. Kompakte Entwürfe wie das Einfamilienhaus 38-128-125 mit rund 117 m² Wohnfläche verzichten auf raumnehmende Flure und nutzen die Fläche für das tägliche Wohnen.",
+      },
+      {
+        heading: "Holzbauweise mit klar beschriebenem Wandaufbau",
+        body: "Die Außenwände unserer Häuser bestehen aus einer Holzrahmenkonstruktion mit außenliegender 60-mm-Holzfaserdämmplatte, Dämmung der Wärmeleitgruppe 035 zwischen den Rahmen, OSB-4-Platte, Luftdichtheitsebene und Gipskarton-Feuerschutzplatte. Außen schließt ein diffusionsoffener Silikonharz-Edelputz die Wand ab. Die Holz-Aktiv-Wand erreicht einen U-Wert von 0,164 W/(m²K), die Holz-Aktiv-Wand plus mit 240 mm Rahmen 0,143 W/(m²K) – beide mit Brandschutzklassifizierung F30-B. Gefertigt werden die Bauteile bei unserem Partner Keitel-Haus in Rot am See-Brettheim, montiert von einem eingespielten Montageteam auf Ihrer Baustelle.",
+      },
+      {
+        heading: "Vom ersten Gespräch bis zur Schlüsselübergabe",
+        body: "Am Anfang steht ein persönliches Gespräch – in einem unserer Musterhäuser in Bad Vilbel oder Fellbach oder bei einer Vor-Ort-Beratung. Wir unterstützen Sie bei der Grundstückssuche, entwickeln mit Ihnen den Entwurf und begleiten Bauantrag und Finanzierung. In der Bemusterung bei Keitel-Haus legen Sie Ausstattung und Haustechnik fest. Danach folgen Fertigung, Montage, Innenausbau und die Übergabe. Dabei wählen Sie eine von vier Ausbaustufen: Ausbauhaus, Technikfertig, Fast fertig oder Schlüsselfertig – je nachdem, wie viel Sie selbst übernehmen möchten. Unser Leitsatz dabei: „Ein Haus wie unser eigenes.“",
       },
     ],
   },
 
   leadForm: {
     eyebrow: "Kostenloser Hauskatalog",
-    heading: "Einfamilienhaus-Katalog jetzt",
-    highlight: "gratis herunterladen.",
-    lede: "Name, E-Mail und Ort genügen — Sie erhalten den Katalog sofort als PDF. Kein Anruf, kein Verkaufsdruck.",
+    heading: "Den Hauskatalog",
+    highlight: "kostenlos anfordern.",
+    lede: "Name, E-Mail und Ort genügen – Sie erhalten den Katalog mit allen Einfamilienhaus-Entwürfen als PDF per E-Mail.",
   },
 
   midPageCta: {
     eyebrow: "Kostenlos und unverbindlich",
     heading: "Holen Sie sich jetzt den",
     highlight: "Hauskatalog.",
-    lede:
-      "Alle Grundrisse, Ausstattungen und Preise für Ihr Einfamilienhaus — als PDF, direkt nach dem Absenden.",
+    lede: "Alle Einfamilienhaus-Entwürfe mit Grundrissen und Hausdaten – dazu unsere weiteren Haustypen, als PDF per E-Mail.",
     tone: "brand",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
-    secondaryCta: { label: "Persönliche Beratung", href: "/kontakt" },
   },
 };

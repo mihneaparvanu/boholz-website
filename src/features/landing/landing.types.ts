@@ -258,6 +258,30 @@ export interface LandingGallery {
 export interface LandingSeo {
   title: string;
   description: string;
+  /** Primary keyword the page targets (Steckbrief). Reference/ops only —
+   *  not rendered; guides the copy and the SEO text block below. */
+  focusKeyword?: string;
+}
+
+/* ── SEO text block — the ~250–400-word ranking copy below the FAQ ─── */
+
+export interface LandingSeoTextSection {
+  /** Rendered as an <h3>. */
+  heading: string;
+  /** Body copy; blank-line-separated into <p> paragraphs at render time. */
+  body: string;
+}
+
+/**
+ * Longer editorial text for search + AI answer engines, shown beneath the
+ * FAQ (Mario 29.09 · §11). One H2 + a handful of H3 subsections. The first
+ * subsection is always category-specific; later ones may be shared building
+ * blocks (Wandaufbau, Ablauf).
+ */
+export interface LandingSeoText {
+  /** Rendered as the section <h2>. */
+  heading: string;
+  sections: LandingSeoTextSection[];
 }
 
 /* ── Top-level shape ──────────────────────────────────────────────── */
@@ -275,6 +299,8 @@ export interface LandingPageContent {
   /** Optional override; falls back to `defaultTrustStats`. */
   trustStats?: LandingTrustStats;
   faq: LandingFAQ;
+  /** Editorial SEO/GEO copy rendered below the FAQ. Omit to render none. */
+  seoText?: LandingSeoText;
   /** LP-only photo gallery. Omit to render no gallery section. */
   gallery?: LandingGallery;
   leadForm: LandingLeadForm;

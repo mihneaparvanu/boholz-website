@@ -63,9 +63,25 @@ const {
   featureBody,
   testimonials,
   faq,
+  seoText,
   leadForm,
   midPageCta,
 } = content;
+
+/* FAQPage structured data (GEO/rich-results). Answers may carry inline HTML
+   in the content; strip tags for the schema `text`. */
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.items.map((q) => ({
+    "@type": "Question",
+    name: q.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: q.answer.replace(/<[^>]+>/g, "").trim(),
+    },
+  })),
+};
 
 /* Parked, not dead: the guarantee/stat row ("18 Monate Festpreis") is being
    folded into the hero redesign rather than standing as its own band, so the
@@ -288,6 +304,22 @@ const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
     </div>
   </Block>
 
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+
+  <!-- ═══════════════════════ SEO/GEO · editorial ranking copy (below FAQ) ═══════════════════════ -->
+  {seoText && (
+    <Block id="ratgeber" heading={seoText.heading}>
+      <div class="seo-prose">
+        {seoText.sections.map((s) => (
+          <section>
+            <h3>{s.heading}</h3>
+            {s.body.split("\n\n").map((p) => <p>{p}</p>)}
+          </section>
+        ))}
+      </div>
+    </Block>
+  )}
+
   <!-- ═══════════════════════ FORM · lead magnet — free house catalog ═══════════════════════ -->
   <!-- Lead magnet: "Download our house catalog for free."
        The brochure form (name / e-mail / PLZ / Ort) — posts to /api/catalog,
@@ -346,6 +378,29 @@ const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
     max-width: 56rem;
     width: 100%;
     margin-inline: auto;
+  }
+
+  /* SEO/GEO editorial copy below the FAQ — readable measure, quiet tone. */
+  .seo-prose {
+    max-width: 64ch;
+    width: 100%;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+  .seo-prose h3 {
+    margin: 0 0 var(--spacing-2);
+    font-size: var(--fs-h4);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+  }
+  .seo-prose p {
+    margin: 0 0 var(--spacing-2);
+    color: var(--clr-content-secondary);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
   }
 
   /* Lead-form wrapper — constrain the CatalogForm to a comfortable measure

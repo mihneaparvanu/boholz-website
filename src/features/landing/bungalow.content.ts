@@ -1,221 +1,219 @@
 /**
- * Page 3 — `/wohnen/bungalow`
+ * Landing content — Bungalow (/wohnen/bungalow).
  *
- * Barrier-free / senior-comfort campaign. The audience here is older
- * homeowners planning a downsize, or mobility-constrained buyers planning
- * a forever-home on one level. Bungalow = everything on one floor, no
- * stairs, wide doors, level transitions.
- *
- * Voice: reassuring, dignified, never patronising. The old JPEG leaned
- * pastel-blue and lifestyle photos of older adults; we keep the imagery
- * cues (one-level living, gardens, pool decks) but route messaging
- * through autonomy and design language rather than "Altersheim" tropes.
+ * Copy source: Marketing (Mario Beckstein), "Landingpage-Texte: Bungalow",
+ * Stand 29.09.2026. EmpCo/UWG-clean (no environmental/superlative claims, no
+ * unbacked prices; EH40 only as the optional upgrade; „barrierefrei" only as
+ * „auf Wunsch planbar"). DRAFT — pending BoHolz (Christoph Schmidt) + legal
+ * sign-off; the routes are noindex.
  */
 import type { LandingPageContent } from "./landing.types";
 
 export const bungalowContent: LandingPageContent = {
   seo: {
-    title: "Barrierefreie Bungalows aus Holz · BoHolz Haus",
+    title: "Bungalow als Fertighaus aus Holz | BoHolz-Haus",
     description:
-      "Bungalow als Fertighaus aus Holz — altersgerecht, rollstuhlgerecht oder einfach bequem. Komfort, Sicherheit und Wohnen auf einer Ebene.",
+      "Bungalow aus Holz: alles auf einer Ebene, individuell geplant und auf Wunsch barrierefrei. Entwürfe mit 122 bis 141 m² ansehen – Hauskatalog kostenlos.",
+    focusKeyword: "Bungalow Fertighaus",
   },
 
   hero: {
-    eyebrow: "Barrierefrei Wohnen",
-    heading: "Ihr Bungalow als",
-    highlight: "Fertighaus aus Holz.",
-    lede:
-      "Ob altersgerecht, rollstuhlgerecht oder einfach bequem — ein BoHolz-Bungalow bietet Ihnen Sicherheit, Unabhängigkeit und komfortables Wohnen auf einer Ebene.",
-    imageAlt:
-      "BoHolz-Bungalow Schäfer-Haus 134/22 — ebenerdiges Wohnen auf einer Ebene",
-    imageFallbackPath: "/images/landing/bungalow/hero.webp",
+    eyebrow: "Bungalow aus Holz",
+    heading: "Alles auf einer Ebene.",
+    highlight: "Alles in Reichweite.",
+    lede: "Keine Treppen, kurze Wege und der Garten direkt vor der Terrassentür – so entspannt kann Wohnen sein. Wir planen Ihren Bungalow in Holzbauweise individuell, auf Wunsch barrierefrei.",
+    imageAlt: "Bungalow aus Holz von BoHolz-Haus",
+    imageFallbackPath: "/images/brand/hero.webp",
     preferredCategorySlug: "bungalow",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
-    secondaryCta: { label: "Persönliche Beratung", href: "/kontakt" },
+    secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
   benefitsIntro: {
     eyebrow: "Ihre Vorteile",
-    heading: "Mehr Komfort, Sicherheit und Flexibilität",
-    highlight: "in jedem Raum.",
-    lede: "Vier Eigenschaften, die jeden BoHolz-Bungalow tragen — auf einer Ebene, ein Leben lang.",
+    heading: "Ihr Bungalow",
+    highlight: "auf einen Blick.",
+    lede: "Vier Merkmale, die Sie im Alltag spüren.",
   },
-
   benefits: [
     {
-      icon: "leaf",
-      title: "Ruhig & geborgen",
-      body: "Aufeinander abgestimmte Wand-, Decken- und Dachkonstruktionen bilden die Grundlage für ein angenehmes Wohngefühl.",
-      tone: "forest",
-    },
-    {
-      icon: "shield",
-      title: "Altersgerecht & sicher",
-      body: "Komfortabel geplant — mit Fokus auf Sicherheit, Bewegungsfreiheit und langfristige Selbstständigkeit.",
-      tone: "sage",
-    },
-    {
-      icon: "zap",
-      title: "Klar beschriebener Wandaufbau",
-      body: "Smart-Home, dauerhaft wartungsarm und KfW-förderfähig — niedrige Betriebskosten ab dem ersten Tag.",
+      icon: "home",
+      title: "Wohnen auf einer Ebene",
+      body: "Kurze Wege zwischen Küche, Wohnbereich, Schlafzimmer und Bad – ohne eine einzige Treppenstufe im Haus.",
       tone: "leaf",
     },
     {
-      icon: "pencil",
-      title: "Flexibel planbar",
-      body: "Auf Anbau mit Aufzug, barrierefreien Zugang und stufenlose Übergänge zugeschnitten — jedes Detail nach Maß.",
+      icon: "check",
+      title: "Barrierearm im Standard",
+      body: "Bodengleich geflieste Dusche mit Edelstahlablaufrinne und Haustür mit Schwellenabdichtung für einen barrierefreien Zugang.",
+      tone: "forest",
+    },
+    {
+      icon: "sun",
+      title: "Licht und Garten",
+      body: "Giebelverglasung, bodentiefe Fensterfronten oder ein geschützter Freisitz öffnen den Wohnbereich nach draußen – je nach Entwurf.",
+      tone: "sage",
+    },
+    {
+      icon: "layers",
+      title: "Klar beschriebener Wandaufbau",
+      body: "Holz-Aktiv-Wand mit 60 mm Holzfaserdämmplatte und Holzrahmenkonstruktion: U-Wert 0,164 W/(m²K), in der Plus-Variante 0,143 W/(m²K).",
       tone: "accent",
     },
   ],
 
   houses: {
-    eyebrow: "Beispiele",
-    heading: "Unsere Bungalows",
-    highlight: "im Überblick.",
-    lede: "Vom kompakten Komfort-Heim bis zum Flachdach-Bungalow mit Pool-Terrasse — alle Modelle dieser Typologie auf einen Blick.",
-    // Typology page: audience has self-selected, show the full sub-catalogue
-    // (4 bungalow models) without the bestseller gate.
+    eyebrow: "Hausmodelle",
+    heading: "Unsere",
+    highlight: "Bungalows.",
+    lede: "Mit Satteldach, Walmdach oder kubischem Anbau – kompakt oder großzügig, auf Wunsch mit Einliegerwohnung.",
     categorySlugs: ["bungalow"],
     featuredOnly: false,
     maxItems: 99,
   },
 
   featureVisual: {
-    eyebrow: "Komfort und Sicherheit",
-    heading: "Ein Zuhause,",
-    highlight: "das mit Ihnen lebt.",
-    lede: "Helle Räume, breite Türen, ebenerdiger Garten — ein Bungalow, der heute funktioniert und morgen mitwächst.",
-    imageFallbackPath: "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-exterior-2026.webp",
-    imageAlt:
-      "Modernistischer Kubus-Bungalow von BoHolz — klare Geometrie, ebenerdige Architektur",
+    eyebrow: "Eindrücke",
+    heading: "Bungalows von BoHolz",
+    highlight: "in Bildern.",
+    lede: "Ansichten und Visualisierungen unserer ebenerdigen Entwürfe. Abbildungen können Sonderausstattungen enthalten.",
+    imageFallbackPath: "/images/landing/uebersicht/lifestyle-04.webp",
+    imageAlt: "Bungalow von BoHolz-Haus",
     allowPlaceholder: true,
+  },
+
+  featureBody: {
+    eyebrow: "Wohnen ohne Treppen",
+    heading: "Heute bequem.",
+    highlight: "Auch in späteren Jahren.",
+    lede: "Ein Grundriss, der sich Ihrem Leben anpasst – nicht umgekehrt.",
+    paragraphs: [
+      "Im Bungalow liegen Wohnen, Schlafen, Bad und Hauswirtschaft auf einer Ebene. Das macht den Alltag leichter – mit kleinen Kindern ebenso wie in späteren Lebensphasen.",
+      "Breitere Türen, schwellenlose Übergänge, mehr Bewegungsfläche im Bad: Wir planen die Details, die Ihnen wichtig sind, von Anfang an mit ein.",
+    ],
+    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
+    imageAlt: "Individuell geplanter Bungalow von BoHolz-Haus",
+    reverse: false,
   },
 
   audience: {
     eyebrow: "Für wen geeignet",
-    heading: "Drei Lebenslagen.",
-    highlight: "Ein Konzept ohne Hindernisse.",
-    lede: "Ob jung, im mittleren Alter oder im Ruhestand — ein Bungalow nimmt Ihnen Treppen ab und schenkt Ihnen Zeit.",
+    heading: "Der Bungalow",
+    highlight: "für jede Lebensphase.",
+    lede: "Ob Sie jung bauen, sich verkleinern oder vorausplanen – ein Bungalow nimmt Ihnen die Treppen ab.",
     items: [
       {
         icon: "heart-handshake",
-        label: "Leben ohne Grenzen",
+        label: "Wenn die Kinder ausziehen",
         description:
-          "Barrierefreies Wohnen heißt komfortabel leben — mit stufenlosen Zugängen, großzügigen Räumen und ebenerdigem Bewegungsfluss.",
+          "Weniger Fläche, mehr Leben: Ein Bungalow hat die passende Größe, wenn das Familienhaus zu groß geworden ist.",
       },
       {
-        icon: "smartphone-nfc",
-        label: "Smart, sicher & zukunftsorientiert",
+        icon: "users",
+        label: "Junge Familien",
         description:
-          "Moderne Smart-Home-Technologie sorgt für mehr Sicherheit, Komfort und Unabhängigkeit im Alltag — auch im hohen Alter.",
+          "Kinderwagen, Laufrad, Spielsachen – ohne Treppen bleibt alles im Blick und in Reichweite.",
       },
       {
         icon: "compass",
-        label: "Ein Zuhause, das sich anpasst",
+        label: "Vorausplaner",
         description:
-          "Flexible Grundrisse und durchdachte Details schaffen Wohnkomfort — heute bauen, morgen umnutzen.",
+          "Wer barrierefreie Details von Anfang an mitplant, schafft sich Spielraum für spätere Lebensphasen.",
       },
       {
-        icon: "leaf",
-        label: "Vielseitig einsetzbar",
+        icon: "briefcase",
+        label: "Homeoffice und Gäste",
         description:
-          "Holz lässt sich vielseitig verarbeiten und bildet einen wesentlichen Bestandteil unserer Wand-, Decken- und Dachkonstruktionen.",
+          "Ein Gästezimmer, das auch als Arbeitszimmer funktioniert – bei ausgewählten Entwürfen bereits eingeplant.",
       },
     ],
-  },
-
-  featureBody: {
-    eyebrow: "Barrierefreies Wohnen",
-    heading: "Komfort und Sicherheit",
-    highlight: "für jedes Alter.",
-    paragraphs: [
-      "Ein barrierefreies Zuhause bedeutet mehr als stufenlose Übergänge — es steht für Unabhängigkeit, Sicherheit und täglichen Komfort.",
-      "Jeder BoHolz-Bungalow wird individuell geplant — mit breiten Türen, offenen Grundrissen und intelligenten Details, die das Wohnen heute und in Zukunft angenehm und mühelos machen.",
-    ],
-    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
-    imageAlt:
-      "Bungalow in Holzbauweise von BoHolz-Haus",
-    reverse: false,
-    cta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
   testimonials: {
-    eyebrow: "Erfahrung im barrierefreien Bauen",
-    heading: "Wohnen ohne Hindernisse,",
-    highlight: "geplant mit Erfahrung.",
-    lede: "Zwei Partner mit einem gemeinsamen Anspruch an jedes Haus — und einem klaren Blick für Bungalow-Details, die heute und morgen funktionieren.",
+    eyebrow: "Stimmen unserer Bauherren",
+    heading: "Was Bauherren",
+    highlight: "über uns sagen.",
+    lede: "Vertrieb aus Bad Kissingen, Fertigung bei Keitel-Haus in Rot am See-Brettheim – zwei Partner mit einem gemeinsamen Anspruch an jedes Haus.",
     tone: "olive",
-    badges: [
-      { label: "Made in Germany", flag: true },
-      { label: "Barrierefrei", sub: "Ebenerdig" },
-    ],
-    testimonials: [
-      {
-        name: "Renate H.",
-        role: "Bauherrin, 68",
-        rating: 5,
-        quote:
-          "Wir wollten ein Haus, das wir auch in 20 Jahren noch komfortabel bewohnen können. Die Planung war geduldig, jede Frage wurde durchdacht beantwortet.",
-      },
-      {
-        name: "Familie Becker",
-        role: "Bungalow mit Anbau",
-        rating: 5,
-        quote:
-          "Mein Vater wohnt jetzt im Anbau — getrennter Eingang, aber wir sind unter einem Dach. Genau das hatten wir uns vorgestellt.",
-      },
-      {
-        name: "Dr. Stefan W.",
-        role: "Kunde",
-        rating: 5,
-        quote:
-          "Die Beratung war ehrlich, präzise und ohne Verkaufsdruck. Das Haus steht jetzt seit zwei Wintern und alles ist genau wie versprochen.",
-      },
-    ],
+    badges: [{ label: "Made in Germany" }],
+    testimonials: [],
   },
 
   faq: {
     eyebrow: "Häufige Fragen",
-    heading: "Wir sind hier um all Ihre",
-    highlight: "Fragen zu beantworten.",
+    heading: "Ihre Fragen zum",
+    highlight: "Bungalow.",
     items: [
       {
-        id: "rollstuhlgerecht",
-        question: "Kann man ein Fertighaus rollstuhlgerecht bauen?",
+        id: "barrierefrei",
+        question: "Kann ich meinen Bungalow barrierefrei planen?",
         answer:
-          "Ja. Wir planen Bungalows mit ebenerdigen Zugängen, breiten Türen und schwellenlosen Übergängen; eine rollstuhlgerechte Planung ist auf Wunsch möglich.",
+          "Ja. Eine bodengleiche Dusche und ein Hauseingang mit Schwellenabdichtung sind bereits im Standard. Weitere Anforderungen – etwa breitere Türen oder Bewegungsflächen für Rollstuhlnutzer – planen wir auf Wunsch individuell mit Ihnen.",
       },
       {
-        id: "kosten-bungalow",
-        question: "Wie teuer ist ein barrierefreier Bungalow?",
+        id: "grundstueck",
+        question: "Wie groß muss das Grundstück für einen Bungalow sein?",
         answer:
-          "Der Preis hängt von Größe, Ausstattung und Energieeffizienz ab. Wir kalkulieren transparent ab dem ersten Gespräch — und beraten Sie zu KfW-Förderungen, die für altersgerechtes Bauen verfügbar sind.",
+          "Da alle Räume auf einer Ebene liegen, braucht ein Bungalow mehr Grundfläche als ein zweigeschossiges Haus mit gleicher Wohnfläche. Ob Ihr Grundstück und der Bebauungsplan passen, klären wir gemeinsam in der Planungsphase.",
       },
       {
-        id: "fuer-junge-familien",
+        id: "einliegerwohnung",
+        question: "Kann ein Bungalow eine Einliegerwohnung haben?",
+        answer:
+          "Ja. Der Bungalow 22-134 ist mit Einliegerwohnung oder separatem Homeoffice-Bereich planbar.",
+      },
+      {
+        id: "kosten",
+        question: "Was kostet ein Bungalow aus Holz?",
+        answer:
+          "Der Preis hängt von Größe, Grundriss, Ausbaustufe und Ausstattung ab. Preisbeispiele finden Sie bei unseren Bestseller-Häusern; Ihr individuelles Angebot erstellen wir auf Grundlage Ihrer Planung.",
+      },
+      {
+        id: "energie",
         question:
-          "Ist ein barrierefreies Wohnen auch für junge Familien sinnvoll?",
+          "Welchen Energiestandard haben Ihre Häuser – und welche Förderung ist möglich?",
         answer:
-          "Ja, in vielen Fällen kann ein barrierefreies Wohnen auch für junge Familien praktisch sein. Stufenlose Zugänge und großzügige Grundrisse erleichtern den Alltag — zum Beispiel mit Kinderwagen oder kleinen Kindern — und bieten langfristig mehr Flexibilität.",
+          "Unsere Häuser erfüllen die Anforderungen des Gebäudeenergiegesetzes (GEG). Auf Wunsch planen wir als Effizienzhaus 40, optional mit QNG-Zertifizierung – Voraussetzung für bestimmte KfW-Förderprogramme. Welche Förderung für Ihr Vorhaben infrage kommt, besprechen wir gemeinsam.",
+      },
+    ],
+  },
+
+  seoText: {
+    heading:
+      "Bungalow als Fertighaus aus Holz – ebenerdig wohnen mit BoHolz-Haus",
+    sections: [
+      {
+        heading: "Warum ein Bungalow?",
+        body: "Ein Bungalow bringt alle Wohnräume auf eine Ebene: Wohnen, Kochen, Schlafen, Bad und Hauswirtschaftsraum sind ohne Treppe erreichbar. Das erleichtert den Alltag in jeder Lebensphase – für junge Familien mit Kinderwagen ebenso wie für Paare, deren Kinder ausgezogen sind und die sich verkleinern möchten. Unsere Bungalow-Entwürfe bieten rund 122 bis 141 m² Wohnfläche, mit Satteldach, Walmdach oder einem kubischen Anbau mit Flachdach. Große Wohn-, Ess- und Kochbereiche von rund 45 m², Giebelverglasung, bodentiefe Fenster oder ein geschützter Freisitz in der Mitte des Hauses schaffen eine enge Verbindung zum Garten.",
+      },
+      {
+        heading: "Barrierefrei planen – von Anfang an",
+        body: "Schon im Standard erhalten Sie eine bodengleich geflieste Dusche mit Edelstahlablaufrinne und eine Haustür mit Schwellenabdichtung für einen barrierefreien Zugang. Darüber hinaus planen wir auf Wunsch weitere Details mit ein: breitere Türen, schwellenlose Übergänge zur Terrasse, mehr Bewegungsfläche in Bad und Küche oder eine Smart-Home-Ausstattung, mit der Sie Rollläden und Raumtemperaturen per Tablet oder Wandpanel steuern. Was davon für Sie sinnvoll ist, besprechen wir in der Planung – damit Ihr Bungalow heute passt und auch in späteren Jahren.",
+      },
+      {
+        heading: "Holzbauweise mit klar beschriebenem Wandaufbau",
+        body: "Die Außenwände unserer Häuser bestehen aus einer Holzrahmenkonstruktion mit außenliegender 60-mm-Holzfaserdämmplatte, Dämmung der Wärmeleitgruppe 035 zwischen den Rahmen, OSB-4-Platte, Luftdichtheitsebene und Gipskarton-Feuerschutzplatte. Außen schließt ein diffusionsoffener Silikonharz-Edelputz die Wand ab. Die Holz-Aktiv-Wand erreicht einen U-Wert von 0,164 W/(m²K), die Holz-Aktiv-Wand plus mit 240 mm Rahmen 0,143 W/(m²K) – beide mit Brandschutzklassifizierung F30-B. Gefertigt werden die Bauteile bei unserem Partner Keitel-Haus in Rot am See-Brettheim, montiert von einem eingespielten Montageteam auf Ihrer Baustelle.",
+      },
+      {
+        heading: "Vom ersten Gespräch bis zur Schlüsselübergabe",
+        body: "Am Anfang steht ein persönliches Gespräch – in einem unserer Musterhäuser in Bad Vilbel oder Fellbach oder bei einer Vor-Ort-Beratung. Wir unterstützen Sie bei der Grundstückssuche, entwickeln mit Ihnen den Entwurf und begleiten Bauantrag und Finanzierung. In der Bemusterung bei Keitel-Haus legen Sie Ausstattung und Haustechnik fest. Danach folgen Fertigung, Montage, Innenausbau und die Übergabe. Dabei wählen Sie eine von vier Ausbaustufen: Ausbauhaus, Technikfertig, Fast fertig oder Schlüsselfertig – je nachdem, wie viel Sie selbst übernehmen möchten. Unser Leitsatz dabei: „Ein Haus wie unser eigenes.“",
       },
     ],
   },
 
   leadForm: {
     eyebrow: "Kostenloser Hauskatalog",
-    heading: "Bungalow-Katalog jetzt",
-    highlight: "gratis herunterladen.",
-    lede: "Name, E-Mail und Ort genügen — Sie erhalten den Katalog sofort als PDF. Kein Anruf, kein Verkaufsdruck.",
+    heading: "Den Hauskatalog",
+    highlight: "kostenlos anfordern.",
+    lede: "Name, E-Mail und Ort genügen – Sie erhalten den Katalog mit allen Bungalow-Entwürfen als PDF per E-Mail.",
   },
 
   midPageCta: {
     eyebrow: "Kostenlos und unverbindlich",
     heading: "Holen Sie sich jetzt den",
     highlight: "Hauskatalog.",
-    lede:
-      "Alle Grundrisse, Ausstattungen und Preise für Ihren Bungalow — als PDF, direkt nach dem Absenden.",
+    lede: "Alle Bungalow-Entwürfe mit Grundrissen und Hausdaten – dazu unsere weiteren Haustypen, als PDF per E-Mail.",
     tone: "brand",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
-    secondaryCta: { label: "Persönliche Beratung", href: "/kontakt" },
   },
 };
