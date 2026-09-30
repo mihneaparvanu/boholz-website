@@ -58,7 +58,7 @@ export const bungalowContent: LandingPageContent = {
     },
     {
       icon: "zap",
-      title: "Modern & energieeffizient",
+      title: "Klar beschriebener Wandaufbau",
       body: "Smart-Home, dauerhaft wartungsarm und KfW-förderfähig — niedrige Betriebskosten ab dem ersten Tag.",
       tone: "leaf",
     },
@@ -136,7 +136,7 @@ export const bungalowContent: LandingPageContent = {
     ],
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
     imageAlt:
-      "Holzfertighaus in naturnaher Lage — natürliche Materialien für langlebigen Wohnkomfort",
+      "Bungalow in Holzbauweise von BoHolz-Haus",
     reverse: false,
     cta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
@@ -145,11 +145,11 @@ export const bungalowContent: LandingPageContent = {
     eyebrow: "Erfahrung im barrierefreien Bauen",
     heading: "Wohnen ohne Hindernisse,",
     highlight: "geplant mit Erfahrung.",
-    lede: "Zwei Familienunternehmen mit 90 Jahren Holzbau-Erfahrung — und einem klaren Blick für Bungalow-Details, die heute und morgen funktionieren.",
+    lede: "Zwei Partner mit einem gemeinsamen Anspruch an jedes Haus — und einem klaren Blick für Bungalow-Details, die heute und morgen funktionieren.",
     tone: "olive",
     badges: [
       { label: "Made in Germany", flag: true },
-      { label: "DIN 18040", sub: "Barrierefrei" },
+      { label: "Barrierefrei", sub: "Ebenerdig" },
     ],
     testimonials: [
       {
@@ -185,7 +185,7 @@ export const bungalowContent: LandingPageContent = {
         id: "rollstuhlgerecht",
         question: "Kann man ein Fertighaus rollstuhlgerecht bauen?",
         answer:
-          "Ja. Wir planen Bungalows nach DIN 18040 — mit ebenerdigen Zugängen, breiten Türen, schwellenlosen Übergängen und wenn gewünscht einer rollstuhlgerechten Sanitärplanung.",
+          "Ja. Wir planen Bungalows mit ebenerdigen Zugängen, breiten Türen und schwellenlosen Übergängen; eine rollstuhlgerechte Planung ist auf Wunsch möglich.",
       },
       {
         id: "kosten-bungalow",

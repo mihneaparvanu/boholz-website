@@ -61,7 +61,7 @@ export const einfamilienhausContent: LandingPageContent = {
     {
       icon: "zap",
       title: "Effizienzhausstandard",
-      body: "KfW 55 im angebotenen Standard. KfW 40 und QNG sind abhängig vom Bauvorhaben optional möglich.",
+      body: "Diffusionsoffener Wandaufbau mit ausgewiesenen Dämmwerten; auf Wunsch als Effizienzhaus 40, optional mit QNG.",
       tone: "sage",
     },
     {
@@ -124,7 +124,7 @@ export const einfamilienhausContent: LandingPageContent = {
         icon: "trending-up",
         label: "Umsteiger",
         description:
-          "Vom Miethaus ins Eigentum – ein individuell geplantes Einfamilienhaus mit KfW-Förderung und langfristiger Wertbeständigkeit.",
+          "Vom Miethaus ins Eigentum – ein individuell geplantes Einfamilienhaus mit KfW-Förderung.",
       },
     ],
   },
@@ -150,7 +150,7 @@ export const einfamilienhausContent: LandingPageContent = {
     eyebrow: "Langjährige Erfahrung",
     heading: "Langjährige Erfahrung",
     highlight: "im Holzfertigbau.",
-    lede: "Vertrieb aus Bad Kissingen, Produktion in Rot am See – zwei Familienunternehmen, ein Maßstab.",
+    lede: "Vertrieb aus Bad Kissingen, Produktion in Rot am See – zwei Partner mit einem gemeinsamen Anspruch an jedes Haus.",
     tone: "olive",
     badges: [
       { label: "Made in Germany", flag: true },
@@ -196,13 +196,13 @@ export const einfamilienhausContent: LandingPageContent = {
         id: "efh-was-kostet",
         question: "Was kostet ein Einfamilienhaus aus Holz?",
         answer:
-          "Der Preis hängt von Größe, Ausstattung und Energieeffizienz ab. Ein schlüsselfertiges Haus beginnt ab 2.350 €/m². Für ein konkretes Angebot fragen Sie unseren Katalog oder eine Baubeschreibung an.",
+          "Der Preis hängt von Größe, Ausstattung und Ausbaustufe ab. Preisbeispiele finden Sie bei unseren Bestseller-Häusern; Ihr individuelles Angebot erstellen wir auf Grundlage Ihrer Planung.",
       },
       {
         id: "efh-foerderung",
         question: "Welche Förderungen gibt es für ein Einfamilienhaus?",
         answer:
-          "Im angebotenen Standard erreichen wir KfW 55; KfW 40 und QNG sind je nach Bauvorhaben optional möglich. Wir beraten Sie zu KfW-Krediten, BEG-Zuschüssen und regionalen Programmen — passend zu Ihrem Standort.",
+          "Unsere Häuser erfüllen die Anforderungen des GEG; als Effizienzhaus 40 und mit QNG planen wir auf Wunsch. Wir beraten Sie zu KfW-Krediten, BEG-Zuschüssen und regionalen Programmen — passend zu Ihrem Standort.",
       },
     ],
   },

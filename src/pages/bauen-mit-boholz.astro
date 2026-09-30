@@ -74,9 +74,9 @@ const winter: FeatureCard = {
   eyebrow: "Winter",
   title: "Wärme bleibt, wo sie hingehört",
   lede:
-    "Diffusionsoffen und dämmstark zugleich — die Holzfaser hält die Heizenergie im Haus und reguliert dabei die Raumfeuchte ganz natürlich.",
+    "Diffusionsoffen und dämmstark zugleich — die Holzfaser hält die Heizenergie im Haus und reguliert dabei die Raumfeuchte.",
   bullets: [
-    "Lambda-Nennwert 0,036 W/(mK) (Bemessungswert 0,038) — exzellenter Dämmwert für KfW 40 / KfW 55",
+    "Lambda-Nennwert 0,036 W/(mK), Bemessungswert 0,038",
     "Diffusionsoffen — Feuchtigkeit kann nach außen, ohne dass Wärme entweicht",
     "GUTEX Thermoflex — von ÖKO-TEST mit „Sehr gut“ ausgezeichnet, baubiologisch hervorragend",
   ],
@@ -188,30 +188,30 @@ const wandaufbauVorteile: IconListItem[] = [
 
 // ── Section 6 — Wandaufbau Vergleich (Holz-Aktiv-Wand vs Holz-Aktiv-Wand plus).
 const ecoNature: FeatureCard = {
-  eyebrow: "KfW 55",
+  eyebrow: "Standardwand",
   title: "Holz-Aktiv-Wand",
   lede:
-    "Unser Standard-Wandaufbau — diffusionsoffen gedämmt, Grundlage für ein KfW-Effizienzhaus 55.",
+    "Unser Standard-Wandaufbau — diffusionsoffen gedämmt, U-Wert 0,164 W/(m²K).",
   bullets: [
     "60 mm Holzfaserdämmplatte plus 200 mm Holzrahmen mit Knauf Insulation (WLG 035)",
-    "U-Wert 0,164 W/(m²K) — bereits im Standard auf KfW-55-Niveau",
+    "U-Wert 0,164 W/(m²K) im Standard-Aufbau",
     "Brandschutz F30-B, vollflächige OSB4-Beplankung, Luftdichtheitsebene",
   ],
   icon: "layers",
   imageURL: getMediaURL(
     "/images/content/advantage/wandaufbau/wandaufbau-links.webp",
   ),
-  imageAlt: "Schichtaufbau Holz-Aktiv-Wand — KfW 55 Standardwand der BoHolz Häuser",
+  imageAlt: "Schichtaufbau Holz-Aktiv-Wand — Standard-Wandaufbau der BoHolz-Häuser",
 };
 
 const ecoNaturePlus: FeatureCard = {
   eyebrow: "KfW 40",
   title: "Holz-Aktiv-Wand plus",
   lede:
-    "Der erweiterte Wandaufbau für noch höhere Energieeffizienz — Grundlage für ein KfW-Effizienzhaus 40 mit maximaler Förderfähigkeit.",
+    "Der erweiterte Wandaufbau — auf Wunsch Grundlage für ein KfW-Effizienzhaus 40 (förderfähig).",
   bullets: [
-    "Verstärkter Aufbau mit zusätzlicher Dämmebene — höhere Energieeinsparung",
-    "Grundlage für KfW 40 — Anspruch auf die höchste Neubau-Förderstufe",
+    "Verstärkter Aufbau mit zusätzlicher Dämmebene",
+    "Auf Wunsch Grundlage für ein KfW-Effizienzhaus 40",
     "Identische Materialien — kein Kompromiss bei der Diffusionsoffenheit",
   ],
   icon: "shield",
@@ -227,11 +227,11 @@ const sechzehnGruende: IconListItem[] = [
   {
     icon: "leaf",
     label:
-      "Diffusionsoffene ausgedämmte Außenwände — optional mit Holzfaserdämmplatte für sommerlichen Hitzeschutz und besten Wohnkomfort",
+      "Diffusionsoffene ausgedämmte Außenwände — optional mit Holzfaserdämmplatte für sommerlichen Hitzeschutz",
   },
   {
     icon: "layers",
-    label: "Hochwertiger Wandaufbau für Effizienzhaus KfW 40 und KfW 55",
+    label: "Diffusionsoffener Wandaufbau — auf Wunsch für ein Effizienzhaus 40",
   },
   {
     icon: "shield",
@@ -264,7 +264,7 @@ const sechzehnGruende: IconListItem[] = [
   },
   {
     icon: "shield",
-    label: "Fenster mit Dreifachverglasung für optimalen Rundum-Schutz",
+    label: "Fenster mit Dreifachverglasung",
   },
   {
     icon: "ruler",
@@ -277,7 +277,7 @@ const sechzehnGruende: IconListItem[] = [
   },
   {
     icon: "tree-deciduous",
-    label: "Massive Echtholztreppe — perfekt in Optik und Qualität",
+    label: "Massive Echtholztreppe",
   },
   {
     icon: "home",
@@ -426,7 +426,7 @@ const technik: IconListItem[] = [
       eyebrow="Bauen mit BoHolz"
       title="Mit Vertrauen bauen, mit Qualität"
       highlight="wohnen."
-      subtitle="Höchste Bauqualität. Persönliche Begleitung – vom ersten Entwurf bis zum Einzug."
+      subtitle="Handwerkliche Bauqualität. Persönliche Begleitung – vom ersten Entwurf bis zum Einzug."
       image={nachhaltigkeitHero}
       imageAlt="BoHolz Holzbau in der Manufaktur — gelebter Qualitätsanspruch"
       align="center"
@@ -506,11 +506,11 @@ Grundlage unserer Häuser. So verbinden wir traditionelle Wertarbeit mit innovat
     eyebrow="04 — Der Werkstoff Holz"
     heading="Bauen mit dem Werkstoff"
     highlight="Holz."
-    lede="Bei BoHolz-Haus bauen wir Ihre individuellen Fertighäuser aus Holz — einem langlebigen, natürlichen Baustoff für Ihr persönliches Zuhause."
+    lede="Bei BoHolz-Haus bauen wir Ihre individuellen Fertighäuser aus Holz — einem langlebigen Baustoff für Ihr persönliches Zuhause."
   >
     <p class="editorial-prose">
       Wir bauen mit Holz — vom Dachstuhl bis zur Holzfaserdämmung. Ein
-      natürlicher Baustoff, der seit Jahrhunderten für langlebige, wohnliche
+      Baustoff, der seit Jahrhunderten für langlebige, wohnliche
       Häuser steht.
       <span class="primary">
         Ein Zuhause aus einem Werkstoff, der Generationen überdauert.
@@ -660,7 +660,7 @@ So verbindet die sorgfältig geplante Gebäudehülle Wärmeschutz und Wohnkomfor
       <div class="layers-inner">
         <div class="layers-grid">
           <section class="layers-col">
-            <h4 class="layers-col-title">Holz-Aktiv-Wand <span>· KfW 55</span></h4>
+            <h4 class="layers-col-title">Holz-Aktiv-Wand <span>· Standard</span></h4>
             <DefinitionList items={ecoNatureLayers} layout="grid" />
           </section>
           <section class="layers-col">

@@ -84,7 +84,7 @@ function specsFor(m: HouseModel): HouseModelSpec[] {
   if (m.category?.name) {
     specs.push({
       kind: "efficiency",
-      value: isBestseller(m) ? "KfW 55" : "KfW 40 / 55",
+      value: "KfW 40 (auf Wunsch)",
     });
   }
 
