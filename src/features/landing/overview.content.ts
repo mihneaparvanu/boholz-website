@@ -31,17 +31,17 @@ type HeroCopy = {
 export const heroVariants = {
   // Variant 1 — the current launch copy. Default.
   current: {
-    heading: "Premium Fertighäuser",
+    heading: "Fertighäuser",
     highlight: "aus Holz.",
     lede:
-      "Wir bauen Premium-Fertighäuser aus Holz in Deutschland – persönlich begleitet von der ersten Idee bis zur Hausübergabe. Für ein Zuhause, das zu Ihnen und Ihrer Lebenssituation passt.",
+      "Wir bauen Fertighäuser aus Holz in Deutschland – persönlich begleitet von der ersten Idee bis zur Hausübergabe. Für ein Zuhause, das zu Ihnen und Ihrer Lebenssituation passt.",
   },
   // Variant 2 — the previous home hero (see `features/Home/Hero/Hero.vue`).
   classic: {
     heading: "Fertighäuser in Zimmermannsqualität.",
     highlight: "Für Generationen.",
     lede:
-      "Unsere barrierefreien Fertighäuser aus Holz vereinen höchste Energieeffizienz mit meisterhaftem Handwerk. So sparen Sie Energiekosten und gewinnen wertvolle Lebensqualität für die ganze Familie.",
+      "Unsere barrierefreien Fertighäuser aus Holz verbinden durchdachte Holzbauweise mit handwerklicher Sorgfalt — für Wohnqualität, die zu Ihrer Familie passt.",
   },
   // Variant 3 — brand-led new copy.
   brand: {
@@ -62,9 +62,9 @@ export const heroVariant: HeroVariantKey = "current";
 export const overviewContent: LandingPageContent = {
 
   seo: {
-    title: "Premium Fertighäuser aus Holz · BoHolz Haus",
+    title: "Fertighäuser aus Holz · BoHolz-Haus",
     description:
-      "Fertighäuser aus Holz — energieeffizient, individuell geplant, schlüsselfertig übergeben. Vom Bungalow bis zum Mehrfamilienhaus.",
+      "Fertighäuser aus Holz — individuell geplant, schlüsselfertig übergeben. Vom Bungalow bis zum Mehrfamilienhaus.",
   },
 
   hero: {
@@ -73,7 +73,7 @@ export const overviewContent: LandingPageContent = {
     highlight: heroVariants[heroVariant].highlight,
     lede: heroVariants[heroVariant].lede,
     imageAlt:
-      "Premium-Stadtvilla in Holzbauweise von BoHolz Haus — moderne Architektur mit klaren Linien",
+      "Stadtvilla in Holzbauweise von BoHolz-Haus — moderne Architektur mit klaren Linien",
     imageFallbackPath: "/images/brand/hero.webp",
     preferredCategorySlug: "einfamilienhaus",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
@@ -82,7 +82,7 @@ export const overviewContent: LandingPageContent = {
 
   benefitsIntro: {
     eyebrow: "Ihre Vorteile",
-    heading: "Premium-Fertighäuser",
+    heading: "Ihre Fertighäuser",
     highlight: "auf einen Blick.",
     lede: "Durchdachte Holzbauweise, definierte Effizienzhausstandards, individuelle Planung und klar beschriebene Ausbaustufen – vier Merkmale, die jedes BoHolz-Haus auszeichnen.",
   },
@@ -165,7 +165,7 @@ export const overviewContent: LandingPageContent = {
         icon: "trending-up",
         label: "Investoren",
         description:
-          "Wertbeständige Holzbauweise mit KfW-Förderung — durchdacht geplant für die langfristige Vermietung.",
+          "Holzbauweise mit KfW-Förderung — durchdacht geplant für die Vermietung.",
       },
     ],
   },
@@ -190,7 +190,7 @@ export const overviewContent: LandingPageContent = {
     eyebrow: "Langjährige Erfahrung",
     heading: "Langjährige Erfahrung",
     highlight: "im Holzfertigbau.",
-    lede: "Vertrieb aus Bad Kissingen, Produktion in Rot am See — zwei Familienunternehmen, ein Maßstab.",
+    lede: "Vertrieb aus Bad Kissingen, Produktion in Rot am See — zwei Partner mit einem gemeinsamen Anspruch an jedes Haus.",
     tone: "olive",
     badges: [
       { label: "Made in Germany", flag: true },
@@ -242,7 +242,7 @@ export const overviewContent: LandingPageContent = {
         id: "was-kostet",
         question: "Was kostet ein Holzfertighaus?",
         answer:
-          "Der Preis hängt von Größe, Ausstattung und Energieeffizienz ab. Ein schlüsselfertiges Haus beginnt ab 2.350 €/m². Für weitere Infos fragen Sie unseren Katalog oder eine Baubeschreibung an.",
+          "Der Preis hängt von Größe, Ausstattung und Ausbaustufe ab. Preisbeispiele finden Sie bei unseren Bestseller-Häusern; Ihr individuelles Angebot erstellen wir auf Grundlage Ihrer Planung.",
       },
     ],
   },

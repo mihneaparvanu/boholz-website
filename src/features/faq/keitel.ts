@@ -12,10 +12,10 @@ const strings: Record<string, string> = {
 
   // Section 02 — Zwei starke Partner (BoHolz Haus intro)
   uberUnsPartnerLede:
-    "Ihr Premium Vertriebspartner: gemeinsam mit Keitel Haus bauen wir Premium-Fertighäuser aus Holz — von der ersten Skizze bis zur Schlüsselübergabe.",
+    "Gemeinsam mit Keitel-Haus bauen wir Fertighäuser aus Holz — von der ersten Skizze bis zur Schlüsselübergabe.",
   uberUnsLeadProseOpener: "Als Vertriebsgesellschaft hat",
   uberUnsLeadProse:
-    "BoHolz Haus höchste Ansprüche an Qualität beim Hausbau.",
+    "BoHolz Haus hohe Ansprüche an Qualität beim Hausbau.",
   uberUnsLeadProseSecond:
     "Deshalb beraten und begleiten wir Sie umfassend zu allen Fragen und Wünschen rund um Ihr individuelles Traumhaus. Unsere erfahrenen Hausberater sorgen dafür, dass von der Planung Ihres BoHolz Fertighauses bis zum Abschluss Ihres Hausvertrags alles zu Ihrer vollsten Zufriedenheit abläuft. Dabei geben wir Ihnen wichtige Informationen und Tipps, beginnend bei der aktuellen Förderung von KfW Baudarlehen, bis zur Finanzierung.",
   uberUnsPartnerPullQuote:
@@ -33,7 +33,7 @@ const strings: Record<string, string> = {
 
   uberUnsStatCaption: "Jahre Erfahrung im Fertighausbau",
   uberUnsWasWirTunLede:
-    "Wir bauen Fertighäuser in höchster Qualität — individuell und mit Leidenschaft.",
+    "Wir bauen Fertighäuser in hoher Qualität — individuell und mit Leidenschaft.",
 };
 
 const arrays: Record<string, string[]> = {
@@ -53,7 +53,7 @@ const arrays: Record<string, string[]> = {
   // what they do (90 Jahre Holzbau, Einfamilien- bis Generationenhaus). The
   // editorial weight then transfers to the structured principles block.
   uberUnsKeitelIntroProse: [
-    "Deshalb setzen wir von BoHolz Haus als Premium-Vertriebspartner auf die Kompetenz unseres renommierten Partners Keitel-Haus. Keitel-Haus übernimmt von der detaillierten Planung Ihres Hauses bis zur kompletten Fertigstellung alle Arbeiten aus einer Hand — ein Familienunternehmen mit Sitz in Rot am See-Brettheim, unweit von Rothenburg o. d. Tauber.",
+    "Deshalb setzen wir von BoHolz Haus als Vertriebspartner auf die Kompetenz unseres renommierten Partners Keitel-Haus. Keitel-Haus übernimmt von der detaillierten Planung Ihres Hauses bis zur kompletten Fertigstellung alle Arbeiten aus einer Hand — ein Familienunternehmen mit Sitz in Rot am See-Brettheim, unweit von Rothenburg o. d. Tauber.",
     "Seit über 90 Jahren widmet sich Keitel-Haus dem Baustoff Holz und nutzt dessen Vorzüge täglich im qualitativ hochwertigen Fertighausbau — von Einfamilien- bis zu Generationenhäusern.",
   ],
 

@@ -24,7 +24,7 @@ export const homeSections = {
     heading2: "präzise gedacht.",
     highlight: "Modell wählen.",
     subheading:
-      "Vom Bungalow bis zur Stadtvilla — barrierefreie Fertighäuser aus Holz, gebaut mit Zimmermannskunst im Effizienzhaus-Standard (KfW 55, KfW 40 optional).",
+      "Vom Bungalow bis zur Stadtvilla — barrierefreie Fertighäuser aus Holz, gebaut mit Zimmermannskunst; auf Wunsch als Effizienzhaus 40.",
   },
   trust: {
     id: "vertrauen",

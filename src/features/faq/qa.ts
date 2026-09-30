@@ -77,9 +77,9 @@ export const qaCategories: QuestionCategory[] = [
       },
       {
         id: "energieeffizienz",
-        question: "Wie energieeffizient sind BoHolz Fertighäuser?",
+        question: "Welchen Energiestandard haben BoHolz-Häuser?",
         answer:
-          "<p>Unsere Häuser erfüllen hohe Energiestandards und erreichen die Effizienzhaus-Kriterien KfW 55 und KfW 40.</p>",
+          "<p>Unsere Häuser erfüllen die Anforderungen des Gebäudeenergiegesetzes (GEG). Auf Wunsch planen wir als Effizienzhaus 40, optional mit QNG-Zertifizierung.</p>",
       },
       {
         id: "garantien",

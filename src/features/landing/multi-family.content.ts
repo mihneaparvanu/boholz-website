@@ -58,7 +58,7 @@ export const multiFamilyContent: LandingPageContent = {
     {
       icon: "building-2",
       title: "2 bis 16 Wohneinheiten",
-      body: "Perfekt für Familien, Investoren oder Gemeinschaftsprojekte — skalierbar in Holzbauweise.",
+      body: "Für Familien, Investoren oder Gemeinschaftsprojekte — skalierbar in Holzbauweise.",
       tone: "leaf",
     },
     {
@@ -134,7 +134,7 @@ export const multiFamilyContent: LandingPageContent = {
     highlight: "mehr Möglichkeiten.",
     paragraphs: [
       "Ob für Familien oder zur Vermietung – ein Mehrfamilienhaus bietet Platz und Flexibilität.",
-      "Bo Holz Haus baut energieeffizient nach KfW-40/55-Standard, mit bis zu 16 Wohneinheiten unter einem Dach.",
+      "BoHolz-Haus baut nach GEG; auf Wunsch als Effizienzhaus 40 — mit bis zu 16 Wohneinheiten unter einem Dach.",
     ],
     imageFallbackPath: "/images/models/zweifamilienhaus/22-282-0/gallery/zweifamilienhaus-22-282-0-gallery-hero.webp",
     imageAlt:
@@ -147,7 +147,7 @@ export const multiFamilyContent: LandingPageContent = {
     eyebrow: "Erfahrung im Mehrwohnungsbau",
     heading: "Holzfertigbau",
     highlight: "für mehrere Familien.",
-    lede: "Zwei Familienunternehmen, 90 Jahre Holzbau, KfW-zertifizierte Bauweise — bewährt im Mehrfamilien-Segment.",
+    lede: "Zwei Partner mit einem gemeinsamen Anspruch an jedes Haus — bewährt im Mehrfamilien-Segment.",
     tone: "olive",
     badges: [
       { label: "Made in Germany", flag: true },

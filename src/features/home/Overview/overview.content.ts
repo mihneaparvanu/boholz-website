@@ -8,7 +8,7 @@ import { getMediaURL } from '@/lib/media';
  * four denser IconList rows below.
  */
 export const featuredCard: OverviewCardData = {
-  heading: "Höchste Bauqualität",
+  heading: "Hohe Bauqualität",
   subheading:
     "Massive Kreuzlagenholz-Wände, präzise im Werk vorgefertigt — jedes Detail vom Meister geprüft, jedes Haus gebaut für Generationen.",
   featured: true,
@@ -34,7 +34,7 @@ export const overviewCardsSecondary: OverviewCardData[] = [
   {
     heading: "Echtes Holz",
     subheading:
-      "Wir bauen mit Holz aus PEFC-zertifizierter Forstwirtschaft – ein natürlicher Baustoff.",
+      "Wir bauen mit Holz aus PEFC-zertifizierter Forstwirtschaft.",
     image: {
       url: getMediaURL("/images/photography/log-stack.webp"),
       alt: "Gestapelte Holzstämme aus zertifizierter Forstwirtschaft",
