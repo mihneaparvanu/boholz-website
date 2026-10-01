@@ -270,6 +270,14 @@ export interface LandingSeoTextSection {
   heading: string;
   /** Body copy; blank-line-separated into <p> paragraphs at render time. */
   body: string;
+  /**
+   * Optional per-section photo for the side-by-side (ZigZag) layout. When
+   * omitted the template cycles a shared house/material image pool, so the
+   * SEO block always reads as image + text rather than a wall of prose.
+   * Static R2 path; resolved via getMediaURL() at render time.
+   */
+  imageFallbackPath?: string;
+  imageAlt?: string;
 }
 
 /**

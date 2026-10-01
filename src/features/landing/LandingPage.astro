@@ -36,6 +36,7 @@ import CatalogForm from "@/features/contact-forms/CatalogForm.vue";
 import CTASection from "@/ui/sections/CTASection.astro";
 import FAQAccordion from "@/ui/primitives/FAQAccordion.vue";
 import Button from "@/ui/primitives/Button.vue";
+import ZigZag from "@/ui/sections/ZigZag.astro";
 
 import ProofSection from "@/ui/sections/Proof-Section.vue";
 import TrustBadges from "@/ui/sections/TrustBadges.vue";
@@ -108,6 +109,23 @@ const houseCards = filteredModels.map((m) => toHouseModelCard(m));
 
 const heroImage = getMediaURL(hero.imageFallbackPath);
 const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
+
+/* Image pool for the SEO/GEO ZigZag: each section gets a photo so the block
+   reads as alternating image + text, not a wall of prose. Content may override
+   per section via `imageFallbackPath`; otherwise we cycle these existing,
+   claim-neutral house/material photos. */
+const SEO_IMAGE_POOL = [
+  "/images/landing/uebersicht/lifestyle-01.webp",
+  "/images/photography/log-stack.webp",
+  "/images/content/advantage/wandaufbau/hero.webp",
+  "/images/landing/uebersicht/lifestyle-06.webp",
+];
+const seoBlocks = (seoText?.sections ?? []).map((s, i) => ({
+  title: s.heading,
+  body: s.body.split("\n\n"),
+  image: getMediaURL(s.imageFallbackPath ?? SEO_IMAGE_POOL[i % SEO_IMAGE_POOL.length]),
+  imageAlt: s.imageAlt ?? s.heading,
+}));
 ---
 
 {/* noindex: these pages exist to receive Google Ads traffic. Left indexable
@@ -309,14 +327,7 @@ const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
   <!-- ═══════════════════════ SEO/GEO · editorial ranking copy (below FAQ) ═══════════════════════ -->
   {seoText && (
     <Block id="ratgeber" heading={seoText.heading}>
-      <div class="seo-prose">
-        {seoText.sections.map((s) => (
-          <section>
-            <h3>{s.heading}</h3>
-            {s.body.split("\n\n").map((p) => <p>{p}</p>)}
-          </section>
-        ))}
-      </div>
+      <ZigZag blocks={seoBlocks} />
     </Block>
   )}
 
@@ -380,28 +391,8 @@ const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
     margin-inline: auto;
   }
 
-  /* SEO/GEO editorial copy below the FAQ — readable measure, quiet tone. */
-  .seo-prose {
-    max-width: 64ch;
-    width: 100%;
-    margin-inline: auto;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-4);
-  }
-  .seo-prose h3 {
-    margin: 0 0 var(--spacing-2);
-    font-size: var(--fs-h4);
-    font-weight: var(--font-weight-medium);
-    line-height: var(--lh-heading);
-    color: var(--clr-content-primary);
-  }
-  .seo-prose p {
-    margin: 0 0 var(--spacing-2);
-    color: var(--clr-content-secondary);
-    font-size: var(--fs-body);
-    line-height: var(--lh-body);
-  }
+  /* SEO/GEO editorial copy below the FAQ renders via <ZigZag> (alternating
+     image + text), so no bespoke prose styles are needed here. */
 
   /* Lead-form wrapper — constrain the CatalogForm to a comfortable measure
      inside the centered band. */
