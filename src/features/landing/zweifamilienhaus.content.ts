@@ -203,14 +203,14 @@ export const zweifamilienhausContent: LandingPageContent = {
     eyebrow: "Kostenloser Hauskatalog",
     heading: "Den Hauskatalog",
     highlight: "kostenlos anfordern.",
-    lede: "Name, E-Mail und Ort genügen – Sie erhalten den Katalog mit allen Zweifamilienhaus-Entwürfen als PDF per E-Mail.",
+    lede: "Name, E-Mail und Ort genügen – Sie erhalten unseren kompletten Hauskatalog mit allen Haustypen als PDF per E-Mail: vom Bungalow über die Stadtvilla bis zum Einfamilien-, Doppel- und Generationenhaus.",
   },
 
   midPageCta: {
     eyebrow: "Kostenlos und unverbindlich",
     heading: "Holen Sie sich jetzt den",
     highlight: "Hauskatalog.",
-    lede: "Alle Zweifamilienhaus-Entwürfe mit Grundrissen und Hausdaten – dazu unsere weiteren Haustypen, als PDF per E-Mail.",
+    lede: "Unser kompletter Hauskatalog mit allen Haustypen – Grundrisse und Hausdaten zu jedem Entwurf, als PDF per E-Mail.",
     tone: "brand",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
   },
