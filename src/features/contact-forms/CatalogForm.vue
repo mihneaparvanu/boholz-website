@@ -19,6 +19,9 @@ const state = reactive({ ...emptyCatalogForm });
 const brochureUrl =
   getMediaURL("/pdf/boholz-imagebroschuere.pdf") + "?v=2026-08-17";
 const brochureCoverUrl = getMediaURL("/pdf/boholz-imagebroschuere-cover.webp");
+const katalogCoverUrl = getMediaURL(
+  "/images/landing/katalog-haeuser-2026-cover.jpg",
+);
 
 const turnstileToken = ref("");
 const SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
@@ -112,8 +115,16 @@ async function onSubmit() {
       class="submit"
       :disabled="!turnstileToken || !isValid || submitting"
     >
-      {{ submitting ? "Wird gesendet..." : "Imagebroschüre bestellen" }}
+      {{ submitting ? "Wird gesendet..." : "Hauskatalog anfordern" }}
     </button>
+
+    <img
+      :src="katalogCoverUrl"
+      alt="Hauskatalog 2026 von BoHolz-Haus"
+      class="katalog-cta-cover"
+      width="150"
+      loading="lazy"
+    />
   </form>
 
   <div v-else class="success" role="status">
@@ -181,6 +192,16 @@ form {
   border-radius: var(--radius-sm);
   box-shadow: 0 4px 16px
     color-mix(in srgb, var(--clr-content-primary) 12%, transparent);
+}
+
+.katalog-cta-cover {
+  display: block;
+  width: 150px;
+  height: auto;
+  margin: var(--spacing-3) auto 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--clr-border-secondary);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
 }
 
 .submit {
