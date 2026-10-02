@@ -116,16 +116,15 @@ async function onSubmit() {
       class="submit"
       :disabled="!turnstileToken || !isValid || submitting"
     >
-      {{ submitting ? "Wird gesendet..." : "Hauskatalog anfordern" }}
+      <img
+        v-if="!submitting"
+        :src="katalogCoverUrl"
+        alt=""
+        class="submit-cover"
+        loading="lazy"
+      />
+      <span>{{ submitting ? "Wird gesendet..." : "Hauskatalog anfordern" }}</span>
     </button>
-
-    <img
-      :src="katalogCoverUrl"
-      alt="Hauskatalog 2026 von BoHolz-Haus"
-      class="katalog-cta-cover"
-      width="150"
-      loading="lazy"
-    />
   </form>
 
   <div v-else class="success" role="status">
@@ -195,19 +194,21 @@ form {
     color-mix(in srgb, var(--clr-content-primary) 12%, transparent);
 }
 
-.katalog-cta-cover {
-  display: block;
-  width: 150px;
-  height: auto;
-  margin: var(--spacing-3) auto 0;
+.submit-cover {
+  height: 56px;
+  width: auto;
+  flex: none;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--clr-border-secondary);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.22);
 }
 
 .submit {
-  align-self: flex-start;
-  padding: var(--spacing-2) var(--spacing-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
   margin-block-start: var(--spacing-2);
   background: var(--clr-accent-secondary);
   color: var(--clr-surface-primary);
