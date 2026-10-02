@@ -7,7 +7,6 @@ import {
 } from "./data/catalog.schema";
 import { catalogSchema, emptyCatalogForm } from "./data/catalog.zod";
 import { type FormField } from "./types/contact.types";
-import { getMediaURL } from "@/lib/media";
 import TextField from "./components/TextField.vue";
 import RadioField from "./components/RadioField.vue";
 import ConsentField from "./components/ConsentField.vue";
@@ -15,13 +14,13 @@ import ConsentField from "./components/ConsentField.vue";
 const state = reactive({ ...emptyCatalogForm });
 
 // The form's reward for the lead's data is the current house catalog.
-// Version query busts Cloudflare's edge cache (max-age 30d) when the PDF is
-// swapped. Bump the date whenever the catalog PDF is replaced.
-const katalogCoverUrl = getMediaURL(
-  "/images/landing/katalog-haeuser-2026-cover.jpg",
-);
-const brochureUrl =
-  getMediaURL("/pdf/boholz-hauskatalog-2026-09.pdf") + "?v=2026-09";
+// NOTE: absolute CDN URLs on purpose — this is a client-hydrated island and
+// `getMediaURL()` resolves to an empty base in the browser bundle (PUBLIC_
+// vars aren't inlined at build), which would 404. The media host is stable.
+// Version query busts Cloudflare's edge cache (max-age 30d) on PDF swaps.
+const ASSETS = "https://boholz-haus.de/m";
+const katalogCoverUrl = `${ASSETS}/images/landing/katalog-haeuser-2026-cover.jpg`;
+const brochureUrl = `${ASSETS}/pdf/boholz-hauskatalog-2026-09.pdf?v=2026-09`;
 const brochureCoverUrl = katalogCoverUrl;
 
 const turnstileToken = ref("");
