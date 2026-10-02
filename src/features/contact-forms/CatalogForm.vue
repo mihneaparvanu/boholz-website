@@ -14,14 +14,15 @@ import ConsentField from "./components/ConsentField.vue";
 
 const state = reactive({ ...emptyCatalogForm });
 
+// The form's reward for the lead's data is the current house catalog.
 // Version query busts Cloudflare's edge cache (max-age 30d) when the PDF is
-// swapped. Bump the date whenever /pdf/boholz-imagebroschuere.pdf is replaced.
-const brochureUrl =
-  getMediaURL("/pdf/boholz-imagebroschuere.pdf") + "?v=2026-08-17";
-const brochureCoverUrl = getMediaURL("/pdf/boholz-imagebroschuere-cover.webp");
+// swapped. Bump the date whenever the catalog PDF is replaced.
 const katalogCoverUrl = getMediaURL(
   "/images/landing/katalog-haeuser-2026-cover.jpg",
 );
+const brochureUrl =
+  getMediaURL("/pdf/boholz-hauskatalog-2026-09.pdf") + "?v=2026-09";
+const brochureCoverUrl = katalogCoverUrl;
 
 const turnstileToken = ref("");
 const SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
