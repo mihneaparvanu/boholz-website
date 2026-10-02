@@ -90,7 +90,7 @@ export const kubusContent: LandingPageContent = {
       "Durch das Flachdach wird die gesamte Fläche im Obergeschoss nutzbar – ohne Dachschrägen. Große Fensterflächen, abgesetzte Holzfassaden und überdachte Eingänge geben jedem Kubus sein eigenes Gesicht.",
       "Ob mit Doppelgarage oder großem Balkon: Wir planen die Details, die Ihren Kubus zu Ihrem Zuhause machen.",
     ],
-    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
+    imageFallbackPath: "/images/landing/interiors/kubus/kubus-fuerth-wohnen.jpg",
     imageAlt: "Kubushaus von BoHolz-Haus",
     reverse: false,
   },
@@ -197,6 +197,22 @@ export const kubusContent: LandingPageContent = {
         heading: "Vom ersten Gespräch bis zur Schlüsselübergabe",
         body: "Am Anfang steht ein persönliches Gespräch – in einem unserer Musterhäuser in Bad Vilbel oder Fellbach oder bei einer Vor-Ort-Beratung. Wir unterstützen Sie bei der Grundstückssuche, entwickeln mit Ihnen den Entwurf und begleiten Bauantrag und Finanzierung. In der Bemusterung bei Keitel-Haus legen Sie Ausstattung und Haustechnik fest. Danach folgen Fertigung, Montage, Innenausbau und die Übergabe. Dabei wählen Sie eine von vier Ausbaustufen: Ausbauhaus, Technikfertig, Fast fertig oder Schlüsselfertig – je nachdem, wie viel Sie selbst übernehmen möchten. Unser Leitsatz dabei: „Ein Haus wie unser eigenes.“",
       },
+    ],
+  },
+
+  gallery: {
+    eyebrow: "Eindrücke",
+    heading: "Kubushaus",
+    highlight: "von innen.",
+    lede: "Einblicke in Ausstattung und Raumgefühl. Die Abbildungen zeigen Musterhäuser und können Sonderausstattungen enthalten.",
+    images: [
+      { src: "/images/landing/interiors/kubus/kubus-fuerth-wohnen.jpg", alt: "Wohnbereich – Kubushaus (Musterhaus)" },
+      { src: "/images/landing/interiors/kubus/kubus-grafenberg-wohnen.jpg", alt: "Wohnbereich – Kubushaus (Musterhaus)" },
+      { src: "/images/landing/interiors/kubus/kubus-fuerth-essen.jpg", alt: "Essbereich – Kubushaus (Musterhaus)" },
+      { src: "/images/landing/interiors/kubus/kubus-grafenberg-essen.jpg", alt: "Essbereich – Kubushaus (Musterhaus)" },
+      { src: "/images/landing/interiors/kubus/kubus-fuerth-kueche.jpg", alt: "Küche – Kubushaus (Musterhaus)" },
+      { src: "/images/landing/interiors/kubus/kubus-fuerth-schlafzimmer.jpg", alt: "Schlafbereich – Kubushaus (Musterhaus)" },
+      { src: "/images/landing/interiors/kubus/kubus-grafenberg-bad.jpg", alt: "Badezimmer – Kubushaus (Musterhaus)" },
     ],
   },
 

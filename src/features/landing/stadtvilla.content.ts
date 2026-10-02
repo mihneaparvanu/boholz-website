@@ -123,7 +123,7 @@ export const stadtvillaContent: LandingPageContent = {
       "Zwei Vollgeschosse schaffen ein großzügiges Obergeschoss – für Kinderzimmer, ein Familienbad und einen Elternbereich mit Ankleide. Im Erdgeschoss öffnet sich der Wohn- und Essbereich zum Garten.",
       "Fassade, Fensteraufteilung, Farbakzente und Garage planen wir gemeinsam mit Ihnen – bis Ihre Stadtvilla genau Ihren Vorstellungen entspricht.",
     ],
-    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
+    imageFallbackPath: "/images/landing/interiors/stadtvilla/stadtvilla-weingarten-wohnen.jpg",
     imageAlt: "Stadtvilla von BoHolz-Haus, elegant von außen und großzügig von innen",
     reverse: false,
   },
@@ -199,6 +199,23 @@ export const stadtvillaContent: LandingPageContent = {
         heading: "Vom ersten Gespräch bis zur Schlüsselübergabe",
         body: "Am Anfang steht ein persönliches Gespräch – in einem unserer Musterhäuser in Bad Vilbel oder Fellbach oder bei einer Vor-Ort-Beratung. Wir unterstützen Sie bei der Grundstückssuche, entwickeln mit Ihnen den Entwurf und begleiten Bauantrag und Finanzierung. In der Bemusterung bei Keitel-Haus legen Sie Ausstattung und Haustechnik fest. Danach folgen Fertigung, Montage, Innenausbau und die Übergabe. Dabei wählen Sie eine von vier Ausbaustufen: Ausbauhaus, Technikfertig, Fast fertig oder Schlüsselfertig – je nachdem, wie viel Sie selbst übernehmen möchten. Unser Leitsatz dabei: „Ein Haus wie unser eigenes.“",
       },
+    ],
+  },
+
+  gallery: {
+    eyebrow: "Eindrücke",
+    heading: "Stadtvilla",
+    highlight: "von innen.",
+    lede: "Einblicke in Ausstattung und Raumgefühl. Die Abbildungen zeigen Musterhäuser und können Sonderausstattungen enthalten.",
+    images: [
+      { src: "/images/landing/interiors/stadtvilla/stadtvilla-weingarten-wohnen.jpg", alt: "Wohnbereich – Stadtvilla (Musterhaus)" },
+      { src: "/images/landing/interiors/stadtvilla/stadtvilla-wilhelmshoehe-wohnen-offen.jpg", alt: "Wohnbereich – Stadtvilla (Musterhaus)" },
+      { src: "/images/landing/interiors/stadtvilla/stadtvilla-wilhelmshoehe-wohnen.jpg", alt: "Wohnbereich – Stadtvilla (Musterhaus)" },
+      { src: "/images/landing/interiors/stadtvilla/stadtvilla-mannheim-kueche-essen.jpg", alt: "Küche & Essbereich – Stadtvilla (Musterhaus)" },
+      { src: "/images/landing/interiors/stadtvilla/stadtvilla-weingarten-kueche-essen.jpg", alt: "Küche & Essbereich – Stadtvilla (Musterhaus)" },
+      { src: "/images/landing/interiors/stadtvilla/stadtvilla-mannheim-essen.jpg", alt: "Essbereich – Stadtvilla (Musterhaus)" },
+      { src: "/images/landing/interiors/stadtvilla/stadtvilla-mannheim-kueche.jpg", alt: "Küche – Stadtvilla (Musterhaus)" },
+      { src: "/images/landing/interiors/stadtvilla/stadtvilla-mannheim-bad.jpg", alt: "Badezimmer – Stadtvilla (Musterhaus)" },
     ],
   },
 

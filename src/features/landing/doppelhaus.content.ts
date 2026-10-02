@@ -90,7 +90,7 @@ export const doppelhausContent: LandingPageContent = {
       "Ein Doppelhaus verbindet zwei Wohneinheiten unter einem Dach. Jede Haushälfte hat ihren eigenen Eingang und ihre eigenen Wohnräume – vom Wohn- und Essbereich im Erdgeschoss bis zu den Schlafräumen im Obergeschoss.",
       "Ob Sie mit bereits bekannten Baupartnern bauen oder eine Hälfte selbst bewohnen und die andere vermieten: Wir stimmen die Planung auf Ihr Vorhaben ab.",
     ],
-    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
+    imageFallbackPath: "/images/landing/interiors/doppelhaus/dh-erding-wohnen.jpg",
     imageAlt: "Individuell geplantes Doppelhaus von BoHolz-Haus",
     reverse: false,
   },
@@ -198,6 +198,21 @@ export const doppelhausContent: LandingPageContent = {
         heading: "Vom ersten Gespräch bis zur Schlüsselübergabe",
         body: "Am Anfang steht ein persönliches Gespräch – in einem unserer Musterhäuser in Bad Vilbel oder Fellbach oder bei einer Vor-Ort-Beratung. Wir unterstützen Sie bei der Grundstückssuche, entwickeln mit Ihnen den Entwurf und begleiten Bauantrag und Finanzierung. In der Bemusterung bei Keitel-Haus legen Sie Ausstattung und Haustechnik fest. Danach folgen Fertigung, Montage, Innenausbau und die Übergabe. Dabei wählen Sie eine von vier Ausbaustufen: Ausbauhaus, Technikfertig, Fast fertig oder Schlüsselfertig – je nachdem, wie viel Sie selbst übernehmen möchten. Unser Leitsatz dabei: „Ein Haus wie unser eigenes.“",
       },
+    ],
+  },
+
+  gallery: {
+    eyebrow: "Eindrücke",
+    heading: "Doppelhaus",
+    highlight: "von innen.",
+    lede: "Einblicke in Ausstattung und Raumgefühl. Die Abbildungen zeigen Musterhäuser und können Sonderausstattungen enthalten.",
+    images: [
+      { src: "/images/landing/interiors/doppelhaus/dh-erding-wohnen.jpg", alt: "Wohnbereich – Doppelhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/doppelhaus/dh-schoenbuch-wohnen.jpg", alt: "Wohnbereich – Doppelhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/doppelhaus/dh-erding-kueche-essen.jpg", alt: "Küche & Essbereich – Doppelhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/doppelhaus/dh-schoenbuch-kueche-essen.jpg", alt: "Küche & Essbereich – Doppelhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/doppelhaus/dh-schoenbuch-kueche-insel.jpg", alt: "Küche – Doppelhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/doppelhaus/dh-erding-bad.jpg", alt: "Badezimmer – Doppelhaus (Musterhaus)" },
     ],
   },
 

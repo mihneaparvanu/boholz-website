@@ -92,7 +92,7 @@ export const multiFamilyContent: LandingPageContent = {
       "Ob Wohnhaus mit drei, sechs oder neun Parteien oder größere Entwürfe wie unser 12- und 18-Familienwohnhaus: Wir entwickeln mit Ihnen Planungsvorschläge, die zu Grundstück, Bebauungsplan und Nutzungskonzept passen.",
       "Auch für geförderten Mehrgeschosswohnungsbau und Objektbauten wie Kindergärten oder Tagespflegeeinrichtungen sind wir Ihr Ansprechpartner.",
     ],
-    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
+    imageFallbackPath: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-wohnen.jpg",
     imageAlt: "Mehrfamilienhaus in Holzbauweise von BoHolz-Haus",
     reverse: false,
   },
@@ -193,6 +193,21 @@ export const multiFamilyContent: LandingPageContent = {
         heading: "Beratung für Grundstückseigentümer",
         body: "Sie besitzen ein Grundstück, eine Baulücke oder eine Fläche zur Nachverdichtung und fragen sich, was darauf möglich ist? Die Beratung von Grundstückseigentümern gehört zu unseren Schwerpunkten. Gemeinsam klären wir, welche Bebauung der Bebauungsplan zulässt, wie viele Wohneinheiten sinnvoll sind und welche Ausbaustufe zu Ihrem Vorhaben passt – bis hin zur Erstellung und Einreichung des Bauantrags beim zuständigen Bauamt.",
       },
+    ],
+  },
+
+  gallery: {
+    eyebrow: "Eindrücke",
+    heading: "Mehrfamilienhaus",
+    highlight: "von innen.",
+    lede: "Einblicke in Ausstattung und Raumgefühl. Die Abbildungen zeigen Musterhäuser und können Sonderausstattungen enthalten.",
+    images: [
+      { src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-wohnen.jpg", alt: "Wohnbereich – Mehrfamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-wohnen-kueche.jpg", alt: "Wohn- & Kochbereich – Mehrfamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-kueche.jpg", alt: "Küche – Mehrfamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-diele.jpg", alt: "Eingangsbereich – Mehrfamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-bad-1.jpg", alt: "Badezimmer – Mehrfamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-bad-2.jpg", alt: "Badezimmer – Mehrfamilienhaus (Musterhaus)" },
     ],
   },
 

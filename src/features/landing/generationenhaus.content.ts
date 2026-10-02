@@ -90,7 +90,7 @@ export const generationenhausContent: LandingPageContent = {
       "Ob Einliegerwohnung im Erdgeschoss oder zwei Wohneinheiten auf eigenen Etagen: Wir planen Grundrisse, in denen jede Generation ihren eigenen Bereich hat – mit eigenem Bad, eigener Küche und auf Wunsch eigenem Eingang.",
       "Und wenn sich das Leben ändert, wird die Einliegerwohnung zum Büro, zur Wohnung für erwachsene Kinder oder zur vermieteten Einheit.",
     ],
-    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
+    imageFallbackPath: "/images/landing/interiors/generationenhaus/gen-ehrenbach-essen-kueche.jpg",
     imageAlt: "Individuell geplantes Generationenhaus von BoHolz-Haus",
     reverse: false,
   },
@@ -198,6 +198,21 @@ export const generationenhausContent: LandingPageContent = {
         heading: "Vom ersten Gespräch bis zur Schlüsselübergabe",
         body: "Am Anfang steht ein persönliches Gespräch – in einem unserer Musterhäuser in Bad Vilbel oder Fellbach oder bei einer Vor-Ort-Beratung. Wir unterstützen Sie bei der Grundstückssuche, entwickeln mit Ihnen den Entwurf und begleiten Bauantrag und Finanzierung. In der Bemusterung bei Keitel-Haus legen Sie Ausstattung und Haustechnik fest. Danach folgen Fertigung, Montage, Innenausbau und die Übergabe. Dabei wählen Sie eine von vier Ausbaustufen: Ausbauhaus, Technikfertig, Fast fertig oder Schlüsselfertig – je nachdem, wie viel Sie selbst übernehmen möchten. Unser Leitsatz dabei: „Ein Haus wie unser eigenes.“",
       },
+    ],
+  },
+
+  gallery: {
+    eyebrow: "Eindrücke",
+    heading: "Generationenhaus",
+    highlight: "von innen.",
+    lede: "Einblicke in Ausstattung und Raumgefühl. Die Abbildungen zeigen Musterhäuser und können Sonderausstattungen enthalten.",
+    images: [
+      { src: "/images/landing/interiors/generationenhaus/gen-ehrenbach-essen-kueche.jpg", alt: "Küche & Essbereich – Generationenhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/generationenhaus/gen-ehrenbach-kueche-essen.jpg", alt: "Küche & Essbereich – Generationenhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/generationenhaus/gen-ehrenbach-schlafen-ankleide.jpg", alt: "Schlafbereich – Generationenhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/generationenhaus/gen-ehrenbach-schlafzimmer.jpg", alt: "Schlafbereich – Generationenhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/generationenhaus/gen-ehrenbach-treppe.jpg", alt: "Treppenhaus – Generationenhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/generationenhaus/gen-ehrenbach-bad.jpg", alt: "Badezimmer – Generationenhaus (Musterhaus)" },
     ],
   },
 

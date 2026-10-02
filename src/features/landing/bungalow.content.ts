@@ -91,7 +91,7 @@ export const bungalowContent: LandingPageContent = {
       "Im Bungalow liegen Wohnen, Schlafen, Bad und Hauswirtschaft auf einer Ebene. Das macht den Alltag leichter – mit kleinen Kindern ebenso wie in späteren Lebensphasen.",
       "Breitere Türen, schwellenlose Übergänge, mehr Bewegungsfläche im Bad: Wir planen die Details, die Ihnen wichtig sind, von Anfang an mit ein.",
     ],
-    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
+    imageFallbackPath: "/images/landing/interiors/bungalow/bungalow-159-wohnen-hell.jpg",
     imageAlt: "Individuell geplanter Bungalow von BoHolz-Haus",
     reverse: false,
   },
@@ -198,6 +198,22 @@ export const bungalowContent: LandingPageContent = {
         heading: "Vom ersten Gespräch bis zur Schlüsselübergabe",
         body: "Am Anfang steht ein persönliches Gespräch – in einem unserer Musterhäuser in Bad Vilbel oder Fellbach oder bei einer Vor-Ort-Beratung. Wir unterstützen Sie bei der Grundstückssuche, entwickeln mit Ihnen den Entwurf und begleiten Bauantrag und Finanzierung. In der Bemusterung bei Keitel-Haus legen Sie Ausstattung und Haustechnik fest. Danach folgen Fertigung, Montage, Innenausbau und die Übergabe. Dabei wählen Sie eine von vier Ausbaustufen: Ausbauhaus, Technikfertig, Fast fertig oder Schlüsselfertig – je nachdem, wie viel Sie selbst übernehmen möchten. Unser Leitsatz dabei: „Ein Haus wie unser eigenes.“",
       },
+    ],
+  },
+
+  gallery: {
+    eyebrow: "Eindrücke",
+    heading: "Bungalow",
+    highlight: "von innen.",
+    lede: "Einblicke in Ausstattung und Raumgefühl. Die Abbildungen zeigen Musterhäuser und können Sonderausstattungen enthalten.",
+    images: [
+      { src: "/images/landing/interiors/bungalow/bungalow-159-wohnen-hell.jpg", alt: "Wohnbereich – Bungalow (Musterhaus)" },
+      { src: "/images/landing/interiors/bungalow/bungalow-159-kueche.jpg", alt: "Küche – Bungalow (Musterhaus)" },
+      { src: "/images/landing/interiors/bungalow/bungalow-159-schlafzimmer.jpg", alt: "Schlafbereich – Bungalow (Musterhaus)" },
+      { src: "/images/landing/interiors/bungalow/bungalow-159-bad.jpg", alt: "Badezimmer – Bungalow (Musterhaus)" },
+      { src: "/images/landing/interiors/bungalow/bungalow-bader-bad.jpg", alt: "Badezimmer – Bungalow (Musterhaus)" },
+      { src: "/images/landing/interiors/bungalow/bungalow-bader-wohnen-essen.jpg", alt: "Badezimmer – Bungalow (Musterhaus)" },
+      { src: "/images/landing/interiors/bungalow/bungalow-bader-wohnen-kueche-modern.jpg", alt: "Badezimmer – Bungalow (Musterhaus)" },
     ],
   },
 

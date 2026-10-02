@@ -92,7 +92,7 @@ export const bestsellerContent: LandingPageContent = {
       "Offene Wohnbereiche, ein Arbeitszimmer, Rückzugsorte für Eltern und Kinder: In unseren Bestsellern steckt, wonach Bauherren uns immer wieder fragen. Grundriss, Hausdaten und Preis liegen bereits vor – Sie wissen von Anfang an, woran Sie sind.",
       "Jeder Bestseller bleibt ein Ausgangspunkt: Details passen wir gemeinsam mit Ihnen an und kalkulieren die Änderungen für Ihr Angebot. Den Bestseller Fellbach 148 erleben Sie in unserem Musterhaus in Fellbach live.",
     ],
-    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
+    imageFallbackPath: "/images/landing/interiors/einfamilienhaus/efh-kofelblick-wohnen-kueche.jpg",
     imageAlt: "Durchdachter Grundriss eines BoHolz-Bestsellers",
     reverse: false,
   },
@@ -199,6 +199,21 @@ export const bestsellerContent: LandingPageContent = {
         heading: "Klar beschriebener Wandaufbau",
         body: "Holz-Aktiv-Wand mit 60 mm Holzfaserdämmplatte und Holzrahmenkonstruktion: U-Wert 0,164 W/(m²K), in der Plus-Variante 0,143 W/(m²K).",
       },
+    ],
+  },
+
+  gallery: {
+    eyebrow: "Eindrücke",
+    heading: "Unsere Bestseller",
+    highlight: "von innen.",
+    lede: "Einblicke in Ausstattung und Raumgefühl unserer meistgebauten Entwürfe. Die Abbildungen zeigen Musterhäuser und können Sonderausstattungen enthalten.",
+    images: [
+      { src: "/images/landing/interiors/einfamilienhaus/efh-kofelblick-wohnen-kueche.jpg", alt: "Wohn- & Kochbereich – Einfamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/kubus/kubus-fuerth-wohnen.jpg", alt: "Wohnbereich – Kubushaus (Musterhaus)" },
+      { src: "/images/landing/interiors/stadtvilla/stadtvilla-mannheim-essen.jpg", alt: "Essbereich – Stadtvilla (Musterhaus)" },
+      { src: "/images/landing/interiors/bungalow/bungalow-159-wohnen-hell.jpg", alt: "Wohnbereich – Bungalow (Musterhaus)" },
+      { src: "/images/landing/interiors/kubus/kubus-grafenberg-essen.jpg", alt: "Essbereich – Kubushaus (Musterhaus)" },
+      { src: "/images/landing/interiors/stadtvilla/stadtvilla-weingarten-wohnen.jpg", alt: "Wohnbereich – Stadtvilla (Musterhaus)" },
     ],
   },
 

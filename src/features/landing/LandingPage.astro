@@ -111,21 +111,26 @@ const heroImage = getMediaURL(hero.imageFallbackPath);
 const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
 
 /* Image pool for the SEO/GEO ZigZag: each section gets a photo so the block
-   reads as alternating image + text, not a wall of prose. Content may override
-   per section via `imageFallbackPath`; otherwise we cycle these existing,
-   claim-neutral house/material photos. */
+   reads as alternating image + text, not a wall of prose. Image source order:
+   (1) a per-section override on the section, (2) the page's own gallery photos
+   (so the SEO block shows this category's interiors), (3) a claim-neutral
+   fallback pool. */
 const SEO_IMAGE_POOL = [
   "/images/landing/uebersicht/lifestyle-01.webp",
   "/images/photography/log-stack.webp",
   "/images/content/advantage/wandaufbau/hero.webp",
   "/images/landing/uebersicht/lifestyle-06.webp",
 ];
-const seoBlocks = (seoText?.sections ?? []).map((s, i) => ({
-  title: s.heading,
-  body: s.body.split("\n\n"),
-  image: getMediaURL(s.imageFallbackPath ?? SEO_IMAGE_POOL[i % SEO_IMAGE_POOL.length]),
-  imageAlt: s.imageAlt ?? s.heading,
-}));
+const galleryImgs = content.gallery?.images ?? [];
+const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
+  const g = galleryImgs.length ? galleryImgs[i % galleryImgs.length] : undefined;
+  return {
+    title: s.heading,
+    body: s.body.split("\n\n"),
+    image: getMediaURL(s.imageFallbackPath ?? g?.src ?? SEO_IMAGE_POOL[i % SEO_IMAGE_POOL.length]),
+    imageAlt: s.imageAlt ?? g?.alt ?? s.heading,
+  };
+});
 ---
 
 {/* noindex: these pages exist to receive Google Ads traffic. Left indexable

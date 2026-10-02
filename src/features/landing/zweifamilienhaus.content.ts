@@ -90,7 +90,7 @@ export const zweifamilienhausContent: LandingPageContent = {
       "Im Zweifamilienhaus 22-282 hat jede Etage ihren offenen Wohn- und Essbereich, eine separate Küche, Bad und Schlafzimmer. Freisitz und Balkon schaffen für beide Wohnungen einen Platz im Freien.",
       "Ob beide Einheiten gleich groß sein sollen oder eine Wohnung mehr Fläche erhält: Wir planen die Aufteilung nach Ihren Wünschen.",
     ],
-    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
+    imageFallbackPath: "/images/landing/interiors/zweifamilienhaus/zfh-wiesenrain-wohnen-kamin.jpg",
     imageAlt: "Zweifamilienhaus von BoHolz-Haus",
     reverse: false,
   },
@@ -196,6 +196,19 @@ export const zweifamilienhausContent: LandingPageContent = {
         heading: "Vom ersten Gespräch bis zur Schlüsselübergabe",
         body: "Am Anfang steht ein persönliches Gespräch – in einem unserer Musterhäuser in Bad Vilbel oder Fellbach oder bei einer Vor-Ort-Beratung. Wir unterstützen Sie bei der Grundstückssuche, entwickeln mit Ihnen den Entwurf und begleiten Bauantrag und Finanzierung. In der Bemusterung bei Keitel-Haus legen Sie Ausstattung und Haustechnik fest. Danach folgen Fertigung, Montage, Innenausbau und die Übergabe. Dabei wählen Sie eine von vier Ausbaustufen: Ausbauhaus, Technikfertig, Fast fertig oder Schlüsselfertig – je nachdem, wie viel Sie selbst übernehmen möchten. Unser Leitsatz dabei: „Ein Haus wie unser eigenes.“",
       },
+    ],
+  },
+
+  gallery: {
+    eyebrow: "Eindrücke",
+    heading: "Zweifamilienhaus",
+    highlight: "von innen.",
+    lede: "Einblicke in Ausstattung und Raumgefühl. Die Abbildungen zeigen Musterhäuser und können Sonderausstattungen enthalten.",
+    images: [
+      { src: "/images/landing/interiors/zweifamilienhaus/zfh-wiesenrain-wohnen-kamin.jpg", alt: "Wohnbereich – Zweifamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/zweifamilienhaus/zfh-wiesenrain-essen.jpg", alt: "Essbereich – Zweifamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/zweifamilienhaus/zfh-wiesenrain-wohnen-essen.jpg", alt: "Essbereich – Zweifamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/zweifamilienhaus/zfh-wiesenrain-bad.jpg", alt: "Badezimmer – Zweifamilienhaus (Musterhaus)" },
     ],
   },
 

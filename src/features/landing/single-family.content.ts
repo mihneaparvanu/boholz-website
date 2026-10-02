@@ -90,7 +90,7 @@ export const singleFamilyContent: LandingPageContent = {
       "Unsere Hausentwürfe sind Ideen, keine Vorgaben. Sie wünschen sich mehr Platz im Wohnbereich, ein zusätzliches Kinderzimmer oder ein ruhiges Arbeitszimmer? Gemeinsam verändern wir jeden Entwurf, bis er zu Ihnen passt.",
       "Von der ersten Skizze über die Bemusterung bis zur Schlüsselübergabe begleiten wir Sie persönlich – bis Sie sagen: „Genau so will ich wohnen.“",
     ],
-    imageFallbackPath: "/images/landing/uebersicht/lifestyle-06.webp",
+    imageFallbackPath: "/images/landing/interiors/einfamilienhaus/efh-fildern-wohnen-hell.jpg",
     imageAlt: "Individuell geplantes Einfamilienhaus von BoHolz-Haus",
     reverse: false,
   },
@@ -197,6 +197,21 @@ export const singleFamilyContent: LandingPageContent = {
         heading: "Vom ersten Gespräch bis zur Schlüsselübergabe",
         body: "Am Anfang steht ein persönliches Gespräch – in einem unserer Musterhäuser in Bad Vilbel oder Fellbach oder bei einer Vor-Ort-Beratung. Wir unterstützen Sie bei der Grundstückssuche, entwickeln mit Ihnen den Entwurf und begleiten Bauantrag und Finanzierung. In der Bemusterung bei Keitel-Haus legen Sie Ausstattung und Haustechnik fest. Danach folgen Fertigung, Montage, Innenausbau und die Übergabe. Dabei wählen Sie eine von vier Ausbaustufen: Ausbauhaus, Technikfertig, Fast fertig oder Schlüsselfertig – je nachdem, wie viel Sie selbst übernehmen möchten. Unser Leitsatz dabei: „Ein Haus wie unser eigenes.“",
       },
+    ],
+  },
+
+  gallery: {
+    eyebrow: "Eindrücke",
+    heading: "Einfamilienhaus",
+    highlight: "von innen.",
+    lede: "Einblicke in Ausstattung und Raumgefühl. Die Abbildungen zeigen Musterhäuser und können Sonderausstattungen enthalten.",
+    images: [
+      { src: "/images/landing/interiors/einfamilienhaus/efh-fildern-wohnen-hell.jpg", alt: "Wohnbereich – Einfamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/einfamilienhaus/efh-kofelblick-wohnen-arbeiten.jpg", alt: "Wohnbereich – Einfamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/einfamilienhaus/efh-kofelblick-wohnen-kamin.jpg", alt: "Wohnbereich – Einfamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/einfamilienhaus/efh-kofelblick-wohnen-kueche.jpg", alt: "Wohn- & Kochbereich – Einfamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/einfamilienhaus/efh-kofelblick-essen.jpg", alt: "Essbereich – Einfamilienhaus (Musterhaus)" },
+      { src: "/images/landing/interiors/einfamilienhaus/efh-kofelblick-bad.jpg", alt: "Badezimmer – Einfamilienhaus (Musterhaus)" },
     ],
   },
 
