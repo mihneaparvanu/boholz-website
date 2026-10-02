@@ -262,9 +262,18 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
       imageAlt={midPageCta.imageAlt ?? ""}
     >
       <Fragment slot="actions">
-        <Button client:load variant="primary" size="lg" href={midPageCta.primaryCta.href}>
-          {midPageCta.primaryCta.label}
-        </Button>
+        <div class="ask-cta">
+          <img
+            class="ask-katalog-cover"
+            src={getMediaURL("/images/landing/katalog-haeuser-2026-cover.jpg")}
+            alt="Hauskatalog 2026 von BoHolz-Haus"
+            loading="lazy"
+            width="130"
+          />
+          <Button client:load variant="secondary" size="lg" href={midPageCta.primaryCta.href}>
+            {midPageCta.primaryCta.label}
+          </Button>
+        </div>
       </Fragment>
     </CTASection>
   </div>
@@ -393,6 +402,22 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
     color: var(--clr-content-secondary);
     font-size: var(--fs-body);
     line-height: var(--lh-body);
+  }
+
+  /* ASK · catalog CTA — cover thumbnail to the left of the button. */
+  .ask-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    flex-wrap: wrap;
+  }
+  .ask-katalog-cover {
+    width: 130px;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
   }
 
   /* FAQ accordion — bounded width on wide displays for legibility. */
