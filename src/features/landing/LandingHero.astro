@@ -9,6 +9,8 @@
  */
 import Button from "@/ui/primitives/Button.vue";
 import type { TrustBadge } from "@/features/trust/trust-badges.content";
+import { getIcon } from "@/lib/icons";
+import GermanyFlag from "@/ui/icons/GermanyFlag.vue";
 
 interface Cta {
   label: string;
@@ -69,12 +71,22 @@ const {
     {
       guarantees.length > 0 && (
         <ul class="guarantees" role="list" aria-label="Unsere Zusagen">
-          {guarantees.map((g) => (
-            <li>
-              <strong>{g.value}</strong>
-              <span>{g.label}</span>
-            </li>
-          ))}
+          {guarantees.map((g) => {
+            const Icon = g.icon ? getIcon(g.icon) : null;
+            return (
+              <li>
+                {/* `flag` wins over the lucide icon — on "Made in Germany" the
+                    flag says it faster than a hammer glyph does. */}
+                {g.flag ? (
+                  <GermanyFlag />
+                ) : (
+                  Icon && <Icon size={15} strokeWidth={1.75} aria-hidden="true" />
+                )}
+                <strong>{g.value}</strong>
+                <span>{g.label}</span>
+              </li>
+            );
+          })}
         </ul>
       )
     }
@@ -91,7 +103,6 @@ const {
     isolation: isolate;
     display: flex;
     flex-direction: column;
-    place-items: center;
     min-height: clamp(30rem, 76vh, 44rem);
     padding-block: var(--spacing-5);
     padding-inline: var(--padding-inline, var(--spacing-4));
@@ -99,16 +110,17 @@ const {
     color: var(--clr-pure-white);
   }
 
-  
   .image-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: 65%;
     display: block;
     border-radius: var(--radius-sm);
   }
 
   .content {
+    background-color: var(--clr-accent-secondary);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -131,7 +143,7 @@ const {
     margin: 0;
     font-weight: var(--font-weight-regular);
     letter-spacing: 0;
-    font-size: var(--fs-h1);
+    font-size: var(--fs-h2);
     line-height: 1.08;
     text-wrap: balance;
     color: var(--clr-content-primary);
@@ -168,7 +180,9 @@ const {
   }
   .guarantees li {
     display: inline-flex;
-    align-items: baseline;
+    /* center, not baseline — an SVG has no baseline to align to, so `baseline`
+       drops the icon below the text. */
+    align-items: center;
     gap: 0.4ch;
     padding: 0.5rem 0.9rem;
     border-radius: var(--radius-lg, 999px);
@@ -183,13 +197,34 @@ const {
     font-weight: var(--font-weight-semibold, 600);
   }
   .guarantees span {
-  color: var(--clr-content-quaternary);
+    color: var(--clr-content-quaternary);
+  }
+
+  /* Icon sits quieter than the number it precedes. */
+  .guarantees svg {
+    flex-shrink: 0;
+    margin-inline-end: 0.15ch;
+    opacity: 0.75;
+  }
+
+  /* The flag ships at 40×24 for the homepage stat card — far too big for a
+     pill, and it should read at full colour rather than dimmed like a glyph. */
+  .guarantees svg.flag {
+    height: 0.85em;
+    width: auto;
+    opacity: 1;
   }
 
   @media (--from-desktop) {
     .landing-hero {
         flex-direction: row;
+        gap: var(--spacing-5)
     }
+
+    .content {
+      width: 50%;
+    }
+
   }
 
   @media (--mobile) {

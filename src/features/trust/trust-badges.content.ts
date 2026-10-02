@@ -19,10 +19,10 @@ export interface TrustBadge {
 
 export const trustBadges: TrustBadge[] = [
   {
-    icon: "hammer",
-    value: "100%",
-    label: "Made in Germany",
-    caption: "Vorgefertigt im Werk, montiert vom Boholz-Team.",
+    icon: "shield",
+    value: "5",
+    label: "Jahre Gewährleistung",
+    caption: "Vertraglich gesichert auf Konstruktion und Material.",
   },
   {
     icon: "calendar-check",
@@ -30,10 +30,14 @@ export const trustBadges: TrustBadge[] = [
     label: "Monate Festpreis",
     caption: "Garantiert keine Nachforderungen während der Bauzeit.",
   },
+
   {
-    icon: "shield",
-    value: "5",
-    label: "Jahre Gewährleistung",
-    caption: "Vertraglich gesichert auf Konstruktion und Material.",
+    icon: "hammer",
+    // `flag` makes the hero pill render the Germany flag instead of the hammer
+    // glyph; the homepage stat card shows the flag above its icon.
+    flag: true,
+    value: "100%",
+    label: "Made in Germany",
+    caption: "Vorgefertigt im Werk, montiert vom Boholz-Team.",
   },
 ];
