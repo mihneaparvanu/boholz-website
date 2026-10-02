@@ -22,7 +22,7 @@ export const zweifamilienhausContent: LandingPageContent = {
     highlight: "unter einem Dach.",
     lede: "Ob mit den Eltern, den erwachsenen Kindern oder einer vermieteten Wohnung: Ein Zweifamilienhaus gibt zwei Haushalten ihren eigenen Raum. Wir planen es in Holzbauweise genau für Ihr Vorhaben.",
     imageAlt: "Zweifamilienhaus aus Holz von BoHolz-Haus",
-    imageFallbackPath: "/images/brand/hero.webp",
+    imageFallbackPath: "/images/models/zweifamilienhaus/22-282-0/gallery/zweifamilienhaus-22-282-0-gallery-hero.webp",
     preferredCategorySlug: "zweifamilienhaus",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },

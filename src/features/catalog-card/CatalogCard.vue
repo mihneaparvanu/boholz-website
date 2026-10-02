@@ -4,8 +4,8 @@ import Button from "@/ui/primitives/Button.vue";
 
 <template>
   <div class="catalog-card">
-    <h3>Jetzt Imagebroschüre bestellen!</h3>
-    <Button variant="secondary">Bestellen Katalog</Button>
+    <h3>Jetzt Hauskatalog anfordern!</h3>
+    <Button variant="secondary">Hauskatalog anfordern</Button>
     <div class="img-wrapper"><img src="" alt="" /></div>
   </div>
 </template>

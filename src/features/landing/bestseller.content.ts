@@ -24,7 +24,7 @@ export const bestsellerContent: LandingPageContent = {
     highlight: "in die man sich verliebt.",
     lede: "Sie möchten wissen, was Ihr neues Zuhause kostet – bevor Sie wochenlang planen? Unsere sechs Bestseller sind durchgeplant und kosten ab 314.395 €* – inklusive Bodenplatte und Architektenleistung.",
     imageAlt: "Bestseller-Häuser aus Holz von BoHolz-Haus",
-    imageFallbackPath: "/images/brand/hero.webp",
+    imageFallbackPath: "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-exterior-2-2026.webp",
     preferredCategorySlug: "einfamilienhaus",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },

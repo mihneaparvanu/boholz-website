@@ -24,7 +24,7 @@ export const multiFamilyContent: LandingPageContent = {
     highlight: "Mit einem Partner an Ihrer Seite.",
     lede: "Sie möchten auf Ihrem Grundstück Wohnungen für mehrere Parteien bauen – zur Vermietung, für die Familie oder als Bauherrengemeinschaft? Wir planen Ihr Mehrfamilienhaus in Holzbauweise gemeinsam mit Ihnen.",
     imageAlt: "Mehrfamilienhaus in Holzbauweise von BoHolz-Haus",
-    imageFallbackPath: "/images/brand/hero.webp",
+    imageFallbackPath: "/images/models/mehrfamilienhaus/ilshofen/ilshofen-neu.webp",
     preferredCategorySlug: "mehrfamilienhaus",
     primaryCta: { label: "Projekt anfragen", href: "/kontakt" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },

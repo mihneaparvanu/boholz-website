@@ -22,7 +22,7 @@ export const doppelhausContent: LandingPageContent = {
     highlight: "Jeder für sich zu Hause.",
     lede: "Sie wünschen sich ein eigenes Haus mit Garten – und möchten Grundstück und Planung mit Familie, Freunden oder Baupartnern teilen? Ein Doppelhaus in Holzbauweise macht zwei eigenständige Zuhause daraus.",
     imageAlt: "Doppelhaus aus Holz von BoHolz-Haus",
-    imageFallbackPath: "/images/brand/hero.webp",
+    imageFallbackPath: "/images/models/doppelhaus/38-238-125/gallery/doppelhaus-38-238-125-gallery-exterior-2026.webp",
     preferredCategorySlug: "doppelhaus",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },

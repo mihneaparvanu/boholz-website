@@ -22,7 +22,7 @@ export const generationenhausContent: LandingPageContent = {
     highlight: "Eigenständig leben.",
     lede: "Die Enkel sind in wenigen Schritten bei Oma und Opa – und abends schließt jeder seine eigene Tür. Wir planen Ihr Generationenhaus in Holzbauweise so, wie Ihre Familie zusammenleben möchte.",
     imageAlt: "Generationenhaus aus Holz von BoHolz-Haus",
-    imageFallbackPath: "/images/brand/hero.webp",
+    imageFallbackPath: "/images/models/generationenhaus/30-223-160/gallery/generationenhaus-30-223-160-gallery-gen-1.webp",
     preferredCategorySlug: "generationenhaus",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },

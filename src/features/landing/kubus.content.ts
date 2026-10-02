@@ -22,7 +22,7 @@ export const kubusContent: LandingPageContent = {
     highlight: "Starker Charakter.",
     lede: "Sie lieben geradlinige Formen, große Fenster und eine Architektur, die nicht jeder hat? Ein Kubus mit Flachdach und Attika setzt ein deutliches Zeichen – geplant in Holzbauweise nach Ihren Wünschen.",
     imageAlt: "Kubushaus aus Holz von BoHolz-Haus",
-    imageFallbackPath: "/images/brand/hero.webp",
+    imageFallbackPath: "/images/models/kubus/0-140/gallery/kubus-0-140-gallery-exterior-2026.webp",
     preferredCategorySlug: "kubus",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },

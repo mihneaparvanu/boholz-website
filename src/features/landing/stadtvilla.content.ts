@@ -22,7 +22,7 @@ export const stadtvillaContent: LandingPageContent = {
     highlight: "Ein Auftritt mit Haltung.",
     lede: "Sie kommen nach Hause – und vor Ihnen steht ein Haus mit klaren Linien, flach geneigtem Walmdach und viel Raum auf zwei Vollgeschossen. Wir planen Ihre Stadtvilla in Holzbauweise nach Ihren Wünschen.",
     imageAlt: "Stadtvilla aus Holz von BoHolz-Haus",
-    imageFallbackPath: "/images/brand/hero.webp",
+    imageFallbackPath: "/images/models/stadtvilla/22-157/gallery/stadtvilla-22-157-gallery-exterior-2026.webp",
     preferredCategorySlug: "stadtvilla",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },

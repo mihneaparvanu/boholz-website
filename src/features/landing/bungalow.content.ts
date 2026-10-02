@@ -23,7 +23,7 @@ export const bungalowContent: LandingPageContent = {
     highlight: "Alles in Reichweite.",
     lede: "Keine Treppen, kurze Wege und der Garten direkt vor der Terrassentür – so entspannt kann Wohnen sein. Wir planen Ihren Bungalow in Holzbauweise individuell, auf Wunsch barrierefrei.",
     imageAlt: "Bungalow aus Holz von BoHolz-Haus",
-    imageFallbackPath: "/images/brand/hero.webp",
+    imageFallbackPath: "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-exterior-2026.webp",
     preferredCategorySlug: "bungalow",
     primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
