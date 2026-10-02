@@ -60,7 +60,7 @@ const {
       (primaryCta || secondaryCta) && (
         <div class="actions">
           {primaryCta && (
-            <Button client:load variant="primary" size="lg" href={primaryCta.href}>
+            <Button client:load variant="secondary" size="lg" href={primaryCta.href}>
               {primaryCta.label}
             </Button>
           )}
@@ -92,22 +92,22 @@ const {
     }
   </div>
 
-  <div class="image-container">
+  <div class="image-container full-width">
         <img src={image} alt={imageAlt} fetchpriority="high" />
   </div>
 </section>
 
 <style>
   .landing-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 0.6fr;
     position: relative;
     isolation: isolate;
-    display: flex;
-    flex-direction: column;
-    min-height: clamp(30rem, 76vh, 44rem);
-    padding-block: var(--spacing-5);
-    padding-inline: var(--padding-inline, var(--spacing-4));
+    padding-block: var(--spacing-2);
     overflow: hidden;
     color: var(--clr-pure-white);
+    --nav-height-multiplier: 1.2;
   }
 
   .image-container img {
@@ -116,18 +116,18 @@ const {
     object-fit: cover;
     object-position: 65%;
     display: block;
-    border-radius: var(--radius-sm);
   }
 
   .content {
     background-color: var(--clr-accent-secondary);
+    color: var(--clr-pure-white);
+    padding-block: var(--spacing-5);
     display: flex;
+    padding-inline: var(--spacing-4);
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: var(--spacing-3);
-    max-width: 60rem;
-    margin-inline: auto;
   }
 
   .eyebrow {
@@ -136,7 +136,7 @@ const {
     letter-spacing: var(--tracking-eyebrow);
     font-size: var(--fs-body-sm);
     font-weight: var(--font-weight-medium);
-    color: var(--clr-content-primary);
+    color: var(--clr-surface-primary);
   }
 
   h1 {
@@ -146,7 +146,6 @@ const {
     font-size: var(--fs-h2);
     line-height: 1.08;
     text-wrap: balance;
-    color: var(--clr-content-primary);
   }
   .highlight {
     font-family: var(--font-secondary);
@@ -157,13 +156,12 @@ const {
     margin: 0;
     max-width: 46rem;
     font-size: var(--fs-body-lg);
-  color: var(--clr-content-secondary);
+  color: var(--clr-surface-secondary);
   }
 
   .actions {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: var(--spacing-2);
     margin-top: var(--spacing-2);
   }
@@ -191,13 +189,13 @@ const {
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     font-size: var(--fs-body-sm);
-    color: var(--clr-content-quaternary);
+    color: var(--clr-surface-quaternary);
   }
   .guarantees strong {
     font-weight: var(--font-weight-semibold, 600);
   }
   .guarantees span {
-    color: var(--clr-content-quaternary);
+    color: var(--clr-surface-quaternary);
   }
 
   /* Icon sits quieter than the number it precedes. */
@@ -217,25 +215,16 @@ const {
 
   @media (--from-desktop) {
     .landing-hero {
-        flex-direction: row;
-        gap: var(--spacing-5)
+    grid-template-columns: 1fr 1fr;
+        margin-block-start: calc(-1 * var(--nav-height-multiplier) * var(--navbar-height)); 
     }
 
     .content {
-      width: 50%;
-    }
-
-  }
-
-  @media (--mobile) {
-
-    h1 {
-      font-size: var(--fs-h2);
-    }
-    .actions {
-      flex-direction: column;
-      align-items: stretch;
-      width: 100%;
+          padding-block: calc(1.2 * var(--nav-height-multiplier) * var(--navbar-height)) var(--spacing-5);
+      padding-inline-start: max(var(--wrapper-edge), calc(100% - var(--content-max-width)/2));
+      align-items: start;
+    text-align: left;
     }
   }
+
 </style>

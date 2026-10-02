@@ -16,7 +16,7 @@ const props = defineProps<{
 }>();
 
 const isHero = useIsHeroPage();
-const hasScrolled = useScrolledPast(10);
+const hasScrolled = useScrolledPast(64);
 const pathname = usePathname();
 
 // `variant` drives the desktop component swap (transparent over a hero,

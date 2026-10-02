@@ -36,7 +36,6 @@ defineProps<{
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-4);
-  padding-inline: var(--spacing-4);
   height: 100%;
   color: var(--clr-content-primary);
 }

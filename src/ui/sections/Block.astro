@@ -110,9 +110,15 @@ const sectionClass = isBand ? "block band-inner" : "block";
   }
 
   @media (--mobile) {
+    /* Tighter than desktop on purpose. `--spacing-5` is hard-overridden to
+       40px on mobile (design-system.css), which is roughly what --spacing-4
+       resolves to at desktop width — so the old value gave phones the SAME
+       absolute padding on a much shorter screen, ~80px of dead space per
+       section. --spacing-4 clamps to 24px here, saving ~32px a section.
+       `.block:first-of-type` already uses --spacing-4, so it stays in step. */
     .block {
       gap: var(--spacing-4);
-      padding-block: var(--spacing-5);
+      padding-block: var(--spacing-4);
     }
     /* Stack the trailing CTA pair so each full-width Button sits on its
        own row instead of being squeezed side-by-side. */

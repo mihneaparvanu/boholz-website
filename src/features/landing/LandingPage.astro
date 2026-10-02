@@ -137,11 +137,17 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
     they compete with /hauser and /haus/<slug> for the same German keywords,
     and organic depth belongs on those pages, which carry no conversion
     mandate. `follow` is deliberate — links out still pass authority. */}
+{/* isHero: sets <html data-hero="true">, which Navbar reads to swap in its
+    transparent desktop variant — but only while scrolled within 10px of the
+    top (useScrolledPast), so it turns solid as soon as you move. Scoped to
+    this template, so it applies to the /wohnen/* landings and nothing else.
+    Mobile stays solid by design; see the note in Navbar.vue. */}
 <Layout
   title={seo.title}
   description={seo.description}
   categories={categories}
   noindex
+  isHero
 >
 
   {/* ================================================================
@@ -156,7 +162,7 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
      ================================================================ */}
 
   <!-- ═══════════════════════ HERO · value proposition + quality badges + guarantee ═══════════════════════ -->
-  <div class="full-width">
+
     <LandingHero
       eyebrow={hero.eyebrow}
       heading={hero.heading}
@@ -168,12 +174,12 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
       secondaryCta={hero.secondaryCta}
       guarantees={trustStats.badges}
     />
-  </div>
 
   <!-- Quality badges (certification marks) -->
 
+  <Block >
     <ProofSection />
-
+</Block>
 
     <!-- Meet the category — body -->
   <Block id="nachhaltigkeit">
