@@ -216,7 +216,12 @@ const {
   @media (--from-desktop) {
     .landing-hero {
     grid-template-columns: 1fr 1fr;
-        margin-block-start: calc(-1 * var(--nav-height-multiplier) * var(--navbar-height)); 
+    /* Single row + a fixed-ish height so the hero height is CONSISTENT across
+       categories and no longer driven by each image's aspect ratio. The image
+       cell stretches to this height and object-fit: cover crops it. */
+    grid-template-rows: 1fr;
+    min-height: clamp(28rem, 40vw, 42rem);
+        margin-block-start: calc(-1 * var(--nav-height-multiplier) * var(--navbar-height));
     }
 
     .content {
