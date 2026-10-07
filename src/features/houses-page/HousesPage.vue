@@ -2,11 +2,9 @@
 import type { HouseModel, HouseCategory } from "@/db/models";
 import { ref, computed, onMounted, watch } from "vue";
 import ModelCard from "@/features/model-overview/components/ModelCard.vue";
-import CategoryThumbnail from "@/features/category-slider/components/CategoryThumbnail.vue";
 import SortButton from "@/ui/primitives/SortButton.vue";
 import { ROUTES } from "@/features/navigation/routes";
 import FilterPanel from "@/features/filter-panel/FilterPanel.vue";
-import FloatingCategoryMenu from "@/features/houses-page/FloatingCategoryMenu.vue";
 import {
   type SortOption,
   type ActiveFilter,
@@ -24,7 +22,6 @@ import {
 } from "@/lib/bestseller";
 import { isLandingCategory } from "@/features/landing/landing.registry";
 import { parseLivingArea } from "@/lib/parse-living-area";
-import { HOUSE_DROP_EXTRA_LINKS } from "@/features/navigation/navbar/navbar.content";
 
 const props = defineProps<{
   models: HouseModel[];
@@ -33,39 +30,6 @@ const props = defineProps<{
   // view in SSR (no flash of the explore cards before hydration).
   initialMode?: "explore" | "filter";
 }>();
-
-// Extra landing-page links (e.g. Mehrfamilienhäuser) shown alongside DB
-// categories. Each link mirrors another category's thumbnail/hero so the
-// visual fits the row; clicking navigates to the landing page rather than
-// filtering the catalog. Single source of truth: navbar.content.ts.
-type ExtraLinkVM = {
-  label: string;
-  path: string;
-  category: HouseCategory;
-};
-
-const extraLinks = computed<ExtraLinkVM[]>(() =>
-  HOUSE_DROP_EXTRA_LINKS.flatMap((link) => {
-    const mirror = props.categories.find(
-      (c) => c.slug === link.mirrorCategorySlug,
-    );
-    if (!mirror) return [];
-    return [
-      {
-        label: link.label,
-        path: link.path,
-        // Synthetic id/name/slug so the thumbnail never matches the
-        // selected category and shows the extra link's own label.
-        category: {
-          ...mirror,
-          id: `extra:${link.path}`,
-          name: link.label,
-          slug: `extra:${link.path}`,
-        },
-      },
-    ];
-  }),
-);
 
 // ── Explore vs. filter mode ──────────────────────────────────────────────
 // Two ways in, toggled by a switch: "Entdecken" (category cards that link to
@@ -254,18 +218,7 @@ const sortModels = (models: HouseModel[], option: SortOption | null) => {
   return decorated.map((d) => d.m);
 };
 
-// ---------- Category / panel interactions ----------
-
-const handleCategorySelect = (category: HouseCategory) => {
-  if (category.id === selectedCategory.value?.id) return;
-  selectedCategory.value = category;
-  // Clamp filters to the new category. A precision-brand UX prefers a clean
-  // slate per category over surfacing a 0-results state that the user has
-  // to debug. They can re-apply filters intentionally.
-  if (filterState.value.status !== "inactive") {
-    filterState.value = { status: "inactive", filters: [] };
-  }
-};
+// ---------- Panel interactions ----------
 
 const handleClearFilters = () => {
   filterState.value = { status: "inactive", filters: [] };
@@ -384,18 +337,36 @@ let didInitURL = false;
 onMounted(() => {
   const params = new URLSearchParams(window.location.search);
 
-  const slug = params.get("category");
-  if (slug) {
-    const match = props.categories.find((c) => c.slug === slug);
-    if (match) selectedCategory.value = match;
-  }
-
   const sortParam = params.get("sort");
   if (sortParam && sortOptions.some((o) => o.value === sortParam)) {
     activeSort.value = sortParam;
   }
 
   const parsed = parseFilters(params.get("filter"));
+
+  // Category lives in the drawer now (the "Haustyp" filter). A ?category=<slug>
+  // deep-link (nav dropdown, a landing's "Alle … ansehen") maps onto that
+  // filter for real house types; "bestseller" is a virtual curation, so it
+  // scopes the list directly instead.
+  const slug = params.get("category");
+  if (slug) {
+    const match = props.categories.find((c) => c.slug === slug);
+    if (match) {
+      if (isBestsellerCategory(match)) {
+        selectedCategory.value = match;
+      } else {
+        const opt = filterOptions.find((o) => o.id === "category");
+        if (
+          opt?.kind === "enum" &&
+          opt.options.includes(match.name) &&
+          !parsed.some((f) => f.option.id === "category")
+        ) {
+          parsed.push({ option: opt, value: match.name } as ActiveFilter);
+        }
+      }
+    }
+  }
+
   if (parsed.length > 0) {
     filterState.value = { status: "confirmed", filters: parsed };
   }
@@ -490,24 +461,6 @@ watch(
         v-model:isOpen="isPanelOpen"
         v-model:filterState="filterState"
       ></FilterPanel>
-      <div class="categories-wrapper">
-        <CategoryThumbnail
-          v-for="category in props.categories"
-          :key="category.id"
-          :category="category"
-          @click="handleCategorySelect(category)"
-          :data-is-selected="category.id === selectedCategory?.id"
-        />
-        <a
-          v-for="link in extraLinks"
-          :key="link.path"
-          :href="link.path"
-          class="extra-thumb"
-          :aria-label="link.label"
-        >
-          <CategoryThumbnail :category="link.category" />
-        </a>
-      </div>
       <div class="filter-buttons-wrapper">
         <SortButton
           v-model:sort="activeSort"
@@ -565,13 +518,6 @@ watch(
       </button>
     </div>
 
-    <FloatingCategoryMenu
-      class="floating-menu"
-      :categories="props.categories"
-      :selected-id="selectedCategory?.id"
-      :extra-links="extraLinks.map((l) => ({ label: l.label, path: l.path }))"
-      @select="handleCategorySelect"
-    />
     </template>
   </div>
 </template>
@@ -580,9 +526,7 @@ watch(
 .houses-page-wrapper {
   grid-column: content;
 
-  /* Mobile + tablet: leave room at the bottom so the last card isn't
-     covered by the FloatingCategoryMenu. Matches the floating bar's inset
-     + a touch of breathing room. */
+  /* Mobile + tablet: a little breathing room below the last card. */
   @media (--below-desktop) {
     padding-block-end: calc(
       var(--spacing-7) + env(safe-area-inset-bottom, 0px)
@@ -603,36 +547,6 @@ watch(
     @media (--from-desktop) {
       gap: var(--spacing-3);
       padding-block-end: var(--spacing-5);
-    }
-
-    .categories-wrapper {
-      width: 100%;
-      display: none;
-      gap: var(--spacing-3);
-
-      /* Inline category circles are desktop+ only — mobile + tablet use
-         the FloatingCategoryMenu at the bottom of the viewport instead. */
-      @media (--from-desktop) {
-        display: flex;
-      }
-
-      padding-block: var(--spacing-4);
-    }
-
-    /* Anchor wrapper for landing-page extras (e.g. Mehrfamilienhäuser).
-       Inherits its visual from the nested CategoryThumbnail; we just
-       strip default link styles so the row reads as one consistent
-       sequence of circles. */
-    .extra-thumb {
-      display: inline-flex;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .extra-thumb:focus-visible {
-      outline: 2px solid var(--clr-accent-secondary);
-      outline-offset: 4px;
-      border-radius: var(--radius-full);
     }
 
     .filter-buttons-wrapper {
