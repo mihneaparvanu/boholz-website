@@ -29,7 +29,9 @@ defineEmits<{
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-1);
-  height: var(--control-height-sm);
+  min-height: var(--control-height-sm);
+  max-width: 100%;
+  padding-block: 2px;
   padding-inline: var(--spacing-2);
   border: 1px solid transparent;
   border-radius: var(--radius-full);
@@ -40,9 +42,11 @@ defineEmits<{
   );
   color: var(--clr-accent-secondary);
   font-size: var(--fs-body-sm);
-  line-height: 1;
+  line-height: 1.2;
   cursor: pointer;
-  white-space: nowrap;
+  /* Long labels ("Haustyp: Generationenhaus") wrap instead of being clipped. */
+  white-space: normal;
+  text-align: start;
   transition:
     background-color 160ms ease,
     color 160ms ease;
@@ -64,5 +68,12 @@ defineEmits<{
 
 .label {
   display: inline-block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Keep the × from shrinking when the label wraps. */
+.filter-chip svg {
+  flex-shrink: 0;
 }
 </style>

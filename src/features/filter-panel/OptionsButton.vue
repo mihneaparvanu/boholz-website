@@ -29,15 +29,20 @@ defineProps<{
   justify-content: center;
   min-height: var(--control-height-md);
   min-width: var(--control-height-md);
+  max-width: 100%;
+  padding-block: var(--spacing-1);
   padding-inline: var(--spacing-3);
   border-radius: var(--radius-full);
   background: var(--clr-surface-secondary);
   color: var(--clr-content-secondary);
   font: inherit;
   font-size: var(--fs-body-sm);
-  line-height: 1;
+  line-height: 1.2;
+  text-align: center;
   cursor: pointer;
-  white-space: nowrap;
+  /* Long labels (e.g. "Generationenhaus") wrap inside the pill instead of
+     overflowing/clipping on a narrow drawer. */
+  white-space: normal;
   transition:
     background-color 160ms ease,
     color 160ms ease;
