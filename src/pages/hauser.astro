@@ -4,13 +4,66 @@ import HousesPage from "@/features/houses-page/HousesPage.vue";
 import { getCategories, getModels } from "@/db/loaders";
 
 const [models, categories] = await Promise.all([getModels(), getCategories()]);
+// "Bestseller" is a curation, not a house type — keep it out of the type count.
+const typeCount = categories.filter((c) => c.slug !== "bestseller").length;
 ---
 
 <Layout title="Häuser – BoHolz Haus" categories={categories}>
-<h1>Unsere Häuser</h1>
-   <HousesPage models={models} categories={categories} client:visible />
+  <section class="houses-intro">
+    <p class="intro-eyebrow">Alles entdecken, für Sie gebaut</p>
+    <h1>Unsere Häuser</h1>
+    <p class="intro-lede">
+      Vom Bungalow bis zum Mehrfamilienhaus — entdecken Sie unsere Haustypen
+      aus Holz, individuell für Sie geplant und schlüsselfertig gebaut. Wählen
+      Sie einen Haustyp, um mehr zu erfahren, oder filtern Sie alle Modelle
+      nach Wohnfläche, Geschossen und mehr.
+    </p>
+    <p class="intro-stats">
+      <strong>{typeCount}</strong> Haustypen · <strong>{models.length}</strong> Modelle
+    </p>
+  </section>
+  <HousesPage models={models} categories={categories} client:visible />
 </Layout>
 
 <style>
-
+  .houses-intro {
+    grid-column: content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-2);
+    max-width: 52rem;
+    margin-inline: auto;
+    padding-block: var(--spacing-5) var(--spacing-4);
+  }
+  .intro-eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    font-size: var(--fs-body-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--clr-accent-secondary);
+  }
+  .houses-intro h1 {
+    margin: 0;
+    font-size: var(--fs-h1);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.1;
+  }
+  .intro-lede {
+    margin: 0;
+    max-width: 46rem;
+    font-size: var(--fs-body-lg);
+    color: var(--clr-content-secondary);
+  }
+  .intro-stats {
+    margin: var(--spacing-1) 0 0;
+    font-size: var(--fs-body);
+    color: var(--clr-content-tertiary);
+  }
+  .intro-stats strong {
+    color: var(--clr-content-primary);
+    font-weight: var(--font-weight-semibold, 600);
+  }
 </style>

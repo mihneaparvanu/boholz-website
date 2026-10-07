@@ -22,6 +22,7 @@ import {
   getBestsellerModels,
   BESTSELLER_LAST_SLUG,
 } from "@/lib/bestseller";
+import { isLandingCategory } from "@/features/landing/landing.registry";
 import { parseLivingArea } from "@/lib/parse-living-area";
 import { HOUSE_DROP_EXTRA_LINKS } from "@/features/navigation/navbar/navbar.content";
 
@@ -62,6 +63,33 @@ const extraLinks = computed<ExtraLinkVM[]>(() =>
     ];
   }),
 );
+
+// ── Explore vs. filter mode ──────────────────────────────────────────────
+// Two ways in, toggled by a switch: "Entdecken" (category cards that link to
+// the typology landing pages — the discovery/SEO path) and "Filtern" (the
+// full model grid with filters). A deep link carrying filter intent
+// (?view=filter, ?category=, ?sort=, ?filter=) opens straight into Filtern.
+const mode = ref<"explore" | "filter">("explore");
+
+const exploreCategories = computed(() => props.categories);
+
+// DB category slug → typology landing URL. Slugs match a landing 1:1 except
+// `mehrfamilienhaus` (its landing lives at /wohnen/mehrfamilien).
+const CATEGORY_LANDING_OVERRIDES: Record<string, string> = {
+  mehrfamilienhaus: "mehrfamilien",
+};
+function landingHref(slug: string): string {
+  const landing = CATEGORY_LANDING_OVERRIDES[slug] ?? slug;
+  return isLandingCategory(landing)
+    ? `/wohnen/${landing}`
+    : `/hauser?category=${slug}&view=filter`;
+}
+
+function setMode(next: "explore" | "filter") {
+  if (mode.value === next) return;
+  mode.value = next;
+  if (didInitURL) writeURL();
+}
 
 const selectedCategory = ref<HouseCategory | null>(null);
 const isPanelOpen = ref(false);
@@ -327,6 +355,11 @@ const writeURL = () => {
   } else {
     url.searchParams.delete("sort");
   }
+  if (mode.value === "filter") {
+    url.searchParams.set("view", "filter");
+  } else {
+    url.searchParams.delete("view");
+  }
   // Only serialize *committed* filters — pending drafts shouldn't appear
   // in the URL (otherwise a shared link would carry unconfirmed state).
   const committed =
@@ -360,6 +393,17 @@ onMounted(() => {
     filterState.value = { status: "confirmed", filters: parsed };
   }
 
+  // Open into Filtern when the URL carries filter intent (ad landing on
+  // ?category=, a shared filtered link, or an explicit ?view=filter).
+  if (
+    params.get("view") === "filter" ||
+    params.get("category") ||
+    params.get("sort") ||
+    params.get("filter")
+  ) {
+    mode.value = "filter";
+  }
+
   didInitURL = true;
 });
 
@@ -386,6 +430,40 @@ watch(
 
 <template>
   <div class="houses-page-wrapper">
+    <div class="view-switch" role="tablist" aria-label="Ansicht wählen">
+      <button
+        type="button"
+        role="tab"
+        :aria-selected="mode === 'explore'"
+        :class="['switch-btn', { active: mode === 'explore' }]"
+        @click="setMode('explore')"
+      >
+        Nach Haustyp entdecken
+      </button>
+      <button
+        type="button"
+        role="tab"
+        :aria-selected="mode === 'filter'"
+        :class="['switch-btn', { active: mode === 'filter' }]"
+        @click="setMode('filter')"
+      >
+        Alle Modelle filtern
+      </button>
+    </div>
+
+    <div v-if="mode === 'explore'" class="explore-grid">
+      <a
+        v-for="category in exploreCategories"
+        :key="category.id"
+        :href="landingHref(category.slug)"
+        class="explore-card"
+        :aria-label="`${category.name} entdecken`"
+      >
+        <CategoryThumbnail :category="category" />
+      </a>
+    </div>
+
+    <template v-else>
     <div class="controls-wrapper">
       <FilterPanel
         :modelsCount="modelsCount"
@@ -475,6 +553,7 @@ watch(
       :extra-links="extraLinks.map((l) => ({ label: l.label, path: l.path }))"
       @select="handleCategorySelect"
     />
+    </template>
   </div>
 </template>
 
@@ -669,5 +748,72 @@ watch(
   .empty-action:hover {
     background: var(--clr-surface-secondary);
   }
+}
+
+/* ── View switch (Entdecken ⇆ Filtern) ──────────────────────────────── */
+.view-switch {
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  gap: 4px;
+  margin: 0 auto var(--spacing-4);
+  padding: 4px;
+  background: var(--clr-surface-secondary);
+  border: 1px solid var(--clr-border-secondary);
+  border-radius: var(--radius-full, 999px);
+}
+.switch-btn {
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius-full, 999px);
+  font: inherit;
+  font-size: var(--fs-body-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--clr-content-secondary);
+  white-space: nowrap;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+}
+.switch-btn.active {
+  background: var(--clr-accent-secondary);
+  color: var(--clr-pure-white, #fff);
+}
+.switch-btn:focus-visible {
+  outline: 2px solid var(--clr-accent-secondary);
+  outline-offset: 2px;
+}
+
+/* ── Explore view — category cards linking to the typology landings ──── */
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-3);
+}
+@media (min-width: 48rem) {
+  .explore-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.explore-card {
+  display: block;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+.explore-card:hover,
+.explore-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+.explore-card:focus-visible {
+  outline: 2px solid var(--clr-accent-secondary);
+  outline-offset: 2px;
 }
 </style>
