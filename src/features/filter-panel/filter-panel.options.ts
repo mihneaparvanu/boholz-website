@@ -191,7 +191,28 @@ const allowsGrannyFlat: BooleanFilter = {
   resolve: (m) => m.details?.allowsGrannyFlat ?? null,
 };
 
+// Haustyp — filter the catalogue by house category. Options are the real DB
+// categories (Bestseller is a virtual curation, Pultdachhaus is hidden), and
+// `resolve` reads each model's own category name.
+const houseType: EnumFilter = {
+  id: "category",
+  kind: "enum",
+  label: "Haustyp",
+  options: [
+    "Bungalow",
+    "Doppelhaus",
+    "Einfamilienhaus",
+    "Generationenhaus",
+    "Kubus",
+    "Mehrfamilienhaus",
+    "Stadtvilla",
+    "Zweifamilienhaus",
+  ],
+  resolve: (m) => m.category?.name ?? null,
+};
+
 export const filterOptions: FilterOption[] = [
+  houseType,
   livingAreaThreshold,
   floors,
   roofType,
