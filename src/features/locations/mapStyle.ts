@@ -3,7 +3,7 @@ import type { StyleSpecification } from "maplibre-gl";
 // ─── Camera defaults ────────────────────────────────────────────────────────
 // Coordinates are always [lng, lat] in MapLibre (GeoJSON order).
 export const GERMANY_CENTER: [number, number] = [10.4515, 51.1657];
-export const GERMANY_ZOOM = 6.0;
+export const GERMANY_ZOOM = 5.3;
 
 // [westLng, southLat, eastLng, northLat]. Lock the camera to Germany with
 // <MglMap :max-bounds="GERMANY_BOUNDS" />.

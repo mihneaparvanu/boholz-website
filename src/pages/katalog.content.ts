@@ -30,6 +30,6 @@ export const benefits: CatalogBenefit[] = [
   {
     icon: Compass,
     title: "Nächste Schritte zur Beratung",
-    body: "Ein klarer Fahrplan vom Katalog über die Bedarfsanalyse bis zum persönlichen Angebot.",
+    body: "Ein klarer Fahrplan von der Imagebroschüre über die Bedarfsanalyse bis zum persönlichen Angebot.",
   },
 ];

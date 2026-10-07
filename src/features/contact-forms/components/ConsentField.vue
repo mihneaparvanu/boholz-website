@@ -1,8 +1,22 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { type ConsentField } from "@/features/contact-forms/types/contact.types";
 import "@/ui/style/form.css";
-defineProps<{ field: ConsentField }>();
+const props = defineProps<{ field: ConsentField }>();
 const model = defineModel<boolean>();
+
+// Turn the word "Datenschutzerklärung" in the label into a link to the
+// privacy page. Split into before/after so the rest stays plain text.
+const LINK_WORD = "Datenschutzerklärung";
+const parts = computed(() => {
+  const i = props.field.label.indexOf(LINK_WORD);
+  if (i === -1) return { before: props.field.label, after: "", hasLink: false };
+  return {
+    before: props.field.label.slice(0, i),
+    after: props.field.label.slice(i + LINK_WORD.length),
+    hasLink: true,
+  };
+});
 </script>
 
 <template>
@@ -16,7 +30,17 @@ const model = defineModel<boolean>();
       v-model="model"
     />
     <span>
-      {{ field.label }}
+      <template v-if="parts.hasLink">
+        {{ parts.before }}<a
+          class="ds-link"
+          href="/datenschutz"
+          target="_blank"
+          rel="noopener"
+          @click.stop
+          >Datenschutzerklärung</a
+        >{{ parts.after }}
+      </template>
+      <template v-else>{{ field.label }}</template>
       <span v-if="field.required" aria-hidden="true" class="required">*</span>
     </span>
   </label>
@@ -38,6 +62,22 @@ const model = defineModel<boolean>();
 .required {
   color: var(--clr-accent-primary);
   margin-inline-start: var(--spacing-0);
+}
+
+/* Datenschutz link — brand deep-blue, clearly clickable. */
+.ds-link {
+  color: var(--clr-accent-secondary);
+  font-weight: var(--font-weight-semibold, 600);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.ds-link:hover {
+  text-decoration-thickness: 2px;
+}
+.ds-link:focus-visible {
+  outline: 2px solid var(--clr-accent-secondary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 input {

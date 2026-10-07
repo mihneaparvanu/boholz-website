@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, shallowRef } from "vue";
 import { MglMap, MglNavigationControl } from "@indoorequal/vue-maplibre-gl";
-import type { StyleSpecification } from "maplibre-gl";
+import { LngLatBounds } from "maplibre-gl";
+import type { StyleSpecification, Map as MlMap } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 import type { LocationWithAgents } from "@/db/models";
@@ -28,6 +29,25 @@ const mapStyle = shallowRef<StyleSpecification | null>(null);
 getBrandedStyle().then((s) => (mapStyle.value = s));
 
 const selected = ref<LocationWithAgents | null>(null);
+
+// On load, zoom out just enough to show *all* locations at once (rather than a
+// fixed Germany zoom that can clip the outer standorte). Static center/zoom
+// stay as the pre-load fallback.
+function fitToLocations(map: MlMap) {
+  const locs = validLocations.value;
+  if (!locs.length) return;
+  try {
+    const bounds = new LngLatBounds();
+    for (const l of locs) bounds.extend([Number(l.lng), Number(l.lat)]);
+    map.fitBounds(bounds, { padding: 56, maxZoom: 9, duration: 0 });
+  } catch {
+    /* keep the static center/zoom fallback */
+  }
+}
+function onMapLoad(e: { map?: MlMap; target?: MlMap }) {
+  const map = e?.map ?? e?.target;
+  if (map) fitToLocations(map);
+}
 </script>
 
 <template>
@@ -38,6 +58,7 @@ const selected = ref<LocationWithAgents | null>(null);
       :center="GERMANY_CENTER"
       :zoom="GERMANY_ZOOM"
       :max-bounds="GERMANY_BOUNDS"
+      @map:load="onMapLoad"
       :attribution-control="{
         compact: true,
       }"

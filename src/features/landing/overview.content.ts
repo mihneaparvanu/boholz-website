@@ -77,7 +77,7 @@ export const overviewContent: LandingPageContent = {
     imageFallbackPath: "/images/brand/hero.webp",
     preferredCategorySlug: "einfamilienhaus",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
-    secondaryCta: { label: "Hauskatalog anfordern", href: "/katalog" },
+    secondaryCta: { label: "Imagebroschüre anfordern", href: "/katalog" },
   },
 
   benefitsIntro: {
@@ -250,7 +250,7 @@ export const overviewContent: LandingPageContent = {
   leadForm: {
     eyebrow: "Ihr persönliches Angebot",
     heading: "Anfordern und",
-    highlight: "Hauskatalog anfordern.",
+    highlight: "Imagebroschüre anfordern.",
     lede: "Wir sind für Sie da — stellen Sie uns Ihre Fragen oder fordern Sie Ihr persönliches Angebot an.",
   },
 
@@ -262,6 +262,6 @@ export const overviewContent: LandingPageContent = {
       "Sie sind unverbindlich beraten — oder direkt ein Angebot anfordern.",
     tone: "surface",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
-    secondaryCta: { label: "Hauskatalog anfordern", href: "/katalog" },
+    secondaryCta: { label: "Imagebroschüre anfordern", href: "/katalog" },
   },
 };

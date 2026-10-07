@@ -18,8 +18,8 @@ export type HomeSection = SectionContent & {
 export const homeSections = {
   categories: {
     id: "katalog",
-    eyebrow: "Katalog",
-    navLabel: "Katalog",
+    eyebrow: "Broschüre",
+    navLabel: "Broschüre",
     heading1: "Ihr Zuhause,",
     heading2: "präzise gedacht.",
     highlight: "Modell wählen.",

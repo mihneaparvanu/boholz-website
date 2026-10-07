@@ -19,8 +19,8 @@ const state = reactive({ ...emptyCatalogForm });
 // vars aren't inlined at build), which would 404. The media host is stable.
 // Version query busts Cloudflare's edge cache (max-age 30d) on PDF swaps.
 const ASSETS = "https://boholz-haus.de/m";
-const katalogCoverUrl = `${ASSETS}/images/landing/katalog-haeuser-2026-cover.jpg`;
-const brochureUrl = `${ASSETS}/pdf/boholz-hauskatalog-2026-09.pdf?v=2026-09`;
+const katalogCoverUrl = `${ASSETS}/images/landing/imagebroschuere-2026-10-cover-front.jpg`;
+const brochureUrl = `${ASSETS}/pdf/boholz-imagebroschuere-2026-10.pdf?v=2026-10`;
 const brochureCoverUrl = katalogCoverUrl;
 
 const turnstileToken = ref("");
@@ -122,20 +122,20 @@ async function onSubmit() {
         class="submit-cover"
         loading="lazy"
       />
-      <span>{{ submitting ? "Wird gesendet..." : "Hauskatalog anfordern" }}</span>
+      <span>{{ submitting ? "Wird gesendet..." : "Imagebroschüre anfordern" }}</span>
     </button>
   </form>
 
   <div v-else class="success" role="status">
     <h3>Vielen Dank!</h3>
     <p>
-      Ihre Katalog-Anfrage ist bei uns eingegangen. Sie können den Katalog
+      Ihre Anfrage ist bei uns eingegangen. Sie können die Imagebroschüre
       direkt hier herunterladen — wir melden uns zudem persönlich bei Ihnen.
     </p>
 
     <img
       :src="brochureCoverUrl"
-      alt="BoHolz Katalog — Titelseite"
+      alt="BoHolz Imagebroschüre — Titelseite"
       class="cover"
       width="240"
       height="339"
@@ -143,7 +143,7 @@ async function onSubmit() {
     />
 
     <a :href="brochureUrl" download class="download">
-      Katalog herunterladen (PDF)
+      Imagebroschüre herunterladen (PDF)
     </a>
   </div>
 </template>

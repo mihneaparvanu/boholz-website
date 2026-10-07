@@ -24,7 +24,7 @@ export const generationenhausContent: LandingPageContent = {
     imageAlt: "Generationenhaus aus Holz von BoHolz-Haus",
     imageFallbackPath: "/images/models/generationenhaus/30-223-160/gallery/generationenhaus-30-223-160-gallery-gen-1.webp",
     preferredCategorySlug: "generationenhaus",
-    primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
+    primaryCta: { label: "Imagebroschüre kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
@@ -217,18 +217,18 @@ export const generationenhausContent: LandingPageContent = {
   },
 
   leadForm: {
-    eyebrow: "Kostenloser Hauskatalog",
-    heading: "Den Hauskatalog",
+    eyebrow: "Kostenlose Imagebroschüre",
+    heading: "Die Imagebroschüre",
     highlight: "kostenlos anfordern.",
-    lede: "Name, E-Mail und Ort genügen – Sie erhalten unseren kompletten Hauskatalog mit allen Haustypen als PDF per E-Mail: vom Bungalow über die Stadtvilla bis zum Einfamilien-, Doppel- und Generationenhaus.",
+    lede: "Name, E-Mail und Ort genügen – Sie erhalten unsere komplette Imagebroschüre mit allen Haustypen als PDF per E-Mail: vom Bungalow über die Stadtvilla bis zum Einfamilien-, Doppel- und Generationenhaus.",
   },
 
   midPageCta: {
     eyebrow: "Kostenlos und unverbindlich",
     heading: "Holen Sie sich jetzt den",
-    highlight: "Hauskatalog.",
-    lede: "Unser kompletter Hauskatalog mit allen Haustypen – Grundrisse und Hausdaten zu jedem Entwurf, als PDF per E-Mail.",
+    highlight: "Imagebroschüre.",
+    lede: "Unsere komplette Imagebroschüre mit allen Haustypen – Grundrisse und Hausdaten zu jedem Entwurf, als PDF per E-Mail.",
     tone: "brand",
-    primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
+    primaryCta: { label: "Imagebroschüre kostenlos anfordern", href: "#anfordern" },
   },
 };

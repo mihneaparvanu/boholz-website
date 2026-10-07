@@ -13,7 +13,7 @@ export const bungalowContent: LandingPageContent = {
   seo: {
     title: "Bungalow als Fertighaus aus Holz | BoHolz-Haus",
     description:
-      "Bungalow aus Holz: alles auf einer Ebene, individuell geplant und auf Wunsch barrierefrei. Entwürfe mit 122 bis 141 m² ansehen – Hauskatalog kostenlos.",
+      "Bungalow aus Holz: alles auf einer Ebene, individuell geplant und auf Wunsch barrierefrei. Entwürfe mit 122 bis 141 m² ansehen – Imagebroschüre kostenlos.",
     focusKeyword: "Bungalow Fertighaus",
   },
 
@@ -25,7 +25,7 @@ export const bungalowContent: LandingPageContent = {
     imageAlt: "Bungalow aus Holz von BoHolz-Haus",
     imageFallbackPath: "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-exterior-2026.webp",
     preferredCategorySlug: "bungalow",
-    primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
+    primaryCta: { label: "Imagebroschüre kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
@@ -218,18 +218,18 @@ export const bungalowContent: LandingPageContent = {
   },
 
   leadForm: {
-    eyebrow: "Kostenloser Hauskatalog",
-    heading: "Den Hauskatalog",
+    eyebrow: "Kostenlose Imagebroschüre",
+    heading: "Die Imagebroschüre",
     highlight: "kostenlos anfordern.",
-    lede: "Name, E-Mail und Ort genügen – Sie erhalten unseren kompletten Hauskatalog mit allen Haustypen als PDF per E-Mail: vom Bungalow über die Stadtvilla bis zum Einfamilien-, Doppel- und Generationenhaus.",
+    lede: "Name, E-Mail und Ort genügen – Sie erhalten unsere komplette Imagebroschüre mit allen Haustypen als PDF per E-Mail: vom Bungalow über die Stadtvilla bis zum Einfamilien-, Doppel- und Generationenhaus.",
   },
 
   midPageCta: {
     eyebrow: "Kostenlos und unverbindlich",
     heading: "Holen Sie sich jetzt den",
-    highlight: "Hauskatalog.",
-    lede: "Unser kompletter Hauskatalog mit allen Haustypen – Grundrisse und Hausdaten zu jedem Entwurf, als PDF per E-Mail.",
+    highlight: "Imagebroschüre.",
+    lede: "Unsere komplette Imagebroschüre mit allen Haustypen – Grundrisse und Hausdaten zu jedem Entwurf, als PDF per E-Mail.",
     tone: "brand",
-    primaryCta: { label: "Hauskatalog kostenlos anfordern", href: "#anfordern" },
+    primaryCta: { label: "Imagebroschüre kostenlos anfordern", href: "#anfordern" },
   },
 };

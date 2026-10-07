@@ -4,7 +4,7 @@
  * Copy source: Marketing (Mario Beckstein), "Landingpage-Texte: Mehrfamilien-
  * haus", Stand 29.09.2026. EmpCo/UWG-clean (no environmental/superlative
  * claims, no unbacked prices). SPECIAL: this category has no catalog — the
- * Hauskatalog contains no Mehrfamilienhäuser — so both hero and mid-page CTA
+ * Imagebroschüre contains no Mehrfamilienhäuser — so both hero and mid-page CTA
  * point at a project inquiry (/kontakt) instead of the catalog request.
  * DRAFT — pending BoHolz (Christoph) + legal sign-off; the routes are noindex.
  */
