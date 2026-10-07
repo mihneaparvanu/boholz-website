@@ -863,6 +863,8 @@ So verbindet die sorgfältig geplante Gebäudehülle Wärmeschutz und Wohnkomfor
     display: block;
     width: 100%;
     height: auto; /* show the whole diagram — no cropping, ever */
+    aspect-ratio: auto; /* defeat any inherited content-page img aspect-ratio */
+    object-fit: contain;
   }
   .wall-title {
     margin: var(--spacing-1) 0 0;
@@ -878,14 +880,22 @@ So verbindet die sorgfältig geplante Gebäudehülle Wärmeschutz und Wohnkomfor
     font-style: italic;
   }
   .wall-layers {
+    /* reset.css sets `ul, ol { list-style: none }` globally — restore the
+       1–8 numbering. NB: a flex/grid parent suppresses list markers, so this
+       stays a normal block list and spaces items via margins, not gap. */
     margin: 0;
-    padding-inline-start: 1.5em;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-1);
+    padding-inline-start: 1.6em;
+    list-style: decimal;
     color: var(--clr-content-secondary);
     font-size: var(--fs-body);
     line-height: var(--lh-body);
+  }
+  .wall-layers li {
+    display: list-item;
+    margin-block-end: var(--spacing-1);
+  }
+  .wall-layers li:last-child {
+    margin-block-end: 0;
   }
   .wall-layers li::marker {
     color: var(--clr-accent-secondary);

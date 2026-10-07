@@ -88,6 +88,10 @@ function landingHref(slug: string): string {
     : `/hauser?category=${slug}&view=filter`;
 }
 
+function categoryImage(category: HouseCategory): string {
+  return category.media.find((m) => m.isThumbnail)?.media.path ?? "";
+}
+
 function setMode(next: "explore" | "filter") {
   if (mode.value === next) return;
   mode.value = next;
@@ -462,7 +466,19 @@ watch(
         class="explore-card"
         :aria-label="`${category.name} entdecken`"
       >
-        <CategoryThumbnail :category="category" />
+        <img
+          v-if="categoryImage(category)"
+          class="explore-card-img"
+          :src="categoryImage(category)"
+          :alt="category.name"
+          loading="lazy"
+        />
+        <span class="explore-card-overlay">
+          <span class="explore-card-name">{{ category.name }}</span>
+          <span class="explore-card-cta"
+            >Entdecken <span aria-hidden="true">→</span></span
+          >
+        </span>
       </a>
     </div>
 
@@ -790,30 +806,81 @@ watch(
   outline-offset: 2px;
 }
 
-/* ── Explore view — category cards linking to the typology landings ──── */
+/* ── Explore view — big square image cards linking to the landings ───── */
 .explore-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr; /* mobile: one big square per row */
   gap: var(--spacing-3);
 }
-@media (min-width: 48rem) {
+@media (min-width: 40rem) {
+  .explore-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 64rem) {
   .explore-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 .explore-card {
+  position: relative;
   display: block;
+  aspect-ratio: 1 / 1;
   border-radius: var(--radius-md);
   overflow: hidden;
   text-decoration: none;
+  background: var(--clr-surface-secondary);
   transition:
     transform 160ms ease,
     box-shadow 160ms ease;
 }
+.explore-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+.explore-card::after {
+  /* scrim keeps the label legible over any image */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.62) 0%,
+    rgba(0, 0, 0, 0.12) 45%,
+    transparent 70%
+  );
+}
+.explore-card-overlay {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--spacing-3);
+  color: var(--clr-pure-white, #fff);
+}
+.explore-card-name {
+  font-size: var(--fs-h4);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.1;
+}
+.explore-card-cta {
+  font-size: var(--fs-body-sm);
+  opacity: 0.9;
+}
 .explore-card:hover,
 .explore-card:focus-visible {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+.explore-card:hover .explore-card-img {
+  transform: scale(1.04);
 }
 .explore-card:focus-visible {
   outline: 2px solid var(--clr-accent-secondary);
