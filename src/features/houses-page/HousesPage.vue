@@ -29,6 +29,9 @@ import { HOUSE_DROP_EXTRA_LINKS } from "@/features/navigation/navbar/navbar.cont
 const props = defineProps<{
   models: HouseModel[];
   categories: HouseCategory[];
+  // Resolved server-side from the URL so filter deep-links render the filter
+  // view in SSR (no flash of the explore cards before hydration).
+  initialMode?: "explore" | "filter";
 }>();
 
 // Extra landing-page links (e.g. Mehrfamilienhäuser) shown alongside DB
@@ -69,7 +72,7 @@ const extraLinks = computed<ExtraLinkVM[]>(() =>
 // the typology landing pages — the discovery/SEO path) and "Filtern" (the
 // full model grid with filters). A deep link carrying filter intent
 // (?view=filter, ?category=, ?sort=, ?filter=) opens straight into Filtern.
-const mode = ref<"explore" | "filter">("explore");
+const mode = ref<"explore" | "filter">(props.initialMode ?? "explore");
 
 const exploreCategories = computed(() => props.categories);
 
