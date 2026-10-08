@@ -39,7 +39,9 @@ function scheduleClose() {
 
 function dropForRoute(route: NavLink): DropKey {
   if (!props.enableDropdown) return null;
-  if (route.path === ROUTES.houses && props.currentPath !== ROUTES.houses) {
+  // The Häuser dropdown stays available even when you're on /hauser itself —
+  // it's how you jump to the typology landings from the overview page.
+  if (route.path === ROUTES.houses) {
     return "houses";
   }
   return null;
