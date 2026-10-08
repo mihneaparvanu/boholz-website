@@ -6,6 +6,7 @@ import type { HouseCategory, Location } from "@/db/models";
 import { ROUTES } from "@/features/navigation/routes";
 import { useCategoryGallery } from "@/lib/useCategoryGallery";
 import { isBestsellerCategory } from "@/lib/bestseller";
+import { isLandingCategory } from "@/features/landing/landing.registry";
 import TitleLinks from "./TitleLinks.vue";
 import {
   HOUSE_DROP_EXTRA_LINKS,
@@ -27,6 +28,18 @@ const ctaLinks = [
   { label: "Kontakt", href: ROUTES.contact },
 ];
 const extraLinks = HOUSE_DROP_EXTRA_LINKS;
+
+// Category links point to the typology landing pages (/wohnen/<typ>), the
+// discovery/SEO path. Slugs map 1:1 except mehrfamilienhaus → mehrfamilien.
+const CATEGORY_LANDING_OVERRIDES: Record<string, string> = {
+  mehrfamilienhaus: "mehrfamilien",
+};
+function landingHref(slug: string): string {
+  const landing = CATEGORY_LANDING_OVERRIDES[slug] ?? slug;
+  return isLandingCategory(landing)
+    ? `/wohnen/${landing}`
+    : `/hauser?category=${slug}`;
+}
 
 // When the user is hovering an extra link (e.g. Mehrfamilienhäuser), the
 // showcase image mirrors another category's hero, but the title and click
@@ -52,9 +65,7 @@ const showcaseTitle = computed(
   () => hoveredExtraLink.value?.label ?? selected.value.name,
 );
 const showcaseHref = computed(
-  () =>
-    hoveredExtraLink.value?.path ??
-    `/hauser?category=${selected.value.slug}`,
+  () => hoveredExtraLink.value?.path ?? landingHref(selected.value.slug),
 );
 const showcaseKey = computed(
   () => hoveredExtraLink.value?.path ?? selected.value.id,
@@ -64,6 +75,10 @@ const showcaseKey = computed(
 <template>
   <div class="drop-panel">
     <div class="drop-panel-nav">
+      <a class="all-houses-link" :href="ROUTES.houses">
+        <span>Alle Häuser entdecken</span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
       <ul class="links category">
         <Motion
           v-for="(category, i) in props.categories"
@@ -75,7 +90,7 @@ const showcaseKey = computed(
           :transition="{ duration: 0.32, delay: 0.05 + i * 0.035, ease: EASE }"
           @mouseenter="hoverCategory(category)"
         >
-          <a :href="`/hauser?category=${category.slug}`">
+          <a :href="landingHref(category.slug)">
             <span class="label">{{ category.name }}</span>
             <span
               v-if="isBestsellerCategory(category)"
@@ -183,6 +198,35 @@ const showcaseKey = computed(
 
   @media (--mobile) {
     grid-template-columns: 1fr;
+  }
+
+  .all-houses-link {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-2);
+    padding-block: var(--spacing-1) var(--spacing-2);
+    margin-block-end: var(--spacing-2);
+    border-block-end: 1px solid var(--clr-border-secondary);
+    font-weight: var(--font-weight-semibold, 600);
+    color: var(--clr-accent-secondary);
+    transition:
+      gap 160ms ease,
+      color 160ms ease;
+  }
+
+  .all-houses-link:hover,
+  .all-houses-link:focus-visible {
+    color: var(--clr-accent-primary);
+  }
+
+  .all-houses-link .arrow {
+    transition: transform 160ms ease;
+  }
+
+  .all-houses-link:hover .arrow {
+    transform: translateX(3px);
   }
 
   .links {
