@@ -43,7 +43,7 @@ export const singleFamilyContent: LandingPageContent = {
     },
     {
       icon: "layers",
-      title: "Klar beschriebener Wandaufbau",
+      title: "Wandaufbau KfW 55",
       body: "Holz-Aktiv-Wand mit 60 mm Holzfaserdämmplatte und Holzrahmenkonstruktion: U-Wert 0,164 W/(m²K), in der Plus-Variante 0,143 W/(m²K).",
       tone: "forest",
     },

@@ -57,7 +57,7 @@ export const bestsellerContent: LandingPageContent = {
     },
     {
       icon: "layers",
-      title: "Klar beschriebener Wandaufbau",
+      title: "Wandaufbau KfW 55",
       body: "Holz-Aktiv-Wand mit 60 mm Holzfaserdämmplatte und Holzrahmenkonstruktion: U-Wert 0,164 W/(m²K), in der Plus-Variante 0,143 W/(m²K).",
       tone: "accent",
     },
@@ -196,7 +196,7 @@ export const bestsellerContent: LandingPageContent = {
         body: "Weil Grundriss und Hausdaten bereits vorliegen, beginnt Ihre Planung nicht bei null. Im ersten Gespräch – im Musterhaus Fellbach, in Bad Vilbel oder bei einer Vor-Ort-Beratung – wählen Sie Ihren Favoriten und besprechen Ihre Wünsche. Danach folgen Anpassung des Entwurfs, Bauantrag und Finanzierung, die Bemusterung bei Keitel-Haus in Rot am See-Brettheim und schließlich Fertigung, Montage und Übergabe. Ein Leitsatz begleitet uns dabei: „Ein Haus wie unser eigenes.“",
       },
       {
-        heading: "Klar beschriebener Wandaufbau",
+        heading: "Wandaufbau KfW 55",
         body: "Holz-Aktiv-Wand mit 60 mm Holzfaserdämmplatte und Holzrahmenkonstruktion: U-Wert 0,164 W/(m²K), in der Plus-Variante 0,143 W/(m²K).",
       },
     ],

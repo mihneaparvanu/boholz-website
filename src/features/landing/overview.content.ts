@@ -31,7 +31,7 @@ type HeroCopy = {
 export const heroVariants = {
   // Variant 1 — the current launch copy. Default.
   current: {
-    heading: "Fertighäuser",
+    heading: "Premium Fertighäuser",
     highlight: "aus Holz.",
     lede:
       "Wir bauen Fertighäuser aus Holz in Deutschland – persönlich begleitet von der ersten Idee bis zur Hausübergabe. Für ein Zuhause, das zu Ihnen und Ihrer Lebenssituation passt.",
@@ -62,7 +62,7 @@ export const heroVariant: HeroVariantKey = "current";
 export const overviewContent: LandingPageContent = {
 
   seo: {
-    title: "Fertighäuser aus Holz · BoHolz-Haus",
+    title: "Premium Fertighäuser aus Holz · BoHolz-Haus",
     description:
       "Fertighäuser aus Holz — individuell geplant, schlüsselfertig übergeben. Vom Bungalow bis zum Mehrfamilienhaus.",
   },
