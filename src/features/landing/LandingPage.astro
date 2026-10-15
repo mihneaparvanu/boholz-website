@@ -365,7 +365,7 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
     lede={leadForm.lede}
   >
     <div class="form-wrap">
-      <CatalogForm client:visible />
+      <CatalogForm variant={leadForm.catalogVariant ?? "default"} client:visible />
     </div>
   </Block>
 

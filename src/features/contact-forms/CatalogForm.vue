@@ -11,17 +11,55 @@ import TextField from "./components/TextField.vue";
 import RadioField from "./components/RadioField.vue";
 import ConsentField from "./components/ConsentField.vue";
 
+const props = defineProps<{
+  /** Which pair of PDFs the lead gets. "bestseller" swaps the Hauskatalog
+      for the Kurzkatalog on the Bestseller landing; default pair applies
+      elsewhere (home, other landings, /katalog). */
+  variant?: "default" | "bestseller";
+}>();
+
 const state = reactive({ ...emptyCatalogForm });
 
-// The form's reward for the lead's data is the current house catalog.
+// The form's reward for the lead's data is the Imagebroschüre + a second
+// catalog (Hauskatalog, or Kurzkatalog on the bestseller landing).
 // NOTE: absolute CDN URLs on purpose — this is a client-hydrated island and
 // `getMediaURL()` resolves to an empty base in the browser bundle (PUBLIC_
 // vars aren't inlined at build), which would 404. The media host is stable.
 // Version query busts Cloudflare's edge cache (max-age 30d) on PDF swaps.
 const ASSETS = "https://boholz-haus.de/m";
-const katalogCoverUrl = `${ASSETS}/images/landing/imagebroschuere-2026-10-cover-front.jpg`;
-const brochureUrl = `${ASSETS}/pdf/boholz-imagebroschuere-2026-10.pdf?v=2026-10`;
-const brochureCoverUrl = katalogCoverUrl;
+
+type Download = { label: string; url: string; coverUrl: string; alt: string };
+
+const IMAGEBROSCHUERE: Download = {
+  label: "Imagebroschüre",
+  url: `${ASSETS}/pdf/boholz-imagebroschuere-2026-10b.pdf?v=2026-10b`,
+  coverUrl: `${ASSETS}/images/landing/imagebroschuere-2026-10b-cover.webp`,
+  alt: "BoHolz Imagebroschüre — Titelseite",
+};
+const HAUSKATALOG: Download = {
+  label: "Hauskatalog",
+  url: `${ASSETS}/pdf/boholz-hauskatalog-2026-10.pdf?v=2026-10`,
+  coverUrl: `${ASSETS}/images/landing/hauskatalog-2026-10-cover.webp`,
+  alt: "BoHolz Hauskatalog — Titelseite",
+};
+const KURZKATALOG: Download = {
+  label: "Bestseller-Katalog",
+  url: `${ASSETS}/pdf/boholz-kurzkatalog-2026-10.pdf?v=2026-10`,
+  coverUrl: `${ASSETS}/images/landing/kurzkatalog-2026-10-cover.webp`,
+  alt: "BoHolz Bestseller-Katalog — Titelseite",
+};
+
+const downloads = computed<Download[]>(() =>
+  props.variant === "bestseller"
+    ? [IMAGEBROSCHUERE, KURZKATALOG]
+    : [IMAGEBROSCHUERE, HAUSKATALOG],
+);
+const downloadsLabel = computed(() =>
+  downloads.value.map((d) => d.label).join(" & "),
+);
+const downloadsLabelUnd = computed(() =>
+  downloads.value.map((d) => d.label).join(" und "),
+);
 
 const turnstileToken = ref("");
 const SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
@@ -115,36 +153,49 @@ async function onSubmit() {
       class="submit"
       :disabled="!turnstileToken || !isValid || submitting"
     >
-      <img
-        v-if="!submitting"
-        :src="katalogCoverUrl"
-        alt=""
-        class="submit-cover"
-        loading="lazy"
-      />
-      <span>{{ submitting ? "Wird gesendet..." : "Imagebroschüre anfordern" }}</span>
+      <span v-if="!submitting" class="cover-stack cover-stack--sm" aria-hidden="true">
+        <img
+          v-for="d in downloads"
+          :key="d.url"
+          :src="d.coverUrl"
+          alt=""
+          loading="lazy"
+        />
+      </span>
+      <span>{{
+        submitting ? "Wird gesendet..." : `${downloadsLabel} anfordern`
+      }}</span>
     </button>
   </form>
 
   <div v-else class="success" role="status">
     <h3>Vielen Dank!</h3>
     <p>
-      Ihre Anfrage ist bei uns eingegangen. Sie können die Imagebroschüre
+      Ihre Anfrage ist bei uns eingegangen. Sie können {{ downloadsLabelUnd }}
       direkt hier herunterladen — wir melden uns zudem persönlich bei Ihnen.
     </p>
 
-    <img
-      :src="brochureCoverUrl"
-      alt="BoHolz Imagebroschüre — Titelseite"
-      class="cover"
-      width="240"
-      height="339"
-      loading="lazy"
-    />
+    <span class="cover-stack cover-stack--lg" aria-hidden="true">
+      <img
+        v-for="d in downloads"
+        :key="d.url"
+        :src="d.coverUrl"
+        :alt="d.alt"
+        loading="lazy"
+      />
+    </span>
 
-    <a :href="brochureUrl" download class="download">
-      Imagebroschüre herunterladen (PDF)
-    </a>
+    <div class="downloads">
+      <a
+        v-for="d in downloads"
+        :key="d.url"
+        :href="d.url"
+        download
+        class="download"
+      >
+        {{ d.label }} herunterladen (PDF)
+      </a>
+    </div>
   </div>
 </template>
 
@@ -183,23 +234,56 @@ form {
   border-radius: var(--radius-sm);
 }
 
-.cover {
-  align-self: center;
-  width: 240px;
-  height: auto;
-  margin-block: var(--spacing-3) var(--spacing-2);
+/* ── Cover stack — two book-cover thumbs, slightly tilted toward each other,
+   close together with a shared drop shadow + rounded corners. --sm sits
+   inside the submit button; --lg appears on the success screen. */
+.cover-stack {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding-block: 2px; /* breathing room so rotation never clips */
+}
+.cover-stack img {
+  display: block;
   border-radius: var(--radius-sm);
-  box-shadow: 0 4px 16px
-    color-mix(in srgb, var(--clr-content-primary) 12%, transparent);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  object-fit: cover;
+  transition: transform 180ms ease;
+}
+.cover-stack img:first-child {
+  transform: rotate(-5deg);
+  margin-inline-end: -12px;
+  z-index: 1;
+}
+.cover-stack img:nth-child(2) {
+  transform: rotate(5deg);
+  z-index: 2;
+}
+/* button-sized pair (fits beside the "… anfordern" label) */
+.cover-stack--sm img {
+  height: 54px;
+  width: auto;
+}
+/* success-screen pair (hero-sized) */
+.cover-stack--lg {
+  align-self: center;
+  margin-block: var(--spacing-3) var(--spacing-2);
+}
+.cover-stack--lg img {
+  height: 200px;
+  width: auto;
+  border-color: var(--clr-border-secondary);
+  box-shadow: 0 8px 24px
+    color-mix(in srgb, var(--clr-content-primary) 18%, transparent);
 }
 
-.submit-cover {
-  height: 56px;
-  width: auto;
-  flex: none;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.22);
+/* Two download links stacked under the success covers. */
+.downloads {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
 }
 
 .submit {
@@ -248,11 +332,9 @@ form {
 }
 
 .download {
-  align-self: flex-start;
   width: 100%;
   text-align: center;
   padding: var(--spacing-2) var(--spacing-3);
-  margin-block-start: var(--spacing-2);
   background: var(--clr-accent-secondary);
   color: var(--clr-surface-primary);
   border-radius: var(--radius-sm);

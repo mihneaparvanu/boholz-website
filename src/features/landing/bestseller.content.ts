@@ -221,7 +221,8 @@ export const bestsellerContent: LandingPageContent = {
     eyebrow: "Beratungstermin",
     heading: "Ihren Bestseller",
     highlight: "persönlich kennenlernen.",
-    lede: "Nennen Sie uns Ihren Favoriten und Ihren Bauort – wir melden uns persönlich bei Ihnen, um einen Termin zu vereinbaren.",
+    lede: "Nennen Sie uns Ihren Favoriten und Ihren Bauort – wir melden uns persönlich bei Ihnen, um einen Termin zu vereinbaren. Als Dankeschön erhalten Sie unsere Imagebroschüre und den Bestseller-Katalog.",
+    catalogVariant: "bestseller",
   },
 
   midPageCta: {

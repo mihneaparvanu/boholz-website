@@ -216,6 +216,11 @@ export interface LandingLeadForm {
   heading: string;
   highlight?: string;
   lede?: string;
+  /** Which pair of PDFs the lead receives. "bestseller" swaps the big
+      Hauskatalog for the Bestseller-Kurzkatalog on the Bestseller landing;
+      undefined/`"default"` keeps the standard Imagebroschüre + Hauskatalog
+      pair everywhere else. */
+  catalogVariant?: "default" | "bestseller";
 }
 
 /* ── Mid-page CTA — the first ask, after the feature beat ─────────── */
