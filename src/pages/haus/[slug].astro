@@ -13,6 +13,41 @@ import FloorPlanTabs from "@/features/house-page/components/FloorPlanTabs.vue";
 import DetailsGrid from "@/features/house-page/components/DetailsGrid.vue";
 import CTASection from "@/ui/sections/CTASection.astro";
 import Button from "@/ui/primitives/Button.vue";
+import IconList from "@/ui/primitives/IconList.vue";
+import FeatureCardPair from "@/features/advantage/FeatureCardPair.vue";
+import WallAssembly from "@/features/advantage/WallAssembly.astro";
+import SpecGroups from "@/features/advantage/SpecGroups.astro";
+
+/* Construction spec below the floor plans. All of it is file-based and
+   identical for every model — it describes how BoHolz builds, not what this
+   house measures, so it is shared content, not per-house DB data.
+
+   - `advantage.content.ts`     — the wall build-ups, Holzfaserdämmung and
+                                  equipment lists /bauen-mit-boholz renders.
+   - `baubeschreibung.content.ts` — verbatim extracts from the Bau- und
+                                  Leistungsbeschreibung (BLB 09/2026).
+
+   Deliberately NOT lifted from /bauen-mit-boholz: "Der Werkstoff Holz",
+   "Sechs Beweggründe" and "Tradition & Innovation". They are copy about the
+   company, carry no specification, and would ship 26 duplicates of the same
+   two adjectival sentences. The model pages link to /bauen-mit-boholz for
+   that story instead. */
+import {
+  energietechnik,
+  hitzeschutzschild,
+  holzfaserSommer,
+  holzfaserWinter,
+  sechzehnGruende,
+  wallAssemblies,
+  wallAssemblyIntro,
+  woodFibreBenefits,
+} from "@/features/advantage/advantage.content";
+import {
+  dachSpecGroups,
+  fensterSpecGroups,
+  haustechnikSpecGroups,
+  wandSpecGroups,
+} from "@/features/advantage/baubeschreibung.content";
 
 const { slug } = Astro.params;
 const model = await getModelBySlug(slug!);
@@ -25,6 +60,12 @@ const sections = [
   { id: "beschreibung", label: "Beschreibung" },
   { id: "daten", label: "Daten" },
   { id: "grundrisse", label: "Grundrisse" },
+  { id: "wandaufbau", label: "Wandaufbau" },
+  { id: "daemmung", label: "Dämmung" },
+  { id: "fenster", label: "Fenster" },
+  { id: "dach", label: "Dach" },
+  { id: "haustechnik", label: "Haustechnik" },
+  { id: "ausstattung", label: "Ausstattung" },
   { id: "kontakt", label: "Kontakt" },
 ];
 
@@ -40,6 +81,14 @@ const hasCategoryDescription = Boolean(model.category?.description);
 // project together with the Fachberater.
 const leistungenCopy =
   "Je nach Ihren individuellen Bedürfnissen können wir verschiedene Gewerke und Leistungsumfänge anbieten. Gerne berät Sie unser Fachberater hierzu ausführlich und erstellt gemeinsam mit Ihnen ein passendes Konzept.";
+
+// Provenance for the construction spec below — a citation, not copy. The
+// BLB is the contractual document, so the page has to say which edition it
+// quotes. It deliberately makes no legal claim about precedence; a
+// "maßgeblich sind Angebot und Vertragsunterlagen" line would have to come
+// from the client, not from us.
+const specSourceNote =
+  "Technische Angaben: Auszug aus der Bau- und Leistungsbeschreibung, Stand September 2026.";
 
 /* Loaders already resolve media.path through getMediaURL(), so these are
    absolute — which both og:image and schema.org require. */
@@ -103,10 +152,89 @@ const breadcrumb = breadcrumbSchema([
     )}
   </section>
 
+  {/* ── Bauweise & Ausstattung ──────────────────────────────────────────
+      Everything from here to the scope note is shared construction spec:
+      the same wall build-up, windows, roof and heating every BoHolz house
+      is quoted with. It sits below the per-house figures on purpose — a
+      visitor compares Wohnfläche first and reads the specification second —
+      and it answers the spec questions the model page used to send people
+      to /bauen-mit-boholz for. */}
+
+  <section id="wandaufbau" class="info">
+    <h2 class="section-title">Wandaufbau & Fassade</h2>
+    <p class="spec-prose">
+      {wallAssemblyIntro.body}
+      <span class="primary">{wallAssemblyIntro.emphasis}</span>
+    </p>
+    <WallAssembly assemblies={wallAssemblies} />
+    <SpecGroups groups={wandSpecGroups} />
+  </section>
+
+  <section id="daemmung" class="info">
+    <h2 class="section-title">Dämmung & Raumklima</h2>
+    <FeatureCardPair
+      client:visible
+      left={holzfaserSommer}
+      right={holzfaserWinter}
+    />
+    <div class="followups">
+      <article class="follow-card">
+        <h3 class="follow-heading">{hitzeschutzschild.heading}</h3>
+        <p class="spec-prose">
+          {hitzeschutzschild.prose.body}
+          <span class="primary">{hitzeschutzschild.prose.emphasis}</span>
+        </p>
+      </article>
+      <article class="follow-card">
+        <h3 class="follow-heading">Ihre Vorteile auf einen Blick</h3>
+        <IconList
+          client:visible
+          items={woodFibreBenefits}
+          columns={2}
+          density="comfortable"
+        />
+      </article>
+    </div>
+  </section>
+
+  <section id="fenster" class="info">
+    <h2 class="section-title">Fenster & Rollläden</h2>
+    <SpecGroups groups={fensterSpecGroups} />
+  </section>
+
+  <section id="dach" class="info">
+    <h2 class="section-title">Decken & Dach</h2>
+    <SpecGroups groups={dachSpecGroups} />
+  </section>
+
+  <section id="haustechnik" class="info">
+    <h2 class="section-title">Heizung & Lüftung</h2>
+    <SpecGroups groups={haustechnikSpecGroups} />
+    <IconList
+      client:visible
+      items={energietechnik}
+      columns={1}
+      density="comfortable"
+    />
+  </section>
+
+  <section id="ausstattung" class="info">
+    <h2 class="section-title">Serienmäßig enthalten</h2>
+    <IconList
+      client:visible
+      items={sechzehnGruende}
+      columns={2}
+      collapsible
+      moreLabel="Alle 16 Gründe anzeigen"
+      lessLabel="Weniger anzeigen"
+    />
+  </section>
+
   {/* Scope note — reads as the last word before the ask, not as a spec. */}
   <section class="info">
     <h2 class="section-title">Leistungsumfang</h2>
     <p class="prose">{leistungenCopy}</p>
+    <p class="source-note">{specSourceNote}</p>
   </section>
 
   <section id="kontakt">
@@ -183,6 +311,57 @@ const breadcrumb = breadcrumbSchema([
   .empty {
     margin: 0;
     color: var(--clr-content-tertiary);
+  }
+
+  /* Spec copy that comes from a content module rather than the DB — so no
+     `white-space: pre-line`, which would turn the template's own line
+     breaks into rendered ones. The closing sentence lands in primary, the
+     same beat as the advantage sections on /bauen-mit-boholz. */
+  .spec-prose {
+    margin: 0;
+    max-width: 70ch;
+    color: var(--clr-content-secondary);
+    line-height: var(--lh-body);
+  }
+
+  .spec-prose .primary {
+    color: var(--clr-content-primary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .source-note {
+    margin: 0;
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-tertiary);
+  }
+
+  /* Dämmung follow-ups: the Hitzeschutzschild paragraph and the Vorteile
+     list, stacked on mobile and side-by-side from desktop. */
+  .followups {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-4);
+  }
+
+  @media (--from-desktop) {
+    .followups {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-5);
+    }
+  }
+
+  .follow-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .follow-heading {
+    margin: 0;
+    font-size: var(--fs-h6);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
   }
 
   /* Mobile gets bottom padding so the floating nav never overlaps content. */

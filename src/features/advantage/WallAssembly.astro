@@ -1,0 +1,149 @@
+---
+/**
+ * Wandaufbau comparison — the two exterior wall build-ups side by side,
+ * each as a labelled cross-section diagram plus its numbered layers 1–8 and
+ * its verbatim figures.
+ *
+ * Owns its styles on purpose: the markup and the specs render identically on
+ * /bauen-mit-boholz and on every /haus/<slug> page, and Astro's scoped CSS
+ * does not travel with copied markup — so the component is the only way the
+ * U-values on the two surfaces cannot drift apart.
+ *
+ * Content (layers, U-Werte, Brandschutz, Schallschutz) comes from
+ * `advantage.content.ts`, quoted from the BLB. Never type a figure in here.
+ */
+import type { WallAssembly } from "./advantage.types";
+
+interface Props {
+  assemblies: WallAssembly[];
+}
+
+const { assemblies } = Astro.props;
+---
+
+<div class="wall-compare">
+  {
+    assemblies.map((wall) => (
+      <article class="wall">
+        <figure class="wall-figure">
+          <img
+            src={wall.imageURL}
+            alt={wall.imageAlt}
+            width={wall.imageWidth}
+            height={wall.imageHeight}
+            loading="lazy"
+          />
+        </figure>
+        <h4 class="wall-title">
+          {wall.name}
+          {wall.nameSuffix && <em>{wall.nameSuffix}</em>}
+        </h4>
+        <ol class="wall-layers">
+          {wall.layers.map((layer) => <li>{layer}</li>)}
+        </ol>
+        <dl class="wall-specs">
+          {wall.specs.map((spec) => (
+            <div>
+              <dt>{spec.term}</dt>
+              <dd>{spec.value}</dd>
+            </div>
+          ))}
+        </dl>
+        {wall.note && <p class="wall-note">{wall.note}</p>}
+      </article>
+    ))
+  }
+</div>
+
+<style>
+  /* Full cross-section diagrams (never cropped) + numbered construction
+     layers. Moved here verbatim from bauen-mit-boholz.astro. */
+  .wall-compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-5);
+    margin-block: var(--spacing-4);
+  }
+  @media (--from-desktop) {
+    .wall-compare {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-6);
+    }
+  }
+  .wall {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+  .wall-figure {
+    margin: 0;
+    background: var(--clr-pure-white, #fff);
+    border: 1px solid var(--clr-border-secondary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-3);
+  }
+  .wall-figure img {
+    display: block;
+    width: 100%;
+    height: auto; /* show the whole diagram — no cropping, ever */
+    aspect-ratio: auto; /* defeat any inherited content-page img aspect-ratio */
+    object-fit: contain;
+  }
+  .wall-title {
+    margin: var(--spacing-1) 0 0;
+    font-size: var(--fs-h4);
+    font-weight: var(--font-weight-medium);
+  }
+  .wall-title em {
+    font-family: var(--font-secondary);
+    font-style: italic;
+  }
+  .wall-layers {
+    /* reset.css sets `ul, ol { list-style: none }` globally — restore the
+       1–8 numbering. NB: a flex/grid parent suppresses list markers, so this
+       stays a normal block list and spaces items via margins, not gap. */
+    margin: 0;
+    padding-inline-start: 1.6em;
+    list-style: decimal;
+    color: var(--clr-content-secondary);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+  .wall-layers li {
+    display: list-item;
+    margin-block-end: var(--spacing-1);
+  }
+  .wall-layers li:last-child {
+    margin-block-end: 0;
+  }
+  .wall-layers li::marker {
+    color: var(--clr-accent-secondary);
+    font-weight: var(--font-weight-semibold, 600);
+  }
+  .wall-specs {
+    margin: var(--spacing-2) 0 0;
+    display: flex;
+    gap: var(--spacing-5);
+    flex-wrap: wrap;
+  }
+  .wall-specs > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .wall-specs dt {
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-tertiary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+  }
+  .wall-specs dd {
+    margin: 0;
+    font-weight: var(--font-weight-semibold, 600);
+  }
+  .wall-note {
+    margin: 0;
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-tertiary);
+  }
+</style>

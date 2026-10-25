@@ -1,0 +1,195 @@
+---
+/**
+ * Baubeschreibung spec sheet — renders `SpecGroup[]` as a run of
+ * heading / body / build-up / figures rows.
+ *
+ * Reads as a specification, not as marketing: the heading sits in its own
+ * column from desktop, build-ups render as real lists and figures as a real
+ * `<dl>`, so the page stays machine-readable for the long-tail German
+ * queries these blocks exist to answer ("Fenster Ug-Wert Fertighaus",
+ * "Dachaufbau 240 mm Dämmung").
+ *
+ * Anything the BLB marks optional renders apart from the standard scope —
+ * tertiary colour, inset rule — so an upgrade can never be read as included.
+ */
+import Badge from "@/ui/primitives/Badge.astro";
+import type { SpecGroup } from "./advantage.types";
+
+interface Props {
+  groups: SpecGroup[];
+}
+
+const { groups } = Astro.props;
+---
+
+<div class="groups">
+  {
+    groups.map((group) => (
+      <article class="group">
+        <div class="head">
+          <h3 class="heading">{group.heading}</h3>
+          {group.optional && (
+            <Badge variant="outline" size="sm">Optional</Badge>
+          )}
+        </div>
+
+        <div class="body">
+          {group.paragraphs?.map((text) => <p class="para">{text}</p>)}
+
+          {group.bullets && (
+            <ul class="bullets">
+              {group.bullets.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+
+          {group.specs && (
+            <dl class="specs">
+              {group.specs.map((spec) => (
+                <div>
+                  <dt>{spec.term}</dt>
+                  <dd>{spec.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+
+          {group.footnotes?.map((text) => <p class="note">{text}</p>)}
+
+          {group.options && (
+            <div class="options">
+              {group.options.map((text) => <p class="option">{text}</p>)}
+            </div>
+          )}
+        </div>
+      </article>
+    ))
+  }
+</div>
+
+<style>
+  .groups {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .group {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: var(--spacing-2);
+    padding-block: var(--spacing-4);
+    border-block-end: 1px solid var(--clr-border-secondary);
+  }
+
+  .group:last-child {
+    border-block-end: 0;
+  }
+
+  @media (--from-desktop) {
+    .group {
+      grid-template-columns: minmax(10rem, 18rem) 1fr;
+      column-gap: var(--spacing-5);
+    }
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--spacing-2);
+  }
+
+  .heading {
+    margin: 0;
+    font-size: var(--fs-h6);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--lh-heading);
+    color: var(--clr-content-primary);
+    text-wrap: balance;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    min-width: 0;
+  }
+
+  .para {
+    margin: 0;
+    max-width: 70ch;
+    color: var(--clr-content-secondary);
+    line-height: var(--lh-body);
+  }
+
+  /* reset.css clears list markers globally — the build-up lists want them
+     back, because the order of the layers is part of the specification. */
+  .bullets {
+    margin: 0;
+    padding-inline-start: 1.2em;
+    list-style: disc;
+    color: var(--clr-content-secondary);
+    line-height: var(--lh-body);
+  }
+
+  .bullets li {
+    display: list-item;
+    margin-block-end: var(--spacing-1);
+  }
+
+  .bullets li:last-child {
+    margin-block-end: 0;
+  }
+
+  .bullets li::marker {
+    color: var(--clr-accent-secondary);
+  }
+
+  .specs {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-3) var(--spacing-5);
+  }
+
+  .specs > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .specs dt {
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-tertiary);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+  }
+
+  .specs dd {
+    margin: 0;
+    font-weight: var(--font-weight-semibold, 600);
+  }
+
+  .note {
+    margin: 0;
+    max-width: 70ch;
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-tertiary);
+    line-height: var(--lh-body);
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    padding-inline-start: var(--spacing-3);
+    border-inline-start: 2px solid var(--clr-border-secondary);
+  }
+
+  .option {
+    margin: 0;
+    max-width: 70ch;
+    font-size: var(--fs-body-sm);
+    color: var(--clr-content-tertiary);
+    line-height: var(--lh-body);
+  }
+</style>

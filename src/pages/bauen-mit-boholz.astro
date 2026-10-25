@@ -4,15 +4,30 @@ import PageHero from "@/ui/sections/PageHero.astro";
 import CTASection from "@/ui/sections/CTASection.astro";
 import Block from "@/ui/sections/Block.astro";
 import SectionNavigator from "@/features/section-navigator/SectionNavigator.vue";
-import IconList, { type IconListItem } from "@/ui/primitives/IconList.vue";
+import IconList from "@/ui/primitives/IconList.vue";
 import EditorialCard from "@/ui/primitives/EditorialCard.vue";
 import Button from "@/ui/primitives/Button.vue";
 import { ArrowRight, BookOpen } from "lucide-vue-next";
 import { getMediaURL } from "@/lib/media";
 import FeatureCardPair from "@/features/advantage/FeatureCardPair.vue";
+import WallAssembly from "@/features/advantage/WallAssembly.astro";
 import ZigZag, { type ZigZagBlock } from "@/ui/sections/ZigZag.astro";
-import type { FeatureCard } from "@/features/advantage/advantage.types";
 import { keitel } from "@/features/faq/keitel";
+// Shared with every /haus/<slug> model page — the wall build-ups, the
+// Holzfaserdämmung pair, the 16 Gründe and the Energietechnik list now live
+// in one module so the two surfaces can never show different figures.
+import {
+  energietechnik,
+  hitzeschutzschild,
+  holzfaserSommer,
+  holzfaserWinter,
+  sechzehnGruende,
+  wallAssemblies,
+  wallAssemblyBenefits,
+  wallAssemblyFollowup,
+  wallAssemblyIntro,
+  woodFibreBenefits,
+} from "@/features/advantage/advantage.content";
 
 // ── Section index — drives the SectionNavigator's overview + sticky rail.
 const sections = [
@@ -47,85 +62,6 @@ const phonestripFlyerPDF = getMediaURL(
 const wallAssemblyHero = getMediaURL(
   "/images/content/advantage/wandaufbau/hero.webp",
 );
-
-// Section 6 — Wandaufbau cross-sections (Imagebroschüre, S. 16) + the
-// numbered construction layers shown beside each diagram.
-const wandaufbauStandardImg = getMediaURL(
-  "/images/content/advantage/wandaufbau/wandaufbau-standard-diagram2-2026-10.webp",
-);
-const wandaufbauPlusImg = getMediaURL(
-  "/images/content/advantage/wandaufbau/wandaufbau-plus-diagram2-2026-10.webp",
-);
-const standardLayers = [
-  "hochwertiger, diffusionsoffener Silikonharz-Edelputz, helle Tönung, durchgefärbt",
-  "Grundputz aus Armierungsmasse und vollflächiges Gittergewebe",
-  "60 mm Holzfaserdämmplatte",
-  "200 mm Holzrahmenkonstruktion",
-  "200 mm Knauf Insulation (WLG 035) zwischen den Rahmen",
-  "12 mm OSB₄-Platte",
-  "0,2 mm Luftdichtheitsebene (Papier oder Vlies)",
-  "12,5 mm Gipskarton Feuerschutzplatte",
-];
-const plusLayers = [
-  "hochwertiger, diffusionsoffener Silikonharz-Edelputz, helle Tönung, durchgefärbt",
-  "Grundputz aus Armierungsmasse und vollflächiges Gittergewebe",
-  "60 mm Holzfaserdämmplatte",
-  "240 mm Holzrahmenkonstruktion",
-  "240 mm Knauf Insulation (WLG 035) zwischen den Rahmen",
-  "12 mm OSB₄-Platte",
-  "0,2 mm Luftdichtheitsebene (Papier oder Vlies)",
-  "12,5 mm Gipskarton Feuerschutzplatte",
-];
-
-// ── Section 5 — Holzfaserdämmung side-by-side (Sommer vs Winter).
-const sommer: FeatureCard = {
-  eyebrow: "Sommer",
-  title: "Hitzeschutz bis in die Nacht",
-  lede:
-    "Die Holzfaserdämmplatte verzögert sommerliche Hitze um Stunden — Schlafräume bleiben kühl, wenn die Außentemperatur kippt.",
-  bullets: [
-    "11 Stunden Phasenverschiebung — das entspricht über 50 cm Mineraldämmung; die Hitze erreicht den Innenraum erst abends, wenn es draußen längst kühl ist",
-    "92 % Temperaturpuffer (TAV 8 %) — bei 40 °C Außendifferenz kommen nur 3,2 °C im Innenraum an",
-    "Hohe Wärmespeicherkapazität (2100 J/(kg·K)) — angenehme Dachgeschosstemperaturen ohne stromintensive Klimageräte",
-  ],
-  icon: "sun",
-  imageURL: getMediaURL(
-    "/images/content/advantage/holzfaserdaemmung/sommer.webp",
-  ),
-  imageAlt:
-    "Sommerlicher Hitzeschutz dank Holzfaserdämmung — kühles Innenklima trotz hoher Außentemperaturen",
-};
-
-const winter: FeatureCard = {
-  eyebrow: "Winter",
-  title: "Wärme bleibt, wo sie hingehört",
-  lede:
-    "Diffusionsoffen und dämmstark zugleich — die Holzfaser hält die Heizenergie im Haus und reguliert dabei die Raumfeuchte.",
-  bullets: [
-    "Lambda-Nennwert 0,036 W/(mK), Bemessungswert 0,038",
-    "Diffusionsoffen — Feuchtigkeit kann nach außen, ohne dass Wärme entweicht",
-    "GUTEX Thermoflex — von ÖKO-TEST mit „Sehr gut“ ausgezeichnet, baubiologisch hervorragend",
-  ],
-  icon: "thermometer",
-  imageURL: getMediaURL(
-    "/images/content/advantage/holzfaserdaemmung/winter.webp",
-  ),
-  imageAlt:
-    "Winterlicher Wärmeerhalt — Holzfaserdämmung hält die Heizenergie im Haus",
-};
-
-// Vorteile der flexiblen Holzfaserdämmung — übernommen von der alten
-// boholz-haus.de Seite "Flexible Holzfaserdämmung".
-const woodFibreBenefits: IconListItem[] = [
-  { icon: "thermometer", label: "Hervorragende Dämmleistung (λ 0,036 W/(mK))" },
-  { icon: "sun", label: "Ausgezeichneter sommerlicher Hitzeschutz" },
-  { icon: "home", label: "Winterlicher Kälteschutz durch hohe Wärmespeicherkapazität" },
-  { icon: "shield", label: "Hoher Schallschutz" },
-  { icon: "layers", label: "Feuchtigkeitsregulierend & dampfdiffusionsoffen" },
-  { icon: "tree-deciduous", label: "Rohstoff Holz" },
-  { icon: "leaf", label: "Angenehmes, ausgeglichenes Raumklima" },
-  { icon: "award", label: "GUTEX Thermoflex — ÖKO-TEST „Sehr gut“" },
-];
 
 // ── Zig-zag editorial block — copy lifted from the old boholz-haus.de
 // "Bauen mit uns" page per client request. Six alternating image / text
@@ -199,127 +135,6 @@ const zigzagBlocks: ZigZagBlock[] = [
   },
 ];
 
-// ── Section 6 — Wandaufbau editorial copy + Vorteile bullets.
-//
-// Per client brief: long block of body copy broken into bite-sized
-// blocks with icons. The intro + sub-paragraph each lead with body
-// colour (secondary) and finish with a highlighted last sentence in
-// primary — gives the eye a beat to land on the most important line.
-const wallAssemblyBenefits: IconListItem[] = [
-  { icon: "layers", label: "Diffusionsoffener Wandaufbau" },
-  { icon: "thermometer", label: "Angenehmes Raumklima zu jeder Jahreszeit" },
-  { icon: "leaf", label: "Klar definierte Wärmedämmeigenschaften" },
-  { icon: "shield", label: "Schutz vor Feuchtigkeit und Schimmelbildung" },
-];
-
-// ── Section 6 — Wandaufbau Vergleich (Holz-Aktiv-Wand vs Holz-Aktiv-Wand plus).
-
-
-// ── Section 3 — 16 gute Gründe.
-const sechzehnGruende: IconListItem[] = [
-  {
-    icon: "leaf",
-    label:
-      "Diffusionsoffene ausgedämmte Außenwände — optional mit Holzfaserdämmplatte für sommerlichen Hitzeschutz",
-  },
-  {
-    icon: "layers",
-    label: "Diffusionsoffener Wandaufbau — auf Wunsch für ein Effizienzhaus 40",
-  },
-  {
-    icon: "shield",
-    label:
-      "Optional gedämmte Bodenplatte zur Einhaltung der KfW-Vorgaben",
-  },
-  {
-    icon: "home",
-    label:
-      "Dachkonstruktion mit einer Schneelast von 2,5 kN/m² bereits im Standard enthalten",
-  },
-  {
-    icon: "thermometer",
-    label:
-      "Dämmung der Dachflächen bis in den letzten Winkel Ihres Hauses spart wertvolle Energie",
-  },
-  {
-    icon: "messages-square",
-    label:
-      "Schallreduzierung durch innovative PhoneStrip-Entkopplungsstreifen zwischen Erdgeschoss und Dachgeschoss",
-  },
-  {
-    icon: "lock",
-    label:
-      "Sicherheitsgeprüfte massive Holzhaustüre (RCN2 Verriegelung) mit barrierefreiem Zugang",
-  },
-  {
-    icon: "sun",
-    label: "Gedämmte Rollläden und effektiver Sonnenschutz dank Alulamellen",
-  },
-  {
-    icon: "shield",
-    label: "Fenster mit Dreifachverglasung",
-  },
-  {
-    icon: "ruler",
-    label: "Granitfensterbänke mit hochwertiger zweiter Dichtungsebene",
-  },
-  {
-    icon: "layers",
-    label:
-      "Innenwände zusätzlich beidseitig mit OSB 4 beplankt und voll ausgedämmt",
-  },
-  {
-    icon: "tree-deciduous",
-    label: "Massive Echtholztreppe",
-  },
-  {
-    icon: "home",
-    label:
-      "Barrierefreie und bodengleich geflieste Dusche mit Edelstahlablaufrinne",
-  },
-  {
-    icon: "zap",
-    label: "Wärmepumpenkonzepte namhafter Hersteller",
-  },
-  {
-    icon: "thermometer",
-    label:
-      "Individuelle Temperaturregelung dank intelligenter Wärmepumpenkonzepte",
-  },
-  {
-    icon: "hammer",
-    label:
-      "Made in Germany — Fertighaus-Manufaktur mit hoher Qualität, großer Flexibilität und traditioneller Handwerksleistung",
-  },
-];
-
-// ── Section 7 — Wandaufbau Schichten, von außen nach innen.
-// Beide Wände teilen dieselbe Schichtfolge; nur Holzrahmen +
-// Dämmung (200 → 240 mm) und der daraus resultierende U-Wert unterscheiden
-// sich. Werte 1:1 aus dem Werksaufbau übernommen (KfW 55 / KfW 40).
-
-
-// ── Section 8 — Haus- & Energietechnik.
-const technik: IconListItem[] = [
-  {
-    icon: "zap",
-    label: "Wärmepumpen",
-    description:
-      "Ab der technikfertigen Ausbaustufe stehen verschiedene Wärmepumpenlösungen zur Verfügung. Je nach Hausplanung kommen Systeme etablierter Hersteller wie Nibe oder Tecalor zum Einsatz. Auswahl und Dimensionierung werden auf das Gebäude und seinen Wärmebedarf abgestimmt.",
-  },
-  {
-    icon: "sun",
-    label: "Photovoltaik",
-    description:
-      "Wir beraten Sie bei der Planung einer passenden Photovoltaikanlage – auf Wunsch einschließlich Stromspeicher. Die Nutzung des selbst erzeugten Stroms kann den Strombezug aus dem öffentlichen Netz reduzieren. Der erreichbare Eigenversorgungsanteil hängt unter anderem von Anlagengröße, Ertrag und persönlichem Stromverbrauch ab.",
-  },
-  {
-    icon: "leaf",
-    label: "Angenehmes Raumklima",
-    description:
-      "Der diffusionsoffene Wandaufbau ermöglicht die Wasserdampfdiffusion durch die einzelnen Bauteilschichten und unterstützt den Feuchtehaushalt innerhalb der Wandkonstruktion. Gemeinsam mit der abgestimmten Gebäude- und Anlagentechnik trägt er zu einem angenehmen Raumklima bei.",
-  },
-];
 ---
 
 <Layout title="Bauen mit BoHolz — BoHolz Haus">
@@ -446,20 +261,14 @@ So verbindet die sorgfältig geplante Gebäudehülle Wärmeschutz und Wohnkomfor
         loading="lazy"
       />
     </figure>
-    <FeatureCardPair client:visible left={sommer} right={winter} />
+    <FeatureCardPair client:visible left={holzfaserSommer} right={holzfaserWinter} />
 
     <div class="wandaufbau-followups">
       <article class="follow-card">
-        <h4 class="follow-heading">So funktioniert das Hitzeschutzschild</h4>
+        <h4 class="follow-heading">{hitzeschutzschild.heading}</h4>
         <p class="editorial-prose">
-          An heißen Sommertagen entstehen zwischen Dachziegeln und Dämmebene bis
-          zu 80 °C. Die 24 cm starke Holzfaserdämmung zwischen den Sparren dämpft
-          diese Spitzen so stark, dass sie den Innenraum erst rund 11 Stunden
-          später erreichen — am Abend.
-          <span class="primary">
-            Bis dahin gibt die Dämmung die gespeicherte Wärme längst wieder an
-            die kühle Nachtluft ab. Im Wohnraum kommt sie gar nicht erst an.
-          </span>
+          {hitzeschutzschild.prose.body}
+          <span class="primary">{hitzeschutzschild.prose.emphasis}</span>
         </p>
       </article>
 
@@ -518,72 +327,18 @@ So verbindet die sorgfältig geplante Gebäudehülle Wärmeschutz und Wohnkomfor
     </figure>
 
     <p class="editorial-prose">
-      Unsere Außenwand „Holz-Aktiv-Wand" verbindet einen diffusionsoffenen
-      Wandaufbau mit Holzfaserdämmung. Die Konstruktion trägt zum Wärmeschutz
-      im Winter und zum sommerlichen Hitzeschutz bei.
-      <span class="primary">
-        Gleichzeitig ermöglicht der diffusionsoffene Aufbau die
-        Wasserdampfdiffusion durch die einzelnen Bauteilschichten.
-      </span>
+      {wallAssemblyIntro.body}
+      <span class="primary">{wallAssemblyIntro.emphasis}</span>
     </p>
 
-    <div class="wall-compare">
-      <article class="wall">
-        <figure class="wall-figure">
-          <img
-            src={wandaufbauStandardImg}
-            alt="Holz-Aktiv-Wand — beschrifteter Wandaufbau-Querschnitt mit nummerierten Bauteilschichten 1–8"
-            width="1075"
-            height="905"
-            loading="lazy"
-          />
-        </figure>
-        <h4 class="wall-title">Holz-Aktiv-Wand</h4>
-        <ol class="wall-layers">
-          {standardLayers.map((layer) => <li>{layer}</li>)}
-        </ol>
-        <dl class="wall-specs">
-          <div><dt>U-Wert</dt><dd>0,164 W/(m²K)</dd></div>
-          <div><dt>Brandschutz</dt><dd>F30-B</dd></div>
-        </dl>
-      </article>
-
-      <article class="wall">
-        <figure class="wall-figure">
-          <img
-            src={wandaufbauPlusImg}
-            alt="Holz-Aktiv-Wand plus — beschrifteter Wandaufbau-Querschnitt mit nummerierten Bauteilschichten 1–8"
-            width="1095"
-            height="905"
-            loading="lazy"
-          />
-        </figure>
-        <h4 class="wall-title">Holz-Aktiv-Wand <em>plus</em></h4>
-        <ol class="wall-layers">
-          {plusLayers.map((layer) => <li>{layer}</li>)}
-        </ol>
-        <dl class="wall-specs">
-          <div><dt>U-Wert</dt><dd>0,143 W/(m²K)</dd></div>
-          <div><dt>Brandschutz</dt><dd>F30-B</dd></div>
-        </dl>
-        <p class="wall-note">auch KfW-G + KfW-QNG geeignet</p>
-      </article>
-    </div>
+    <WallAssembly assemblies={wallAssemblies} />
 
     <div class="wandaufbau-followups">
       <article class="follow-card">
-        <h4 class="follow-heading">Diffusionsoffen &amp; feuchtigkeitsregulierend</h4>
+        <h4 class="follow-heading">{wallAssemblyFollowup.heading}</h4>
         <p class="editorial-prose">
-          Der diffusionsoffene Aufbau unserer Außenwand ermöglicht die
-          Wasserdampfdiffusion durch die aufeinander abgestimmten
-          Bauteilschichten. Dadurch trägt die Konstruktion zu einem
-          ausgeglichenen Feuchtehaushalt innerhalb der Wand bei.
-          <span class="primary">
-            In Verbindung mit der Holzfaserdämmung unterstützt der Wandaufbau
-            sowohl den Wärmeschutz im Winter als auch den sommerlichen
-            Hitzeschutz. So werden Feuchteschutz, Wärmeschutz und Wohnkomfort
-            sinnvoll miteinander verbunden.
-          </span>
+          {wallAssemblyFollowup.prose.body}
+          <span class="primary">{wallAssemblyFollowup.prose.emphasis}</span>
         </p>
       </article>
 
@@ -603,7 +358,7 @@ So verbindet die sorgfältig geplante Gebäudehülle Wärmeschutz und Wohnkomfor
     highlight="angenehmes Raumklima."
     lede="Eine sorgfältig geplante Gebäudehülle und die darauf abgestimmte Haustechnik schaffen die Grundlage für modernen Wohnkomfort. Drei Bausteine, die bereits bei der Hausplanung aufeinander abgestimmt werden können."
   >
-    <IconList client:visible items={technik} columns={1} density="comfortable" />
+    <IconList client:visible items={energietechnik} columns={1} density="comfortable" />
   </Block>
 
   <!-- 8. CTA --------------------------------------------------------- -->
@@ -833,98 +588,4 @@ So verbindet die sorgfältig geplante Gebäudehülle Wärmeschutz und Wohnkomfor
     color: var(--clr-content-primary);
   }
 
-  /* Section 6 — Wandaufbau comparison: full cross-section diagrams (never
-     cropped) + numbered construction layers. */
-  .wall-compare {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-5);
-    margin-block: var(--spacing-4);
-  }
-  @media (--from-desktop) {
-    .wall-compare {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--spacing-6);
-    }
-  }
-  .wall {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-2);
-  }
-  .wall-figure {
-    margin: 0;
-    background: var(--clr-pure-white, #fff);
-    border: 1px solid var(--clr-border-secondary);
-    border-radius: var(--radius-md);
-    padding: var(--spacing-3);
-  }
-  .wall-figure img {
-    display: block;
-    width: 100%;
-    height: auto; /* show the whole diagram — no cropping, ever */
-    aspect-ratio: auto; /* defeat any inherited content-page img aspect-ratio */
-    object-fit: contain;
-  }
-  .wall-title {
-    margin: var(--spacing-1) 0 0;
-    font-size: var(--fs-h4);
-    font-weight: var(--font-weight-medium);
-  }
-  .wall-title span {
-    color: var(--clr-content-tertiary);
-    font-weight: var(--font-weight-regular);
-  }
-  .wall-title em {
-    font-family: var(--font-secondary);
-    font-style: italic;
-  }
-  .wall-layers {
-    /* reset.css sets `ul, ol { list-style: none }` globally — restore the
-       1–8 numbering. NB: a flex/grid parent suppresses list markers, so this
-       stays a normal block list and spaces items via margins, not gap. */
-    margin: 0;
-    padding-inline-start: 1.6em;
-    list-style: decimal;
-    color: var(--clr-content-secondary);
-    font-size: var(--fs-body);
-    line-height: var(--lh-body);
-  }
-  .wall-layers li {
-    display: list-item;
-    margin-block-end: var(--spacing-1);
-  }
-  .wall-layers li:last-child {
-    margin-block-end: 0;
-  }
-  .wall-layers li::marker {
-    color: var(--clr-accent-secondary);
-    font-weight: var(--font-weight-semibold, 600);
-  }
-  .wall-specs {
-    margin: var(--spacing-2) 0 0;
-    display: flex;
-    gap: var(--spacing-5);
-    flex-wrap: wrap;
-  }
-  .wall-specs > div {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .wall-specs dt {
-    font-size: var(--fs-body-sm);
-    color: var(--clr-content-tertiary);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-eyebrow);
-  }
-  .wall-specs dd {
-    margin: 0;
-    font-weight: var(--font-weight-semibold, 600);
-  }
-  .wall-note {
-    margin: 0;
-    font-size: var(--fs-body-sm);
-    color: var(--clr-content-tertiary);
-  }
 </style>
