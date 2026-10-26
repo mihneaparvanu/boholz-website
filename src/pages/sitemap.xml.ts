@@ -2,12 +2,8 @@ import type { APIRoute } from "astro";
 import { getNews, getModels, getLocations } from "@/db/loaders";
 import { ROUTES } from "@/features/navigation/routes";
 
-// Fallback origin if `site` is somehow unset (it's configured in astro.config.mjs).
 const FALLBACK_SITE = "https://boholz-haus.de";
 
-// Static, indexable routes. Every path comes from ROUTES, so changing a URL
-// is a single edit there and the sitemap follows. Excludes api/*, 404, and
-// /freigabe (internal approval page).
 const STATIC_PATHS: string[] = [
   ROUTES.home,
   ROUTES.houses,
@@ -23,12 +19,6 @@ const STATIC_PATHS: string[] = [
   ROUTES.privacy,
   ROUTES.cookies,
 ];
-
-// The /wohnen/* landings are deliberately absent. They are paid-traffic
-// pages carrying `noindex` (see LandingPage.astro), so submitting them here
-// would ask Google to index pages we've told it to skip — a contradictory
-// signal. Organic coverage for these typologies lives on /hauser and the
-// model pages.
 
 type Entry = { loc: string; lastmod?: string };
 
@@ -51,8 +41,6 @@ const xml = (s: string): string =>
             : "&quot;",
   );
 
-// SSR endpoint: queried at request time, so the sitemap always reflects the
-// current DB (published news, models, showhouses) without a rebuild.
 export const GET: APIRoute = async ({ site }) => {
   const base = (site?.toString() ?? FALLBACK_SITE).replace(/\/$/, "");
 

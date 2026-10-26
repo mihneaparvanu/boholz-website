@@ -22,12 +22,8 @@ interface Props {
 
 const {article} = Astro.props
 
-if (!article) return Astro.redirect(ROUTES.news);
-
 const heroMedia = article.media.find((m) => m.isHero)?.media;
-
 const formattedDate = formatNewsDate(article.publishedAt);
-
 const contentHtml = article.content ? await marked(article.content) : null;
 ---
 

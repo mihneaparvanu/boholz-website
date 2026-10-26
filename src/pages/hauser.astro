@@ -9,17 +9,6 @@ const [models, categories] = await Promise.all([getModels(), getCategories()]);
 // "Bestseller" is a curation, not a house type — keep it out of the type count.
 const typeCount = categories.filter((c) => c.slug !== "bestseller").length;
 
-// Resolve the initial view server-side so filter deep-links (ad traffic on
-// ?category=, shared ?filter=/?sort= links, explicit ?view=filter) render the
-// filter view directly — no flash of the explore cards.
-const p = Astro.url.searchParams;
-const initialMode =
-  p.get("view") === "filter" ||
-  p.has("category") ||
-  p.has("sort") ||
-  p.has("filter")
-    ? "filter"
-    : "explore";
 ---
 
 <Layout title="Häuser – BoHolz Haus" categories={categories}>
@@ -34,7 +23,6 @@ const initialMode =
   <HousesPage
     models={models}
     categories={categories}
-    initialMode={initialMode}
     client:visible
   />
 </Layout>

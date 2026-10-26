@@ -20,7 +20,6 @@ import {
   getBestsellerModels,
   BESTSELLER_LAST_SLUG,
 } from "@/lib/bestseller";
-import { isLandingCategory } from "@/features/landing/landing.registry";
 import { parseLivingArea } from "@/lib/parse-living-area";
 import { housesViews } from "./houses-page.content";
 
@@ -68,8 +67,6 @@ const isPanelOpen = ref(false);
 const activeSort = ref<string | null>(null);
 const filterState = ref<FilterState>({ status: "inactive", filters: [] });
 
-// Snapshot the filters that were on screen *before* the panel was opened,
-// so we can revert if the user closes the panel without confirming.
 let snapshotBeforeOpen: FilterState | null = null;
 
 const activeSortOption = computed<SortOption | null>(
@@ -165,18 +162,6 @@ const filterModels = (
   }
 };
 
-// ---------- Sorting ----------
-//
-// Comparator contract:
-//   - null values are pushed to the end regardless of direction. Rationale:
-//     "missing data shouldn't pollute the top of results" — a model without
-//     a price shouldn't appear first under "Preis ↑" or "Preis ↓".
-//   - When both sides are non-null and types match, compare numerically or
-//     via locale-compare with numeric: true.
-//   - Default (no sort option) sorts by livingArea asc, nulls last. We use
-//     parseLivingArea to coerce the numeric-string DB value, then a
-//     stable comparator (preserve original order on tie).
-
 const compareValues = (
   a: string | number | null,
   b: string | number | null,
@@ -192,8 +177,6 @@ const compareValues = (
   return dir * String(a).localeCompare(String(b), "de", { numeric: true });
 };
 
-// Decorate-sort-undecorate: keeps the sort stable (preserves original
-// order on tie) and avoids re-running `resolve` inside the comparator.
 const sortModels = (models: HouseModel[], option: SortOption | null) => {
   if (option === null) {
     const decorated = models.map((m, i) => ({
@@ -460,70 +443,69 @@ watch(
     </div>
 
     <template v-else>
-    <div class="controls-wrapper">
-      <FilterPanel
-        :modelsCount="modelsCount"
-        @filter-confirmed="handleFilterConfirmed"
-        v-model:isOpen="isPanelOpen"
-        v-model:filterState="filterState"
-      ></FilterPanel>
-      <div class="filter-buttons-wrapper">
-        <SortButton
-          v-model:sort="activeSort"
-          :options="sortOptions"
-        ></SortButton>
-        <button
-          class="filter-trigger"
-          type="button"
-          @click="isPanelOpen = true"
-          :aria-label="
-            filterState.filters.length > 0
-              ? `Filtern (${filterState.filters.length} aktiv)`
-              : 'Filtern'
-          "
-        >
-          <span>Filtern</span>
-          <span
-            v-if="
-              filterState.status === 'confirmed' &&
+      <div class="controls-wrapper">
+        <FilterPanel
+          :modelsCount="modelsCount"
+          @filter-confirmed="handleFilterConfirmed"
+          v-model:isOpen="isPanelOpen"
+          v-model:filterState="filterState"
+        ></FilterPanel>
+        <div class="filter-buttons-wrapper">
+          <SortButton
+            v-model:sort="activeSort"
+            :options="sortOptions"
+          ></SortButton>
+          <button
+            class="filter-trigger"
+            type="button"
+            @click="isPanelOpen = true"
+            :aria-label="
               filterState.filters.length > 0
+                ? `Filtern (${filterState.filters.length} aktiv)`
+                : 'Filtern'
             "
-            class="trigger-count"
-            aria-hidden="true"
-            >{{ filterState.filters.length }}</span
           >
+            <span>Filtern</span>
+            <span
+              v-if="
+                filterState.status === 'confirmed' &&
+                filterState.filters.length > 0
+              "
+              class="trigger-count"
+              aria-hidden="true"
+              >{{ filterState.filters.length }}</span
+            >
+          </button>
+        </div>
+      </div>
+
+      <div class="content-grid">
+        <a
+          v-for="model in displayModels"
+          :key="model.id"
+          :href="ROUTES.house(model.slug)"
+        >
+          <ModelCard
+            :model="model"
+            :hide-star-badge="isBestsellerCategory(selectedCategory)"
+          />
+        </a>
+      </div>
+
+      <div v-if="displayModels.length === 0" class="empty">
+        <p class="empty-title">Keine Häuser gefunden.</p>
+        <p class="empty-body">
+          Mit den aktuellen Filtern sind keine Modelle in dieser Kategorie
+          verfügbar.
+        </p>
+        <button
+          v-if="filterState.filters.length > 0"
+          class="empty-action"
+          @click="handleClearFilters"
+        >
+          Filter zurücksetzen
         </button>
       </div>
-    </div>
-
-    <div class="content-grid">
-      <a
-        v-for="model in displayModels"
-        :key="model.id"
-        :href="ROUTES.house(model.slug)"
-      >
-        <ModelCard
-          :model="model"
-          :hide-star-badge="isBestsellerCategory(selectedCategory)"
-        />
-      </a>
-    </div>
-
-    <div v-if="displayModels.length === 0" class="empty">
-      <p class="empty-title">Keine Häuser gefunden.</p>
-      <p class="empty-body">
-        Mit den aktuellen Filtern sind keine Modelle in dieser Kategorie
-        verfügbar.
-      </p>
-      <button
-        v-if="filterState.filters.length > 0"
-        class="empty-action"
-        @click="handleClearFilters"
-      >
-        Filter zurücksetzen
-      </button>
-    </div>
-
     </template>
   </div>
 </template>
