@@ -8,14 +8,19 @@ export const formatSquareMeters = (v: Displayable) =>
 export const formatCurrency = (v: Displayable) =>
   `${Number(v).toLocaleString("de-DE")} €`;
 
-/**
- * Body copy → meta description. Collapses whitespace, strips markdown
- * emphasis, and cuts at the last word boundary under `max` so a snippet
- * never ends mid-word. Returns undefined for empty input, so the caller
- * can omit the tag rather than emit an empty one.
- *
- * 155 is the practical desktop cut-off; Google rewrites beyond it anyway.
- */
+const BERLIN = { timeZone: "Europe/Berlin" } as const;
+
+export function formatNewsDate(d: Date | null): string | null {
+  return d
+    ? new Intl.DateTimeFormat("de-DE", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+        timeZone: BERLIN.timeZone,
+      }).format(new Date(d))
+    : null;
+}
+
 export const toMetaDescription = (
   text: string | null | undefined,
   max = 155,

@@ -1,6 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getModelBySlug } from "@/db/loaders";
+import { getModels } from "@/db/loaders";
 import { toMetaDescription } from "@/lib/format";
 import { ROUTES } from "@/features/navigation/routes";
 import JsonLd from "@/features/seo/JsonLd.astro";
@@ -18,20 +18,6 @@ import FeatureCardPair from "@/features/advantage/FeatureCardPair.vue";
 import WallAssembly from "@/features/advantage/WallAssembly.astro";
 import SpecGroups from "@/features/advantage/SpecGroups.astro";
 
-/* Construction spec below the floor plans. All of it is file-based and
-   identical for every model — it describes how BoHolz builds, not what this
-   house measures, so it is shared content, not per-house DB data.
-
-   - `advantage.content.ts`     — the wall build-ups, Holzfaserdämmung and
-                                  equipment lists /bauen-mit-boholz renders.
-   - `baubeschreibung.content.ts` — verbatim extracts from the Bau- und
-                                  Leistungsbeschreibung (BLB 09/2026).
-
-   Deliberately NOT lifted from /bauen-mit-boholz: "Der Werkstoff Holz",
-   "Sechs Beweggründe" and "Tradition & Innovation". They are copy about the
-   company, carry no specification, and would ship 26 duplicates of the same
-   two adjectival sentences. The model pages link to /bauen-mit-boholz for
-   that story instead. */
 import {
   energietechnik,
   hitzeschutzschild,
@@ -48,13 +34,23 @@ import {
   haustechnikSpecGroups,
   wandSpecGroups,
 } from "@/features/advantage/baubeschreibung.content";
+import type { HouseModel } from "@/db/models";
 
-const { slug } = Astro.params;
-const model = await getModelBySlug(slug!);
-if (!model) return Astro.redirect("/hauser");
+export async function getStaticPaths() {
+  const houses = await getModels();
 
-// Must match the section ids rendered below — HousePageNav scroll-spies on
-// these, and an id that doesn't exist silently breaks the rail.
+  return houses.map((h) => ({
+    params: {slug: h.slug},
+    props: {model: h}
+  }))
+};
+
+interface Props {
+model: HouseModel;
+}
+
+const { model } = Astro.props;
+
 const sections = [
   { id: "hausansichten", label: "Hausansichten" },
   { id: "beschreibung", label: "Beschreibung" },
@@ -69,37 +65,21 @@ const sections = [
   { id: "kontakt", label: "Kontakt" },
 ];
 
-// Use the model's own description; if it's empty, show nothing rather than
-// a generic placeholder shared across every house page.
+
 const description = model.description?.trim() || null;
-// First-sentence summary for the narrow SideCard.
 const lede = description ? (description.match(/^[^.!?]+[.!?]/)?.[0] ?? description) : null;
 const hasCategoryDescription = Boolean(model.category?.description);
-
-// Client copy (2026-05): a single advisory paragraph instead of a bulleted
-// hard-coded spec list — the actual Leistungsumfang is determined per
-// project together with the Fachberater.
 const leistungenCopy =
   "Je nach Ihren individuellen Bedürfnissen können wir verschiedene Gewerke und Leistungsumfänge anbieten. Gerne berät Sie unser Fachberater hierzu ausführlich und erstellt gemeinsam mit Ihnen ein passendes Konzept.";
-
-// Provenance for the construction spec below — a citation, not copy. The
-// BLB is the contractual document, so the page has to say which edition it
-// quotes. It deliberately makes no legal claim about precedence; a
-// "maßgeblich sind Angebot und Vertragsunterlagen" line would have to come
-// from the client, not from us.
 const specSourceNote =
   "Technische Angaben: Auszug aus der Bau- und Leistungsbeschreibung, Stand September 2026.";
 
-/* Loaders already resolve media.path through getMediaURL(), so these are
-   absolute — which both og:image and schema.org require. */
 const galleryImages = model.media
   .map((m) => m.media?.path)
   .filter((p): p is string => Boolean(p));
 const heroImage =
   model.media.find((m) => m.isHero)?.media?.path ?? galleryImages[0];
 
-/* Supplies the hierarchy the flat /haus/<slug> URL doesn't imply, and
-   renders as the path line above the search result. */
 const breadcrumb = breadcrumbSchema([
   { name: "Startseite", path: ROUTES.home },
   { name: "Häuser", path: ROUTES.houses },

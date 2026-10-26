@@ -1,26 +1,23 @@
 ---
-/**
- * Every typology landing page — `/wohnen/<category>`.
- *
- * The route is a lookup and nothing else: `landing.registry.ts` decides which
- * categories exist, `LandingPage.astro` decides what a landing page looks
- * like. A new landing page is a new `.content.ts` plus one registry line;
- * this file never changes.
- *
- * Deliberately decoupled from the DB's `house_categories` — the registry is
- * a curated subset (no bestseller, no category without written copy).
- */
 import LandingPage from "@/features/landing/LandingPage.astro";
 import {
-  isLandingCategory,
   landingPages,
+  type LandingCategory
 } from "@/features/landing/landing.registry";
 
-const { category } = Astro.params;
 
-if (!isLandingCategory(category)) {
-  return new Response("Not found", { status: 404 });
+export function getStaticPaths() {
+ return Object.keys(landingPages).map((k) => ({
+  params: {category: k},
+  props: {category: k}
+ }))
+};
+
+interface Props {
+  category: LandingCategory;
 }
+
+const {category } = Astro.props;
 ---
 
 <LandingPage content={landingPages[category]} />

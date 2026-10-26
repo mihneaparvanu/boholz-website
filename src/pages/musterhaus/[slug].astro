@@ -8,12 +8,25 @@ import CTASection from "@/ui/sections/CTASection.astro";
 import Button from "@/ui/primitives/Button.vue";
 import { ROUTES } from "@/features/navigation/routes";
 import { ArrowLeft, MapPin, Phone, Mail } from "lucide-vue-next";
+import type { LocationWithAgents } from "@/db/models";
 
-const { slug } = Astro.params;
+
+export async function getStaticPaths() {
 const showhouses = await getLocations({ kind: "showhouse" });
-const showhouse = showhouses.find((s) => s.slug === slug);
 
-if (!showhouse) return Astro.redirect(ROUTES.onsite);
+return showhouses.map((s)=> ({
+  params: {slug: s.slug},
+  props: {showhouse: s}
+}))
+
+};
+
+interface Props {
+  showhouse: LocationWithAgents;
+}
+
+const { showhouse } = Astro.props;
+
 
 const hero = showhouse.media.find((m) => m.isHero)?.media ?? showhouse.media[0]?.media;
 const gallery = showhouse.media
@@ -21,8 +34,6 @@ const gallery = showhouse.media
   .slice(0, 8)
   .map((m) => m.media);
 
-// Vertriebspartner for this Musterhaus — already ordered by sortOrder in the
-// loader. Strips the pivot wrapper down to the agent record.
 const agents = showhouse.agents.map((a) => a.agent);
 const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
 ---

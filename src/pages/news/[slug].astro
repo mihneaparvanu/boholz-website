@@ -1,27 +1,32 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getNewsBySlug, getCategories } from "@/db/loaders";
-import { toMetaDescription } from "@/lib/format";
+import { getNews } from "@/db/loaders";
+import { toMetaDescription, formatNewsDate } from "@/lib/format";
 import { ROUTES } from "@/features/navigation/routes";
 import { marked } from "marked";
+import type { NewsArticle } from "@/db/models";
 
-const { slug } = Astro.params;
-const [article, categories] = await Promise.all([
-  getNewsBySlug(slug!),
-  getCategories(),
-]);
+export async function getStaticPaths() {
+  const articles = await getNews();
+  return articles.map((a)=> (
+ {
+   params: {slug: a.slug},
+      props: {article: a}
+    })
+  )
+};
+
+interface Props {
+  article: NewsArticle;
+}
+
+const {article} = Astro.props
 
 if (!article) return Astro.redirect(ROUTES.news);
 
 const heroMedia = article.media.find((m) => m.isHero)?.media;
 
-const formattedDate = article.publishedAt
-  ? new Intl.DateTimeFormat("de-DE", {
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-    }).format(new Date(article.publishedAt))
-  : null;
+const formattedDate = formatNewsDate(article.publishedAt);
 
 const contentHtml = article.content ? await marked(article.content) : null;
 ---
@@ -29,7 +34,6 @@ const contentHtml = article.content ? await marked(article.content) : null;
 <Layout
   title={`${article.title} – BoHolz Haus`}
   description={toMetaDescription(article.excerpt)}
-  categories={categories}
 >
   <article class="news-detail">
     {
