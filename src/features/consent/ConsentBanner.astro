@@ -1,9 +1,10 @@
 ---
 import ConsentHeader from "./ConsentHeader.astro";
 import ConsentButtons from "./ConsentButtons.astro";
+import { BANNER_ID } from "./consent";
 ---
 
-  <dialog id="consent-banner" class="popup">
+  <dialog id={BANNER_ID} class="popup">
     <ConsentHeader />
     <ConsentButtons />
   </dialog>

@@ -1,5 +1,7 @@
 import { type ConsentType } from "./consent.types";
+
 const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
+export const BANNER_ID = "consent-banner";
 
 export type ConsentV1 = { v: 1; analytics: boolean; marketing: boolean };
 

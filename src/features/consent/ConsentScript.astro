@@ -1,15 +1,19 @@
 <script>
 
-import {getCookie, readConsent, COOKIE_NAME, CONSENT_DEFAULT, toGoogleConsent, gtag, injectGTM } from "./consent";
+import {getCookie, readConsent, COOKIE_NAME, CONSENT_DEFAULT, toGoogleConsent, gtag, injectGTM, BANNER_ID } from "./consent";
 
 gtag("consent", "default", CONSENT_DEFAULT);
 
 const stored = readConsent(getCookie(COOKIE_NAME));
-if (stored) {
-    gtag("consent", "update", toGoogleConsent(stored))
-    if(stored.analytics || stored.marketing) injectGTM();
-} else {
-    const d = document.getElementById("consent-banner");
+if (stored)  {
+gtag("consent", "update", toGoogleConsent(stored));
+
+}
+else showConsentBanner();
+injectGTM();
+
+function showConsentBanner () {
+  const d = document.getElementById(BANNER_ID);
     if (d instanceof HTMLDialogElement) d.show();
-    }
+}
 </script>
