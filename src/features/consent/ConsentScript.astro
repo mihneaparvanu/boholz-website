@@ -1,0 +1,12 @@
+<script>
+
+import {getCookie, readConsent, COOKIE_NAME, CONSENT_DEFAULT, toGoogleConsent, gtag, injectGTM } from "./consent";
+
+gtag("consent", "default", CONSENT_DEFAULT);
+
+const stored = readConsent(getCookie(COOKIE_NAME));
+if (stored) {
+    gtag("consent", "update", toGoogleConsent(stored))
+    if(stored.analytics || stored.marketing) injectGTM();
+}
+</script>

@@ -1,3 +1,5 @@
+const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
+
 export type ConsentV1 = { v: 1; analytics: boolean; marketing: boolean };
 
 export const CONSENT_PRESETS = {
@@ -12,13 +14,11 @@ declare global {
   }
 }
 
-const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
-
 export const COOKIE_NAME = "boholz_consent";
 const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
 const GTM_SCRIPT_ID = "gtm-script";
 
-function getCookie(name: string) {
+export function getCookie(name: string) {
   const raw = document.cookie.split("; ");
   const foundConsent = raw.find((c) => c.startsWith(name + "="));
   if (foundConsent) {
@@ -77,10 +77,7 @@ export function clearTrackingCookies(): void {
   matches.forEach((m) => (document.cookie = `${m}=; Max-Age=0; Path=/`));
 }
 
-export function injectGTM(id: string): void {
-  if (document.getElementById(GTM_SCRIPT_ID)) {
-    return;
-  }
+export function injectGTM(): void {
   window.dataLayer ||= [];
   window.dataLayer.push({
     "gtm.start": Date.now(),
@@ -93,4 +90,39 @@ export function injectGTM(id: string): void {
   s.src = `https://www.googletagmanager.com/gtm.js?id=${id}`;
 
   document.head.appendChild(s);
+}
+
+type ConsentSignal = "granted" | "denied";
+
+type GoogleConsentState = Record<
+  "ad_storage" | "ad_user_data" | "ad_personalization" | "analytics_storage",
+  ConsentSignal
+>;
+
+export const CONSENT_DEFAULT: GoogleConsentState = {
+  ad_storage: "denied",
+  ad_user_data: "denied",
+  ad_personalization: "denied",
+  analytics_storage: "denied",
+};
+
+export function toGoogleConsent(c: ConsentV1): GoogleConsentState {
+  const analytics = c.analytics ? "granted" : "denied";
+  const marketing = c.marketing ? "granted" : "denied";
+
+  return {
+    ad_storage: marketing,
+    ad_user_data: marketing,
+    ad_personalization: marketing,
+    analytics_storage: analytics,
+  };
+}
+
+export function gtag(
+  _command: "consent",
+  _mode: "default" | "update",
+  _state: GoogleConsentState,
+) {
+  window.dataLayer ||= [];
+  window.dataLayer.push(arguments);
 }

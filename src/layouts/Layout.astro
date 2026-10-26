@@ -9,6 +9,7 @@ import certificationsSprite from "@/features/certifications/certifications.svg?r
 import Navbar from "@/features/navigation/navbar/Navbar.vue";
 import Footer from "@/features/navigation/footer/Footer.astro";
 import ConsentBanner from "@/features/consent/ConsentBanner.astro";
+import ConsentScript from "@/features/consent/ConsentScript.astro";
 
 import { getCategories, getLocations } from "@/db/loaders";
 import { getMediaURL } from "@/lib/media";
@@ -82,6 +83,7 @@ const showhouses = await getLocations({ kind: "showhouse" });
     <meta property="og:image" content={socialImage} />
     {description && <meta property="og:description" content={description} />}
     <meta name="twitter:card" content="summary_large_image" />
+    <ConsentScript />
 
     <JsonLd data={organizationSchema()} />
   </head>
