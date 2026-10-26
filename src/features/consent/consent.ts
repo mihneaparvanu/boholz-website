@@ -1,12 +1,13 @@
+import { type ConsentType } from "./consent.types";
 const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
 
 export type ConsentV1 = { v: 1; analytics: boolean; marketing: boolean };
 
 export const CONSENT_PRESETS = {
-  all: { v: 1, analytics: true, marketing: true },
-  middle: { v: 1, analytics: true, marketing: false },
-  essential: { v: 1, analytics: false, marketing: false },
-} as const satisfies Record<string, ConsentV1>;
+  marketing: { v: 1, analytics: true, marketing: true },
+  analytics: { v: 1, analytics: true, marketing: false },
+  none: { v: 1, analytics: false, marketing: false },
+} as const satisfies Record<ConsentType, ConsentV1>;
 
 declare global {
   interface Window {

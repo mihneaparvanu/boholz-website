@@ -8,5 +8,8 @@ const stored = readConsent(getCookie(COOKIE_NAME));
 if (stored) {
     gtag("consent", "update", toGoogleConsent(stored))
     if(stored.analytics || stored.marketing) injectGTM();
-}
+} else {
+    const d = document.getElementById("consent-banner");
+    if (d instanceof HTMLDialogElement) d.show();
+    }
 </script>

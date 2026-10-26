@@ -1,21 +1,12 @@
 ---
 import ConsentHeader from "./ConsentHeader.astro";
 import ConsentButtons from "./ConsentButtons.astro";
-import { injectGTM, writeConsent, CONSENT_PRESETS, type ConsentV1 } from "./consent";
-
-
-const props = defineProps<{
-  gtmId?: string;
-  initialOpen: boolean;
-  initialConsent: ConsentV1 | null;
-}>();
-
 ---
 
-  <div v-if="open" class="popup">
+  <dialog id="consent-banner" class="popup">
     <ConsentHeader />
-    <ConsentButtons @choose="onChoose" />
-  </div>
+    <ConsentButtons />
+  </dialog>
 
 <style>
 .popup {

@@ -1,32 +1,24 @@
 ---
 import Button from "@/ui/primitives/Button.vue";
+import { CONSENT_ORDER, CONSENT_BUTTONS } from "./consent.content"
 ---
 
   <div class="btns">
-    <Button
+    {
+      CONSENT_ORDER.map ((key) => {
+        const b = CONSENT_BUTTONS[key]
+        return (
+<Button
+data-consent={key}
       size="md"
       variant="primary"
       tone="secondary"
-      aria-label="Alle Cookies akzeptieren, einschließlich Statistik und Marketing"
+      aria-label={b.ariaLabel}
     >
-      Alle akzeptieren
+     {b.title}
     </Button>
-    <Button
-      size="md"
-      variant="primary"
-      tone="secondary"
-      aria-label="Nur essenzielle und Statistik-Cookies akzeptieren"
-    >
-      Statistik erlauben
-    </Button>
-    <Button
-      size="md"
-      variant="primary"
-      tone="secondary"
-      aria-label="Nur essenzielle Cookies akzeptieren, Statistik und Marketing ablehnen"
-    >
-      Nur essenzielle
-    </Button>
+      )})
+    }
   </div>
 
 
