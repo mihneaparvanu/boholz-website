@@ -1,29 +1,23 @@
-<script setup lang="ts">
+---
 type Variant = "primary" | "secondary" | "tertiary" | "ghost";
 type Tone = "primary" | "secondary";
 type Size = "sm" | "md" | "lg";
 
-withDefaults(
-  defineProps<{
-    variant?: Variant;
+
+interface Props {
+ variant?: Variant;
     tone?: Tone;
     size?: Size;
     href?: string;
     type?: "button" | "submit" | "reset";
     disabled?: boolean;
     ariaLabel?: string;
-  }>(),
-  {
-    variant: "primary",
-    tone: "primary",
-    size: "md",
-    type: "button",
-  },
-);
-</script>
+}
 
-<template>
-  <component
+const { variant = "primary", tone = "primary", size ="md", type = "button"} = Astro.props;
+---
+
+  <button
     :is="href ? 'a' : 'button'"
     :type="href ? undefined : type"
     :href="href"
@@ -40,8 +34,8 @@ withDefaults(
     <span v-if="$slots.trailing" class="btn-icon"
       ><slot name="trailing"
     /></span>
-  </component>
-</template>
+  </button>
+
 
 <style scoped>
 .btn {

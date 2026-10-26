@@ -28,3 +28,18 @@ import { BANNER_ID } from "./consent";
   }
 }
 </style>
+
+<script>
+import { BANNER_ID, applyConsent, CONSENT_PRESETS } from "./consent";
+
+const dialog = document.getElementById(BANNER_ID);
+if (dialog instanceof HTMLDialogElement) {
+  dialog.addEventListener("command", (e) => {
+    if (e.command !== "--choose") return
+    const key = e.source.dataset.consent
+    if (!key || !(key in CONSENT_PRESETS)) return
+    applyConsent(key)
+    dialog.close()
+  })
+}
+</script>

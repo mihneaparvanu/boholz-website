@@ -9,6 +9,8 @@ import { CONSENT_ORDER, CONSENT_BUTTONS } from "./consent.content"
         const b = CONSENT_BUTTONS[key]
         return (
 <Button
+command="--choose"
+commandFor="consent-banner"
 data-consent={key}
       size="md"
       variant="primary"

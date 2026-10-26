@@ -15,6 +15,9 @@ declare global {
   interface Window {
     dataLayer?: unknown[];
   }
+  interface HTMLElementEventMap {
+    command: CommandEvent;
+  }
 }
 
 export const COOKIE_NAME = "boholz_consent";
@@ -128,4 +131,11 @@ export function gtag(
 ) {
   window.dataLayer ||= [];
   window.dataLayer.push(arguments);
+}
+
+export function applyConsent(preset: ConsentType) {
+  const c = CONSENT_PRESETS[preset];
+  writeConsent(c);
+  gtag("consent", "update", toGoogleConsent(c));
+  if (!c.analytics && c.marketing) clearTrackingCookies();
 }
