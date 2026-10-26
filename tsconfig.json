@@ -6,7 +6,11 @@
   // predates the ui/ + lib/ reorg, so type-checking them produced ~52 errors
   // that buried real ones in src/. They are reference-only (their README says
   // to copy a file into src/pages/ to view it, which would need a port first).
-  "exclude": ["dist", "dev"],
+  // `workers/` is a separate deploy unit built by wrangler, not by Astro. It
+  // uses the Workers runtime types (caches.default, R2Bucket), which this
+  // config's DOM lib does not have — it has its own tsconfig and
+  // worker-configuration.d.ts.
+  "exclude": ["dist", "dev", "workers"],
   "compilerOptions": {
     "jsx": "preserve",
     "paths": {

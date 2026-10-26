@@ -113,7 +113,7 @@ Use the AWS CLI (already installed) with R2's S3-compatible endpoint. Before any
 Required AWS CLI shape (the parent should provide credentials via env):
 ```
 aws s3 cp <local> s3://<bucket>/<key> \
-  --endpoint-url https://<accountid>.r2.cloudflarestorage.com \
+  --endpoint-url https://e10e3ee7c065128b0e47edcfff3b7c6b.eu.r2.cloudflarestorage.com \
   --content-type <mime>
 ```
 

@@ -9,7 +9,7 @@ The user drops one folder per model under `todo/houses-to-add/<Category>/<MODEL_
 
 ## Preconditions
 
-- `.env` has `R2_ACCOUNT_ID`, `R2_BUCKET`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `PUBLIC_ASSETS_URL`.
+- `.env` has `R2_ACCOUNT_ID=e10e3ee7c065128b0e47edcfff3b7c6b`, `R2_BUCKET=boholz-media`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `PUBLIC_ASSETS_URL`.
 - The category exists in `boholz.house_categories`. If not, insert it FIRST (see "Brand-new category" below).
 - `bun install` has been run.
 
@@ -38,7 +38,7 @@ The naming convention is `<category>_<slug>_<type>_<dimensions>.<ext>`:
 Invoke the agent with a brief:
 > "Take the files in `todo/houses-to-add/<Category>/<MODEL_NAME>/`, normalize the filenames to the BoHolz convention (above), optimize to WebP (min 1200px on shortest side, EXIF GPS stripped, ICC preserved), check R2 for the target keys, upload missing ones, and return a manifest mapping `<role>` (hero / floor-eg / floor-og) → R2 key + public URL."
 
-The agent uses Sharp + `aws s3 cp --endpoint-url https://<account>.r2.cloudflarestorage.com`. See `scripts/asset-pipeline/04-optimize.ts` and `06-r2-sync.ts` for the reference implementation.
+The agent uses Sharp + `aws s3 cp --endpoint-url https://e10e3ee7c065128b0e47edcfff3b7c6b.eu.r2.cloudflarestorage.com`. The bucket is `boholz-media` in the BoHolz account, **EU jurisdiction** — the `.eu.` in that host is required; without it the upload silently lands in a different namespace that nothing reads. See `scripts/asset-pipeline/04-optimize.ts` and `06-r2-sync.ts` for the reference implementation.
 
 ### 4. Generate the DB seed script
 

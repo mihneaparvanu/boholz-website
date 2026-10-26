@@ -85,7 +85,7 @@ Astro pages (`src/pages/`) run on the server with `output: "server"` and the `@a
 
 ### Media / assets
 
-Media files live in a self-hosted **MinIO** bucket (S3-compatible), not Cloudflare R2. The `boholz` bucket runs in the `sn-c1-minio` container; `S3_ENDPOINT` (`http://storage-api:9000`) is the internal S3 API used for uploads, and `PUBLIC_ASSETS_URL` (`https://boholz.sadnights.dev/m`) is the public read base served via the gateway. The DB stores only the path; `getMediaURL()` (in `src/lib/media.ts`) joins `PUBLIC_ASSETS_URL` + path. Upload via `mc` inside the `sn-c1-minio` container.
+Media files live in the **Cloudflare R2** bucket `boholz-media`, in the BoHolz account and in the **EU jurisdiction** — so every S3 endpoint for it needs the `.eu.` host (`https://<account>.eu.r2.cloudflarestorage.com`), and the Worker binding needs `"jurisdiction": "eu"`. Reads are served by `workers/media`, routed at `boholz-haus.de/m/*`, so they never reach sn-c1. The DB stores only the path; `getMediaURL()` (in `src/lib/media.ts`) joins `PUBLIC_ASSETS_URL` + path. Uploads go through the `add-house-model` skill.
 
 ### Routing
 
