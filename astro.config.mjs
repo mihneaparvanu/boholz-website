@@ -9,6 +9,9 @@ export default defineConfig({
   site: "https://boholz-haus.de",
   integrations: [vue()],
   output: "static",
+  // Hashed, immutable output under /a/ instead of Astro's default /_astro/.
+  // Shorter, and the leading underscore trips up some CDN and nginx rules.
+  build: { assets: "a" },
   adapter: node({ mode: "standalone" }),
   // Routes renamed 2026-05-18; redirects keep old links + bookmarks alive.
   // Typology landing pages moved from /landing/* → /wohnen/* on 2026-05-22.
