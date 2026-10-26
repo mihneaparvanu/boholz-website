@@ -49,16 +49,19 @@ const KURZKATALOG: Download = {
   alt: "BoHolz Bestseller-Katalog — Titelseite",
 };
 
-const downloads = computed<Download[]>(() =>
-  props.variant === "bestseller"
-    ? [IMAGEBROSCHUERE, KURZKATALOG]
-    : [IMAGEBROSCHUERE, HAUSKATALOG],
-);
-const downloadsLabel = computed(() =>
-  downloads.value.map((d) => d.label).join(" & "),
-);
+const downloads = computed<Download[]>(() => [
+  IMAGEBROSCHUERE,
+  HAUSKATALOG,
+  KURZKATALOG,
+]);
+// German enumeration: "A, B und C" — comma-separated, "und" before the last,
+// no comma before "und".
+const joinDe = (items: string[]) =>
+  items.length < 2
+    ? items.join("")
+    : `${items.slice(0, -1).join(", ")} und ${items.at(-1)}`;
 const downloadsLabelUnd = computed(() =>
-  downloads.value.map((d) => d.label).join(" und "),
+  joinDe(downloads.value.map((d) => d.label)),
 );
 
 const turnstileToken = ref("");
@@ -163,7 +166,7 @@ async function onSubmit() {
         />
       </span>
       <span>{{
-        submitting ? "Wird gesendet..." : `${downloadsLabel} anfordern`
+        submitting ? "Wird gesendet..." : "Infopaket anfordern"
       }}</span>
     </button>
   </form>
@@ -253,20 +256,25 @@ form {
   transition: transform 180ms ease;
 }
 .cover-stack img:first-child {
-  transform: rotate(-5deg);
-  margin-inline-end: -12px;
+  transform: rotate(-8deg);
+  margin-inline-end: -14px;
   z-index: 1;
 }
 .cover-stack img:nth-child(2) {
-  transform: rotate(5deg);
+  transform: rotate(0deg);
+  margin-inline-end: -14px;
   z-index: 2;
 }
-/* button-sized pair (fits beside the "… anfordern" label) */
+.cover-stack img:nth-child(3) {
+  transform: rotate(8deg);
+  z-index: 3;
+}
+/* button-sized fan of three (fits beside the "Infopaket anfordern" label) */
 .cover-stack--sm img {
   height: 54px;
   width: auto;
 }
-/* success-screen pair (hero-sized) */
+/* success-screen fan (hero-sized) */
 .cover-stack--lg {
   align-self: center;
   margin-block: var(--spacing-3) var(--spacing-2);
@@ -279,7 +287,7 @@ form {
     color-mix(in srgb, var(--clr-content-primary) 18%, transparent);
 }
 
-/* Two download links stacked under the success covers. */
+/* Download links stacked under the success covers. */
 .downloads {
   display: flex;
   flex-direction: column;
