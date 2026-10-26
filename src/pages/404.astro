@@ -13,7 +13,7 @@
  * with a 200).
  */
 import Layout from "@/layouts/Layout.astro";
-import Button from "@/ui/primitives/Button.astro";
+import Button from "@/ui/primitives/Button.vue";
 import { getCategories } from "@/db/loaders";
 
 Astro.response.status = 404;
@@ -37,10 +37,10 @@ const categories = await getCategories();
     <hr class="rule" />
 
     <div class="actions">
-      <Button variant="primary" size="lg" href="/" client:visible>
+      <Button variant="primary" size="lg" href="/">
         Zur Startseite
       </Button>
-      <Button variant="secondary" size="lg" href="/hauser" client:visible>
+      <Button variant="secondary" size="lg" href="/hauser">
         Hausmodelle entdecken
       </Button>
     </div>

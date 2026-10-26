@@ -11,7 +11,7 @@
  * second image-right, and so on. Single column on mobile, side-by-side from
  * tablet up.
  */
-import Button from "@/ui/primitives/Button.astro";
+import Button from "@/ui/primitives/Button.vue";
 import { ArrowRight } from "lucide-vue-next";
 
 export interface ZigZagBlock {
@@ -73,7 +73,7 @@ const { blocks } = Astro.props;
 
           {b.cta && (
             <div class="actions">
-              <Button client:visible variant="secondary" size="md" href={b.cta.href}>
+              <Button variant="secondary" size="md" href={b.cta.href}>
                 {b.cta.label ?? "Mehr erfahren"}
                 <ArrowRight slot="trailing" size={14} strokeWidth={2} />
               </Button>

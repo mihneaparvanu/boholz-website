@@ -1,5 +1,5 @@
 ---
-import Button from "@/ui/primitives/Button.astro";
+import Button from "@/ui/primitives/Button.vue";
 
 export interface CTAAction {
   label: string;
@@ -42,7 +42,6 @@ const {
 
     <div class="actions">
       <Button
-        client:load
         variant="secondary"
         size="lg"
         href={primary.href}
@@ -52,7 +51,6 @@ const {
       </Button>
       {secondary && (
         <Button
-          client:load
           variant="ghost"
           size="lg"
           href={secondary.href}

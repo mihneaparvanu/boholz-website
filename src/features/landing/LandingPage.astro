@@ -35,7 +35,7 @@ import TestimonialBand from "@/ui/sections/TestimonialBand.astro";
 import CatalogForm from "@/features/contact-forms/CatalogForm.vue";
 import CTASection from "@/ui/sections/CTASection.astro";
 import FAQAccordion from "@/ui/primitives/FAQAccordion.vue";
-import Button from "@/ui/primitives/Button.astro";
+import Button from "@/ui/primitives/Button.vue";
 import ZigZag from "@/ui/sections/ZigZag.astro";
 
 import ProofSection from "@/ui/sections/Proof-Section.vue";
@@ -197,7 +197,7 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
       </div>
       {featureBody.cta && (
         <Fragment slot="actions">
-          <Button client:load variant="primary" size="md" href={featureBody.cta.href}>
+          <Button variant="primary" size="md" href={featureBody.cta.href}>
             {featureBody.cta.label}
           </Button>
         </Fragment>
@@ -284,7 +284,7 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
               ))
             }
           </span>
-          <Button client:load variant="secondary" size="lg" href={midPageCta.primaryCta.href}>
+          <Button variant="secondary" size="lg" href={midPageCta.primaryCta.href}>
             {midPageCta.primaryCta.label}
           </Button>
         </div>
@@ -314,10 +314,10 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
   >
     <AudienceBlock items={audience.items} />
     <Fragment slot="actions">
-      <Button client:load variant="primary" size="md" href={hero.primaryCta.href}>
+      <Button variant="primary" size="md" href={hero.primaryCta.href}>
         {hero.primaryCta.label}
       </Button>
-      <Button client:load variant="ghost" size="md" href={hero.secondaryCta.href}>
+      <Button variant="ghost" size="md" href={hero.secondaryCta.href}>
         {hero.secondaryCta.label}
       </Button>
     </Fragment>

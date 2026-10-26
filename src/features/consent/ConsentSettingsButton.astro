@@ -1,18 +1,20 @@
 ---
-import { CONSENT_PRESETS, SETTINGS_ID} from "./consent";
+import { BANNER_ID, SETTINGS_ID } from "./consent";
 import { CONSENT_SETTINGS } from "./consent.content";
 
 
-const display = CONSENT_SETTINGS["none"];
+// Rendered before any cookie is readable, so it must be the undecided
+// state. The script below upgrades it; it only ever adds, never removes.
+const UNDECIDED = { label: "Ihre Privatsphäre", tone: "neutral" } as const;
 
 interface Props {
-  size: number;
+  size?: number;
 }
 
 const {size = 30} = Astro.props;
 ---
 
-  <button id={SETTINGS_ID} data-tone={display.tone}>
+  <button id={SETTINGS_ID} command="show" commandfor={BANNER_ID} data-tone={UNDECIDED.tone}>
     <span class="icon">
       <svg
         width={size}
@@ -70,11 +72,17 @@ const {size = 30} = Astro.props;
 </style>
 
 <script>
-  import { readConsent, getCookie, COOKIE_NAME, activePreset } from "./consent";
+  import {
+    COOKIE_NAME,
+    SETTINGS_ID,
+    activePreset,
+    getCookie,
+    readConsent,
+  } from "./consent";
   import { CONSENT_SETTINGS } from "./consent.content";
 
   const c = readConsent(getCookie(COOKIE_NAME));
-  const el = document.querySelector<HTMLElement>("#consent-settings .label");
+  const el = document.querySelector<HTMLElement>(`#${SETTINGS_ID} .label`);
   if (c && el) {
     const setting = activePreset(c);
     el.textContent = CONSENT_SETTINGS[setting].label;

@@ -1,19 +1,36 @@
 <script>
+  // Runs on every page. Order is load-bearing: Consent Mode defaults must be
+  // queued before GTM loads, or GTM boots with no consent state at all.
+  import {
+    BANNER_ID,
+    CONSENT_DEFAULT,
+    COOKIE_NAME,
+    activePreset,
+    getCookie,
+    gtag,
+    injectGTM,
+    readConsent,
+    toGoogleConsent,
+  } from "./consent";
 
-import {getCookie, readConsent, COOKIE_NAME, CONSENT_DEFAULT, toGoogleConsent, gtag, injectGTM, BANNER_ID } from "./consent";
+  gtag("consent", "default", CONSENT_DEFAULT);
 
-gtag("consent", "default", CONSENT_DEFAULT);
+  const stored = readConsent(getCookie(COOKIE_NAME));
 
-const stored = readConsent(getCookie(COOKIE_NAME));
-if (stored)  {
-gtag("consent", "update", toGoogleConsent(stored));
-document.documentElement.dataset.consent = activePreset(stored);
-}
-else showConsentBanner();
-injectGTM();
+  if (stored) {
+    gtag("consent", "update", toGoogleConsent(stored));
+    // One attribute at the root; every component styles itself off it.
+    document.documentElement.dataset.consent = activePreset(stored);
+  } else {
+    openBanner();
+  }
 
-function showConsentBanner () {
-  const d = document.getElementById(BANNER_ID);
-    if (d instanceof HTMLDialogElement) d.show();
-}
+  // Advanced Consent Mode: GTM loads for everyone. The signals above decide
+  // what it may do, and denied visitors send cookieless pings instead.
+  injectGTM();
+
+  function openBanner() {
+    const banner = document.getElementById(BANNER_ID);
+    if (banner instanceof HTMLDialogElement) banner.show();
+  }
 </script>

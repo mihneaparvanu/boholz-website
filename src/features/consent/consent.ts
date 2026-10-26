@@ -16,15 +16,12 @@ export const COOKIE_NAME = "boholz_consent";
 const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
 const GTM_SCRIPT_ID = "gtm-script";
 
-export function getCookie(name: string) {
-  const raw = document.cookie.split("; ");
-  const foundConsent = raw.find((c) => c.startsWith(name + "="));
-  if (foundConsent) {
-    const eqIndex = foundConsent.indexOf("=");
-    const value = foundConsent.slice(eqIndex + 1);
-    return decodeURIComponent(value);
-  }
-  return null;
+export function getCookie(name: string): string | null {
+  const entry = document.cookie
+    .split("; ")
+    .find((pair) => pair.startsWith(`${name}=`));
+  if (!entry) return null;
+  return decodeURIComponent(entry.slice(entry.indexOf("=") + 1));
 }
 
 function isConsentV1(x: unknown): x is ConsentV1 {
@@ -76,6 +73,7 @@ export function clearTrackingCookies(): void {
 }
 
 export function injectGTM(): void {
+  if (document.getElementById(GTM_SCRIPT_ID)) return;
   window.dataLayer ||= [];
   window.dataLayer.push({
     "gtm.start": Date.now(),
@@ -129,7 +127,7 @@ export function applyConsent(preset: ConsentType) {
   const c = CONSENT_PRESETS[preset];
   writeConsent(c);
   gtag("consent", "update", toGoogleConsent(c));
-  if (!c.analytics && c.marketing) clearTrackingCookies();
+  if (!c.analytics && !c.marketing) clearTrackingCookies();
 }
 
 export function activePreset(c: ConsentV1): ConsentType {

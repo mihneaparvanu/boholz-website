@@ -7,7 +7,7 @@
  * warranty/commitment right in the hero. The certification "quality badges"
  * (ProofSection) render directly below this in LandingPage.
  */
-import Button from "@/ui/primitives/Button.astro";
+import Button from "@/ui/primitives/Button.vue";
 import type { TrustBadge } from "@/features/trust/trust-badges.content";
 import { getIcon } from "@/lib/icons";
 import GermanyFlag from "@/ui/icons/GermanyFlag.vue";
@@ -60,7 +60,7 @@ const {
       (primaryCta || secondaryCta) && (
         <div class="actions">
           {primaryCta && (
-            <Button client:load variant="secondary" size="lg" href={primaryCta.href}>
+            <Button variant="secondary" size="lg" href={primaryCta.href}>
               {primaryCta.label}
             </Button>
           )}

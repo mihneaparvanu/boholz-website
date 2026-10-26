@@ -37,7 +37,7 @@ import TwoColumn from "@/ui/sections/TwoColumn.astro";
 import Reviews from "@/features/reviews/Reviews.astro";
 import ContactForm from "@/features/contact-forms/ContactForm.vue";
 
-import Button from "@/ui/primitives/Button.astro";
+import Button from "@/ui/primitives/Button.vue";
 
 import { getCategories, getModels } from "@/db/loaders";
 import { toHouseModelCard } from "@/lib/derive";
@@ -176,10 +176,10 @@ const sustainabilityImage = getMediaURL(content.featureBody.imageFallbackPath);
   >
     <AudienceBlock items={content.audience.items} />
     <Fragment slot="actions">
-      <Button client:load variant="primary" size="md" href={content.hero.primaryCta.href}>
+      <Button variant="primary" size="md" href={content.hero.primaryCta.href}>
         {content.hero.primaryCta.label}
       </Button>
-      <Button client:load variant="ghost" size="md" href={content.hero.secondaryCta.href}>
+      <Button variant="ghost" size="md" href={content.hero.secondaryCta.href}>
         {content.hero.secondaryCta.label}
       </Button>
     </Fragment>
@@ -201,7 +201,7 @@ const sustainabilityImage = getMediaURL(content.featureBody.imageFallbackPath);
       </div>
       {content.featureBody.cta && (
         <Fragment slot="actions">
-          <Button client:load variant="primary" size="md" href={content.featureBody.cta.href}>
+          <Button variant="primary" size="md" href={content.featureBody.cta.href}>
             {content.featureBody.cta.label}
           </Button>
         </Fragment>
