@@ -24,3 +24,16 @@ export const landingPages = {
 export type LandingCategory = keyof typeof landingPages;
 
 export const landingCategories = Object.keys(landingPages) as LandingCategory[];
+
+/**
+ * A category slug from the database does not necessarily have a landing page:
+ * `pultdachhaus` and `mehrfamilienhaus` exist in house_categories with no entry
+ * here, and this registry's `mehrfamilien` key matches neither. Callers that
+ * build a /wohnen/<slug> link must narrow first — the route is prerendered, so
+ * a wrong slug is a hard 404, not a soft miss.
+ */
+export function isLandingCategory(
+  value: string | undefined,
+): value is LandingCategory {
+  return value !== undefined && value in landingPages;
+}

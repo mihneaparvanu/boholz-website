@@ -8,7 +8,7 @@ export default defineConfig({
   // Canonical origin — absolute URLs for sitemap.xml + canonical links.
   site: "https://boholz-haus.de",
   integrations: [vue()],
-  output: "server",
+  output: "static",
   adapter: node({ mode: "standalone" }),
   // Routes renamed 2026-05-18; redirects keep old links + bookmarks alive.
   // Typology landing pages moved from /landing/* → /wohnen/* on 2026-05-22.

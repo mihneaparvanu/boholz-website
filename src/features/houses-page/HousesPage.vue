@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { HouseModel, HouseCategory } from "@/db/models";
+import { isLandingCategory } from "@/features/landing/landing.registry";
 import { ref, computed, onMounted, watch } from "vue";
 import ModelCard from "@/features/model-overview/components/ModelCard.vue";
 import SortButton from "@/ui/primitives/SortButton.vue";

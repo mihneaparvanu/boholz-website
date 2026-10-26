@@ -10,6 +10,9 @@ import { buildCatalogNotification } from "@/features/contact-forms/catalogEmail"
 import { db } from "@/db/db";
 import { leads } from "@/db/schema";
 
+// POST handler: needs a server, so it opts out of prerendering.
+export const prerender = false;
+
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   const body = (await request.json()) as Record<string, unknown>;
 
