@@ -263,13 +263,27 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
     >
       <Fragment slot="actions">
         <div class="ask-cta">
-          <img
-            class="ask-katalog-cover"
-            src={getMediaURL("/images/landing/imagebroschuere-2026-10-cover-front.jpg")}
-            alt="Imagebroschüre 2026 von BoHolz-Haus"
-            loading="lazy"
-            width="130"
-          />
+          <span
+            class="ask-katalog-covers"
+            role="img"
+            aria-label="Infopaket 2026 von BoHolz-Haus: Imagebroschüre, Hauskatalog und Bestseller-Katalog"
+          >
+            {
+              [
+                "/images/landing/imagebroschuere-2026-10b-cover.webp",
+                "/images/landing/hauskatalog-2026-10-cover.webp",
+                "/images/landing/kurzkatalog-2026-10-cover.webp",
+              ].map((cover) => (
+                <img
+                  class="ask-katalog-cover"
+                  src={getMediaURL(cover)}
+                  alt=""
+                  loading="lazy"
+                  width="104"
+                />
+              ))
+            }
+          </span>
           <Button client:load variant="secondary" size="lg" href={midPageCta.primaryCta.href}>
             {midPageCta.primaryCta.label}
           </Button>
@@ -411,8 +425,27 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
     align-items: center;
     gap: var(--spacing-3);
   }
+  /* Three covers fanned as one visual. The span carries the accessible name;
+     the images are presentational, so each alt is empty. */
+  .ask-katalog-covers {
+    display: flex;
+    align-items: flex-end;
+  }
+  .ask-katalog-covers img:first-child {
+    transform: rotate(-8deg);
+    margin-inline-end: -18px;
+    z-index: 1;
+  }
+  .ask-katalog-covers img:nth-child(2) {
+    margin-inline-end: -18px;
+    z-index: 2;
+  }
+  .ask-katalog-covers img:nth-child(3) {
+    transform: rotate(8deg);
+    z-index: 3;
+  }
   .ask-katalog-cover {
-    width: 130px;
+    width: 104px;
     height: auto;
     display: block;
     border-radius: var(--radius-sm);

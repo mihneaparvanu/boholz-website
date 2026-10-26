@@ -105,8 +105,8 @@ async function onSubmit() {
   <div v-else class="success" role="status">
     <h3>Vielen Dank!</h3>
     <p>
-      Wir haben Ihre Anfrage erhalten und melden uns in Kürze. Die Imagebroschüre
-      können Sie auf unserer Broschüren-Seite anfordern.
+      Wir haben Ihre Anfrage erhalten und melden uns in Kürze. Das Infopaket
+      können Sie auf unserer Infopaket-Seite anfordern.
     </p>
   </div>
 </template>

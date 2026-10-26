@@ -12,7 +12,7 @@ export const singleFamilyContent: LandingPageContent = {
   seo: {
     title: "Einfamilienhaus aus Holz bauen | BoHolz-Haus",
     description:
-      "Ihr Einfamilienhaus aus Holz: individuell geplant, in Rot am See gefertigt und auf Wunsch schlüsselfertig übergeben. Jetzt Imagebroschüre kostenlos anfordern.",
+      "Ihr Einfamilienhaus aus Holz: individuell geplant, in Rot am See gefertigt und auf Wunsch schlüsselfertig übergeben. Jetzt Infopaket kostenlos anfordern.",
     focusKeyword: "Einfamilienhaus aus Holz",
   },
 
@@ -24,7 +24,7 @@ export const singleFamilyContent: LandingPageContent = {
     imageAlt: "Einfamilienhaus aus Holz von BoHolz-Haus",
     imageFallbackPath: "/images/brand/hero.webp",
     preferredCategorySlug: "einfamilienhaus",
-    primaryCta: { label: "Imagebroschüre kostenlos anfordern", href: "#anfordern" },
+    primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
@@ -216,18 +216,18 @@ export const singleFamilyContent: LandingPageContent = {
   },
 
   leadForm: {
-    eyebrow: "Kostenlose Imagebroschüre",
-    heading: "Die Imagebroschüre",
+    eyebrow: "Kostenloses Infopaket",
+    heading: "Das Infopaket",
     highlight: "kostenlos anfordern.",
-    lede: "Name, E-Mail und Ort genügen – Sie erhalten unsere komplette Imagebroschüre mit allen Haustypen als PDF per E-Mail: vom Bungalow über die Stadtvilla bis zum Einfamilien-, Doppel- und Generationenhaus.",
+    lede: "Name, E-Mail und Ort genügen – Sie erhalten unser komplettes Infopaket — Imagebroschüre, Hauskatalog und Bestseller-Katalog — mit allen Haustypen als PDF per E-Mail: vom Bungalow über die Stadtvilla bis zum Einfamilien-, Doppel- und Generationenhaus.",
   },
 
   midPageCta: {
     eyebrow: "Kostenlos und unverbindlich",
     heading: "Holen Sie sich jetzt den",
-    highlight: "Imagebroschüre.",
-    lede: "Unsere komplette Imagebroschüre mit allen Haustypen – Grundrisse und Hausdaten zu jedem Entwurf, als PDF per E-Mail.",
+    highlight: "Infopaket.",
+    lede: "Unser komplettes Infopaket mit allen Haustypen – Grundrisse und Hausdaten zu jedem Entwurf, als PDF per E-Mail.",
     tone: "brand",
-    primaryCta: { label: "Imagebroschüre kostenlos anfordern", href: "#anfordern" },
+    primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
   },
 };

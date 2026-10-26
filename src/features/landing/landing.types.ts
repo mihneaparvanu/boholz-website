@@ -218,7 +218,7 @@ export interface LandingLeadForm {
   lede?: string;
   /** Which pair of PDFs the lead receives. "bestseller" swaps the big
       Hauskatalog for the Bestseller-Kurzkatalog on the Bestseller landing;
-      undefined/`"default"` keeps the standard Imagebroschüre + Hauskatalog
+      undefined/`"default"` is now moot — every form ships the full Infopaket
       pair everywhere else. */
   catalogVariant?: "default" | "bestseller";
 }

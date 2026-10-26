@@ -26,7 +26,7 @@ export const bestsellerContent: LandingPageContent = {
     imageAlt: "Bestseller-Häuser aus Holz von BoHolz-Haus",
     imageFallbackPath: "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-exterior-2-2026.webp",
     preferredCategorySlug: "einfamilienhaus",
-    primaryCta: { label: "Imagebroschüre kostenlos anfordern", href: "#anfordern" },
+    primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
@@ -221,7 +221,7 @@ export const bestsellerContent: LandingPageContent = {
     eyebrow: "Beratungstermin",
     heading: "Ihren Bestseller",
     highlight: "persönlich kennenlernen.",
-    lede: "Nennen Sie uns Ihren Favoriten und Ihren Bauort – wir melden uns persönlich bei Ihnen, um einen Termin zu vereinbaren. Als Dankeschön erhalten Sie unsere Imagebroschüre und den Bestseller-Katalog.",
+    lede: "Nennen Sie uns Ihren Favoriten und Ihren Bauort – wir melden uns persönlich bei Ihnen, um einen Termin zu vereinbaren. Als Dankeschön erhalten Sie unser Infopaket mit Imagebroschüre, Hauskatalog und Bestseller-Katalog.",
     catalogVariant: "bestseller",
   },
 
@@ -231,6 +231,6 @@ export const bestsellerContent: LandingPageContent = {
     highlight: "Ihr persönliches Angebot.",
     lede: "Wählen Sie Ihren Favoriten – wir besprechen Grundstück, Ausbaustufe und Wünsche und erstellen daraus Ihr individuelles Angebot.",
     tone: "brand",
-    primaryCta: { label: "Imagebroschüre kostenlos anfordern", href: "#anfordern" },
+    primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
   },
 };

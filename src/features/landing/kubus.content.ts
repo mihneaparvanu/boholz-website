@@ -12,7 +12,7 @@ export const kubusContent: LandingPageContent = {
   seo: {
     title: "Kubushaus als Fertighaus aus Holz | BoHolz-Haus",
     description:
-      "Kubushaus in Holzbauweise: Flachdach, klare Linien und ein Obergeschoss ohne Dachschrägen – individuell geplant. Entwürfe ansehen, Imagebroschüre kostenlos.",
+      "Kubushaus in Holzbauweise: Flachdach, klare Linien und ein Obergeschoss ohne Dachschrägen – individuell geplant. Entwürfe ansehen, Infopaket kostenlos.",
     focusKeyword: "Kubushaus Fertighaus",
   },
 
@@ -24,7 +24,7 @@ export const kubusContent: LandingPageContent = {
     imageAlt: "Kubushaus aus Holz von BoHolz-Haus",
     imageFallbackPath: "/images/models/kubus/0-140/gallery/kubus-0-140-gallery-exterior-2026.webp",
     preferredCategorySlug: "kubus",
-    primaryCta: { label: "Imagebroschüre kostenlos anfordern", href: "#anfordern" },
+    primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
 
@@ -217,18 +217,18 @@ export const kubusContent: LandingPageContent = {
   },
 
   leadForm: {
-    eyebrow: "Kostenlose Imagebroschüre",
-    heading: "Die Imagebroschüre",
+    eyebrow: "Kostenloses Infopaket",
+    heading: "Das Infopaket",
     highlight: "kostenlos anfordern.",
-    lede: "Name, E-Mail und Ort genügen – Sie erhalten unsere komplette Imagebroschüre mit allen Haustypen als PDF per E-Mail: vom Bungalow über die Stadtvilla bis zum Einfamilien-, Doppel- und Generationenhaus.",
+    lede: "Name, E-Mail und Ort genügen – Sie erhalten unser komplettes Infopaket — Imagebroschüre, Hauskatalog und Bestseller-Katalog — mit allen Haustypen als PDF per E-Mail: vom Bungalow über die Stadtvilla bis zum Einfamilien-, Doppel- und Generationenhaus.",
   },
 
   midPageCta: {
     eyebrow: "Kostenlos und unverbindlich",
     heading: "Holen Sie sich jetzt den",
-    highlight: "Imagebroschüre.",
-    lede: "Unsere komplette Imagebroschüre mit allen Haustypen – Grundrisse und Hausdaten zu jedem Entwurf, als PDF per E-Mail.",
+    highlight: "Infopaket.",
+    lede: "Unser komplettes Infopaket mit allen Haustypen – Grundrisse und Hausdaten zu jedem Entwurf, als PDF per E-Mail.",
     tone: "brand",
-    primaryCta: { label: "Imagebroschüre kostenlos anfordern", href: "#anfordern" },
+    primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
   },
 };

@@ -20,7 +20,7 @@ const props = defineProps<{
 
 const state = reactive({ ...emptyCatalogForm });
 
-// The form's reward for the lead's data is the Imagebroschüre + a second
+// The form's reward for the lead's data is the Infopaket: Imagebroschüre,
 // catalog (Hauskatalog, or Kurzkatalog on the bestseller landing).
 // NOTE: absolute CDN URLs on purpose — this is a client-hydrated island and
 // `getMediaURL()` resolves to an empty base in the browser bundle (PUBLIC_
