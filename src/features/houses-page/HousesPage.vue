@@ -22,6 +22,7 @@ import {
 } from "@/lib/bestseller";
 import { isLandingCategory } from "@/features/landing/landing.registry";
 import { parseLivingArea } from "@/lib/parse-living-area";
+import { housesViews } from "./houses-page.content";
 
 const props = defineProps<{
   models: HouseModel[];
@@ -416,7 +417,7 @@ watch(
         :class="['switch-btn', { active: mode === 'explore' }]"
         @click="setMode('explore')"
       >
-        Nach Haustyp entdecken
+        {{ housesViews.explore.tab }}
       </button>
       <button
         type="button"
@@ -425,9 +426,14 @@ watch(
         :class="['switch-btn', { active: mode === 'filter' }]"
         @click="setMode('filter')"
       >
-        Alle Modelle filtern
+        {{ housesViews.filter.tab }}
       </button>
     </div>
+
+    <header class="invite">
+      <h2 class="invite-heading">{{ housesViews[mode].heading }}</h2>
+      <p class="invite-body">{{ housesViews[mode].body }}</p>
+    </header>
 
     <div v-if="mode === 'explore'" class="explore-grid">
       <a
@@ -718,6 +724,28 @@ watch(
 .switch-btn:focus-visible {
   outline: 2px solid var(--clr-accent-secondary);
   outline-offset: 2px;
+}
+
+/* ── Invitation — one block, copy keyed by the active view ──────────── */
+.invite {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  max-width: 54ch;
+  margin: 0 auto var(--spacing-5);
+  text-align: center;
+}
+.invite-heading {
+  margin: 0;
+  font-size: var(--fs-h4);
+  font-weight: var(--font-weight-heading);
+  color: var(--clr-content-primary);
+}
+.invite-body {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--clr-content-secondary);
 }
 
 /* ── Explore view — big square image cards linking to the landings ───── */
