@@ -7,7 +7,7 @@ gtag("consent", "default", CONSENT_DEFAULT);
 const stored = readConsent(getCookie(COOKIE_NAME));
 if (stored)  {
 gtag("consent", "update", toGoogleConsent(stored));
-
+document.documentElement.dataset.consent = activePreset(stored);
 }
 else showConsentBanner();
 injectGTM();

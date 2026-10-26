@@ -1,13 +1,9 @@
 ---
-import { CONSENT_PRESETS } from "./consent";
-type PresetKey = keyof typeof CONSENT_PRESETS;
+import { CONSENT_PRESETS, SETTINGS_ID} from "./consent";
+import { CONSENT_SETTINGS } from "./consent.content";
 
 
-const DISPLAY = {
-  all: { label: "Alle akzeptiert", tone: "ok" },
-  middle: { label: "Statistik aktiv", tone: "ok" },
-  essential: { label: "Nur essenzielle", tone: "warn" },
-} as const satisfies Record<PresetKey, { label: string; tone: "ok" | "warn" }>;
+const display = CONSENT_SETTINGS["none"];
 
 interface Props {
   size: number;
@@ -16,7 +12,7 @@ interface Props {
 const {size = 30} = Astro.props;
 ---
 
-  <button @click="show" class="btn" :data-tone="display.tone">
+  <button id={SETTINGS_ID} data-tone={display.tone}>
     <span class="icon">
       <svg
         width={size}
@@ -42,11 +38,11 @@ const {size = 30} = Astro.props;
         />
       </svg>
     </span>
-    { display.label }
+  <span class="label">Ihre Privatsphäre</span>
   </button>
 
 <style>
-.btn {
+#consent-settings {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-1);
@@ -62,14 +58,26 @@ const {size = 30} = Astro.props;
   }
 }
 
-.btn[data-tone="neutral"] > .icon {
+#consent-settings[data-tone="neutral"],
+#consent-settings[data-tone="ok"]
+ > .icon {
   color: var(--clr-accent-secondary);
 }
 
-.btn[data-tone="ok"] > .icon {
-  color: var(--clr-accent-secondary);
-}
-.btn[data-tone="warn"] > .icon {
+#consent-settings[data-tone="warn"] > .icon {
   color: var(--clr-status-warning);
 }
 </style>
+
+<script>
+  import { readConsent, getCookie, COOKIE_NAME, activePreset } from "./consent";
+  import { CONSENT_SETTINGS } from "./consent.content";
+
+  const c = readConsent(getCookie(COOKIE_NAME));
+  const el = document.querySelector<HTMLElement>("#consent-settings .label");
+  if (c && el) {
+    const setting = activePreset(c);
+    el.textContent = CONSENT_SETTINGS[setting].label;
+    el.closest("button")!.dataset.tone = CONSENT_SETTINGS[setting].tone
+  }
+</script>

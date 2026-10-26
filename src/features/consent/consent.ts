@@ -2,6 +2,7 @@ import { type ConsentType } from "./consent.types";
 
 const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
 export const BANNER_ID = "consent-banner";
+export const SETTINGS_ID = "consent-settings";
 
 export type ConsentV1 = { v: 1; analytics: boolean; marketing: boolean };
 
@@ -129,4 +130,10 @@ export function applyConsent(preset: ConsentType) {
   writeConsent(c);
   gtag("consent", "update", toGoogleConsent(c));
   if (!c.analytics && c.marketing) clearTrackingCookies();
+}
+
+export function activePreset(c: ConsentV1): ConsentType {
+  if (c.marketing) return "marketing";
+  if (c.analytics) return "analytics";
+  return "none";
 }
