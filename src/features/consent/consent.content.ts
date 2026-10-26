@@ -6,6 +6,8 @@ export const CONSENT_ORDER = [
   "none",
 ] as const satisfies readonly ConsentType[];
 
+// Wording is legal text: it records what the visitor agreed to. Changes need
+// BoHolz's sign-off, not ours. See the note in ConsentHeader.astro.
 export const CONSENT_BUTTONS: Record<ConsentType, ConsentButton> = {
   marketing: {
     title: "Alle akzeptieren",
@@ -13,21 +15,23 @@ export const CONSENT_BUTTONS: Record<ConsentType, ConsentButton> = {
       "Alle Cookies akzeptieren, einschließlich Statistik und Marketing",
   },
   analytics: {
-    title: "Statistik erlauben",
-    ariaLabel: "Nur essenzielle und Statistik-Cookies akzeptieren",
+    title: "Nur Statistik",
+    ariaLabel: "Statistik-Cookies erlauben, Marketing ablehnen",
   },
   none: {
-    title: "Nur essenzielle",
-    ariaLabel:
-      "Nur essenzielle Cookies akzeptieren, Statistik und Marketing ablehnen",
+    title: "Ablehnen",
+    ariaLabel: "Statistik und Marketing ablehnen, keine Cookies setzen",
   },
 };
 
 export const CONSENT_SETTINGS = {
   marketing: { label: "Alle akzeptiert", tone: "ok" },
-  analytics: { label: "Statistik aktiv", tone: "ok" },
-  none: { label: "Nur essenzielle", tone: "warn" },
+  analytics: { label: "Nur Statistik", tone: "ok" },
+  none: { label: "Abgelehnt", tone: "warn" },
 } as const satisfies Record<
   ConsentType,
   { label: string; tone: "ok" | "warn" }
 >;
+
+/** Shown before a choice exists — the only state the server can know. */
+export const UNDECIDED_LABEL = "Ihre Privatsphäre";

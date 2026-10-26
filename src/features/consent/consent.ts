@@ -128,6 +128,9 @@ export function applyConsent(preset: ConsentType) {
   writeConsent(c);
   gtag("consent", "update", toGoogleConsent(c));
   if (!c.analytics && !c.marketing) clearTrackingCookies();
+  // The view derives from this one attribute. Writing the cookie changes
+  // storage, not the page — nothing observes document.cookie.
+  document.documentElement.dataset.consent = preset;
 }
 
 export function activePreset(c: ConsentV1): ConsentType {
