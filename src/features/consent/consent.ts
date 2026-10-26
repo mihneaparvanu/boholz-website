@@ -87,7 +87,7 @@ export function injectGTM(): void {
   const s = document.createElement("script");
   s.id = GTM_SCRIPT_ID;
   s.async = true;
-  s.src = `https://www.googletagmanager.com/gtm.js?id=${id}`;
+  s.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
 
   document.head.appendChild(s);
 }
