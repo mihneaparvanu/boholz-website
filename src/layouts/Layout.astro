@@ -8,8 +8,7 @@ import certificationsSprite from "@/features/certifications/certifications.svg?r
 
 import Navbar from "@/features/navigation/navbar/Navbar.vue";
 import Footer from "@/features/navigation/footer/Footer.astro";
-import ConsentBanner from "@/features/consent/ConsentBanner.vue";
-import { readConsent, COOKIE_NAME } from "@/features/consent/consent";
+import ConsentBanner from "@/features/consent/ConsentBanner.astro";
 
 import { getCategories, getLocations } from "@/db/loaders";
 import { getMediaURL } from "@/lib/media";
@@ -64,12 +63,6 @@ const socialImage =
 
 const categories = categoriesProp ?? (await getCategories());
 const showhouses = await getLocations({ kind: "showhouse" });
-
-const rawConsent = Astro.cookies.get(COOKIE_NAME)?.value ?? null;
-const consent = readConsent(rawConsent);
-const showBanner = consent === null;
-const loadGTM = consent !== null && (consent.analytics || consent.marketing);
-const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
 ---
 
 <html lang="de" data-hero={isHero ? "true" : "false"}>
@@ -81,10 +74,6 @@ const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
     {description && <meta name="description" content={description} />}
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, follow" />}
-
-    {/* Link previews. Read by WhatsApp, LinkedIn, Facebook, Slack, iMessage —
-        none of which look at <meta name="description">, which is why the same
-        sentence is declared twice. */}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="BoHolz Haus" />
     <meta property="og:locale" content="de_DE" />

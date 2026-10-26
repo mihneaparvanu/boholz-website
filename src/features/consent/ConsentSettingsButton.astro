@@ -1,18 +1,7 @@
-<script setup lang="ts">
-import { computed } from "vue";
-import { useConsentBanner } from "./useConsentBanner";
-import { CONSENT_PRESETS } from "./consent.zod";
-const { consent, show } = useConsentBanner();
-
+---
+import { CONSENT_PRESETS } from "./consent";
 type PresetKey = keyof typeof CONSENT_PRESETS;
 
-const activePreset = computed<PresetKey | null>(() => {
-  const c = consent.value;
-  if (!c) return null;
-  if (c.analytics && c.marketing) return "all";
-  if (c.analytics) return "middle";
-  return "essential";
-});
 
 const DISPLAY = {
   all: { label: "Alle akzeptiert", tone: "ok" },
@@ -20,26 +9,18 @@ const DISPLAY = {
   essential: { label: "Nur essenzielle", tone: "warn" },
 } as const satisfies Record<PresetKey, { label: string; tone: "ok" | "warn" }>;
 
-const display = computed(() =>
-  activePreset.value
-    ? DISPLAY[activePreset.value]
-    : { label: "Ihre Privatsphäre", tone: "neutral" as const },
-);
+interface Props {
+  size: number;
+}
 
-withDefaults(
-  defineProps<{
-    size?: number | string;
-  }>(),
-  { size: 30 },
-);
-</script>
+const {size = 30} = Astro.props;
+---
 
-<template>
   <button @click="show" class="btn" :data-tone="display.tone">
     <span class="icon">
       <svg
-        :width="size"
-        :height="(Number(size) / 30) * 14"
+        width={size}
+        height={(Number(size) / 30) * 14}
         viewBox="0 0 30 14"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -61,11 +42,10 @@ withDefaults(
         />
       </svg>
     </span>
-    {{ display.label }}
+    { display.label }
   </button>
-</template>
 
-<style scoped>
+<style>
 .btn {
   display: inline-flex;
   align-items: center;

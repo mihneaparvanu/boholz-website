@@ -1,9 +1,16 @@
-import { consentSchema, type ConsentV1 } from "./consent.zod";
+export const CONSENT_PRESETS = {
+  all: { v: 1, analytics: true, marketing: true },
+  middle: { v: 1, analytics: true, marketing: false },
+  essential: { v: 1, analytics: false, marketing: false },
+} as const satisfies Record<string, ConsentV1>;
+
 declare global {
   interface Window {
     dataLayer?: unknown[];
   }
 }
+
+const GTM_ID = process.env.PUBLIC_GTM_ID;
 
 export const COOKIE_NAME = "boholz_consent";
 const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;

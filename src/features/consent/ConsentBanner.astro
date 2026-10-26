@@ -1,9 +1,7 @@
-<script setup lang="ts">
-import ConsentHeader from "./ConsentHeader.vue";
-import ConsentButtons from "./ConsentButtons.vue";
-import { CONSENT_PRESETS, type ConsentV1 } from "./consent.zod";
-import { injectGTM, writeConsent } from "./consent";
-import { useConsentBanner } from "./useConsentBanner";
+---
+import ConsentHeader from "./ConsentHeader.astro";
+import ConsentButtons from "./ConsentButtons.astro";
+import { injectGTM, writeConsent, CONSENT_PRESETS } from "./consent";
 
 const props = defineProps<{
   gtmId?: string;
@@ -24,16 +22,14 @@ function onChoose(preset: "all" | "middle" | "essential") {
   }
   hide();
 }
-</script>
+---
 
-<template>
   <div v-if="open" class="popup">
     <ConsentHeader />
     <ConsentButtons @choose="onChoose" />
   </div>
-</template>
 
-<style scoped>
+<style>
 .popup {
   position: fixed;
   inset-inline: var(--spacing-3);
