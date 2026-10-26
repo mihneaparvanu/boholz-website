@@ -16,7 +16,7 @@ export interface HousesIntroCopy {
 }
 
 export const housesIntro: HousesIntroCopy = {
-  eyebrow: "Hausmodelle",
+  eyebrow: "Alles entdecken, für Sie gebaut",
   heading: "Unsere Häuser",
-  lede: "Vom Bungalow bis zum Mehrfamilienhaus — hier stehen alle unsere Entwürfe nebeneinander. Öffnen Sie die Häuser, die Ihnen ins Auge fallen, sehen Sie sich Ansichten und Grundrisse an, vergleichen Sie in Ruhe. Den Rest klären wir im Gespräch.",
+  lede: "Vom Bungalow bis zum Mehrfamilienhaus — entdecken Sie unsere Haustypen aus Holz, individuell für Sie geplant und schlüsselfertig gebaut. Öffnen Sie die Häuser, die Ihnen ins Auge fallen, sehen Sie sich Ansichten und Grundrisse an, vergleichen Sie in Ruhe. Den Rest klären wir im Gespräch.",
 };
