@@ -6,7 +6,7 @@ import {
   UNDECIDED_LABEL,
 } from "./consent.content";
 
-// Every state is rendered; CSS picks the one matching html[data-consent].
+// Every state is rendered; data-state on the button picks one.
 // Nothing here reads the cookie — the page can't know who is asking.
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
 const {size = 30} = Astro.props;
 ---
 
-  <button id={SETTINGS_ID} type="button">
+  <button id={SETTINGS_ID} type="button" data-state="unset">
     <span class="icon">
       <svg
         width={size}
@@ -42,7 +42,10 @@ const {size = 30} = Astro.props;
         />
       </svg>
     </span>
-  <span class="label">Ihre Privatsphäre</span>
+  <span class="label" data-for="unset">{UNDECIDED_LABEL}</span>
+    {CONSENT_ORDER.map((key) => (
+      <span class="label" data-for={key}>{CONSENT_SETTINGS[key].label}</span>
+    ))}
   </button>
 
 <style>
@@ -64,32 +67,50 @@ const {size = 30} = Astro.props;
     color: var(--clr-accent-secondary);
   }
 
-  /* Only the label matching the current state is shown. Astro scopes these
-     selectors to this component, so the <html> half has to be :global —
-     otherwise it would look for a scope attribute on <html> and match nothing. */
+  /* Every state is rendered; data-state on the button picks one. Both halves
+     of each selector live in this component, so the scoping holds. */
   .label {
     display: none;
   }
 
-  :global(html:not([data-consent])) .label[data-for="unset"],
-  :global(html[data-consent="marketing"]) .label[data-for="marketing"],
-  :global(html[data-consent="analytics"]) .label[data-for="analytics"],
-  :global(html[data-consent="none"]) .label[data-for="none"] {
+  #consent-settings[data-state="unset"] .label[data-for="unset"],
+  #consent-settings[data-state="marketing"] .label[data-for="marketing"],
+  #consent-settings[data-state="analytics"] .label[data-for="analytics"],
+  #consent-settings[data-state="none"] .label[data-for="none"] {
     display: inline;
   }
 
-  :global(html[data-consent="none"]) .icon {
+  #consent-settings[data-state="none"] .icon {
     color: var(--clr-status-warning);
   }
 </style>
 
 <script>
-  // `command="show"` does not exist — the invoker spec ships show-modal, close
-  // and request-close only, so a non-modal dialog has no declarative open.
-  import { BANNER_ID, SETTINGS_ID } from "./consent";
+  import {
+    BANNER_ID,
+    CONSENT_CHANGED,
+    COOKIE_NAME,
+    SETTINGS_ID,
+    activePreset,
+    getCookie,
+    readConsent,
+  } from "./consent";
 
-  document.getElementById(SETTINGS_ID)?.addEventListener("click", () => {
-    const banner = document.getElementById(BANNER_ID);
-    if (banner instanceof HTMLDialogElement) banner.show();
-  });
+  const button = document.getElementById(SETTINGS_ID);
+  if (button) {
+    const stored = readConsent(getCookie(COOKIE_NAME));
+    if (stored) button.dataset.state = activePreset(stored);
+
+    // `command="show"` does not exist — the invoker spec ships show-modal,
+    // close and request-close only, so a non-modal dialog has no declarative
+    // open.
+    button.addEventListener("click", () => {
+      const banner = document.getElementById(BANNER_ID);
+      if (banner instanceof HTMLDialogElement) banner.show();
+    });
+
+    document.addEventListener(CONSENT_CHANGED, (event) => {
+      if (event instanceof CustomEvent) button.dataset.state = event.detail;
+    });
+  }
 </script>

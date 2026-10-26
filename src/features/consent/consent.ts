@@ -4,6 +4,9 @@ const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
 export const BANNER_ID = "consent-banner";
 export const SETTINGS_ID = "consent-settings";
 
+/** Fired on document whenever a choice is applied. detail is the ConsentType. */
+export const CONSENT_CHANGED = "consent:changed";
+
 export type ConsentV1 = { v: 1; analytics: boolean; marketing: boolean };
 
 export const CONSENT_PRESETS = {
@@ -128,9 +131,9 @@ export function applyConsent(preset: ConsentType) {
   writeConsent(c);
   gtag("consent", "update", toGoogleConsent(c));
   if (!c.analytics && !c.marketing) clearTrackingCookies();
-  // The view derives from this one attribute. Writing the cookie changes
-  // storage, not the page — nothing observes document.cookie.
-  document.documentElement.dataset.consent = preset;
+  // Writing the cookie changes storage, not the page — nothing observes
+  // document.cookie. Anything that displays consent state listens for this.
+  document.dispatchEvent(new CustomEvent(CONSENT_CHANGED, { detail: preset }));
 }
 
 export function activePreset(c: ConsentV1): ConsentType {
