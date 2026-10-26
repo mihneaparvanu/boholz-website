@@ -99,12 +99,7 @@ const showhouses = await getLocations({ kind: "showhouse" });
       showhouses={showhouses}
     />
     <main class="wrapper">
-      <ConsentBanner
-        gtmId={GTM_ID}
-        initialOpen={showBanner}
-        initialConsent={consent}
-        client:load
-      />
+      <ConsentBanner/>
       <slot />
       <Footer />
     </main>

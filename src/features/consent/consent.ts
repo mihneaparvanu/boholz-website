@@ -1,3 +1,5 @@
+export type ConsentV1 = { v: 1; analytics: boolean; marketing: boolean };
+
 export const CONSENT_PRESETS = {
   all: { v: 1, analytics: true, marketing: true },
   middle: { v: 1, analytics: true, marketing: false },
@@ -10,7 +12,7 @@ declare global {
   }
 }
 
-const GTM_ID = process.env.PUBLIC_GTM_ID;
+const GTM_ID = import.meta.env.PUBLIC_GTM_ID;
 
 export const COOKIE_NAME = "boholz_consent";
 const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
