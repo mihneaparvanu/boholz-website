@@ -6,9 +6,6 @@ import {
   UNDECIDED_LABEL,
 } from "./consent.content";
 
-// Every state is rendered; data-state on the button picks one.
-// Nothing here reads the cookie — the page can't know who is asking.
-
 interface Props {
   size?: number;
 }
@@ -67,8 +64,6 @@ const {size = 30} = Astro.props;
     color: var(--clr-accent-secondary);
   }
 
-  /* Every state is rendered; data-state on the button picks one. Both halves
-     of each selector live in this component, so the scoping holds. */
   .label {
     display: none;
   }
@@ -101,9 +96,6 @@ const {size = 30} = Astro.props;
     const stored = readConsent(getCookie(COOKIE_NAME));
     if (stored) button.dataset.state = activePreset(stored);
 
-    // `command="show"` does not exist — the invoker spec ships show-modal,
-    // close and request-close only, so a non-modal dialog has no declarative
-    // open.
     button.addEventListener("click", () => {
       const banner = document.getElementById(BANNER_ID);
       if (banner instanceof HTMLDialogElement) banner.show();
