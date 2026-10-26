@@ -17,6 +17,7 @@ import IconList from "@/ui/primitives/IconList.vue";
 import FeatureCardPair from "@/features/advantage/FeatureCardPair.vue";
 import WallAssembly from "@/features/advantage/WallAssembly.astro";
 import SpecGroups from "@/features/advantage/SpecGroups.astro";
+import { getModelStory } from "@/features/house-page/modelStory.content";
 
 /* Construction spec below the floor plans. All of it is file-based and
    identical for every model — it describes how BoHolz builds, not what this
@@ -75,6 +76,9 @@ const description = model.description?.trim() || null;
 // First-sentence summary for the narrow SideCard.
 const lede = description ? (description.match(/^[^.!?]+[.!?]/)?.[0] ?? description) : null;
 const hasCategoryDescription = Boolean(model.category?.description);
+// Editorial copy from the printed catalogue; absent for models with no
+// catalogue page, in which case the section falls back to the DB description.
+const story = getModelStory(model.slug);
 
 // Client copy (2026-05): a single advisory paragraph instead of a bulleted
 // hard-coded spec list — the actual Leistungsumfang is determined per
@@ -128,9 +132,11 @@ const breadcrumb = breadcrumbSchema([
       Etagen, Wohnfläche, Einliegerwohnung) should not cost a click, or sit
       only in the desktop SideCard where mobile never sees them in context. */}
 
-  {(description || hasCategoryDescription) && (
+  {(story || description || hasCategoryDescription) && (
     <section id="beschreibung" class="info">
       <h2 class="section-title">Beschreibung</h2>
+      {story && <p class="claim">{story.tagline}</p>}
+      {story && <p class="prose">{story.body}</p>}
       {description && <p class="prose">{description}</p>}
       {hasCategoryDescription && (
         <p class="prose" set:html={model.category?.description} />
@@ -292,6 +298,13 @@ const breadcrumb = breadcrumbSchema([
     margin: 0 0 var(--spacing-3);
     font-size: var(--fs-h4);
     font-weight: var(--font-weight-regular);
+    letter-spacing: var(--ls-heading);
+  }
+
+  .claim {
+    margin: 0 0 var(--spacing-2);
+    font-size: var(--fs-h5);
+    line-height: var(--lh-heading);
     letter-spacing: var(--ls-heading);
   }
 
