@@ -29,6 +29,17 @@ function getCookie(name: string) {
   return null;
 }
 
+function isConsentV1(x: unknown): x is ConsentV1 {
+  if (typeof x !== "object" || x === null) return false;
+  const o = x as Record<string, unknown>;
+
+  return (
+    o.v === 1 &&
+    typeof o.analytics === "boolean" &&
+    typeof o.marketing === "boolean"
+  );
+}
+
 export function readConsent(raw: string | null): ConsentV1 | null {
   if (!raw) return null;
 
@@ -39,9 +50,8 @@ export function readConsent(raw: string | null): ConsentV1 | null {
     return null;
   }
 
-  const result = consentSchema.safeParse(parsed);
-  if (!result.success) return null;
-  return result.data;
+  if (!isConsentV1(parsed)) return null;
+  return parsed;
 }
 
 export function writeConsent(c: ConsentV1) {

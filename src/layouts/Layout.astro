@@ -84,12 +84,6 @@ const showhouses = await getLocations({ kind: "showhouse" });
     <meta name="twitter:card" content="summary_large_image" />
 
     <JsonLd data={organizationSchema()} />
-    {loadGTM && GTM_ID && (
-      <>
-        <script is:inline set:html={`window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});`} />
-        <script is:inline async src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`} />
-      </>
-    )}
   </head>
   <body>
     <Fragment set:html={certificationsSprite} />
@@ -103,7 +97,5 @@ const showhouses = await getLocations({ kind: "showhouse" });
       <slot />
       <Footer />
     </main>
-    {/* AI-image notice („KI-generiert", EmpCo/UWG) is now pure CSS — see
-        `@/ui/style/ai-badge.css`. No JavaScript. */}
   </body>
 </html>

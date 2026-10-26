@@ -1,7 +1,8 @@
 ---
 import ConsentHeader from "./ConsentHeader.astro";
 import ConsentButtons from "./ConsentButtons.astro";
-import { injectGTM, writeConsent, CONSENT_PRESETS } from "./consent";
+import { injectGTM, writeConsent, CONSENT_PRESETS, type ConsentV1 } from "./consent";
+
 
 const props = defineProps<{
   gtmId?: string;
@@ -9,19 +10,6 @@ const props = defineProps<{
   initialConsent: ConsentV1 | null;
 }>();
 
-const { open, consent, hide, setConsent } = useConsentBanner();
-open.value = props.initialOpen;
-consent.value = props.initialConsent;
-
-function onChoose(preset: "all" | "middle" | "essential") {
-  const consent = CONSENT_PRESETS[preset];
-  writeConsent(consent);
-  setConsent(consent);
-  if (props.gtmId && (consent.analytics || consent.marketing)) {
-    injectGTM(props.gtmId);
-  }
-  hide();
-}
 ---
 
   <div v-if="open" class="popup">
