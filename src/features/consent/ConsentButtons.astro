@@ -1,6 +1,7 @@
 ---
 import Button from "@/ui/primitives/Button.vue";
-import { CONSENT_ORDER, CONSENT_BUTTONS } from "./consent.content"
+import { CONSENT_ORDER, CONSENT_BUTTONS } from "./consent.content";
+import { BANNER_ID } from "./consent";
 ---
 
   <div class="btns">
@@ -10,7 +11,7 @@ import { CONSENT_ORDER, CONSENT_BUTTONS } from "./consent.content"
         return (
 <Button
 command="--choose"
-commandFor="consent-banner"
+commandfor={BANNER_ID}
 data-consent={key}
       size="md"
       variant="primary"

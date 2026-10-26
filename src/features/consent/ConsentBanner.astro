@@ -31,15 +31,17 @@ import { BANNER_ID } from "./consent";
 
 <script>
 import { BANNER_ID, applyConsent, CONSENT_PRESETS } from "./consent";
+import type { ConsentType } from "./consent.types";
 
 const dialog = document.getElementById(BANNER_ID);
 if (dialog instanceof HTMLDialogElement) {
   dialog.addEventListener("command", (e) => {
-    if (e.command !== "--choose") return
-    const key = e.source.dataset.consent
-    if (!key || !(key in CONSENT_PRESETS)) return
-    applyConsent(key)
-    dialog.close()
+    if (e.command !== "--choose") return;
+    if (!(e.source instanceof HTMLElement)) return;
+    const key = e.source.dataset.consent;
+    if (!key || !(key in CONSENT_PRESETS)) return;
+    applyConsent(key as ConsentType);
+    dialog.close();
   })
 }
 </script>

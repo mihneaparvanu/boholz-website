@@ -11,15 +11,6 @@ export const CONSENT_PRESETS = {
   none: { v: 1, analytics: false, marketing: false },
 } as const satisfies Record<ConsentType, ConsentV1>;
 
-declare global {
-  interface Window {
-    dataLayer?: unknown[];
-  }
-  interface HTMLElementEventMap {
-    command: CommandEvent;
-  }
-}
-
 export const COOKIE_NAME = "boholz_consent";
 const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
 const GTM_SCRIPT_ID = "gtm-script";
