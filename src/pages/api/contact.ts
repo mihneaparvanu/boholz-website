@@ -1,3 +1,5 @@
+export const prerender = false;
+
 import type { APIRoute } from "astro";
 import { z } from "zod";
 import { contactSchema } from "@/features/contact-forms/data/contact.zod";
@@ -9,9 +11,6 @@ import {
 import { buildNotification } from "@/features/contact-forms/notificationEmail";
 import { db } from "@/db/db";
 import { leads } from "@/db/schema";
-
-// POST handler: needs a server, so it opts out of prerendering.
-export const prerender = false;
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   const body = (await request.json()) as Record<string, unknown>;
