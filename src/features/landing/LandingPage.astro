@@ -33,6 +33,7 @@ import AudienceBlock from "@/ui/sections/AudienceBlock.astro";
 import TwoColumn from "@/ui/sections/TwoColumn.astro";
 import TestimonialBand from "@/ui/sections/TestimonialBand.astro";
 import CatalogForm from "@/features/contact-forms/CatalogForm.vue";
+import JsonLd from "@/features/seo/JsonLd.astro";
 import CTASection from "@/ui/sections/CTASection.astro";
 import FAQAccordion from "@/ui/primitives/FAQAccordion.vue";
 import Button from "@/ui/primitives/Button.vue";
@@ -353,7 +354,7 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
     </div>
   </Block>
 
-  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+  <JsonLd data={faqJsonLd} />
 
   <!-- ═══════════════════════ SEO/GEO · editorial ranking copy (below FAQ) ═══════════════════════ -->
   {seoText && (
