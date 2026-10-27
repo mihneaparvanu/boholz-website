@@ -11,6 +11,8 @@ const exported: NewsPost[] = articles.map((a) => ({
   title: a.title,
   content: a.content,
   excerpt: a.excerpt,
+  publishedAt: String(a.publishedAt),
+  isPublished: a.isPublished,
   media: a.media.map((m) => ({
     path: m.media.path,
     alt: m.media.alt,
