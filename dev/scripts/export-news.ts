@@ -11,8 +11,7 @@ const exported: NewsPost[] = articles.map((a) => ({
   title: a.title,
   content: a.content,
   excerpt: a.excerpt,
-  publishedAt: String(a.publishedAt),
-  isPublished: a.isPublished,
+  publishedAt: a.publishedAt?.toISOString() ?? null,
   media: a.media.map((m) => ({
     path: m.media.path,
     alt: m.media.alt,
@@ -26,9 +25,9 @@ const here = dirname(fileURLToPath(import.meta.url));
 const out = join(here, "../..", "src/domain/news/news.ts");
 
 const file = `import type { NewsPost } from "./news.types";
-export const categories: NewsPost[] = ${JSON.stringify(exported, null, 2)};`;
+export const news: NewsPost[] = ${JSON.stringify(exported, null, 2)};`;
 
 mkdirSync(dirname(out), { recursive: true });
 writeFileSync(out, file, "utf-8");
 
-console.log(`wrote ${exported.length} categories in ${out}`);
+console.log(`wrote ${exported.length} news in ${out}`);
