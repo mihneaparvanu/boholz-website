@@ -3,6 +3,7 @@ import { getCategories } from "@/db/loaders";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import prettier from "prettier";
 
 const categories = await getCategories();
 
@@ -23,10 +24,14 @@ const exported: ModelCategory[] = categories.map((c) => ({
 const here = dirname(fileURLToPath(import.meta.url));
 const out = join(here, "../..", "src/domain/categories/categories.ts");
 
+const cfg = await prettier.resolveConfig(out);
+
 const file = `import type { ModelCategory } from "./categories.types";
 export const categories: ModelCategory[] = ${JSON.stringify(exported, null, 2)};`;
 
+const pretty = await prettier.format(file, { ...cfg, filepath: out });
+
 mkdirSync(dirname(out), { recursive: true });
-writeFileSync(out, file, "utf-8");
+writeFileSync(out, pretty, "utf-8");
 
 console.log(`wrote ${exported.length} categories in ${out}`);

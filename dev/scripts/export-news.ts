@@ -3,6 +3,7 @@ import { getNews } from "@/db/loaders";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import prettier from "prettier";
 
 const articles = await getNews();
 
@@ -24,10 +25,14 @@ const exported: NewsPost[] = articles.map((a) => ({
 const here = dirname(fileURLToPath(import.meta.url));
 const out = join(here, "../..", "src/domain/news/news.ts");
 
+const cfg = await prettier.resolveConfig(out);
+
 const file = `import type { NewsPost } from "./news.types";
 export const news: NewsPost[] = ${JSON.stringify(exported, null, 2)};`;
 
+const pretty = await prettier.format(file, { ...cfg, filepath: out });
+
 mkdirSync(dirname(out), { recursive: true });
-writeFileSync(out, file, "utf-8");
+writeFileSync(out, pretty, "utf-8");
 
 console.log(`wrote ${exported.length} news in ${out}`);
