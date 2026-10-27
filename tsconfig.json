@@ -10,7 +10,7 @@
   // uses the Workers runtime types (caches.default, R2Bucket), which this
   // config's DOM lib does not have — it has its own tsconfig and
   // worker-configuration.d.ts.
-  "exclude": ["dist", "dev", "workers"],
+  "exclude": ["dist", "workers"],
   "compilerOptions": {
     "jsx": "preserve",
     "paths": {
