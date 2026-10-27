@@ -1,4 +1,4 @@
-import { type ExportedCategory } from "@/domain/categories/categories.types";
+import { type ModelCategory } from "@/domain/categories/categories.types";
 import { getCategories } from "@/db/loaders";
 import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 
 const categories = await getCategories();
 
-const exported: ExportedCategory[] = categories.map((c) => ({
+const exported: ModelCategory[] = categories.map((c) => ({
   name: c.name,
   slug: c.slug,
   description: c.description,

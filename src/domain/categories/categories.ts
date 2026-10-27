@@ -1,4 +1,4 @@
-import type { ExportedCategory } from "./categories.types";
+import type { Model } from "./categories.types";
 export const categories: ExportedCategory[] = [
   {
     name: "Bestseller",
