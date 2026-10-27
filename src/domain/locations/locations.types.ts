@@ -10,6 +10,6 @@ export type LocationRecord = Omit<
   LocationWithAgents,
   "id" | "agents" | "media"
 > & {
-  agents: LocationAgentLink;
+  agents: LocationAgentLink[];
   media: LocationImage[];
 };
