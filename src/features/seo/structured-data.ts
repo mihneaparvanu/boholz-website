@@ -14,11 +14,40 @@ import { ROUTES } from "@/features/navigation/routes";
 
 const SITE = "https://boholz-haus.de";
 
-/** Company identity. Emitted once per page from `Layout.astro`. */
+/**
+ * Third-party pages that provably are this company.
+ *
+ * `sameAs` is the property that collapses scattered mentions into one entity,
+ * so a wrong URL here does not merely add noise — it merges BoHolz with
+ * somebody else. Nothing goes in this list until the page has been fetched
+ * and seen to carry this company's name and a link back to `SITE`.
+ */
+const PROFILES = ["https://www.fertighaus.de/anbieter/boholz-haus/"];
+
+/**
+ * Company identity. Emitted once per page from `Layout.astro`.
+ *
+ * `HomeAndConstructionBusiness` rather than plain `Organization`: it is a
+ * `LocalBusiness` subtype, so every property below keeps its meaning, and it
+ * unlocks the local-business surface. The question a regional prefab
+ * manufacturer is actually asked is "do you build where I live?", and
+ * `areaServed` is the only property that answers it.
+ *
+ * `geo` is the pin of the `headquarters` location row (`zentrale-bad-kissingen`)
+ * — the same Ostring 1 address stated below. It is a literal rather than a
+ * lookup because `Layout.astro` runs on every route and must not spend a DB
+ * round-trip on one coordinate; if the address ever moves, both halves of this
+ * object move with it.
+ *
+ * Absent by decision, not oversight: `founder`, `foundingDate`,
+ * `numberOfEmployees`, `openingHoursSpecification`, `aggregateRating`. None of
+ * them is confirmed by the client, and claiming one wrongly is worse than
+ * leaving the entity thin.
+ */
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "HomeAndConstructionBusiness",
     name: "BoHolz-Haus GmbH",
     url: SITE,
     logo: `${SITE}/favicon.svg`,
@@ -29,6 +58,16 @@ export function organizationSchema() {
       addressLocality: "Bad Kissingen",
       addressCountry: "DE",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 50.1914472,
+      longitude: 10.0817995,
+    },
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "Unterfranken" },
+      { "@type": "AdministrativeArea", name: "Bayern" },
+    ],
+    sameAs: PROFILES,
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+49 971 78555715",
