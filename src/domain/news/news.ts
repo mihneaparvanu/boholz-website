@@ -4,7 +4,7 @@ export const news: NewsPost[] = [
     slug: "august-2026-stelltermin-wilhelmsdorf-pfrungen",
     title: "August 2026, Stelltermin in 88271 Wilhelmsdorf-Pfrungen",
     content:
-      '<p>Erleben Sie die Hausmontage hautnah und überzeugen Sie sich selbst von der Qualität eines BoHolz-Hauses.</p>\n<p>Bei Interesse wenden Sie sich bitte an Herrn Michael Dittrich:</p>\n<p><img src="https://boholz-haus.de/m/images/agents/michael-dittrich/portrait.webp" alt="Michael Dittrich – Beratung und Verkauf" width="180" style="border-radius:8px;max-width:180px;height:auto;" /></p>\n<p><strong>Mobil: </strong><a href="tel:+4917662126525">0176 621 26 525</a><strong><br />\nE-Mail: </strong><a href="mailto:m.dittrich@boholz-haus.de">m.dittrich@boholz-haus.de</a></p>\n<p>Ihr Michael Dittrich</p>',
+      '<p>Erleben Sie die Hausmontage hautnah und überzeugen Sie sich selbst von der Qualität eines BoHolz-Hauses.</p>\n<p>Bei Interesse wenden Sie sich bitte an Herrn Michael Dittrich:</p>\n<p><img src="https://boholz-haus.de/m/images/agents/michael-dittrich/portrait.webp" alt="Michael Dittrkisich – Beratung und Verkauf" width="180" style="border-radius:8px;max-width:180px;height:auto;" /></p>\n<p><strong>Mobil: </strong><a href="tel:+4917662126525">0176 621 26 525</a><strong><br />\nE-Mail: </strong><a href="mailto:m.dittrich@boholz-haus.de">m.dittrich@boholz-haus.de</a></p>\n<p>Ihr Michael Dittrich</p>',
     excerpt:
       "Erleben Sie die Hausmontage hautnah – Stelltermin im August 2026 in 88271 Wilhelmsdorf-Pfrungen.",
     publishedAt: "2026-08-01T10:00:00.000Z",
