@@ -32,3 +32,7 @@ const pretty = await prettier.format(file, { ...cfg, filepath: out });
 // Create file
 mkdirSync(dirname(out), { recursive: true });
 writeFileSync(out, pretty, "utf-8");
+
+// The database connection stays open on its own, so the script would never
+// finish without this.
+process.exit(0);

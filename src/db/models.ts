@@ -42,7 +42,7 @@ export type LocationWithAgents = Location & {
     BaseLocationMedia,
     "isHero" | "isThumbnail" | "classification" | "sortOrder"
   > & {
-    media: Pick<BaseMedia, "path" | "alt" | "width" | "height">;
+    media: Pick<BaseMedia, "path" | "alt" | "width" | "height" | "isAi">;
   })[];
 };
 
@@ -53,7 +53,7 @@ export type HouseModel = BaseHouseModel & {
   category: HouseCategory | null;
   // media is the pivot array; each pivot row carries the actual media record nested inside it
   media: (Pick<BaseModelMedia, "isHero" | "isThumbnail" | "sortOrder"> & {
-    media: Pick<BaseMedia, "path" | "alt" | "width" | "height">;
+    media: Pick<BaseMedia, "path" | "alt" | "width" | "height" | "isAi">;
   })[];
   // floor plans linked via floor_media pivot
   floors: HouseFloor[];
@@ -63,17 +63,17 @@ export type HouseFloor = Pick<
   BaseFloorMedia,
   "title" | "sortOrder" | "variant"
 > & {
-  media: Pick<BaseMedia, "path" | "alt" | "width" | "height">;
+  media: Pick<BaseMedia, "path" | "alt" | "width" | "height" | "isAi">;
 };
 
 export type HouseCategory = BaseHouseCategory & {
   media: (Pick<BaseCategoryMedia, "isThumbnail" | "isHero"> & {
-    media: Pick<BaseMedia, "path" | "alt" | "width" | "height">;
+    media: Pick<BaseMedia, "path" | "alt" | "width" | "height" | "isAi">;
   })[];
 };
 
 export type NewsArticle = BaseNews & {
   media: (Pick<BaseNewsMedia, "isHero" | "sortOrder"> & {
-    media: Pick<BaseMedia, "path" | "alt" | "width" | "height">;
+    media: Pick<BaseMedia, "path" | "alt" | "width" | "height" | "isAi">;
   })[];
 };

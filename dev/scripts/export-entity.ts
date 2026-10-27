@@ -8,8 +8,12 @@ export async function exportEntity(opts: {
   typeName: string;
   data: unknown[] | Record<string, unknown>;
   typeExpr?: string;
+  exportName?: string;
 }): Promise<string> {
   const { entity, typeName, data, typeExpr } = opts;
+  // `entity` names the folder and the file, so it is kebab-case. A const
+  // cannot contain a hyphen, so a multi-word entity passes its own name.
+  const exportName = opts.exportName ?? entity;
 
   const here = dirname(fileURLToPath(import.meta.url));
   const out = join(here, "../..", `src/domain/${entity}/${entity}.ts`);
@@ -19,7 +23,7 @@ export async function exportEntity(opts: {
 
   const file = `import type { ${typeName} } from "./${entity}.types";
 
-export const ${entity} = ${json} satisfies ${type};
+export const ${exportName} = ${json} satisfies ${type};
 `;
 
   const cfg = await prettier.resolveConfig(out);

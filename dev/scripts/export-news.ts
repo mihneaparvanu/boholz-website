@@ -15,6 +15,7 @@ const exported: NewsPost[] = articles.map((a) => ({
   publishedAt: a.publishedAt?.toISOString() ?? null,
   media: a.media.map((m) => ({
     path: m.media.path,
+    isAi: m.media.isAi,
     alt: m.media.alt,
     height: m.media.height,
     width: m.media.width,
@@ -36,3 +37,7 @@ mkdirSync(dirname(out), { recursive: true });
 writeFileSync(out, pretty, "utf-8");
 
 console.log(`wrote ${exported.length} news in ${out}`);
+
+// The database connection stays open on its own, so the script would never
+// finish without this.
+process.exit(0);

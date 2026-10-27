@@ -37,6 +37,7 @@ const exported: LocationRecord[] = loc.map((l) => ({
     isThumbnail: m.isThumbnail,
     classification: m.classification,
     path: m.media.path,
+    isAi: m.media.isAi,
     alt: m.media.alt,
     width: m.media.width,
     height: m.media.height,

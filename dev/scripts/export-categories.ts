@@ -15,6 +15,7 @@ const exported: ModelCategory[] = categories.map((c) => ({
     isThumbnail: m.isThumbnail,
     isHero: m.isHero,
     path: m.media.path,
+    isAi: m.media.isAi,
     alt: m.media.alt,
     width: m.media.width,
     height: m.media.height,
@@ -35,3 +36,7 @@ mkdirSync(dirname(out), { recursive: true });
 writeFileSync(out, pretty, "utf-8");
 
 console.log(`wrote ${exported.length} categories in ${out}`);
+
+// The database connection stays open on its own, so the script would never
+// finish without this.
+process.exit(0);
