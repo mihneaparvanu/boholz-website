@@ -23,8 +23,8 @@ const exported: ExportedCategory[] = categories.map((c) => ({
 const here = dirname(fileURLToPath(import.meta.url));
 const out = join(here, "../..", "src/domain/categories/categories.ts");
 
-const file = `import type { ExportedCategory } from "@/db/models";
-export const categories = ${JSON.stringify(exported, null, 2)};`;
+const file = `import type { ExportedCategory } from "./categories.types";
+export const categories: ExportedCategory[] = ${JSON.stringify(exported, null, 2)};`;
 
 mkdirSync(dirname(out), { recursive: true });
 writeFileSync(out, file, "utf-8");
