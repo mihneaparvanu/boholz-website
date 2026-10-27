@@ -1,171 +1,171 @@
 import { type AgentRecord } from "./agents.types";
-export const agents = [
-  {
+export const agents = {
+  "wilfried-bolz": {
     fullName: "Wilfried Bolz",
     email: "w.bolz@boholz-haus.de",
     phoneNumber: "+49 971 78555 715",
     phoneSecondary: null,
     role: "Geschäftsführer",
   },
-  {
+  "marcus-rossol": {
     fullName: "Marcus Rossol",
     email: "m.rossol@boholz-haus.de",
     phoneNumber: "+49 971 78555 716",
     phoneSecondary: null,
     role: "Kalkulation / Projektleitung",
   },
-  {
+  "christoph-schmidt": {
     fullName: "Christoph Schmidt",
     email: "c.schmidt@boholz-haus.de",
     phoneNumber: "+49 971 78555 717",
     phoneSecondary: null,
     role: "Kalkulation / Vertrieb",
   },
-  {
+  "achim-bauder": {
     fullName: "Dipl. Ing. Achim Bauder",
     email: "a.bauder@boholz-haus.de",
     phoneNumber: "+49 152 33548855",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-  {
+  "susann-schaefer": {
     fullName: "Susann Schaefer",
     email: "buero.mergentheim@boholz-haus.de",
     phoneNumber: "+49 151 12295890",
     phoneSecondary: null,
     role: "Fachberaterin",
   },
-  {
+  "thomas-reith": {
     fullName: "Thomas Reith",
     email: "t.reith@boholz-haus.de",
     phoneNumber: "+49 176 55179386",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-  {
+  "horst-hellmann": {
     fullName: "Horst Hellmann",
     email: "h.hellmann@boholz-haus.de",
     phoneNumber: "+49 172 7689327",
     phoneSecondary: null,
     role: "Gebietsverkaufsleiter",
   },
-  {
+  "klaus-kanwischer": {
     fullName: "Klaus Kanwischer",
     email: "k.kanwischer@boholz-haus.de",
     phoneNumber: "+49 172 1458561",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-  {
+  "ralf-flueckiger": {
     fullName: "Ralf Flückiger",
     email: "r.flueckiger@boholz-haus.de",
     phoneNumber: "+49 160 96793331",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-  {
+  "kurt-wasem": {
     fullName: "Kurt Wasem",
     email: "k.wasem@boholz-haus.de",
     phoneNumber: "+49 175 5250487",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-  {
+  "oswin-heider": {
     fullName: "Oswin Heider",
     email: "o.heider@boholz-haus.de",
     phoneNumber: "+49 176 63383368",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-  {
+  "erich-zeller": {
     fullName: "Erich Zeller",
     email: "e.zeller@boholz-haus.de",
     phoneNumber: "+49 172 29 08 788",
     phoneSecondary: "+49 6101 80 27 660",
     role: "Beratung und Verkauf",
   },
-  {
+  "karlheinz-seipp": {
     fullName: "Karlheinz Seipp",
     email: "k.seipp@boholz-haus.de",
     phoneNumber: "+49 163 404 19 61",
     phoneSecondary: "+49 6101 80 27 660",
     role: "Beratung und Verkauf",
   },
-  {
+  "istvan-aszalos": {
     fullName: "István Aszalós",
     email: "i.aszalos@boholz-haus.de",
     phoneNumber: "+49 171 28 93 414",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-  {
+  "dieter-wissmann": {
     fullName: "Dieter Wissmann",
     email: "d.wissmann@boholz-haus.de",
     phoneNumber: "+49 171 12 80 274",
     phoneSecondary: "+49 711 90 12 03 79",
     role: "Gebietsverkaufsleiter",
   },
-  {
+  "hagen-kober": {
     fullName: "Hagen Kober",
     email: "h.kober@boholz-haus.de",
     phoneNumber: "+49 163 379 02 68",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-  {
+  "michael-dittrich": {
     fullName: "Michael Dittrich",
     email: "m.dittrich@boholz-haus.de",
     phoneNumber: "+49 176 62 12 65 25",
     phoneSecondary: "+49 711 90 12 03 79",
     role: "Beratung und Verkauf",
   },
-  {
+  "andreas-roeck": {
     fullName: "Andreas Röck",
     email: "a.roeck@boholz-haus.de",
     phoneNumber: "+49 172 72 33 05 7",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-  {
+  "gabriella-schaffer": {
     fullName: "Gabriella Schaffer",
     email: "g.schaffer@boholz-haus.de",
     phoneNumber: "+49 176 40 90 12 69",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-  {
+  simon: {
     fullName: "Herr Simon",
     email: "h.simon@boholz-haus.de",
     phoneNumber: "+49 176 20 56 63 40",
     phoneSecondary: null,
     role: "Vertriebspartner",
   },
-  {
+  "mark-pliester": {
     fullName: "Mark Pliester",
     email: "m.pliester@boholz-haus.de",
     phoneNumber: "+49 1577 620 2 2 91",
     phoneSecondary: "+49 6101 80 27 660",
     role: "Beratung und Verkauf",
   },
-  {
+  "marcello-russo": {
     fullName: "Marcello Russo",
     email: "m.russo@boholz-haus.de",
     phoneNumber: "0152 342 00 385",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-  {
+  "peter-hennig": {
     fullName: "Peter Hennig",
     email: "p.hennig@boholz-haus.de",
     phoneNumber: "0171 23 74 666",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-  {
+  "calogero-seddio": {
     fullName: "Calogero Seddio",
     email: "c.seddio@boholz-haus.de",
     phoneNumber: "+49 176 42625393",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-] satisfies Record<string, AgentRecord>;
+} satisfies Record<string, AgentRecord>;

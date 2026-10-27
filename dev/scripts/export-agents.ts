@@ -1,15 +1,19 @@
 import { db } from "@/db/db";
-import { type AgentRecord } from "@/domain/agents/agents.types";
 
 const agents = await db.query.agents.findMany();
 
-const exported: AgentRecord[] = agents.map((a) => ({
-  fullName: a.fullName,
-  email: a.email,
-  phoneNumber: a.phoneNumber,
-  phoneSecondary: a.phoneSecondary,
-  role: a.role,
-}));
+const exported = Object.fromEntries(
+  agents.map((a) => [
+    a.slug,
+    {
+      fullName: a.fullName,
+      email: a.email,
+      phoneNumber: a.phoneNumber,
+      phoneSecondary: a.phoneSecondary,
+      role: a.role,
+    },
+  ]),
+);
 
 // File setup
 import { mkdirSync, writeFileSync } from "node:fs";
