@@ -38,7 +38,10 @@ import { categoryOf } from "@/domain/categories/categories.lookup";
 import { isBestsellerCategory } from "@/lib/bestseller";
 import {
   formatBoolean,
+  formatCentimeters,
   formatCurrency,
+  formatNumber,
+  formatRegulatedArea,
   formatSquareMeters,
 } from "@/lib/format";
 import DetailRow from "./DetailRow.vue";
@@ -59,9 +62,8 @@ const livingArea = computed<string>(() =>
   m.livingArea != null ? formatSquareMeters(m.livingArea) : "auf Anfrage",
 );
 
-/** Etagen — Geschosse stored as numeric (1, 1.5, 2). German comma display. */
 const floors = computed<string | null>(() =>
-  d?.floorCount != null ? d.floorCount.toString().replace(".", ",") : null,
+  d?.floorCount != null ? formatNumber(d.floorCount) : null,
 );
 
 /** Roof — capsule renders Dachform + (optional) Dachneigung. */
@@ -74,18 +76,16 @@ const roof = computed<{ type: string; pitch: number | null } | null>(() => {
 });
 
 const kniestock = computed<string | null>(() =>
-  d?.kniestock != null ? `${d.kniestock} cm` : null,
+  d?.kniestock != null ? formatCentimeters(d.kniestock) : null,
 );
 
 const dinArea = computed<string | null>(() =>
-  d?.netFloorAreaDin != null
-    ? `${d.netFloorAreaDin.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} m²`
-    : null,
+  d?.netFloorAreaDin != null ? formatRegulatedArea(d.netFloorAreaDin) : null,
 );
 
 const woflvArea = computed<string | null>(() =>
   d?.totalLivingAreaWoflv != null
-    ? `${d.totalLivingAreaWoflv.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} m²`
+    ? formatRegulatedArea(d.totalLivingAreaWoflv)
     : null,
 );
 

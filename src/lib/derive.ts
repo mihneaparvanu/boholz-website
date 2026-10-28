@@ -13,6 +13,7 @@ import type {
   HouseModelSpec,
 } from "@/ui/sections/HouseModelCard.vue";
 import { getMediaURL } from "@/lib/media";
+import { formatPriceFrom, formatSquareMeters } from "@/lib/format";
 
 const FALLBACK_IMAGE_PATH = "/images/pages/uber-uns/value-1.webp";
 
@@ -66,9 +67,7 @@ function specsFor(m: HouseModel): HouseModelSpec[] {
   const specs: HouseModelSpec[] = [];
 
   if (m.livingArea != null) {
-    // toLocaleString gives us the German decimal comma.
-    const value = `${m.livingArea.toLocaleString("de-DE")} m²`;
-    specs.push({ kind: "area", value });
+    specs.push({ kind: "area", value: formatSquareMeters(m.livingArea) });
   }
 
   // Client (2026-06): drop the "X Zimmer" chip everywhere. Multi-family /
@@ -109,7 +108,7 @@ function priceHintFor(m: HouseModel): string | undefined {
     // "Preis auf Anfrage" instead of an empty slot. Bestsellers always price.
     return isBestseller(m) ? undefined : "Preis auf Anfrage";
   }
-  const base = `ab ${price.toLocaleString("de-DE")} €`;
+  const base = formatPriceFrom(price);
   // Featured models carry an asterisk; the disclaimer it references lives
   // on the haus detail page (SideCard.vue), not on the listing pages.
   return m.isFeatured ? `${base}*` : base;

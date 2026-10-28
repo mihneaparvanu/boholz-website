@@ -1,11 +1,26 @@
-export type Displayable = number | boolean;
+const de = (v: number, fractionDigits?: number) =>
+  v.toLocaleString(
+    "de-DE",
+    fractionDigits === undefined
+      ? undefined
+      : {
+          minimumFractionDigits: fractionDigits,
+          maximumFractionDigits: fractionDigits,
+        },
+  );
 
-export const formatDegrees = (v: Displayable) => `${v}°`;
-export const formatBoolean = (v: Displayable) => (v ? "Ja" : "Nein");
-export const formatSquareMeters = (v: Displayable) =>
-  `${parseFloat(String(v))} m²`;
-export const formatCurrency = (v: Displayable) =>
-  `${Number(v).toLocaleString("de-DE")} €`;
+export const formatNumber = (v: number) => de(v);
+export const formatDegrees = (v: number) => `${de(v)}°`;
+export const formatCentimeters = (v: number) => `${de(v)} cm`;
+export const formatSquareMeters = (v: number) => `${de(v)} m²`;
+
+/** DIN 277 and WoFlV figures are declared to two decimals by convention, so
+ *  116.2 reads "116,20 m²". The marketing Wohnfläche is not padded. */
+export const formatRegulatedArea = (v: number) => `${de(v, 2)} m²`;
+
+export const formatBoolean = (v: boolean) => (v ? "Ja" : "Nein");
+export const formatCurrency = (v: number) => `${de(v)} €`;
+export const formatPriceFrom = (v: number) => `ab ${formatCurrency(v)}`;
 
 const BERLIN = { timeZone: "Europe/Berlin" } as const;
 
