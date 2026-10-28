@@ -20,14 +20,18 @@ name: Build image (dev)
 #   (none needed here) belong in a BuildKit `--mount=type=secret`.
 #
 # REPO VARIABLES  (Settings → Secrets and variables → Actions → Variables)
-#   PUBLIC_ASSETS_URL          https://boholz.sadnights.dev/m
+#   PUBLIC_ASSETS_URL          https://boholz-haus.de/m
+#                              Baked into every <img> src at build time, so it
+#                              must match what the media Worker serves. A wrong
+#                              value 404s every photo on the site and the build
+#                              still succeeds.
 #   PUBLIC_TURNSTILE_SITE_KEY  Cloudflare Turnstile site key
 #   PUBLIC_GTM_ID              GTM-XXXXXXX
 #
 # VERIFY A BUILD
 #   docker pull ghcr.io/<owner>/<repo>:dev
 #   docker run --rm --entrypoint sh ghcr.io/<owner>/<repo>:dev \
-#     -c "grep -rl 'boholz.sadnights.dev' dist/client | head"
+#     -c "grep -rl 'boholz-haus.de/m' dist/client | head"
 #   No hits ⇒ PUBLIC_ASSETS_URL did not bake in.
 #   docker history --no-trunc <image>   ⇒ confirm no secret leaked in.
 
