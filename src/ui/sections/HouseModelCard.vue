@@ -25,7 +25,6 @@ export type HouseModelSpec = {
 
 export type HouseModelCardProps = {
   /** Slug used for the detail-page href. */
-  id: string;
 
   slug: string;
   /** Display name, e.g. "Bungalow 22-134". */

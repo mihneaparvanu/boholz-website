@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { getModels } from "@/db/loaders";
+import { houseModels as models } from "@/domain/house-models/house-models";
 import { locations } from "@/domain/locations/locations";
 import { news } from "@/domain/news/news";
 import { ROUTES } from "@/features/navigation/routes";
@@ -49,7 +49,6 @@ export const GET: APIRoute = async ({ site }) => {
   const entries: Entry[] = STATIC_PATHS.map((p) => ({ loc: base + p }));
 
   // news and locations come from files now, so only models is awaited
-  const models = await getModels();
   const showhouses = locations.filter((l) => l.kind === "showhouse");
 
   for (const n of news) {
@@ -63,7 +62,8 @@ export const GET: APIRoute = async ({ site }) => {
   for (const m of models) {
     entries.push({
       loc: base + ROUTES.house(m.slug),
-      lastmod: iso(m.createdAt),
+      // createdAt is not carried into the domain files, so model entries
+      // have no lastmod. It is an optional hint, not a requirement.
     });
   }
   for (const s of showhouses) {

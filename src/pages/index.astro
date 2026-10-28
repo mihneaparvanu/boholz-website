@@ -39,7 +39,7 @@ import ContactForm from "@/features/contact-forms/ContactForm.vue";
 
 import Button from "@/ui/primitives/Button.vue";
 
-import { getModels } from "@/db/loaders";
+import { houseModels } from "@/domain/house-models/house-models";
 import { categories } from "@/domain/categories/categories";
 import { toHouseModelCard } from "@/lib/derive";
 
@@ -54,7 +54,6 @@ import Faq from "@/features/faq/Faq.vue";
 import { qaCategories } from "@/features/faq/qa";
 
 
-const houseModels = await getModels();
 
 const houseCards = houseModels.map((m) => toHouseModelCard(m));
 

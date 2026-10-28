@@ -137,9 +137,8 @@ const nextDisabled = computed(() => !canNext.value);
       :aria-label="ariaLabel ?? 'Hausmodelle'"
       tabindex="0"
     >
-      <div v-for="m in displayModels" :key="m.id" class="cell">
+      <div v-for="m in displayModels" :key="m.slug" class="cell">
         <HouseModelCard
-          :id="m.id"
           :slug="m.slug"
           :name="m.name"
           :code="m.code"

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { HouseModel } from "@/db/models";
+import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
 
 import HouseModelSelector from "./components/HouseModelSelector.vue";
 import SelectedModel from "./components/SelectedModel.vue";
 
 const props = defineProps<{
-  models: HouseModel[];
+  models: HouseModelRecord[];
 }>();
 
-const selectedModel = ref<HouseModel | null>(props.models[0] || null);
+const selectedModel = ref<HouseModelRecord | null>(props.models[0] || null);
 </script>
 
 <template>

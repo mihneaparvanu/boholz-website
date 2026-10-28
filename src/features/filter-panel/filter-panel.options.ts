@@ -14,7 +14,8 @@ import type {
   FilterOption,
   ThresholdFilter,
 } from "./filter-panel.types";
-import type { HouseModel } from "@/db/models";
+import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
+import { categoryOf } from "@/domain/categories/categories.lookup";
 import { parseLivingArea } from "@/lib/parse-living-area";
 
 // ─── Sorting ───────────────────────────────────────────────────────────────
@@ -101,8 +102,8 @@ const livingAreaThreshold: ThresholdFilter = {
  * with that floor count or fewer, so "bis 1,5" includes the single-storey
  * (1) models too. Catalogue carries 1 / 1,5 / 2 / 3.
  */
-const floorCountAtMost = (m: HouseModel, max: number): boolean => {
-  const fc = m.details?.floorCount;
+const floorCountAtMost = (m: HouseModelRecord, max: number): boolean => {
+  const fc = m.floorCount;
   if (fc == null) return false;
   const n = Number(fc);
   return Number.isFinite(n) && n <= max;
@@ -126,7 +127,7 @@ const roofType: EnumFilter = {
   kind: "enum",
   label: "Dachform",
   options: ["Satteldach", "Walmdach", "Pultdach", "Flachdach", "Flachdach, Attika"],
-  resolve: (m) => m.details?.roofType ?? null,
+  resolve: (m) => m.roofType ?? null,
 };
 
 /**
@@ -169,7 +170,7 @@ const hasKniestock: BooleanFilter = {
   kind: "boolean",
   label: "Kniestock",
   resolve: (m) =>
-    m.details != null ? m.details.kniestock != null : null,
+    m.kniestock != null,
 };
 
 /** Anbau — presence toggle; the values themselves (Erker / Garage / ...) are
@@ -179,16 +180,14 @@ const hasExtension: BooleanFilter = {
   kind: "boolean",
   label: "Anbau",
   resolve: (m) =>
-    m.details != null
-      ? Boolean(m.details.extensionDescription?.trim())
-      : null,
+    Boolean(m.extensionDescription?.trim()),
 };
 
 const allowsGrannyFlat: BooleanFilter = {
   id: "allowsGrannyFlat",
   kind: "boolean",
   label: "Einliegerwohnung",
-  resolve: (m) => m.details?.allowsGrannyFlat ?? null,
+  resolve: (m) => m.allowsGrannyFlat ?? null,
 };
 
 // Haustyp — filter the catalogue by house category. Options are the real DB
@@ -208,7 +207,7 @@ const houseType: EnumFilter = {
     "Stadtvilla",
     "Zweifamilienhaus",
   ],
-  resolve: (m) => m.category?.name ?? null,
+  resolve: (m) => categoryOf(m)?.name ?? null,
 };
 
 export const filterOptions: FilterOption[] = [

@@ -1,21 +1,29 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import { House, Check } from "lucide-vue-next";
 import Button from "@/ui/primitives/Button.vue";
-import type { HouseModel } from "@/db/models";
+import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
 import { formatCurrency } from "@/lib/format";
 import { ROUTES } from "@/features/navigation/routes";
+import { categoryOf } from "@/domain/categories/categories.lookup";
 
-defineProps<{
-  model: HouseModel;
+const props = defineProps<{
+  model: HouseModelRecord;
   lede: string | null;
 }>();
+
+const category = computed(() => categoryOf(props.model));
 </script>
 
 <template>
   <aside class="card">
-    <a v-if="model.category" class="eyebrow" :href="`${ROUTES.houses}?category=${model.category.slug}`">
+    <a
+      v-if="category"
+      class="eyebrow"
+      :href="`${ROUTES.houses}?category=${category.slug}`"
+    >
       <House :size="14" :stroke-width="2" aria-hidden="true" />
-      <span>{{ model.category.name }}</span>
+      <span>{{ category.name }}</span>
     </a>
 
     <header class="head">
@@ -24,7 +32,8 @@ defineProps<{
         <p class="price">
           <span class="ab">ab</span>
           <span class="amount">
-            {{ formatCurrency(model.price) }}<template v-if="model.isFeatured">*</template>
+            {{ formatCurrency(model.price)
+            }}<template v-if="model.isFeatured">*</template>
           </span>
         </p>
         <template v-if="model.isFeatured">

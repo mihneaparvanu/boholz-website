@@ -2,10 +2,10 @@
 import { computed, ref, watch } from "vue";
 import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "reka-ui";
 import { FileText, Download } from "lucide-vue-next";
-import type { HouseFloor } from "@/db/models";
+import type { HouseModelFloor } from "@/domain/house-models/house-models.types";
 
 const props = defineProps<{
-  floors: HouseFloor[];
+  floors: HouseModelFloor[];
 }>();
 
 // === Variant toggle ===
@@ -40,7 +40,7 @@ const showVariantToggle = computed(() => availableVariants.value.length >= 2);
 // Default variant priority:
 //   1. Standard (null) if any floor has it
 //   2. Otherwise the most-common variant (so an ELW-only model lands on ELW)
-function pickDefaultVariant(floors: HouseFloor[]): string {
+function pickDefaultVariant(floors: HouseModelFloor[]): string {
   if (floors.some((f) => f.variant == null)) return "__default__";
   const counts = new Map<string, number>();
   for (const f of floors) {
@@ -66,7 +66,7 @@ watch(
   },
 );
 
-const visibleFloors = computed<HouseFloor[]>(() =>
+const visibleFloors = computed<HouseModelFloor[]>(() =>
   props.floors.filter((f) => variantKey(f.variant) === activeVariant.value),
 );
 
@@ -122,10 +122,10 @@ watch(visibleFloors, (next) => {
         >
           <div class="plan">
             <img
-              :src="floor.media.path"
-              :alt="floor.media.alt || floor.title"
-              :width="floor.media.width ?? undefined"
-              :height="floor.media.height ?? undefined"
+              :src="floor.path"
+              :alt="floor.alt || floor.title"
+              :width="floor.width ?? undefined"
+              :height="floor.height ?? undefined"
             />
           </div>
         </TabsContent>
@@ -135,10 +135,10 @@ watch(visibleFloors, (next) => {
         <span class="caption">{{ visibleFloors[0].title }}</span>
         <div class="plan">
           <img
-            :src="visibleFloors[0].media.path"
-            :alt="visibleFloors[0].media.alt || visibleFloors[0].title"
-            :width="visibleFloors[0].media.width ?? undefined"
-            :height="visibleFloors[0].media.height ?? undefined"
+            :src="visibleFloors[0].path"
+            :alt="visibleFloors[0].alt || visibleFloors[0].title"
+            :width="visibleFloors[0].width ?? undefined"
+            :height="visibleFloors[0].height ?? undefined"
           />
         </div>
       </div>

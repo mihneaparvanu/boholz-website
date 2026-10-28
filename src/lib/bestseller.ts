@@ -1,4 +1,4 @@
-import type { HouseModel } from "@/db/models";
+import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
 import type { ModelCategory } from "@/domain/categories/categories.types";
 
 /**
@@ -26,10 +26,10 @@ export const isBestsellerCategory = (
 /**
  * Models that belong to the bestseller category — i.e. the featured ones.
  * Generic over any shape carrying `isFeatured` so the same helper works on
- * raw `HouseModel` rows and on view-model shapes like `HouseModelCardProps`.
+ * raw `HouseModelRecord` rows and on view-model shapes like `HouseModelCardProps`.
  */
 export const getBestsellerModels = <
-  T extends Pick<HouseModel, "isFeatured" | "slug">,
+  T extends Pick<HouseModelRecord, "isFeatured" | "slug">,
 >(
   models: T[],
 ): T[] =>

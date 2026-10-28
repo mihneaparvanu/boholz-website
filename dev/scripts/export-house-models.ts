@@ -1,8 +1,8 @@
 import { CATEGORY_ORDER, getModels, type CategorySlug } from "@/db/loaders";
 import type { HouseModel } from "@/db/models";
 import type {
-  HouseModelDetails,
   HouseModelRecord,
+  ModelSpecs,
 } from "@/domain/house-models/house-models.types";
 
 import { exportEntity } from "./export-entity";
@@ -13,10 +13,32 @@ const isCategorySlug = (s: string): s is CategorySlug =>
   CATEGORY_ORDER.some((c) => c === s);
 
 // The details row's id IS the model's id — it is how the two rows were
-// joined, and the nesting replaces it.
-const stripId = (d: NonNullable<HouseModel["details"]>): HouseModelDetails => {
+// joined, so it carries no information once the fields sit on the model.
+const stripId = (d: NonNullable<HouseModel["details"]>): ModelSpecs => {
   const { id, ...rest } = d;
   return rest;
+};
+
+// Two of the 32 models have no details row. The annotation is what forces
+// this list to stay complete when a column is added to house_details.
+const NO_SPECS: ModelSpecs = {
+  floorCount: null,
+  roofType: null,
+  kniestock: null,
+  netFloorAreaDin: null,
+  totalLivingAreaWoflv: null,
+  extensionDescription: null,
+  allowsGrannyFlat: null,
+  levelCount: null,
+  bedroomCount: null,
+  bathroomCount: null,
+  familiesCount: null,
+  width: null,
+  length: null,
+  height: null,
+  hasGarage: null,
+  isBarrierFree: null,
+  hasChildrenRoom: null,
 };
 
 // getModels() already drops hidden models and sorts the media by sortOrder.
@@ -43,8 +65,8 @@ const exported: HouseModelRecord[] = models.map((m) => {
     roofPitch: m.roofPitch,
     isFeatured: m.isFeatured,
     categorySlug: m.category.slug,
-    // one spec row or nothing; two of the 32 models have none
-    details: m.details === null ? null : stripId(m.details),
+    // the 17 spec fields, flattened onto the model
+    ...(m.details === null ? NO_SPECS : stripId(m.details)),
     media: m.media.map((mm) => ({
       isHero: mm.isHero,
       isThumbnail: mm.isThumbnail,

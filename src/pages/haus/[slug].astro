@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getModels } from "@/db/loaders";
+import { houseModels } from "@/domain/house-models/house-models";
+import { categoryOf } from "@/domain/categories/categories.lookup";
 import { toMetaDescription } from "@/lib/format";
 import { ROUTES } from "@/features/navigation/routes";
 import JsonLd from "@/features/seo/JsonLd.astro";
@@ -34,10 +35,10 @@ import {
   haustechnikSpecGroups,
   wandSpecGroups,
 } from "@/features/advantage/baubeschreibung.content";
-import type { HouseModel } from "@/db/models";
+import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
 
 export async function getStaticPaths() {
-  const houses = await getModels();
+  const houses = houseModels;
 
   return houses.map((h) => ({
     params: {slug: h.slug},
@@ -46,7 +47,7 @@ export async function getStaticPaths() {
 };
 
 interface Props {
-model: HouseModel;
+model: HouseModelRecord;
 }
 
 const { model } = Astro.props;
@@ -68,17 +69,16 @@ const sections = [
 
 const description = model.description?.trim() || null;
 const lede = description ? (description.match(/^[^.!?]+[.!?]/)?.[0] ?? description) : null;
-const hasCategoryDescription = Boolean(model.category?.description);
+const hasCategoryDescription = Boolean(categoryOf(model)?.description);
 const leistungenCopy =
   "Je nach Ihren individuellen Bedürfnissen können wir verschiedene Gewerke und Leistungsumfänge anbieten. Gerne berät Sie unser Fachberater hierzu ausführlich und erstellt gemeinsam mit Ihnen ein passendes Konzept.";
 const specSourceNote =
   "Technische Angaben: Auszug aus der Bau- und Leistungsbeschreibung, Stand September 2026.";
 
 const galleryImages = model.media
-  .map((m) => m.media?.path)
+  .map((m) => m.path)
   .filter((p): p is string => Boolean(p));
-const heroImage =
-  model.media.find((m) => m.isHero)?.media?.path ?? galleryImages[0];
+const heroImage = model.media.find((m) => m.isHero)?.path ?? galleryImages[0];
 
 const breadcrumb = breadcrumbSchema([
   { name: "Startseite", path: ROUTES.home },
@@ -113,7 +113,7 @@ const breadcrumb = breadcrumbSchema([
       <h2 class="section-title">Beschreibung</h2>
       {description && <p class="prose">{description}</p>}
       {hasCategoryDescription && (
-        <p class="prose" set:html={model.category?.description} />
+        <p class="prose" set:html={categoryOf(model)?.description} />
       )}
     </section>
   )}

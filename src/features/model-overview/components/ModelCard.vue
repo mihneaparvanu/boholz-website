@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { formatSquareMeters, formatCurrency } from "@/lib/format";
-import type { HouseModel } from "@/db/models";
+import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
 import ImagePlaceholder from "@/ui/primitives/ImagePlaceholder.vue";
 import RoofCapsule, { type RoofEntry } from "./RoofCapsule.vue";
 
 const props = defineProps<{
-  model: HouseModel;
+  model: HouseModelRecord;
   /** Suppress the bestseller star badge — set true when the card is rendered
    *  inside a bestseller listing (where every card would otherwise be starred). */
   hideStarBadge?: boolean;
 }>();
 
 const heroMediaItem = computed(
-  () => props.model.media.find((m) => m.isHero)?.media,
+  () => props.model.media.find((m) => m.isHero),
 );
 
 const heroImage = computed(() => heroMediaItem.value?.path);
@@ -21,7 +21,7 @@ const heroImage = computed(() => heroMediaItem.value?.path);
 // One entry per card today; the array shape leaves room for future
 // dual-roof variants (e.g. Stadtvilla available as Walmdach + Flachdach).
 const roofEntries = computed<RoofEntry[]>(() => {
-  const type = props.model.details?.roofType;
+  const type = props.model.roofType;
   if (!type) return [];
   return [{ type, pitch: props.model.roofPitch }];
 });

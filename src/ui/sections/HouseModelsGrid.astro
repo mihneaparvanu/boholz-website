@@ -31,7 +31,6 @@ const { models, columns = 3, hideStarBadge = false } = Astro.props;
     models.map((m) => (
       <HouseModelCard
         client:load
-        id={m.id}
         slug={m.slug}
         name={m.name}
         code={m.code}

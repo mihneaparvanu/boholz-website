@@ -9,7 +9,7 @@
  * Rendered through `JsonLd.astro`. Anything absent is omitted rather than
  * sent as null — an incomplete object is fine, a wrong one is not.
  */
-import type { HouseModel } from "@/db/models";
+import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
 import { ROUTES } from "@/features/navigation/routes";
 
 const SITE = "https://boholz-haus.de";
@@ -51,7 +51,7 @@ export function organizationSchema() {
  * separators, so it is passed through String() and never formatted.
  */
 export function productSchema(
-  model: Pick<HouseModel, "title" | "slug" | "description" | "price">,
+  model: Pick<HouseModelRecord, "title" | "slug" | "description" | "price">,
   images: string[],
 ) {
   const price = model.price != null ? String(model.price) : undefined;

@@ -41,7 +41,7 @@ import ZigZag from "@/ui/sections/ZigZag.astro";
 import ProofSection from "@/ui/sections/Proof-Section.vue";
 import TrustBadges from "@/ui/sections/TrustBadges.vue";
 
-import { getModels } from "@/db/loaders";
+import { houseModels as allModels } from "@/domain/house-models/house-models";
 import { toHouseModelCard } from "@/lib/derive";
 
 import type { LandingPageContent } from "./landing.types";
@@ -92,7 +92,6 @@ void trustStats;
 void TrustBadges;
 
 
-const allModels = await getModels();
 
 const featuredOnly = houses.featuredOnly ?? true;
 const filteredModels = allModels
@@ -100,7 +99,7 @@ const filteredModels = allModels
   .filter((m) =>
     houses.categorySlugs === null
       ? true
-      : houses.categorySlugs.includes(m.category?.slug ?? ""),
+      : houses.categorySlugs.includes(m.categorySlug),
   )
   .slice(0, houses.maxItems);
 

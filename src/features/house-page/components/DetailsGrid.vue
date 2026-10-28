@@ -33,7 +33,7 @@ import {
   Coins,
   Scan,
 } from "lucide-vue-next";
-import type { HouseModel } from "@/db/models";
+import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
 import { isBestsellerCategory } from "@/lib/bestseller";
 import {
   formatBoolean,
@@ -44,11 +44,12 @@ import DetailRow from "./DetailRow.vue";
 import RoofCapsule from "@/features/model-overview/components/RoofCapsule.vue";
 
 const props = defineProps<{
-  model: HouseModel;
+  model: HouseModelRecord;
 }>();
 
 const m = props.model;
-const d = m.details;
+// the spec fields sit on the model itself now
+const d = m;
 
 /** Fläche — the headline area figure, first row. Mehrfamilienhaus concepts
  *  carry no fixed Wohnfläche, so they read "auf Anfrage" instead of vanishing
@@ -98,7 +99,7 @@ const granny = computed<string | null>(() =>
 
 /** Preis — only on bestseller-category rows per spec. */
 const showPrice = computed(
-  () => isBestsellerCategory(m.category) && m.price != null,
+  () => isBestsellerCategory({ slug: m.categorySlug }) && m.price != null,
 );
 const price = computed<string | null>(() =>
   showPrice.value && m.price != null ? formatCurrency(m.price) : null,

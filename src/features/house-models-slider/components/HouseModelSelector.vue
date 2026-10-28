@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { HouseModel } from "@/db/models";
+import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
 
 const props = defineProps<{
-  model: HouseModel;
+  model: HouseModelRecord;
 }>();
 </script>
 <template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { HouseModel } from "@/db/models";
+import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
 import type { ModelCategory } from "@/domain/categories/categories.types";
 import { isLandingCategory } from "@/features/landing/landing.registry";
 import { ref, computed, onMounted, watch } from "vue";
@@ -26,7 +26,7 @@ import { parseLivingArea } from "@/lib/parse-living-area";
 import { housesViews } from "./houses-page.content";
 
 const props = defineProps<{
-  models: HouseModel[];
+  models: HouseModelRecord[];
   categories: ModelCategory[];
   // Resolved server-side from the URL so filter deep-links render the filter
   // view in SSR (no flash of the explore cards before hydration).
@@ -75,7 +75,7 @@ const activeSortOption = computed<SortOption | null>(
   () => sortOptions.find((o) => o.value === activeSort.value) ?? null,
 );
 
-const categoryModels = computed<HouseModel[]>(() => {
+const categoryModels = computed<HouseModelRecord[]>(() => {
   if (selectedCategory.value === null) {
     return props.models;
   }
@@ -83,14 +83,14 @@ const categoryModels = computed<HouseModel[]>(() => {
     return getBestsellerModels(props.models);
   }
   return props.models.filter(
-    (m) => m.category?.slug === selectedCategory.value?.slug,
+    (m) => m.categorySlug === selectedCategory.value?.slug,
   );
 });
 
-const applyFilters = (filters: ActiveFilter[], models: HouseModel[]) =>
+const applyFilters = (filters: ActiveFilter[], models: HouseModelRecord[]) =>
   filters.reduce((acc, filter) => filterModels(acc, filter), models);
 
-const filteredModels = computed<HouseModel[]>(() =>
+const filteredModels = computed<HouseModelRecord[]>(() =>
   filterState.value.status === "inactive"
     ? categoryModels.value
     : applyFilters(filterState.value.filters, categoryModels.value),
@@ -136,9 +136,9 @@ const modelsCount = computed(() => filteredModels.value.length);
 // ---------- Filtering ----------
 
 const filterModels = (
-  models: HouseModel[],
+  models: HouseModelRecord[],
   f: ActiveFilter | null,
-): HouseModel[] => {
+): HouseModelRecord[] => {
   if (f === null) return models;
   const { option, value } = f;
 
@@ -179,7 +179,7 @@ const compareValues = (
   return dir * String(a).localeCompare(String(b), "de", { numeric: true });
 };
 
-const sortModels = (models: HouseModel[], option: SortOption | null) => {
+const sortModels = (models: HouseModelRecord[], option: SortOption | null) => {
   if (option === null) {
     const decorated = models.map((m, i) => ({
       m,

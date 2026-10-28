@@ -6,7 +6,8 @@
  * card components dumb (no formatting logic) and the pages thin (no
  * inline mappers).
  */
-import type { HouseModel } from "@/db/models";
+import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
+import { categoryOf } from "@/domain/categories/categories.lookup";
 import type {
   HouseModelCardProps,
   HouseModelSpec,
@@ -31,27 +32,26 @@ const BESTSELLER_INCLUSIONS = ["inkl. Bodenplatte", "inkl. Architektenleistung"]
 const BESTSELLER_KFW_OPTION = "KfW 40 & QNG optional";
 
 /** True when the model is a bestseller (drives the price inclusions). */
-export function isBestseller(m: Pick<HouseModel, "isFeatured">): boolean {
+export function isBestseller(m: Pick<HouseModelRecord, "isFeatured">): boolean {
   return m.isFeatured ?? false;
 }
 
 /**
- * HouseModel → HouseModelCardProps.
+ * HouseModelRecord → HouseModelCardProps.
  *
  * Card is presentation-only — we format m²/Zimmer/efficiency strings here
  * so the component stays dumb. `code` is "{CATEGORY-UPPER} · {MODEL-CODE}"
  * per HouseModelCard's contract.
  */
-export function toHouseModelCard(m: HouseModel): HouseModelCardProps {
+export function toHouseModelCard(m: HouseModelRecord): HouseModelCardProps {
   const { src, alt } = pickImage(m);
   return {
-    id: m.id,
     slug: m.slug,
     name: m.title,
-    code: `${(m.category?.name ?? "Hausmodell").toUpperCase()} · ${formatModelCode(m.modelCode)}`,
+    code: `${(categoryOf(m)?.name ?? "Hausmodell").toUpperCase()} · ${formatModelCode(m.modelCode)}`,
     image: src,
     imageAlt: alt,
-    categorySlug: m.category?.slug ?? "",
+    categorySlug: m.categorySlug,
     isFeatured: m.isFeatured ?? false,
     specs: specsFor(m),
     priceHint: priceHintFor(m),
@@ -59,7 +59,7 @@ export function toHouseModelCard(m: HouseModel): HouseModelCardProps {
   };
 }
 
-function specsFor(m: HouseModel): HouseModelSpec[] {
+function specsFor(m: HouseModelRecord): HouseModelSpec[] {
   const specs: HouseModelSpec[] = [];
 
   if (m.livingArea != null) {
@@ -71,17 +71,17 @@ function specsFor(m: HouseModel): HouseModelSpec[] {
 
   // Client (2026-06): drop the "X Zimmer" chip everywhere. Multi-family /
   // two-family models keep their unit count ("X Einheiten").
-  if (m.details?.familiesCount != null && m.details.familiesCount > 1) {
+  if (m.familiesCount != null && m.familiesCount > 1) {
     specs.push({
       kind: "rooms",
-      value: `${m.details.familiesCount} Einheiten`,
+      value: `${m.familiesCount} Einheiten`,
     });
   }
 
   // KfW efficiency isn't a structured field today — stand in with the
   // typology label until a real column lands. Client (2026-06): bestsellers
   // advertise only "KfW 55".
-  if (m.category?.name) {
+  if (categoryOf(m)?.name) {
     specs.push({
       kind: "efficiency",
       value: "KfW 40 (auf Wunsch)",
@@ -100,7 +100,7 @@ function formatModelCode(code: string | null): string {
   return (code ?? "").replace(/-000$/, "");
 }
 
-function priceHintFor(m: HouseModel): string | undefined {
+function priceHintFor(m: HouseModelRecord): string | undefined {
   const price = m.price == null ? NaN : Number(m.price);
   if (!Number.isFinite(price) || price <= 0) {
     // Client (2026-06-15): non-bestseller models carry no figure — advertise
@@ -113,20 +113,20 @@ function priceHintFor(m: HouseModel): string | undefined {
   return m.isFeatured ? `${base}*` : base;
 }
 
-function priceCaveatsFor(m: HouseModel): string[] {
+function priceCaveatsFor(m: HouseModelRecord): string[] {
   return isBestseller(m)
     ? [...BESTSELLER_INCLUSIONS, BESTSELLER_KFW_OPTION]
     : [];
 }
 
-function pickImage(m: HouseModel): { src: string; alt: string } {
+function pickImage(m: HouseModelRecord): { src: string; alt: string } {
   // Hero → thumbnail → first media → static fallback.
   // Paths from the loader are already R2-resolved.
   const hero = m.media.find((mm) => mm.isHero);
   const thumb = m.media.find((mm) => mm.isThumbnail);
   const pick = hero ?? thumb ?? m.media[0];
   return {
-    src: pick?.media.path ?? getMediaURL(FALLBACK_IMAGE_PATH),
-    alt: pick?.media.alt ?? m.title,
+    src: pick?.path ?? getMediaURL(FALLBACK_IMAGE_PATH),
+    alt: pick?.alt ?? m.title,
   };
 }

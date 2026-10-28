@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
-import type { HouseModel } from "@/db/models";
+import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
 
 const props = defineProps<{
-  model: HouseModel;
+  model: HouseModelRecord;
 }>();
 
-type Img = HouseModel["media"][number]["media"];
+type Img = HouseModelRecord["media"][number]["media"];
 
 const slides = computed<Img[]>(() => {
-  const hero = props.model.media.find((m) => m.isHero)?.media;
+  const hero = props.model.media.find((m) => m.isHero);
   const rest = props.model.media
-    .filter((m) => !m.isHero && !m.isThumbnail)
-    .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
-    .map((m) => m.media);
+    // the export preserved the loader's sortOrder as array order, so the
+    // old .sort() here had nothing left to do
+    .filter((m) => !m.isHero && !m.isThumbnail);
   return hero ? [hero, ...rest] : rest;
 });
 
