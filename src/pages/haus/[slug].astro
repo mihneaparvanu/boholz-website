@@ -1,6 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { houseModels } from "@/domain/house-models/houseModels;
+import { houseModels } from "@/domain/house-models/houseModels";
 import { categoryOf } from "@/domain/categories/categories.lookup";
 import { getMediaURL } from "@/lib/media";
 import { toMetaDescription } from "@/lib/format";
@@ -36,7 +36,7 @@ import {
   haustechnikSpecGroups,
   wandSpecGroups,
 } from "@/features/advantage/baubeschreibung.content";
-import type { HouseModelRecord } from "@/domain/house-models/houseModels.types;
+import type { HouseModelRecord } from "@/domain/house-models/houseModels.types";
 
 export async function getStaticPaths() {
   const houses = houseModels;
