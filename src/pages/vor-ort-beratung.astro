@@ -5,12 +5,10 @@ import CTASection from "@/ui/sections/CTASection.astro";
 import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
 import VideoPlaceholder from "@/ui/primitives/VideoPlaceholder.vue";
 import { Building2, Home, MapPin, Phone, Mail, ArrowRight } from "lucide-vue-next";
-import { getLocations } from "@/db/loaders";
 import { getMediaURL } from "@/lib/media";
 import { ROUTES } from "@/features/navigation/routes";
 import { musterhaeuser } from "./vor-ort-beratung.content";
-
-const locations = await getLocations();
+import { locations } from "@/domain/locations/locations";
 
 // Match showhouse content cards by slug to live DB locations so each card
 // can render the matching location's hero image. Falls back to the existing
@@ -19,21 +17,13 @@ const showhouseHeroBySlug = new Map<string, string>(
   locations
     .filter((l) => l.kind === "showhouse")
     .flatMap((l) => {
-      const hero = l.media.find((m) => m.isHero)?.media.path;
+      const hero = l.media.find((m) => m.isHero)?.path;
       return hero ? [[l.slug, hero] as const] : [];
     }),
 );
 
-// Per-office hero overrides (slug -> image path) for cases where the DB hero
-// isn't the desired card image. Empty now: München previously duplicated
-// Villingen-Schwenningen's hero and was pinned here, but its DB hero is now a
-// distinct image (set per client request 2026-08-18), so the DB is the single
-// source of truth again.
 const OFFICE_HERO_OVERRIDES: Record<string, string> = {};
 
-// Vertriebsbüros + Zentrale come straight from the DB. HQ leads, the rest
-// follow alphabetically by title. Offices with no phone, email, and no agent
-// are dropped per the client brief (only the Eltville stub today).
 const offices = locations
   .filter((l) => l.kind === "office" || l.kind === "headquarters")
   .filter((l) => l.phone || l.email || l.agents.length > 0)
@@ -43,7 +33,7 @@ const offices = locations
     return a.title.localeCompare(b.title, "de");
   })
   .map((l) => {
-    const heroFromDB = l.media.find((m) => m.isHero)?.media.path ?? null;
+    const heroFromDB = l.media.find((m) => m.isHero)?.path ?? null;
     const heroOverride = OFFICE_HERO_OVERRIDES[l.slug];
     const heroSrc = heroOverride ? getMediaURL(heroOverride) : heroFromDB;
     return {
@@ -55,7 +45,7 @@ const offices = locations
       heroSrc,
       phone: l.phone,
       email: l.email,
-      agents: l.agents.map((a) => a.agent),
+      agents: l.agents.map((a) => a.slug),
     };
   });
 

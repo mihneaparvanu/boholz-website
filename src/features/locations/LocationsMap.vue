@@ -5,7 +5,7 @@ import { LngLatBounds } from "maplibre-gl";
 import type { StyleSpecification, Map as MlMap } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import type { LocationWithAgents } from "@/db/models";
+import type { Location } from "@/domain/locations/locations.types.ts";
 import LocationCard from "./LocationCard.vue";
 import LocationMarker from "./LocationMarker.vue";
 import {
@@ -15,7 +15,7 @@ import {
   GERMANY_BOUNDS,
 } from "./mapStyle";
 
-const props = defineProps<{ locations: LocationWithAgents[] }>();
+const props = defineProps<{ locations: Location[] }>();
 
 // `numeric` columns come back as `string | null` from Drizzle — drop nulls and
 // coerce to numbers so MapLibre can use the coordinates.
@@ -28,7 +28,7 @@ const validLocations = computed(() =>
 const mapStyle = shallowRef<StyleSpecification | null>(null);
 getBrandedStyle().then((s) => (mapStyle.value = s));
 
-const selected = ref<LocationWithAgents | null>(null);
+const selected = ref<Location | null>(null);
 
 // On load, zoom out just enough to show *all* locations at once (rather than a
 // fixed Germany zoom that can clip the outer standorte). Static center/zoom
@@ -67,9 +67,9 @@ function onMapLoad(e: { map?: MlMap; target?: MlMap }) {
 
       <LocationMarker
         v-for="loc in validLocations"
-        :key="loc.id"
+        :key="loc.slug"
         :location="loc"
-        :active="selected?.id === loc.id"
+        :active="selected?.slug === loc.slug"
         @select="selected = loc"
       />
     </MglMap>

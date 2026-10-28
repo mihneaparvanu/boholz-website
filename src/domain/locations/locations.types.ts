@@ -6,10 +6,7 @@ export type LocationImage = Image &
   Omit<LocationWithAgents["media"][number], "media" | "sortOrder">;
 export type LocationAgentLink = { slug: AgentSlug; isPrimary: boolean | null };
 
-export type LocationRecord = Omit<
-  LocationWithAgents,
-  "id" | "agents" | "media"
-> & {
+export type Location = Omit<LocationWithAgents, "id" | "agents" | "media"> & {
   agents: LocationAgentLink[];
   media: LocationImage[];
 };

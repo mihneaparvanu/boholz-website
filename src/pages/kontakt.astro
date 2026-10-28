@@ -1,18 +1,11 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 
-import PageHero from "@/ui/sections/PageHero.astro";
 import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
-import Divider from "@/ui/primitives/Divider.astro";
-import StatBlock from "@/ui/primitives/StatBlock.vue";
 
 import ContactForm from "@/features/contact-forms/ContactForm.vue";
-import LocationsMap from "@/features/locations/LocationsMap.vue";
-import { getLocations } from "@/db/loaders";
 
 import { MessagesSquare, Home, MapPin } from "lucide-vue-next";
-
-const locations = await getLocations({ exceptKind: "showhouse" });
 ---
 
 <Layout title="Kontakt – BoHolz Haus">

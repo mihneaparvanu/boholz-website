@@ -1,43 +1,42 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getNews } from "@/db/loaders";
+import { news } from "@/domain/news/news";
 import { toMetaDescription, formatNewsDate } from "@/lib/format";
 import { ROUTES } from "@/features/navigation/routes";
-import { marked } from "marked";
-import type { NewsArticle } from "@/db/models";
 
-export async function getStaticPaths() {
-  const articles = await getNews();
-  return articles.map((a)=> (
+import type { NewsPost } from "@/domain/news/news.types";
+
+export function getStaticPaths() {
+  return news.map((p)=> (
  {
-   params: {slug: a.slug},
-      props: {article: a}
+   params: {slug: p.slug},
+      props: {post: p}
     })
   )
 };
 
 interface Props {
-  article: NewsArticle;
+  post: NewsPost;
 }
 
-const {article} = Astro.props
+const {post} = Astro.props
 
-const heroMedia = article.media.find((m) => m.isHero)?.media;
-const formattedDate = formatNewsDate(article.publishedAt);
-const contentHtml = article.content ? await marked(article.content) : null;
+const heroMedia = post.media.find((m) => m.isHero);
+const formattedDate = formatNewsDate(post.publishedAt);
+const contentHtml = post.content;
 ---
 
 <Layout
-  title={`${article.title} – BoHolz Haus`}
-  description={toMetaDescription(article.excerpt)}
+  title={`${post.title} – BoHolz Haus`}
+  description={toMetaDescription(post.excerpt)}
 >
-  <article class="news-detail">
+  <post class="news-detail">
     {
       heroMedia && (
         <div class="hero-image full-width">
           <img
             src={heroMedia.path}
-            alt={heroMedia.alt ?? article.title}
+            alt={heroMedia.alt ?? post.title}
             width={heroMedia.width ?? undefined}
             height={heroMedia.height ?? undefined}
           />
@@ -45,19 +44,19 @@ const contentHtml = article.content ? await marked(article.content) : null;
       )
     }
 
-    <header class="article-header">
+    <header class="post-header">
       <a href={ROUTES.news} class="back-link">← Alle News</a>
       {formattedDate && <time class="date">{formattedDate}</time>}
-      <h1 class="title">{article.title}</h1>
-      {article.excerpt && <p class="excerpt">{article.excerpt}</p>}
+      <h1 class="title">{post.title}</h1>
+      {post.excerpt && <p class="excerpt">{post.excerpt}</p>}
     </header>
 
     {
       contentHtml && (
-        <div class="article-content" set:html={contentHtml} />
+        <div class="post-content" set:html={contentHtml} />
       )
     }
-  </article>
+  </post>
 </Layout>
 
 <style>
@@ -81,7 +80,7 @@ const contentHtml = article.content ? await marked(article.content) : null;
     }
   }
 
-  .article-header {
+  .post-header {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-2);
@@ -114,7 +113,7 @@ const contentHtml = article.content ? await marked(article.content) : null;
     color: var(--clr-content-secondary);
   }
 
-  .article-content {
+  .post-content {
     font-size: var(--fs-body);
     line-height: 1.7;
     max-width: 80ch;

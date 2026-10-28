@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { MglMarker } from "@indoorequal/vue-maplibre-gl";
-import type { LocationWithAgents } from "@/db/models";
+import type { Location } from "@/domain/locations/locations.types";
 import { House, Building2 } from "lucide-vue-next";
 
-const props = defineProps<{ location: LocationWithAgents; active: boolean }>();
+const props = defineProps<{ location: Location; active: boolean }>();
 defineEmits<{ select: [] }>();
 
 // Drizzle returns numeric as string; <MglMarker> wants [lng, lat] numbers.
@@ -25,11 +25,11 @@ const coordinates = computed<[number, number]>(() => [
         @click.stop="$emit('select')"
       >
         <div v-if="location.kind === 'showhouse'" class="house-icon">
-          <House size="20" aria-hidden="true" />
+          <House aria-hidden="true" />
         </div>
 
         <div v-else-if="location.kind === 'headquarters'" class="building-icon">
-          <Building2 size="20" aria-hidden="true" />
+          <Building2 aria-hidden="true" />
         </div>
 
         <svg

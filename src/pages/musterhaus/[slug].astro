@@ -1,6 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getLocations } from "@/db/loaders";
+import { locations } from "@/domain/locations/locations";
 
 import PageHero from "@/ui/sections/PageHero.astro";
 import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
@@ -10,9 +10,8 @@ import { ROUTES } from "@/features/navigation/routes";
 import { ArrowLeft, MapPin, Phone, Mail } from "lucide-vue-next";
 import type { LocationWithAgents } from "@/db/models";
 
-
-export async function getStaticPaths() {
-const showhouses = await getLocations({ kind: "showhouse" });
+export function getStaticPaths() {
+const showhouses = locations.filter((l) => l.kind === "showhouse");
 
 return showhouses.map((s)=> ({
   params: {slug: s.slug},
@@ -26,7 +25,6 @@ interface Props {
 }
 
 const { showhouse } = Astro.props;
-
 
 const hero = showhouse.media.find((m) => m.isHero)?.media ?? showhouse.media[0]?.media;
 const gallery = showhouse.media

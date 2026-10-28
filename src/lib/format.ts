@@ -10,7 +10,7 @@ export const formatCurrency = (v: Displayable) =>
 
 const BERLIN = { timeZone: "Europe/Berlin" } as const;
 
-export function formatNewsDate(d: Date | null): string | null {
+export function formatNewsDate(d: Date | string | null): string | null {
   return d
     ? new Intl.DateTimeFormat("de-DE", {
         day: "2-digit",

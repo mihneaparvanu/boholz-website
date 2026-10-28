@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { X, Phone, Mail } from "lucide-vue-next";
-import type { LocationWithAgents } from "@/db/models";
+import type { Location } from "@/domain/locations/locations.types";
 
-defineProps<{ location: LocationWithAgents }>();
+defineProps<{ location: Location }>();
 defineEmits<{ close: [] }>();
 
 const telHref = (s: string) => `tel:${s.replace(/[^\d+]/g, "")}`;
@@ -53,7 +53,7 @@ const telHref = (s: string) => `tel:${s.replace(/[^\d+]/g, "")}`;
     <section v-if="location.agents.length" class="agents">
       <h4 class="agents-title">Ansprechpartner</h4>
       <ul class="agents-list">
-        <li v-for="link in location.agents" :key="link.agent.id" class="agent">
+        <li v-for="link in location.agents" :key="link.slug" class="agent">
           <div class="agent-name">{{ link.agent.fullName }}</div>
           <div v-if="link.agent.role" class="agent-role">
             {{ link.agent.role }}
