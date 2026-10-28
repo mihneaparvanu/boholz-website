@@ -234,3 +234,35 @@ jobs:
             echo "The live static copy was left as it was; the site still serves." >&2
             rm -rf "$STATIC.new"
             exit 1
+
+      # Runs only if the step above succeeded, and that step does not return
+      # until the remote script has pulled the image, replaced the container,
+      # passed the health check and synced the static tree. So the origin is
+      # already correct here and no wait is needed.
+      #
+      # Without this, HTML sits at the edge for s-maxage=86400 and a content
+      # change takes a day to appear — which is what made a correct deploy
+      # look broken for an hour.
+      - name: Purge the Cloudflare cache
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ZONE: ${{ vars.CLOUDFLARE_ZONE_ID }}
+        run: |
+          set -euo pipefail
+          test -n "$CF_TOKEN" || { echo "CLOUDFLARE_API_TOKEN is not set" >&2; exit 1; }
+          test -n "$CF_ZONE"  || { echo "CLOUDFLARE_ZONE_ID is not set"  >&2; exit 1; }
+
+          R=$(curl -sS -X POST \
+            "https://api.cloudflare.com/client/v4/zones/$CF_ZONE/purge_cache" \
+            -H "Authorization: Bearer $CF_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data '{"purge_everything":true}')
+
+          # Cloudflare answers 200 with "success": false on a bad token or
+          # zone, so the HTTP status alone proves nothing.
+          echo "$R" | grep -q '"success":true' || {
+            echo "Purge failed. Response:" >&2
+            echo "$R" >&2
+            exit 1
+          }
+          echo "Cache purged."
