@@ -41,10 +41,12 @@ const NO_SPECS: ModelSpecs = {
   hasChildrenRoom: null,
 };
 
-// getModels() already drops hidden models and sorts the media by sortOrder.
-const models = await getModels();
+// getModels() sorts the media by sortOrder; `hidden` picks which side of the
+// is_hidden flag to take.
+const live = await getModels();
+const parked = await getModels({ hidden: true });
 
-const exported: HouseModelRecord[] = models.map((m) => {
+const toRecord = (m: (typeof live)[number]): HouseModelRecord => {
   if (m.category === null) {
     throw new Error(`model "${m.slug}" has no category`);
   }
@@ -86,13 +88,25 @@ const exported: HouseModelRecord[] = models.map((m) => {
       isAi: f.media.isAi,
     })),
   };
-});
+};
 
 await exportEntity({
   entity: "house-models",
   exportName: "houseModels",
   typeName: "HouseModelRecord",
-  data: exported,
+  data: live.map(toRecord),
+});
+
+// Parked models go in their own file, imported by nothing. A separate file
+// rather than an isHidden flag on one list: with a flag, all five places that
+// iterate models would have to remember to filter, and missing one puts a
+// parked house on the site. A list that does not contain them cannot.
+await exportEntity({
+  entity: "house-models",
+  fileName: "house-models.parked",
+  exportName: "parkedHouseModels",
+  typeName: "HouseModelRecord",
+  data: parked.map(toRecord),
 });
 
 process.exit(0);

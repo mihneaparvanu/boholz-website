@@ -75,11 +75,15 @@ export async function getCategories(): Promise<HouseCategory[]> {
   );
 }
 
-export async function getModels(): Promise<HouseModel[]> {
+export async function getModels(opts?: {
+  /** Return the parked models instead of the live ones. Only the export
+   *  script asks for these; nothing on the site renders them. */
+  hidden?: boolean;
+}): Promise<HouseModel[]> {
   const data = await db.query.houseModels.findMany({
     // Hidden houses (is_hidden = true) are pulled from every listing. Toggle
     // back on by setting boholz.house_models.is_hidden = false.
-    where: eq(houseModels.isHidden, false),
+    where: eq(houseModels.isHidden, opts?.hidden ?? false),
     with: {
       category: true,
       details: true,
