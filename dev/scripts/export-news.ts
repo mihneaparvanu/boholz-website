@@ -1,13 +1,12 @@
-import { type NewsPost } from "@/domain/news/news.types";
 import { getNews } from "@/db/loaders";
-import { mkdirSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-import prettier from "prettier";
+import type { NewsPost } from "@/domain/news/news.types";
 
-const articles = await getNews();
+import { exportEntity } from "./export-entity";
 
-const exported: NewsPost[] = articles.map((a) => ({
+const live = await getNews();
+const parked = await getNews({ unpublished: true });
+
+const toRecord = (a: (typeof live)[number]): NewsPost => ({
   slug: a.slug,
   title: a.title,
   content: a.content,
@@ -15,29 +14,29 @@ const exported: NewsPost[] = articles.map((a) => ({
   publishedAt: a.publishedAt?.toISOString() ?? null,
   media: a.media.map((m) => ({
     path: m.media.path,
-    isAi: m.media.isAi,
     alt: m.media.alt,
     height: m.media.height,
     width: m.media.width,
     isHero: m.isHero,
+    isAi: m.media.isAi,
   })),
-}));
+});
 
-const here = dirname(fileURLToPath(import.meta.url));
-const out = join(here, "../..", "src/domain/news/news.ts");
+await exportEntity({
+  entity: "news",
+  typeName: "NewsPost",
+  data: live.map(toRecord),
+});
 
-const cfg = await prettier.resolveConfig(out);
+// Four posts sit at is_published = false: three past events and two slugs with
+// typos in them. Kept so retiring the database loses nothing; imported by
+// nothing, so the site is unchanged.
+await exportEntity({
+  entity: "news",
+  fileName: "news.parked",
+  exportName: "parkedNews",
+  typeName: "NewsPost",
+  data: parked.map(toRecord),
+});
 
-const file = `import type { NewsPost } from "./news.types";
-export const news: NewsPost[] = ${JSON.stringify(exported, null, 2)};`;
-
-const pretty = await prettier.format(file, { ...cfg, filepath: out });
-
-mkdirSync(dirname(out), { recursive: true });
-writeFileSync(out, pretty, "utf-8");
-
-console.log(`wrote ${exported.length} news in ${out}`);
-
-// The database connection stays open on its own, so the script would never
-// finish without this.
 process.exit(0);

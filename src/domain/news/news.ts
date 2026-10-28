@@ -1,5 +1,6 @@
 import type { NewsPost } from "./news.types";
-export const news: NewsPost[] = [
+
+export const news = [
   {
     slug: "august-2026-stelltermin-wilhelmsdorf-pfrungen",
     title: "August 2026, Stelltermin in 88271 Wilhelmsdorf-Pfrungen",
@@ -11,11 +12,11 @@ export const news: NewsPost[] = [
     media: [
       {
         path: "/images/news/august-2026-stelltermin-wilhelmsdorf-pfrungen/cover.webp",
-        isAi: false,
         alt: "Richtfest – Stelltermin BoHolz-Haus",
         height: 628,
         width: 682,
         isHero: true,
+        isAi: false,
       },
     ],
   },
@@ -31,11 +32,11 @@ export const news: NewsPost[] = [
     media: [
       {
         path: "/images/showhouses/bad-vilbel/hero.webp",
-        isAi: false,
         alt: "Bad Vilbel showhouse hero",
         height: 946,
         width: 1500,
         isHero: true,
+        isAi: false,
       },
     ],
   },
@@ -49,11 +50,11 @@ export const news: NewsPost[] = [
     media: [
       {
         path: "/images/news/april-samstag-13-06-2026-werksfuehrung-bei-keitel-haus/cover.webp",
-        isAi: false,
         alt: "Werksführung bei Keitel-Haus",
         height: 3000,
         width: 4000,
         isHero: true,
+        isAi: false,
       },
     ],
   },
@@ -68,11 +69,11 @@ export const news: NewsPost[] = [
     media: [
       {
         path: "/images/news/august-2026-stelltermin-wilhelmsdorf-pfrungen/cover.webp",
-        isAi: false,
         alt: "Richtfest – Stelltermin BoHolz-Haus",
         height: 628,
         width: 682,
         isHero: true,
+        isAi: false,
       },
     ],
   },
@@ -87,11 +88,11 @@ export const news: NewsPost[] = [
     media: [
       {
         path: "/images/showhouses/bad-vilbel/hero.webp",
-        isAi: false,
         alt: "Bad Vilbel showhouse hero",
         height: 946,
         width: 1500,
         isHero: true,
+        isAi: false,
       },
     ],
   },
@@ -106,11 +107,11 @@ export const news: NewsPost[] = [
     media: [
       {
         path: "/images/showhouses/fellbach/hero.webp",
-        isAi: false,
         alt: "Fellbach showhouse hero",
         height: 946,
         width: 1500,
         isHero: true,
+        isAi: false,
       },
     ],
   },
@@ -124,11 +125,11 @@ export const news: NewsPost[] = [
     media: [
       {
         path: "/images/news/oktober-samstag-03-10-2026-werksfuehrung-bei-keitel-haus/cover.webp",
-        isAi: false,
         alt: "Werksführung bei Keitel-Haus",
         height: 1200,
         width: 1600,
         isHero: true,
+        isAi: false,
       },
     ],
   },
@@ -142,11 +143,11 @@ export const news: NewsPost[] = [
     media: [
       {
         path: "/images/news/oktober-samstag-03-10-2026-werksfuehrung-bei-keitel-haus/cover.webp",
-        isAi: false,
         alt: "Werksführung bei Keitel-Haus",
         height: 1200,
         width: 1600,
         isHero: true,
+        isAi: false,
       },
     ],
   },
@@ -160,11 +161,11 @@ export const news: NewsPost[] = [
     media: [
       {
         path: "/images/news/oktober-samstag-03-10-2026-werksfuehrung-bei-keitel-haus/cover.webp",
-        isAi: false,
         alt: "Werksführung bei Keitel-Haus",
         height: 1200,
         width: 1600,
         isHero: true,
+        isAi: false,
       },
     ],
   },
@@ -179,12 +180,12 @@ export const news: NewsPost[] = [
     media: [
       {
         path: "/images/models/einfamilienhaus/32-150-170/gallery/einfamilienhaus-32-150-170-gallery-ehf-01.webp",
-        isAi: false,
         alt: null,
         height: 1350,
         width: 2400,
         isHero: true,
+        isAi: false,
       },
     ],
   },
-];
+] satisfies NewsPost[];

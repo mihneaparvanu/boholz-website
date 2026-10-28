@@ -48,10 +48,15 @@ export const CATEGORY_ORDER = [
 
 export type CategorySlug = (typeof CATEGORY_ORDER)[number];
 
-export async function getCategories(): Promise<HouseCategory[]> {
+export async function getCategories(opts?: {
+  /** Return the hidden categories instead. Only the export script asks. */
+  hidden?: boolean;
+}): Promise<HouseCategory[]> {
   // 1. fetch
   const data = await db.query.houseCategories.findMany({
-    where: not(inArray(houseCategories.slug, HIDDEN_CATEGORY_SLUGS)),
+    where: opts?.hidden
+      ? inArray(houseCategories.slug, HIDDEN_CATEGORY_SLUGS)
+      : not(inArray(houseCategories.slug, HIDDEN_CATEGORY_SLUGS)),
     with: {
       media: {
         with: { media: true },
@@ -147,9 +152,12 @@ export async function getModelBySlug(
   };
 }
 
-export async function getNews(): Promise<NewsArticle[]> {
+export async function getNews(opts?: {
+  /** Return the unpublished posts instead. Only the export script asks. */
+  unpublished?: boolean;
+}): Promise<NewsArticle[]> {
   const data = await db.query.news.findMany({
-    where: eq(news.isPublished, true),
+    where: eq(news.isPublished, !opts?.unpublished),
     with: {
       media: {
         with: { media: true },

@@ -1,13 +1,12 @@
-import { type ModelCategory } from "@/domain/categories/categories.types";
 import { getCategories } from "@/db/loaders";
-import { mkdirSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-import prettier from "prettier";
+import type { ModelCategory } from "@/domain/categories/categories.types";
 
-const categories = await getCategories();
+import { exportEntity } from "./export-entity";
 
-const exported: ModelCategory[] = categories.map((c) => ({
+const live = await getCategories();
+const parked = await getCategories({ hidden: true });
+
+const toRecord = (c: (typeof live)[number]): ModelCategory => ({
   name: c.name,
   slug: c.slug,
   description: c.description,
@@ -15,28 +14,28 @@ const exported: ModelCategory[] = categories.map((c) => ({
     isThumbnail: m.isThumbnail,
     isHero: m.isHero,
     path: m.media.path,
-    isAi: m.media.isAi,
     alt: m.media.alt,
     width: m.media.width,
     height: m.media.height,
+    isAi: m.media.isAi,
   })),
-}));
+});
 
-const here = dirname(fileURLToPath(import.meta.url));
-const out = join(here, "../..", "src/domain/categories/categories.ts");
+await exportEntity({
+  entity: "categories",
+  typeName: "ModelCategory",
+  data: live.map(toRecord),
+});
 
-const cfg = await prettier.resolveConfig(out);
+// HIDDEN_CATEGORY_SLUGS keeps pultdachhaus off the site, and its one model is
+// already in house-models.parked.ts. Without this file that model could not be
+// un-parked: its categorySlug would resolve to nothing.
+await exportEntity({
+  entity: "categories",
+  fileName: "categories.parked",
+  exportName: "parkedCategories",
+  typeName: "ModelCategory",
+  data: parked.map(toRecord),
+});
 
-const file = `import type { ModelCategory } from "./categories.types";
-export const categories: ModelCategory[] = ${JSON.stringify(exported, null, 2)};`;
-
-const pretty = await prettier.format(file, { ...cfg, filepath: out });
-
-mkdirSync(dirname(out), { recursive: true });
-writeFileSync(out, pretty, "utf-8");
-
-console.log(`wrote ${exported.length} categories in ${out}`);
-
-// The database connection stays open on its own, so the script would never
-// finish without this.
 process.exit(0);
