@@ -181,8 +181,14 @@ jobs:
             # enough — until this directory is replaced, visitors get the old
             # build no matter what is running or what Cloudflare has purged.
             #
-            # Staged now, swapped in only after the health check, so an image
+            # Staged now, synced in only after the health check, so an image
             # that fails to start leaves the live copy untouched.
+            #
+            # The sync writes INTO $STATIC and never replaces the directory
+            # itself: sn-c1-gateway bind-mounts it to /var/www/boholz, and a
+            # bind mount follows the inode, not the path. Renaming the
+            # directory left nginx pointing at a tree that was then deleted,
+            # so every asset 404'd until the gateway was restarted.
             STATIC="$APP_DIR/public"
             rm -rf "$STATIC.new" "$STATIC.old"
             mkdir -p "$STATIC.new"
@@ -211,10 +217,10 @@ jobs:
                    "fetch('http://127.0.0.1:4321/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))" \
                    2>/dev/null; then
                 echo "Healthy after ${i}s."
-                # Two renames, so nginx never sees a half-written tree.
-                mv "$STATIC" "$STATIC.old"
-                mv "$STATIC.new" "$STATIC"
-                rm -rf "$STATIC.old"
+                # --delete removes files the new build dropped; writing in
+                # place keeps the gateway's bind mount valid.
+                rsync -a --delete "$STATIC.new/" "$STATIC/"
+                rm -rf "$STATIC.new"
                 echo "Published $(find "$STATIC" -name '*.html' | wc -l) pages to $STATIC."
                 docker image prune -f
                 docker ps --filter "name=$CONTAINER"
