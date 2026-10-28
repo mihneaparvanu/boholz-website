@@ -1,4 +1,4 @@
-import type { CategorySlug } from "../categories/categories.types";
+import type { Category } from "../categories/categories.types";
 import type { AttachedImage, FloorPlan } from "../media/image.types";
 
 export type HouseModel = {
@@ -10,8 +10,8 @@ export type HouseModel = {
   price: number | null;
   roofPitch: number | null;
   isFeatured: boolean;
-  categorySlug: CategorySlug;
-  floorCount: string | null;
+  category: Category;
+  floorCount: number | null;
   roofType: string | null;
   kniestock: number | null;
   netFloorAreaDin: number | null;

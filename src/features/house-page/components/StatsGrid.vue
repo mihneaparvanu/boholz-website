@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { Scan } from "lucide-vue-next";
 import type { DisplayItemConfig } from "./house-page.types";
-import type { HouseModelRecord } from "@/domain/house-models/houseModels.types.ts";
+import type { HouseModel } from "@/domain/house-models/houseModels.types.ts";
 import StatCard from "./StatCard.vue";
 import { formatSquareMeters } from "@/lib/format";
 
 const props = defineProps<{
-  model: HouseModelRecord;
+  model: HouseModel;
 }>();
 
 // Per client (2026-05): hide Schlafzimmer / Zimmer / Badezimmer from the

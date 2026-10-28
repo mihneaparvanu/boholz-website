@@ -4,7 +4,7 @@ import { Motion, AnimatePresence } from "motion-v";
 import { ChevronDown } from "lucide-vue-next";
 import type { NavLink } from "../../nav.types";
 import type { ModelCategory } from "@/domain/categories/categories.types";
-import type { Location } from "@/domain/locations/locations.types";
+import type { Place } from "@/domain/locations/locations.types";
 import { ROUTES } from "@/features/navigation/routes";
 import NavbarDrop from "../NavbarDrop.vue";
 
@@ -15,7 +15,7 @@ const props = defineProps<{
       `categories` and `showhouses` alongside. */
   enableDropdown?: boolean;
   categories?: ModelCategory[];
-  showhouses?: Location[];
+  showhouses?: Place[];
 }>();
 
 /* One drop is open at a time. The string identifies which route's panel

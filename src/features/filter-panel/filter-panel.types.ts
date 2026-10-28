@@ -1,4 +1,4 @@
-import type { HouseModelRecord } from "@/domain/house-models/houseModels.types";
+import type { HouseModel } from "@/domain/house-models/houseModels.types";
 
 // Sorting
 export type SortDirection = "asc" | "desc";
@@ -6,7 +6,7 @@ export type SortDirection = "asc" | "desc";
 export interface SortField {
   value: string;
   label: string;
-  resolve: (m: HouseModelRecord) => string | number | null;
+  resolve: (m: HouseModel) => string | number | null;
 }
 export interface SortOption extends SortField {
   direction: SortDirection;
@@ -23,7 +23,7 @@ export type BooleanFilter = {
   id: string;
   kind: "boolean";
   label: string;
-  resolve: (m: HouseModelRecord) => boolean | null;
+  resolve: (m: HouseModel) => boolean | null;
 };
 
 export type EnumFilter = {
@@ -31,7 +31,7 @@ export type EnumFilter = {
   kind: "enum";
   label: string;
   options: string[];
-  resolve: (m: HouseModelRecord) => string | null;
+  resolve: (m: HouseModel) => string | null;
 };
 
 export type CountFilter = {
@@ -39,7 +39,7 @@ export type CountFilter = {
   kind: "count";
   label: string;
   values: number[];
-  resolve: (m: HouseModelRecord) => number | null;
+  resolve: (m: HouseModel) => number | null;
 };
 
 export type ThresholdFilter = {
@@ -50,7 +50,7 @@ export type ThresholdFilter = {
   // human-readable label ("<150") without needing range encoding.
   options: Array<{
     label: string;
-    predicate: (m: HouseModelRecord) => boolean;
+    predicate: (m: HouseModel) => boolean;
   }>;
 };
 

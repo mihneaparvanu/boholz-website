@@ -1,29 +1,56 @@
 import "./_bare-paths";
 
-import { CATEGORY_ORDER, getModels, type CategorySlug } from "@/db/loaders";
-import type { HouseModel } from "@/db/models";
-import type {
-  HouseModelRecord,
-  ModelSpecs,
-} from "@/domain/house-models/houseModels.types";
+import { getModels } from "@/db/loaders";
+import type { HouseModel as ModelRow } from "@/db/models";
+import type { HouseModel } from "@/domain/house-models/houseModels.types";
 
+import { toAttachedImage } from "./attached-image";
+import { categoryKey } from "./category-keys";
 import { exportEntity } from "./export-entity";
+import { toNumber } from "./numeric";
 
-// `s is CategorySlug` = if this returns true, treat s as one of the real
-// category slugs. `.some` rather than `.includes` so no cast is needed.
-const isCategorySlug = (s: string): s is CategorySlug =>
-  CATEGORY_ORDER.some((c) => c === s);
+// Everything on HouseModel that comes from the house_details row. Omit rather
+// than Pick, so a column added to house_details shows up here and forces
+// NO_SPECS below to grow with it.
+type Specs = Omit<
+  HouseModel,
+  | "slug"
+  | "title"
+  | "modelCode"
+  | "description"
+  | "livingArea"
+  | "price"
+  | "roofPitch"
+  | "isFeatured"
+  | "category"
+  | "media"
+  | "floors"
+>;
 
 // The details row's id IS the model's id — it is how the two rows were
 // joined, so it carries no information once the fields sit on the model.
-const stripId = (d: NonNullable<HouseModel["details"]>): ModelSpecs => {
-  const { id, ...rest } = d;
-  return rest;
-};
+const toSpecs = (d: NonNullable<ModelRow["details"]>): Specs => ({
+  floorCount: toNumber(d.floorCount),
+  roofType: d.roofType,
+  kniestock: d.kniestock,
+  netFloorAreaDin: toNumber(d.netFloorAreaDin),
+  totalLivingAreaWoflv: toNumber(d.totalLivingAreaWoflv),
+  extensionDescription: d.extensionDescription,
+  allowsGrannyFlat: d.allowsGrannyFlat,
+  levelCount: d.levelCount,
+  bedroomCount: d.bedroomCount,
+  bathroomCount: d.bathroomCount,
+  familiesCount: d.familiesCount,
+  width: toNumber(d.width),
+  length: toNumber(d.length),
+  height: toNumber(d.height),
+  hasGarage: d.hasGarage,
+  isBarrierFree: d.isBarrierFree,
+  hasChildrenRoom: d.hasChildrenRoom,
+});
 
-// Two of the 32 models have no details row. The annotation is what forces
-// this list to stay complete when a column is added to house_details.
-const NO_SPECS: ModelSpecs = {
+// Two of the 32 models have no details row.
+const NO_SPECS: Specs = {
   floorCount: null,
   roofType: null,
   kniestock: null,
@@ -48,14 +75,9 @@ const NO_SPECS: ModelSpecs = {
 const live = await getModels();
 const parked = await getModels({ hidden: true });
 
-const toRecord = (m: (typeof live)[number]): HouseModelRecord => {
+const toRecord = (m: (typeof live)[number]): HouseModel => {
   if (m.category === null) {
     throw new Error(`model "${m.slug}" has no category`);
-  }
-  if (!isCategorySlug(m.category.slug)) {
-    throw new Error(
-      `model "${m.slug}" sits in category "${m.category.slug}", which is not in CATEGORY_ORDER`,
-    );
   }
 
   return {
@@ -63,39 +85,39 @@ const toRecord = (m: (typeof live)[number]): HouseModelRecord => {
     title: m.title,
     modelCode: m.modelCode,
     description: m.description,
-    // numeric columns — Drizzle reports these as strings, not numbers
-    livingArea: m.livingArea,
-    price: m.price,
+    livingArea: toNumber(m.livingArea),
+    price: toNumber(m.price),
     roofPitch: m.roofPitch,
-    isFeatured: m.isFeatured,
-    categorySlug: m.category.slug,
+    isFeatured: m.isFeatured ?? false,
+    category: categoryKey(m.category.slug),
     // the 17 spec fields, flattened onto the model
-    ...(m.details === null ? NO_SPECS : stripId(m.details)),
-    media: m.media.map((mm) => ({
-      isHero: mm.isHero,
-      isThumbnail: mm.isThumbnail,
-      path: mm.media.path,
-      alt: mm.media.alt,
-      width: mm.media.width,
-      height: mm.media.height,
-      isAi: mm.media.isAi,
-    })),
-    floors: m.floors.map((f) => ({
-      title: f.title,
-      variant: f.variant,
-      path: f.media.path,
-      alt: f.media.alt,
-      width: f.media.width,
-      height: f.media.height,
-      isAi: f.media.isAi,
-    })),
+    ...(m.details === null ? NO_SPECS : toSpecs(m.details)),
+    media: m.media.map(toAttachedImage),
+    floors: m.floors.map((f) => {
+      // floor_media.title is nullable, but it is the tab label — a plan
+      // without one would render a blank tab.
+      if (f.title === null) {
+        throw new Error(`model "${m.slug}" has a floor plan with no title`);
+      }
+      return {
+        title: f.title,
+        variant: f.variant,
+        path: f.media.path,
+        alt: f.media.alt,
+        width: f.media.width,
+        height: f.media.height,
+        isAi: f.media.isAi,
+      };
+    }),
   };
 };
 
 await exportEntity({
   entity: "house-models",
+  fileName: "houseModels",
+  typesFile: "houseModels.types",
   exportName: "houseModels",
-  typeName: "HouseModelRecord",
+  typeName: "HouseModel",
   data: live.map(toRecord),
 });
 
@@ -105,9 +127,10 @@ await exportEntity({
 // parked house on the site. A list that does not contain them cannot.
 await exportEntity({
   entity: "house-models",
-  fileName: "house-models.parked",
+  fileName: "houseModels.parked",
+  typesFile: "houseModels.types",
   exportName: "parkedHouseModels",
-  typeName: "HouseModelRecord",
+  typeName: "HouseModel",
   data: parked.map(toRecord),
 });
 

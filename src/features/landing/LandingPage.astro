@@ -99,7 +99,7 @@ const filteredModels = allModels
   .filter((m) =>
     houses.categorySlugs === null
       ? true
-      : houses.categorySlugs.includes(m.categorySlug),
+      : houses.categorySlugs.includes(m.category),
   )
   .slice(0, houses.maxItems);
 

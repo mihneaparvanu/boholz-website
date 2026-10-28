@@ -14,9 +14,7 @@ import type {
   FilterOption,
   ThresholdFilter,
 } from "./filter-panel.types";
-import type { HouseModelRecord } from "@/domain/house-models/houseModels.types";
 import { categoryOf } from "@/domain/categories/categories.lookup";
-import { parseLivingArea } from "@/lib/parse-living-area";
 
 // ─── Sorting ───────────────────────────────────────────────────────────────
 // Spec: Wohnfläche + Name only. Preis is bestseller-only and not a meaningful
@@ -26,7 +24,7 @@ export const sortFields: SortField[] = [
   {
     value: "livingArea",
     label: "Fläche",
-    resolve: (m) => parseLivingArea(m.livingArea),
+    resolve: (m) => m.livingArea,
   },
   {
     value: "title",
@@ -56,6 +54,11 @@ export const sortOptions = generateSortOptions(sortFields);
 // ─── Filtering ─────────────────────────────────────────────────────────────
 // `id` is the dedup / URL key — keep it stable and unique across the array.
 
+// A missing figure never matches a band: a model with no floor count does
+// not belong under "bis 2".
+const atLeast = (v: number | null, min: number) => v != null && v >= min;
+const atMost = (v: number | null, max: number) => v != null && v <= max;
+
 /**
  * Wohnfläche — minimum bands ("ab N m²"). Selecting a band keeps every model
  * whose living area is that value or larger. Covers 115–1632 m² across the
@@ -66,34 +69,10 @@ const livingAreaThreshold: ThresholdFilter = {
   kind: "threshold",
   label: "Wohnfläche",
   options: [
-    {
-      label: "ab 130 m²",
-      predicate: (m) => {
-        const a = parseLivingArea(m.livingArea);
-        return a !== null && a >= 130;
-      },
-    },
-    {
-      label: "ab 150 m²",
-      predicate: (m) => {
-        const a = parseLivingArea(m.livingArea);
-        return a !== null && a >= 150;
-      },
-    },
-    {
-      label: "ab 170 m²",
-      predicate: (m) => {
-        const a = parseLivingArea(m.livingArea);
-        return a !== null && a >= 170;
-      },
-    },
-    {
-      label: "ab 200 m²",
-      predicate: (m) => {
-        const a = parseLivingArea(m.livingArea);
-        return a !== null && a >= 200;
-      },
-    },
+    { label: "ab 130 m²", predicate: (m) => atLeast(m.livingArea, 130) },
+    { label: "ab 150 m²", predicate: (m) => atLeast(m.livingArea, 150) },
+    { label: "ab 170 m²", predicate: (m) => atLeast(m.livingArea, 170) },
+    { label: "ab 200 m²", predicate: (m) => atLeast(m.livingArea, 200) },
   ],
 };
 
@@ -102,22 +81,15 @@ const livingAreaThreshold: ThresholdFilter = {
  * with that floor count or fewer, so "bis 1,5" includes the single-storey
  * (1) models too. Catalogue carries 1 / 1,5 / 2 / 3.
  */
-const floorCountAtMost = (m: HouseModelRecord, max: number): boolean => {
-  const fc = m.floorCount;
-  if (fc == null) return false;
-  const n = Number(fc);
-  return Number.isFinite(n) && n <= max;
-};
-
 const floors: ThresholdFilter = {
   id: "floorCount",
   kind: "threshold",
   label: "Geschosse",
   options: [
-    { label: "bis 1", predicate: (m) => floorCountAtMost(m, 1) },
-    { label: "bis 1,5", predicate: (m) => floorCountAtMost(m, 1.5) },
-    { label: "bis 2", predicate: (m) => floorCountAtMost(m, 2) },
-    { label: "bis 3", predicate: (m) => floorCountAtMost(m, 3) },
+    { label: "bis 1", predicate: (m) => atMost(m.floorCount, 1) },
+    { label: "bis 1,5", predicate: (m) => atMost(m.floorCount, 1.5) },
+    { label: "bis 2", predicate: (m) => atMost(m.floorCount, 2) },
+    { label: "bis 3", predicate: (m) => atMost(m.floorCount, 3) },
   ],
 };
 
@@ -147,25 +119,14 @@ const roofPitch: ThresholdFilter = {
   kind: "threshold",
   label: "Dachneigung",
   options: [
-    {
-      label: "≤22°",
-      predicate: (m) => m.roofPitch != null && Number(m.roofPitch) <= 22,
-    },
+    { label: "≤22°", predicate: (m) => atMost(m.roofPitch, 22) },
     {
       label: "25–35°",
-      predicate: (m) => {
-        if (m.roofPitch == null) return false;
-        const p = Number(m.roofPitch);
-        return p >= 25 && p <= 35;
-      },
+      predicate: (m) => atLeast(m.roofPitch, 25) && atMost(m.roofPitch, 35),
     },
     {
       label: "38–45°",
-      predicate: (m) => {
-        if (m.roofPitch == null) return false;
-        const p = Number(m.roofPitch);
-        return p >= 38 && p <= 45;
-      },
+      predicate: (m) => atLeast(m.roofPitch, 38) && atMost(m.roofPitch, 45),
     },
   ],
 };

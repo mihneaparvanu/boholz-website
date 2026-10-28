@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 import { Motion, AnimatePresence } from "motion-v";
 import { Star } from "lucide-vue-next";
 import type { ModelCategory } from "@/domain/categories/categories.types";
-import type { Location } from "@/domain/locations/locations.types";
+import type { Place } from "@/domain/locations/locations.types";
 import { ROUTES } from "@/features/navigation/routes";
 import { useCategoryGallery } from "@/lib/useCategoryGallery";
 import { isBestsellerCategory } from "@/lib/bestseller";
@@ -17,7 +17,7 @@ import {
 
 const props = defineProps<{
   categories: ModelCategory[];
-  showhouses: Location[];
+  showhouses: Place[];
 }>();
 
 const { selected, select, showcaseImage } = useCategoryGallery(
@@ -70,7 +70,7 @@ const showcaseHref = computed(
   () => hoveredExtraLink.value?.path ?? landingHref(selected.value.slug),
 );
 const showcaseKey = computed(
-  () => hoveredExtraLink.value?.path ?? selected.value.id,
+  () => hoveredExtraLink.value?.path ?? selected.value.category,
 );
 </script>
 

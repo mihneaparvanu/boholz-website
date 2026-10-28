@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { MglMarker } from "@indoorequal/vue-maplibre-gl";
-import type { Location } from "@/domain/locations/locations.types";
+import type { Place } from "@/domain/locations/locations.types";
 import { House, Building2 } from "lucide-vue-next";
 
-const props = defineProps<{ location: Location; active: boolean }>();
+/** A place with coordinates — the only kind that can be plotted. */
+export type LocatedPlace = Place & { lat: number; lng: number };
+
+const props = defineProps<{ location: LocatedPlace; active: boolean }>();
 defineEmits<{ select: [] }>();
 
-// Drizzle returns numeric as string; <MglMarker> wants [lng, lat] numbers.
+// <MglMarker> wants [lng, lat], in that order.
 const coordinates = computed<[number, number]>(() => [
-  Number(props.location.lng),
-  Number(props.location.lat),
+  props.location.lng,
+  props.location.lat,
 ]);
 </script>
 

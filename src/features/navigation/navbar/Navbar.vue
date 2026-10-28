@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import type { ModelCategory } from "@/domain/categories/categories.types";
-import type { Location } from "@/domain/locations/locations.types";
+import type { Place } from "@/domain/locations/locations.types";
 
 import NavbarDesktopTransparent from "./NavbarDesktopTransparent.vue";
 import NavbarDesktopSolid from "./NavbarDesktopSolid.vue";
@@ -13,7 +13,7 @@ import { usePathname } from "@/features/navigation/navbar/usePathname";
 
 const props = defineProps<{
   categories: ModelCategory[];
-  showhouses: Location[];
+  showhouses: Place[];
 }>();
 
 const isHero = useIsHeroPage();

@@ -1,4 +1,4 @@
-import type { HouseModelRecord } from "./houseModels.types";
+import type { HouseModel } from "./houseModels.types";
 
 export const parkedHouseModels = [
   {
@@ -7,32 +7,31 @@ export const parkedHouseModels = [
     modelCode: "22-117",
     description:
       "Urlaubsfeeling im eigenen Zuhause. Wohnen, Essen und Kochen auf 42 m² machen diesen Entwurf mit seiner raffinierten Aufteilung so besonders. Teilweise abgegrenzte Räume wie Esszimmer oder auch Küche geben dem Hausentwurf das gewisse Etwas. Ein großes Schlafzimmer mit Ankleidebereich wie auch ein weiteres Kinderzimmer oder funktionales Gäste- oder Arbeitszimmer finden unter diesem Walmdach ebenfalls einen Platz. Einen direkter Zugang in den Hauswirtschaftsraum bietet die angrenzende Garage mit zusätzlichem Abstellraum. Alles auf einer Ebene – barrierefrei und komfortabel!\n\nBeim Bungalow 22-117 passt sich das Haus Ihrem Leben an – heute wie morgen. Der ebenerdige Grundriss ist ideal für Paare, Familien und alle, die vorausschauend bauen möchten. Jeder Entwurf ist ein Ausgangspunkt, den wir an Ihr Grundstück und Ihren Alltag anpassen. So wird das Bungalow 22-117 ein Zuhause für viele Lebensphasen – in Holzbauweise bei unserem Partner Keitel-Haus gefertigt.",
-    livingArea: "117",
+    livingArea: 117,
     price: null,
     roofPitch: 22,
     isFeatured: false,
-    categorySlug: "bungalow",
-    floorCount: "1",
+    category: "bungalow",
+    floorCount: 1,
     roofType: "Walmdach",
     kniestock: null,
-    netFloorAreaDin: "116.58",
-    totalLivingAreaWoflv: "111.74",
+    netFloorAreaDin: 116.58,
+    totalLivingAreaWoflv: 111.74,
     extensionDescription: null,
     allowsGrannyFlat: false,
     levelCount: null,
     bedroomCount: 2,
     bathroomCount: 2,
     familiesCount: 1,
-    width: "11.7",
-    length: "12.68",
-    height: "5.48",
+    width: 11.7,
+    length: 12.68,
+    height: 5.48,
     hasGarage: false,
     isBarrierFree: true,
     hasChildrenRoom: false,
     media: [
       {
         isHero: true,
-        isThumbnail: true,
         path: "/images/models/bungalow/22-117/gallery/bungalow-22-117-gallery-bu-117-22-0.webp",
         alt: null,
         width: 2400,
@@ -41,7 +40,6 @@ export const parkedHouseModels = [
       },
       {
         isHero: false,
-        isThumbnail: false,
         path: "/images/stock/bungalow-slider/p-adobestock-622134419.webp",
         alt: null,
         width: 2400,
@@ -50,7 +48,6 @@ export const parkedHouseModels = [
       },
       {
         isHero: false,
-        isThumbnail: false,
         path: "/images/stock/lifestyle/shutterstock-485712322.webp",
         alt: "Zeitgemäßes Fertighaus mit Garten",
         width: 2400,
@@ -76,16 +73,16 @@ export const parkedHouseModels = [
     modelCode: "21-349-225",
     description:
       "Dieses moderne Pultdachhaus bietet auf drei Vollgeschossen großzügigen Wohnraum und einen wunderbaren Ausblick in die Natur.\n\nEin Pultdachhaus setzt mit seiner geneigten Dachfläche einen modernen, markanten Akzent. Das Pultdachhaus 21-349-225 verbindet klare Architektur mit viel Tageslicht und einem offenen Raumgefühl. Grundriss, Dachneigung und Fassade stimmen wir gemeinsam mit Ihnen und dem Bebauungsplan ab. Gefertigt wird das Pultdachhaus 21-349-225 in Holzbauweise bei unserem Partner Keitel-Haus und auf Wunsch schlüsselfertig übergeben.",
-    livingArea: "349",
+    livingArea: 349,
     price: null,
     roofPitch: 21,
     isFeatured: false,
-    categorySlug: "pultdachhaus",
-    floorCount: "3",
+    category: "shedRoofHouse",
+    floorCount: 3,
     roofType: "Pultdach",
     kniestock: 225,
-    netFloorAreaDin: "348.66",
-    totalLivingAreaWoflv: "280.6",
+    netFloorAreaDin: 348.66,
+    totalLivingAreaWoflv: 280.6,
     extensionDescription: null,
     allowsGrannyFlat: true,
     levelCount: null,
@@ -101,7 +98,6 @@ export const parkedHouseModels = [
     media: [
       {
         isHero: true,
-        isThumbnail: true,
         path: "/images/models/pultdachhaus/21-349-225/gallery/pultdachhaus-21-349-225-gallery-pdh-elw-349-21-225.webp",
         alt: "Pultdachhaus 21-349-225",
         width: 2400,
@@ -110,7 +106,6 @@ export const parkedHouseModels = [
       },
       {
         isHero: false,
-        isThumbnail: false,
         path: "/images/stock/pultdachhaeuser-slider/115957-02-xxl-cymk.webp",
         alt: null,
         width: 1024,
@@ -119,7 +114,6 @@ export const parkedHouseModels = [
       },
       {
         isHero: false,
-        isThumbnail: false,
         path: "/images/stock/lifestyle/shutterstock-1858146868.webp",
         alt: "Pultdachhaus mit großer Fensterfront",
         width: 2400,
@@ -163,16 +157,16 @@ export const parkedHouseModels = [
     modelCode: "22-141-190",
     description:
       "Ein durchdachtes Konzept. Dieser Hausentwurf gibt Ihnen die Möglichkeit unter Schrägen zu wohnen, ohne sich den Kopf anzuschlagen. Der besonders hohe Kniestock ermöglicht genug Freiraum, um sich bei der Möblierung auszutoben. Eine sich vom Wohn- und Essbereich abgrenzende Küche ist in diesem Hausentwurf eingeplant und schafft damit einen ruhigen Rückzugsort - egal, ob man sich dem nächsten Michelin-Stern zuwendet oder im angrenzenden Wohnzimmer seinen Lieblingsfilm ansieht. Die bodentiefen Fenster laden dazu ein, die Natur ein Stück weiter mit ins Haus zu lassen und bieten eine wunderbare Symbiose zur umliegenden Natur. Im Obergeschoss befindet sich ein überdurchschnittlich großes Elternschlafzimmer mit angrenzender Ankleide und gegenüberliegenden Kinderzimmern für mehr Privatsphäre. Ein lichtdurchflutetes großes Badezimmer lädt zum Verweilen ein. Eine auf Wunsch erhältliche Pergola oder ein Carport verleihen dem Haus äußerlich einen ganz neuen Charakter.\n\nDas Einfamilienhaus 22-141-190 entsteht in moderner Holzbauweise: eine Holz-Aktiv-Wand mit Holzfaserdämmplatte und klar ausgewiesenen Dämmwerten bildet die Gebäudehülle. Auf Wunsch planen wir als Effizienzhaus 40, optional mit QNG-Zertifizierung. Gefertigt werden die Bauteile bei unserem Partner Keitel-Haus in Rot am See-Brettheim und auf Ihrer Baustelle montiert. Beim Einfamilienhaus 22-141-190 stimmen wir Ausstattung und Haustechnik in der Bemusterung gemeinsam mit Ihnen ab.",
-    livingArea: "141",
+    livingArea: 141,
     price: null,
     roofPitch: 22,
     isFeatured: false,
-    categorySlug: "einfamilienhaus",
-    floorCount: "1.5",
+    category: "oneFamilyHouse",
+    floorCount: 1.5,
     roofType: "Satteldach",
     kniestock: 190,
-    netFloorAreaDin: "141.56",
-    totalLivingAreaWoflv: "132.49",
+    netFloorAreaDin: 141.56,
+    totalLivingAreaWoflv: 132.49,
     extensionDescription: null,
     allowsGrannyFlat: false,
     levelCount: null,
@@ -188,7 +182,6 @@ export const parkedHouseModels = [
     media: [
       {
         isHero: true,
-        isThumbnail: true,
         path: "/images/models/einfamilienhaus/22-141-190/gallery/einfamilienhaus-22-141-190-gallery-efh-141-22-190-v1.webp",
         alt: null,
         width: 2400,
@@ -197,7 +190,6 @@ export const parkedHouseModels = [
       },
       {
         isHero: false,
-        isThumbnail: false,
         path: "/images/stock/einfamilienhaeuser-slider/p-adobestock-622134419.webp",
         alt: null,
         width: 2400,
@@ -232,16 +224,16 @@ export const parkedHouseModels = [
     modelCode: "0-173-0",
     description:
       "Das Kubus 0-173 entsteht in moderner Holzbauweise mit klar beschriebenem Wandaufbau. Große Fensterflächen und offene Grundrisse bringen viel Licht in die Räume. Gefertigt werden die Bauteile bei unserem Partner Keitel-Haus in Rot am See-Brettheim und auf Ihrer Baustelle montiert. Ausstattung und Haustechnik des Kubus 0-173 stimmen wir gemeinsam mit Ihnen ab.",
-    livingArea: "173",
+    livingArea: 173,
     price: null,
     roofPitch: 22,
     isFeatured: false,
-    categorySlug: "kubus",
-    floorCount: "2",
+    category: "cube",
+    floorCount: 2,
     roofType: "Flachdach",
     kniestock: null,
-    netFloorAreaDin: "172.58",
-    totalLivingAreaWoflv: "170.85",
+    netFloorAreaDin: 172.58,
+    totalLivingAreaWoflv: 170.85,
     extensionDescription: null,
     allowsGrannyFlat: true,
     levelCount: null,
@@ -257,7 +249,6 @@ export const parkedHouseModels = [
     media: [
       {
         isHero: true,
-        isThumbnail: true,
         path: "/images/models/kubus/0-173-0/gallery/kubus-0-173-0-gallery-hero.webp",
         alt: "Kubus 0-173 Außenansicht",
         width: 2400,
@@ -296,8 +287,8 @@ export const parkedHouseModels = [
     price: null,
     roofPitch: null,
     isFeatured: false,
-    categorySlug: "mehrfamilienhaus",
-    floorCount: "3",
+    category: "multiFamilyHouse",
+    floorCount: 3,
     roofType: "Satteldach",
     kniestock: null,
     netFloorAreaDin: null,
@@ -317,7 +308,6 @@ export const parkedHouseModels = [
     media: [
       {
         isHero: true,
-        isThumbnail: true,
         path: "/images/models/mehrfamilienhaus/dombuhl/dombuhl-10-familienhaus.webp",
         alt: "10-Familienwohnhaus Dombühl",
         width: 2400,
@@ -365,8 +355,8 @@ export const parkedHouseModels = [
     price: null,
     roofPitch: null,
     isFeatured: false,
-    categorySlug: "mehrfamilienhaus",
-    floorCount: "3",
+    category: "multiFamilyHouse",
+    floorCount: 3,
     roofType: "Satteldach",
     kniestock: null,
     netFloorAreaDin: null,
@@ -386,7 +376,6 @@ export const parkedHouseModels = [
     media: [
       {
         isHero: true,
-        isThumbnail: true,
         path: "/images/models/mehrfamilienhaus/satteldorf/satteldorf-12-familienhaus.webp",
         alt: "12-Familienwohnhaus Satteldorf",
         width: 2400,
@@ -430,16 +419,16 @@ export const parkedHouseModels = [
     modelCode: "28-264-160",
     description:
       "Alles unter einem Dach – mit unserem Generationenkonzept! Mit seinen beiden Wohnungen im Ober- und Erdgeschoss ist dieser Hausentwurf auf alles vorbereitet, was das Leben so bietet. Mit einer sich über zwei Geschosse erstreckenden Hauptwohnung glänzt dieser Grundriss vor allem mit seiner großzügigen Aufteilung. Auf vollen 44 m² Wohnfläche befinden sich die offene Küche wie auch der Wohn- und Essbereich. Durch die bodentiefen Fenster werden die hellen Räume mit Licht durchflutet und geben einen schönen Blick ins Grüne. Der Elternbereich im Obergeschoss überzeugt vor allem durch das eigene Badezimmer wie auch das Ankleidezimmer. Ausgestattet mit zwei großen Kinderzimmern mit eigenem Badezimmer wird dieser Hausentwurf vollends abgerundet.\n\nBeim Generationenhaus 28-264-160 entsteht Nähe, ohne auf Eigenständigkeit zu verzichten. Zwei Wohnbereiche unter einem Dach schaffen Raum für mehrere Generationen oder eine vermietete Einheit. Den Entwurf passen wir gemeinsam mit Ihnen an Ihr Grundstück und Ihren Alltag an. So wird das Generationenhaus 28-264-160 ein Zuhause für die ganze Familie – in Holzbauweise bei unserem Partner Keitel-Haus gefertigt.",
-    livingArea: "264",
+    livingArea: 264,
     price: null,
     roofPitch: 28,
     isFeatured: false,
-    categorySlug: "generationenhaus",
-    floorCount: "1.5",
+    category: "generationHouse",
+    floorCount: 1.5,
     roofType: "Satteldach",
     kniestock: 160,
-    netFloorAreaDin: "263.89",
-    totalLivingAreaWoflv: "244.71",
+    netFloorAreaDin: 263.89,
+    totalLivingAreaWoflv: 244.71,
     extensionDescription: null,
     allowsGrannyFlat: true,
     levelCount: null,
@@ -455,7 +444,6 @@ export const parkedHouseModels = [
     media: [
       {
         isHero: true,
-        isThumbnail: true,
         path: "/images/models/generationenhaus/28-264-160/gallery/generationenhaus-28-264-160-gallery-hero.webp",
         alt: null,
         width: 2400,
@@ -499,16 +487,16 @@ export const parkedHouseModels = [
     modelCode: "18-140",
     description:
       "Ein eleganter Auftritt mit zwei Vollgeschossen. Das bietet unser Stadtvillen-Entwurf mit Walmdach für Sie. Durch sein großes und offenes Wohnerlebnis bietet dieser Hausentwurf ein großzügiges Wohngefühl und dennoch genug Platz für ein Arbeits- oder Gästezimmer. Ein zurückgesetzter Balkon fungiert zeitgleich als Überdachung für den Hauseingang. Auf der gegenüberliegenden Hausseite wird dieser durch einen französischen Balkon ersetzt und schafft ein zusätzliches Naturgefühl. Privatsphäre erfahren die Eltern im Obergeschoss mit einem großzügigen Elternbereich. Das angrenzende Badezimmer wie auch das Ankleidezimmer bieten das Rund-um-Sorglos-Paket für alle, die etwas mehr Luxus wünschen. Auch für die Kinder wurde mitgedacht. Von beiden Kinderzimmern aus zugänglich befindet sich ein eigenes Badezimmer.\n\nBeim Stadtvilla 18-140 steht großzügiges Wohnen auf zwei Vollgeschossen im Mittelpunkt. Der Entwurf lässt Raum für Familie, Homeoffice und Gäste – und wird gemeinsam mit Ihnen an Ihr Grundstück angepasst. Von der ersten Skizze bis zur Schlüsselübergabe begleiten wir Sie persönlich. So wird das Stadtvilla 18-140 ein repräsentatives Zuhause in Holzbauweise – gefertigt bei unserem Partner Keitel-Haus.",
-    livingArea: "140",
+    livingArea: 140,
     price: null,
     roofPitch: 18,
     isFeatured: false,
-    categorySlug: "stadtvilla",
-    floorCount: "2",
+    category: "cityVilla",
+    floorCount: 2,
     roofType: "Walmdach",
     kniestock: null,
-    netFloorAreaDin: "139.9",
-    totalLivingAreaWoflv: "136.25",
+    netFloorAreaDin: 139.9,
+    totalLivingAreaWoflv: 136.25,
     extensionDescription: null,
     allowsGrannyFlat: false,
     levelCount: null,
@@ -524,7 +512,6 @@ export const parkedHouseModels = [
     media: [
       {
         isHero: true,
-        isThumbnail: true,
         path: "/images/models/stadtvilla/18-140/gallery/stadtvilla-18-140-gallery-sv-140-18-0.webp",
         alt: null,
         width: 2400,
@@ -533,7 +520,6 @@ export const parkedHouseModels = [
       },
       {
         isHero: false,
-        isThumbnail: false,
         path: "/images/stock/lifestyle/adobestock-193248722.webp",
         alt: "Stadtvilla mit gepflegtem Vorgarten",
         width: 2400,
@@ -542,7 +528,6 @@ export const parkedHouseModels = [
       },
       {
         isHero: false,
-        isThumbnail: false,
         path: "/images/stock/lifestyle/shutterstock-1296270274.webp",
         alt: "Panoramablick auf Stadtvilla",
         width: 2400,
@@ -577,16 +562,16 @@ export const parkedHouseModels = [
     modelCode: "22-173",
     description:
       "Einfach zum Verlieben. Durch seine vielseitige Nutzung dank der eingeplanten Einliegerwohnung gibt dieser Hausentwurf mehrere Wohnmöglichkeiten hervor. Mit einer Grundwohnfläche von 125 m² bietet die Hauptwohnung mit zwei Kinderzimmern und einem großzügigen Elternbereich sowie einem weiteren Raum für ein eigenes Homeoffice, einen Hobbyraum oder ein Gästezimmer jede Menge Raum für die täglichen Bedürfnisse. Durch seine optional zur Straßenseite hin farbig gestaltete Außenfassade setzt diese Stadtvilla auch optisch einen klaren Akzent.\n\nBeim Stadtvilla 22-173 steht großzügiges Wohnen auf zwei Vollgeschossen im Mittelpunkt. Der Entwurf lässt Raum für Familie, Homeoffice und Gäste – und wird gemeinsam mit Ihnen an Ihr Grundstück angepasst. Von der ersten Skizze bis zur Schlüsselübergabe begleiten wir Sie persönlich. So wird das Stadtvilla 22-173 ein repräsentatives Zuhause in Holzbauweise – gefertigt bei unserem Partner Keitel-Haus.",
-    livingArea: "173",
+    livingArea: 173,
     price: null,
     roofPitch: 22,
     isFeatured: false,
-    categorySlug: "stadtvilla",
-    floorCount: "2",
+    category: "cityVilla",
+    floorCount: 2,
     roofType: "Walmdach",
     kniestock: null,
-    netFloorAreaDin: "172.58",
-    totalLivingAreaWoflv: "170.85",
+    netFloorAreaDin: 172.58,
+    totalLivingAreaWoflv: 170.85,
     extensionDescription: null,
     allowsGrannyFlat: true,
     levelCount: null,
@@ -602,7 +587,6 @@ export const parkedHouseModels = [
     media: [
       {
         isHero: true,
-        isThumbnail: true,
         path: "/images/models/stadtvilla/22-173/gallery/stadtvilla-22-173-gallery-sv-elw-173-22-0.webp",
         alt: null,
         width: 2400,
@@ -611,7 +595,6 @@ export const parkedHouseModels = [
       },
       {
         isHero: false,
-        isThumbnail: false,
         path: "/images/stock/lifestyle/adobestock-193248722.webp",
         alt: "Stadtvilla mit gepflegtem Vorgarten",
         width: 2400,
@@ -620,7 +603,6 @@ export const parkedHouseModels = [
       },
       {
         isHero: false,
-        isThumbnail: false,
         path: "/images/stock/lifestyle/shutterstock-1296270274.webp",
         alt: "Panoramablick auf Stadtvilla",
         width: 2400,
@@ -658,4 +640,4 @@ export const parkedHouseModels = [
       },
     ],
   },
-] satisfies HouseModelRecord[];
+] satisfies HouseModel[];

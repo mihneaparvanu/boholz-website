@@ -9,7 +9,8 @@ export type Category =
   | "generationHouse"
   | "twoFamilyHouse"
   | "multiFamilyHouse"
-  | "cube";
+  | "cube"
+  | "shedRoofHouse";
 
 export type ModelCategory = {
   category: Category;

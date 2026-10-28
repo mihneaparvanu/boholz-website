@@ -46,7 +46,7 @@ const displayModels = computed(() => {
   if (isBestsellerCategory(selected.value)) {
     return getBestsellerModels(props.models);
   }
-  return props.models.filter((m) => m.categorySlug === selected.value?.slug);
+  return props.models.filter((m) => m.category === selected.value?.category);
 });
 
 const trackRef = ref<HTMLElement | null>(null);
@@ -145,7 +145,7 @@ const nextDisabled = computed(() => !canNext.value);
           :image="m.image"
           :image-alt="m.imageAlt"
           :specs="m.specs"
-          :category-slug="m.categorySlug"
+          :category="m.category"
           :is-featured="m.isFeatured"
           :price-hint="m.priceHint"
           :price-caveats="m.priceCaveats"

@@ -33,7 +33,8 @@ import {
   Coins,
   Scan,
 } from "lucide-vue-next";
-import type { HouseModelRecord } from "@/domain/house-models/houseModels.types.ts";
+import type { HouseModel } from "@/domain/house-models/houseModels.types";
+import { categoryOf } from "@/domain/categories/categories.lookup";
 import { isBestsellerCategory } from "@/lib/bestseller";
 import {
   formatBoolean,
@@ -44,7 +45,7 @@ import DetailRow from "./DetailRow.vue";
 import RoofCapsule from "@/features/model-overview/components/RoofCapsule.vue";
 
 const props = defineProps<{
-  model: HouseModelRecord;
+  model: HouseModel;
 }>();
 
 const m = props.model;
@@ -59,19 +60,16 @@ const livingArea = computed<string>(() =>
 );
 
 /** Etagen — Geschosse stored as numeric (1, 1.5, 2). German comma display. */
-const floors = computed<string | null>(() => {
-  const v = d?.floorCount;
-  if (v == null) return null;
-  const n = Number(v);
-  return Number.isFinite(n) ? n.toString().replace(".", ",") : null;
-});
+const floors = computed<string | null>(() =>
+  d?.floorCount != null ? d.floorCount.toString().replace(".", ",") : null,
+);
 
 /** Roof — capsule renders Dachform + (optional) Dachneigung. */
 const roof = computed<{ type: string; pitch: number | null } | null>(() => {
   if (!d?.roofType) return null;
   return {
     type: d.roofType,
-    pitch: m.roofPitch != null ? Number(m.roofPitch) : null,
+    pitch: m.roofPitch,
   };
 });
 
@@ -81,13 +79,13 @@ const kniestock = computed<string | null>(() =>
 
 const dinArea = computed<string | null>(() =>
   d?.netFloorAreaDin != null
-    ? `${Number(d.netFloorAreaDin).toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} m²`
+    ? `${d.netFloorAreaDin.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} m²`
     : null,
 );
 
 const woflvArea = computed<string | null>(() =>
   d?.totalLivingAreaWoflv != null
-    ? `${Number(d.totalLivingAreaWoflv).toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} m²`
+    ? `${d.totalLivingAreaWoflv.toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} m²`
     : null,
 );
 
@@ -102,7 +100,7 @@ const granny = computed<string | null>(() =>
 
 /** Preis — only on bestseller-category rows per spec. */
 const showPrice = computed(
-  () => isBestsellerCategory({ slug: m.categorySlug }) && m.price != null,
+  () => isBestsellerCategory(categoryOf(m)) && m.price != null,
 );
 const price = computed<string | null>(() =>
   showPrice.value && m.price != null ? formatCurrency(m.price) : null,

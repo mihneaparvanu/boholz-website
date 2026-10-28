@@ -1,5 +1,5 @@
-import type { HouseModelRecord } from "@/domain/house-models/houseModels.types";
+import type { HouseModel } from "@/domain/house-models/houseModels.types";
 
-export type HeroSlide = Pick<HouseModelRecord, "slug" | "title"> & {
+export type HeroSlide = Pick<HouseModel, "slug" | "title"> & {
   heroImgURL: string | null;
 };

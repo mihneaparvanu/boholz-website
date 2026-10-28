@@ -28,11 +28,11 @@ export const parkedNews = [
     publishedAt: "2024-11-27T10:00:52.000Z",
     media: [
       {
+        isHero: true,
         path: "/images/news/april-2026-stelltermin-in-steinheim-a-d-murr/cover.webp",
         alt: "Stelltermin Steinheim",
-        height: 440,
         width: 600,
-        isHero: true,
+        height: 440,
         isAi: false,
       },
     ],
@@ -46,11 +46,11 @@ export const parkedNews = [
     publishedAt: "2026-05-02T12:00:00.000Z",
     media: [
       {
+        isHero: true,
         path: "/images/news/mai-samstag-02-05-2026-werksfuehrung-bei-keitel-haus/cover.webp",
         alt: "Werksführung bei Keitel-Haus",
-        height: 3000,
         width: 4000,
-        isHero: true,
+        height: 3000,
         isAi: false,
       },
     ],

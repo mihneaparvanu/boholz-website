@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ModelCategory } from "@/domain/categories/categories.types";
-import type { Location } from "@/domain/locations/locations.types";
+import type { Place } from "@/domain/locations/locations.types";
 
 import NavbarLogo from "./parts/NavbarLogo.vue";
 import NavbarLinks from "./parts/NavbarLinks.vue";
@@ -10,7 +10,7 @@ import { ROUTES } from "@/features/navigation/routes";
 
 defineProps<{
   categories: ModelCategory[];
-  showhouses: Location[];
+  showhouses: Place[];
   currentPath: string;
 }>();
 </script>

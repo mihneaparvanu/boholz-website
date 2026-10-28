@@ -11,8 +11,8 @@ export type Place = {
   postalCode: string;
   city: string;
   country: string;
-  lat: string | null;
-  lng: string | null;
+  lat: number | null;
+  lng: number | null;
   phone: string | null;
   email: string | null;
   agents: AgentSlug[];

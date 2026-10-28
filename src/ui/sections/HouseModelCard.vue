@@ -14,6 +14,7 @@
  */
 import { computed } from "vue";
 import { ArrowUpRight, Ruler, Home as HomeIcon, Zap } from "lucide-vue-next";
+import type { Category } from "@/domain/categories/categories.types";
 
 export type HouseModelSpec = {
   /** e.g. "134 m²", "4 Zimmer", "KfW 40" — kept as a pre-formatted string so
@@ -38,7 +39,7 @@ export type HouseModelCardProps = {
   /** Spec chips — up to 3, rendered inline with hairline separators. */
   specs: HouseModelSpec[];
 
-  categorySlug: string;
+  category: Category;
   /** True if the model is marked `isFeatured` in the DB — used by the
    *  carousel to resolve the virtual "Bestseller" category. */
   isFeatured?: boolean;

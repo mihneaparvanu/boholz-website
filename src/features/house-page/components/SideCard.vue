@@ -2,13 +2,13 @@
 import { computed } from "vue";
 import { House, Check } from "lucide-vue-next";
 import Button from "@/ui/primitives/Button.vue";
-import type { HouseModelRecord } from "@/domain/house-models/houseModels.types";
+import type { HouseModel } from "@/domain/house-models/houseModels.types";
 import { formatCurrency } from "@/lib/format";
 import { ROUTES } from "@/features/navigation/routes";
 import { categoryOf } from "@/domain/categories/categories.lookup";
 
 const props = defineProps<{
-  model: HouseModelRecord;
+  model: HouseModel;
   lede: string | null;
 }>();
 

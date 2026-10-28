@@ -22,6 +22,7 @@ import type {
 } from "@/ui/sections/TestimonialBand.astro";
 import type { FAQItem } from "@/ui/primitives/FAQAccordion.vue";
 import type { TrustBadge } from "@/features/trust/trust-badges.content";
+import type { Category } from "@/domain/categories/categories.types";
 
 /* ── Re-exports — content files import everything from this module ─── */
 export type { Benefit, AudienceItem, Testimonial, CredentialBadge, TrustBadge };
@@ -49,11 +50,11 @@ export interface LandingHero {
    */
   imageFallbackPath: string;
   /**
-   * Slug of the house category whose featured hero photo should be tried
-   * first. The page frontmatter looks up an isFeatured model in this
-   * category and uses its `isHero` media if present.
+   * The house category whose featured hero photo should be tried first. The
+   * page frontmatter looks up an isFeatured model in this category and uses
+   * its `isHero` media if present.
    */
-  preferredCategorySlug: string;
+  preferredCategorySlug: Category;
   /** Primary CTA — pinned to the page's accent action. */
   primaryCta: LandingCta;
   /** Secondary CTA — paired with the primary. */
@@ -99,11 +100,10 @@ export interface LandingHouseShowcase {
   highlight?: string;
   lede?: string;
   /**
-   * Slug(s) of categories to include. The page picks `getModels()` whose
-   * `category.slug` is in this list, capped at `maxItems`. Pass `null` to
-   * include every category (e.g. for the generic übersicht page).
+   * The categories to include, capped at `maxItems`. Pass `null` to include
+   * every category (e.g. for the generic übersicht page).
    */
-  categorySlugs: string[] | null;
+  categorySlugs: Category[] | null;
   /**
    * When true (default), only `isFeatured` models are kept — the bestseller
    * gate. Set to `false` on typology-specific pages where the audience has

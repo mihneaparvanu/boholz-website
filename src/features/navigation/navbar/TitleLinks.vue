@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { Location } from "@/domain/locations/locations.types";
+import type { Place } from "@/domain/locations/locations.types";
 import { ROUTES } from "@/features/navigation/routes";
 
 const { showhouses } = defineProps<{
-  showhouses: Location[];
+  showhouses: Place[];
 }>();
 </script>
 

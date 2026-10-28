@@ -11,7 +11,7 @@ const props = defineProps<{
 }>();
 
 const thumbnail = computed(() => {
-  return props.category.media.find((m) => m.isThumbnail);
+  return props.category.media.find((m) => m.isHero);
 });
 
 const imageURL = computed(() => {

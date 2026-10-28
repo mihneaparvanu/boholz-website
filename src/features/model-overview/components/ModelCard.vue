@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { formatSquareMeters, formatCurrency } from "@/lib/format";
-import type { HouseModelRecord } from "@/domain/house-models/houseModels.types.ts";
+import type { HouseModel } from "@/domain/house-models/houseModels.types.ts";
 import Image from "@/ui/primitives/Image.vue";
 import ImagePlaceholder from "@/ui/primitives/ImagePlaceholder.vue";
 import RoofCapsule, { type RoofEntry } from "./RoofCapsule.vue";
 
 const props = defineProps<{
-  model: HouseModelRecord;
+  model: HouseModel;
   /** Suppress the bestseller star badge — set true when the card is rendered
    *  inside a bestseller listing (where every card would otherwise be starred). */
   hideStarBadge?: boolean;

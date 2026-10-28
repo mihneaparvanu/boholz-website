@@ -2,11 +2,11 @@
 import { computed, ref, watch } from "vue";
 import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "reka-ui";
 import { FileText, Download } from "lucide-vue-next";
-import type { HouseModelFloor } from "@/domain/house-models/houseModels.types";
+import type { FloorPlan } from "@/domain/media/image.types";
 import Image from "@/ui/primitives/Image.vue";
 
 const props = defineProps<{
-  floors: HouseModelFloor[];
+  floors: FloorPlan[];
 }>();
 
 // === Variant toggle ===
@@ -41,7 +41,7 @@ const showVariantToggle = computed(() => availableVariants.value.length >= 2);
 // Default variant priority:
 //   1. Standard (null) if any floor has it
 //   2. Otherwise the most-common variant (so an ELW-only model lands on ELW)
-function pickDefaultVariant(floors: HouseModelFloor[]): string {
+function pickDefaultVariant(floors: FloorPlan[]): string {
   if (floors.some((f) => f.variant == null)) return "__default__";
   const counts = new Map<string, number>();
   for (const f of floors) {
@@ -70,7 +70,7 @@ watch(
   },
 );
 
-const visibleFloors = computed<HouseModelFloor[]>(() =>
+const visibleFloors = computed<FloorPlan[]>(() =>
   props.floors.filter((f) => variantKey(f.variant) === activeVariant.value),
 );
 

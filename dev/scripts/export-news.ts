@@ -3,26 +3,27 @@ import "./_bare-paths";
 import { getNews } from "@/db/loaders";
 import type { NewsPost } from "@/domain/news/news.types";
 
+import { toAttachedImage } from "./attached-image";
 import { exportEntity } from "./export-entity";
 
 const live = await getNews();
 const parked = await getNews({ unpublished: true });
 
-const toRecord = (a: (typeof live)[number]): NewsPost => ({
-  slug: a.slug,
-  title: a.title,
-  content: a.content,
-  excerpt: a.excerpt,
-  publishedAt: a.publishedAt?.toISOString() ?? null,
-  media: a.media.map((m) => ({
-    path: m.media.path,
-    alt: m.media.alt,
-    height: m.media.height,
-    width: m.media.width,
-    isHero: m.isHero,
-    isAi: m.media.isAi,
-  })),
-});
+const toRecord = (a: (typeof live)[number]): NewsPost => {
+  // news.content is nullable, but a post is its body.
+  if (a.content === null) {
+    throw new Error(`news post "${a.slug}" has no content`);
+  }
+
+  return {
+    slug: a.slug,
+    title: a.title,
+    content: a.content,
+    excerpt: a.excerpt,
+    publishedAt: a.publishedAt?.toISOString() ?? null,
+    media: a.media.map(toAttachedImage),
+  };
+};
 
 await exportEntity({
   entity: "news",

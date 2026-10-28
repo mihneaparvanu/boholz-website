@@ -5,9 +5,9 @@ import { LngLatBounds } from "maplibre-gl";
 import type { StyleSpecification, Map as MlMap } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import type { Location } from "@/domain/locations/locations.types.ts";
+import type { Place } from "@/domain/locations/locations.types";
 import LocationCard from "./LocationCard.vue";
-import LocationMarker from "./LocationMarker.vue";
+import LocationMarker, { type LocatedPlace } from "./LocationMarker.vue";
 import {
   getBrandedStyle,
   GERMANY_CENTER,
@@ -15,12 +15,12 @@ import {
   GERMANY_BOUNDS,
 } from "./mapStyle";
 
-const props = defineProps<{ locations: Location[] }>();
+const props = defineProps<{ locations: Place[] }>();
 
-// `numeric` columns come back as `string | null` from Drizzle — drop nulls and
-// coerce to numbers so MapLibre can use the coordinates.
 const validLocations = computed(() =>
-  props.locations.filter((l) => l.lat !== null && l.lng !== null),
+  props.locations.filter(
+    (l): l is LocatedPlace => l.lat !== null && l.lng !== null,
+  ),
 );
 
 // Fetched once, then handed to <MglMap> as a static prop. shallowRef avoids
@@ -28,7 +28,7 @@ const validLocations = computed(() =>
 const mapStyle = shallowRef<StyleSpecification | null>(null);
 getBrandedStyle().then((s) => (mapStyle.value = s));
 
-const selected = ref<Location | null>(null);
+const selected = ref<Place | null>(null);
 
 // On load, zoom out just enough to show *all* locations at once (rather than a
 // fixed Germany zoom that can clip the outer standorte). Static center/zoom
@@ -38,7 +38,7 @@ function fitToLocations(map: MlMap) {
   if (!locs.length) return;
   try {
     const bounds = new LngLatBounds();
-    for (const l of locs) bounds.extend([Number(l.lng), Number(l.lat)]);
+    for (const l of locs) bounds.extend([l.lng, l.lat]);
     map.fitBounds(bounds, { padding: 56, maxZoom: 9, duration: 0 });
   } catch {
     /* keep the static center/zoom fallback */

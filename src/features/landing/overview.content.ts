@@ -75,7 +75,7 @@ export const overviewContent: LandingPageContent = {
     imageAlt:
       "Stadtvilla in Holzbauweise von BoHolz-Haus — moderne Architektur mit klaren Linien",
     imageFallbackPath: "/images/brand/hero.webp",
-    preferredCategorySlug: "einfamilienhaus",
+    preferredCategorySlug: "oneFamilyHouse",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
     secondaryCta: { label: "Infopaket anfordern", href: "/katalog" },
   },

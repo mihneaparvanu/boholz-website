@@ -51,7 +51,7 @@ const offices = locations
       phone: l.phone,
       email: l.email,
       // resolve each slug into the real record, so the markup below is unchanged
-      agents: l.agents.map((link) => ({ slug: link.slug, ...agents[link.slug] })),
+      agents: l.agents.map((slug) => ({ slug, ...agents[slug] })),
     };
   });
 

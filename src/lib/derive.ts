@@ -6,7 +6,7 @@
  * card components dumb (no formatting logic) and the pages thin (no
  * inline mappers).
  */
-import type { HouseModelRecord } from "@/domain/house-models/houseModels.types";
+import type { HouseModel } from "@/domain/house-models/houseModels.types";
 import { categoryOf } from "@/domain/categories/categories.lookup";
 import type {
   HouseModelCardProps,
@@ -35,18 +35,18 @@ const BESTSELLER_INCLUSIONS = [
 const BESTSELLER_KFW_OPTION = "KfW 40 & QNG optional";
 
 /** True when the model is a bestseller (drives the price inclusions). */
-export function isBestseller(m: Pick<HouseModelRecord, "isFeatured">): boolean {
+export function isBestseller(m: Pick<HouseModel, "isFeatured">): boolean {
   return m.isFeatured ?? false;
 }
 
 /**
- * HouseModelRecord → HouseModelCardProps.
+ * HouseModel → HouseModelCardProps.
  *
  * Card is presentation-only — we format m²/Zimmer/efficiency strings here
  * so the component stays dumb. `code` is "{CATEGORY-UPPER} · {MODEL-CODE}"
  * per HouseModelCard's contract.
  */
-export function toHouseModelCard(m: HouseModelRecord): HouseModelCardProps {
+export function toHouseModelCard(m: HouseModel): HouseModelCardProps {
   const { src, alt } = pickImage(m);
   return {
     slug: m.slug,
@@ -54,7 +54,7 @@ export function toHouseModelCard(m: HouseModelRecord): HouseModelCardProps {
     code: `${(categoryOf(m)?.name ?? "Hausmodell").toUpperCase()} · ${formatModelCode(m.modelCode)}`,
     image: src,
     imageAlt: alt,
-    categorySlug: m.categorySlug,
+    category: m.category,
     isFeatured: m.isFeatured ?? false,
     specs: specsFor(m),
     priceHint: priceHintFor(m),
@@ -62,14 +62,13 @@ export function toHouseModelCard(m: HouseModelRecord): HouseModelCardProps {
   };
 }
 
-function specsFor(m: HouseModelRecord): HouseModelSpec[] {
+function specsFor(m: HouseModel): HouseModelSpec[] {
   const specs: HouseModelSpec[] = [];
 
   if (m.livingArea != null) {
-    // Drizzle returns numeric columns as strings; Number() coerces and
     // toLocaleString gives us the German decimal comma.
-    const area = Number(m.livingArea);
-    specs.push({ kind: "area", value: `${area.toLocaleString("de-DE")} m²` });
+    const value = `${m.livingArea.toLocaleString("de-DE")} m²`;
+    specs.push({ kind: "area", value });
   }
 
   // Client (2026-06): drop the "X Zimmer" chip everywhere. Multi-family /
@@ -103,8 +102,8 @@ function formatModelCode(code: string | null): string {
   return (code ?? "").replace(/-000$/, "");
 }
 
-function priceHintFor(m: HouseModelRecord): string | undefined {
-  const price = m.price == null ? NaN : Number(m.price);
+function priceHintFor(m: HouseModel): string | undefined {
+  const price = m.price ?? NaN;
   if (!Number.isFinite(price) || price <= 0) {
     // Client (2026-06-15): non-bestseller models carry no figure — advertise
     // "Preis auf Anfrage" instead of an empty slot. Bestsellers always price.
@@ -116,18 +115,16 @@ function priceHintFor(m: HouseModelRecord): string | undefined {
   return m.isFeatured ? `${base}*` : base;
 }
 
-function priceCaveatsFor(m: HouseModelRecord): string[] {
+function priceCaveatsFor(m: HouseModel): string[] {
   return isBestseller(m)
     ? [...BESTSELLER_INCLUSIONS, BESTSELLER_KFW_OPTION]
     : [];
 }
 
-function pickImage(m: HouseModelRecord): { src: string; alt: string } {
-  // Hero → thumbnail → first media → static fallback. Stored paths are bare,
-  // so this resolves — the card props carry a URL, not a path.
-  const hero = m.media.find((mm) => mm.isHero);
-  const thumb = m.media.find((mm) => mm.isThumbnail);
-  const pick = hero ?? thumb ?? m.media[0];
+function pickImage(m: HouseModel): { src: string; alt: string } {
+  // Hero → first media → static fallback. Stored paths are bare, so this
+  // resolves — the card props carry a URL, not a path.
+  const pick = m.media.find((mm) => mm.isHero) ?? m.media[0];
   return {
     src: getMediaURL(pick?.path ?? FALLBACK_IMAGE_PATH),
     alt: pick?.alt ?? m.title,
