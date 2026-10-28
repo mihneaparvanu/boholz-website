@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Scan } from "lucide-vue-next";
 import type { DisplayItemConfig } from "./house-page.types";
-import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
+import type { HouseModelRecord } from "@/domain/house-models/houseModels.types.ts";
 import StatCard from "./StatCard.vue";
 import { formatSquareMeters } from "@/lib/format";
 

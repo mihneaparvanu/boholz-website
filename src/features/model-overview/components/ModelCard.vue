@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { formatSquareMeters, formatCurrency } from "@/lib/format";
-import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
+import type { HouseModelRecord } from "@/domain/house-models/houseModels.types.ts";
 import Image from "@/ui/primitives/Image.vue";
 import ImagePlaceholder from "@/ui/primitives/ImagePlaceholder.vue";
 import RoofCapsule, { type RoofEntry } from "./RoofCapsule.vue";
@@ -13,9 +13,7 @@ const props = defineProps<{
   hideStarBadge?: boolean;
 }>();
 
-const heroMediaItem = computed(
-  () => props.model.media.find((m) => m.isHero),
-);
+const heroMediaItem = computed(() => props.model.media.find((m) => m.isHero));
 
 const heroImage = computed(() => heroMediaItem.value?.path);
 
@@ -47,14 +45,31 @@ const roofEntries = computed<RoofEntry[]>(() => {
         class="featured-badge"
         aria-label="Bestseller"
       >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          stroke="currentColor"
+          stroke-width="2.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polygon
+            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+          />
+        </svg>
       </span>
     </div>
     <div class="content-wrapper">
       <div class="title-surface">
         <h3 class="title">{{ model.title }}</h3>
         <p>
-          {{ model.livingArea ? formatSquareMeters(model.livingArea) : "auf Anfrage" }}
+          {{
+            model.livingArea
+              ? formatSquareMeters(model.livingArea)
+              : "auf Anfrage"
+          }}
         </p>
       </div>
       <div class="price-rooms">

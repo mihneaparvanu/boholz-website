@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { houseModels as models } from "@/domain/house-models/house-models";
+import { houseModels as models } from "@/domain/house-models/houseModels";
 import { locations } from "@/domain/locations/locations";
 import { news } from "@/domain/news/news";
 import { ROUTES } from "@/features/navigation/routes";

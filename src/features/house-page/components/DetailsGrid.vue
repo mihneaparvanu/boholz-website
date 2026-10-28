@@ -33,7 +33,7 @@ import {
   Coins,
   Scan,
 } from "lucide-vue-next";
-import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
+import type { HouseModelRecord } from "@/domain/house-models/houseModels.types.ts";
 import { isBestsellerCategory } from "@/lib/bestseller";
 import {
   formatBoolean,
@@ -69,7 +69,10 @@ const floors = computed<string | null>(() => {
 /** Roof — capsule renders Dachform + (optional) Dachneigung. */
 const roof = computed<{ type: string; pitch: number | null } | null>(() => {
   if (!d?.roofType) return null;
-  return { type: d.roofType, pitch: m.roofPitch != null ? Number(m.roofPitch) : null };
+  return {
+    type: d.roofType,
+    pitch: m.roofPitch != null ? Number(m.roofPitch) : null,
+  };
 });
 
 const kniestock = computed<string | null>(() =>
@@ -110,18 +113,33 @@ type Row = { label: string; icon: Component; value: string };
 const rows = computed<Row[]>(() => {
   const out: Row[] = [];
   out.push({ label: "Fläche", icon: Scan, value: livingArea.value });
-  if (floors.value) out.push({ label: "Etagen", icon: Layers, value: floors.value });
+  if (floors.value)
+    out.push({ label: "Etagen", icon: Layers, value: floors.value });
   // Roof gets its own slot in the template — no flat string value.
   if (kniestock.value)
     out.push({ label: "Kniestock", icon: Scaling, value: kniestock.value });
   if (dinArea.value)
-    out.push({ label: "Netto-Grundfläche (DIN 277)", icon: Square, value: dinArea.value });
+    out.push({
+      label: "Netto-Grundfläche (DIN 277)",
+      icon: Square,
+      value: dinArea.value,
+    });
   if (woflvArea.value)
-    out.push({ label: "Gesamtwohnfläche (WoFlV)", icon: Ruler, value: woflvArea.value });
-  if (extension.value) out.push({ label: "Anbau", icon: Hammer, value: extension.value });
+    out.push({
+      label: "Gesamtwohnfläche (WoFlV)",
+      icon: Ruler,
+      value: woflvArea.value,
+    });
+  if (extension.value)
+    out.push({ label: "Anbau", icon: Hammer, value: extension.value });
   if (granny.value)
-    out.push({ label: "Einliegerwohnung", icon: KeyRound, value: granny.value });
-  if (price.value) out.push({ label: "Preis", icon: Coins, value: price.value });
+    out.push({
+      label: "Einliegerwohnung",
+      icon: KeyRound,
+      value: granny.value,
+    });
+  if (price.value)
+    out.push({ label: "Preis", icon: Coins, value: price.value });
   return out;
 });
 </script>

@@ -168,4 +168,4 @@ export const agents = {
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
-} satisfies Record<string, AgentRecord>;
+} satisfies Record<string, Agent>;

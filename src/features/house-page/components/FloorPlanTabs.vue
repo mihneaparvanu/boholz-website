@@ -2,7 +2,7 @@
 import { computed, ref, watch } from "vue";
 import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "reka-ui";
 import { FileText, Download } from "lucide-vue-next";
-import type { HouseModelFloor } from "@/domain/house-models/house-models.types";
+import type { HouseModelFloor } from "@/domain/house-models/houseModels.types";
 import Image from "@/ui/primitives/Image.vue";
 
 const props = defineProps<{
@@ -51,7 +51,10 @@ function pickDefaultVariant(floors: HouseModelFloor[]): string {
   let best = "__default__";
   let max = -1;
   for (const [k, n] of counts) {
-    if (n > max) { max = n; best = k; }
+    if (n > max) {
+      max = n;
+      best = k;
+    }
   }
   return best;
 }
@@ -83,7 +86,12 @@ watch(visibleFloors, (next) => {
 <template>
   <div class="wrap">
     <div class="card">
-      <div v-if="showVariantToggle" class="variants" role="tablist" aria-label="Grundriss-Variante">
+      <div
+        v-if="showVariantToggle"
+        class="variants"
+        role="tablist"
+        aria-label="Grundriss-Variante"
+      >
         <button
           v-for="v in availableVariants"
           :key="v"

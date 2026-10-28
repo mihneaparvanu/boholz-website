@@ -5,7 +5,7 @@ import type { HouseModel } from "@/db/models";
 import type {
   HouseModelRecord,
   ModelSpecs,
-} from "@/domain/house-models/house-models.types";
+} from "@/domain/house-models/houseModels.types";
 
 import { exportEntity } from "./export-entity";
 

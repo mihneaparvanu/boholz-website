@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
+import type { HouseModelRecord } from "@/domain/house-models/houseModels.types";
 import type { ModelCategory } from "@/domain/categories/categories.types";
 import { isLandingCategory } from "@/features/landing/landing.registry";
 import { ref, computed, onMounted, watch } from "vue";

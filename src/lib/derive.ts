@@ -6,7 +6,7 @@
  * card components dumb (no formatting logic) and the pages thin (no
  * inline mappers).
  */
-import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
+import type { HouseModelRecord } from "@/domain/house-models/houseModels.types";
 import { categoryOf } from "@/domain/categories/categories.lookup";
 import type {
   HouseModelCardProps,
@@ -22,7 +22,10 @@ const FALLBACK_IMAGE_PATH = "/images/pages/uber-uns/value-1.webp";
  * (`isFeatured`), not a hard-coded slug list. The listing card uses the
  * abbreviated "inkl." wording; the detail-page SideCard spells it out.
  */
-const BESTSELLER_INCLUSIONS = ["inkl. Bodenplatte", "inkl. Architektenleistung"];
+const BESTSELLER_INCLUSIONS = [
+  "inkl. Bodenplatte",
+  "inkl. Architektenleistung",
+];
 
 /**
  * Client (2026-06-15): bestsellers additionally advertise that KfW 40 and the

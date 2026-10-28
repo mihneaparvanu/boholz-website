@@ -4,7 +4,7 @@ export type NewsPost = {
   slug: string;
   title: string;
   content: string;
-  excerpt: string;
-  publishedAt: string;
+  excerpt: string | null;
+  publishedAt: string | null;
   media: AttachedImage[];
 };

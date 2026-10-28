@@ -1,4 +1,4 @@
-import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
+import type { HouseModelRecord } from "@/domain/house-models/houseModels.types";
 import type { ModelCategory } from "@/domain/categories/categories.types";
 
 /**

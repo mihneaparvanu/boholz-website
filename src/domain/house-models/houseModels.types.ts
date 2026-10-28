@@ -1,0 +1,33 @@
+import type { CategorySlug } from "../categories/categories.types";
+import type { AttachedImage, FloorPlan } from "../media/image.types";
+
+export type HouseModel = {
+  slug: string;
+  title: string;
+  modelCode: string;
+  description: string | null;
+  livingArea: number | null;
+  price: number | null;
+  roofPitch: number | null;
+  isFeatured: boolean;
+  categorySlug: CategorySlug;
+  floorCount: string | null;
+  roofType: string | null;
+  kniestock: number | null;
+  netFloorAreaDin: number | null;
+  totalLivingAreaWoflv: number | null;
+  extensionDescription: string | null;
+  allowsGrannyFlat: boolean | null;
+  levelCount: number | null;
+  bedroomCount: number | null;
+  bathroomCount: number | null;
+  familiesCount: number | null;
+  width: number | null;
+  length: number | null;
+  height: number | null;
+  hasGarage: boolean | null;
+  isBarrierFree: boolean | null;
+  hasChildrenRoom: boolean | null;
+  media: AttachedImage[];
+  floors: FloorPlan[];
+};

@@ -1,4 +1,4 @@
-import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
+import type { HouseModelRecord } from "@/domain/house-models/houseModels.types";
 
 // Sorting
 export type SortDirection = "asc" | "desc";
@@ -48,14 +48,14 @@ export type ThresholdFilter = {
   label: string;
   // Each option carries its own predicate so the URL can serialize a
   // human-readable label ("<150") without needing range encoding.
-  options: Array<{ label: string; predicate: (m: HouseModelRecord) => boolean }>;
+  options: Array<{
+    label: string;
+    predicate: (m: HouseModelRecord) => boolean;
+  }>;
 };
 
 export type FilterOption =
-  | BooleanFilter
-  | EnumFilter
-  | CountFilter
-  | ThresholdFilter;
+  BooleanFilter | EnumFilter | CountFilter | ThresholdFilter;
 
 // The state machine:
 //   inactive  — no filters at all (initial)

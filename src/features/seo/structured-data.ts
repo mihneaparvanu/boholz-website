@@ -9,7 +9,7 @@
  * Rendered through `JsonLd.astro`. Anything absent is omitted rather than
  * sent as null — an incomplete object is fine, a wrong one is not.
  */
-import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
+import type { HouseModelRecord } from "@/domain/house-models/houseModels.types";
 import { ROUTES } from "@/features/navigation/routes";
 
 const SITE = "https://boholz-haus.de";

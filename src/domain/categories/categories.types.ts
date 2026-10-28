@@ -5,3 +5,5 @@ export type ModelCategory = {
   description: string | null;
   media: AttachedImage[];
 };
+
+export type CategorySlug = keyof typeof import("./categories").categories;

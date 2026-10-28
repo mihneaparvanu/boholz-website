@@ -14,7 +14,7 @@ import type {
   FilterOption,
   ThresholdFilter,
 } from "./filter-panel.types";
-import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
+import type { HouseModelRecord } from "@/domain/house-models/houseModels.types";
 import { categoryOf } from "@/domain/categories/categories.lookup";
 import { parseLivingArea } from "@/lib/parse-living-area";
 
@@ -126,7 +126,13 @@ const roofType: EnumFilter = {
   id: "roofType",
   kind: "enum",
   label: "Dachform",
-  options: ["Satteldach", "Walmdach", "Pultdach", "Flachdach", "Flachdach, Attika"],
+  options: [
+    "Satteldach",
+    "Walmdach",
+    "Pultdach",
+    "Flachdach",
+    "Flachdach, Attika",
+  ],
   resolve: (m) => m.roofType ?? null,
 };
 
@@ -143,8 +149,7 @@ const roofPitch: ThresholdFilter = {
   options: [
     {
       label: "≤22°",
-      predicate: (m) =>
-        m.roofPitch != null && Number(m.roofPitch) <= 22,
+      predicate: (m) => m.roofPitch != null && Number(m.roofPitch) <= 22,
     },
     {
       label: "25–35°",
@@ -169,8 +174,7 @@ const hasKniestock: BooleanFilter = {
   id: "hasKniestock",
   kind: "boolean",
   label: "Kniestock",
-  resolve: (m) =>
-    m.kniestock != null,
+  resolve: (m) => m.kniestock != null,
 };
 
 /** Anbau — presence toggle; the values themselves (Erker / Garage / ...) are
@@ -179,8 +183,7 @@ const hasExtension: BooleanFilter = {
   id: "hasExtension",
   kind: "boolean",
   label: "Anbau",
-  resolve: (m) =>
-    Boolean(m.extensionDescription?.trim()),
+  resolve: (m) => Boolean(m.extensionDescription?.trim()),
 };
 
 const allowsGrannyFlat: BooleanFilter = {

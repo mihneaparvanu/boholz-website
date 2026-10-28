@@ -1,8 +1,8 @@
 export type Image = {
   path: string;
   alt: string | null;
-  width: number;
-  height: number;
+  width: number | null;
+  height: number | null;
   isAi: boolean;
 };
 
@@ -12,5 +12,5 @@ export type AttachedImage = Image & {
 
 export type FloorPlan = Image & {
   title: string;
-  variant: string;
+  variant: string | null;
 };
