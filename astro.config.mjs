@@ -32,7 +32,7 @@ export default defineConfig({
     // recognise, which blocks reaching `bun run dev` through anything but
     // localhost — a tunnel, another device on the LAN, or the real hostname.
     server: {
-      allowedHosts: ["localhost", "boholz-haus.de", ".boholz-haus.de"],
+      allowedHosts: ["localhost", "0.lab", "boholz-haus.de", ".boholz-haus.de"],
     },
     // Minify CSS with Lightning CSS (more aggressive than the esbuild default).
     // The PostCSS transform pipeline (preset-env, custom-media) still runs first.
