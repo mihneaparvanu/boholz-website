@@ -1,4 +1,4 @@
-import { type AgentRecord } from "./agents.types";
+import { type Agent } from "./agents.types";
 export const agents = {
   "wilfried-bolz": {
     fullName: "Wilfried Bolz",

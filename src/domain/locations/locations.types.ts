@@ -1,12 +1,20 @@
-import type { LocationWithAgents } from "@/db/models";
-import type { Image } from "../media/image.types";
+import type { AttachedImage } from "../media/image.types";
 import type { AgentSlug } from "../agents/agents.types";
 
-export type LocationImage = Image &
-  Omit<LocationWithAgents["media"][number], "media" | "sortOrder">;
-export type LocationAgentLink = { slug: AgentSlug; isPrimary: boolean | null };
+export type PlaceKind = "showhouse" | "office";
 
-export type Location = Omit<LocationWithAgents, "id" | "agents" | "media"> & {
-  agents: LocationAgentLink[];
-  media: LocationImage[];
+export type Place = {
+  slug: string;
+  title: string;
+  email: string;
+  kind: PlaceKind;
+  address: string;
+  postalCode: string;
+  city: string;
+  country: string;
+  phone: string;
+  lat: string;
+  lng: string;
+  agents: AgentSlug[];
+  media: AttachedImage[];
 };

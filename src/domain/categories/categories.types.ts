@@ -1,8 +1,7 @@
-import type { HouseCategory } from "@/db/models";
-import type { Image } from "../media/image.types";
-
-export type CategoryImage = Image &
-  Omit<HouseCategory["media"][number], "media">;
-export type ModelCategory = Omit<HouseCategory, "id" | "media"> & {
-  media: CategoryImage[];
+import { type AttachedImage } from "../media/image.types";
+export type ModelCategory = {
+  name: string;
+  slug: string;
+  description: string | null;
+  media: AttachedImage[];
 };

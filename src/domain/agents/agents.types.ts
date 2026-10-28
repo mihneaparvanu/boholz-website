@@ -1,3 +1,9 @@
-import type { Agent } from "@/db/models";
-export type AgentRecord = Omit<Agent, "id" | "slug" | "bio">;
+export type Agent = {
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  phoneSecondary: string;
+  role: string;
+};
+
 export type AgentSlug = keyof typeof import("./agents").agents;

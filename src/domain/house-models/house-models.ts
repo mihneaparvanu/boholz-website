@@ -1,4 +1,4 @@
-import type { HouseModelRecord } from "./house-models.types";
+import type { HouseModel } from "./house-models.types";
 
 export const houseModels = [
   {
@@ -2155,4 +2155,4 @@ export const houseModels = [
       },
     ],
   },
-] satisfies HouseModelRecord[];
+] satisfies HouseModel[];
