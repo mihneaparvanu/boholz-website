@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { HouseModel } from "@/domain/house-models/houseModels.types";
 import type { ModelCategory } from "@/domain/categories/categories.types";
+import { isInCategory } from "@/domain/categories/categories.lookup";
 import { isLandingCategory } from "@/features/landing/landing.registry";
 import { ref, computed, onMounted, watch } from "vue";
 import ModelCard from "@/features/model-overview/components/ModelCard.vue";
@@ -76,15 +77,14 @@ const activeSortOption = computed<SortOption | null>(
 );
 
 const categoryModels = computed<HouseModel[]>(() => {
-  if (selectedCategory.value === null) {
+  const category = selectedCategory.value;
+  if (category === null) {
     return props.models;
   }
-  if (isBestsellerCategory(selectedCategory.value)) {
+  if (isBestsellerCategory(category)) {
     return getBestsellerModels(props.models);
   }
-  return props.models.filter(
-    (m) => m.category === selectedCategory.value?.category,
-  );
+  return props.models.filter((m) => isInCategory(m, category));
 });
 
 const applyFilters = (filters: ActiveFilter[], models: HouseModel[]) =>

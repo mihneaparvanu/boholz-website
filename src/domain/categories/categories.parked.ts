@@ -1,8 +1,7 @@
-import type { ModelCategory } from "./categories.types";
+import type { Category, ModelCategory } from "./categories.types";
 
-export const parkedCategories = [
-  {
-    category: "shedRoofHouse",
+export const parkedCategories = {
+  shedRoofHouse: {
     name: "Pultdachhaus",
     slug: "pultdachhaus",
     description: null,
@@ -25,4 +24,4 @@ export const parkedCategories = [
       },
     ],
   },
-] satisfies ModelCategory[];
+} satisfies Partial<Record<Category, ModelCategory>>;

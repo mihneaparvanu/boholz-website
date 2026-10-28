@@ -13,7 +13,6 @@ export type Category =
   | "shedRoofHouse";
 
 export type ModelCategory = {
-  category: Category;
   name: string;
   slug: string;
   description: string | null;

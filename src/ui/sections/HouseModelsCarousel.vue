@@ -19,6 +19,7 @@ import HouseModelCard from "./HouseModelCard.vue";
 import type { HouseModelCardProps } from "./HouseModelCard.vue";
 import CategoryThumbnail from "@/features/category-slider/components/CategoryThumbnail.vue";
 import type { ModelCategory } from "@/domain/categories/categories.types";
+import { isInCategory } from "@/domain/categories/categories.lookup";
 import { isBestsellerCategory, getBestsellerModels } from "@/lib/bestseller";
 
 const props = defineProps<{
@@ -32,9 +33,7 @@ const props = defineProps<{
 // the canonical "start here" entry across every category surface. Falls
 // back to the first category if Bestseller hasn't been seeded yet.
 const selected = ref<ModelCategory | null>(
-  props.categories?.find(isBestsellerCategory) ??
-    props.categories?.[0] ??
-    null,
+  props.categories?.find(isBestsellerCategory) ?? props.categories?.[0] ?? null,
 );
 
 const select = (category: ModelCategory) => {
@@ -42,11 +41,12 @@ const select = (category: ModelCategory) => {
 };
 
 const displayModels = computed(() => {
-  if (!selected.value) return props.models;
-  if (isBestsellerCategory(selected.value)) {
+  const category = selected.value;
+  if (!category) return props.models;
+  if (isBestsellerCategory(category)) {
     return getBestsellerModels(props.models);
   }
-  return props.models.filter((m) => m.category === selected.value?.category);
+  return props.models.filter((m) => isInCategory(m, category));
 });
 
 const trackRef = ref<HTMLElement | null>(null);

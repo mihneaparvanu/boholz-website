@@ -14,7 +14,7 @@ import ConsentScript from "@/features/consent/ConsentScript.astro";
 import { getMediaURL } from "@/lib/media";
 import JsonLd from "@/features/seo/JsonLd.astro";
 import { organizationSchema } from "@/features/seo/structured-data";
-import { categories } from "@/domain/categories/categories";
+import { displayCategories } from "@/domain/categories/categories";
 import { locations } from "@/domain/locations/locations";
 
 interface Props {
@@ -88,7 +88,7 @@ const showhouses = locations.filter((l) => l.kind === "showhouse");
     <Fragment set:html={certificationsSprite} />
     <Navbar
       client:load
-      categories={categories}
+      categories={displayCategories}
       showhouses={showhouses}
     />
     <main class="wrapper">

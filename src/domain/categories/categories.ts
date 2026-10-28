@@ -1,8 +1,7 @@
-import type { ModelCategory } from "./categories.types";
+import type { Category, ModelCategory } from "./categories.types";
 
-export const categories = [
-  {
-    category: "bestseller",
+export const categories = {
+  bestseller: {
     name: "Bestseller",
     slug: "bestseller",
     description:
@@ -18,8 +17,7 @@ export const categories = [
       },
     ],
   },
-  {
-    category: "oneFamilyHouse",
+  oneFamilyHouse: {
     name: "Einfamilienhaus",
     slug: "einfamilienhaus",
     description: null,
@@ -34,8 +32,7 @@ export const categories = [
       },
     ],
   },
-  {
-    category: "cityVilla",
+  cityVilla: {
     name: "Stadtvilla",
     slug: "stadtvilla",
     description: null,
@@ -50,8 +47,7 @@ export const categories = [
       },
     ],
   },
-  {
-    category: "bungalow",
+  bungalow: {
     name: "Bungalow",
     slug: "bungalow",
     description: null,
@@ -66,8 +62,7 @@ export const categories = [
       },
     ],
   },
-  {
-    category: "doubleHouse",
+  doubleHouse: {
     name: "Doppelhaus",
     slug: "doppelhaus",
     description: null,
@@ -82,8 +77,7 @@ export const categories = [
       },
     ],
   },
-  {
-    category: "generationHouse",
+  generationHouse: {
     name: "Generationenhaus",
     slug: "generationenhaus",
     description: null,
@@ -98,8 +92,7 @@ export const categories = [
       },
     ],
   },
-  {
-    category: "twoFamilyHouse",
+  twoFamilyHouse: {
     name: "Zweifamilienhaus",
     slug: "zweifamilienhaus",
     description: null,
@@ -114,8 +107,7 @@ export const categories = [
       },
     ],
   },
-  {
-    category: "multiFamilyHouse",
+  multiFamilyHouse: {
     name: "Mehrfamilienhaus",
     slug: "mehrfamilienhaus",
     description: "",
@@ -130,8 +122,7 @@ export const categories = [
       },
     ],
   },
-  {
-    category: "cube",
+  cube: {
     name: "Kubus",
     slug: "kubus",
     description: null,
@@ -146,4 +137,7 @@ export const categories = [
       },
     ],
   },
-] satisfies ModelCategory[];
+} satisfies Partial<Record<Category, ModelCategory>>;
+
+// Key order is display order.
+export const displayCategories = Object.values(categories);

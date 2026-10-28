@@ -5,10 +5,15 @@ import prettier from "prettier";
 
 export async function exportEntity(opts: {
   entity: string;
-  typeName: string;
+  /** The types the generated file imports. The first one types the default
+   *  array `typeExpr`; a keyed export passes its own and needs both names. */
+  typeName: string | string[];
   data: unknown[] | Record<string, unknown>;
   typeExpr?: string;
   exportName?: string;
+  /** Emitted verbatim below the export — a view derived from the data, which
+   *  belongs in the generated file so it cannot drift from it. */
+  append?: string;
   /** A second file inside the same entity folder, e.g. the parked models.
    *  Defaults to the entity name. The types import always points at
    *  `<entity>.types`, since both files describe the same shape. */
@@ -23,11 +28,12 @@ export async function exportEntity(opts: {
   const exportName = opts.exportName ?? entity;
   const fileName = opts.fileName ?? entity;
   const typesFile = opts.typesFile ?? `${entity}.types`;
+  const typeNames = Array.isArray(typeName) ? typeName : [typeName];
 
   const here = dirname(fileURLToPath(import.meta.url));
   const out = join(here, "../..", `src/domain/${entity}/${fileName}.ts`);
 
-  const type = typeExpr ?? `${typeName}[]`;
+  const type = typeExpr ?? `${typeNames[0]}[]`;
   // Paths are stored bare. Image.vue is the single place that turns one
   // into a URL, which keeps the raw path available for building srcset
   // variants later — impossible once the value is a host-prefixed URL.
@@ -45,10 +51,10 @@ export async function exportEntity(opts: {
       `${bad.length} path(s) are not bare paths — unset PUBLIC_ASSETS_URL and re-run.\n  e.g. ${bad[0]}`,
     );
   }
-  const file = `import type { ${typeName} } from "./${typesFile}";
+  const file = `import type { ${typeNames.join(", ")} } from "./${typesFile}";
 
 export const ${exportName} = ${raw} satisfies ${type};
-`;
+${opts.append ? `\n${opts.append}\n` : ""}`;
 
   const cfg = await prettier.resolveConfig(out);
   const pretty = await prettier.format(file, { ...cfg, filepath: out });

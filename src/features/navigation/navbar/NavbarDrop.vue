@@ -70,7 +70,7 @@ const showcaseHref = computed(
   () => hoveredExtraLink.value?.path ?? landingHref(selected.value.slug),
 );
 const showcaseKey = computed(
-  () => hoveredExtraLink.value?.path ?? selected.value.category,
+  () => hoveredExtraLink.value?.path ?? selected.value.slug,
 );
 </script>
 

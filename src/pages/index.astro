@@ -40,7 +40,7 @@ import ContactForm from "@/features/contact-forms/ContactForm.vue";
 import Button from "@/ui/primitives/Button.vue";
 
 import { houseModels } from "@/domain/house-models/houseModels";
-import { categories } from "@/domain/categories/categories";
+import { displayCategories } from "@/domain/categories/categories";
 import { toHouseModelCard } from "@/lib/derive";
 
 import { overviewContent as content } from "@/features/landing/overview.content";
@@ -126,7 +126,7 @@ const sustainabilityImage = getMediaURL(content.featureBody.imageFallbackPath);
     {
       houseCards.length > 0 ? (
         <HouseModelsCarousel
-          categories={categories}
+          categories={displayCategories}
           client:visible
           models={houseCards}
           ariaLabel="Empfohlene Hausmodelle"
