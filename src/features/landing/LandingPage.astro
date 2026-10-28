@@ -97,9 +97,9 @@ const featuredOnly = houses.featuredOnly ?? true;
 const filteredModels = allModels
   .filter((m) => (featuredOnly ? m.isFeatured : true))
   .filter((m) =>
-    houses.categorySlugs === null
+    houses.categories === null
       ? true
-      : houses.categorySlugs.includes(m.category),
+      : houses.categories.includes(m.category),
   )
   .slice(0, houses.maxItems);
 

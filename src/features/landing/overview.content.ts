@@ -75,7 +75,7 @@ export const overviewContent: LandingPageContent = {
     imageAlt:
       "Stadtvilla in Holzbauweise von BoHolz-Haus — moderne Architektur mit klaren Linien",
     imageFallbackPath: "/images/brand/hero.webp",
-    preferredCategorySlug: "oneFamilyHouse",
+    preferredCategory: "oneFamilyHouse",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
     secondaryCta: { label: "Infopaket anfordern", href: "/katalog" },
   },
@@ -121,7 +121,7 @@ export const overviewContent: LandingPageContent = {
     lede: "Vom kompakten Bungalow bis zur Stadtvilla — eine Auswahl unserer meistgewählten Modelle, individuell anpassbar.",
     // Overview page: every typology, bestseller gate ON, no practical cap
     // (the DB currently holds 6 featured models — 99 is an "uncapped" signal).
-    categorySlugs: null,
+    categories: null,
     featuredOnly: true,
     maxItems: 99,
   },

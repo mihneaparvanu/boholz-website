@@ -54,7 +54,7 @@ export interface LandingHero {
    * page frontmatter looks up an isFeatured model in this category and uses
    * its `isHero` media if present.
    */
-  preferredCategorySlug: Category;
+  preferredCategory: Category;
   /** Primary CTA — pinned to the page's accent action. */
   primaryCta: LandingCta;
   /** Secondary CTA — paired with the primary. */
@@ -103,7 +103,7 @@ export interface LandingHouseShowcase {
    * The categories to include, capped at `maxItems`. Pass `null` to include
    * every category (e.g. for the generic übersicht page).
    */
-  categorySlugs: Category[] | null;
+  categories: Category[] | null;
   /**
    * When true (default), only `isFeatured` models are kept — the bestseller
    * gate. Set to `false` on typology-specific pages where the audience has
