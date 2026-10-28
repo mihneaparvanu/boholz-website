@@ -1,11 +1,15 @@
-name: Build image (dev)
+name: Build image
 
-# Push to `dev` → build the image from ./Dockerfile → push to GHCR (private).
+# Manual only: build the image from ./Dockerfile → push to GHCR (private).
 #
-# This builds an image and nothing else. The dev host it used to deploy to
-# (dev.boholz-haus.de, container boholz-website-dev) no longer exists; the
-# deploy job and its DEPLOY_* secrets were removed with it. Production is
-# boholz-website-prod on sn-c1 and is not deployed from here.
+# This builds an image and nothing else, and nothing pulls what it pushes.
+# Production is boholz-website-prod on sn-c1, built on the host by hand from
+# a local tag, so this workflow has never been its deploy path. The dev host
+# it once deployed to (dev.boholz-haus.de) no longer exists.
+#
+# It also does not run on a push. Building on every `dev` push only produced
+# red checks for a branch nothing deployed from. Run it from the Actions tab
+# when you want to verify the image builds.
 #
 # WHY THE DOCKERFILE AND NOT RAILPACK
 #   Astro/Vite inline PUBLIC_* vars into the client bundle at BUILD time, so
@@ -36,8 +40,6 @@ name: Build image (dev)
 #   docker history --no-trunc <image>   ⇒ confirm no secret leaked in.
 
 on:
-  push:
-    branches: [dev]
   workflow_dispatch:
 
 permissions:
