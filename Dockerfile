@@ -25,18 +25,14 @@ COPY . .
 ARG PUBLIC_ASSETS_URL
 ARG PUBLIC_TURNSTILE_SITE_KEY
 ARG PUBLIC_GTM_ID
-# Since the switch to output: "static", the build itself queries the database —
-# getStaticPaths enumerates every house, showhouse, article and landing page.
-# So DATABASE_URL is a BUILD dependency now, not only a runtime one, and the
-# builder needs to reach sn-c1-db: build with --network web-network.
-# GOOGLE_PLACES_API_KEY moved the same way: the homepage reviews are fetched
-# once here and frozen into index.html. Absent at build = permanently empty.
-ARG DATABASE_URL
+# Content lives in src/domain as TypeScript, so the build reaches no database
+# and needs no network. GOOGLE_PLACES_API_KEY is still a BUILD dependency: the
+# homepage reviews are fetched once here and frozen into index.html, so absent
+# at build means permanently empty.
 ARG GOOGLE_PLACES_API_KEY
 ENV PUBLIC_ASSETS_URL=$PUBLIC_ASSETS_URL \
     PUBLIC_TURNSTILE_SITE_KEY=$PUBLIC_TURNSTILE_SITE_KEY \
     PUBLIC_GTM_ID=$PUBLIC_GTM_ID \
-    DATABASE_URL=$DATABASE_URL \
     GOOGLE_PLACES_API_KEY=$GOOGLE_PLACES_API_KEY
 RUN bun run build
 
@@ -45,6 +41,13 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
 ENV PORT=4321
+# Enquiries whose notification email fails are appended here as JSONL so none
+# is lost. The path is identical on the host, which is bind-mounted over it:
+#   -v /opt/tenants/boholz/website/leads:/opt/tenants/boholz/website/leads
+# Without that mount the file still works but dies with the container, and
+# logLead also writes every record to stderr, so docker logs keeps a copy.
+ENV LEAD_LOG_PATH=/opt/tenants/boholz/website/leads/leads.jsonl
+RUN mkdir -p /opt/tenants/boholz/website/leads
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
