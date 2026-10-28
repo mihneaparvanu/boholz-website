@@ -1,15 +1,15 @@
-name: Build image
+name: Build & deploy
 
-# Manual only: build the image from ./Dockerfile → push to GHCR (private).
+# Push to `main` → build the image on a runner → push to GHCR → ssh to the
+# host → pull → recreate boholz-website-prod. The host does no building.
 #
-# This builds an image and nothing else, and nothing pulls what it pushes.
-# Production is boholz-website-prod on sn-c1, built on the host by hand from
-# a local tag, so this workflow has never been its deploy path. The dev host
-# it once deployed to (dev.boholz-haus.de) no longer exists.
-#
-# It also does not run on a push. Building on every `dev` push only produced
-# red checks for a branch nothing deployed from. Run it from the Actions tab
-# when you want to verify the image builds.
+# WHY THIS IS ONLY NOW POSSIBLE
+#   Until the content moved into src/domain as TypeScript, `bun run build`
+#   queried Postgres: getStaticPaths enumerated every house, showhouse,
+#   article and landing page. A GitHub runner cannot reach sn-c1's docker
+#   network, so the build had to happen on the host beside the database, and
+#   production was a hand-built local tag. The build now needs no network at
+#   all, which is what lets it move off the host.
 #
 # WHY THE DOCKERFILE AND NOT RAILPACK
 #   Astro/Vite inline PUBLIC_* vars into the client bundle at BUILD time, so
@@ -40,6 +40,8 @@ name: Build image
 #   docker history --no-trunc <image>   ⇒ confirm no secret leaked in.
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -81,7 +83,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # :dev is the rolling tag the server pulls. :dev-<sha> is immutable and
+      # :main is the rolling tag the host pulls. :main-<sha> is immutable and
       # is what you roll back to — a tag moves, a sha-pinned tag never does.
       - name: Build & push
         uses: docker/build-push-action@v7
@@ -91,12 +93,14 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ steps.meta.outputs.image }}:dev
-            ${{ steps.meta.outputs.image }}:dev-${{ github.sha }}
+            ${{ steps.meta.outputs.image }}:main
+            ${{ steps.meta.outputs.image }}:main-${{ github.sha }}
           build-args: |
             PUBLIC_ASSETS_URL=${{ vars.PUBLIC_ASSETS_URL }}
             PUBLIC_TURNSTILE_SITE_KEY=${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
             PUBLIC_GTM_ID=${{ vars.PUBLIC_GTM_ID }}
+          secrets: |
+            google_places=${{ secrets.GOOGLE_PLACES_API_KEY }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -105,7 +109,92 @@ jobs:
           {
             echo "### Image pushed"
             echo '```'
-            echo "${{ steps.meta.outputs.image }}:dev"
-            echo "${{ steps.meta.outputs.image }}:dev-${{ github.sha }}"
+            echo "${{ steps.meta.outputs.image }}:main"
+            echo "${{ steps.meta.outputs.image }}:main-${{ github.sha }}"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+
+  deploy:
+    name: Deploy to sn-c1
+    runs-on: ubuntu-latest
+    needs: build
+    # No separate quality gate is needed: `docker build` runs `bun run build`,
+    # so a broken build produces no image and `needs: build` stops us here.
+    if: ${{ vars.DEPLOY_ENABLED == 'true' }}
+    timeout-minutes: 10
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        env:
+          IMAGE: ${{ needs.build.outputs.image }}:main
+          # Read via env, not interpolated into the script: a ${{ }} secret is
+          # substituted into the command line and would land in the host's
+          # shell history and process list. GITHUB_TOKEN is no use here — it is
+          # only valid on the runner, not on the host.
+          GHCR_TOKEN: ${{ secrets.GHCR_PULL_TOKEN }}
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ secrets.DEPLOY_PORT || 22 }}
+          envs: IMAGE,GHCR_TOKEN
+          script: |
+            set -euo pipefail
+
+            APP_DIR="${{ secrets.DEPLOY_PATH }}"
+            CONTAINER="boholz-website-prod"
+            NETWORK="web-network"
+            LEADS="$APP_DIR/leads"
+
+            # Runtime secrets (MS_GRAPH_*, TURNSTILE_SECRET) live here and are
+            # read by node at boot — never baked into the image. Missing file
+            # means a container that starts and then fails every form
+            # submission, so fail loudly instead.
+            if [ ! -f "$APP_DIR/.env" ]; then
+              echo "ERROR: missing $APP_DIR/.env on the host" >&2
+              exit 1
+            fi
+
+            # Enquiries whose notification email fails are appended here by
+            # logLead. Bind-mounted at the same path it has inside the
+            # container. Created here rather than assumed: docker would make it
+            # root-owned, which would stop us rotating it as this user.
+            mkdir -p "$LEADS"
+
+            docker network inspect "$NETWORK" >/dev/null 2>&1 \
+              || docker network create "$NETWORK"
+
+            echo "$GHCR_TOKEN" | docker login ghcr.io \
+              -u "${{ secrets.GHCR_PULL_USER }}" --password-stdin
+            docker pull "$IMAGE"
+
+            docker rm -f "$CONTAINER" 2>/dev/null || true
+            # No published host port: sn-c1-gateway reaches the container by
+            # name on web-network and the tunnel routes boholz-haus.de to it.
+            docker run -d \
+              --name "$CONTAINER" \
+              --restart unless-stopped \
+              --network "$NETWORK" \
+              --env-file "$APP_DIR/.env" \
+              -v "$LEADS":/opt/tenants/boholz/website/leads \
+              "$IMAGE"
+
+            # Don't report success just because `docker run` returned. Poll
+            # until the app actually answers, and dump logs if it never does.
+            echo "Waiting for the app to respond…"
+            for i in $(seq 1 30); do
+              if docker exec "$CONTAINER" node -e \
+                   "fetch('http://127.0.0.1:4321/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))" \
+                   2>/dev/null; then
+                echo "Healthy after ${i}s."
+                docker image prune -f
+                docker ps --filter "name=$CONTAINER"
+                exit 0
+              fi
+              sleep 1
+            done
+
+            echo "ERROR: app did not become healthy in 30s. Recent logs:" >&2
+            docker logs --tail 50 "$CONTAINER" >&2
+            exit 1

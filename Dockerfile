@@ -29,12 +29,17 @@ ARG PUBLIC_GTM_ID
 # and needs no network. GOOGLE_PLACES_API_KEY is still a BUILD dependency: the
 # homepage reviews are fetched once here and frozen into index.html, so absent
 # at build means permanently empty.
-ARG GOOGLE_PLACES_API_KEY
 ENV PUBLIC_ASSETS_URL=$PUBLIC_ASSETS_URL \
     PUBLIC_TURNSTILE_SITE_KEY=$PUBLIC_TURNSTILE_SITE_KEY \
-    PUBLIC_GTM_ID=$PUBLIC_GTM_ID \
-    GOOGLE_PLACES_API_KEY=$GOOGLE_PLACES_API_KEY
-RUN bun run build
+    PUBLIC_GTM_ID=$PUBLIC_GTM_ID
+# GOOGLE_PLACES_API_KEY arrives as a BuildKit secret, not an ARG: an ARG is
+# recoverable from `docker history` forever, and this one is a billable Google
+# credential. The mount exists only for this RUN and lands in no layer. Absent
+# ⇒ googleReviews logs and returns an empty list, so the build still succeeds
+# with no reviews rather than failing.
+RUN --mount=type=secret,id=google_places \
+    GOOGLE_PLACES_API_KEY="$(cat /run/secrets/google_places 2>/dev/null || true)" \
+    bun run build
 
 FROM node:lts-alpine AS runner
 WORKDIR /app
