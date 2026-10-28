@@ -150,6 +150,14 @@ export const houseModels = [
     media: [
       {
         isHero: true,
+        path: "/images/models/bungalow/22-116-000/gallery/bungalow-22-116-000-gallery-twilight.jpg",
+        alt: null,
+        width: 2400,
+        height: 1351,
+        isAi: true,
+      },
+      {
+        isHero: false,
         path: "/images/models/bungalow/22-116-000/gallery/bungalow-22-116-000-gallery-bu-01.webp",
         alt: null,
         width: 2400,

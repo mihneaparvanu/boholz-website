@@ -54,7 +54,7 @@ export const categories = {
     media: [
       {
         isHero: true,
-        path: "/images/models/bungalow/22-116-000/gallery/bungalow-22-116-000-gallery-bu-01.webp",
+        path: "/images/models/bungalow/22-116-000/gallery/bungalow-22-116-000-gallery-twilight.jpg",
         alt: null,
         width: 2400,
         height: 1351,
