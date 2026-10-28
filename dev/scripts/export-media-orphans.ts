@@ -1,3 +1,5 @@
+import "./_bare-paths";
+
 import { db } from "@/db/db";
 import { getMediaURL } from "@/lib/media";
 import type { Image } from "@/domain/media/image.types";

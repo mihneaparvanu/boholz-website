@@ -1,3 +1,5 @@
+import "./_bare-paths";
+
 import { getCategories } from "@/db/loaders";
 import type { ModelCategory } from "@/domain/categories/categories.types";
 

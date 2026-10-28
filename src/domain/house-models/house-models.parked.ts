@@ -1,4 +1,5 @@
 import type { HouseModelRecord } from "./house-models.types";
+import { getMediaURL } from "@/lib/media";
 
 export const parkedHouseModels = [
   {
@@ -33,7 +34,9 @@ export const parkedHouseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/bungalow/22-117/gallery/bungalow-22-117-gallery-bu-117-22-0.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/22-117/gallery/bungalow-22-117-gallery-bu-117-22-0.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1696,
@@ -42,7 +45,9 @@ export const parkedHouseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/bungalow-slider/p-adobestock-622134419.webp",
+        path: getMediaURL(
+          "/images/stock/bungalow-slider/p-adobestock-622134419.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1808,
@@ -51,7 +56,9 @@ export const parkedHouseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/shutterstock-485712322.webp",
+        path: getMediaURL(
+          "/images/stock/lifestyle/shutterstock-485712322.webp",
+        ),
         alt: "Zeitgemäßes Fertighaus mit Garten",
         width: 2400,
         height: 1602,
@@ -62,7 +69,9 @@ export const parkedHouseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/bungalow/22-117/floor-plans/bungalow-22-117-floor-plan-bu-22-117-eg.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/22-117/floor-plans/bungalow-22-117-floor-plan-bu-22-117-eg.webp",
+        ),
         alt: null,
         width: 2045,
         height: 1637,
@@ -102,7 +111,9 @@ export const parkedHouseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/pultdachhaus/21-349-225/gallery/pultdachhaus-21-349-225-gallery-pdh-elw-349-21-225.webp",
+        path: getMediaURL(
+          "/images/models/pultdachhaus/21-349-225/gallery/pultdachhaus-21-349-225-gallery-pdh-elw-349-21-225.webp",
+        ),
         alt: "Pultdachhaus 21-349-225",
         width: 2400,
         height: 1697,
@@ -111,7 +122,9 @@ export const parkedHouseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/pultdachhaeuser-slider/115957-02-xxl-cymk.webp",
+        path: getMediaURL(
+          "/images/stock/pultdachhaeuser-slider/115957-02-xxl-cymk.webp",
+        ),
         alt: null,
         width: 1024,
         height: 768,
@@ -120,7 +133,9 @@ export const parkedHouseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/shutterstock-1858146868.webp",
+        path: getMediaURL(
+          "/images/stock/lifestyle/shutterstock-1858146868.webp",
+        ),
         alt: "Pultdachhaus mit großer Fensterfront",
         width: 2400,
         height: 1600,
@@ -131,7 +146,9 @@ export const parkedHouseModels = [
       {
         title: "Erdgeschoss",
         variant: "elw",
-        path: "/images/models/pultdachhaus/21-349-225/floor-plans/pultdachhaus-21-349-225-floor-plan-pdh-elw-349-21-225-eg-elw.webp",
+        path: getMediaURL(
+          "/images/models/pultdachhaus/21-349-225/floor-plans/pultdachhaus-21-349-225-floor-plan-pdh-elw-349-21-225-eg-elw.webp",
+        ),
         alt: null,
         width: 2367,
         height: 1381,
@@ -140,7 +157,9 @@ export const parkedHouseModels = [
       {
         title: "Dachgeschoss",
         variant: "elw",
-        path: "/images/models/pultdachhaus/21-349-225/floor-plans/pultdachhaus-21-349-225-floor-plan-pdh-elw-349-21-225-dg.webp",
+        path: getMediaURL(
+          "/images/models/pultdachhaus/21-349-225/floor-plans/pultdachhaus-21-349-225-floor-plan-pdh-elw-349-21-225-dg.webp",
+        ),
         alt: null,
         width: 1828,
         height: 1276,
@@ -149,7 +168,9 @@ export const parkedHouseModels = [
       {
         title: "Grundriss",
         variant: "elw",
-        path: "/images/models/pultdachhaus/21-349-225/floor-plans/pultdachhaus-21-349-225-floor-plan-pdh-elw-349-21-225-kg.webp",
+        path: getMediaURL(
+          "/images/models/pultdachhaus/21-349-225/floor-plans/pultdachhaus-21-349-225-floor-plan-pdh-elw-349-21-225-kg.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1276,
@@ -189,7 +210,9 @@ export const parkedHouseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/einfamilienhaus/22-141-190/gallery/einfamilienhaus-22-141-190-gallery-efh-141-22-190-v1.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/22-141-190/gallery/einfamilienhaus-22-141-190-gallery-efh-141-22-190-v1.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1698,
@@ -198,7 +221,9 @@ export const parkedHouseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/einfamilienhaeuser-slider/p-adobestock-622134419.webp",
+        path: getMediaURL(
+          "/images/stock/einfamilienhaeuser-slider/p-adobestock-622134419.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1808,
@@ -209,7 +234,9 @@ export const parkedHouseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/22-141-190/floor-plans/einfamilienhaus-22-141-190-floor-plan-efh-22-141-190-erdgeschoss.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/22-141-190/floor-plans/einfamilienhaus-22-141-190-floor-plan-efh-22-141-190-erdgeschoss.webp",
+        ),
         alt: null,
         width: 2123,
         height: 1331,
@@ -218,7 +245,9 @@ export const parkedHouseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/22-141-190/floor-plans/einfamilienhaus-22-141-190-floor-plan-efh-22-141-190-obergeschoss.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/22-141-190/floor-plans/einfamilienhaus-22-141-190-floor-plan-efh-22-141-190-obergeschoss.webp",
+        ),
         alt: null,
         width: 2192,
         height: 1396,
@@ -258,7 +287,9 @@ export const parkedHouseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/kubus/0-173-0/gallery/kubus-0-173-0-gallery-hero.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-173-0/gallery/kubus-0-173-0-gallery-hero.webp",
+        ),
         alt: "Kubus 0-173 Außenansicht",
         width: 2400,
         height: 1918,
@@ -269,7 +300,9 @@ export const parkedHouseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/kubus/0-173-0/floor-plans/kubus-0-173-0-floor-plan-eg.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-173-0/floor-plans/kubus-0-173-0-floor-plan-eg.webp",
+        ),
         alt: "Kubus 0-173 Erdgeschoss Grundriss",
         width: 1945,
         height: 1247,
@@ -278,7 +311,9 @@ export const parkedHouseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/kubus/0-173-0/floor-plans/kubus-0-173-0-floor-plan-og.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-173-0/floor-plans/kubus-0-173-0-floor-plan-og.webp",
+        ),
         alt: "Kubus 0-173 Obergeschoss Grundriss",
         width: 1975,
         height: 1276,
@@ -318,7 +353,9 @@ export const parkedHouseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/mehrfamilienhaus/dombuhl/dombuhl-10-familienhaus.webp",
+        path: getMediaURL(
+          "/images/models/mehrfamilienhaus/dombuhl/dombuhl-10-familienhaus.webp",
+        ),
         alt: "10-Familienwohnhaus Dombühl",
         width: 2400,
         height: 1482,
@@ -329,7 +366,7 @@ export const parkedHouseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/mehrfamilienhaus/dombuhl/eg.webp",
+        path: getMediaURL("/images/models/mehrfamilienhaus/dombuhl/eg.webp"),
         alt: "Mehrfamilienhaus Dombühl — Grundriss EG",
         width: null,
         height: null,
@@ -338,7 +375,7 @@ export const parkedHouseModels = [
       {
         title: "Obergeschoss 1",
         variant: null,
-        path: "/images/models/mehrfamilienhaus/dombuhl/og1.webp",
+        path: getMediaURL("/images/models/mehrfamilienhaus/dombuhl/og1.webp"),
         alt: "Mehrfamilienhaus Dombühl — Grundriss OG1",
         width: null,
         height: null,
@@ -347,7 +384,7 @@ export const parkedHouseModels = [
       {
         title: "Obergeschoss 2",
         variant: null,
-        path: "/images/models/mehrfamilienhaus/dombuhl/og2.webp",
+        path: getMediaURL("/images/models/mehrfamilienhaus/dombuhl/og2.webp"),
         alt: "Mehrfamilienhaus Dombühl — Grundriss OG2",
         width: null,
         height: null,
@@ -387,7 +424,9 @@ export const parkedHouseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/mehrfamilienhaus/satteldorf/satteldorf-12-familienhaus.webp",
+        path: getMediaURL(
+          "/images/models/mehrfamilienhaus/satteldorf/satteldorf-12-familienhaus.webp",
+        ),
         alt: "12-Familienwohnhaus Satteldorf",
         width: 2400,
         height: 1465,
@@ -398,7 +437,7 @@ export const parkedHouseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/mehrfamilienhaus/satteldorf/eg.webp",
+        path: getMediaURL("/images/models/mehrfamilienhaus/satteldorf/eg.webp"),
         alt: "Mehrfamilienhaus Satteldorf — Grundriss EG",
         width: null,
         height: null,
@@ -407,7 +446,9 @@ export const parkedHouseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/mehrfamilienhaus/satteldorf/og1.webp",
+        path: getMediaURL(
+          "/images/models/mehrfamilienhaus/satteldorf/og1.webp",
+        ),
         alt: "Mehrfamilienhaus Satteldorf — Grundriss OG",
         width: null,
         height: null,
@@ -416,7 +457,7 @@ export const parkedHouseModels = [
       {
         title: "Dachgeschoss",
         variant: null,
-        path: "/images/models/mehrfamilienhaus/satteldorf/dg.webp",
+        path: getMediaURL("/images/models/mehrfamilienhaus/satteldorf/dg.webp"),
         alt: "Mehrfamilienhaus Satteldorf — Grundriss DG",
         width: null,
         height: null,
@@ -456,7 +497,9 @@ export const parkedHouseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/generationenhaus/28-264-160/gallery/generationenhaus-28-264-160-gallery-hero.webp",
+        path: getMediaURL(
+          "/images/models/generationenhaus/28-264-160/gallery/generationenhaus-28-264-160-gallery-hero.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1696,
@@ -467,7 +510,9 @@ export const parkedHouseModels = [
       {
         title: "Erdgeschoss",
         variant: "elw",
-        path: "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-eg-elw.webp",
+        path: getMediaURL(
+          "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-eg-elw.webp",
+        ),
         alt: null,
         width: 2086,
         height: 1509,
@@ -476,7 +521,9 @@ export const parkedHouseModels = [
       {
         title: "Obergeschoss",
         variant: "elw",
-        path: "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-og-elw.webp",
+        path: getMediaURL(
+          "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-og-elw.webp",
+        ),
         alt: null,
         width: 1942,
         height: 1451,
@@ -485,7 +532,9 @@ export const parkedHouseModels = [
       {
         title: "Grundriss",
         variant: "elw",
-        path: "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-bodenplatte-expose-grundrisse300dpi-neu.webp",
+        path: getMediaURL(
+          "/images/models/generationenhaus/28-264-160/floor-plans/generationenhaus-28-264-160-floor-plan-elw-gh-264-28-160-bodenplatte-expose-grundrisse300dpi-neu.webp",
+        ),
         alt: null,
         width: 1696,
         height: 2400,
@@ -525,7 +574,9 @@ export const parkedHouseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/stadtvilla/18-140/gallery/stadtvilla-18-140-gallery-sv-140-18-0.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/18-140/gallery/stadtvilla-18-140-gallery-sv-140-18-0.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1696,
@@ -534,7 +585,7 @@ export const parkedHouseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/adobestock-193248722.webp",
+        path: getMediaURL("/images/stock/lifestyle/adobestock-193248722.webp"),
         alt: "Stadtvilla mit gepflegtem Vorgarten",
         width: 2400,
         height: 1602,
@@ -543,7 +594,9 @@ export const parkedHouseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/shutterstock-1296270274.webp",
+        path: getMediaURL(
+          "/images/stock/lifestyle/shutterstock-1296270274.webp",
+        ),
         alt: "Panoramablick auf Stadtvilla",
         width: 2400,
         height: 800,
@@ -554,7 +607,9 @@ export const parkedHouseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-sv-140-18-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-sv-140-18-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+        ),
         alt: null,
         width: 1198,
         height: 1260,
@@ -563,7 +618,9 @@ export const parkedHouseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-sv-140-18-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-sv-140-18-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+        ),
         alt: null,
         width: 1290,
         height: 1313,
@@ -603,7 +660,9 @@ export const parkedHouseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/stadtvilla/22-173/gallery/stadtvilla-22-173-gallery-sv-elw-173-22-0.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-173/gallery/stadtvilla-22-173-gallery-sv-elw-173-22-0.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1600,
@@ -612,7 +671,7 @@ export const parkedHouseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/adobestock-193248722.webp",
+        path: getMediaURL("/images/stock/lifestyle/adobestock-193248722.webp"),
         alt: "Stadtvilla mit gepflegtem Vorgarten",
         width: 2400,
         height: 1602,
@@ -621,7 +680,9 @@ export const parkedHouseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/shutterstock-1296270274.webp",
+        path: getMediaURL(
+          "/images/stock/lifestyle/shutterstock-1296270274.webp",
+        ),
         alt: "Panoramablick auf Stadtvilla",
         width: 2400,
         height: 800,
@@ -632,7 +693,9 @@ export const parkedHouseModels = [
       {
         title: "Erdgeschoss",
         variant: "elw",
-        path: "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0-eg-elw-neu.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0-eg-elw-neu.webp",
+        ),
         alt: null,
         width: 1945,
         height: 1246,
@@ -641,7 +704,9 @@ export const parkedHouseModels = [
       {
         title: "Erdgeschoss",
         variant: "elw_alternative",
-        path: "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0-eg-alternative.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0-eg-alternative.webp",
+        ),
         alt: null,
         width: 1468,
         height: 1051,
@@ -650,7 +715,9 @@ export const parkedHouseModels = [
       {
         title: "Obergeschoss",
         variant: "elw",
-        path: "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0-og-neu.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0-og-neu.webp",
+        ),
         alt: null,
         width: 1977,
         height: 1277,

@@ -28,6 +28,12 @@ export default defineConfig({
     "/landing/mehrfamilien": "/wohnen/mehrfamilien",
   },
   vite: {
+    // Dev server only. Vite rejects requests whose Host header it does not
+    // recognise, which blocks reaching `bun run dev` through anything but
+    // localhost — a tunnel, another device on the LAN, or the real hostname.
+    server: {
+      allowedHosts: ["localhost", "boholz-haus.de", ".boholz-haus.de"],
+    },
     // Minify CSS with Lightning CSS (more aggressive than the esbuild default).
     // The PostCSS transform pipeline (preset-env, custom-media) still runs first.
     build: { cssMinify: "lightningcss" },

@@ -1,3 +1,5 @@
+import "./_bare-paths";
+
 import { getNews } from "@/db/loaders";
 import type { NewsPost } from "@/domain/news/news.types";
 

@@ -1,3 +1,5 @@
+import "./_bare-paths";
+
 import { CATEGORY_ORDER, getModels, type CategorySlug } from "@/db/loaders";
 import type { HouseModel } from "@/db/models";
 import type {

@@ -1,547 +1,690 @@
 import type { Image } from "./image.types";
+import { getMediaURL } from "@/lib/media";
 
 export const orphanMedia = [
   {
-    path: "/images/models/bungalow/22-134/floor-plans/bungalow-22-134-floor-plan-bu-elw-134-22-0-eg-elw.webp",
+    path: getMediaURL(
+      "/images/models/bungalow/22-134/floor-plans/bungalow-22-134-floor-plan-bu-elw-134-22-0-eg-elw.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1342,
     isAi: false,
   },
   {
-    path: "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-1.webp",
+    path: getMediaURL(
+      "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-1.webp",
+    ),
     alt: null,
     width: 2368,
     height: 1728,
     isAi: true,
   },
   {
-    path: "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-2.webp",
+    path: getMediaURL(
+      "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-2.webp",
+    ),
     alt: null,
     width: 2368,
     height: 1728,
     isAi: true,
   },
   {
-    path: "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-3.webp",
+    path: getMediaURL(
+      "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-3.webp",
+    ),
     alt: null,
     width: 2368,
     height: 1728,
     isAi: true,
   },
   {
-    path: "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-4.webp",
+    path: getMediaURL(
+      "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-4.webp",
+    ),
     alt: null,
     width: 2368,
     height: 1728,
     isAi: true,
   },
   {
-    path: "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-bu-134-22-0.webp",
+    path: getMediaURL(
+      "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-bu-134-22-0.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-hero.webp",
+    path: getMediaURL(
+      "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-hero.webp",
+    ),
     alt: null,
     width: 2368,
     height: 1728,
     isAi: true,
   },
   {
-    path: "/images/models/doppelhaus/38-238-125/floor-plans/doppelhaus-38-238-125-floor-plan-dh-238-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    path: getMediaURL(
+      "/images/models/doppelhaus/38-238-125/floor-plans/doppelhaus-38-238-125-floor-plan-dh-238-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1435,
     isAi: false,
   },
   {
-    path: "/images/models/doppelhaus/38-238-125/floor-plans/doppelhaus-38-238-125-floor-plan-dh-238-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    path: getMediaURL(
+      "/images/models/doppelhaus/38-238-125/floor-plans/doppelhaus-38-238-125-floor-plan-dh-238-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1474,
     isAi: false,
   },
   {
-    path: "/images/models/doppelhaus/38-238-125/gallery/doppelhaus-38-238-125-gallery-dh-238-38-125.webp",
+    path: getMediaURL(
+      "/images/models/doppelhaus/38-238-125/gallery/doppelhaus-38-238-125-gallery-dh-238-38-125.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/doppelhaus/38-238-125/gallery/doppelhaus-38-238-125-hausbild-2026.webp",
+    path: getMediaURL(
+      "/images/models/doppelhaus/38-238-125/gallery/doppelhaus-38-238-125-hausbild-2026.webp",
+    ),
     alt: "Doppelhaus 38-238-125",
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/22-162-190/floor-plans/einfamilienhaus-22-162-190-floor-plan-efh-ho-162-22-190-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/22-162-190/floor-plans/einfamilienhaus-22-162-190-floor-plan-efh-ho-162-22-190-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    ),
     alt: null,
     width: 1568,
     height: 1381,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/22-162-190/floor-plans/einfamilienhaus-22-162-190-floor-plan-efh-ho-162-22-190-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/22-162-190/floor-plans/einfamilienhaus-22-162-190-floor-plan-efh-ho-162-22-190-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    ),
     alt: null,
     width: 1501,
     height: 1289,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-efh-ho-166-22-190-betonoptikfassade.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-efh-ho-166-22-190-betonoptikfassade.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-efh-ho-166-22-190-holzverschalung.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-efh-ho-166-22-190-holzverschalung.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/22-173-190/floor-plans/einfamilienhaus-22-173-190-floor-plan-efh-22-173-190-dg.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/22-173-190/floor-plans/einfamilienhaus-22-173-190-floor-plan-efh-22-173-190-dg.webp",
+    ),
     alt: null,
     width: 1980,
     height: 1288,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/22-173-190/floor-plans/einfamilienhaus-22-173-190-floor-plan-efh-elw-173-22-190-sd-bodenplatte-expose-grundriss300dpi-neu-website-erdgeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/22-173-190/floor-plans/einfamilienhaus-22-173-190-floor-plan-efh-elw-173-22-190-sd-bodenplatte-expose-grundriss300dpi-neu-website-erdgeschoss.webp",
+    ),
     alt: null,
     width: 1956,
     height: 1240,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/22-173-190/gallery/einfamilienhaus-22-173-190-gallery-efh-elw-173-22-190.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/22-173-190/gallery/einfamilienhaus-22-173-190-gallery-efh-elw-173-22-190.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1696,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/28-182-170/floor-plans/einfamilienhaus-28-182-170-floor-plan-efh-182-28-170-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/28-182-170/floor-plans/einfamilienhaus-28-182-170-floor-plan-efh-182-28-170-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    ),
     alt: null,
     width: 1934,
     height: 1521,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/28-182-170/floor-plans/einfamilienhaus-28-182-170-floor-plan-efh-182-28-170-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/28-182-170/floor-plans/einfamilienhaus-28-182-170-floor-plan-efh-182-28-170-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    ),
     alt: null,
     width: 1970,
     height: 1567,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/28-182-170/gallery/einfamilienhaus-28-182-170-gallery-efh-182-28-170.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/28-182-170/gallery/einfamilienhaus-28-182-170-gallery-efh-182-28-170.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1696,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-1.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-1.webp",
+    ),
     alt: null,
     width: 2368,
     height: 1728,
     isAi: true,
   },
   {
-    path: "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-2.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-2.webp",
+    ),
     alt: null,
     width: 2368,
     height: 1728,
     isAi: true,
   },
   {
-    path: "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-3.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-3.webp",
+    ),
     alt: null,
     width: 2368,
     height: 1728,
     isAi: true,
   },
   {
-    path: "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-4.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-4.webp",
+    ),
     alt: null,
     width: 2368,
     height: 1728,
     isAi: true,
   },
   {
-    path: "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-hero.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-hero.webp",
+    ),
     alt: null,
     width: 2368,
     height: 1728,
     isAi: true,
   },
   {
-    path: "/images/models/einfamilienhaus/30-168-160/floor-plans/einfamilienhaus-30-168-160-floor-plan-dg.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/30-168-160/floor-plans/einfamilienhaus-30-168-160-floor-plan-dg.webp",
+    ),
     alt: null,
     width: 657,
     height: 485,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/30-168-160/floor-plans/einfamilienhaus-30-168-160-floor-plan-eg.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/30-168-160/floor-plans/einfamilienhaus-30-168-160-floor-plan-eg.webp",
+    ),
     alt: null,
     width: 635,
     height: 471,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/35-146-150/floor-plans/einfamilienhaus-35-146-150-floor-plan-efh-146-35-150-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/35-146-150/floor-plans/einfamilienhaus-35-146-150-floor-plan-efh-146-35-150-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    ),
     alt: null,
     width: 1693,
     height: 1300,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/35-146-150/floor-plans/einfamilienhaus-35-146-150-floor-plan-efh-146-35-150-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/35-146-150/floor-plans/einfamilienhaus-35-146-150-floor-plan-efh-146-35-150-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    ),
     alt: null,
     width: 1731,
     height: 1292,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/35-146-150/gallery/einfamilienhaus-35-146-150-gallery-efh-146-35-150-2025.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/35-146-150/gallery/einfamilienhaus-35-146-150-gallery-efh-146-35-150-2025.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/35-146-150/gallery/einfamilienhaus-35-146-150-gallery-efh-146-35-150.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/35-146-150/gallery/einfamilienhaus-35-146-150-gallery-efh-146-35-150.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-efh-ho-181-35-150-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-efh-ho-181-35-150-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    ),
     alt: null,
     width: 1429,
     height: 1307,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-elw-efh-181-35-150-eg-m-elw.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-elw-efh-181-35-150-eg-m-elw.webp",
+    ),
     alt: null,
     width: 1429,
     height: 1327,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-elw-efh-181-35-150-og-m-elw.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-elw-efh-181-35-150-og-m-elw.webp",
+    ),
     alt: null,
     width: 1490,
     height: 1316,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/35-181-150/gallery/einfamilienhaus-35-181-150-gallery-efh-181-35-150.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/35-181-150/gallery/einfamilienhaus-35-181-150-gallery-efh-181-35-150.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-efh-115-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-efh-115-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    ),
     alt: null,
     width: 1456,
     height: 1491,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-efh-115-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-efh-115-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    ),
     alt: null,
     width: 1501,
     height: 1486,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/38-115-125/gallery/einfamilienhaus-38-115-125-gallery-efh-115-38-125.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/38-115-125/gallery/einfamilienhaus-38-115-125-gallery-efh-115-38-125.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/38-128-125/floor-plans/einfamilienhaus-38-128-125-floor-plan-efh-128-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/38-128-125/floor-plans/einfamilienhaus-38-128-125-floor-plan-efh-128-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    ),
     alt: null,
     width: 1540,
     height: 1573,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/38-128-125/floor-plans/einfamilienhaus-38-128-125-floor-plan-efh-128-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/38-128-125/floor-plans/einfamilienhaus-38-128-125-floor-plan-efh-128-38-125-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    ),
     alt: null,
     width: 1565,
     height: 1545,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/38-128-125/gallery/einfamilienhaus-38-128-125-gallery-efh-128-38-125.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/38-128-125/gallery/einfamilienhaus-38-128-125-gallery-efh-128-38-125.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-efh-138-38-125-bodenplatte-eg-alternativ-expose-grundriss300dpi-neu-website-erdgeschoss-alternative.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-efh-138-38-125-bodenplatte-eg-alternativ-expose-grundriss300dpi-neu-website-erdgeschoss-alternative.webp",
+    ),
     alt: null,
     width: 1269,
     height: 1389,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-efh-38-138-125-eg.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-efh-38-138-125-eg.webp",
+    ),
     alt: null,
     width: 1347,
     height: 1303,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-efh-38-138-125-og.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-efh-38-138-125-og.webp",
+    ),
     alt: null,
     width: 1363,
     height: 1366,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/38-138-125/gallery/einfamilienhaus-38-138-125-gallery-efh-138-38-125.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/38-138-125/gallery/einfamilienhaus-38-138-125-gallery-efh-138-38-125.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/38-138-125/gallery/einfamilienhaus-38-138-125-hausbild-2026.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/38-138-125/gallery/einfamilienhaus-38-138-125-hausbild-2026.webp",
+    ),
     alt: "Einfamilienhaus 38-138-125",
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/45-139-75/floor-plans/einfamilienhaus-45-139-75-floor-plan-efh-139-45-75-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/45-139-75/floor-plans/einfamilienhaus-45-139-75-floor-plan-efh-139-45-75-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    ),
     alt: null,
     width: 1460,
     height: 1190,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/45-139-75/floor-plans/einfamilienhaus-45-139-75-floor-plan-efh-139-45-75-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/45-139-75/floor-plans/einfamilienhaus-45-139-75-floor-plan-efh-139-45-75-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    ),
     alt: null,
     width: 1432,
     height: 1216,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/45-139-75/gallery/einfamilienhaus-45-139-75-gallery-efh-139-45-75-hausbild.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/45-139-75/gallery/einfamilienhaus-45-139-75-gallery-efh-139-45-75-hausbild.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/einfamilienhaus/45-139-75/gallery/einfamilienhaus-45-139-75-hausbild-2026.webp",
+    path: getMediaURL(
+      "/images/models/einfamilienhaus/45-139-75/gallery/einfamilienhaus-45-139-75-hausbild-2026.webp",
+    ),
     alt: "Einfamilienhaus 45-139-75",
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/kubus/0-140-0/floor-plans/kubus-0-140-0-floor-plan-eg.webp",
+    path: getMediaURL(
+      "/images/models/kubus/0-140-0/floor-plans/kubus-0-140-0-floor-plan-eg.webp",
+    ),
     alt: "Kubus 0-140 Erdgeschoss Grundriss",
     width: 1169,
     height: 1257,
     isAi: false,
   },
   {
-    path: "/images/models/kubus/0-140-0/floor-plans/kubus-0-140-0-floor-plan-og.webp",
+    path: getMediaURL(
+      "/images/models/kubus/0-140-0/floor-plans/kubus-0-140-0-floor-plan-og.webp",
+    ),
     alt: "Kubus 0-140 Obergeschoss Grundriss",
     width: 1257,
     height: 1306,
     isAi: false,
   },
   {
-    path: "/images/models/kubus/0-140-0/gallery/kubus-0-140-0-gallery-hero.webp",
+    path: getMediaURL(
+      "/images/models/kubus/0-140-0/gallery/kubus-0-140-0-gallery-hero.webp",
+    ),
     alt: "Kubus 0-140 Außenansicht",
     width: 2400,
     height: 1696,
     isAi: false,
   },
   {
-    path: "/images/models/kubus/0-190/floor-plans/kubus-0-190-floor-plan-kubus-190-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    path: getMediaURL(
+      "/images/models/kubus/0-190/floor-plans/kubus-0-190-floor-plan-kubus-190-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    ),
     alt: null,
     width: 1939,
     height: 1382,
     isAi: false,
   },
   {
-    path: "/images/models/kubus/0-190/floor-plans/kubus-0-190-floor-plan-kubus-190-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    path: getMediaURL(
+      "/images/models/kubus/0-190/floor-plans/kubus-0-190-floor-plan-kubus-190-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+    ),
     alt: null,
     width: 1907,
     height: 1368,
     isAi: false,
   },
   {
-    path: "/images/models/kubus/0-190/gallery/kubus-0-190-gallery-kubus-190-0-0.webp",
+    path: getMediaURL(
+      "/images/models/kubus/0-190/gallery/kubus-0-190-gallery-kubus-190-0-0.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/mehrfamilienhaus/dombuhl/start-2.webp",
+    path: getMediaURL("/images/models/mehrfamilienhaus/dombuhl/start-2.webp"),
     alt: "Mehrfamilienhaus Dombühl — Außenansicht alternativ",
     width: null,
     height: null,
     isAi: false,
   },
   {
-    path: "/images/models/mehrfamilienhaus/dombuhl/start.webp",
+    path: getMediaURL("/images/models/mehrfamilienhaus/dombuhl/start.webp"),
     alt: "Mehrfamilienhaus Dombühl — Außenansicht",
     width: null,
     height: null,
     isAi: false,
   },
   {
-    path: "/images/models/mehrfamilienhaus/ilshofen/start.webp",
+    path: getMediaURL("/images/models/mehrfamilienhaus/ilshofen/start.webp"),
     alt: "Mehrfamilienhaus Ilshofen — Außenansicht",
     width: null,
     height: null,
     isAi: false,
   },
   {
-    path: "/images/models/mehrfamilienhaus/satteldorf/start.webp",
+    path: getMediaURL("/images/models/mehrfamilienhaus/satteldorf/start.webp"),
     alt: "Mehrfamilienhaus Satteldorf — Außenansicht",
     width: null,
     height: null,
     isAi: false,
   },
   {
-    path: "/images/models/pultdachhaus/21-349-225/gallery/pultdachhaus-21-349-225-gallery-pdh-elw-349-21-225.webp",
+    path: getMediaURL(
+      "/images/models/pultdachhaus/21-349-225/gallery/pultdachhaus-21-349-225-gallery-pdh-elw-349-21-225.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/pultdachhaus/pdh.webp",
+    path: getMediaURL("/images/models/pultdachhaus/pdh.webp"),
     alt: "Pultdachhaus — Kategorie-Thumbnail",
     width: null,
     height: null,
     isAi: false,
   },
   {
-    path: "/images/models/pultdachhaus/pultdachhaus-weiss.webp",
+    path: getMediaURL("/images/models/pultdachhaus/pultdachhaus-weiss.webp"),
     alt: "Pultdachhaus – weißes Musterhaus mit Flachdach",
     width: 1143,
     height: 591,
     isAi: false,
   },
   {
-    path: "/images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-flachdach-kubus-145-0-0.webp",
+    path: getMediaURL(
+      "/images/models/stadtvilla/18-140/floor-plans/stadtvilla-18-140-floor-plan-flachdach-kubus-145-0-0.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1696,
     isAi: false,
   },
   {
-    path: "/images/models/stadtvilla/22-157/floor-plans/stadtvilla-22-157-floor-plan-sv-22-157-grundriss-eg.webp",
+    path: getMediaURL(
+      "/images/models/stadtvilla/22-157/floor-plans/stadtvilla-22-157-floor-plan-sv-22-157-grundriss-eg.webp",
+    ),
     alt: null,
     width: 2366,
     height: 1291,
     isAi: false,
   },
   {
-    path: "/images/models/stadtvilla/22-157/floor-plans/stadtvilla-22-157-floor-plan-sv-22-157-grundriss-og.webp",
+    path: getMediaURL(
+      "/images/models/stadtvilla/22-157/floor-plans/stadtvilla-22-157-floor-plan-sv-22-157-grundriss-og.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1265,
     isAi: false,
   },
   {
-    path: "/images/models/stadtvilla/22-157/gallery/stadtvilla-22-157-gallery-stadtvilla-170-22-0-1-retusche2.webp",
+    path: getMediaURL(
+      "/images/models/stadtvilla/22-157/gallery/stadtvilla-22-157-gallery-stadtvilla-170-22-0-1-retusche2.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/stadtvilla/22-157/gallery/stadtvilla-22-157-gallery-sv-157-22-0-grau.webp",
+    path: getMediaURL(
+      "/images/models/stadtvilla/22-157/gallery/stadtvilla-22-157-gallery-sv-157-22-0-grau.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    path: getMediaURL(
+      "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+    ),
     alt: null,
     width: 1644,
     height: 1555,
     isAi: false,
   },
   {
-    path: "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-22-0-bodenplatte-eg-alternativ-expose-grundriss300dpi.webp",
+    path: getMediaURL(
+      "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-22-0-bodenplatte-eg-alternativ-expose-grundriss300dpi.webp",
+    ),
     alt: null,
     width: 1696,
     height: 2400,
     isAi: false,
   },
   {
-    path: "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-22-0-bodenplatte-eg-alternativ-expose-grundriss300dpi-website-erdgeschoss-alternativ.webp",
+    path: getMediaURL(
+      "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-22-0-bodenplatte-eg-alternativ-expose-grundriss300dpi-website-erdgeschoss-alternativ.webp",
+    ),
     alt: null,
     width: 1668,
     height: 1553,
     isAi: false,
   },
   {
-    path: "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-22-0-bodenplatte-expose-grundrisse300dpi-og.webp",
+    path: getMediaURL(
+      "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-sv-166-22-0-bodenplatte-expose-grundrisse300dpi-og.webp",
+    ),
     alt: null,
     width: 1680,
     height: 1545,
     isAi: false,
   },
   {
-    path: "/images/models/stadtvilla/22-166/gallery/stadtvilla-22-166-gallery-stadtvilla-22-166-retusche.webp",
+    path: getMediaURL(
+      "/images/models/stadtvilla/22-166/gallery/stadtvilla-22-166-gallery-stadtvilla-22-166-retusche.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/stadtvilla/22-166/gallery/stadtvilla-22-166-gallery-sv-166-22-0.webp",
+    path: getMediaURL(
+      "/images/models/stadtvilla/22-166/gallery/stadtvilla-22-166-gallery-sv-166-22-0.webp",
+    ),
     alt: "Stadtvilla 22-166",
     width: 2400,
     height: 1697,
     isAi: false,
   },
   {
-    path: "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0.webp",
+    path: getMediaURL(
+      "/images/models/stadtvilla/22-173/floor-plans/stadtvilla-22-173-floor-plan-elw-sv-elw-173-22-0.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1600,
     isAi: false,
   },
   {
-    path: "/images/news/foerdertoepfe/cover.webp",
+    path: getMediaURL("/images/news/foerdertoepfe/cover.webp"),
     alt: "KfW-Förderung",
     width: 600,
     height: 440,
     isAi: false,
   },
   {
-    path: "/images/staging-review/mehrfamilienhaus-9-familienhaus-ki-2png/9-familienhaus-ki-2.webp",
+    path: getMediaURL(
+      "/images/staging-review/mehrfamilienhaus-9-familienhaus-ki-2png/9-familienhaus-ki-2.webp",
+    ),
     alt: null,
     width: 2400,
     height: 1098,

@@ -1,3 +1,5 @@
+import "./_bare-paths";
+
 import { db } from "@/db/db";
 
 const agents = await db.query.agents.findMany();

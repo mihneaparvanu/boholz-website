@@ -1,4 +1,5 @@
 import type { HouseModelRecord } from "./house-models.types";
+import { getMediaURL } from "@/lib/media";
 
 export const houseModels = [
   {
@@ -33,7 +34,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/einfamilienhaus/35-181-150/gallery/einfamilienhaus-35-181-150-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/35-181-150/gallery/einfamilienhaus-35-181-150-gallery-exterior-2026.webp",
+        ),
         alt: "Einfamilienhaus 35-181-150 – Außenansicht",
         width: null,
         height: null,
@@ -44,7 +47,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 35-181-150 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -53,7 +58,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/35-181-150/floor-plans/einfamilienhaus-35-181-150-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 35-181-150 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -93,7 +100,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/einfamilienhaus/38-115-125/gallery/einfamilienhaus-38-115-125-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/38-115-125/gallery/einfamilienhaus-38-115-125-gallery-exterior-2026.webp",
+        ),
         alt: "Einfamilienhaus 38-115-125 – Außenansicht",
         width: null,
         height: null,
@@ -104,7 +113,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 38-115-125 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -113,7 +124,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/38-115-125/floor-plans/einfamilienhaus-38-115-125-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 38-115-125 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -153,7 +166,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/bungalow/22-116-000/gallery/bungalow-22-116-000-gallery-bu-01.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/22-116-000/gallery/bungalow-22-116-000-gallery-bu-01.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1351,
@@ -162,7 +177,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/models/bungalow/22-116-000/gallery/bungalow-22-116-000-gallery-bu-02.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/22-116-000/gallery/bungalow-22-116-000-gallery-bu-02.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1351,
@@ -171,7 +188,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/bungalow-slider/p-adobestock-622134419.webp",
+        path: getMediaURL(
+          "/images/stock/bungalow-slider/p-adobestock-622134419.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1808,
@@ -180,7 +199,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/shutterstock-485712322.webp",
+        path: getMediaURL(
+          "/images/stock/lifestyle/shutterstock-485712322.webp",
+        ),
         alt: "Zeitgemäßes Fertighaus mit Garten",
         width: 2400,
         height: 1602,
@@ -191,7 +212,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/bungalow/22-116-000/floor-plans/bungalow-22-116-000-floor-plan-eg.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/22-116-000/floor-plans/bungalow-22-116-000-floor-plan-eg.webp",
+        ),
         alt: null,
         width: 581,
         height: 433,
@@ -231,7 +254,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-exterior-2026.webp",
+        ),
         alt: "Bungalow 22-134 – Außenansicht",
         width: null,
         height: null,
@@ -242,7 +267,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/bungalow/22-134/floor-plans/bungalow-22-134-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/22-134/floor-plans/bungalow-22-134-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Bungalow 22-134 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -282,7 +309,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/bungalow-slider/p-adobestock-622134419.webp",
+        path: getMediaURL(
+          "/images/stock/bungalow-slider/p-adobestock-622134419.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1808,
@@ -291,7 +320,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/bungalow/22-149/gallery/bungalow-22-149-gallery-hero.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/22-149/gallery/bungalow-22-149-gallery-hero.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1696,
@@ -300,7 +331,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/shutterstock-485712322.webp",
+        path: getMediaURL(
+          "/images/stock/lifestyle/shutterstock-485712322.webp",
+        ),
         alt: "Zeitgemäßes Fertighaus mit Garten",
         width: 2400,
         height: 1602,
@@ -311,7 +344,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: "alternative",
-        path: "/images/models/bungalow/22-149/floor-plans/bungalow-22-149-floor-plan-bu-22-149-alt.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/22-149/floor-plans/bungalow-22-149-floor-plan-bu-22-149-alt.webp",
+        ),
         alt: null,
         width: 1756,
         height: 1696,
@@ -320,7 +355,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/bungalow/22-149/floor-plans/bungalow-22-149-floor-plan-eg.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/22-149/floor-plans/bungalow-22-149-floor-plan-eg.webp",
+        ),
         alt: null,
         width: 1756,
         height: 1696,
@@ -360,7 +397,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/einfamilienhaus/32-150-170/gallery/einfamilienhaus-32-150-170-gallery-ehf-01.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/32-150-170/gallery/einfamilienhaus-32-150-170-gallery-ehf-01.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1350,
@@ -369,7 +408,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/models/einfamilienhaus/32-150-170/gallery/einfamilienhaus-32-150-170-gallery-ehf-02.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/32-150-170/gallery/einfamilienhaus-32-150-170-gallery-ehf-02.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1350,
@@ -378,7 +419,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/einfamilienhaeuser-slider/p-adobestock-622134419.webp",
+        path: getMediaURL(
+          "/images/stock/einfamilienhaeuser-slider/p-adobestock-622134419.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1808,
@@ -387,7 +430,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/shutterstock-1107072644.webp",
+        path: getMediaURL(
+          "/images/stock/lifestyle/shutterstock-1107072644.webp",
+        ),
         alt: "Modernes Wohnzimmer mit Holzakzenten",
         width: 2400,
         height: 1600,
@@ -398,7 +443,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/32-150-170/floor-plans/einfamilienhaus-32-150-170-floor-plan-eg.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/32-150-170/floor-plans/einfamilienhaus-32-150-170-floor-plan-eg.webp",
+        ),
         alt: null,
         width: 493,
         height: 385,
@@ -407,7 +454,9 @@ export const houseModels = [
       {
         title: "Dachgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/32-150-170/floor-plans/einfamilienhaus-32-150-170-floor-plan-dg.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/32-150-170/floor-plans/einfamilienhaus-32-150-170-floor-plan-dg.webp",
+        ),
         alt: null,
         width: 498,
         height: 407,
@@ -447,7 +496,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: false,
-        path: "/images/models/bestseller-fellbach-148/hausbild.webp",
+        path: getMediaURL(
+          "/images/models/bestseller-fellbach-148/hausbild.webp",
+        ),
         alt: "Bestseller Fellbach 148",
         width: 2400,
         height: 1350,
@@ -456,7 +507,7 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/adobestock-215081808.webp",
+        path: getMediaURL("/images/stock/lifestyle/adobestock-215081808.webp"),
         alt: "Modernes Einfamilienhaus mit Flachdach",
         width: 2400,
         height: 1600,
@@ -465,7 +516,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/adobestock-333504091-1.webp",
+        path: getMediaURL(
+          "/images/stock/lifestyle/adobestock-333504091-1.webp",
+        ),
         alt: "Lichtdurchfluteter Wohnbereich",
         width: 2400,
         height: 1600,
@@ -476,7 +529,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/bestseller-fellbach-148/floor-plans/eg.webp",
+        path: getMediaURL(
+          "/images/models/bestseller-fellbach-148/floor-plans/eg.webp",
+        ),
         alt: "Grundriss Erdgeschoss — Bestseller Fellbach 148",
         width: 589,
         height: 566,
@@ -485,7 +540,9 @@ export const houseModels = [
       {
         title: "Dachgeschoss",
         variant: null,
-        path: "/images/models/bestseller-fellbach-148/floor-plans/dg.webp",
+        path: getMediaURL(
+          "/images/models/bestseller-fellbach-148/floor-plans/dg.webp",
+        ),
         alt: "Grundriss Dachgeschoss — Bestseller Fellbach 148",
         width: 602,
         height: 631,
@@ -525,7 +582,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/einfamilienhaus/38-138-125/gallery/einfamilienhaus-38-138-125-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/38-138-125/gallery/einfamilienhaus-38-138-125-gallery-exterior-2026.webp",
+        ),
         alt: "Einfamilienhaus 38-138-125 – Außenansicht",
         width: null,
         height: null,
@@ -536,7 +595,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 38-138-125 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -545,7 +606,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 38-138-125 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -554,7 +617,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: "alternative",
-        path: "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-erdgeschoss-alternative-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/38-138-125/floor-plans/einfamilienhaus-38-138-125-floor-plan-erdgeschoss-alternative-2026.webp",
+        ),
         alt: "Einfamilienhaus 38-138-125 – Grundriss Erdgeschoss (Alternative)",
         width: null,
         height: null,
@@ -594,7 +659,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/einfamilienhaus/45-139-75/gallery/einfamilienhaus-45-139-75-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/45-139-75/gallery/einfamilienhaus-45-139-75-gallery-exterior-2026.webp",
+        ),
         alt: "Einfamilienhaus 45-139-75 – Außenansicht",
         width: null,
         height: null,
@@ -605,7 +672,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/45-139-75/floor-plans/einfamilienhaus-45-139-75-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/45-139-75/floor-plans/einfamilienhaus-45-139-75-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 45-139-75 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -614,7 +683,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/45-139-75/floor-plans/einfamilienhaus-45-139-75-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/45-139-75/floor-plans/einfamilienhaus-45-139-75-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 45-139-75 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -654,7 +725,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/generationenhaus/30-223-160/gallery/generationenhaus-30-223-160-gallery-gen-1.webp",
+        path: getMediaURL(
+          "/images/models/generationenhaus/30-223-160/gallery/generationenhaus-30-223-160-gallery-gen-1.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1350,
@@ -663,7 +736,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/models/generationenhaus/30-223-160/gallery/generationenhaus-30-223-160-gallery-gen-2-1.webp",
+        path: getMediaURL(
+          "/images/models/generationenhaus/30-223-160/gallery/generationenhaus-30-223-160-gallery-gen-2-1.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1350,
@@ -672,7 +747,7 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/adobestock-303568642.webp",
+        path: getMediaURL("/images/stock/lifestyle/adobestock-303568642.webp"),
         alt: "Großzügiges Generationenhaus",
         width: 2400,
         height: 1488,
@@ -683,7 +758,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/generationenhaus/30-223-160/floor-plans/generationenhaus-30-223-160-floor-plan-eg.webp",
+        path: getMediaURL(
+          "/images/models/generationenhaus/30-223-160/floor-plans/generationenhaus-30-223-160-floor-plan-eg.webp",
+        ),
         alt: null,
         width: 575,
         height: 425,
@@ -692,7 +769,9 @@ export const houseModels = [
       {
         title: "Dachgeschoss",
         variant: null,
-        path: "/images/models/generationenhaus/30-223-160/floor-plans/generationenhaus-30-223-160-floor-plan-dg.webp",
+        path: getMediaURL(
+          "/images/models/generationenhaus/30-223-160/floor-plans/generationenhaus-30-223-160-floor-plan-dg.webp",
+        ),
         alt: null,
         width: 585,
         height: 463,
@@ -732,7 +811,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/doppelhaus/25-138-210/gallery/doppelhaus-25-138-210-gallery-dhh-2-1.webp",
+        path: getMediaURL(
+          "/images/models/doppelhaus/25-138-210/gallery/doppelhaus-25-138-210-gallery-dhh-2-1.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1350,
@@ -741,7 +822,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/doppelhaeuser-slider/502125-01-xxl-02-ret-cymk.webp",
+        path: getMediaURL(
+          "/images/stock/doppelhaeuser-slider/502125-01-xxl-02-ret-cymk.webp",
+        ),
         alt: null,
         width: 1024,
         height: 768,
@@ -750,7 +833,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/shutterstock-167874614.webp",
+        path: getMediaURL(
+          "/images/stock/lifestyle/shutterstock-167874614.webp",
+        ),
         alt: "Doppelhaushälfte im Grünen",
         width: 2400,
         height: 1800,
@@ -761,7 +846,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/doppelhaus/25-138-210/floor-plans/doppelhaus-25-138-210-floor-plan-eg.webp",
+        path: getMediaURL(
+          "/images/models/doppelhaus/25-138-210/floor-plans/doppelhaus-25-138-210-floor-plan-eg.webp",
+        ),
         alt: null,
         width: 696,
         height: 490,
@@ -770,7 +857,9 @@ export const houseModels = [
       {
         title: "Dachgeschoss",
         variant: null,
-        path: "/images/models/doppelhaus/25-138-210/floor-plans/doppelhaus-25-138-210-floor-plan-dg.webp",
+        path: getMediaURL(
+          "/images/models/doppelhaus/25-138-210/floor-plans/doppelhaus-25-138-210-floor-plan-dg.webp",
+        ),
         alt: null,
         width: 932,
         height: 698,
@@ -810,7 +899,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/doppelhaus/28-299/gallery/doppelhaus-28-299-gallery-dh-299-28-0.webp",
+        path: getMediaURL(
+          "/images/models/doppelhaus/28-299/gallery/doppelhaus-28-299-gallery-dh-299-28-0.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1696,
@@ -819,7 +910,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/doppelhaeuser-slider/502125-01-xxl-02-ret-cymk.webp",
+        path: getMediaURL(
+          "/images/stock/doppelhaeuser-slider/502125-01-xxl-02-ret-cymk.webp",
+        ),
         alt: null,
         width: 1024,
         height: 768,
@@ -828,7 +921,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/doppelhaeuser-slider/forest-3315896-1920.webp",
+        path: getMediaURL(
+          "/images/stock/doppelhaeuser-slider/forest-3315896-1920.webp",
+        ),
         alt: null,
         width: 1920,
         height: 1280,
@@ -837,7 +932,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/shutterstock-1043328154.webp",
+        path: getMediaURL(
+          "/images/stock/lifestyle/shutterstock-1043328154.webp",
+        ),
         alt: "Moderne Doppelhaushälfte",
         width: 2400,
         height: 1600,
@@ -848,7 +945,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/doppelhaus/28-299/floor-plans/doppelhaus-28-299-floor-plan-dh-299-28-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+        path: getMediaURL(
+          "/images/models/doppelhaus/28-299/floor-plans/doppelhaus-28-299-floor-plan-dh-299-28-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+        ),
         alt: null,
         width: 1999,
         height: 1751,
@@ -857,7 +956,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/doppelhaus/28-299/floor-plans/doppelhaus-28-299-floor-plan-dh-299-28-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+        path: getMediaURL(
+          "/images/models/doppelhaus/28-299/floor-plans/doppelhaus-28-299-floor-plan-dh-299-28-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+        ),
         alt: null,
         width: 2082,
         height: 1645,
@@ -897,7 +998,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/doppelhaus/38-238-125/gallery/doppelhaus-38-238-125-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/doppelhaus/38-238-125/gallery/doppelhaus-38-238-125-gallery-exterior-2026.webp",
+        ),
         alt: "Doppelhaus 38-238-125 – Außenansicht",
         width: null,
         height: null,
@@ -908,7 +1011,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/doppelhaus/38-238-125/floor-plans/doppelhaus-38-238-125-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/doppelhaus/38-238-125/floor-plans/doppelhaus-38-238-125-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Doppelhaus 38-238-125 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -917,7 +1022,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/doppelhaus/38-238-125/floor-plans/doppelhaus-38-238-125-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/doppelhaus/38-238-125/floor-plans/doppelhaus-38-238-125-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Doppelhaus 38-238-125 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -957,7 +1064,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/einfamilienhaus/22-173-190/gallery/einfamilienhaus-22-173-190-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/22-173-190/gallery/einfamilienhaus-22-173-190-gallery-exterior-2026.webp",
+        ),
         alt: "Einfamilienhaus 22-173-190 – Außenansicht",
         width: null,
         height: null,
@@ -968,7 +1077,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/22-173-190/floor-plans/einfamilienhaus-22-173-190-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/22-173-190/floor-plans/einfamilienhaus-22-173-190-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 22-173-190 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -977,7 +1088,9 @@ export const houseModels = [
       {
         title: "Dachgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/22-173-190/floor-plans/einfamilienhaus-22-173-190-floor-plan-dachgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/22-173-190/floor-plans/einfamilienhaus-22-173-190-floor-plan-dachgeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 22-173-190 – Grundriss Dachgeschoss",
         width: null,
         height: null,
@@ -1017,7 +1130,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: false,
-        path: "/images/models/einfamilienhaus/25-168-190/gallery/einfamilienhaus-25-168-190-gallery-efh-ho-168-25-190.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/25-168-190/gallery/einfamilienhaus-25-168-190-gallery-efh-ho-168-25-190.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1600,
@@ -1026,7 +1141,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/einfamilienhaeuser-slider/p-adobestock-622134419.webp",
+        path: getMediaURL(
+          "/images/stock/einfamilienhaeuser-slider/p-adobestock-622134419.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1808,
@@ -1037,7 +1154,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/25-168-190/floor-plans/einfamilienhaus-25-168-190-floor-plan-efh-ho-168-25-190-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/25-168-190/floor-plans/einfamilienhaus-25-168-190-floor-plan-efh-ho-168-25-190-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+        ),
         alt: null,
         width: 1990,
         height: 1427,
@@ -1046,7 +1165,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/25-168-190/floor-plans/einfamilienhaus-25-168-190-floor-plan-efh-ho-168-25-190-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/25-168-190/floor-plans/einfamilienhaus-25-168-190-floor-plan-efh-ho-168-25-190-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+        ),
         alt: null,
         width: 1973,
         height: 1479,
@@ -1086,7 +1207,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-efh-28-194-170.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/28-194-170/gallery/einfamilienhaus-28-194-170-gallery-efh-28-194-170.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1697,
@@ -1095,7 +1218,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/einfamilienhaeuser-slider/p-adobestock-622134419.webp",
+        path: getMediaURL(
+          "/images/stock/einfamilienhaeuser-slider/p-adobestock-622134419.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1808,
@@ -1106,7 +1231,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: "elw",
-        path: "/images/models/einfamilienhaus/28-194-170/floor-plans/einfamilienhaus-28-194-170-floor-plan-elw-eg.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/28-194-170/floor-plans/einfamilienhaus-28-194-170-floor-plan-elw-eg.webp",
+        ),
         alt: null,
         width: 1916,
         height: 1780,
@@ -1115,7 +1242,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/28-194-170/floor-plans/einfamilienhaus-28-194-170-floor-plan-eg.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/28-194-170/floor-plans/einfamilienhaus-28-194-170-floor-plan-eg.webp",
+        ),
         alt: null,
         width: 1912,
         height: 1676,
@@ -1124,7 +1253,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/28-194-170/floor-plans/einfamilienhaus-28-194-170-floor-plan-og.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/28-194-170/floor-plans/einfamilienhaus-28-194-170-floor-plan-og.webp",
+        ),
         alt: null,
         width: 1948,
         height: 1708,
@@ -1164,7 +1295,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/kubus/0-140/gallery/kubus-0-140-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-140/gallery/kubus-0-140-gallery-exterior-2026.webp",
+        ),
         alt: "Kubus 0-140 – Außenansicht",
         width: null,
         height: null,
@@ -1175,7 +1308,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/kubus/0-140/floor-plans/kubus-0-140-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-140/floor-plans/kubus-0-140-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Kubus 0-140 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -1184,7 +1319,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/kubus/0-140/floor-plans/kubus-0-140-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-140/floor-plans/kubus-0-140-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Kubus 0-140 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -1224,7 +1361,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/kubus/0-166/gallery/kubus-0-166-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-166/gallery/kubus-0-166-gallery-exterior-2026.webp",
+        ),
         alt: "Kubus 0-166 – Außenansicht",
         width: null,
         height: null,
@@ -1235,7 +1374,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/kubus/0-166/floor-plans/kubus-0-166-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-166/floor-plans/kubus-0-166-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Kubus 0-166 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -1244,7 +1385,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/kubus/0-166/floor-plans/kubus-0-166-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-166/floor-plans/kubus-0-166-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Kubus 0-166 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -1284,7 +1427,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/kubus/0-278/gallery/kubus-0-278-gallery-kubus-278-0-0.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-278/gallery/kubus-0-278-gallery-kubus-278-0-0.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1696,
@@ -1293,7 +1438,7 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/kubus-slider/tree-1750784.webp",
+        path: getMediaURL("/images/stock/kubus-slider/tree-1750784.webp"),
         alt: null,
         width: 2400,
         height: 1600,
@@ -1302,7 +1447,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/kubus-slider/p-shutterstock-729856273.webp",
+        path: getMediaURL(
+          "/images/stock/kubus-slider/p-shutterstock-729856273.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1535,
@@ -1311,7 +1458,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/kubus-slider/129072-03-xxl-ggu-cymk.webp",
+        path: getMediaURL(
+          "/images/stock/kubus-slider/129072-03-xxl-ggu-cymk.webp",
+        ),
         alt: null,
         width: 1024,
         height: 683,
@@ -1322,7 +1471,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/kubus/0-278/floor-plans/kubus-0-278-floor-plan-kubus-278-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-278/floor-plans/kubus-0-278-floor-plan-kubus-278-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-erdgeschoss.webp",
+        ),
         alt: null,
         width: 1728,
         height: 1678,
@@ -1331,7 +1482,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/kubus/0-278/floor-plans/kubus-0-278-floor-plan-kubus-278-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-278/floor-plans/kubus-0-278-floor-plan-kubus-278-0-0-bodenplatte-expose-grundrisse300dpi-neu-website-obergeschoss.webp",
+        ),
         alt: null,
         width: 1638,
         height: 1585,
@@ -1371,7 +1524,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/mehrfamilienhaus/ilshofen/ilshofen-neu.webp",
+        path: getMediaURL(
+          "/images/models/mehrfamilienhaus/ilshofen/ilshofen-neu.webp",
+        ),
         alt: "Mehrfamilienhaus Ilshofen",
         width: 2400,
         height: 800,
@@ -1382,7 +1537,7 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/mehrfamilienhaus/ilshofen/eg.webp",
+        path: getMediaURL("/images/models/mehrfamilienhaus/ilshofen/eg.webp"),
         alt: "Mehrfamilienhaus Ilshofen — Grundriss EG",
         width: null,
         height: null,
@@ -1391,7 +1546,7 @@ export const houseModels = [
       {
         title: "Obergeschoss 1",
         variant: null,
-        path: "/images/models/mehrfamilienhaus/ilshofen/og1.webp",
+        path: getMediaURL("/images/models/mehrfamilienhaus/ilshofen/og1.webp"),
         alt: "Mehrfamilienhaus Ilshofen — Grundriss OG1",
         width: null,
         height: null,
@@ -1400,7 +1555,7 @@ export const houseModels = [
       {
         title: "Obergeschoss 2",
         variant: null,
-        path: "/images/models/mehrfamilienhaus/ilshofen/og2.webp",
+        path: getMediaURL("/images/models/mehrfamilienhaus/ilshofen/og2.webp"),
         alt: "Mehrfamilienhaus Ilshofen — Grundriss OG2",
         width: null,
         height: null,
@@ -1440,7 +1595,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/mehrfamilienhaus/schechingen/start.webp",
+        path: getMediaURL(
+          "/images/models/mehrfamilienhaus/schechingen/start.webp",
+        ),
         alt: "Mehrfamilienhaus Schechingen — Außenansicht",
         width: null,
         height: null,
@@ -1451,7 +1608,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/mehrfamilienhaus/schechingen/eg.webp",
+        path: getMediaURL(
+          "/images/models/mehrfamilienhaus/schechingen/eg.webp",
+        ),
         alt: "Mehrfamilienhaus Schechingen — Grundriss EG",
         width: null,
         height: null,
@@ -1460,7 +1619,9 @@ export const houseModels = [
       {
         title: "Obergeschoss 1",
         variant: null,
-        path: "/images/models/mehrfamilienhaus/schechingen/og1.webp",
+        path: getMediaURL(
+          "/images/models/mehrfamilienhaus/schechingen/og1.webp",
+        ),
         alt: "Mehrfamilienhaus Schechingen — Grundriss OG1",
         width: null,
         height: null,
@@ -1469,7 +1630,9 @@ export const houseModels = [
       {
         title: "Obergeschoss 2",
         variant: null,
-        path: "/images/models/mehrfamilienhaus/schechingen/og2.webp",
+        path: getMediaURL(
+          "/images/models/mehrfamilienhaus/schechingen/og2.webp",
+        ),
         alt: "Mehrfamilienhaus Schechingen — Grundriss OG2",
         width: null,
         height: null,
@@ -1509,7 +1672,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: false,
-        path: "/images/models/stadtvilla/22-140-000/gallery/stadtvilla-22-140-000-gallery-sv-02.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-140-000/gallery/stadtvilla-22-140-000-gallery-sv-02.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1350,
@@ -1518,7 +1683,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/models/stadtvilla/22-140-000/gallery/stadtvilla-22-140-000-gallery-sv-01.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-140-000/gallery/stadtvilla-22-140-000-gallery-sv-01.webp",
+        ),
         alt: null,
         width: 2400,
         height: 1350,
@@ -1527,7 +1694,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/stock/lifestyle/shutterstock-1107072644.webp",
+        path: getMediaURL(
+          "/images/stock/lifestyle/shutterstock-1107072644.webp",
+        ),
         alt: "Modernes Wohnzimmer mit Holzakzenten",
         width: 2400,
         height: 1600,
@@ -1538,7 +1707,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/stadtvilla/22-140-000/floor-plans/stadtvilla-22-140-000-floor-plan-eg.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-140-000/floor-plans/stadtvilla-22-140-000-floor-plan-eg.webp",
+        ),
         alt: null,
         width: 505,
         height: 505,
@@ -1547,7 +1718,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/stadtvilla/22-140-000/floor-plans/stadtvilla-22-140-000-floor-plan-og.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-140-000/floor-plans/stadtvilla-22-140-000-floor-plan-og.webp",
+        ),
         alt: null,
         width: 498,
         height: 491,
@@ -1587,7 +1760,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/stadtvilla/22-157/gallery/stadtvilla-22-157-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-157/gallery/stadtvilla-22-157-gallery-exterior-2026.webp",
+        ),
         alt: "Stadtvilla 22-157 – Außenansicht",
         width: null,
         height: null,
@@ -1598,7 +1773,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/stadtvilla/22-157/floor-plans/stadtvilla-22-157-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-157/floor-plans/stadtvilla-22-157-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Stadtvilla 22-157 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -1607,7 +1784,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/stadtvilla/22-157/floor-plans/stadtvilla-22-157-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-157/floor-plans/stadtvilla-22-157-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Stadtvilla 22-157 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -1647,7 +1826,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/stadtvilla/22-166/gallery/stadtvilla-22-166-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-166/gallery/stadtvilla-22-166-gallery-exterior-2026.webp",
+        ),
         alt: "Stadtvilla 22-166 – Außenansicht",
         width: null,
         height: null,
@@ -1658,7 +1839,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Stadtvilla 22-166 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -1667,7 +1850,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Stadtvilla 22-166 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -1676,7 +1861,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: "alternative",
-        path: "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-erdgeschoss-alternative-2026.webp",
+        path: getMediaURL(
+          "/images/models/stadtvilla/22-166/floor-plans/stadtvilla-22-166-floor-plan-erdgeschoss-alternative-2026.webp",
+        ),
         alt: "Stadtvilla 22-166 – Grundriss Erdgeschoss (Alternative)",
         width: null,
         height: null,
@@ -1716,7 +1903,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-exterior-1-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-exterior-1-2026.webp",
+        ),
         alt: "Einfamilienhaus 22-162-190 – Außenansicht (Variante 1)",
         width: null,
         height: null,
@@ -1725,7 +1914,9 @@ export const houseModels = [
       {
         isHero: false,
         isThumbnail: false,
-        path: "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-exterior-2-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-exterior-2-2026.webp",
+        ),
         alt: "Einfamilienhaus 22-162-190 – Außenansicht (Variante 2)",
         width: null,
         height: null,
@@ -1736,7 +1927,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/22-162-190/floor-plans/einfamilienhaus-22-162-190-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/22-162-190/floor-plans/einfamilienhaus-22-162-190-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 22-162-190 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -1745,7 +1938,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/22-162-190/floor-plans/einfamilienhaus-22-162-190-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/22-162-190/floor-plans/einfamilienhaus-22-162-190-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 22-162-190 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -1785,7 +1980,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/einfamilienhaus/28-182-170/gallery/einfamilienhaus-28-182-170-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/28-182-170/gallery/einfamilienhaus-28-182-170-gallery-exterior-2026.webp",
+        ),
         alt: "Einfamilienhaus 28-182-170 – Außenansicht",
         width: null,
         height: null,
@@ -1796,7 +1993,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/28-182-170/floor-plans/einfamilienhaus-28-182-170-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/28-182-170/floor-plans/einfamilienhaus-28-182-170-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 28-182-170 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -1805,7 +2004,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/28-182-170/floor-plans/einfamilienhaus-28-182-170-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/28-182-170/floor-plans/einfamilienhaus-28-182-170-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 28-182-170 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -1845,7 +2046,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/einfamilienhaus/35-146-150/gallery/einfamilienhaus-35-146-150-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/35-146-150/gallery/einfamilienhaus-35-146-150-gallery-exterior-2026.webp",
+        ),
         alt: "Einfamilienhaus 35-146-150 – Außenansicht",
         width: null,
         height: null,
@@ -1856,7 +2059,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/35-146-150/floor-plans/einfamilienhaus-35-146-150-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/35-146-150/floor-plans/einfamilienhaus-35-146-150-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 35-146-150 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -1865,7 +2070,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/35-146-150/floor-plans/einfamilienhaus-35-146-150-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/35-146-150/floor-plans/einfamilienhaus-35-146-150-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 35-146-150 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -1905,7 +2112,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/einfamilienhaus/38-128-125/gallery/einfamilienhaus-38-128-125-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/38-128-125/gallery/einfamilienhaus-38-128-125-gallery-exterior-2026.webp",
+        ),
         alt: "Einfamilienhaus 38-128-125 – Außenansicht",
         width: null,
         height: null,
@@ -1916,7 +2125,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/38-128-125/floor-plans/einfamilienhaus-38-128-125-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/38-128-125/floor-plans/einfamilienhaus-38-128-125-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 38-128-125 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -1925,7 +2136,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/einfamilienhaus/38-128-125/floor-plans/einfamilienhaus-38-128-125-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/einfamilienhaus/38-128-125/floor-plans/einfamilienhaus-38-128-125-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Einfamilienhaus 38-128-125 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -1965,7 +2178,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/kubus/0-190/gallery/kubus-0-190-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-190/gallery/kubus-0-190-gallery-exterior-2026.webp",
+        ),
         alt: "Kubus 0-190 – Außenansicht",
         width: null,
         height: null,
@@ -1976,7 +2191,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/kubus/0-190/floor-plans/kubus-0-190-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-190/floor-plans/kubus-0-190-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Kubus 0-190 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -1985,7 +2202,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/kubus/0-190/floor-plans/kubus-0-190-floor-plan-obergeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/kubus/0-190/floor-plans/kubus-0-190-floor-plan-obergeschoss-2026.webp",
+        ),
         alt: "Kubus 0-190 – Grundriss Obergeschoss",
         width: null,
         height: null,
@@ -2025,7 +2244,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/bungalow/28-123/gallery/bungalow-28-123-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/28-123/gallery/bungalow-28-123-gallery-exterior-2026.webp",
+        ),
         alt: "Bungalow 28-123 – Außenansicht",
         width: null,
         height: null,
@@ -2036,7 +2257,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/bungalow/28-123/floor-plans/bungalow-28-123-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/28-123/floor-plans/bungalow-28-123-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Bungalow 28-123 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -2076,7 +2299,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/bungalow/28-141/gallery/bungalow-28-141-gallery-exterior-2026.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/28-141/gallery/bungalow-28-141-gallery-exterior-2026.webp",
+        ),
         alt: "Bungalow 28-141 – Außenansicht",
         width: null,
         height: null,
@@ -2087,7 +2312,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/bungalow/28-141/floor-plans/bungalow-28-141-floor-plan-erdgeschoss-2026.webp",
+        path: getMediaURL(
+          "/images/models/bungalow/28-141/floor-plans/bungalow-28-141-floor-plan-erdgeschoss-2026.webp",
+        ),
         alt: "Bungalow 28-141 – Grundriss Erdgeschoss",
         width: null,
         height: null,
@@ -2127,7 +2354,9 @@ export const houseModels = [
       {
         isHero: true,
         isThumbnail: true,
-        path: "/images/models/zweifamilienhaus/22-282-0/gallery/zweifamilienhaus-22-282-0-gallery-hero.webp",
+        path: getMediaURL(
+          "/images/models/zweifamilienhaus/22-282-0/gallery/zweifamilienhaus-22-282-0-gallery-hero.webp",
+        ),
         alt: "Zweifamilienhaus 22-282 Außenansicht",
         width: 2400,
         height: 1696,
@@ -2138,7 +2367,9 @@ export const houseModels = [
       {
         title: "Erdgeschoss",
         variant: null,
-        path: "/images/models/zweifamilienhaus/22-282-0/floor-plans/zweifamilienhaus-22-282-0-floor-plan-eg.webp",
+        path: getMediaURL(
+          "/images/models/zweifamilienhaus/22-282-0/floor-plans/zweifamilienhaus-22-282-0-floor-plan-eg.webp",
+        ),
         alt: "Zweifamilienhaus 22-282 Erdgeschoss Grundriss",
         width: 1952,
         height: 1440,
@@ -2147,7 +2378,9 @@ export const houseModels = [
       {
         title: "Obergeschoss",
         variant: null,
-        path: "/images/models/zweifamilienhaus/22-282-0/floor-plans/zweifamilienhaus-22-282-0-floor-plan-og.webp",
+        path: getMediaURL(
+          "/images/models/zweifamilienhaus/22-282-0/floor-plans/zweifamilienhaus-22-282-0-floor-plan-og.webp",
+        ),
         alt: "Zweifamilienhaus 22-282 Obergeschoss Grundriss",
         width: 2010,
         height: 1414,

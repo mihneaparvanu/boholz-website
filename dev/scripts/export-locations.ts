@@ -1,3 +1,5 @@
+import "./_bare-paths";
+
 import { agents } from "@/domain/agents/agents";
 import { type AgentSlug } from "@/domain/agents/agents.types";
 import { getLocations } from "@/db/loaders";
