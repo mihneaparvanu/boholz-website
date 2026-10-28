@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import type { HouseCategory } from "@/db/models";
+import type { ModelCategory } from "@/domain/categories/categories.types";
 
 const props = defineProps<{
-  category: HouseCategory;
+  category: ModelCategory;
 }>();
 
 const heroMedia = computed(() => {
@@ -12,7 +12,7 @@ const heroMedia = computed(() => {
 });
 
 const imageURL = computed(() => {
-  return heroMedia.value?.media.path ?? "";
+  return heroMedia.value?.path ?? "";
 });
 </script>
 
@@ -25,8 +25,8 @@ const imageURL = computed(() => {
     <img
       :src="imageURL"
       :alt="category.name"
-      :width="heroMedia?.media.width"
-      :height="heroMedia?.media.height"
+      :width="heroMedia?.width"
+      :height="heroMedia?.height"
       class="model-image"
     />
   </div>

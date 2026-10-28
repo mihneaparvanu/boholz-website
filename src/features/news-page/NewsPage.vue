@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { NewsArticle } from "@/db/models";
+import type { NewsPost } from "@/domain/news/news.types";
 import NewsCard from "./components/NewsCard.vue";
 
 const props = defineProps<{
-  articles: NewsArticle[];
+  articles: NewsPost[];
 }>();
 </script>
 

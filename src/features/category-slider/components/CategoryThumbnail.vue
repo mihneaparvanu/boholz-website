@@ -2,11 +2,11 @@
 import { computed } from "vue";
 import { Star } from "lucide-vue-next";
 
-import type { HouseCategory } from "@/db/models";
+import type { ModelCategory } from "@/domain/categories/categories.types";
 import { isBestsellerCategory } from "@/lib/bestseller";
 
 const props = defineProps<{
-  category: HouseCategory;
+  category: ModelCategory;
 }>();
 
 const thumbnail = computed(() => {
@@ -14,7 +14,7 @@ const thumbnail = computed(() => {
 });
 
 const imageURL = computed(() => {
-  return thumbnail.value?.media.path ?? "";
+  return thumbnail.value?.path ?? "";
 });
 
 const isBestseller = computed(() => isBestsellerCategory(props.category));
@@ -35,8 +35,8 @@ const initials = computed(() =>
         v-if="imageURL"
         :src="imageURL"
         :alt="category.name"
-        :width="thumbnail?.media.width"
-        :height="thumbnail?.media.height"
+        :width="thumbnail?.width"
+        :height="thumbnail?.height"
         class="model-image"
       />
       <span v-else class="fallback" aria-hidden="true">{{ initials }}</span>

@@ -18,12 +18,12 @@ import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 import HouseModelCard from "./HouseModelCard.vue";
 import type { HouseModelCardProps } from "./HouseModelCard.vue";
 import CategoryThumbnail from "@/features/category-slider/components/CategoryThumbnail.vue";
-import type { HouseCategory } from "@/db/models";
+import type { ModelCategory } from "@/domain/categories/categories.types";
 import { isBestsellerCategory, getBestsellerModels } from "@/lib/bestseller";
 
 const props = defineProps<{
   models: HouseModelCardProps[];
-  categories?: HouseCategory[];
+  categories?: ModelCategory[];
   /** Accessible label for the scrollable region. */
   ariaLabel?: string;
 }>();
@@ -31,13 +31,13 @@ const props = defineProps<{
 // Default selection lands on the Bestseller category if present — it's
 // the canonical "start here" entry across every category surface. Falls
 // back to the first category if Bestseller hasn't been seeded yet.
-const selected = ref<HouseCategory | null>(
+const selected = ref<ModelCategory | null>(
   props.categories?.find(isBestsellerCategory) ??
     props.categories?.[0] ??
     null,
 );
 
-const select = (category: HouseCategory) => {
+const select = (category: ModelCategory) => {
   selected.value = category;
 };
 
@@ -46,7 +46,7 @@ const displayModels = computed(() => {
   if (isBestsellerCategory(selected.value)) {
     return getBestsellerModels(props.models);
   }
-  return props.models.filter((m) => m.categoryID === selected.value?.id);
+  return props.models.filter((m) => m.categorySlug === selected.value?.slug);
 });
 
 const trackRef = ref<HTMLElement | null>(null);
@@ -103,7 +103,7 @@ const nextDisabled = computed(() => !canNext.value);
         v-for="category in categories"
         :key="category.slug"
         :category="category"
-        :data-is-selected="category.id === selected?.id"
+        :data-is-selected="category.slug === selected?.slug"
         @click="select(category)"
       />
     </div>
@@ -146,7 +146,7 @@ const nextDisabled = computed(() => !canNext.value);
           :image="m.image"
           :image-alt="m.imageAlt"
           :specs="m.specs"
-          :category-i-d="m.categoryID"
+          :category-slug="m.categorySlug"
           :is-featured="m.isFeatured"
           :price-hint="m.priceHint"
           :price-caveats="m.priceCaveats"

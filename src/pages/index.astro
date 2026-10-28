@@ -39,7 +39,8 @@ import ContactForm from "@/features/contact-forms/ContactForm.vue";
 
 import Button from "@/ui/primitives/Button.vue";
 
-import { getCategories, getModels } from "@/db/loaders";
+import { getModels } from "@/db/loaders";
+import { categories } from "@/domain/categories/categories";
 import { toHouseModelCard } from "@/lib/derive";
 
 import { overviewContent as content } from "@/features/landing/overview.content";
@@ -53,7 +54,6 @@ import Faq from "@/features/faq/Faq.vue";
 import { qaCategories } from "@/features/faq/qa";
 
 
-const categories = await getCategories();
 const houseModels = await getModels();
 
 const houseCards = houseModels.map((m) => toHouseModelCard(m));
@@ -66,7 +66,7 @@ const imageBandImage = getMediaURL(content.featureVisual.imageFallbackPath);
 const sustainabilityImage = getMediaURL(content.featureBody.imageFallbackPath);
 ---
 
-<Layout title={content.seo.title} categories={categories}>
+<Layout title={content.seo.title}>
   <!-- ── 01 · Hero (full-bleed) ────────────────────────────────── -->
   <div class="full-width hero-wrap">
     <HomeHero

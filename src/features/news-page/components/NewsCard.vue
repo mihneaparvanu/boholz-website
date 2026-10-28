@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import type { NewsArticle } from "@/db/models";
+import type { NewsPost } from "@/domain/news/news.types";
 import { ROUTES } from "@/features/navigation/routes";
 import ImagePlaceholder from "@/ui/primitives/ImagePlaceholder.vue";
 
 const props = defineProps<{
-  article: NewsArticle;
+  article: NewsPost;
 }>();
 
 const heroMedia = computed(
-  () => props.article.media.find((m) => m.isHero)?.media,
+  () => props.article.media.find((m) => m.isHero),
 );
 
 // Month kicker above the headline, derived from publishedAt so it always

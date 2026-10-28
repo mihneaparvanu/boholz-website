@@ -41,7 +41,7 @@ import ZigZag from "@/ui/sections/ZigZag.astro";
 import ProofSection from "@/ui/sections/Proof-Section.vue";
 import TrustBadges from "@/ui/sections/TrustBadges.vue";
 
-import { getCategories, getModels } from "@/db/loaders";
+import { getModels } from "@/db/loaders";
 import { toHouseModelCard } from "@/lib/derive";
 
 import type { LandingPageContent } from "./landing.types";
@@ -92,7 +92,6 @@ void trustStats;
 void TrustBadges;
 
 
-const categories = await getCategories();
 const allModels = await getModels();
 
 const featuredOnly = houses.featuredOnly ?? true;
@@ -145,7 +144,6 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
 <Layout
   title={seo.title}
   description={seo.description}
-  categories={categories}
   noindex
   isHero
 >

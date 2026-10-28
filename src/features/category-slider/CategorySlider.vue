@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { HouseCategory } from "@/db/models";
+import type { ModelCategory } from "@/domain/categories/categories.types";
 import { useCategoryGallery } from "@/lib/useCategoryGallery";
 
 import CategoryThumbnail from "./components/CategoryThumbnail.vue";
 import CategoryHero from "./components/CategoryHero.vue";
 
 const props = defineProps<{
-  categories: HouseCategory[];
+  categories: ModelCategory[];
 }>();
 
 const { selected, select } = useCategoryGallery(props.categories);
@@ -21,7 +21,7 @@ const { selected, select } = useCategoryGallery(props.categories);
         v-for="category in categories"
         :key="category.slug"
         :category="category"
-        :data-is-selected="category.id === selected?.id"
+        :data-is-selected="category.slug === selected?.slug"
         @click="select(category)"
       />
     </div>

@@ -11,18 +11,17 @@ import Footer from "@/features/navigation/footer/Footer.astro";
 import ConsentBanner from "@/features/consent/ConsentBanner.astro";
 import ConsentScript from "@/features/consent/ConsentScript.astro";
 
-import { getCategories, getLocations } from "@/db/loaders";
 import { getMediaURL } from "@/lib/media";
 import JsonLd from "@/features/seo/JsonLd.astro";
 import { organizationSchema } from "@/features/seo/structured-data";
-import type { HouseCategory } from "@/db/models";
+import { categories } from "@/domain/categories/categories";
+import { locations } from "@/domain/locations/locations";
 
 interface Props {
   title: string;
   /** Meta description. ~150-160 chars; omitted entirely when not supplied,
    *  which is better than an empty tag — Google then writes its own. */
   description?: string;
-  categories?: HouseCategory[];
   isHero?: boolean;
   /**
    * Keep the page out of the index. Set on pages that exist to receive paid
@@ -41,7 +40,6 @@ interface Props {
 const {
   title,
   description,
-  categories: categoriesProp,
   isHero = false,
   noindex = false,
   ogImage,
@@ -62,8 +60,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const socialImage =
   ogImage ?? getMediaURL("/images/pages/uber-uns/value-1.webp");
 
-const categories = categoriesProp ?? (await getCategories());
-const showhouses = await getLocations({ kind: "showhouse" });
+const showhouses = locations.filter((l) => l.kind === "showhouse");
 ---
 
 <html lang="de" data-hero={isHero ? "true" : "false"}>

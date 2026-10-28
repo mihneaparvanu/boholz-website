@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { HouseCategory, Location } from "@/db/models";
+import type { ModelCategory } from "@/domain/categories/categories.types";
+import type { Location } from "@/domain/locations/locations.types";
 
 import NavbarLogo from "./parts/NavbarLogo.vue";
 import NavbarLinks from "./parts/NavbarLinks.vue";
@@ -8,7 +9,7 @@ import { PRIMARY_NAV } from "./navbar.content";
 import { ROUTES } from "@/features/navigation/routes";
 
 defineProps<{
-  categories: HouseCategory[];
+  categories: ModelCategory[];
   showhouses: Location[];
   currentPath: string;
 }>();

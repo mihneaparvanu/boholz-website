@@ -39,7 +39,7 @@ export type HouseModelCardProps = {
   /** Spec chips — up to 3, rendered inline with hairline separators. */
   specs: HouseModelSpec[];
 
-  categoryID: string;
+  categorySlug: string;
   /** True if the model is marked `isFeatured` in the DB — used by the
    *  carousel to resolve the virtual "Bestseller" category. */
   isFeatured?: boolean;

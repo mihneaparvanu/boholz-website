@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import type { HouseCategory } from "@/db/models";
+import type { ModelCategory } from "@/domain/categories/categories.types";
 import { isBestsellerCategory } from "@/lib/bestseller";
 import CategorySlider from "@/features/category-slider/CategorySlider.vue";
 
 const props = defineProps<{
-  categories: HouseCategory[];
+  categories: ModelCategory[];
 }>();
 
 // Bestseller is the umbrella — exclude it from the home typology showcase.

@@ -12,7 +12,7 @@
  * accent-secondary on /haus.
  */
 import { computed, onBeforeUnmount, ref, watch } from "vue";
-import type { HouseCategory } from "@/db/models";
+import type { ModelCategory } from "@/domain/categories/categories.types";
 
 interface ExtraLink {
   label: string;
@@ -20,7 +20,7 @@ interface ExtraLink {
 }
 
 const props = defineProps<{
-  categories: HouseCategory[];
+  categories: ModelCategory[];
   /** Currently selected category id (driven by the parent). */
   selectedId: string | null | undefined;
   /** Anchor pills appended after the category pills (landing-page links
@@ -29,7 +29,7 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits<{
-  select: [category: HouseCategory];
+  select: [category: ModelCategory];
 }>();
 
 const pillsRef = ref<HTMLElement | null>(null);
@@ -53,7 +53,7 @@ onBeforeUnmount(clearLock);
 
 const activeId = computed(() => lockedId.value ?? props.selectedId ?? null);
 
-const handleSelect = (category: HouseCategory) => {
+const handleSelect = (category: ModelCategory) => {
   lockedId.value = category.id;
   if (lockTimer !== null) window.clearTimeout(lockTimer);
   lockTimer = window.setTimeout(() => {

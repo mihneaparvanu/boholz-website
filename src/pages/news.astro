@@ -1,11 +1,10 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import NewsPage from "@/features/news-page/NewsPage.vue";
-import { getNews, getCategories } from "@/db/loaders";
+import { news as articles } from "@/domain/news/news";
 
-const [articles, categories] = await Promise.all([getNews(), getCategories()]);
 ---
 
-<Layout title="News – BoHolz Haus" categories={categories}>
+<Layout title="News – BoHolz Haus">
   <NewsPage articles={articles} client:visible />
 </Layout>

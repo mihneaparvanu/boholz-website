@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { HouseModel, HouseCategory } from "@/db/models";
+import type { HouseModel } from "@/db/models";
+import type { ModelCategory } from "@/domain/categories/categories.types";
 import { isLandingCategory } from "@/features/landing/landing.registry";
 import { ref, computed, onMounted, watch } from "vue";
 import ModelCard from "@/features/model-overview/components/ModelCard.vue";
@@ -26,7 +27,7 @@ import { housesViews } from "./houses-page.content";
 
 const props = defineProps<{
   models: HouseModel[];
-  categories: HouseCategory[];
+  categories: ModelCategory[];
   // Resolved server-side from the URL so filter deep-links render the filter
   // view in SSR (no flash of the explore cards before hydration).
   initialMode?: "explore" | "filter";
@@ -53,8 +54,8 @@ function landingHref(slug: string): string {
     : `/hauser?category=${slug}&view=filter`;
 }
 
-function categoryImage(category: HouseCategory): string {
-  return category.media.find((m) => m.isThumbnail)?.media.path ?? "";
+function categoryImage(category: ModelCategory): string {
+  return category.media.find((m) => m.isThumbnail)?.path ?? "";
 }
 
 function setMode(next: "explore" | "filter") {
@@ -63,7 +64,7 @@ function setMode(next: "explore" | "filter") {
   if (didInitURL) writeURL();
 }
 
-const selectedCategory = ref<HouseCategory | null>(null);
+const selectedCategory = ref<ModelCategory | null>(null);
 const isPanelOpen = ref(false);
 const activeSort = ref<string | null>(null);
 const filterState = ref<FilterState>({ status: "inactive", filters: [] });
@@ -82,7 +83,7 @@ const categoryModels = computed<HouseModel[]>(() => {
     return getBestsellerModels(props.models);
   }
   return props.models.filter(
-    (m) => m.category?.id === selectedCategory.value?.id,
+    (m) => m.category?.slug === selectedCategory.value?.slug,
   );
 });
 

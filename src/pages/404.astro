@@ -14,14 +14,12 @@
  */
 import Layout from "@/layouts/Layout.astro";
 import Button from "@/ui/primitives/Button.vue";
-import { getCategories } from "@/db/loaders";
 
 Astro.response.status = 404;
 
-const categories = await getCategories();
 ---
 
-<Layout title="404 – BoHolz Haus" categories={categories}>
+<Layout title="404 – BoHolz Haus">
   <section class="notfound" aria-labelledby="notfound-title">
     <p class="eyebrow">404</p>
 

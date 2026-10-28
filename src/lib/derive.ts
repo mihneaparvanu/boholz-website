@@ -51,7 +51,7 @@ export function toHouseModelCard(m: HouseModel): HouseModelCardProps {
     code: `${(m.category?.name ?? "Hausmodell").toUpperCase()} · ${formatModelCode(m.modelCode)}`,
     image: src,
     imageAlt: alt,
-    categoryID: m.category?.id ?? "",
+    categorySlug: m.category?.slug ?? "",
     isFeatured: m.isFeatured ?? false,
     specs: specsFor(m),
     priceHint: priceHintFor(m),

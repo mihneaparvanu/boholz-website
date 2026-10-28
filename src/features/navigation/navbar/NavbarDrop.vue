@@ -2,7 +2,8 @@
 import { computed, ref } from "vue";
 import { Motion, AnimatePresence } from "motion-v";
 import { Star } from "lucide-vue-next";
-import type { HouseCategory, Location } from "@/db/models";
+import type { ModelCategory } from "@/domain/categories/categories.types";
+import type { Location } from "@/domain/locations/locations.types";
 import { ROUTES } from "@/features/navigation/routes";
 import { useCategoryGallery } from "@/lib/useCategoryGallery";
 import { isBestsellerCategory } from "@/lib/bestseller";
@@ -14,7 +15,7 @@ import {
 } from "./navbar.content";
 
 const props = defineProps<{
-  categories: HouseCategory[];
+  categories: ModelCategory[];
   showhouses: Location[];
 }>();
 
@@ -46,7 +47,7 @@ function landingHref(slug: string): string {
 // destination stay tied to the extra link itself.
 const hoveredExtraLink = ref<HouseDropExtraLink | null>(null);
 
-function hoverCategory(category: HouseCategory) {
+function hoverCategory(category: ModelCategory) {
   hoveredExtraLink.value = null;
   select(category);
 }

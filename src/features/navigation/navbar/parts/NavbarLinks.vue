@@ -3,7 +3,8 @@ import { ref, watch } from "vue";
 import { Motion, AnimatePresence } from "motion-v";
 import { ChevronDown } from "lucide-vue-next";
 import type { NavLink } from "../../nav.types";
-import type { HouseCategory, Location } from "@/db/models";
+import type { ModelCategory } from "@/domain/categories/categories.types";
+import type { Location } from "@/domain/locations/locations.types";
 import { ROUTES } from "@/features/navigation/routes";
 import NavbarDrop from "../NavbarDrop.vue";
 
@@ -13,7 +14,7 @@ const props = defineProps<{
   /** When true, hovering "Häuser" reveals the NavbarDrop. Pass
       `categories` and `showhouses` alongside. */
   enableDropdown?: boolean;
-  categories?: HouseCategory[];
+  categories?: ModelCategory[];
   showhouses?: Location[];
 }>();
 

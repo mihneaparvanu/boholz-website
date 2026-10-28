@@ -1,4 +1,5 @@
-import type { HouseCategory, HouseModel } from "@/db/models";
+import type { HouseModel } from "@/db/models";
+import type { ModelCategory } from "@/domain/categories/categories.types";
 
 /**
  * The bestseller category is a real `house_categories` row whose membership
@@ -19,7 +20,7 @@ export const BESTSELLER_LAST_SLUG = "bestseller-komfort-116";
 
 /** True when the given category is the bestseller umbrella. */
 export const isBestsellerCategory = (
-  c: Pick<HouseCategory, "slug"> | null | undefined,
+  c: Pick<ModelCategory, "slug"> | null | undefined,
 ): boolean => c?.slug === BESTSELLER_SLUG;
 
 /**
