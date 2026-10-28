@@ -1,5 +1,4 @@
 import type { NewsPost } from "./news.types";
-import { getMediaURL } from "@/lib/media";
 
 export const news = [
   {
@@ -12,9 +11,7 @@ export const news = [
     publishedAt: "2026-08-01T10:00:00.000Z",
     media: [
       {
-        path: getMediaURL(
-          "/images/news/august-2026-stelltermin-wilhelmsdorf-pfrungen/cover.webp",
-        ),
+        path: "/images/news/august-2026-stelltermin-wilhelmsdorf-pfrungen/cover.webp",
         alt: "Richtfest – Stelltermin BoHolz-Haus",
         height: 628,
         width: 682,
@@ -34,7 +31,7 @@ export const news = [
     publishedAt: "2026-08-29T10:00:00.000Z",
     media: [
       {
-        path: getMediaURL("/images/showhouses/bad-vilbel/hero.webp"),
+        path: "/images/showhouses/bad-vilbel/hero.webp",
         alt: "Bad Vilbel showhouse hero",
         height: 946,
         width: 1500,
@@ -52,9 +49,7 @@ export const news = [
     publishedAt: "2026-09-05T12:00:00.000Z",
     media: [
       {
-        path: getMediaURL(
-          "/images/news/april-samstag-13-06-2026-werksfuehrung-bei-keitel-haus/cover.webp",
-        ),
+        path: "/images/news/april-samstag-13-06-2026-werksfuehrung-bei-keitel-haus/cover.webp",
         alt: "Werksführung bei Keitel-Haus",
         height: 3000,
         width: 4000,
@@ -73,9 +68,7 @@ export const news = [
     publishedAt: "2026-09-14T10:00:00.000Z",
     media: [
       {
-        path: getMediaURL(
-          "/images/news/august-2026-stelltermin-wilhelmsdorf-pfrungen/cover.webp",
-        ),
+        path: "/images/news/august-2026-stelltermin-wilhelmsdorf-pfrungen/cover.webp",
         alt: "Richtfest – Stelltermin BoHolz-Haus",
         height: 628,
         width: 682,
@@ -94,7 +87,7 @@ export const news = [
     publishedAt: "2026-09-26T09:00:00.000Z",
     media: [
       {
-        path: getMediaURL("/images/showhouses/bad-vilbel/hero.webp"),
+        path: "/images/showhouses/bad-vilbel/hero.webp",
         alt: "Bad Vilbel showhouse hero",
         height: 946,
         width: 1500,
@@ -113,7 +106,7 @@ export const news = [
     publishedAt: "2026-09-26T10:00:00.000Z",
     media: [
       {
-        path: getMediaURL("/images/showhouses/fellbach/hero.webp"),
+        path: "/images/showhouses/fellbach/hero.webp",
         alt: "Fellbach showhouse hero",
         height: 946,
         width: 1500,
@@ -131,9 +124,7 @@ export const news = [
     publishedAt: "2026-10-03T10:00:00.000Z",
     media: [
       {
-        path: getMediaURL(
-          "/images/news/oktober-samstag-03-10-2026-werksfuehrung-bei-keitel-haus/cover.webp",
-        ),
+        path: "/images/news/oktober-samstag-03-10-2026-werksfuehrung-bei-keitel-haus/cover.webp",
         alt: "Werksführung bei Keitel-Haus",
         height: 1200,
         width: 1600,
@@ -151,9 +142,7 @@ export const news = [
     publishedAt: "2026-11-14T10:00:00.000Z",
     media: [
       {
-        path: getMediaURL(
-          "/images/news/oktober-samstag-03-10-2026-werksfuehrung-bei-keitel-haus/cover.webp",
-        ),
+        path: "/images/news/oktober-samstag-03-10-2026-werksfuehrung-bei-keitel-haus/cover.webp",
         alt: "Werksführung bei Keitel-Haus",
         height: 1200,
         width: 1600,
@@ -171,9 +160,7 @@ export const news = [
     publishedAt: "2026-12-05T10:00:00.000Z",
     media: [
       {
-        path: getMediaURL(
-          "/images/news/oktober-samstag-03-10-2026-werksfuehrung-bei-keitel-haus/cover.webp",
-        ),
+        path: "/images/news/oktober-samstag-03-10-2026-werksfuehrung-bei-keitel-haus/cover.webp",
         alt: "Werksführung bei Keitel-Haus",
         height: 1200,
         width: 1600,
@@ -192,9 +179,7 @@ export const news = [
     publishedAt: null,
     media: [
       {
-        path: getMediaURL(
-          "/images/models/einfamilienhaus/32-150-170/gallery/einfamilienhaus-32-150-170-gallery-ehf-01.webp",
-        ),
+        path: "/images/models/einfamilienhaus/32-150-170/gallery/einfamilienhaus-32-150-170-gallery-ehf-01.webp",
         alt: null,
         height: 1350,
         width: 2400,

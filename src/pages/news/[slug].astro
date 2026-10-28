@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { news } from "@/domain/news/news";
+import Image from "@/ui/primitives/Image.vue";
 import { toMetaDescription, formatNewsDate } from "@/lib/format";
 import { ROUTES } from "@/features/navigation/routes";
 
@@ -34,11 +35,12 @@ const contentHtml = post.content;
     {
       heroMedia && (
         <div class="hero-image full-width">
-          <img
-            src={heroMedia.path}
+          <Image
+            path={heroMedia.path}
             alt={heroMedia.alt ?? post.title}
-            width={heroMedia.width ?? undefined}
-            height={heroMedia.height ?? undefined}
+            width={heroMedia.width}
+            height={heroMedia.height}
+            loading="eager"
           />
         </div>
       )

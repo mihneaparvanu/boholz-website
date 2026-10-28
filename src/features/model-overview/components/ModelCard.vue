@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { formatSquareMeters, formatCurrency } from "@/lib/format";
 import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
+import Image from "@/ui/primitives/Image.vue";
 import ImagePlaceholder from "@/ui/primitives/ImagePlaceholder.vue";
 import RoofCapsule, { type RoofEntry } from "./RoofCapsule.vue";
 
@@ -30,13 +31,13 @@ const roofEntries = computed<RoofEntry[]>(() => {
 <template>
   <div class="card-wrapper">
     <div class="image-wrapper">
-      <img
-        v-if="heroImage"
+      <Image
+        v-if="heroMediaItem"
         class="image"
-        :src="heroImage"
-        :alt="model.title"
-        :width="heroMediaItem?.width"
-        :height="heroMediaItem?.height"
+        :path="heroMediaItem.path"
+        :alt="heroMediaItem.alt ?? model.title"
+        :width="heroMediaItem.width"
+        :height="heroMediaItem.height"
       />
       <div v-else class="image">
         <ImagePlaceholder />

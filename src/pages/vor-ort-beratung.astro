@@ -18,8 +18,8 @@ const showhouseHeroBySlug = new Map<string, string>(
   locations
     .filter((l) => l.kind === "showhouse")
     .flatMap((l) => {
-      const hero = l.media.find((m) => m.isHero)?.path;
-      return hero ? [[l.slug, hero] as const] : [];
+      const hero = l.media.find((m) => m.isHero);
+      return hero ? [[l.slug, getMediaURL(hero.path)] as const] : [];
     }),
 );
 
@@ -34,9 +34,13 @@ const offices = locations
     return a.title.localeCompare(b.title, "de");
   })
   .map((l) => {
-    const heroFromDB = l.media.find((m) => m.isHero)?.path ?? null;
+    const heroFromDB = l.media.find((m) => m.isHero);
     const heroOverride = OFFICE_HERO_OVERRIDES[l.slug];
-    const heroSrc = heroOverride ? getMediaURL(heroOverride) : heroFromDB;
+    const heroSrc = heroOverride
+      ? getMediaURL(heroOverride)
+      : heroFromDB
+        ? getMediaURL(heroFromDB.path)
+        : null;
     return {
       slug: l.slug,
       name: l.title,

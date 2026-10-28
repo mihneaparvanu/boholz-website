@@ -2,6 +2,7 @@
 import { computed } from "vue";
 
 import type { ModelCategory } from "@/domain/categories/categories.types";
+import Image from "@/ui/primitives/Image.vue";
 
 const props = defineProps<{
   category: ModelCategory;
@@ -22,11 +23,12 @@ const imageURL = computed(() => {
       <h3>{{ category.name }}</h3>
       <p>{{ category.description }}</p>
     </div>
-    <img
-      :src="imageURL"
-      :alt="category.name"
-      :width="heroMedia?.width"
-      :height="heroMedia?.height"
+    <Image
+      v-if="heroMedia"
+      :path="heroMedia.path"
+      :alt="heroMedia.alt ?? category.name"
+      :width="heroMedia.width"
+      :height="heroMedia.height"
       class="model-image"
     />
   </div>

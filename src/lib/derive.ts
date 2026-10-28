@@ -120,13 +120,13 @@ function priceCaveatsFor(m: HouseModelRecord): string[] {
 }
 
 function pickImage(m: HouseModelRecord): { src: string; alt: string } {
-  // Hero → thumbnail → first media → static fallback.
-  // Paths from the loader are already R2-resolved.
+  // Hero → thumbnail → first media → static fallback. Stored paths are bare,
+  // so this resolves — the card props carry a URL, not a path.
   const hero = m.media.find((mm) => mm.isHero);
   const thumb = m.media.find((mm) => mm.isThumbnail);
   const pick = hero ?? thumb ?? m.media[0];
   return {
-    src: pick?.path ?? getMediaURL(FALLBACK_IMAGE_PATH),
+    src: getMediaURL(pick?.path ?? FALLBACK_IMAGE_PATH),
     alt: pick?.alt ?? m.title,
   };
 }

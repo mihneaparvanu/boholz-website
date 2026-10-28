@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import { houseModels } from "@/domain/house-models/house-models";
 import { categoryOf } from "@/domain/categories/categories.lookup";
+import { getMediaURL } from "@/lib/media";
 import { toMetaDescription } from "@/lib/format";
 import { ROUTES } from "@/features/navigation/routes";
 import JsonLd from "@/features/seo/JsonLd.astro";
@@ -75,10 +76,16 @@ const leistungenCopy =
 const specSourceNote =
   "Technische Angaben: Auszug aus der Bau- und Leistungsbeschreibung, Stand September 2026.";
 
+// og:image and the Product schema both need absolute URLs, so these resolve
+// here rather than going through Image.vue.
 const galleryImages = model.media
-  .map((m) => m.path)
+  .map((m) => getMediaURL(m.path))
   .filter((p): p is string => Boolean(p));
-const heroImage = model.media.find((m) => m.isHero)?.path ?? galleryImages[0];
+const heroImage =
+  (() => {
+    const h = model.media.find((m) => m.isHero);
+    return h ? getMediaURL(h.path) : galleryImages[0];
+  })();
 
 const breadcrumb = breadcrumbSchema([
   { name: "Startseite", path: ROUTES.home },

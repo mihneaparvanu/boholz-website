@@ -28,10 +28,9 @@ export async function exportEntity(opts: {
   const out = join(here, "../..", `src/domain/${entity}/${fileName}.ts`);
 
   const type = typeExpr ?? `${typeName}[]`;
-  // Stored paths stay raw in the source — portable, greppable, and no CDN host
-  // baked into a generated file. They are wrapped in getMediaURL() so the value
-  // resolves at module load against whatever PUBLIC_ASSETS_URL is set, which is
-  // exactly what resolveMediaPaths() in the old loader did per request.
+  // Paths are stored bare. Image.vue is the single place that turns one
+  // into a URL, which keeps the raw path available for building srcset
+  // variants later — impossible once the value is a host-prefixed URL.
   const raw = JSON.stringify(data, null, 2);
 
   // Every stored path must be the bare path, not a resolved CDN URL. If
@@ -46,21 +45,9 @@ export async function exportEntity(opts: {
       `${bad.length} path(s) are not bare paths — unset PUBLIC_ASSETS_URL and re-run.\n  e.g. ${bad[0]}`,
     );
   }
-  const json = raw.replace(/"path": "([^"]*)"/g, 'path: getMediaURL("$1")');
-  const wrapped = (raw.match(/"path": "/g) ?? []).length;
-  const emitted = (json.match(/path: getMediaURL\(/g) ?? []).length;
-  if (wrapped !== emitted) {
-    throw new Error(
-      `path rewrite lost one: ${wrapped} found, ${emitted} emitted`,
-    );
-  }
+  const file = `import type { ${typeName} } from "./${typesFile}";
 
-  const mediaImport =
-    wrapped > 0 ? '\nimport { getMediaURL } from "@/lib/media";' : "";
-
-  const file = `import type { ${typeName} } from "./${typesFile}";${mediaImport}
-
-export const ${exportName} = ${json} satisfies ${type};
+export const ${exportName} = ${raw} satisfies ${type};
 `;
 
   const cfg = await prettier.resolveConfig(out);

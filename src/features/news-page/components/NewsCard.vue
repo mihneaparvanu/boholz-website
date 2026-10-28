@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import type { NewsPost } from "@/domain/news/news.types";
 import { ROUTES } from "@/features/navigation/routes";
+import Image from "@/ui/primitives/Image.vue";
 import ImagePlaceholder from "@/ui/primitives/ImagePlaceholder.vue";
 
 const props = defineProps<{
@@ -30,12 +31,12 @@ const monthLabel = computed(() =>
 <template>
   <a class="news-card" :href="ROUTES.newsArticle(article.slug)">
     <div class="image-wrapper">
-      <img
+      <Image
         v-if="heroMedia"
-        :src="heroMedia.path"
+        :path="heroMedia.path"
         :alt="heroMedia.alt ?? article.title"
-        :width="heroMedia.width ?? undefined"
-        :height="heroMedia.height ?? undefined"
+        :width="heroMedia.width"
+        :height="heroMedia.height"
       />
       <ImagePlaceholder v-else />
     </div>

@@ -3,6 +3,7 @@ import { computed, ref, watch } from "vue";
 import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "reka-ui";
 import { FileText, Download } from "lucide-vue-next";
 import type { HouseModelFloor } from "@/domain/house-models/house-models.types";
+import Image from "@/ui/primitives/Image.vue";
 
 const props = defineProps<{
   floors: HouseModelFloor[];
@@ -121,11 +122,11 @@ watch(visibleFloors, (next) => {
           class="panel"
         >
           <div class="plan">
-            <img
-              :src="floor.path"
-              :alt="floor.alt || floor.title"
-              :width="floor.width ?? undefined"
-              :height="floor.height ?? undefined"
+            <Image
+              :path="floor.path"
+              :alt="floor.alt ?? floor.title ?? 'Grundriss'"
+              :width="floor.width"
+              :height="floor.height"
             />
           </div>
         </TabsContent>
@@ -134,11 +135,11 @@ watch(visibleFloors, (next) => {
       <div v-else-if="visibleFloors.length === 1" class="single">
         <span class="caption">{{ visibleFloors[0].title }}</span>
         <div class="plan">
-          <img
-            :src="visibleFloors[0].path"
-            :alt="visibleFloors[0].alt || visibleFloors[0].title"
-            :width="visibleFloors[0].width ?? undefined"
-            :height="visibleFloors[0].height ?? undefined"
+          <Image
+            :path="visibleFloors[0].path"
+            :alt="visibleFloors[0].alt ?? visibleFloors[0].title ?? 'Grundriss'"
+            :width="visibleFloors[0].width"
+            :height="visibleFloors[0].height"
           />
         </div>
       </div>

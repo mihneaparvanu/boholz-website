@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { Star } from "lucide-vue-next";
+import Image from "@/ui/primitives/Image.vue";
 
 import type { ModelCategory } from "@/domain/categories/categories.types";
 import { isBestsellerCategory } from "@/lib/bestseller";
@@ -31,12 +32,12 @@ const initials = computed(() =>
 <template>
   <div class="category-thumbnail" :data-is-bestseller="isBestseller">
     <div class="house-model-circle">
-      <img
-        v-if="imageURL"
-        :src="imageURL"
-        :alt="category.name"
-        :width="thumbnail?.width"
-        :height="thumbnail?.height"
+      <Image
+        v-if="thumbnail"
+        :path="thumbnail.path"
+        :alt="thumbnail.alt ?? category.name"
+        :width="thumbnail.width"
+        :height="thumbnail.height"
         class="model-image"
       />
       <span v-else class="fallback" aria-hidden="true">{{ initials }}</span>

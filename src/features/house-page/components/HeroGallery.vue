@@ -2,6 +2,7 @@
 import { computed, ref } from "vue";
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 import type { HouseModelRecord } from "@/domain/house-models/house-models.types";
+import Image from "@/ui/primitives/Image.vue";
 
 const props = defineProps<{
   model: HouseModelRecord;
@@ -32,12 +33,13 @@ const next = (): void => {
 <template>
   <figure class="hero">
     <div class="frame">
-      <img
+      <Image
         v-if="slides[index]"
-        :src="slides[index].path"
-        :alt="slides[index].alt || ''"
-        :width="slides[index].width ?? undefined"
-        :height="slides[index].height ?? undefined"
+        :path="slides[index].path"
+        :alt="slides[index].alt ?? model.title"
+        :width="slides[index].width"
+        :height="slides[index].height"
+        loading="eager"
       />
       <span v-if="slides[index]?.isAi" class="ai-badge">KI-generiert</span>
     </div>

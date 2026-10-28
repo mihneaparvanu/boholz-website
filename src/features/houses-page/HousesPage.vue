@@ -4,6 +4,7 @@ import type { ModelCategory } from "@/domain/categories/categories.types";
 import { isLandingCategory } from "@/features/landing/landing.registry";
 import { ref, computed, onMounted, watch } from "vue";
 import ModelCard from "@/features/model-overview/components/ModelCard.vue";
+import Image from "@/ui/primitives/Image.vue";
 import SortButton from "@/ui/primitives/SortButton.vue";
 import { ROUTES } from "@/features/navigation/routes";
 import FilterPanel from "@/features/filter-panel/FilterPanel.vue";
@@ -54,8 +55,8 @@ function landingHref(slug: string): string {
     : `/hauser?category=${slug}&view=filter`;
 }
 
-function categoryImage(category: ModelCategory): string {
-  return category.media.find((m) => m.isThumbnail)?.path ?? "";
+function categoryThumb(category: ModelCategory) {
+  return category.media.find((m) => m.isThumbnail);
 }
 
 function setMode(next: "explore" | "filter") {
@@ -428,12 +429,13 @@ watch(
         class="explore-card"
         :aria-label="`${category.name} entdecken`"
       >
-        <img
-          v-if="categoryImage(category)"
+        <Image
+          v-if="categoryThumb(category)"
           class="explore-card-img"
-          :src="categoryImage(category)"
-          :alt="category.name"
-          loading="lazy"
+          :path="categoryThumb(category)!.path"
+          :alt="categoryThumb(category)!.alt ?? category.name"
+          :width="categoryThumb(category)!.width"
+          :height="categoryThumb(category)!.height"
         />
         <span class="explore-card-overlay">
           <span class="explore-card-name">{{ category.name }}</span>

@@ -9,6 +9,7 @@ import { useCategoryGallery } from "@/lib/useCategoryGallery";
 import { isBestsellerCategory } from "@/lib/bestseller";
 import { isLandingCategory } from "@/features/landing/landing.registry";
 import TitleLinks from "./TitleLinks.vue";
+import Image from "@/ui/primitives/Image.vue";
 import {
   HOUSE_DROP_EXTRA_LINKS,
   type HouseDropExtraLink,
@@ -160,9 +161,9 @@ const showcaseKey = computed(
           <p>{{ `Entdecken Sie alle ${showcaseTitle}` }}</p>
         </div>
         <div class="image-wrapper">
-          <img
+          <Image
             v-if="showcaseImage"
-            :src="showcaseImage.path"
+            :path="showcaseImage.path"
             :alt="showcaseImage.alt"
           />
         </div>
