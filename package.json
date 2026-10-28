@@ -21,14 +21,10 @@
     "@indoorequal/vue-maplibre-gl": "^8.4.2",
     "@vueuse/core": "^14.4.0",
     "astro": "^6.4.8",
-    "drizzle-orm": "^0.45.3",
     "lucide-vue-next": "^1.0.0",
     "maplibre-gl": "^5.24.0",
-    "marked": "^18.0.14",
     "motion-v": "^2.5.1",
-    "postgres": "^3.4.9",
     "reka-ui": "^2.10.5",
-    "sharp": "^0.34.5",
     "typescript": "^6.0.3",
     "vue": "^3.5.43",
     "vue-turnstile": "^1.0.11",
@@ -39,13 +35,11 @@
     "@types/node": "^25.9.8",
     "cross-env": "^10.1.0",
     "dotenv": "^17.4.2",
-    "drizzle-kit": "^0.31.11",
     "lightningcss": "^1.33.0",
     "postcss-custom-media": "^12.0.2",
     "postcss-preset-env": "^11.5.4",
     "prettier": "^3.9.9",
-    "prettier-plugin-astro": "^0.14.1",
-    "tsx": "^4.23.15"
+    "prettier-plugin-astro": "^0.14.1"
   },
   "overrides": {
     "esbuild": "^0.25.0"
