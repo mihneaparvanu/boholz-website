@@ -2,7 +2,7 @@
  * Copy for the two ways into the model set on `/hauser` — the view switch
  * and the short invitation above whichever view is active.
  *
- * Same register rule as `pages/hauser.content.ts`: invitation into the set,
+ * Same register rule as `houses-intro.content.ts`: invitation into the set,
  * never description of a house. `house_models.description` owns the editorial
  * paragraph for each entwurf and this copy must not restate it.
  *

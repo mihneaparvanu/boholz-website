@@ -1,6 +1,6 @@
 // Keitel + BoHolz partner copy registry, sourced from the client revision
 // document `dev/todo/aenderungen-homepage-2.md`. Consumed by
-// uber-uns.astro, bauen-mit-boholz.astro, karriere.content.ts, qa.ts.
+// uber-uns.astro, bauen-mit-boholz.astro, careers-page.content.ts, qa.ts.
 
 const strings: Record<string, string> = {
   qaWerksfuehrung:
