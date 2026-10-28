@@ -1,7 +1,11 @@
-name: Build & deploy (dev)
+name: Build image (dev)
 
-# Push to `dev` → build the image from ./Dockerfile → push to GHCR (private)
-# → SSH into the dev box → pull → restart the container.
+# Push to `dev` → build the image from ./Dockerfile → push to GHCR (private).
+#
+# This builds an image and nothing else. The dev host it used to deploy to
+# (dev.boholz-haus.de, container boholz-website-dev) no longer exists; the
+# deploy job and its DEPLOY_* secrets were removed with it. Production is
+# boholz-website-prod on sn-c1 and is not deployed from here.
 #
 # WHY THE DOCKERFILE AND NOT RAILPACK
 #   Astro/Vite inline PUBLIC_* vars into the client bundle at BUILD time, so
@@ -19,24 +23,12 @@ name: Build & deploy (dev)
 #   PUBLIC_ASSETS_URL          https://boholz.sadnights.dev/m
 #   PUBLIC_TURNSTILE_SITE_KEY  Cloudflare Turnstile site key
 #   PUBLIC_GTM_ID              GTM-XXXXXXX
-#   DEPLOY_ENABLED             "true" to turn the deploy job on (leave unset
-#                              until a built image has been verified)
 #
-# The container publishes no host port — sn-c1-gateway routes
-# dev.boholz-haus.de to it by name on web-network.
-#
-# REPO SECRETS
-#   DEPLOY_HOST      the dev box, e.g. dev.boholz-haus.de
-#   DEPLOY_USER      ssh user (must be the same user that ran `docker login`)
-#   DEPLOY_SSH_KEY   full private key, PEM
-#   DEPLOY_PATH      dir on the box holding the runtime .env
-#   DEPLOY_PORT      optional, defaults to 22
-#
-# VERIFY A BUILD BEFORE ENABLING DEPLOY
+# VERIFY A BUILD
 #   docker pull ghcr.io/<owner>/<repo>:dev
 #   docker run --rm --entrypoint sh ghcr.io/<owner>/<repo>:dev \
 #     -c "grep -rl 'boholz.sadnights.dev' dist/client | head"
-#   No hits ⇒ PUBLIC_ASSETS_URL did not bake in; do not deploy.
+#   No hits ⇒ PUBLIC_ASSETS_URL did not bake in.
 #   docker history --no-trunc <image>   ⇒ confirm no secret leaked in.
 
 on:
@@ -111,81 +103,3 @@ jobs:
             echo "${{ steps.meta.outputs.image }}:dev-${{ github.sha }}"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
-
-  deploy:
-    name: Deploy to dev host
-    runs-on: ubuntu-latest
-    needs: build
-    # No separate quality gate is needed: `docker build` runs `bun run build`,
-    # so a broken build produces no image and `needs: build` stops us here.
-    if: ${{ vars.DEPLOY_ENABLED == 'true' }}
-    timeout-minutes: 10
-
-    steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1
-        env:
-          IMAGE: ${{ needs.build.outputs.image }}:dev
-        with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          port: ${{ secrets.DEPLOY_PORT || 22 }}
-          envs: IMAGE
-          script: |
-            set -euo pipefail
-
-            APP_DIR="${{ secrets.DEPLOY_PATH }}"
-            CONTAINER="boholz-website-dev"
-            NETWORK="web-network"
-            DB_CONTAINER="sn-c1-db"
-
-            # Runtime secrets (DATABASE_URL, S3 creds, TURNSTILE_SECRET_KEY)
-            # live here and are read by node at boot — never baked into the
-            # image. Missing file means a container that starts and then 500s
-            # on the first DB query, so fail loudly instead.
-            if [ ! -f "$APP_DIR/.env" ]; then
-              echo "ERROR: missing $APP_DIR/.env on the host" >&2
-              exit 1
-            fi
-
-            docker network inspect "$NETWORK" >/dev/null 2>&1 \
-              || docker network create "$NETWORK"
-
-            # The app resolves the DB by container name (DATABASE_URL points at
-            # sn-c1-db), which only works if both sit on this network. Already
-            # attached ⇒ this errors harmlessly.
-            docker network connect "$NETWORK" "$DB_CONTAINER" 2>/dev/null || true
-
-            docker pull "$IMAGE"
-
-            docker rm -f "$CONTAINER" 2>/dev/null || true
-            # No published host port: the gateway (sn-c1-gateway) reaches the
-            # container by name on web-network and the tunnel routes
-            # dev.boholz-haus.de → it. A -p would also trip `set -u` here,
-            # since HOST_PORT is no longer defined.
-            docker run -d \
-              --name "$CONTAINER" \
-              --restart unless-stopped \
-              --network "$NETWORK" \
-              --env-file "$APP_DIR/.env" \
-              "$IMAGE"
-
-            # Don't report success just because `docker run` returned. Poll
-            # until the app actually answers, and dump logs if it never does.
-            echo "Waiting for the app to respond…"
-            for i in $(seq 1 30); do
-              if docker exec "$CONTAINER" node -e \
-                   "fetch('http://127.0.0.1:4321/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))" \
-                   2>/dev/null; then
-                echo "Healthy after ${i}s."
-                docker image prune -f
-                docker ps --filter "name=$CONTAINER"
-                exit 0
-              fi
-              sleep 1
-            done
-
-            echo "ERROR: app did not become healthy in 30s. Recent logs:" >&2
-            docker logs --tail 50 "$CONTAINER" >&2
-            exit 1
