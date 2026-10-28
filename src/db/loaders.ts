@@ -46,8 +46,6 @@ export const CATEGORY_ORDER = [
   "pultdachhaus",
 ] as const satisfies readonly string[];
 
-export type CategorySlug = (typeof CATEGORY_ORDER)[number];
-
 export async function getCategories(opts?: {
   /** Return the hidden categories instead. Only the export script asks. */
   hidden?: boolean;
@@ -70,9 +68,9 @@ export async function getCategories(opts?: {
 
   // 3. sort by canonical order
   // Keyed as <string, number> on purpose. `CATEGORY_ORDER as const` would
-  // otherwise infer the key as the CategorySlug literal union, and DB rows
-  // arrive with `slug: string` — so a category seeded after this list was
-  // written wouldn't type-check here. It sorts to Infinity (last) instead,
+  // otherwise infer the key as that literal union, and DB rows arrive with
+  // `slug: string` — so a category seeded after this list was written
+  // wouldn't type-check here. It sorts to Infinity (last) instead,
   // which is the intended behaviour for an unranked category.
   const rank = new Map<string, number>(CATEGORY_ORDER.map((s, i) => [s, i]));
   return resolved.sort(
