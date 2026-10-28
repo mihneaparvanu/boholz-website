@@ -2,6 +2,7 @@ import type { ModelCategory } from "./categories.types";
 
 export const categories = [
   {
+    category: "bestseller",
     name: "Bestseller",
     slug: "bestseller",
     description:
@@ -19,6 +20,7 @@ export const categories = [
     ],
   },
   {
+    category: "oneFamilyHouse",
     name: "Einfamilienhaus",
     slug: "einfamilienhaus",
     description: null,
@@ -35,6 +37,7 @@ export const categories = [
     ],
   },
   {
+    category: "cityVilla",
     name: "Stadtvilla",
     slug: "stadtvilla",
     description: null,
@@ -51,6 +54,7 @@ export const categories = [
     ],
   },
   {
+    category: "bungalow",
     name: "Bungalow",
     slug: "bungalow",
     description: null,
@@ -67,6 +71,7 @@ export const categories = [
     ],
   },
   {
+    category: "doubleHouse",
     name: "Doppelhaus",
     slug: "doppelhaus",
     description: null,
@@ -83,6 +88,7 @@ export const categories = [
     ],
   },
   {
+    category: "generationHouse",
     name: "Generationenhaus",
     slug: "generationenhaus",
     description: null,
@@ -99,6 +105,7 @@ export const categories = [
     ],
   },
   {
+    category: "twoFamilyHouse",
     name: "Zweifamilienhaus",
     slug: "zweifamilienhaus",
     description: null,
@@ -115,6 +122,7 @@ export const categories = [
     ],
   },
   {
+    category: "multiFamilyHouse",
     name: "Mehrfamilienhaus",
     slug: "mehrfamilienhaus",
     description: "",
@@ -131,6 +139,7 @@ export const categories = [
     ],
   },
   {
+    category: "cube",
     name: "Kubus",
     slug: "kubus",
     description: null,
