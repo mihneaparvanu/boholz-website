@@ -9,8 +9,7 @@ import {
   type EmailContent,
 } from "@/features/contact-forms/sendEmail";
 import { buildCatalogNotification } from "@/features/contact-forms/catalogEmail";
-import { db } from "@/db/db";
-import { leads } from "@/db/schema";
+import { logLead } from "@/features/contact-forms/logLead";
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
   const body = (await request.json()) as Record<string, unknown>;
@@ -53,11 +52,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   const sent = await sendEmail(emailContent);
 
   if (!sent.ok) {
-    await db.insert(leads).values({
-      formType: "catalog",
-      payload: d,
-      error: result.error,
-    });
+    await logLead({ form: "catalog", payload: d }, sent.error);
     return Response.json({ ok: false, error: sent.error }, { status: 500 });
   }
 
