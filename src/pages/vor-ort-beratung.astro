@@ -9,6 +9,7 @@ import { getMediaURL } from "@/lib/media";
 import { ROUTES } from "@/features/navigation/routes";
 import { musterhaeuser } from "./vor-ort-beratung.content";
 import { locations } from "@/domain/locations/locations";
+import { agents } from "@/domain/agents/agents";
 
 // Match showhouse content cards by slug to live DB locations so each card
 // can render the matching location's hero image. Falls back to the existing
@@ -45,7 +46,8 @@ const offices = locations
       heroSrc,
       phone: l.phone,
       email: l.email,
-      agents: l.agents.map((a) => a.slug),
+      // resolve each slug into the real record, so the markup below is unchanged
+      agents: l.agents.map((link) => ({ slug: link.slug, ...agents[link.slug] })),
     };
   });
 

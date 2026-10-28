@@ -8,7 +8,8 @@ import CTASection from "@/ui/sections/CTASection.astro";
 import Button from "@/ui/primitives/Button.vue";
 import { ROUTES } from "@/features/navigation/routes";
 import { ArrowLeft, MapPin, Phone, Mail } from "lucide-vue-next";
-import type { LocationWithAgents } from "@/db/models";
+import type { Location } from "@/domain/locations/locations.types";
+import { agents as agentRecords } from "@/domain/agents/agents";
 
 export function getStaticPaths() {
 const showhouses = locations.filter((l) => l.kind === "showhouse");
@@ -21,18 +22,15 @@ return showhouses.map((s)=> ({
 };
 
 interface Props {
-  showhouse: LocationWithAgents;
+  showhouse: Location;
 }
 
 const { showhouse } = Astro.props;
 
-const hero = showhouse.media.find((m) => m.isHero)?.media ?? showhouse.media[0]?.media;
-const gallery = showhouse.media
-  .filter((m) => !m.isHero)
-  .slice(0, 8)
-  .map((m) => m.media);
+const hero = showhouse.media.find((m) => m.isHero) ?? showhouse.media[0];
+const gallery = showhouse.media.filter((m) => !m.isHero).slice(0, 8);
 
-const agents = showhouse.agents.map((a) => a.agent);
+const agents = showhouse.agents.map((link) => agentRecords[link.slug]);
 const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
 ---
 

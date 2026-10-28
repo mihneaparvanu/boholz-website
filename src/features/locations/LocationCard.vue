@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { X, Phone, Mail } from "lucide-vue-next";
 import type { Location } from "@/domain/locations/locations.types";
+import { agents } from "@/domain/agents/agents";
 
 defineProps<{ location: Location }>();
 defineEmits<{ close: [] }>();
@@ -54,19 +55,19 @@ const telHref = (s: string) => `tel:${s.replace(/[^\d+]/g, "")}`;
       <h4 class="agents-title">Ansprechpartner</h4>
       <ul class="agents-list">
         <li v-for="link in location.agents" :key="link.slug" class="agent">
-          <div class="agent-name">{{ link.agent.fullName }}</div>
-          <div v-if="link.agent.role" class="agent-role">
-            {{ link.agent.role }}
+          <div class="agent-name">{{ agents[link.slug].fullName }}</div>
+          <div v-if="agents[link.slug].role" class="agent-role">
+            {{ agents[link.slug].role }}
           </div>
           <div class="agent-contact">
             <a
-              v-if="link.agent.phoneNumber"
-              :href="telHref(link.agent.phoneNumber)"
+              v-if="agents[link.slug].phoneNumber"
+              :href="telHref(agents[link.slug].phoneNumber)"
             >
-              <Phone :size="12" /> {{ link.agent.phoneNumber }}
+              <Phone :size="12" /> {{ agents[link.slug].phoneNumber }}
             </a>
-            <a v-if="link.agent.email" :href="`mailto:${link.agent.email}`">
-              <Mail :size="12" /> {{ link.agent.email }}
+            <a v-if="agents[link.slug].email" :href="`mailto:${agents[link.slug].email}`">
+              <Mail :size="12" /> {{ agents[link.slug].email }}
             </a>
           </div>
         </li>

@@ -1,4 +1,4 @@
-import type { LocationRecord } from "./locations.types";
+import type { Location } from "./locations.types";
 
 export const locations = [
   {
@@ -668,4 +668,4 @@ export const locations = [
       },
     ],
   },
-] satisfies LocationRecord[];
+] satisfies Location[];

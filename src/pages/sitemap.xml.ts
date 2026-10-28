@@ -1,5 +1,7 @@
 import type { APIRoute } from "astro";
-import { getNews, getModels, getLocations } from "@/db/loaders";
+import { getModels } from "@/db/loaders";
+import { locations } from "@/domain/locations/locations";
+import { news } from "@/domain/news/news";
 import { ROUTES } from "@/features/navigation/routes";
 
 const FALLBACK_SITE = "https://boholz-haus.de";
@@ -46,16 +48,16 @@ export const GET: APIRoute = async ({ site }) => {
 
   const entries: Entry[] = STATIC_PATHS.map((p) => ({ loc: base + p }));
 
-  const [news, models, showhouses] = await Promise.all([
-    getNews(),
-    getModels(),
-    getLocations({ kind: "showhouse" }),
-  ]);
+  // news and locations come from files now, so only models is awaited
+  const models = await getModels();
+  const showhouses = locations.filter((l) => l.kind === "showhouse");
 
   for (const n of news) {
     entries.push({
       loc: base + ROUTES.newsArticle(n.slug),
-      lastmod: iso(n.publishedAt ?? n.createdAt),
+      // createdAt is not carried into the domain files; the one evergreen
+      // post has no publishedAt and so gets no lastmod, which is optional.
+      lastmod: iso(n.publishedAt),
     });
   }
   for (const m of models) {

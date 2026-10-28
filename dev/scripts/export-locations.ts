@@ -1,7 +1,7 @@
 import { agents } from "@/domain/agents/agents";
 import { type AgentSlug } from "@/domain/agents/agents.types";
 import { getLocations } from "@/db/loaders";
-import type { LocationRecord } from "@/domain/locations/locations.types";
+import type { Location } from "@/domain/locations/locations.types";
 
 import { exportEntity } from "./export-entity";
 
@@ -11,7 +11,7 @@ const isAgentSlug = (s: string): s is AgentSlug => s in agents;
 
 const loc = await getLocations();
 
-const exported: LocationRecord[] = loc.map((l) => ({
+const exported: Location[] = loc.map((l) => ({
   slug: l.slug,
   title: l.title,
   email: l.email,
@@ -46,7 +46,7 @@ const exported: LocationRecord[] = loc.map((l) => ({
 
 await exportEntity({
   entity: "locations",
-  typeName: "LocationRecord",
+  typeName: "Location",
   data: exported,
 });
 
