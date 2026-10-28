@@ -18,7 +18,7 @@ const props = defineProps<{
     <div v-else class="news-grid">
       <NewsCard
         v-for="article in props.articles"
-        :key="article.id"
+        :key="article.slug"
         :article="article"
       />
     </div>

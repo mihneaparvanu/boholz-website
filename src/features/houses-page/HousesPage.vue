@@ -423,7 +423,7 @@ watch(
     <div v-if="mode === 'explore'" class="explore-grid">
       <a
         v-for="category in exploreCategories"
-        :key="category.id"
+        :key="category.slug"
         :href="landingHref(category.slug)"
         class="explore-card"
         :aria-label="`${category.name} entdecken`"
@@ -484,7 +484,7 @@ watch(
       <div class="content-grid">
         <a
           v-for="model in displayModels"
-          :key="model.id"
+          :key="model.slug"
           :href="ROUTES.house(model.slug)"
         >
           <ModelCard

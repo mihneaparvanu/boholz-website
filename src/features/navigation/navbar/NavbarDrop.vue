@@ -83,7 +83,7 @@ const showcaseKey = computed(
       <ul class="links category">
         <Motion
           v-for="(category, i) in props.categories"
-          :key="category.id"
+          :key="category.slug"
           tag="li"
           :data-bestseller="isBestsellerCategory(category) ? 'true' : null"
           :initial="{ opacity: 0, x: -8 }"

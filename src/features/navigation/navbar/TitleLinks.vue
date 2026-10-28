@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Location } from "@/db/models";
+import type { Location } from "@/domain/locations/locations.types";
 import { ROUTES } from "@/features/navigation/routes";
 
 const { showhouses } = defineProps<{
@@ -11,7 +11,7 @@ const { showhouses } = defineProps<{
   <div class="title-links">
     <p class="title">Musterhäuser</p>
     <ul class="links">
-      <li v-for="showhouse in showhouses" :key="showhouse.id">
+      <li v-for="showhouse in showhouses" :key="showhouse.slug">
         <a :href="ROUTES.showhouse(showhouse.slug)">{{ showhouse.title }}</a>
       </li>
     </ul>
