@@ -13,7 +13,7 @@ export const locations = [
     phone: "06101/8027660",
     lat: 50.1628,
     lng: 8.7319,
-    agents: ["erich-zeller", "mark-pliester"],
+    agents: ["calogero-seddio", "erich-zeller", "mark-pliester"],
     media: [
       {
         isHero: true,
@@ -94,11 +94,9 @@ export const locations = [
     lat: 48.8195,
     lng: 9.258,
     agents: [
-      "dieter-wissmann",
+      "calogero-seddio",
       "michael-dittrich",
       "istvan-aszalos",
-      "hagen-kober",
-      "calogero-seddio",
       "marcello-russo",
     ],
     media: [
@@ -287,6 +285,21 @@ export const locations = [
         isAi: false,
       },
     ],
+  },
+  {
+    slug: "vertriebsbuero-gaeufelden-nebringen",
+    title: "Vertriebsbüro Gäufelden - Nebringen",
+    email: null,
+    kind: "office",
+    address: "Teckstraße 15",
+    postalCode: "71126",
+    city: "Gäufelden - Nebringen",
+    country: "Germany",
+    phone: null,
+    lat: 48.5649017,
+    lng: 8.8522326,
+    agents: [],
+    media: [],
   },
   {
     slug: "vertriebsbuero-jockgrim",

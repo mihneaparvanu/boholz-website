@@ -103,7 +103,7 @@ export const agents = {
     email: "d.wissmann@boholz-haus.de",
     phoneNumber: "+49 171 12 80 274",
     phoneSecondary: "+49 711 90 12 03 79",
-    role: "Gebietsverkaufsleiter",
+    role: "Beratung und Verkauf",
   },
   "hagen-kober": {
     fullName: "Hagen Kober",
@@ -166,6 +166,6 @@ export const agents = {
     email: "c.seddio@boholz-haus.de",
     phoneNumber: "+49 176 42625393",
     phoneSecondary: null,
-    role: "Beratung und Verkauf",
+    role: "Gebietsverkaufsleiter",
   },
 } satisfies Record<string, Agent>;
