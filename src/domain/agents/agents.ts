@@ -31,7 +31,7 @@ export const agents = {
   "wolfgang-wuerzberger": {
     fullName: "Wolfgang Würzberger",
     email: "w.wuerzberger@boholz-haus.de",
-    phoneNumber: "+49 152 / 23304911",
+    phoneNumber: "+49 152 23304911",
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
