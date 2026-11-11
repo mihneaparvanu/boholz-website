@@ -28,6 +28,13 @@ export const agents = {
     phoneSecondary: null,
     role: "Beratung und Verkauf",
   },
+  "wolfgang-wuerzberger": {
+    fullName: "Wolfgang Würzberger",
+    email: "w.wuerzberger@boholz-haus.de",
+    phoneNumber: "+49 152 / 23304911",
+    phoneSecondary: null,
+    role: "Beratung und Verkauf",
+  },
   "susann-schaefer": {
     fullName: "Susann Schaefer",
     email: "buero.mergentheim@boholz-haus.de",

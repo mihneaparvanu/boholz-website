@@ -13,7 +13,12 @@ export const locations = [
     phone: "06101/8027660",
     lat: 50.1628,
     lng: 8.7319,
-    agents: ["calogero-seddio", "erich-zeller", "mark-pliester"],
+    agents: [
+      "calogero-seddio",
+      "erich-zeller",
+      "mark-pliester",
+      "wolfgang-wuerzberger",
+    ],
     media: [
       {
         isHero: true,
