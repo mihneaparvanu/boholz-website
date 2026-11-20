@@ -5,7 +5,7 @@
  * Stand 29.09.2026. EmpCo/UWG-clean (no environmental/superlative claims, no
  * unbacked prices; EH40 only as the optional upgrade; „barrierefrei" only as
  * „auf Wunsch planbar"). DRAFT — pending BoHolz (Christoph Schmidt) + legal
- * sign-off; the routes are noindex.
+ * sign-off; the routes are indexed.
  */
 import type { LandingPageContent } from "./landing.types";
 

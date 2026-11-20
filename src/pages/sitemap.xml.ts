@@ -3,6 +3,7 @@ import { houseModels as models } from "@/domain/house-models/houseModels";
 import { locations } from "@/domain/locations/locations";
 import { news } from "@/domain/news/news";
 import { ROUTES } from "@/features/navigation/routes";
+import { landingCategories } from "@/features/landing/landing.registry";
 
 const FALLBACK_SITE = "https://boholz-haus.de";
 
@@ -51,6 +52,9 @@ export const GET: APIRoute = async ({ site }) => {
   // news and locations come from files now, so only models is awaited
   const showhouses = locations.filter((l) => l.kind === "showhouse");
 
+  for (const c of landingCategories) {
+    entries.push({ loc: base + ROUTES.landing(c) });
+  }
   for (const n of news) {
     entries.push({
       loc: base + ROUTES.newsArticle(n.slug),

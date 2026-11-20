@@ -6,7 +6,7 @@
  * unbacked prices; the "ab" prices are transcribed verbatim from the legally
  * reviewed docx, "Fast fertig" / Effizienzhaus 55, Stand 03/2026, inkl.
  * Bodenplatte und Architektenleistung). DRAFT — pending BoHolz (Christoph) +
- * legal sign-off; the routes are noindex.
+ * legal sign-off; the routes are indexed.
  */
 import type { LandingPageContent } from "./landing.types";
 

@@ -4,7 +4,7 @@
  * Copy source: Marketing (Mario Beckstein), "Landingpage-Texte: Doppelhaus",
  * Stand 29.09.2026. EmpCo/UWG-clean (no environmental/superlative claims, no
  * unbacked prices; EH40 only as the optional upgrade). DRAFT — pending BoHolz
- * (Christoph) + legal sign-off; the routes are noindex.
+ * (Christoph) + legal sign-off; the routes are indexed.
  */
 import type { LandingPageContent } from "./landing.types";
 

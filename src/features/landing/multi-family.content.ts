@@ -6,7 +6,7 @@
  * claims, no unbacked prices). SPECIAL: this category has no catalog — the
  * Imagebroschüre contains no Mehrfamilienhäuser — so both hero and mid-page CTA
  * point at a project inquiry (/kontakt) instead of the catalog request.
- * DRAFT — pending BoHolz (Christoph) + legal sign-off; the routes are noindex.
+ * DRAFT — pending BoHolz (Christoph) + legal sign-off; the routes are indexed.
  */
 import type { LandingPageContent } from "./landing.types";
 

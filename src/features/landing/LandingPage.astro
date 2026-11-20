@@ -132,10 +132,6 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
 });
 ---
 
-{/* noindex: these pages exist to receive Google Ads traffic. Left indexable
-    they compete with /hauser and /haus/<slug> for the same German keywords,
-    and organic depth belongs on those pages, which carry no conversion
-    mandate. `follow` is deliberate — links out still pass authority. */}
 {/* isHero: sets <html data-hero="true">, which Navbar reads to swap in its
     transparent desktop variant — but only while scrolled within 10px of the
     top (useScrolledPast), so it turns solid as soon as you move. Scoped to
@@ -144,7 +140,6 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
 <Layout
   title={seo.title}
   description={seo.description}
-  noindex
   isHero
 >
 
