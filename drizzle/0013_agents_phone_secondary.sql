@@ -1,1 +1,0 @@
-ALTER TABLE "boholz"."agents" ADD COLUMN IF NOT EXISTS "phone_secondary" varchar;

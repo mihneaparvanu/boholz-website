@@ -1,1 +1,0 @@
-ALTER TABLE "boholz"."house_categories" ADD CONSTRAINT "house_categories_slug_unique" UNIQUE("slug");
