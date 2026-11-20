@@ -4,7 +4,7 @@ import { Motion, AnimatePresence } from "motion-v";
 import { Star } from "lucide-vue-next";
 import type { ModelCategory } from "@/domain/categories/categories.types";
 import type { Place } from "@/domain/locations/locations.types";
-import { ROUTES } from "@/features/navigation/routes";
+import { ROUTES } from "@/core/routing";
 import { useCategoryGallery } from "@/lib/useCategoryGallery";
 import { isBestsellerCategory } from "@/lib/bestseller";
 import { isLandingCategory } from "@/features/landing/landing.registry";

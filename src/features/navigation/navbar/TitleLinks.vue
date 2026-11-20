@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Place } from "@/domain/locations/locations.types";
-import { ROUTES } from "@/features/navigation/routes";
+import { ROUTES } from "@/core/routing";
 
 const { showhouses } = defineProps<{
   showhouses: Place[];

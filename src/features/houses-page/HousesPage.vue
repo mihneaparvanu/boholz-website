@@ -7,7 +7,7 @@ import { ref, computed, onMounted, watch } from "vue";
 import ModelCard from "@/features/model-overview/components/ModelCard.vue";
 import Image from "@/ui/primitives/Image.vue";
 import SortButton from "@/ui/primitives/SortButton.vue";
-import { ROUTES } from "@/features/navigation/routes";
+import { ROUTES } from "@/core/routing";
 import FilterPanel from "@/features/filter-panel/FilterPanel.vue";
 import {
   type SortOption,

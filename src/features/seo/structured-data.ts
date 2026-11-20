@@ -10,7 +10,7 @@
  * sent as null — an incomplete object is fine, a wrong one is not.
  */
 import type { HouseModel } from "@/domain/house-models/houseModels.types";
-import { ROUTES } from "@/features/navigation/routes";
+import { ROUTES } from "@/core/routing";
 
 const SITE = "https://boholz-haus.de";
 

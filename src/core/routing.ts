@@ -1,5 +1,3 @@
-import type { LandingCategory } from "../landing/landing.registry";
-
 /**
  * Every internal URL in the app, in one place.
  *
@@ -25,6 +23,6 @@ export const ROUTES = {
   imprint: "/impressum",
   privacy: "/datenschutz",
   cookies: "/cookies",
-  /** Typology landing pages — `landing.registry.ts` owns which ones exist. */
-  landing: (slug: LandingCategory) => `/wohnen/${slug}`,
+  /** Typology landing pages — the landing registry owns which ones exist. */
+  landing: (slug: string) => `/wohnen/${slug}`,
 } as const;

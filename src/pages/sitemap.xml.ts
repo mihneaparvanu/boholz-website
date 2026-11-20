@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 import { houseModels as models } from "@/domain/house-models/houseModels";
 import { locations } from "@/domain/locations/locations";
 import { news } from "@/domain/news/news";
-import { ROUTES } from "@/features/navigation/routes";
+import { ROUTES } from "@/core/routing";
 import { landingCategories } from "@/features/landing/landing.registry";
 
 const FALLBACK_SITE = "https://boholz-haus.de";

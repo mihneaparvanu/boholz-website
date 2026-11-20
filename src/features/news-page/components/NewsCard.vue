@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import type { NewsPost } from "@/domain/news/news.types";
-import { ROUTES } from "@/features/navigation/routes";
+import { ROUTES } from "@/core/routing";
 import Image from "@/ui/primitives/Image.vue";
 import ImagePlaceholder from "@/ui/primitives/ImagePlaceholder.vue";
 

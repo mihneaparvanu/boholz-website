@@ -1,4 +1,4 @@
-import { ROUTES } from "@/features/navigation/routes";
+import { ROUTES } from "@/core/routing";
 
 import type { NavLink } from "../nav.types";
 

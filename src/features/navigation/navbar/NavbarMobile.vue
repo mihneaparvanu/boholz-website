@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { Menu, X, ChevronRight } from "lucide-vue-next";
 
 import NavbarLogo from "./parts/NavbarLogo.vue";
-import { ROUTES } from "@/features/navigation/routes";
+import { ROUTES } from "@/core/routing";
 
 import { PRIMARY_NAV } from "./navbar.content";
 

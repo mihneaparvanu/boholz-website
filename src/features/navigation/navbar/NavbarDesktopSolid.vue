@@ -6,7 +6,7 @@ import NavbarLogo from "./parts/NavbarLogo.vue";
 import NavbarLinks from "./parts/NavbarLinks.vue";
 
 import { PRIMARY_NAV } from "./navbar.content";
-import { ROUTES } from "@/features/navigation/routes";
+import { ROUTES } from "@/core/routing";
 
 defineProps<{
   categories: ModelCategory[];

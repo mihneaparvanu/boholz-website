@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-vue-next";
 import type { NavLink } from "../../nav.types";
 import type { ModelCategory } from "@/domain/categories/categories.types";
 import type { Place } from "@/domain/locations/locations.types";
-import { ROUTES } from "@/features/navigation/routes";
+import { ROUTES } from "@/core/routing";
 import NavbarDrop from "../NavbarDrop.vue";
 
 const props = defineProps<{
