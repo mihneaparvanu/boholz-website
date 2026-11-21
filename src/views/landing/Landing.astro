@@ -1,22 +1,392 @@
 ---
-import LandingPage from "@/features/landing/LandingPage.astro";
-import {
-  landingPages,
-  type LandingCategory,
-} from "@/features/landing/landing.registry";
+import SiteShell from "@/features/shell/SiteShell.astro";
+import { getMediaURL } from "@/core/media/media";
 
-export function getStaticPaths() {
-  return Object.keys(landingPages).map((k) => ({
-    params: { category: k },
-    props: { category: k },
-  }));
-}
+import LandingHero from "./LandingHero.astro";
+import Block from "@/core/design/sections/Block.astro";
+import BenefitsRow from "@/core/design/sections/BenefitsRow.astro";
+import HouseModelsCarousel from "@/core/design/sections/HouseModelsCarousel.vue";
+import AudienceBlock from "@/core/design/sections/AudienceBlock.astro";
+import TwoColumn from "@/core/design/sections/TwoColumn.astro";
+import TestimonialBand from "@/core/design/sections/TestimonialBand.astro";
+import CatalogForm from "@/features/contact-forms/CatalogForm.vue";
+import JsonLd from "@/core/seo/JsonLd.astro";
+import CTASection from "@/core/design/sections/CTASection.astro";
+import FAQAccordion from "@/core/design/primitives/FAQAccordion.vue";
+import Button from "@/core/design/primitives/Button.vue";
+import ZigZag from "@/core/design/sections/ZigZag.astro";
+
+import ProofSection from "@/core/design/sections/Proof-Section.vue";
+import TrustBadges from "@/core/design/sections/TrustBadges.vue";
+
+import { houseModels as allModels } from "@/domain/house-models/houseModels";
+import { toHouseModelCard } from "@/core/derive";
+
+import type { LandingPageContent } from "./landing.types";
+import { defaultTrustStats } from "./landing.defaults";
+import LandingGallery from "./LandingGallery.astro";
 
 interface Props {
-  category: LandingCategory;
+  slug: string;
 }
 
-const { category } = Astro.props;
+const { slug } = Astro.props;
+if (!isLandingCategory(slug))
+  throw new Error(`Landing: unknown category "${slug}"`);
+const content = landingPages[slug];
+
+const {
+  seo,
+  hero,
+  benefitsIntro,
+  benefits,
+  houses,
+  audience,
+  featureBody,
+  testimonials,
+  faq,
+  seoText,
+  leadForm,
+  midPageCta,
+} = content;
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.items.map((q) => ({
+    "@type": "Question",
+    name: q.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: q.answer.replace(/<[^>]+>/g, "").trim(),
+    },
+  })),
+};
+
+const trustStats = content.trustStats ?? defaultTrustStats;
+void trustStats;
+void TrustBadges;
+
+const featuredOnly = houses.featuredOnly ?? true;
+const filteredModels = allModels
+  .filter((m) => (featuredOnly ? m.isFeatured : true))
+  .filter((m) =>
+    houses.categories === null ? true : houses.categories.includes(m.category),
+  )
+  .slice(0, houses.maxItems);
+
+const houseCards = filteredModels.map((m) => toHouseModelCard(m));
+
+const heroImage = getMediaURL(hero.imageFallbackPath);
+const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
+
+const SEO_IMAGE_POOL = [
+  "/images/landing/uebersicht/lifestyle-01.webp",
+  "/images/photography/log-stack.webp",
+  "/images/content/advantage/wandaufbau/hero.webp",
+  "/images/landing/uebersicht/lifestyle-06.webp",
+];
+const galleryImgs = content.gallery?.images ?? [];
+const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
+  const g = galleryImgs.length
+    ? galleryImgs[i % galleryImgs.length]
+    : undefined;
+  return {
+    title: s.heading,
+    body: s.body.split("\n\n"),
+    image: getMediaURL(
+      s.imageFallbackPath ??
+        g?.src ??
+        SEO_IMAGE_POOL[i % SEO_IMAGE_POOL.length],
+    ),
+    imageAlt: s.imageAlt ?? g?.alt ?? s.heading,
+  };
+});
 ---
 
-<LandingPage content={landingPages[category]} />
+<SiteShell title={seo.title} description={seo.description} isHero>
+  <LandingHero
+    eyebrow={hero.eyebrow}
+    heading={hero.heading}
+    highlight={hero.highlight}
+    lede={hero.lede}
+    image={heroImage}
+    imageAlt={hero.imageAlt}
+    primaryCta={hero.primaryCta}
+    secondaryCta={hero.secondaryCta}
+    guarantees={trustStats.badges}
+  />
+
+  <Block>
+    <ProofSection />
+  </Block>
+
+  <Block id="nachhaltigkeit">
+    <TwoColumn
+      eyebrow={featureBody.eyebrow}
+      heading={featureBody.heading}
+      highlight={featureBody.highlight}
+      lede={featureBody.lede}
+      image={featureBodyImage}
+      imageAlt={featureBody.imageAlt}
+      reverse={featureBody.reverse}
+    >
+      <div class="prose">
+        {featureBody.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+      {
+        featureBody.cta && (
+          <Fragment slot="actions">
+            <Button variant="primary" size="md" href={featureBody.cta.href}>
+              {featureBody.cta.label}
+            </Button>
+          </Fragment>
+        )
+      }
+    </TwoColumn>
+  </Block>
+
+  <Block
+    id="hausmodelle"
+    eyebrow={houses.eyebrow}
+    heading={houses.heading}
+    highlight={houses.highlight}
+    lede={houses.lede}
+  >
+    {
+      houseCards.length > 0 ? (
+        <HouseModelsCarousel
+          client:visible
+          models={houseCards}
+          ariaLabel="Hausmodelle dieser Kategorie"
+        />
+      ) : (
+        <p class="empty">
+          Aktuell keine Modelle in dieser Kategorie. Bitte sehen Sie sich
+          <a href="/hauser"> die vollständige Übersicht </a>
+          an.
+        </p>
+      )
+    }
+  </Block>
+
+  {
+    content.gallery && (
+      <Block
+        id="galerie"
+        eyebrow={content.gallery.eyebrow}
+        heading={content.gallery.heading}
+        highlight={content.gallery.highlight}
+        lede={content.gallery.lede}
+      >
+        <LandingGallery images={content.gallery.images} />
+      </Block>
+    )
+  }
+
+  <div class="full-width">
+    <CTASection
+      eyebrow={midPageCta.eyebrow}
+      heading={midPageCta.heading}
+      highlight={midPageCta.highlight}
+      lede={midPageCta.lede}
+      tone={midPageCta.tone}
+      image={midPageCta.imageFallbackPath
+        ? getMediaURL(midPageCta.imageFallbackPath)
+        : undefined}
+      imageAlt={midPageCta.imageAlt ?? ""}
+    >
+      <Fragment slot="actions">
+        <div class="ask-cta">
+          <span
+            class="ask-katalog-covers"
+            role="img"
+            aria-label="Infopaket 2026 von BoHolz-Haus: Imagebroschüre, Hauskatalog und Bestseller-Katalog"
+          >
+            {
+              [
+                "/images/landing/imagebroschuere-2026-10b-cover.webp",
+                "/images/landing/hauskatalog-2026-10-cover.webp",
+                "/images/landing/kurzkatalog-2026-10-cover.webp",
+              ].map((cover) => (
+                <img
+                  class="ask-katalog-cover"
+                  src={getMediaURL(cover)}
+                  alt=""
+                  loading="lazy"
+                  width="104"
+                />
+              ))
+            }
+          </span>
+          <Button
+            variant="secondary"
+            size="lg"
+            href={midPageCta.primaryCta.href}
+          >
+            {midPageCta.primaryCta.label}
+          </Button>
+        </div>
+      </Fragment>
+    </CTASection>
+  </div>
+
+  <Block
+    id="vorteile"
+    eyebrow={benefitsIntro.eyebrow}
+    heading={benefitsIntro.heading}
+    highlight={benefitsIntro.highlight}
+    lede={benefitsIntro.lede}
+  >
+    <BenefitsRow items={benefits} />
+  </Block>
+
+  <Block
+    id="zielgruppen"
+    eyebrow={audience.eyebrow}
+    heading={audience.heading}
+    highlight={audience.highlight}
+    lede={audience.lede}
+  >
+    <AudienceBlock items={audience.items} />
+    <Fragment slot="actions">
+      <Button variant="primary" size="md" href={hero.primaryCta.href}>
+        {hero.primaryCta.label}
+      </Button>
+      <Button variant="ghost" size="md" href={hero.secondaryCta.href}>
+        {hero.secondaryCta.label}
+      </Button>
+    </Fragment>
+  </Block>
+
+  <TestimonialBand
+    eyebrow={testimonials.eyebrow}
+    heading={testimonials.heading}
+    highlight={testimonials.highlight}
+    lede={testimonials.lede}
+    tone={testimonials.tone}
+    badges={testimonials.badges}
+    testimonials={testimonials.testimonials}
+  />
+
+  <Block
+    id="faq"
+    eyebrow={faq.eyebrow}
+    heading={faq.heading}
+    highlight={faq.highlight}
+  >
+    <div class="faq-wrap">
+      <FAQAccordion
+        client:visible
+        items={faq.items}
+        defaultOpen={faq.defaultOpen}
+      />
+    </div>
+  </Block>
+
+  <JsonLd data={faqJsonLd} />
+
+  {
+    seoText && (
+      <Block id="ratgeber" heading={seoText.heading}>
+        <ZigZag blocks={seoBlocks} />
+      </Block>
+    )
+  }
+
+  <Block
+    id="anfordern"
+    tone="band"
+    eyebrow={leadForm.eyebrow}
+    heading={leadForm.heading}
+    highlight={leadForm.highlight}
+    lede={leadForm.lede}
+  >
+    <div class="form-wrap">
+      <CatalogForm
+        variant={leadForm.catalogVariant ?? "default"}
+        client:visible
+      />
+    </div>
+  </Block>
+</SiteShell>
+
+<style>
+  .empty {
+    margin: 0;
+    padding: var(--spacing-3) 0;
+    color: var(--clr-content-tertiary);
+    font-size: var(--fs-body);
+    text-align: center;
+  }
+
+  .empty a {
+    color: var(--clr-accent-secondary);
+    text-decoration: underline;
+    text-decoration-color: color-mix(
+      in srgb,
+      var(--clr-accent-secondary) 40%,
+      transparent
+    );
+    text-underline-offset: 2px;
+  }
+
+  .prose {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+    max-width: 64ch;
+  }
+
+  .prose p {
+    margin: 0;
+    color: var(--clr-content-secondary);
+    font-size: var(--fs-body);
+    line-height: var(--lh-body);
+  }
+
+  .ask-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-3);
+  }
+  .ask-katalog-covers {
+    display: flex;
+    align-items: flex-end;
+  }
+  .ask-katalog-covers img:first-child {
+    transform: rotate(-8deg);
+    margin-inline-end: -18px;
+    z-index: 1;
+  }
+  .ask-katalog-covers img:nth-child(2) {
+    margin-inline-end: -18px;
+    z-index: 2;
+  }
+  .ask-katalog-covers img:nth-child(3) {
+    transform: rotate(8deg);
+    z-index: 3;
+  }
+  .ask-katalog-cover {
+    width: 104px;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+  }
+
+  .faq-wrap {
+    max-width: 56rem;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .form-wrap {
+    max-width: 36rem;
+    width: 100%;
+    margin-inline: auto;
+    margin-block-start: var(--spacing-4);
+  }
+</style>

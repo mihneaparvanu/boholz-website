@@ -1,5 +1,5 @@
 ---
-import Layout from "@/views/SiteShell.astro";
+import Layout from "@/features/shell/SiteShell.astro";
 import { getMediaURL } from "@/core/media/media";
 
 import PageHero from "@/core/design/sections/PageHero.astro";
@@ -14,7 +14,7 @@ import LiteYouTube from "@/features/advantage/LiteYouTube.vue";
 import PremiumPartnerBadge from "@/core/design/icons/PremiumPartnerBadge.vue";
 import { HeartHandshake, Compass, HardHat } from "lucide-vue-next";
 import { keitel, keitelArray } from "@/features/faq/keitel";
-import { whatWeDoItems } from "@/features/about-page/about-page.content";
+import { whatWeDoItems } from "./about-page.content";
 
 // "So entsteht ein Keitel-Haus" — https://www.youtube.com/watch?v=4zgslK2L3po
 const KEITEL_VIDEO_ID = "4zgslK2L3po";

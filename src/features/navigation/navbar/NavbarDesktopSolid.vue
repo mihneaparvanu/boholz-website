@@ -6,7 +6,7 @@ import NavbarLogo from "./parts/NavbarLogo.vue";
 import NavbarLinks from "./parts/NavbarLinks.vue";
 
 import { PRIMARY_NAV } from "./navbar.content";
-import { ROUTES } from "@/core/routing";
+import { pagePath } from "@/core/routing";
 
 defineProps<{
   categories: ModelCategory[];
@@ -27,7 +27,7 @@ defineProps<{
         :showhouses="showhouses"
       />
     </div>
-    <a class="cta" :href="ROUTES.onsite">Vor Ort Beratung</a>
+    <a class="cta" :href="pagePath('onsite')">Vor Ort Beratung</a>
   </div>
 </template>
 

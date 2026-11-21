@@ -2,25 +2,25 @@ import type { APIRoute } from "astro";
 import { houseModels as models } from "@/domain/house-models/houseModels";
 import { locations } from "@/domain/locations/locations";
 import { news } from "@/features/news/newsws";
-import { ROUTES } from "@/core/routing";
+import { itemPath, pagePath } from "@/core/routing";
 import { landingCategories } from "@/features/landing/landing.registry";
 
 const FALLBACK_SITE = "https://boholz-haus.de";
 
 const STATIC_PATHS: string[] = [
-  ROUTES.home,
-  ROUTES.houses,
-  ROUTES.news,
-  ROUTES.contact,
-  ROUTES.catalog,
-  ROUTES.career,
-  ROUTES.about,
-  ROUTES.onsite,
-  ROUTES.promise,
-  ROUTES.yourHouse,
-  ROUTES.imprint,
-  ROUTES.privacy,
-  ROUTES.cookies,
+  pagePath("home"),
+  pagePath("houses"),
+  pagePath("news"),
+  pagePath("contact"),
+  pagePath("catalog"),
+  pagePath("career"),
+  pagePath("about"),
+  pagePath("onsite"),
+  pagePath("promise"),
+  pagePath("yourHouse"),
+  pagePath("imprint"),
+  pagePath("privacy"),
+  pagePath("cookies"),
 ];
 
 type Entry = { loc: string; lastmod?: string };
@@ -53,11 +53,11 @@ export const GET: APIRoute = async ({ site }) => {
   const showhouses = locations.filter((l) => l.kind === "showhouse");
 
   for (const c of landingCategories) {
-    entries.push({ loc: base + ROUTES.landing(c) });
+    entries.push({ loc: base + itemPath("landing", c) });
   }
   for (const n of news) {
     entries.push({
-      loc: base + ROUTES.newsArticle(n.slug),
+      loc: base + itemPath("news", n.slug),
       // createdAt is not carried into the domain files; the one evergreen
       // post has no publishedAt and so gets no lastmod, which is optional.
       lastmod: iso(n.publishedAt),
@@ -65,13 +65,13 @@ export const GET: APIRoute = async ({ site }) => {
   }
   for (const m of models) {
     entries.push({
-      loc: base + ROUTES.house(m.slug),
+      loc: base + itemPath("houses", m.slug),
       // createdAt is not carried into the domain files, so model entries
       // have no lastmod. It is an optional hint, not a requirement.
     });
   }
   for (const s of showhouses) {
-    entries.push({ loc: base + ROUTES.showhouse(s.slug) });
+    entries.push({ loc: base + itemPath("showhouse", s.slug) });
   }
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>

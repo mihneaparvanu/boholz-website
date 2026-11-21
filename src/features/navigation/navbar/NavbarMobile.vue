@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { Menu, X, ChevronRight } from "lucide-vue-next";
 
 import NavbarLogo from "./parts/NavbarLogo.vue";
-import { ROUTES } from "@/core/routing";
+import { pagePath } from "@/core/routing";
 
 import { PRIMARY_NAV } from "./navbar.content";
 
@@ -86,8 +86,8 @@ function handleNavClick(event: MouseEvent, href: string) {
 
     <a
       class="onsite-cta"
-      :href="ROUTES.onsite"
-      @click="handleNavClick($event, ROUTES.onsite)"
+      :href="pagePath('onsite')"
+      @click="handleNavClick($event, pagePath('onsite'))"
     >
       Vor Ort Beratung
     </a>

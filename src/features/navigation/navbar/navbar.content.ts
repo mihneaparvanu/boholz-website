@@ -1,20 +1,20 @@
-import { ROUTES } from '@/core/routing';
+import { pagePath } from '@/core/routing';
 
 import type { NavLink } from "../nav.types";
 
 export const TRANSPARENT_NAV: NavLink[] = [
-  { label: "Häuser", path: ROUTES.houses },
-  { label: "Ihr Neues Zuhause", path: ROUTES.yourHouse },
-  { label: "Bauen mit BoHolz", path: ROUTES.promise },
+  { label: "Häuser", path: pagePath("houses") },
+  { label: "Ihr Neues Zuhause", path: pagePath("yourHouse") },
+  { label: "Bauen mit BoHolz", path: pagePath("promise") },
 ];
 
 export const PRIMARY_NAV: NavLink[] = [
-  { label: "Häuser", path: ROUTES.houses },
-  { label: "Ihr Neues Zuhause", path: ROUTES.yourHouse },
-  { label: "Bauen mit BoHolz", path: ROUTES.promise },
-  { label: "News", path: ROUTES.news },
-  { label: "Über Uns", path: ROUTES.about },
-  { label: "Kontakt", path: ROUTES.contact },
+  { label: "Häuser", path: pagePath("houses") },
+  { label: "Ihr Neues Zuhause", path: pagePath("yourHouse") },
+  { label: "Bauen mit BoHolz", path: pagePath("promise") },
+  { label: "News", path: pagePath("news") },
+  { label: "Über Uns", path: pagePath("about") },
+  { label: "Kontakt", path: pagePath("contact") },
 ];
 
 /**

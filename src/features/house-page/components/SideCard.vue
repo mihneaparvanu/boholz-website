@@ -4,7 +4,7 @@ import { House, Check } from "lucide-vue-next";
 import Button from "@/core/design/primitives/Button.vue";
 import type { HouseModel } from "@/domain/house-models/houseModels.types";
 import { formatCurrency } from "@/core/format";
-import { ROUTES } from "@/core/routing";
+import { pagePath } from "@/core/routing";
 import { categoryOf } from "@/domain/categories/categories.lookup";
 
 const props = defineProps<{
@@ -20,7 +20,7 @@ const category = computed(() => categoryOf(props.model));
     <a
       v-if="category"
       class="eyebrow"
-      :href="`${ROUTES.houses}?category=${category.slug}`"
+      :href="`${pagePath('houses')}?category=${category.slug}`"
     >
       <House :size="14" :stroke-width="2" aria-hidden="true" />
       <span>{{ category.name }}</span>

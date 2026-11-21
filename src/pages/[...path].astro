@@ -1,0 +1,18 @@
+---
+import { paths } from "@/views/views";
+import type { ViewComponent } from "@/views/views";
+
+import type { RouteKey } from "@/core/routing";
+
+export const getStaticPaths = () => paths();
+
+interface Props {
+  key: RouteKey;
+  view: ViewComponent;
+  slug?: string;
+}
+
+const { key, slug, view: View } = Astro.props;
+---
+
+<View {key} {slug} />

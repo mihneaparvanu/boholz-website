@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BoholzLogo from "@/core/design/primitives/BoholzLogo.vue";
-import { ROUTES } from "@/core/routing";
+import { pagePath } from "@/core/routing";
 
 withDefaults(
   defineProps<{
@@ -12,7 +12,7 @@ withDefaults(
 </script>
 
 <template>
-  <a class="logo" :href="ROUTES.home" aria-label="BoHolz Haus – Startseite">
+  <a class="logo" :href="pagePath('home')" aria-label="BoHolz Haus – Startseite">
     <BoholzLogo :tone="tone" aria-hidden="true" />
   </a>
 </template>

@@ -10,7 +10,7 @@
  * sent as null — an incomplete object is fine, a wrong one is not.
  */
 import type { HouseModel } from "@/domain/house-models/houseModels.types";
-import { ROUTES } from "@/core/routing";
+import { itemPath } from "@/core/routing";
 
 const SITE = "https://boholz-haus.de";
 
@@ -99,7 +99,7 @@ export function productSchema(
     "@context": "https://schema.org",
     "@type": "Product",
     name: model.title,
-    url: SITE + ROUTES.house(model.slug),
+    url: SITE + itemPath("houses", model.slug),
     ...(model.description ? { description: model.description } : {}),
     ...(images.length > 0 ? { image: images } : {}),
     brand: { "@type": "Brand", name: "BoHolz-Haus" },
@@ -110,7 +110,7 @@ export function productSchema(
             price,
             priceCurrency: "EUR",
             availability: "https://schema.org/InStock",
-            url: SITE + ROUTES.house(model.slug),
+            url: SITE + itemPath("houses", model.slug),
           },
         }
       : {}),

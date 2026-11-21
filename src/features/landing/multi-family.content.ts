@@ -1,13 +1,3 @@
-/**
- * Landing content — Mehrfamilienhaus (/wohnen/mehrfamilienhaus).
- *
- * Copy source: Marketing (Mario Beckstein), "Landingpage-Texte: Mehrfamilien-
- * haus", Stand 29.09.2026. EmpCo/UWG-clean (no environmental/superlative
- * claims, no unbacked prices). SPECIAL: this category has no catalog — the
- * Imagebroschüre contains no Mehrfamilienhäuser — so both hero and mid-page CTA
- * point at a project inquiry (/kontakt) instead of the catalog request.
- * DRAFT — pending BoHolz (Christoph) + legal sign-off; the routes are indexed.
- */
 import type { LandingPageContent } from "./landing.types";
 
 export const multiFamilyContent: LandingPageContent = {
@@ -24,7 +14,8 @@ export const multiFamilyContent: LandingPageContent = {
     highlight: "Mit einem Partner an Ihrer Seite.",
     lede: "Sie möchten auf Ihrem Grundstück Wohnungen für mehrere Parteien bauen – zur Vermietung, für die Familie oder als Bauherrengemeinschaft? Wir planen Ihr Mehrfamilienhaus in Holzbauweise gemeinsam mit Ihnen.",
     imageAlt: "Mehrfamilienhaus in Holzbauweise von BoHolz-Haus",
-    imageFallbackPath: "/images/models/mehrfamilienhaus/ilshofen/ilshofen-neu.webp",
+    imageFallbackPath:
+      "/images/models/mehrfamilienhaus/ilshofen/ilshofen-neu.webp",
     preferredCategory: "multiFamilyHouse",
     primaryCta: { label: "Projekt anfragen", href: "/kontakt" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
@@ -92,7 +83,8 @@ export const multiFamilyContent: LandingPageContent = {
       "Ob Wohnhaus mit drei, sechs oder neun Parteien oder größere Entwürfe wie unser 12- und 18-Familienwohnhaus: Wir entwickeln mit Ihnen Planungsvorschläge, die zu Grundstück, Bebauungsplan und Nutzungskonzept passen.",
       "Auch für geförderten Mehrgeschosswohnungsbau und Objektbauten wie Kindergärten oder Tagespflegeeinrichtungen sind wir Ihr Ansprechpartner.",
     ],
-    imageFallbackPath: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-wohnen.jpg",
+    imageFallbackPath:
+      "/images/landing/interiors/mehrfamilien/mfh-ilshofen-wohnen.jpg",
     imageAlt: "Mehrfamilienhaus in Holzbauweise von BoHolz-Haus",
     reverse: false,
   },
@@ -202,12 +194,30 @@ export const multiFamilyContent: LandingPageContent = {
     highlight: "von innen.",
     lede: "Einblicke in Ausstattung und Raumgefühl. Die Abbildungen zeigen Musterhäuser und können Sonderausstattungen enthalten.",
     images: [
-      { src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-wohnen.jpg", alt: "Wohnbereich – Mehrfamilienhaus (Musterhaus)" },
-      { src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-wohnen-kueche.jpg", alt: "Wohn- & Kochbereich – Mehrfamilienhaus (Musterhaus)" },
-      { src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-kueche.jpg", alt: "Küche – Mehrfamilienhaus (Musterhaus)" },
-      { src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-diele.jpg", alt: "Eingangsbereich – Mehrfamilienhaus (Musterhaus)" },
-      { src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-bad-1.jpg", alt: "Badezimmer – Mehrfamilienhaus (Musterhaus)" },
-      { src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-bad-2.jpg", alt: "Badezimmer – Mehrfamilienhaus (Musterhaus)" },
+      {
+        src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-wohnen.jpg",
+        alt: "Wohnbereich – Mehrfamilienhaus (Musterhaus)",
+      },
+      {
+        src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-wohnen-kueche.jpg",
+        alt: "Wohn- & Kochbereich – Mehrfamilienhaus (Musterhaus)",
+      },
+      {
+        src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-kueche.jpg",
+        alt: "Küche – Mehrfamilienhaus (Musterhaus)",
+      },
+      {
+        src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-diele.jpg",
+        alt: "Eingangsbereich – Mehrfamilienhaus (Musterhaus)",
+      },
+      {
+        src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-bad-1.jpg",
+        alt: "Badezimmer – Mehrfamilienhaus (Musterhaus)",
+      },
+      {
+        src: "/images/landing/interiors/mehrfamilien/mfh-ilshofen-bad-2.jpg",
+        alt: "Badezimmer – Mehrfamilienhaus (Musterhaus)",
+      },
     ],
   },
 

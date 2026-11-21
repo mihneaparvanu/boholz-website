@@ -1,4 +1,4 @@
-import type { AttachedImage } from "../../core/media/image.typesge.types";
+import type { AttachedImage } from "../../core/media/image.types";
 import type { AgentSlug } from "../agents/agents.types";
 
 export type PlaceKind = "headquarters" | "office" | "showhouse";

@@ -21,6 +21,8 @@ export const landingPages = {
   bestseller: bestsellerContent,
 } satisfies Record<string, LandingPageContent>;
 
+export const landingPagesKeys = Object.keys(landingPages);
+
 export type LandingCategory = keyof typeof landingPages;
 
 export const landingCategories = Object.keys(landingPages) as LandingCategory[];

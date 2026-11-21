@@ -1,5 +1,5 @@
 import type { Category } from "../categories/categories.types";
-import type { AttachedImage, FloorPlan } from "../../core/media/image.typesge.types";
+import type { AttachedImage, FloorPlan } from "../../core/media/image.types";
 
 export type HouseModel = {
   slug: string;

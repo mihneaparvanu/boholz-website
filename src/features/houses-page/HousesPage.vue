@@ -7,7 +7,7 @@ import { ref, computed, onMounted, watch } from "vue";
 import ModelCard from "@/features/model-overview/components/ModelCard.vue";
 import Image from "@/core/design/primitives/Image.vue";
 import SortButton from "@/core/design/primitives/SortButton.vue";
-import { ROUTES } from "@/core/routing";
+import { itemPath } from "@/core/routing";
 import FilterPanel from "@/features/filter-panel/FilterPanel.vue";
 import {
   type SortOption,
@@ -477,7 +477,7 @@ watch(
         <a
           v-for="model in displayModels"
           :key="model.slug"
-          :href="ROUTES.house(model.slug)"
+          :href="itemPath('houses', model.slug)"
         >
           <ModelCard
             :model="model"

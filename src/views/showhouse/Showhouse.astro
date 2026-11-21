@@ -1,12 +1,12 @@
 ---
-import Layout from "@/views/SiteShell.astro";
+import Layout from "@/features/shell/SiteShell.astro";
 import { locations } from "@/domain/locations/locations";
 
 import PageHero from "@/core/design/sections/PageHero.astro";
 import EyebrowHeadingLede from "@/core/design/primitives/EyebrowHeadingLede.astro";
 import CTASection from "@/core/design/sections/CTASection.astro";
 import Button from "@/core/design/primitives/Button.vue";
-import { ROUTES } from "@/core/routing";
+import { pagePath } from "@/core/routing";
 import { ArrowLeft, MapPin, Phone, Mail } from "lucide-vue-next";
 import type { Place } from "@/domain/locations/locations.types";
 import { agents as agentRecords } from "@/domain/agents/agents";
@@ -50,7 +50,7 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
   </div>
 
   <section class="back">
-    <a class="back-link" href={ROUTES.onsite}>
+    <a class="back-link" href={pagePath("onsite")}>
       <ArrowLeft size={14} strokeWidth={2} aria-hidden="true" />
       <span>Alle Musterhäuser</span>
     </a>
@@ -150,7 +150,7 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
     >
       <Fragment slot="actions">
         <Button variant="primary" size="lg" href="/kontakt">Termin vereinbaren</Button>
-        <Button variant="tertiary" size="lg" href={ROUTES.onsite}>
+        <Button variant="tertiary" size="lg" href={pagePath("onsite")}>
           Alle Musterhäuser
         </Button>
       </Fragment>

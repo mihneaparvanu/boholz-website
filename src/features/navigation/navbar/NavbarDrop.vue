@@ -4,7 +4,7 @@ import { Motion, AnimatePresence } from "motion-v";
 import { Star } from "lucide-vue-next";
 import type { ModelCategory } from "@/domain/categories/categories.types";
 import type { Place } from "@/domain/locations/locations.types";
-import { ROUTES } from "@/core/routing";
+import { pagePath } from "@/core/routing";
 import { heroOf } from "@/domain/categories/categories";
 import { isBestsellerCategory } from "@/domain/categories/bestseller";
 import { isLandingCategory } from "@/features/landing/landing.registry";
@@ -27,7 +27,7 @@ const showcaseImage = computed(() => heroOf(selected.value));
 const EASE = [0.22, 1, 0.36, 1] as const;
 const ctaLinks = [
   { label: "Vor-Ort-Beratung", href: "/vor-ort-beratung" },
-  { label: "Kontakt", href: ROUTES.contact },
+  { label: "Kontakt", href: pagePath("contact") },
 ];
 const extraLinks = HOUSE_DROP_EXTRA_LINKS;
 
@@ -77,7 +77,7 @@ const showcaseKey = computed(
 <template>
   <div class="drop-panel">
     <div class="drop-panel-nav">
-      <a class="all-houses-link" :href="ROUTES.houses">
+      <a class="all-houses-link" :href="pagePath('houses')">
         <span>Alle Häuser entdecken</span>
         <span class="arrow" aria-hidden="true">→</span>
       </a>

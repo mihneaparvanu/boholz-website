@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Place } from "@/domain/locations/locations.types";
-import { ROUTES } from "@/core/routing";
+import { itemPath } from "@/core/routing";
 
 const { showhouses } = defineProps<{
   showhouses: Place[];
@@ -12,7 +12,7 @@ const { showhouses } = defineProps<{
     <p class="title">Musterhäuser</p>
     <ul class="links">
       <li v-for="showhouse in showhouses" :key="showhouse.slug">
-        <a :href="ROUTES.showhouse(showhouse.slug)">{{ showhouse.title }}</a>
+        <a :href="itemPath('showhouse', showhouse.slug)">{{ showhouse.title }}</a>
       </li>
     </ul>
   </div>

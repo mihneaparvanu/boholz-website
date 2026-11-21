@@ -1,12 +1,12 @@
 ---
-import Layout from "@/views/SiteShell.astro";
+import Layout from "@/features/shell/SiteShell.astro";
 import { houseModels } from "@/domain/house-models/houseModels";
 import { categoryOf } from "@/domain/categories/categories.lookup";
 import { getMediaURL } from "@/core/media/media";
 import { toMetaDescription } from "@/core/format";
-import { ROUTES } from "@/core/routing";
-import JsonLd from "@/features/seo/JsonLd.astro";
-import { productSchema, breadcrumbSchema } from "@/features/seo/structured-data";
+import { itemPath, pagePath } from "@/core/routing";
+import JsonLd from "@/core/seo/JsonLd.astro";
+import { productSchema, breadcrumbSchema } from "@/core/seo/structured-data";
 
 import HousePageNav from "@/features/house-page/components/HousePageNav.vue";
 import HeroGallery from "@/features/house-page/components/HeroGallery.vue";
@@ -88,9 +88,9 @@ const heroImage =
   })();
 
 const breadcrumb = breadcrumbSchema([
-  { name: "Startseite", path: ROUTES.home },
-  { name: "Häuser", path: ROUTES.houses },
-  { name: model.title, path: ROUTES.house(model.slug) },
+  { name: "Startseite", path: pagePath("home") },
+  { name: "Häuser", path: pagePath("houses") },
+  { name: model.title, path: itemPath("houses", model.slug) },
 ]);
 ---
 

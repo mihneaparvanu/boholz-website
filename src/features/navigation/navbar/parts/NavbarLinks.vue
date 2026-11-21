@@ -5,7 +5,7 @@ import { ChevronDown } from "lucide-vue-next";
 import type { NavLink } from "../../nav.types";
 import type { ModelCategory } from "@/domain/categories/categories.types";
 import type { Place } from "@/domain/locations/locations.types";
-import { ROUTES } from "@/core/routing";
+import { pagePath } from "@/core/routing";
 import NavbarDrop from "../NavbarDrop.vue";
 
 const props = defineProps<{
@@ -42,7 +42,7 @@ function dropForRoute(route: NavLink): DropKey {
   if (!props.enableDropdown) return null;
   // The Häuser dropdown stays available even when you're on /hauser itself —
   // it's how you jump to the typology landings from the overview page.
-  if (route.path === ROUTES.houses) {
+  if (route.path === pagePath("houses")) {
     return "houses";
   }
   return null;
@@ -62,7 +62,7 @@ function handleEnter(route: NavLink) {
 watch(
   () => props.currentPath,
   (p) => {
-    if (p === ROUTES.houses && openDrop.value === "houses") {
+    if (p === pagePath("houses") && openDrop.value === "houses") {
       openDrop.value = null;
     }
   },

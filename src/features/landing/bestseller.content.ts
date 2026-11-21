@@ -1,13 +1,3 @@
-/**
- * Landing content — Bestseller (/haeuser/bestseller).
- *
- * Copy source: Marketing (Mario Beckstein), "Landingpage-Texte: Bestseller",
- * Stand 29.09.2026. EmpCo/UWG-clean (no environmental/superlative claims, no
- * unbacked prices; the "ab" prices are transcribed verbatim from the legally
- * reviewed docx, "Fast fertig" / Effizienzhaus 55, Stand 03/2026, inkl.
- * Bodenplatte und Architektenleistung). DRAFT — pending BoHolz (Christoph) +
- * legal sign-off; the routes are indexed.
- */
 import type { LandingPageContent } from "./landing.types";
 
 export const bestsellerContent: LandingPageContent = {

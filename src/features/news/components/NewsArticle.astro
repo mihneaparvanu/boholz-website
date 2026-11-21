@@ -1,9 +1,9 @@
 ---
-import Layout from "@/views/SiteShell.astro";
+import Layout from "@/features/shell/SiteShell.astro";
 import { news } from "@/features/news/news.collection";
 import Image from "@/core/design/primitives/Image.vue";
 import { toMetaDescription, formatNewsDate } from "@/core/format";
-import { ROUTES } from "@/core/routing";
+import { pagePath } from "@/core/routing";
 
 import type { NewsPost } from "@/features/news/news.types";
 
@@ -47,7 +47,7 @@ const contentHtml = post.content;
     }
 
     <header class="post-header">
-      <a href={ROUTES.news} class="back-link">← Alle News</a>
+      <a href={pagePath("news")} class="back-link">← Alle News</a>
       {formattedDate && <time class="date">{formattedDate}</time>}
       <h1 class="title">{post.title}</h1>
       {post.excerpt && <p class="excerpt">{post.excerpt}</p>}

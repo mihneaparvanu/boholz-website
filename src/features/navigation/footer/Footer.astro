@@ -1,6 +1,6 @@
 ---
 
-import { ROUTES } from "@/core/routing";
+import { pagePath } from "@/core/routing";
 import { FOOTER_NAV } from "./footer.content";
 import { CERTIFICATIONS } from "@/features/certifications/certifications";
 
@@ -16,7 +16,7 @@ const currentYear = new Date().getFullYear();
   <Separator />
 
   <div class="content">
-    <a class="logo" href={ROUTES.home} aria-label="BoHolz Haus – Startseite">
+    <a class="logo" href={pagePath("home")} aria-label="BoHolz Haus – Startseite">
       <BoholzLogo tone="brand" aria-hidden="true" />
     </a>
 
@@ -32,9 +32,9 @@ const currentYear = new Date().getFullYear();
       </ul>
 
       <ul class="list privacy">
-        <li><a href={ROUTES.imprint}>Impressum</a></li>
-        <li><a href={ROUTES.privacy}>Datenschutz</a></li>
-        <li><a href={ROUTES.cookies}>Cookies</a></li>
+        <li><a href={pagePath("imprint")}>Impressum</a></li>
+        <li><a href={pagePath("privacy")}>Datenschutz</a></li>
+        <li><a href={pagePath("cookies")}>Cookies</a></li>
         <li>
           <ConsentSettingsButton />
         </li>

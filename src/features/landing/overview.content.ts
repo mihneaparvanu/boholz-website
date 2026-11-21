@@ -1,27 +1,5 @@
-/**
- * Page 1 — `/wohnen/uebersicht`
- *
- * Generic premium-Fertighaus campaign. Audience-agnostic; aimed at someone
- * arriving from a paid search ad for "Fertighaus aus Holz" without a
- * specific typology in mind. Showcases the full house catalogue and the
- * four pillar benefits.
- *
- * Voice: precise, restrained, German engineering rather than lifestyle
- * marketing. The old JPEG cycled through pastel cards and full-saturation
- * "energy stars" badges — we lean on the kit's diluted pastels and the
- * single brand accent.
- */
 import type { LandingPageContent } from "./landing.types";
 
-/**
- * Hero copy variants — only `title` / `highlight` / `subtitle` differ across
- * variants. Eyebrow, image, CTAs and category preferences are page-level
- * (declared once on `overviewContent.hero`).
- *
- * To switch variants on the homepage, change a single line below:
- *   `export const heroVariant: HeroVariantKey = "current";`
- * Valid keys: `current` (default), `classic`, `brand`.
- */
 type HeroCopy = {
   heading: string;
   highlight: string;
@@ -29,21 +7,18 @@ type HeroCopy = {
 };
 
 export const heroVariants = {
-  // Variant 1 — the current launch copy. Default.
   current: {
     heading: "Premium Fertighäuser",
     highlight: "aus Holz.",
     lede:
       "Wir bauen Fertighäuser aus Holz in Deutschland – persönlich begleitet von der ersten Idee bis zur Hausübergabe. Für ein Zuhause, das zu Ihnen und Ihrer Lebenssituation passt.",
   },
-  // Variant 2 — the previous home hero (see `features/Home/Hero/Hero.vue`).
   classic: {
     heading: "Fertighäuser in Zimmermannsqualität.",
     highlight: "Für Generationen.",
     lede:
       "Unsere barrierefreien Fertighäuser aus Holz verbinden durchdachte Holzbauweise mit handwerklicher Sorgfalt — für Wohnqualität, die zu Ihrer Familie passt.",
   },
-  // Variant 3 — brand-led new copy.
   brand: {
     heading: "Fertighäuser von",
     highlight: "BoHolz-Haus.",
@@ -54,9 +29,6 @@ export const heroVariants = {
 
 export type HeroVariantKey = keyof typeof heroVariants;
 
-/**
- * Active hero variant. Change this single line to swap homepage hero copy.
- */
 export const heroVariant: HeroVariantKey = "current";
 
 export const overviewContent: LandingPageContent = {
@@ -119,8 +91,6 @@ export const overviewContent: LandingPageContent = {
     heading: "Welche Häuser",
     highlight: "gibt es?",
     lede: "Vom kompakten Bungalow bis zur Stadtvilla — eine Auswahl unserer meistgewählten Modelle, individuell anpassbar.",
-    // Overview page: every typology, bestseller gate ON, no practical cap
-    // (the DB currently holds 6 featured models — 99 is an "uncapped" signal).
     categories: null,
     featuredOnly: true,
     maxItems: 99,

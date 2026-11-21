@@ -508,3 +508,7 @@ export const locations = [
     ],
   },
 ] satisfies Place[];
+
+export const showhouses: Place[] = locations.filter(
+  (l) => l.kind === "showhouse",
+);

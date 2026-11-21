@@ -1,11 +1,3 @@
-/**
- * Landing content — Kubus (/haeuser/kubus).
- *
- * Copy source: Marketing (Mario Beckstein), "Landingpage-Texte: Kubus",
- * Stand 29.09.2026. EmpCo/UWG-clean (no environmental/climate claims, no
- * superlatives, no unbacked prices/promises). DRAFT — pending BoHolz
- * (Christoph Schmidt) + legal sign-off; the routes are indexed.
- */
 import type { LandingPageContent } from "./landing.types";
 
 export const kubusContent: LandingPageContent = {

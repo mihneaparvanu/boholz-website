@@ -13,7 +13,7 @@
  *    `<!-- PLACEHOLDER COPY ... -->` so the orchestrator can surface it for
  *    sign-off (see report).
  */
-import Layout from "@/views/SiteShell.astro";
+import Layout from "@/features/shell/SiteShell.astro";
 
 import PageHero from "@/core/design/sections/PageHero.astro";
 import CTASection from "@/core/design/sections/CTASection.astro";
@@ -23,7 +23,7 @@ import Callout from "@/core/design/primitives/Callout.vue";
 import IconList from "@/core/design/primitives/IconList.vue";
 import SectionNavigator from "@/features/section-navigator/SectionNavigator.vue";
 
-import { sections, roleAreas, careerBenefits } from "@/features/careers-page/careers-page.content";
+import { sections, roleAreas, careerBenefits } from "./careers-page.content";
 ---
 
 <Layout title="Karriere – BoHolz Haus">

@@ -1,5 +1,5 @@
 ---
-import Layout from "@/views/SiteShell.astro";
+import Layout from "@/features/shell/SiteShell.astro";
 import HousesPage from "@/features/houses-page/HousesPage.vue";
 import { houseModels as models } from "@/domain/house-models/houseModels";
 import { displayCategories } from "@/domain/categories/categories";
@@ -11,7 +11,6 @@ import { housesIntro } from "@/features/houses-page/houses-intro.content";
 const typeCount = displayCategories.filter(
   (c) => !isBestsellerCategory(c),
 ).length;
-
 ---
 
 <Layout title="Häuser – BoHolz Haus">
@@ -23,11 +22,7 @@ const typeCount = displayCategories.filter(
       <strong>{typeCount}</strong> Haustypen · <strong>{models.length}</strong> Modelle
     </p>
   </section>
-  <HousesPage
-    models={models}
-    categories={displayCategories}
-    client:visible
-  />
+  <HousesPage models={models} categories={displayCategories} client:visible />
 </Layout>
 
 <style>
