@@ -1,3 +1,7 @@
+import About from "@/views/About.astro";
+
+
+
 import type { RouteKey } from "@/core/routing";
 
 interface ViewProps {
