@@ -1,0 +1,26 @@
+---
+import { getEntry, render } from "astro:content";
+
+import SiteShell from "@/views/SiteShell.astro";
+import Prose from "@/core/design/primitives/Prose.astro";
+
+import type { RouteKey } from "@/core/routing";
+
+interface Props {
+  key: RouteKey;
+}
+
+const { key } = Astro.props;
+
+const entry = await getEntry("legal", key);
+if (!entry) {
+  throw new Error(`Legal: no document for ${key}`);
+}
+
+const Content = await render(entry);
+const { data } = entry;
+---
+
+<SiteShell title={data.title} description={data.description}>
+  <Prose> <Content /> </Prose>
+</SiteShell>

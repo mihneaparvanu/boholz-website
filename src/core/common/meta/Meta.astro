@@ -1,0 +1,30 @@
+---
+import type { Metadata } from "./meta.types";
+
+interface Props extends Metadata {}
+
+const { title, description, urls, og } = Astro.props;
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={urls.canonical} />
+{
+  Object.entries(urls.alternates).map(([locale, href]) => (
+    <link rel="alternate" hreflang={locale} href={href} />
+  ))
+}
+<link rel="alternate" hreflang="x-default" href={urls.xDefault} />
+<meta property="og:locale" content={og.locale} />
+<meta property="og:title" content={og.title} />
+<meta property="og:description" content={og.description} />
+<meta property="og:image" content={og.image.url} />
+<meta property="og:image:width" content={`${og.image.width}`} />
+<meta property="og:image:height" content={`${og.image.height}`} />
+<meta property="og:image:alt" content={og.image.alt} />
+<meta property="og:type" content={og.type} />
+<meta property="og:url" content={og.url} />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />

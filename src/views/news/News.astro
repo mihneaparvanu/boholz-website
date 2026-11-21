@@ -1,10 +1,59 @@
 ---
-import Layout from "@/views/SiteShell.astro";
-import NewsPage from "@/features/news-page/NewsPage.vue";
-import { news as articles } from "@/domain/news/news";
+import { getCollection } from "astro:content";
 
+import NewsCard from "@/features/news/components/NewsCard.astro";
+import SiteShell from "../SiteShell.astro";
+
+const entries = await getCollection("news");
+const hasEntries = entries.length > 0;
 ---
 
-<Layout title="News – BoHolz Haus">
-  <NewsPage articles={articles} client:visible />
-</Layout>
+<SiteShell title="News">
+  <div class="news-page">
+    <h1 class="page-title">News</h1>
+    {
+      hasEntries ? (
+        <div class="news-grid">
+          {entries.map((entry) => (
+            <NewsCard {entry} />
+          ))}
+        </div>
+      ) : (
+        <div class="empty-state">
+          <p>Noch keine Neuigkeiten verfügbar.</p>
+        </div>
+      )
+    }
+  </div>
+</SiteShell>
+<style>
+  .news-page {
+    grid-column: content;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+    padding-block: var(--spacing-6);
+  }
+
+  .page-title {
+    font-size: var(--fs-h2);
+  }
+
+  .empty-state {
+    color: var(--clr-content-secondary);
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-6);
+
+    @media (--tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (--mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

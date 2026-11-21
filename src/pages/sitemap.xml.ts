@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { houseModels as models } from "@/domain/house-models/houseModels";
 import { locations } from "@/domain/locations/locations";
-import { news } from "@/domain/news/news";
+import { news } from "@/features/news/newsws";
 import { ROUTES } from "@/core/routing";
 import { landingCategories } from "@/features/landing/landing.registry";
 

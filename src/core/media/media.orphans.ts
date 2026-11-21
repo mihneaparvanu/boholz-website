@@ -1,4 +1,4 @@
-import type { Image } from "./image.types";
+import type { Image } from "../../domain/media/image.types";
 
 export const orphanMedia = [
   {

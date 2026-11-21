@@ -1,11 +1,11 @@
 ---
 import Layout from "@/views/SiteShell.astro";
-import { news } from "@/domain/news/news";
+import { news } from "@/features/news/news.collection";
 import Image from "@/core/design/primitives/Image.vue";
 import { toMetaDescription, formatNewsDate } from "@/core/format";
 import { ROUTES } from "@/core/routing";
 
-import type { NewsPost } from "@/domain/news/news.types";
+import type { NewsPost } from "@/features/news/news.types";
 
 export function getStaticPaths() {
   return news.map((p)=> (

@@ -1,7 +1,7 @@
 import About from "@/views/about/About.astro";
 import Careers from "@/views/careers/Careers.astro";
 import Catalog from "@/views/catalog/Catalog.astro";
-
+import Contact from "@/views/contact/Contact.astro";
 
 import type { RouteKey } from "@/core/routing";
 
@@ -22,12 +22,15 @@ type View =
       slugs: readonly [string];
       index?: ViewComponent;
     };
-    
-const VIEWS = {
-about: { kind: "page", view: About },
-careers: {kind: "page", view: Careers},
-catalog 
 
+const VIEWS = {
+  about: { kind: "page", view: About },
+  career: { kind: "page", view: Careers },
+  catalog: { kind: "page", view: Catalog },
+  contact: {kind: "page", view: Contact},
+  cookies,
+  landing
+  news
 
 } satisfies Record<RouteKey, View>;
 

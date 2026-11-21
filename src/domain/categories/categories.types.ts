@@ -1,4 +1,4 @@
-import { type AttachedImage } from "../media/image.types";
+import { type AttachedImage } from "../../core/media/image.typesge.types";
 
 export type Category =
   | "bestseller"
