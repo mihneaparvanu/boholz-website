@@ -141,3 +141,9 @@ export const categories = {
 
 // Key order is display order.
 export const displayCategories = Object.values(categories);
+
+/** The category's hero photo for galleries and menus, if it has one. */
+export const heroOf = (category: ModelCategory) => {
+  const hero = category.media.find((m) => m.isHero);
+  return hero ? { path: hero.path, alt: hero.alt ?? category.name } : null;
+};

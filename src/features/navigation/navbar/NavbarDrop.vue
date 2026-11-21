@@ -5,11 +5,11 @@ import { Star } from "lucide-vue-next";
 import type { ModelCategory } from "@/domain/categories/categories.types";
 import type { Place } from "@/domain/locations/locations.types";
 import { ROUTES } from "@/core/routing";
-import { useCategoryGallery } from "@/lib/useCategoryGallery";
-import { isBestsellerCategory } from "@/lib/bestseller";
+import { heroOf } from "@/domain/categories/categories";
+import { isBestsellerCategory } from "@/domain/categories/bestseller";
 import { isLandingCategory } from "@/features/landing/landing.registry";
 import TitleLinks from "./TitleLinks.vue";
-import Image from "@/ui/primitives/Image.vue";
+import Image from "@/core/design/primitives/Image.vue";
 import {
   HOUSE_DROP_EXTRA_LINKS,
   type HouseDropExtraLink,
@@ -20,9 +20,9 @@ const props = defineProps<{
   showhouses: Place[];
 }>();
 
-const { selected, select, showcaseImage } = useCategoryGallery(
-  props.categories,
-);
+const selected = ref(props.categories[0]);
+const select = (category: ModelCategory) => (selected.value = category);
+const showcaseImage = computed(() => heroOf(selected.value));
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const ctaLinks = [

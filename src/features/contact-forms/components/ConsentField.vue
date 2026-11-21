@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { type ConsentField } from "@/features/contact-forms/types/contact.types";
-import "@/ui/style/form.css";
+import "@/core/design/styles/form.css";
 const props = defineProps<{ field: ConsentField }>();
 const model = defineModel<boolean>();
 

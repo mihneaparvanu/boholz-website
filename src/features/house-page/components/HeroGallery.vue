@@ -2,7 +2,7 @@
 import { computed, ref } from "vue";
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 import type { HouseModel } from "@/domain/house-models/houseModels.types";
-import Image from "@/ui/primitives/Image.vue";
+import Image from "@/core/design/primitives/Image.vue";
 
 const props = defineProps<{
   model: HouseModel;

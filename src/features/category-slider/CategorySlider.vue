@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import type { ModelCategory } from "@/domain/categories/categories.types";
-import { useCategoryGallery } from "@/lib/useCategoryGallery";
 
 import CategoryThumbnail from "./components/CategoryThumbnail.vue";
 import CategoryHero from "./components/CategoryHero.vue";
@@ -9,7 +9,8 @@ const props = defineProps<{
   categories: ModelCategory[];
 }>();
 
-const { selected, select } = useCategoryGallery(props.categories);
+const selected = ref(props.categories[0]);
+const select = (category: ModelCategory) => (selected.value = category);
 </script>
 
 <template>

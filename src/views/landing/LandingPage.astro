@@ -22,28 +22,28 @@
  * page's content module, or from `landing.defaults.ts` for the sections
  * every page shares.
  */
-import Layout from "@/layouts/Layout.astro";
-import { getMediaURL } from "@/lib/media";
+import Layout from "@/views/SiteShell.astro";
+import { getMediaURL } from "@/core/media/media";
 
 import LandingHero from "./LandingHero.astro";
-import Block from "@/ui/sections/Block.astro";
-import BenefitsRow from "@/ui/sections/BenefitsRow.astro";
-import HouseModelsCarousel from "@/ui/sections/HouseModelsCarousel.vue";
-import AudienceBlock from "@/ui/sections/AudienceBlock.astro";
-import TwoColumn from "@/ui/sections/TwoColumn.astro";
-import TestimonialBand from "@/ui/sections/TestimonialBand.astro";
+import Block from "@/core/design/sections/Block.astro";
+import BenefitsRow from "@/core/design/sections/BenefitsRow.astro";
+import HouseModelsCarousel from "@/core/design/sections/HouseModelsCarousel.vue";
+import AudienceBlock from "@/core/design/sections/AudienceBlock.astro";
+import TwoColumn from "@/core/design/sections/TwoColumn.astro";
+import TestimonialBand from "@/core/design/sections/TestimonialBand.astro";
 import CatalogForm from "@/features/contact-forms/CatalogForm.vue";
 import JsonLd from "@/features/seo/JsonLd.astro";
-import CTASection from "@/ui/sections/CTASection.astro";
-import FAQAccordion from "@/ui/primitives/FAQAccordion.vue";
-import Button from "@/ui/primitives/Button.vue";
-import ZigZag from "@/ui/sections/ZigZag.astro";
+import CTASection from "@/core/design/sections/CTASection.astro";
+import FAQAccordion from "@/core/design/primitives/FAQAccordion.vue";
+import Button from "@/core/design/primitives/Button.vue";
+import ZigZag from "@/core/design/sections/ZigZag.astro";
 
-import ProofSection from "@/ui/sections/Proof-Section.vue";
-import TrustBadges from "@/ui/sections/TrustBadges.vue";
+import ProofSection from "@/core/design/sections/Proof-Section.vue";
+import TrustBadges from "@/core/design/sections/TrustBadges.vue";
 
 import { houseModels as allModels } from "@/domain/house-models/houseModels";
-import { toHouseModelCard } from "@/lib/derive";
+import { toHouseModelCard } from "@/core/derive";
 
 import type { LandingPageContent } from "./landing.types";
 import { defaultTrustStats } from "./landing.defaults";
@@ -92,15 +92,11 @@ const trustStats = content.trustStats ?? defaultTrustStats;
 void trustStats;
 void TrustBadges;
 
-
-
 const featuredOnly = houses.featuredOnly ?? true;
 const filteredModels = allModels
   .filter((m) => (featuredOnly ? m.isFeatured : true))
   .filter((m) =>
-    houses.categories === null
-      ? true
-      : houses.categories.includes(m.category),
+    houses.categories === null ? true : houses.categories.includes(m.category),
   )
   .slice(0, houses.maxItems);
 
@@ -122,28 +118,32 @@ const SEO_IMAGE_POOL = [
 ];
 const galleryImgs = content.gallery?.images ?? [];
 const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
-  const g = galleryImgs.length ? galleryImgs[i % galleryImgs.length] : undefined;
+  const g = galleryImgs.length
+    ? galleryImgs[i % galleryImgs.length]
+    : undefined;
   return {
     title: s.heading,
     body: s.body.split("\n\n"),
-    image: getMediaURL(s.imageFallbackPath ?? g?.src ?? SEO_IMAGE_POOL[i % SEO_IMAGE_POOL.length]),
+    image: getMediaURL(
+      s.imageFallbackPath ??
+        g?.src ??
+        SEO_IMAGE_POOL[i % SEO_IMAGE_POOL.length],
+    ),
     imageAlt: s.imageAlt ?? g?.alt ?? s.heading,
   };
 });
 ---
 
-{/* isHero: sets <html data-hero="true">, which Navbar reads to swap in its
+{
+  /* isHero: sets <html data-hero="true">, which Navbar reads to swap in its
     transparent desktop variant — but only while scrolled within 10px of the
     top (useScrolledPast), so it turns solid as soon as you move. Scoped to
     this template, so it applies to the /wohnen/* landings and nothing else.
-    Mobile stays solid by design; see the note in Navbar.vue. */}
-<Layout
-  title={seo.title}
-  description={seo.description}
-  isHero
->
-
-  {/* ================================================================
+    Mobile stays solid by design; see the note in Navbar.vue. */
+}
+<Layout title={seo.title} description={seo.description} isHero>
+  {
+    /* ================================================================
        LANDING-PAGE STRUCTURE — target blueprint (annotate + iterate)
        ----------------------------------------------------------------
        # HERO      value proposition + quality badges + guarantee time
@@ -152,29 +152,30 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
        # GALLERY   LP-only photo gallery  (content.gallery — created per page)
        # FORM      lead magnet: "Download our house catalog for free! Enter your email"
        Existing sections are kept, grouped and reordered under these headings.
-     ================================================================ */}
+     ================================================================ */
+  }
 
   <!-- ═══════════════════════ HERO · value proposition + quality badges + guarantee ═══════════════════════ -->
 
-    <LandingHero
-      eyebrow={hero.eyebrow}
-      heading={hero.heading}
-      highlight={hero.highlight}
-      lede={hero.lede}
-      image={heroImage}
-      imageAlt={hero.imageAlt}
-      primaryCta={hero.primaryCta}
-      secondaryCta={hero.secondaryCta}
-      guarantees={trustStats.badges}
-    />
+  <LandingHero
+    eyebrow={hero.eyebrow}
+    heading={hero.heading}
+    highlight={hero.highlight}
+    lede={hero.lede}
+    image={heroImage}
+    imageAlt={hero.imageAlt}
+    primaryCta={hero.primaryCta}
+    secondaryCta={hero.secondaryCta}
+    guarantees={trustStats.badges}
+  />
 
   <!-- Quality badges (certification marks) -->
 
-  <Block >
+  <Block>
     <ProofSection />
-</Block>
+  </Block>
 
-    <!-- Meet the category — body -->
+  <!-- Meet the category — body -->
   <Block id="nachhaltigkeit">
     <TwoColumn
       eyebrow={featureBody.eyebrow}
@@ -188,16 +189,17 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
       <div class="prose">
         {featureBody.paragraphs.map((p) => <p>{p}</p>)}
       </div>
-      {featureBody.cta && (
-        <Fragment slot="actions">
-          <Button variant="primary" size="md" href={featureBody.cta.href}>
-            {featureBody.cta.label}
-          </Button>
-        </Fragment>
-      )}
+      {
+        featureBody.cta && (
+          <Fragment slot="actions">
+            <Button variant="primary" size="md" href={featureBody.cta.href}>
+              {featureBody.cta.label}
+            </Button>
+          </Fragment>
+        )
+      }
     </TwoColumn>
   </Block>
-
 
   <!-- ═══════════════════════ SHOW · the models of this category ═══════════════════════ -->
   <Block
@@ -224,22 +226,24 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
     }
   </Block>
 
-    <!-- ═══════════════════════ GALLERY · LP-only (new) ═══════════════════════ -->
+  <!-- ═══════════════════════ GALLERY · LP-only (new) ═══════════════════════ -->
 
   <!-- Gallery: LP-only. Renders only when the page defines content.gallery.
        (New section — gallery content is created per landing page.) -->
-  {content.gallery && (
-    <Block
-      id="galerie"
-      eyebrow={content.gallery.eyebrow}
-      heading={content.gallery.heading}
-      highlight={content.gallery.highlight}
-      lede={content.gallery.lede}
-    >
-      <LandingGallery images={content.gallery.images} />
-    </Block>
-  )}
-  
+  {
+    content.gallery && (
+      <Block
+        id="galerie"
+        eyebrow={content.gallery.eyebrow}
+        heading={content.gallery.heading}
+        highlight={content.gallery.highlight}
+        lede={content.gallery.lede}
+      >
+        <LandingGallery images={content.gallery.images} />
+      </Block>
+    )
+  }
+
   <!-- ═══════════════════════ ASK · single catalog CTA ═══════════════════════ -->
   <!-- One button only: get the catalog. Sits after the gallery so the ask
        lands once the category has actually been shown, and anchors to
@@ -251,7 +255,9 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
       highlight={midPageCta.highlight}
       lede={midPageCta.lede}
       tone={midPageCta.tone}
-      image={midPageCta.imageFallbackPath ? getMediaURL(midPageCta.imageFallbackPath) : undefined}
+      image={midPageCta.imageFallbackPath
+        ? getMediaURL(midPageCta.imageFallbackPath)
+        : undefined}
       imageAlt={midPageCta.imageAlt ?? ""}
     >
       <Fragment slot="actions">
@@ -277,7 +283,11 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
               ))
             }
           </span>
-          <Button variant="secondary" size="lg" href={midPageCta.primaryCta.href}>
+          <Button
+            variant="secondary"
+            size="lg"
+            href={midPageCta.primaryCta.href}
+          >
             {midPageCta.primaryCta.label}
           </Button>
         </div>
@@ -316,7 +326,6 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
     </Fragment>
   </Block>
 
-
   <!-- Social proof, placed immediately before the ask -->
   <!-- ── 09 · Testimonials (full-bleed dark band) ───────────────── -->
   <TestimonialBand
@@ -328,9 +337,6 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
     badges={testimonials.badges}
     testimonials={testimonials.testimonials}
   />
-
-
-
 
   <!-- Most common FAQs about this type of house -->
   <!-- ── 10 · FAQ ──────────────────────────────────────────────── -->
@@ -352,11 +358,13 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
   <JsonLd data={faqJsonLd} />
 
   <!-- ═══════════════════════ SEO/GEO · editorial ranking copy (below FAQ) ═══════════════════════ -->
-  {seoText && (
-    <Block id="ratgeber" heading={seoText.heading}>
-      <ZigZag blocks={seoBlocks} />
-    </Block>
-  )}
+  {
+    seoText && (
+      <Block id="ratgeber" heading={seoText.heading}>
+        <ZigZag blocks={seoBlocks} />
+      </Block>
+    )
+  }
 
   <!-- ═══════════════════════ FORM · lead magnet — free house catalog ═══════════════════════ -->
   <!-- Lead magnet: "Download our house catalog for free."
@@ -372,10 +380,12 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
     lede={leadForm.lede}
   >
     <div class="form-wrap">
-      <CatalogForm variant={leadForm.catalogVariant ?? "default"} client:visible />
+      <CatalogForm
+        variant={leadForm.catalogVariant ?? "default"}
+        client:visible
+      />
     </div>
   </Block>
-
 </Layout>
 
 <style>
@@ -391,7 +401,11 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
   .empty a {
     color: var(--clr-accent-secondary);
     text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--clr-accent-secondary) 40%, transparent);
+    text-decoration-color: color-mix(
+      in srgb,
+      var(--clr-accent-secondary) 40%,
+      transparent
+    );
     text-underline-offset: 2px;
   }
 

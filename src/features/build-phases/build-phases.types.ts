@@ -1,4 +1,4 @@
-import type { IconName } from "@/lib/icons";
+import type { IconName } from "@/core/icons";
 
 /**
  * One narrative phase in the BoHolz build journey.

@@ -1,4 +1,4 @@
-import { getMediaURL } from '@/lib/media';
+import { getMediaURL } from '@/core/media/media';
 
 import type { BuildPhase } from "./build-phases.types";
 

@@ -35,7 +35,7 @@ import {
 } from "lucide-vue-next";
 import type { HouseModel } from "@/domain/house-models/houseModels.types";
 import { categoryOf } from "@/domain/categories/categories.lookup";
-import { isBestsellerCategory } from "@/lib/bestseller";
+import { isBestsellerCategory } from "@/domain/categories/bestseller";
 import {
   formatBoolean,
   formatCentimeters,
@@ -43,7 +43,7 @@ import {
   formatNumber,
   formatRegulatedArea,
   formatSquareMeters,
-} from "@/lib/format";
+} from "@/core/format";
 import DetailRow from "./DetailRow.vue";
 import RoofCapsule from "@/features/model-overview/components/RoofCapsule.vue";
 

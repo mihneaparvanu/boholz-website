@@ -1,9 +1,9 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import Layout from "@/views/SiteShell.astro";
 import HousesPage from "@/features/houses-page/HousesPage.vue";
 import { houseModels as models } from "@/domain/house-models/houseModels";
 import { displayCategories } from "@/domain/categories/categories";
-import { isBestsellerCategory } from "@/lib/bestseller";
+import { isBestsellerCategory } from "@/domain/categories/bestseller";
 
 import { housesIntro } from "@/features/houses-page/houses-intro.content";
 

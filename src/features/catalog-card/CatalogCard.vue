@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Button from "@/ui/primitives/Button.vue";
+import Button from "@/core/design/primitives/Button.vue";
 </script>
 
 <template>

@@ -3,7 +3,7 @@ import { Scan } from "lucide-vue-next";
 import type { DisplayItemConfig } from "./house-page.types";
 import type { HouseModel } from "@/domain/house-models/houseModels.types.ts";
 import StatCard from "./StatCard.vue";
-import { formatSquareMeters } from "@/lib/format";
+import { formatSquareMeters } from "@/core/format";
 
 const props = defineProps<{
   model: HouseModel;

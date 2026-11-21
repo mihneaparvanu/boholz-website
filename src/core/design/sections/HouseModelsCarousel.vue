@@ -20,7 +20,7 @@ import type { HouseModelCardProps } from "./HouseModelCard.vue";
 import CategoryThumbnail from "@/features/category-slider/components/CategoryThumbnail.vue";
 import type { ModelCategory } from "@/domain/categories/categories.types";
 import { isInCategory } from "@/domain/categories/categories.lookup";
-import { isBestsellerCategory, getBestsellerModels } from "@/lib/bestseller";
+import { isBestsellerCategory, getBestsellerModels } from "@/domain/categories/bestseller";
 
 const props = defineProps<{
   models: HouseModelCardProps[];

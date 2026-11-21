@@ -2,8 +2,8 @@
 import { computed } from "vue";
 import type { NewsPost } from "@/domain/news/news.types";
 import { ROUTES } from "@/core/routing";
-import Image from "@/ui/primitives/Image.vue";
-import ImagePlaceholder from "@/ui/primitives/ImagePlaceholder.vue";
+import Image from "@/core/design/primitives/Image.vue";
+import ImagePlaceholder from "@/core/design/primitives/ImagePlaceholder.vue";
 
 const props = defineProps<{
   article: NewsPost;

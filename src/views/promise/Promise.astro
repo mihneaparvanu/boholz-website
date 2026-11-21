@@ -1,17 +1,17 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import PageHero from "@/ui/sections/PageHero.astro";
-import CTASection from "@/ui/sections/CTASection.astro";
-import Block from "@/ui/sections/Block.astro";
+import Layout from "@/views/SiteShell.astro";
+import PageHero from "@/core/design/sections/PageHero.astro";
+import CTASection from "@/core/design/sections/CTASection.astro";
+import Block from "@/core/design/sections/Block.astro";
 import SectionNavigator from "@/features/section-navigator/SectionNavigator.vue";
-import IconList from "@/ui/primitives/IconList.vue";
-import EditorialCard from "@/ui/primitives/EditorialCard.vue";
-import Button from "@/ui/primitives/Button.vue";
+import IconList from "@/core/design/primitives/IconList.vue";
+import EditorialCard from "@/core/design/primitives/EditorialCard.vue";
+import Button from "@/core/design/primitives/Button.vue";
 import { ArrowRight, BookOpen } from "lucide-vue-next";
-import { getMediaURL } from "@/lib/media";
+import { getMediaURL } from "@/core/media/media";
 import FeatureCardPair from "@/features/advantage/FeatureCardPair.vue";
 import WallAssembly from "@/features/advantage/WallAssembly.astro";
-import ZigZag, { type ZigZagBlock } from "@/ui/sections/ZigZag.astro";
+import ZigZag, { type ZigZagBlock } from "@/core/design/sections/ZigZag.astro";
 import { keitel } from "@/features/faq/keitel";
 // Shared with every /haus/<slug> model page — the wall build-ups, the
 // Holzfaserdämmung pair, the 16 Gründe and the Energietechnik list now live

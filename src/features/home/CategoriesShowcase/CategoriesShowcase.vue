@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import type { ModelCategory } from "@/domain/categories/categories.types";
-import { isBestsellerCategory } from "@/lib/bestseller";
+import { isBestsellerCategory } from "@/domain/categories/bestseller";
 import CategorySlider from "@/features/category-slider/CategorySlider.vue";
 
 const props = defineProps<{

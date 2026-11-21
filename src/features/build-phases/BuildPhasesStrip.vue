@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { getIcon } from "@/lib/icons";
+import { getIcon } from "@/core/icons";
 import type { BuildPhase } from "./build-phases.types";
 
 const props = defineProps<{

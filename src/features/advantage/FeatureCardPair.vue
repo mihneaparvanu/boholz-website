@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import EditorialCard from "@/ui/primitives/EditorialCard.vue";
+import EditorialCard from "@/core/design/primitives/EditorialCard.vue";
 import type { FeatureCard } from "./advantage.types";
 
 defineProps<{

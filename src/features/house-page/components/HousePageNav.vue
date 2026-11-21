@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
-import { useScrollSpy } from "@/lib/useScrollSpy";
+import { computed, onMounted, ref } from "vue";
 
 export type HouseSection = { id: string; label: string };
 
@@ -31,78 +30,19 @@ onMounted(() => {
   if (Number.isFinite(parsed) && parsed > 0) navbarHeight.value = parsed;
 });
 
-// Two distinct offsets — see SectionNavigator for the same pattern.
-//   detectionOffset: deeper into the viewport so the active pill flips
-//     ~120 px before the section's top crosses the navbar.
-//   scrollTarget:    where the section's top lands after a click — close
-//     to the navbar so the tap doesn't visually overshoot.
-const SPY_BUFFER = 120;
-const detectionOffset = computed(() => navbarHeight.value + SPY_BUFFER);
+// Where a section's top lands after a click — close to the navbar so the tap
+// doesn't visually overshoot.
 const scrollTarget = computed(() => navbarHeight.value + 16);
-
-const ids = computed(() => props.sections.map((s) => s.id));
-const trackedId = useScrollSpy(ids, { topOffset: detectionOffset });
-
-// Click-lock: when the user taps a pill, persist that selection for 2s
-// regardless of what scroll-spy reports. Gives a clear visual ack that the
-// tap registered and prevents flicker as the smooth-scroll passes
-// intermediate sections.
-const lockedId = ref<string | null>(null);
-let lockTimer: number | null = null;
-const LOCK_MS = 2000;
-
-const clearLock = (): void => {
-  if (lockTimer !== null) {
-    window.clearTimeout(lockTimer);
-    lockTimer = null;
-  }
-  lockedId.value = null;
-};
-
-onBeforeUnmount(clearLock);
-
-const activeId = computed(() => lockedId.value ?? trackedId.value);
-
-const pillsRef = ref<HTMLElement | null>(null);
 
 const scrollTo = (id: string, e: Event): void => {
   e.preventDefault();
   const el = document.getElementById(id);
   if (!el) return;
-  lockedId.value = id;
-  if (lockTimer !== null) window.clearTimeout(lockTimer);
-  lockTimer = window.setTimeout(() => {
-    lockedId.value = null;
-    lockTimer = null;
-  }, LOCK_MS);
   const top =
     el.getBoundingClientRect().top + window.scrollY - scrollTarget.value + 1;
   window.scrollTo({ top, behavior: "smooth" });
 };
 
-// Centre the active pill in the floating bar's horizontal scroll. .pills
-// has position: relative so pill.offsetLeft is reported relative to the
-// scroll container (without that, offsetLeft walks up the tree and the
-// centering math drifts — the "active link stays hidden" report).
-const centerActivePill = (id: string | null, instant = false) => {
-  const pills = pillsRef.value;
-  if (!id || !pills) return;
-  const pill = pills.querySelector<HTMLElement>(
-    `[data-id="${CSS.escape(id)}"]`,
-  );
-  if (!pill) return;
-  const left = pill.offsetLeft - (pills.clientWidth - pill.offsetWidth) / 2;
-  pills.scrollTo({
-    left: Math.max(0, left),
-    behavior: instant ? "auto" : "smooth",
-  });
-};
-
-watch(activeId, (id) => centerActivePill(id));
-
-// Centre the initial active pill instantly on mount so the indicator is
-// in view from the first paint.
-onMounted(() => centerActivePill(activeId.value, true));
 </script>
 
 <template>
@@ -111,13 +51,12 @@ onMounted(() => centerActivePill(activeId.value, true));
     aria-label="Hausseiten-Navigation"
     :data-tone="tone"
   >
-    <ul ref="pillsRef" class="pills" role="list">
+    <ul class="pills" role="list">
       <li v-for="s in sections" :key="s.id">
         <a
           :href="`#${s.id}`"
           :data-id="s.id"
-          :class="['pill', { active: activeId === s.id }]"
-          :aria-current="activeId === s.id ? 'location' : undefined"
+          class="pill"
           @click="scrollTo(s.id, $event)"
         >
           {{ s.label }}
@@ -181,10 +120,6 @@ onMounted(() => centerActivePill(activeId.value, true));
   color: var(--clr-content-primary);
 }
 
-.pill.active {
-  background: var(--pill-active-bg);
-  color: var(--clr-pure-white);
-}
 
 /* Focus ring matches the active tone so a focused pill never reads as a
    different state than an active one. Previously this hardcoded

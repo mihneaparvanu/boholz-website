@@ -1,6 +1,6 @@
-import type { IconName } from "@/lib/icons";
+import type { IconName } from "@/core/icons";
 import type { OverviewCardData } from "./overview.types";
-import { getMediaURL } from '@/lib/media';
+import { getMediaURL } from '@/core/media/media';
 
 /**
  * The featured card leads the section — Boholz's strongest single claim.

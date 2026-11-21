@@ -1,4 +1,4 @@
-import type { IconName } from "@/lib/icons";
+import type { IconName } from "@/core/icons";
 
 /**
  * Trust proof points rendered as `<StatBlock>` rows.

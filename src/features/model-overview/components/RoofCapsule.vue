@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { TriangleRight } from "lucide-vue-next";
-import { formatDegrees } from "@/lib/format";
+import { formatDegrees } from "@/core/format";
 
 export type RoofEntry = {
   /** Roof type label, e.g. "Walmdach", "Flachdach", "Flachdach, Attika". */

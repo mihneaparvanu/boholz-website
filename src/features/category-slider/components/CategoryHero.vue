@@ -2,7 +2,7 @@
 import { computed } from "vue";
 
 import type { ModelCategory } from "@/domain/categories/categories.types";
-import Image from "@/ui/primitives/Image.vue";
+import Image from "@/core/design/primitives/Image.vue";
 
 const props = defineProps<{
   category: ModelCategory;

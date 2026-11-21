@@ -13,14 +13,14 @@
  *    `<!-- PLACEHOLDER COPY ... -->` so the orchestrator can surface it for
  *    sign-off (see report).
  */
-import Layout from "@/layouts/Layout.astro";
+import Layout from "@/views/SiteShell.astro";
 
-import PageHero from "@/ui/sections/PageHero.astro";
-import CTASection from "@/ui/sections/CTASection.astro";
+import PageHero from "@/core/design/sections/PageHero.astro";
+import CTASection from "@/core/design/sections/CTASection.astro";
 
-import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
-import Callout from "@/ui/primitives/Callout.vue";
-import IconList from "@/ui/primitives/IconList.vue";
+import EyebrowHeadingLede from "@/core/design/primitives/EyebrowHeadingLede.astro";
+import Callout from "@/core/design/primitives/Callout.vue";
+import IconList from "@/core/design/primitives/IconList.vue";
 import SectionNavigator from "@/features/section-navigator/SectionNavigator.vue";
 
 import { sections, roleAreas, careerBenefits } from "@/features/careers-page/careers-page.content";

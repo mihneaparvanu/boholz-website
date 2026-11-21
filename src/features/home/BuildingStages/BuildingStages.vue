@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "reka-ui";
-import ImagePlaceholder from "@/ui/primitives/ImagePlaceholder.vue";
+import ImagePlaceholder from "@/core/design/primitives/ImagePlaceholder.vue";
 import type { BuildingStage } from "./building-stages.types";
 
 const props = defineProps<{

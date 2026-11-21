@@ -14,13 +14,13 @@
  * itself (e.g. testimonial / FAQ shapes), we re-export the type alias here
  * for ergonomics — content files import only from `landing.types.ts`.
  */
-import type { Benefit } from "@/ui/sections/BenefitsRow.astro";
-import type { AudienceItem } from "@/ui/sections/AudienceBlock.astro";
+import type { Benefit } from "@/core/design/sections/BenefitsRow.astro";
+import type { AudienceItem } from "@/core/design/sections/AudienceBlock.astro";
 import type {
   Testimonial,
   CredentialBadge,
-} from "@/ui/sections/TestimonialBand.astro";
-import type { FAQItem } from "@/ui/primitives/FAQAccordion.vue";
+} from "@/core/design/sections/TestimonialBand.astro";
+import type { FAQItem } from "@/core/design/primitives/FAQAccordion.vue";
 import type { TrustBadge } from "@/features/trust/trust-badges.content";
 import type { Category } from "@/domain/categories/categories.types";
 

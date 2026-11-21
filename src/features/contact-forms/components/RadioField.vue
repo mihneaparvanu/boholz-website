@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import "@/ui/style/form.css";
+import "@/core/design/styles/form.css";
 import type { RadioField } from "@/features/contact-forms/types/contact.types";
 defineProps<{
   field: RadioField;

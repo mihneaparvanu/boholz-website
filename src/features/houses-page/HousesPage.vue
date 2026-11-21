@@ -5,8 +5,8 @@ import { isInCategory } from "@/domain/categories/categories.lookup";
 import { isLandingCategory } from "@/features/landing/landing.registry";
 import { ref, computed, onMounted, watch } from "vue";
 import ModelCard from "@/features/model-overview/components/ModelCard.vue";
-import Image from "@/ui/primitives/Image.vue";
-import SortButton from "@/ui/primitives/SortButton.vue";
+import Image from "@/core/design/primitives/Image.vue";
+import SortButton from "@/core/design/primitives/SortButton.vue";
 import { ROUTES } from "@/core/routing";
 import FilterPanel from "@/features/filter-panel/FilterPanel.vue";
 import {
@@ -22,8 +22,8 @@ import {
 import {
   isBestsellerCategory,
   getBestsellerModels,
-  BESTSELLER_LAST_SLUG,
-} from "@/lib/bestseller";
+  byBestsellerOrder,
+} from "@/domain/categories/bestseller";
 import { housesViews } from "./houses-page.content";
 
 const props = defineProps<{
@@ -111,23 +111,14 @@ const displayModels = computed(() => {
     return sortModels(base, activeSortOption.value);
   }
 
-  // No explicit sort: featured models lead, then the rest.
-  // Each partition still goes through the default sort (livingArea asc).
-  const featured = sortModels(
-    base.filter((m) => m.isFeatured),
-    null,
-  );
+  // No explicit sort: featured models lead in bestseller order, then the rest
+  // by the default sort (livingArea asc).
+  const featured = base.filter((m) => m.isFeatured).sort(byBestsellerOrder);
   const rest = sortModels(
     base.filter((m) => !m.isFeatured),
     null,
   );
-  // Client (2026-06-15): the Bungalow Komfort 116 sits last (far right) in the
-  // bestseller row — pin it after the default livingArea sort.
-  const featuredOrdered = [
-    ...featured.filter((m) => m.slug !== BESTSELLER_LAST_SLUG),
-    ...featured.filter((m) => m.slug === BESTSELLER_LAST_SLUG),
-  ];
-  return [...featuredOrdered, ...rest];
+  return [...featured, ...rest];
 });
 
 // Live preview count for the panel button — reflects pending state.

@@ -1,13 +1,13 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import Layout from "@/views/SiteShell.astro";
 
-import PageHero from "@/ui/sections/PageHero.astro";
-import CTASection from "@/ui/sections/CTASection.astro";
-import Block from "@/ui/sections/Block.astro";
+import PageHero from "@/core/design/sections/PageHero.astro";
+import CTASection from "@/core/design/sections/CTASection.astro";
+import Block from "@/core/design/sections/Block.astro";
 
 import SectionNavigator from "@/features/section-navigator/SectionNavigator.vue";
-import EditorialCard from "@/ui/primitives/EditorialCard.vue";
-import Callout from "@/ui/primitives/Callout.vue";
+import EditorialCard from "@/core/design/primitives/EditorialCard.vue";
+import Callout from "@/core/design/primitives/Callout.vue";
 import BuildingStagesCarousel from "@/features/home/BuildingStages/BuildingStagesCarousel.vue";
 import { buildingStages } from "@/features/home/BuildingStages/building-stages.content";
 import {

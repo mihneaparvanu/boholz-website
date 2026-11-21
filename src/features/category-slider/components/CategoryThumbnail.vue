@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { Star } from "lucide-vue-next";
-import Image from "@/ui/primitives/Image.vue";
+import Image from "@/core/design/primitives/Image.vue";
 
 import type { ModelCategory } from "@/domain/categories/categories.types";
-import { isBestsellerCategory } from "@/lib/bestseller";
+import { isBestsellerCategory } from "@/domain/categories/bestseller";
 
 const props = defineProps<{
   category: ModelCategory;

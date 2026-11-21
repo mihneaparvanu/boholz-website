@@ -1,4 +1,4 @@
-import type { IconName } from "@/lib/icons";
+import type { IconName } from "@/core/icons";
 
 /**
  * One half of a side-by-side comparison card pair (e.g. Sommer vs Winter,

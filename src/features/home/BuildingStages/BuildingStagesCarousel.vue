@@ -2,7 +2,7 @@
 import { computed, onMounted, ref } from "vue";
 import { useEventListener } from "@vueuse/core";
 import { ChevronLeft, ChevronRight } from "lucide-vue-next";
-import ImagePlaceholder from "@/ui/primitives/ImagePlaceholder.vue";
+import ImagePlaceholder from "@/core/design/primitives/ImagePlaceholder.vue";
 import type { BuildingStage } from "./building-stages.types";
 
 const props = defineProps<{

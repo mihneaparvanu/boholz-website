@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { getIcon, type IconName } from "@/lib/icons";
+import { getIcon, type IconName } from "@/core/icons";
 
 export type IconListItem = {
   icon: IconName;

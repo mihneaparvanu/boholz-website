@@ -1,11 +1,3 @@
-/**
- * Every internal URL in the app, in one place.
- *
- * Keys are English identifiers; values are the German public slugs, which
- * are the SEO asset and must not change without a redirect. Nothing outside
- * this file should build a path by hand — that way a URL change is one edit
- * here and every link, the nav and the sitemap follow.
- */
 export const ROUTES = {
   home: "/",
   houses: "/hauser",
@@ -23,6 +15,7 @@ export const ROUTES = {
   imprint: "/impressum",
   privacy: "/datenschutz",
   cookies: "/cookies",
-  /** Typology landing pages — the landing registry owns which ones exist. */
   landing: (slug: string) => `/wohnen/${slug}`,
 } as const;
+
+export type RouteKey = keyof typeof ROUTES;

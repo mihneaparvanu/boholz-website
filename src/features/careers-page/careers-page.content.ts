@@ -1,4 +1,4 @@
-import type { IconListItem } from "@/ui/primitives/IconList.vue";
+import type { IconListItem } from "@/core/design/primitives/IconList.vue";
 import type { Section } from "@/features/section-navigator/SectionNavigator.vue";
 import { keitel } from '@/features/faq/keitel';
 

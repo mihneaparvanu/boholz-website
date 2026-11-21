@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BoholzLogo from "@/ui/icons/BoholzLogo.vue";
+import BoholzLogo from "@/core/design/primitives/BoholzLogo.vue";
 import { ROUTES } from "@/core/routing";
 
 withDefaults(

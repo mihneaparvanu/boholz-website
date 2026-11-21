@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { formatSquareMeters, formatCurrency } from "@/lib/format";
+import { formatSquareMeters, formatCurrency } from "@/core/format";
 import type { HouseModel } from "@/domain/house-models/houseModels.types.ts";
-import Image from "@/ui/primitives/Image.vue";
-import ImagePlaceholder from "@/ui/primitives/ImagePlaceholder.vue";
+import Image from "@/core/design/primitives/Image.vue";
+import ImagePlaceholder from "@/core/design/primitives/ImagePlaceholder.vue";
 import RoofCapsule, { type RoofEntry } from "./RoofCapsule.vue";
 
 const props = defineProps<{

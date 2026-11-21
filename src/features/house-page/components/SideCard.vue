@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { House, Check } from "lucide-vue-next";
-import Button from "@/ui/primitives/Button.vue";
+import Button from "@/core/design/primitives/Button.vue";
 import type { HouseModel } from "@/domain/house-models/houseModels.types";
-import { formatCurrency } from "@/lib/format";
+import { formatCurrency } from "@/core/format";
 import { ROUTES } from "@/core/routing";
 import { categoryOf } from "@/domain/categories/categories.lookup";
 

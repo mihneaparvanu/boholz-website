@@ -24,28 +24,28 @@
  * (client feedback) — the lead form is the page's final beat. Other landing
  * pages still render `closingCta` from their content modules.
  */
-import Layout from "@/layouts/Layout.astro";
-import { getMediaURL } from "@/lib/media";
+import Layout from "@/views/SiteShell.astro";
+import { getMediaURL } from "@/core/media/media";
 
 import HomeHero from "@/features/home/hero/HomeHero.astro";
-import Block from "@/ui/sections/Block.astro";
-import BenefitsRow from "@/ui/sections/BenefitsRow.astro";
-import HouseModelsCarousel from "@/ui/sections/HouseModelsCarousel.vue";
-import ImageBand from "@/ui/sections/ImageBand.astro";
-import AudienceBlock from "@/ui/sections/AudienceBlock.astro";
-import TwoColumn from "@/ui/sections/TwoColumn.astro";
+import Block from "@/core/design/sections/Block.astro";
+import BenefitsRow from "@/core/design/sections/BenefitsRow.astro";
+import HouseModelsCarousel from "@/core/design/sections/HouseModelsCarousel.vue";
+import ImageBand from "@/core/design/sections/ImageBand.astro";
+import AudienceBlock from "@/core/design/sections/AudienceBlock.astro";
+import TwoColumn from "@/core/design/sections/TwoColumn.astro";
 import Reviews from "@/features/reviews/Reviews.astro";
 import ContactForm from "@/features/contact-forms/ContactForm.vue";
 
-import Button from "@/ui/primitives/Button.vue";
+import Button from "@/core/design/primitives/Button.vue";
 
 import { houseModels } from "@/domain/house-models/houseModels";
 import { displayCategories } from "@/domain/categories/categories";
-import { toHouseModelCard } from "@/lib/derive";
+import { toHouseModelCard } from "@/core/derive";
 
 import { overviewContent as content } from "@/features/landing/overview.content";
-import ProofSection from "@/ui/sections/Proof-Section.vue";
-import TrustBadges from "@/ui/sections/TrustBadges.vue";
+import ProofSection from "@/core/design/sections/Proof-Section.vue";
+import TrustBadges from "@/core/design/sections/TrustBadges.vue";
 import { trustBadges } from "@/features/trust/trust-badges.content";
 import { homeSections } from "@/features/home/home.content";
 import Overview from "@/features/home/Overview/Overview.vue";

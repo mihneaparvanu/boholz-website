@@ -12,8 +12,8 @@
  * server returns the correct code (without this, SSR would serve the page
  * with a 200).
  */
-import Layout from "@/layouts/Layout.astro";
-import Button from "@/ui/primitives/Button.vue";
+import Layout from "@/views/SiteShell.astro";
+import Button from "@/core/design/primitives/Button.vue";
 
 Astro.response.status = 404;
 

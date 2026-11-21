@@ -11,9 +11,9 @@ import { categoryOf } from "@/domain/categories/categories.lookup";
 import type {
   HouseModelCardProps,
   HouseModelSpec,
-} from "@/ui/sections/HouseModelCard.vue";
-import { getMediaURL } from "@/lib/media";
-import { formatPriceFrom, formatSquareMeters } from "@/lib/format";
+} from "@/core/design/sections/HouseModelCard.vue";
+import { getMediaURL } from "@/core/media/media";
+import { formatPriceFrom, formatSquareMeters } from "@/core/format";
 
 const FALLBACK_IMAGE_PATH = "/images/pages/uber-uns/value-1.webp";
 

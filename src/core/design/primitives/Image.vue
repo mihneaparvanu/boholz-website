@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 
-import { getMediaURL } from "@/lib/media";
+import { getMediaURL } from "@/core/media/media";
 
 /**
  * The one place a stored media path becomes a URL.

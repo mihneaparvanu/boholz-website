@@ -1,6 +1,6 @@
-import { getMediaURL } from "@/lib/media";
+import { getMediaURL } from "@/core/media/media";
 
-import type { IconListItem } from "@/ui/primitives/IconList.vue";
+import type { IconListItem } from "@/core/design/primitives/IconList.vue";
 import type {
   EditorialProse,
   FeatureCard,

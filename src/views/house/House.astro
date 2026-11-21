@@ -1,9 +1,9 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import Layout from "@/views/SiteShell.astro";
 import { houseModels } from "@/domain/house-models/houseModels";
 import { categoryOf } from "@/domain/categories/categories.lookup";
-import { getMediaURL } from "@/lib/media";
-import { toMetaDescription } from "@/lib/format";
+import { getMediaURL } from "@/core/media/media";
+import { toMetaDescription } from "@/core/format";
 import { ROUTES } from "@/core/routing";
 import JsonLd from "@/features/seo/JsonLd.astro";
 import { productSchema, breadcrumbSchema } from "@/features/seo/structured-data";
@@ -13,9 +13,9 @@ import HeroGallery from "@/features/house-page/components/HeroGallery.vue";
 import SideCard from "@/features/house-page/components/SideCard.vue";
 import FloorPlanTabs from "@/features/house-page/components/FloorPlanTabs.vue";
 import DetailsGrid from "@/features/house-page/components/DetailsGrid.vue";
-import CTASection from "@/ui/sections/CTASection.astro";
-import Button from "@/ui/primitives/Button.vue";
-import IconList from "@/ui/primitives/IconList.vue";
+import CTASection from "@/core/design/sections/CTASection.astro";
+import Button from "@/core/design/primitives/Button.vue";
+import IconList from "@/core/design/primitives/IconList.vue";
 import FeatureCardPair from "@/features/advantage/FeatureCardPair.vue";
 import WallAssembly from "@/features/advantage/WallAssembly.astro";
 import SpecGroups from "@/features/advantage/SpecGroups.astro";

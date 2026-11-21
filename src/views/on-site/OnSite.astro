@@ -1,11 +1,11 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import Layout from "@/views/SiteShell.astro";
 import LocationsMap from "@/features/locations/LocationsMap.vue";
-import CTASection from "@/ui/sections/CTASection.astro";
-import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
-import VideoPlaceholder from "@/ui/primitives/VideoPlaceholder.vue";
+import CTASection from "@/core/design/sections/CTASection.astro";
+import EyebrowHeadingLede from "@/core/design/primitives/EyebrowHeadingLede.astro";
+import VideoPlaceholder from "@/core/design/primitives/VideoPlaceholder.vue";
 import { Building2, Home, MapPin, Phone, Mail, ArrowRight } from "lucide-vue-next";
-import { getMediaURL } from "@/lib/media";
+import { getMediaURL } from "@/core/media/media";
 import { ROUTES } from "@/core/routing";
 import { musterhaeuser } from "@/features/consultation-page/consultation-page.content";
 import { locations } from "@/domain/locations/locations";

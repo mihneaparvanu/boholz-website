@@ -1,5 +1,5 @@
 import type { BuildingStage } from "./building-stages.types";
-import { getMediaURL } from '@/lib/media';
+import { getMediaURL } from '@/core/media/media';
 
 const baseMediaURL = getMediaURL("/images/stages");
 

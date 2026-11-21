@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { Check } from "lucide-vue-next";
-import { getIcon, type IconName } from "@/lib/icons";
+import { getIcon, type IconName } from "@/core/icons";
 
 const props = defineProps<{
   title: string;

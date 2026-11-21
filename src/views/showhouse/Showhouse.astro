@@ -1,17 +1,17 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+import Layout from "@/views/SiteShell.astro";
 import { locations } from "@/domain/locations/locations";
 
-import PageHero from "@/ui/sections/PageHero.astro";
-import EyebrowHeadingLede from "@/ui/primitives/EyebrowHeadingLede.astro";
-import CTASection from "@/ui/sections/CTASection.astro";
-import Button from "@/ui/primitives/Button.vue";
+import PageHero from "@/core/design/sections/PageHero.astro";
+import EyebrowHeadingLede from "@/core/design/primitives/EyebrowHeadingLede.astro";
+import CTASection from "@/core/design/sections/CTASection.astro";
+import Button from "@/core/design/primitives/Button.vue";
 import { ROUTES } from "@/core/routing";
 import { ArrowLeft, MapPin, Phone, Mail } from "lucide-vue-next";
 import type { Place } from "@/domain/locations/locations.types";
 import { agents as agentRecords } from "@/domain/agents/agents";
-import { getMediaURL } from "@/lib/media";
-import Image from "@/ui/primitives/Image.vue";
+import { getMediaURL } from "@/core/media/media";
+import Image from "@/core/design/primitives/Image.vue";
 
 export function getStaticPaths() {
 const showhouses = locations.filter((l) => l.kind === "showhouse");

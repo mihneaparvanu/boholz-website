@@ -1,4 +1,4 @@
-import type { SectionContent } from "@/ui/sections/section.types";
+import type { SectionContent } from "@/core/design/sections/section.types";
 
 /**
  * Per-section content for the homepage. `eyebrow` is the small-caps label
