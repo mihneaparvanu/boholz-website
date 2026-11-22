@@ -1,0 +1,9 @@
+{
+  "name": "boholz-website",
+  "account_id": "e10e3ee7c065128b0e47edcfff3b7c6b",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  }
+}
