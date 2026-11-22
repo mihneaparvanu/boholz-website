@@ -4,7 +4,14 @@ import LocationsMap from "@/features/locations/LocationsMap.vue";
 import CTASection from "@/core/design/sections/CTASection.astro";
 import EyebrowHeadingLede from "@/core/design/primitives/EyebrowHeadingLede.astro";
 import VideoPlaceholder from "@/core/design/primitives/VideoPlaceholder.vue";
-import { Building2, Home, MapPin, Phone, Mail, ArrowRight } from "lucide-vue-next";
+import {
+  Building2,
+  Home,
+  MapPin,
+  Phone,
+  Mail,
+  ArrowRight,
+} from "lucide-vue-next";
 import { getMediaURL } from "@/core/media/media";
 import { itemPath } from "@/core/routing";
 import { musterhaeuser } from "@/features/consultation-page/consultation-page.content";
@@ -172,13 +179,21 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
                         <div class="agent-contact">
                           {a.phoneNumber && (
                             <a href={telHref(a.phoneNumber)}>
-                              <Phone size={12} strokeWidth={1.75} aria-hidden="true" />
+                              <Phone
+                                size={12}
+                                strokeWidth={1.75}
+                                aria-hidden="true"
+                              />
                               <span>{a.phoneNumber}</span>
                             </a>
                           )}
                           {a.email && (
                             <a href={`mailto:${a.email}`}>
-                              <Mail size={12} strokeWidth={1.75} aria-hidden="true" />
+                              <Mail
+                                size={12}
+                                strokeWidth={1.75}
+                                aria-hidden="true"
+                              />
                               <span>{a.email}</span>
                             </a>
                           )}
@@ -196,7 +211,9 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
                 rel="noopener noreferrer"
               >
                 Standort öffnen
-                <span class="arrow" aria-hidden="true">→</span>
+                <span class="arrow" aria-hidden="true">
+                  →
+                </span>
               </a>
             </article>
           </li>
@@ -309,7 +326,9 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
     font-size: var(--fs-body-sm);
     font-weight: var(--font-weight-medium);
     color: var(--clr-content-primary);
-    transition: gap 200ms cubic-bezier(0.16, 1, 0.3, 1), color 160ms ease;
+    transition:
+      gap 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      color 160ms ease;
   }
 
   .musterhaus:hover .more,
@@ -385,7 +404,8 @@ const telHref = (s: string): string => `tel:${s.replace(/[^\d+]/g, "")}`;
      margins pull the image flush to the card border so the inner padding
      wraps just the text below it. */
   .office-cover {
-    margin: calc(var(--spacing-4) * -1) calc(var(--spacing-4) * -1) var(--spacing-1);
+    margin: calc(var(--spacing-4) * -1) calc(var(--spacing-4) * -1)
+      var(--spacing-1);
     aspect-ratio: 4 / 3;
     overflow: hidden;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;

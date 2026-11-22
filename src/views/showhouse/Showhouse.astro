@@ -13,21 +13,18 @@ import { agents as agentRecords } from "@/domain/agents/agents";
 import { getMediaURL } from "@/core/media/media";
 import Image from "@/core/design/primitives/Image.vue";
 
-export function getStaticPaths() {
-const showhouses = locations.filter((l) => l.kind === "showhouse");
-
-return showhouses.map((s)=> ({
-  params: {slug: s.slug},
-  props: {showhouse: s}
-}))
-
-};
-
 interface Props {
-  showhouse: Place;
+  slug: string;
 }
 
-const { showhouse } = Astro.props;
+const { slug } = Astro.props;
+
+const showhouse = locations.find(
+  (l): l is Place => l.kind === "showhouse" && l.slug === slug,
+);
+if (!showhouse) {
+  throw new Error(`Showhouse: no showhouse "${slug}"`);
+}
 
 const hero = showhouse.media.find((m) => m.isHero) ?? showhouse.media[0];
 const gallery = showhouse.media.filter((m) => !m.isHero).slice(0, 8);

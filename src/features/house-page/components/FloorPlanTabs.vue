@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
 import { TabsRoot, TabsList, TabsTrigger, TabsContent } from "reka-ui";
-import { FileText, Download } from "lucide-vue-next";
+import { Download } from "lucide-vue-next";
 import type { FloorPlan } from "@/core/media/image.types";
 import Image from "@/core/design/primitives/Image.vue";
 
