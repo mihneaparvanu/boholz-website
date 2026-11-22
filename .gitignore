@@ -32,3 +32,7 @@ Thumbs.db
 /*.gif
 /*.webp
 /*.avif
+
+# Cloudflare Workers local state and secrets
+.wrangler/
+.dev.vars

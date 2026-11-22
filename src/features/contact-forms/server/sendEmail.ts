@@ -10,31 +10,20 @@ export type Email = {
 export type EmailRouting = Pick<Email, "to" | "from">;
 export type EmailContent = Omit<Email, "to" | "from">;
 
-const domain = process.env.MAIN_DOMAIN || "boholz-haus.de";
-const prodRouting: EmailRouting = {
-  to: `info@${domain}`,
-  from: `noreply@${domain}`,
+export type MailEnv = {
+  MAIN_DOMAIN?: string;
+  LEAD_EMAIL_TO?: string;
+  MS_GRAPH_TENANT_ID: string;
+  MS_GRAPH_CLIENT_ID: string;
+  MS_GRAPH_CLIENT_SECRET: string;
 };
 
-const devDomain = process.env.DEV_DOMAIN;
-const devRouting: EmailRouting = {
-  to: `mihnea@${devDomain}`,
-  from: `noreply@${devDomain}`,
-};
-
-export const emailConfig =
-  process.env.NODE_ENV === "production" ? prodRouting : devRouting;
-
-const TENANT = process.env.MS_GRAPH_TENANT_ID;
-const CLIENT_ID = process.env.MS_GRAPH_CLIENT_ID;
-const CLIENT_SECRET = process.env.MS_GRAPH_CLIENT_SECRET;
-
-async function fetchAccessToken(): Promise<string> {
-  const tokenUrl = `https://login.microsoftonline.com/${TENANT}/oauth2/v2.0/token`;
+async function fetchAccessToken(env: MailEnv): Promise<string> {
+  const tokenUrl = `https://login.microsoftonline.com/${env.MS_GRAPH_TENANT_ID}/oauth2/v2.0/token`;
 
   const body = new URLSearchParams({
-    client_id: CLIENT_ID!,
-    client_secret: CLIENT_SECRET!,
+    client_id: env.MS_GRAPH_CLIENT_ID,
+    client_secret: env.MS_GRAPH_CLIENT_SECRET,
     scope: "https://graph.microsoft.com/.default",
     grant_type: "client_credentials",
   });
@@ -47,12 +36,18 @@ async function fetchAccessToken(): Promise<string> {
 }
 
 export async function sendEmail(
+  env: MailEnv,
   content: EmailContent,
 ): Promise<{ ok: boolean; error?: string }> {
-  const completeEmail: Email = { ...emailConfig, ...content };
+  const domain = env.MAIN_DOMAIN || "boholz-haus.de";
+  const completeEmail: Email = {
+    to: `info@${domain}`,
+    from: `noreply@${domain}`,
+    ...content,
+  };
 
   const from = completeEmail.from;
-  const to = process.env.LEAD_EMAIL_TO || completeEmail.to;
+  const to = env.LEAD_EMAIL_TO || completeEmail.to;
   const payload = {
     message: {
       subject: completeEmail.subject,
@@ -74,7 +69,7 @@ export async function sendEmail(
   }
 
   try {
-    const token = await fetchAccessToken();
+    const token = await fetchAccessToken(env);
     const sendUrl = `https://graph.microsoft.com/v1.0/users/${encodeURIComponent(from)}/sendMail`;
     const res = await fetch(sendUrl, {
       method: "POST",

@@ -4,12 +4,13 @@ import VueTurnstile from "vue-turnstile";
 import {
   catalogContactSection,
   catalogConsentSection,
-} from "./data/catalog.schema";
-import { catalogSchema, emptyCatalogForm } from "./data/catalog.zod";
-import { type FormField } from "./types/contact.types";
-import TextField from "./components/TextField.vue";
-import RadioField from "./components/RadioField.vue";
-import ConsentField from "./components/ConsentField.vue";
+  catalogSchema,
+  emptyCatalogForm,
+} from "./catalog.fields";
+import { type FormField } from "../components/field.types";
+import TextField from "../components/TextField.vue";
+import RadioField from "../components/RadioField.vue";
+import ConsentField from "../components/ConsentField.vue";
 
 const props = defineProps<{
   /** Which pair of PDFs the lead gets. "bestseller" swaps the Hauskatalog

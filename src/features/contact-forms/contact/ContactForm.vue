@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { reactive, ref, computed } from "vue";
 import VueTurnstile from "vue-turnstile";
-import { contactFormSections } from "./data/contact.schema";
-import { type FormField } from "./types/contact.types";
-import { contactSchema, emptyContactForm } from "./data/contact.zod";
-import TextField from "./components/TextField.vue";
-import RadioField from "./components/RadioField.vue";
-import ConsentField from "./components/ConsentField.vue";
+import {
+  contactFormSections,
+  contactSchema,
+  emptyContactForm,
+} from "./contact.fields";
+import { type FormField } from "../components/field.types";
+import TextField from "../components/TextField.vue";
+import RadioField from "../components/RadioField.vue";
+import ConsentField from "../components/ConsentField.vue";
 
 const state = reactive({ ...emptyContactForm });
 

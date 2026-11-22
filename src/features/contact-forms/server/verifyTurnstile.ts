@@ -2,13 +2,10 @@ const TURNSTILE_URL =
   "https://challenges.cloudflare.com/turnstile/v0/siteverify";
 
 export async function verifyTurnstile(
+  secret: string,
   token: string,
   remoteip?: string,
 ): Promise<{ success: boolean; errorCodes: string[]; hostname?: string }> {
-  const secret =
-    process.env.TURNSTILE_SECRET ?? import.meta.env.TURNSTILE_SECRET;
-  if (!secret) throw new Error("TURNSTILE_SECRET is not set");
-
   const body = new URLSearchParams();
   body.append("secret", secret);
   body.append("response", token);
@@ -19,7 +16,11 @@ export async function verifyTurnstile(
     throw new Error(`siteverify HTTP ${response.status}`);
   }
 
-  const data = await response.json();
+  const data = (await response.json()) as {
+    success: boolean;
+    "error-codes"?: string[];
+    hostname?: string;
+  };
   return {
     success: data.success,
     errorCodes: data["error-codes"] ?? [],

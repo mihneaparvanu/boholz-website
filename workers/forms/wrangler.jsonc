@@ -1,0 +1,11 @@
+{
+  "name": "boholz-forms",
+  "account_id": "e10e3ee7c065128b0e47edcfff3b7c6b",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-01",
+  "observability": { "enabled": true },
+  "vars": { "MAIN_DOMAIN": "boholz-haus.de" },
+  "routes": [
+    { "pattern": "boholz-haus.de/api/*", "zone_name": "boholz-haus.de" },
+  ],
+}

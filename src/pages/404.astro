@@ -1,25 +1,9 @@
 ---
-/**
- * 404 · Not Found
- *
- * Astro serves this file automatically for unknown routes when running under
- * the Node SSR adapter. Composition is "numeral-as-art": the 404 itself is
- * set in display-scale Instrument-Serif italic as a quiet decorative anchor,
- * with the heading, lede and three navigation paths stacked beneath a
- * hairline rule. No image, no illustration — the typography is the design.
- *
- * SSR status: Astro.response.status is set to 404 in the frontmatter so the
- * server returns the correct code (without this, SSR would serve the page
- * with a 200).
- */
-import Layout from "@/features/shell/SiteShell.astro";
+import Shell from "@/features/shell/SiteShell.astro";
 import Button from "@/core/design/primitives/Button.vue";
-
-Astro.response.status = 404;
-
 ---
 
-<Layout title="404 – BoHolz Haus">
+<Shell title="404 – BoHolz Haus">
   <section class="notfound" aria-labelledby="notfound-title">
     <p class="eyebrow">404</p>
 
@@ -28,16 +12,14 @@ Astro.response.status = 404;
     <h1 id="notfound-title">Diese Tür führt ins Leere.</h1>
 
     <p class="lede">
-      Die Seite, die Sie suchen, gibt es nicht oder wurde verschoben. Kehren
-      Sie zur Startseite zurück oder finden Sie Ihr Haus über die Übersicht.
+      Die Seite, die Sie suchen, gibt es nicht oder wurde verschoben. Kehren Sie
+      zur Startseite zurück oder finden Sie Ihr Haus über die Übersicht.
     </p>
 
     <hr class="rule" />
 
     <div class="actions">
-      <Button variant="primary" size="lg" href="/">
-        Zur Startseite
-      </Button>
+      <Button variant="primary" size="lg" href="/"> Zur Startseite </Button>
       <Button variant="secondary" size="lg" href="/hauser">
         Hausmodelle entdecken
       </Button>
@@ -47,7 +29,7 @@ Astro.response.status = 404;
       Lieber persönlich? <a href="/kontakt">Kontakt aufnehmen</a>.
     </p>
   </section>
-</Layout>
+</Shell>
 
 <style>
   /* ============================================================
@@ -155,7 +137,9 @@ Astro.response.status = 404;
       transparent
     );
     text-underline-offset: 3px;
-    transition: color 160ms ease, text-decoration-color 160ms ease;
+    transition:
+      color 160ms ease,
+      text-decoration-color 160ms ease;
   }
 
   .below a:hover {
