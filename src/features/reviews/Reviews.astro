@@ -1,6 +1,6 @@
 ---
 import { Star } from "lucide-vue-next";
-import { getGoogleReviews } from "@/features/reviews/googleReviews";
+import { reviews } from "./reviews.content";
 
 export interface CredentialBadge {
   /** Short wordmark text — e.g. "MADE IN GERMANY". */
@@ -39,9 +39,10 @@ function initials(name: string): string {
     .join("");
 }
 
-const reviews = await getGoogleReviews();
 ---
 
+{
+  reviews.length > 0 && (
 <section class="band full-width" data-tone={tone} aria-labelledby="testimonial-heading">
   <div class="inner">
     <header class="head">
@@ -100,6 +101,8 @@ const reviews = await getGoogleReviews();
     </ul>
   </div>
 </section>
+  )
+}
 
 <style>
   /* Full-bleed tinted band. Goes edge-to-edge inside .wrapper via .full-width.
