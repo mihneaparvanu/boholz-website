@@ -1,19 +1,3 @@
-/**
- * Shared content shape for the three campaign landing pages
- * (`/wohnen/uebersicht`, `/wohnen/mehrfamilien`, `/wohnen/bungalow`).
- *
- * The shape mirrors the section-component composition documented in
- * `design-audit/2026-05-16/LANDING-PAGES-PLAN.md`: every landing page is the
- * same skeleton (hero → benefits → houses → image-band → audience →
- * sustainability → testimonials → FAQ → lead-form → closing CTA) and the
- * three pages differ only by content + a handful of customisation hooks.
- *
- * Per-section content types are **derived from the section components'
- * exported prop types where possible** so a content file can never drift
- * from the kit it feeds. Where a section's props live on the component
- * itself (e.g. testimonial / FAQ shapes), we re-export the type alias here
- * for ergonomics — content files import only from `landing.types.ts`.
- */
 import type { Benefit } from "@/core/design/sections/BenefitsRow.astro";
 import type { AudienceItem } from "@/core/design/sections/AudienceBlock.astro";
 import type {
@@ -24,41 +8,17 @@ import type { FAQItem } from "@/core/design/primitives/FAQAccordion.vue";
 import type { TrustBadge } from "@/features/trust/trust-badges.content";
 import type { Category } from "@/domain/categories/categories.types";
 
-/* ── Re-exports — content files import everything from this module ─── */
 export type { Benefit, AudienceItem, Testimonial, CredentialBadge, TrustBadge };
 export type { FAQItem };
 
-/* ── Hero ─────────────────────────────────────────────────────────── */
+/* ── Building blocks ──────────────────────────────────────────────── */
 
-/**
- * Hero is composed via `sections/PageHero.astro`. We capture **content**
- * here; the page picks the real R2 image at frontmatter time from the live
- * DB (preferred) and falls back to `imageFallbackPath` (static R2 asset)
- * when the DB lookup misses.
- */
-export interface LandingHero {
-  eyebrow: string;
+export interface SectionIntro {
+  eyebrow?: string;
   heading: string;
-  /** Italic-serif accent appended to the title. */
+  /** Italic-serif accent appended to the heading. */
   highlight?: string;
-  lede: string;
-  imageAlt: string;
-  /**
-   * Static R2 path used as a fallback if the DB has no hero for the
-   * preferred category. Resolved through `getMediaURL()` at render time.
-   * Format: `/images/pages/<slug>/...`.
-   */
-  imageFallbackPath: string;
-  /**
-   * The house category whose featured hero photo should be tried first. The
-   * page frontmatter looks up an isFeatured model in this category and uses
-   * its `isHero` media if present.
-   */
-  preferredCategory: Category;
-  /** Primary CTA — pinned to the page's accent action. */
-  primaryCta: LandingCta;
-  /** Secondary CTA — paired with the primary. */
-  secondaryCta: LandingCta;
+  lede?: string;
 }
 
 export interface LandingCta {
@@ -66,171 +26,53 @@ export interface LandingCta {
   href: string;
 }
 
-/* ── Benefits row ─────────────────────────────────────────────────── */
-
-/**
- * Section intro that sits above `BenefitsRow` — eyebrow, heading,
- * optional italic-serif accent, optional lede. Kept separate from
- * `LandingBenefits` so Phase-2 pages are a pure content swap with no
- * strings hardcoded in the page template.
- */
-export interface LandingBenefitsIntro {
-  eyebrow?: string;
-  heading: string;
-  /** Italic-serif key noun appended to the heading. */
-  highlight?: string;
-  lede?: string;
-}
-
-/** Exactly four cards, one per pastel tone — typed as a tuple so a
- *  content file can't ship three or five and silently break the grid. */
-export type LandingBenefits = [Benefit, Benefit, Benefit, Benefit];
-
-/* ── House showcase ───────────────────────────────────────────────── */
-
-/**
- * The house showcase is rendered by `HouseModelsCarousel.vue` with models
- * **loaded live from the DB** by the page frontmatter. We don't store
- * models in the content file; we store the *filter criteria* and the
- * surrounding section copy.
- */
-export interface LandingHouseShowcase {
-  eyebrow?: string;
-  heading: string;
-  highlight?: string;
-  lede?: string;
-  /**
-   * The categories to include, capped at `maxItems`. Pass `null` to include
-   * every category (e.g. for the generic übersicht page).
-   */
-  categories: Category[] | null;
-  /**
-   * When true (default), only `isFeatured` models are kept — the bestseller
-   * gate. Set to `false` on typology-specific pages where the audience has
-   * already self-selected and we want to show the full sub-catalogue.
-   */
-  featuredOnly?: boolean;
-  /** Hard cap on cards rendered. Set high (e.g. 99) to effectively uncap. */
-  maxItems: number;
-}
-
-/* ── Feature visual — "meet the category" photo (ImageBand) ─────── */
-
-export interface LandingFeatureVisual {
-  eyebrow?: string;
-  heading: string;
-  highlight?: string;
-  lede?: string;
+/** A media path (resolved with `getMediaURL`) and its alt text. */
+export interface LandingImage {
   imageFallbackPath: string;
   imageAlt: string;
-  /**
-   * If true and no DB image is available, the page renders a
-   * `<VideoPlaceholder>` instead of trying to load a missing photo.
-   */
-  allowPlaceholder?: boolean;
 }
 
-/* ── Audience block ───────────────────────────────────────────────── */
+/* ── Sections, in the order the page renders them ─────────────────── */
 
-export interface LandingAudienceBlock {
-  eyebrow?: string;
-  heading: string;
-  highlight?: string;
-  lede?: string;
-  /** Four rows — kept as a regular array (not a tuple) so a page may add
-   *  a fifth audience without TS gymnastics. AudienceBlock handles any
-   *  count via grid auto-rows. */
-  items: AudienceItem[];
+export interface LandingSeo {
+  title: string;
+  description: string;
+  /** Reference only, not rendered. */
+  focusKeyword?: string;
 }
 
-/* ── Feature body — "meet the category" prose (TwoColumn) ───────── */
+export interface LandingHero extends SectionIntro, LandingImage {
+  eyebrow: string;
+  lede: string;
+  primaryCta: LandingCta;
+  secondaryCta: LandingCta;
+}
 
-/**
- * Mirrors `sections/TwoColumn.astro` prop shape with the body copy split
- * into paragraph strings (rather than slotted HTML) so it stays plain
- * data. The page renders each paragraph as a `<p>` inside the default
- * slot.
- */
-export interface LandingFeatureBody {
-  eyebrow?: string;
-  heading: string;
-  highlight?: string;
-  lede?: string;
+export interface LandingFeatureBody extends SectionIntro, LandingImage {
   paragraphs: string[];
-  imageFallbackPath: string;
-  imageAlt: string;
-  /** Place image on the right (true, default) or left (false). */
+  /** Image on the left instead of the right. */
   reverse?: boolean;
   cta?: LandingCta;
 }
 
-/* ── Testimonial band (TestimonialBand.astro) ─────────────────────── */
-
-export interface LandingTestimonials {
-  eyebrow?: string;
-  heading: string;
-  highlight?: string;
-  lede?: string;
-  tone?: "olive" | "graphite" | "stone";
-  badges?: CredentialBadge[];
-  testimonials: Testimonial[];
+export interface LandingHouseShowcase extends SectionIntro {
+  /** `null` includes every category. */
+  categories: Category[] | null;
+  /** Default true: only `isFeatured` models. */
+  featuredOnly?: boolean;
+  maxItems: number;
 }
 
-/* ── Trust stats (ui/sections/TrustBadges.vue) ────────────────────── */
-
-/**
- * The stat-card row ("100% Made in Germany", "18 Monate Festpreis").
- * Distinct from `LandingTestimonials` above: that one is the testimonial band,
- * this one is the numeric proof strip. Every landing page renders it;
- * a page only sets this field to *override* `defaultTrustStats`.
- */
-export interface LandingTrustStats {
-  eyebrow?: string;
-  heading: string;
-  highlight?: string;
-  lede?: string;
-  badges: TrustBadge[];
+export interface LandingGalleryImage {
+  src: string;
+  alt: string;
 }
 
-/* ── FAQ ──────────────────────────────────────────────────────────── */
-
-export interface LandingFAQ {
-  eyebrow?: string;
-  heading: string;
-  highlight?: string;
-  items: FAQItem[];
-  /** Optional id of the question that should be open on first paint. */
-  defaultOpen?: string;
+export interface LandingGallery extends SectionIntro {
+  images: LandingGalleryImage[];
 }
 
-/* ── Lead form ────────────────────────────────────────────────────── */
-
-/**
- * Heading-bundle for the lead form section. The form itself is the shared
- * `<ContactForm />` (Turnstile + zod + leads fallback); per-page intent
- * signals like interestOptions were dropped when we consolidated onto one
- * pipeline.
- */
-export interface LandingLeadForm {
-  eyebrow?: string;
-  heading: string;
-  highlight?: string;
-  lede?: string;
-  /** Which pair of PDFs the lead receives. "bestseller" swaps the big
-      Hauskatalog for the Bestseller-Kurzkatalog on the Bestseller landing;
-      undefined/`"default"` is now moot — every form ships the full Infopaket
-      pair everywhere else. */
-  catalogVariant?: "default" | "bestseller";
-}
-
-/* ── Mid-page CTA — the first ask, after the feature beat ─────────── */
-
-export interface LandingMidPageCta {
-  eyebrow?: string;
-  heading: string;
-  highlight?: string;
-  lede?: string;
-  /** `surface` (default), `accent` (light brand blue), `brand` (deep brand blue #0F598A), or `image` (with imageFallbackPath). */
+export interface LandingMidPageCta extends SectionIntro {
   tone?: "surface" | "accent" | "brand" | "image";
   imageFallbackPath?: string;
   imageAlt?: string;
@@ -238,84 +80,72 @@ export interface LandingMidPageCta {
   secondaryCta?: LandingCta;
 }
 
-/* ── Gallery (LP-only) ────────────────────────────────────────────── */
+export type LandingBenefitsIntro = SectionIntro;
 
-/**
- * A photo gallery unique to landing pages. Optional on the content shape:
- * a page that omits `gallery` renders no gallery section. `src` is a media
- * path resolved through `getMediaURL()` at render time.
- */
-export interface LandingGalleryImage {
-  src: string;
-  alt: string;
+/** Exactly four, one per pastel tone, so the grid can't break. */
+export type LandingBenefits = [Benefit, Benefit, Benefit, Benefit];
+
+export interface LandingAudienceBlock extends SectionIntro {
+  items: AudienceItem[];
 }
 
-export interface LandingGallery {
-  eyebrow?: string;
-  heading: string;
-  highlight?: string;
-  lede?: string;
-  images: LandingGalleryImage[];
+export interface LandingTestimonials extends SectionIntro {
+  tone?: "olive" | "graphite" | "stone";
+  badges?: CredentialBadge[];
+  testimonials: Testimonial[];
 }
 
-/* ── SEO ──────────────────────────────────────────────────────────── */
-
-export interface LandingSeo {
-  title: string;
-  description: string;
-  /** Primary keyword the page targets (Steckbrief). Reference/ops only —
-   *  not rendered; guides the copy and the SEO text block below. */
-  focusKeyword?: string;
+export interface LandingFAQ extends SectionIntro {
+  items: FAQItem[];
+  /** Id of the question open on first paint. */
+  defaultOpen?: string;
 }
-
-/* ── SEO text block — the ~250–400-word ranking copy below the FAQ ─── */
 
 export interface LandingSeoTextSection {
-  /** Rendered as an <h3>. */
   heading: string;
-  /** Body copy; blank-line-separated into <p> paragraphs at render time. */
+  /** Paragraphs separated by a blank line. */
   body: string;
-  /**
-   * Optional per-section photo for the side-by-side (ZigZag) layout. When
-   * omitted the template cycles a shared house/material image pool, so the
-   * SEO block always reads as image + text rather than a wall of prose.
-   * Static R2 path; resolved via getMediaURL() at render time.
-   */
+  /** Overrides the shared image pool for this section. */
   imageFallbackPath?: string;
   imageAlt?: string;
 }
 
-/**
- * Longer editorial text for search + AI answer engines, shown beneath the
- * FAQ (Mario 29.09 · §11). One H2 + a handful of H3 subsections. The first
- * subsection is always category-specific; later ones may be shared building
- * blocks (Wandaufbau, Ablauf).
- */
 export interface LandingSeoText {
-  /** Rendered as the section <h2>. */
   heading: string;
   sections: LandingSeoTextSection[];
 }
 
-/* ── Top-level shape ──────────────────────────────────────────────── */
+export interface LandingLeadForm extends SectionIntro {
+  /** "bestseller" swaps the Hauskatalog for the Kurzkatalog. */
+  catalogVariant?: "default" | "bestseller";
+}
+
+/* ── Not rendered by Landing.astro ────────────────────────────────── */
+
+export interface LandingTrustStats extends SectionIntro {
+  badges: TrustBadge[];
+}
+
+/** Read by the home page only. */
+export interface LandingFeatureVisual extends SectionIntro, LandingImage {}
+
+/* ── The whole page ───────────────────────────────────────────────── */
 
 export interface LandingPageContent {
   seo: LandingSeo;
   hero: LandingHero;
+  featureVisual: LandingFeatureVisual;
+  featureBody: LandingFeatureBody;
+  houses: LandingHouseShowcase;
+  gallery?: LandingGallery;
+  midPageCta: LandingMidPageCta;
   benefitsIntro: LandingBenefitsIntro;
   benefits: LandingBenefits;
-  houses: LandingHouseShowcase;
-  featureVisual: LandingFeatureVisual;
   audience: LandingAudienceBlock;
-  featureBody: LandingFeatureBody;
   testimonials: LandingTestimonials;
-  /** Optional override; falls back to `defaultTrustStats`. */
-  trustStats?: LandingTrustStats;
   faq: LandingFAQ;
-  /** Editorial SEO/GEO copy rendered below the FAQ. Omit to render none. */
   seoText?: LandingSeoText;
-  /** LP-only photo gallery. Omit to render no gallery section. */
-  gallery?: LandingGallery;
   leadForm: LandingLeadForm;
-  midPageCta: LandingMidPageCta;
+  /** Overrides `defaultTrustStats`. */
+  trustStats?: LandingTrustStats;
 }

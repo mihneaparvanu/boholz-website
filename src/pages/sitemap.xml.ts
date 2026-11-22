@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { houseModels as models } from "@/domain/house-models/houseModels";
 import { locations } from "@/domain/locations/locations";
-import { news } from "@/features/news/newsws";
+import { getCollection } from "astro:content";
 import { itemPath, pagePath } from "@/core/routing";
 import { landingCategories } from "@/features/landing/landing.registry";
 
@@ -48,8 +48,7 @@ export const GET: APIRoute = async ({ site }) => {
   const base = (site?.toString() ?? FALLBACK_SITE).replace(/\/$/, "");
 
   const entries: Entry[] = STATIC_PATHS.map((p) => ({ loc: base + p }));
-
-  // news and locations come from files now, so only models is awaited
+  const news = await getCollection("news");
   const showhouses = locations.filter((l) => l.kind === "showhouse");
 
   for (const c of landingCategories) {
@@ -57,10 +56,8 @@ export const GET: APIRoute = async ({ site }) => {
   }
   for (const n of news) {
     entries.push({
-      loc: base + itemPath("news", n.slug),
-      // createdAt is not carried into the domain files; the one evergreen
-      // post has no publishedAt and so gets no lastmod, which is optional.
-      lastmod: iso(n.publishedAt),
+      loc: base + itemPath("news", n.id),
+      lastmod: iso(n.data.publishedAt),
     });
   }
   for (const m of models) {

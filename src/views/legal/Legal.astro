@@ -17,10 +17,12 @@ if (!entry) {
   throw new Error(`Legal: no document for ${key}`);
 }
 
-const Content = await render(entry);
-const { data } = entry;
+const { title, description } = entry.data;
+const { Content } = await render(entry);
 ---
 
-<SiteShell title={data.title} description={data.description}>
-  <Prose> <Content /> </Prose>
+<SiteShell title={title} description={description}>
+  <Prose>
+    <Content />
+  </Prose>
 </SiteShell>

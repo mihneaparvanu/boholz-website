@@ -1,4 +1,4 @@
-import type { LandingPageContent } from "./landing.types";
+import type { LandingPageContent } from "../landing.types";
 
 export const generationenhausContent: LandingPageContent = {
   seo: {
@@ -15,7 +15,6 @@ export const generationenhausContent: LandingPageContent = {
     lede: "Die Enkel sind in wenigen Schritten bei Oma und Opa – und abends schließt jeder seine eigene Tür. Wir planen Ihr Generationenhaus in Holzbauweise so, wie Ihre Familie zusammenleben möchte.",
     imageAlt: "Generationenhaus aus Holz von BoHolz-Haus",
     imageFallbackPath: "/images/models/generationenhaus/30-223-160/gallery/generationenhaus-30-223-160-gallery-gen-1.webp",
-    preferredCategory: "generationHouse",
     primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
@@ -70,7 +69,6 @@ export const generationenhausContent: LandingPageContent = {
     lede: "Ansichten und Visualisierungen unserer Entwürfe. Abbildungen können Sonderausstattungen enthalten.",
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-04.webp",
     imageAlt: "Generationenhaus von BoHolz-Haus",
-    allowPlaceholder: true,
   },
 
   featureBody: {

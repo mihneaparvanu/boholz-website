@@ -1,12 +1,12 @@
-import { singleFamilyContent } from "./single-family.content";
-import { bungalowContent } from "./bungalow.content";
-import { multiFamilyContent } from "./multi-family.content";
-import { stadtvillaContent } from "./stadtvilla.content";
-import { doppelhausContent } from "./doppelhaus.content";
-import { generationenhausContent } from "./generationenhaus.content";
-import { zweifamilienhausContent } from "./zweifamilienhaus.content";
-import { kubusContent } from "./kubus.content";
-import { bestsellerContent } from "./bestseller.content";
+import { singleFamilyContent } from "./content/single-family.content";
+import { bungalowContent } from "./content/bungalow.content";
+import { multiFamilyContent } from "./content/multi-family.content";
+import { stadtvillaContent } from "./content/stadtvilla.content";
+import { doppelhausContent } from "./content/doppelhaus.content";
+import { generationenhausContent } from "./content/generationenhaus.content";
+import { zweifamilienhausContent } from "./content/zweifamilienhaus.content";
+import { kubusContent } from "./content/kubus.content";
+import { bestsellerContent } from "./content/bestseller.content";
 import type { LandingPageContent } from "./landing.types";
 
 export const landingPages = {

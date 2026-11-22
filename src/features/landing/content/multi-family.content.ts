@@ -1,4 +1,4 @@
-import type { LandingPageContent } from "./landing.types";
+import type { LandingPageContent } from "../landing.types";
 
 export const multiFamilyContent: LandingPageContent = {
   seo: {
@@ -16,7 +16,6 @@ export const multiFamilyContent: LandingPageContent = {
     imageAlt: "Mehrfamilienhaus in Holzbauweise von BoHolz-Haus",
     imageFallbackPath:
       "/images/models/mehrfamilienhaus/ilshofen/ilshofen-neu.webp",
-    preferredCategory: "multiFamilyHouse",
     primaryCta: { label: "Projekt anfragen", href: "/kontakt" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
@@ -71,7 +70,6 @@ export const multiFamilyContent: LandingPageContent = {
     lede: "Ansichten und Visualisierungen unserer Entwürfe. Abbildungen können Sonderausstattungen enthalten.",
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-04.webp",
     imageAlt: "Mehrfamilienhaus von BoHolz-Haus",
-    allowPlaceholder: true,
   },
 
   featureBody: {

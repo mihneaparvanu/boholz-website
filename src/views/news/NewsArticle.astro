@@ -1,65 +1,61 @@
 ---
-import Layout from "@/features/shell/SiteShell.astro";
-import { news } from "@/features/news/news.collection";
+import { getCollection, render } from "astro:content";
+
+import SiteShell from "@/features/shell/SiteShell.astro";
+import Prose from "@/core/design/primitives/Prose.astro";
+
 import Image from "@/core/design/primitives/Image.vue";
 import { toMetaDescription, formatNewsDate } from "@/core/format";
 import { pagePath } from "@/core/routing";
 
-import type { NewsPost } from "@/features/news/news.types";
-
-export function getStaticPaths() {
-  return news.map((p)=> (
- {
-   params: {slug: p.slug},
-      props: {post: p}
-    })
-  )
-};
-
 interface Props {
-  post: NewsPost;
+  slug: string;
 }
 
-const {post} = Astro.props
+const { slug } = Astro.props;
 
-const heroMedia = post.media.find((m) => m.isHero);
-const formattedDate = formatNewsDate(post.publishedAt);
-const contentHtml = post.content;
+const news = await getCollection("news");
+const post = news.find((n) => n.id === slug);
+
+if (!post) {
+  throw new Error(`NewsArticle: no post "${slug}"`);
+}
+
+const { title, excerpt, publishedAt, hero } = post.data;
+const formattedDate = formatNewsDate(publishedAt);
+
+const { Content } = await render(post);
 ---
 
-<Layout
-  title={`${post.title} – BoHolz Haus`}
-  description={toMetaDescription(post.excerpt)}
+<SiteShell
+  title={`${title} – BoHolz Haus`}
+  description={toMetaDescription(excerpt)}
 >
   <article class="news-detail">
     {
-      heroMedia && (
+      hero && (
         <div class="hero-image full-width">
           <Image
-            path={heroMedia.path}
-            alt={heroMedia.alt ?? post.title}
-            width={heroMedia.width}
-            height={heroMedia.height}
+            path={hero.path}
+            alt={hero.alt ?? title}
+            width={hero.width}
+            height={hero.height}
             loading="eager"
           />
         </div>
       )
     }
-
     <header class="post-header">
       <a href={pagePath("news")} class="back-link">← Alle News</a>
       {formattedDate && <time class="date">{formattedDate}</time>}
-      <h1 class="title">{post.title}</h1>
-      {post.excerpt && <p class="excerpt">{post.excerpt}</p>}
+      <h1 class="title">{title}</h1>
+      {excerpt && <p class="excerpt">{excerpt}</p>}
     </header>
-
-    {
-      contentHtml && (
-        <div class="post-content" set:html={contentHtml} />
-      )
-    }
+    <Prose>
+      <Content />
+    </Prose>
   </article>
-</Layout>
+</SiteShell>
 
 <style>
   .news-detail {
@@ -113,37 +109,5 @@ const contentHtml = post.content;
   .excerpt {
     font-size: var(--fs-body);
     color: var(--clr-content-secondary);
-  }
-
-  .post-content {
-    font-size: var(--fs-body);
-    line-height: 1.7;
-    max-width: 80ch;
-    width: 100%;
-    margin-inline: auto;
-
-    :global(h2) {
-      font-size: var(--fs-h4);
-      margin-block: var(--spacing-4) var(--spacing-2);
-    }
-
-    :global(h3) {
-      font-size: var(--fs-h5);
-      margin-block: var(--spacing-3) var(--spacing-2);
-    }
-
-    :global(p) {
-      margin-block-end: var(--spacing-3);
-    }
-
-    :global(ul),
-    :global(ol) {
-      padding-inline-start: var(--spacing-4);
-      margin-block-end: var(--spacing-3);
-    }
-
-    :global(a) {
-      color: var(--clr-accent-primary);
-    }
   }
 </style>

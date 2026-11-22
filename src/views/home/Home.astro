@@ -43,13 +43,16 @@ import { houseModels } from "@/domain/house-models/houseModels";
 import { displayCategories } from "@/domain/categories/categories";
 import { toHouseModelCard } from "@/core/derive";
 
-import { overviewContent as content } from "@/features/landing/overview.content";
 import ProofSection from "@/core/design/sections/Proof-Section.vue";
 import TrustBadges from "@/core/design/sections/TrustBadges.vue";
 import { trustBadges } from "@/features/trust/trust-badges.content";
-import { homeSections } from "@/features/home/home.content";
+import {
+  featuredCard,
+  homeSections,
+  overviewCardsSecondary,
+  overviewContent as content,
+} from "./home.content";
 import Overview from "@/features/home/Overview/Overview.vue";
-import { featuredCard, overviewCardsSecondary } from "@/features/home/Overview/overview.content";
 import Faq from "@/features/faq/Faq.vue";
 import { qaCategories } from "@/features/faq/qa";
 

@@ -1,4 +1,4 @@
-import type { LandingPageContent } from "./landing.types";
+import type { LandingPageContent } from "../landing.types";
 
 export const zweifamilienhausContent: LandingPageContent = {
   seo: {
@@ -15,7 +15,6 @@ export const zweifamilienhausContent: LandingPageContent = {
     lede: "Ob mit den Eltern, den erwachsenen Kindern oder einer vermieteten Wohnung: Ein Zweifamilienhaus gibt zwei Haushalten ihren eigenen Raum. Wir planen es in Holzbauweise genau für Ihr Vorhaben.",
     imageAlt: "Zweifamilienhaus aus Holz von BoHolz-Haus",
     imageFallbackPath: "/images/models/zweifamilienhaus/22-282-0/gallery/zweifamilienhaus-22-282-0-gallery-hero.webp",
-    preferredCategory: "twoFamilyHouse",
     primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
@@ -70,7 +69,6 @@ export const zweifamilienhausContent: LandingPageContent = {
     lede: "Ansichten und Visualisierungen unserer Entwürfe. Abbildungen können Sonderausstattungen enthalten.",
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-04.webp",
     imageAlt: "Zweifamilienhaus von BoHolz-Haus",
-    allowPlaceholder: true,
   },
 
   featureBody: {

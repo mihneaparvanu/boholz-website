@@ -1,4 +1,4 @@
-import type { LandingPageContent } from "./landing.types";
+import type { LandingPageContent } from "../landing.types";
 
 export const bungalowContent: LandingPageContent = {
   seo: {
@@ -15,7 +15,6 @@ export const bungalowContent: LandingPageContent = {
     lede: "Keine Treppen, kurze Wege und der Garten direkt vor der Terrassentür – so entspannt kann Wohnen sein. Wir planen Ihren Bungalow in Holzbauweise individuell, auf Wunsch barrierefrei.",
     imageAlt: "Bungalow aus Holz von BoHolz-Haus",
     imageFallbackPath: "/images/models/bungalow/22-134/gallery/bungalow-22-134-gallery-exterior-2026.webp",
-    preferredCategory: "bungalow",
     primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
@@ -70,7 +69,6 @@ export const bungalowContent: LandingPageContent = {
     lede: "Ansichten und Visualisierungen unserer ebenerdigen Entwürfe. Abbildungen können Sonderausstattungen enthalten.",
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-04.webp",
     imageAlt: "Bungalow von BoHolz-Haus",
-    allowPlaceholder: true,
   },
 
   featureBody: {

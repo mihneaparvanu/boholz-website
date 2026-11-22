@@ -1,4 +1,4 @@
-import type { LandingPageContent } from "./landing.types";
+import type { LandingPageContent } from "../landing.types";
 
 export const kubusContent: LandingPageContent = {
   seo: {
@@ -15,7 +15,6 @@ export const kubusContent: LandingPageContent = {
     lede: "Sie lieben geradlinige Formen, große Fenster und eine Architektur, die nicht jeder hat? Ein Kubus mit Flachdach und Attika setzt ein deutliches Zeichen – geplant in Holzbauweise nach Ihren Wünschen.",
     imageAlt: "Kubushaus aus Holz von BoHolz-Haus",
     imageFallbackPath: "/images/models/kubus/0-140/gallery/kubus-0-140-gallery-exterior-2026.webp",
-    preferredCategory: "cube",
     primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
@@ -70,7 +69,6 @@ export const kubusContent: LandingPageContent = {
     lede: "Ansichten und Visualisierungen unserer Entwürfe. Abbildungen können Sonderausstattungen enthalten.",
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-04.webp",
     imageAlt: "Kubushaus von BoHolz-Haus",
-    allowPlaceholder: true,
   },
 
   featureBody: {

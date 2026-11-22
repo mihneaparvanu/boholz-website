@@ -1,4 +1,4 @@
-import type { LandingPageContent } from "./landing.types";
+import type { LandingPageContent } from "../landing.types";
 
 export const singleFamilyContent: LandingPageContent = {
   seo: {
@@ -15,7 +15,6 @@ export const singleFamilyContent: LandingPageContent = {
     lede: "Der erste Kaffee auf der eigenen Terrasse, Kinderlachen im Garten, ein Zimmer für jeden – so fühlt sich Ankommen an. Wir planen Ihr Einfamilienhaus in Holzbauweise individuell und übergeben es auf Wunsch schlüsselfertig.",
     imageAlt: "Einfamilienhaus aus Holz von BoHolz-Haus",
     imageFallbackPath: "/images/brand/hero.webp",
-    preferredCategory: "oneFamilyHouse",
     primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
@@ -70,7 +69,6 @@ export const singleFamilyContent: LandingPageContent = {
     lede: "Ansichten und Visualisierungen unserer Entwürfe. Abbildungen können Sonderausstattungen enthalten.",
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-04.webp",
     imageAlt: "Einfamilienhaus von BoHolz-Haus",
-    allowPlaceholder: true,
   },
 
   featureBody: {

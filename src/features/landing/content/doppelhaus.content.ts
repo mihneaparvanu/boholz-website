@@ -1,4 +1,4 @@
-import type { LandingPageContent } from "./landing.types";
+import type { LandingPageContent } from "../landing.types";
 
 export const doppelhausContent: LandingPageContent = {
   seo: {
@@ -15,7 +15,6 @@ export const doppelhausContent: LandingPageContent = {
     lede: "Sie wünschen sich ein eigenes Haus mit Garten – und möchten Grundstück und Planung mit Familie, Freunden oder Baupartnern teilen? Ein Doppelhaus in Holzbauweise macht zwei eigenständige Zuhause daraus.",
     imageAlt: "Doppelhaus aus Holz von BoHolz-Haus",
     imageFallbackPath: "/images/models/doppelhaus/38-238-125/gallery/doppelhaus-38-238-125-gallery-exterior-2026.webp",
-    preferredCategory: "doubleHouse",
     primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
@@ -70,7 +69,6 @@ export const doppelhausContent: LandingPageContent = {
     lede: "Ansichten und Visualisierungen unserer Entwürfe. Abbildungen können Sonderausstattungen enthalten.",
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-04.webp",
     imageAlt: "Doppelhaus von BoHolz-Haus",
-    allowPlaceholder: true,
   },
 
   featureBody: {

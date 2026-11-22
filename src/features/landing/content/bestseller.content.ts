@@ -1,4 +1,4 @@
-import type { LandingPageContent } from "./landing.types";
+import type { LandingPageContent } from "../landing.types";
 
 export const bestsellerContent: LandingPageContent = {
   seo: {
@@ -14,8 +14,8 @@ export const bestsellerContent: LandingPageContent = {
     highlight: "in die man sich verliebt.",
     lede: "Sie möchten wissen, was Ihr neues Zuhause kostet – bevor Sie wochenlang planen? Unsere sechs Bestseller sind durchgeplant und kosten ab 314.395 €* – inklusive Bodenplatte und Architektenleistung.",
     imageAlt: "Bestseller-Häuser aus Holz von BoHolz-Haus",
-    imageFallbackPath: "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-exterior-2-2026.webp",
-    preferredCategory: "oneFamilyHouse",
+    imageFallbackPath:
+      "/images/models/einfamilienhaus/22-162-190/gallery/einfamilienhaus-22-162-190-gallery-exterior-2-2026.webp",
     primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
@@ -70,7 +70,6 @@ export const bestsellerContent: LandingPageContent = {
     lede: "Ansichten und Visualisierungen unserer Bestseller. Abbildungen können Sonderausstattungen enthalten, etwa Photovoltaik oder Pool.",
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-04.webp",
     imageAlt: "Bestseller-Haus von BoHolz-Haus",
-    allowPlaceholder: true,
   },
 
   featureBody: {
@@ -82,7 +81,8 @@ export const bestsellerContent: LandingPageContent = {
       "Offene Wohnbereiche, ein Arbeitszimmer, Rückzugsorte für Eltern und Kinder: In unseren Bestsellern steckt, wonach Bauherren uns immer wieder fragen. Grundriss, Hausdaten und Preis liegen bereits vor – Sie wissen von Anfang an, woran Sie sind.",
       "Jeder Bestseller bleibt ein Ausgangspunkt: Details passen wir gemeinsam mit Ihnen an und kalkulieren die Änderungen für Ihr Angebot. Den Bestseller Fellbach 148 erleben Sie in unserem Musterhaus in Fellbach live.",
     ],
-    imageFallbackPath: "/images/landing/interiors/einfamilienhaus/efh-kofelblick-wohnen-kueche.jpg",
+    imageFallbackPath:
+      "/images/landing/interiors/einfamilienhaus/efh-kofelblick-wohnen-kueche.jpg",
     imageAlt: "Durchdachter Grundriss eines BoHolz-Bestsellers",
     reverse: false,
   },
@@ -198,12 +198,30 @@ export const bestsellerContent: LandingPageContent = {
     highlight: "von innen.",
     lede: "Einblicke in Ausstattung und Raumgefühl unserer meistgebauten Entwürfe. Die Abbildungen zeigen Musterhäuser und können Sonderausstattungen enthalten.",
     images: [
-      { src: "/images/landing/interiors/einfamilienhaus/efh-kofelblick-wohnen-kueche.jpg", alt: "Wohn- & Kochbereich – Einfamilienhaus (Musterhaus)" },
-      { src: "/images/landing/interiors/kubus/kubus-fuerth-wohnen.jpg", alt: "Wohnbereich – Kubushaus (Musterhaus)" },
-      { src: "/images/landing/interiors/stadtvilla/stadtvilla-mannheim-essen.jpg", alt: "Essbereich – Stadtvilla (Musterhaus)" },
-      { src: "/images/landing/interiors/bungalow/bungalow-159-wohnen-hell.jpg", alt: "Wohnbereich – Bungalow (Musterhaus)" },
-      { src: "/images/landing/interiors/kubus/kubus-grafenberg-essen.jpg", alt: "Essbereich – Kubushaus (Musterhaus)" },
-      { src: "/images/landing/interiors/stadtvilla/stadtvilla-weingarten-wohnen.jpg", alt: "Wohnbereich – Stadtvilla (Musterhaus)" },
+      {
+        src: "/images/landing/interiors/einfamilienhaus/efh-kofelblick-wohnen-kueche.jpg",
+        alt: "Wohn- & Kochbereich – Einfamilienhaus (Musterhaus)",
+      },
+      {
+        src: "/images/landing/interiors/kubus/kubus-fuerth-wohnen.jpg",
+        alt: "Wohnbereich – Kubushaus (Musterhaus)",
+      },
+      {
+        src: "/images/landing/interiors/stadtvilla/stadtvilla-mannheim-essen.jpg",
+        alt: "Essbereich – Stadtvilla (Musterhaus)",
+      },
+      {
+        src: "/images/landing/interiors/bungalow/bungalow-159-wohnen-hell.jpg",
+        alt: "Wohnbereich – Bungalow (Musterhaus)",
+      },
+      {
+        src: "/images/landing/interiors/kubus/kubus-grafenberg-essen.jpg",
+        alt: "Essbereich – Kubushaus (Musterhaus)",
+      },
+      {
+        src: "/images/landing/interiors/stadtvilla/stadtvilla-weingarten-wohnen.jpg",
+        alt: "Wohnbereich – Stadtvilla (Musterhaus)",
+      },
     ],
   },
 

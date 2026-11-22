@@ -1,1 +1,0 @@
-../../features/news/news.types

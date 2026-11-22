@@ -1,4 +1,4 @@
-import type { LandingPageContent } from "./landing.types";
+import type { LandingPageContent } from "../landing.types";
 
 export const stadtvillaContent: LandingPageContent = {
   seo: {
@@ -15,7 +15,6 @@ export const stadtvillaContent: LandingPageContent = {
     lede: "Sie kommen nach Hause – und vor Ihnen steht ein Haus mit klaren Linien, flach geneigtem Walmdach und viel Raum auf zwei Vollgeschossen. Wir planen Ihre Stadtvilla in Holzbauweise nach Ihren Wünschen.",
     imageAlt: "Stadtvilla aus Holz von BoHolz-Haus",
     imageFallbackPath: "/images/models/stadtvilla/22-157/gallery/stadtvilla-22-157-gallery-exterior-2026.webp",
-    preferredCategory: "cityVilla",
     primaryCta: { label: "Infopaket kostenlos anfordern", href: "#anfordern" },
     secondaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
   },
@@ -70,7 +69,6 @@ export const stadtvillaContent: LandingPageContent = {
     lede: "Ansichten und Visualisierungen unserer Entwürfe. Abbildungen können Sonderausstattungen enthalten.",
     imageFallbackPath: "/images/landing/uebersicht/lifestyle-04.webp",
     imageAlt: "Stadtvilla von BoHolz-Haus",
-    allowPlaceholder: true,
   },
 
   audience: {

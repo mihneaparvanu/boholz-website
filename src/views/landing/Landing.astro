@@ -2,7 +2,7 @@
 import SiteShell from "@/features/shell/SiteShell.astro";
 import { getMediaURL } from "@/core/media/media";
 
-import LandingHero from "./LandingHero.astro";
+import LandingHero from "@/features/landing/components/LandingHero.astro";
 import Block from "@/core/design/sections/Block.astro";
 import BenefitsRow from "@/core/design/sections/BenefitsRow.astro";
 import HouseModelsCarousel from "@/core/design/sections/HouseModelsCarousel.vue";
@@ -22,9 +22,16 @@ import TrustBadges from "@/core/design/sections/TrustBadges.vue";
 import { houseModels as allModels } from "@/domain/house-models/houseModels";
 import { toHouseModelCard } from "@/core/derive";
 
-import type { LandingPageContent } from "./landing.types";
-import { defaultTrustStats } from "./landing.defaults";
-import LandingGallery from "./LandingGallery.astro";
+import {
+  isLandingCategory,
+  landingPages,
+} from "@/features/landing/landing.registry";
+import {
+  catalogCovers,
+  defaultTrustStats,
+  seoImagePool,
+} from "@/features/landing/landing.defaults";
+import LandingGallery from "@/features/landing/components/LandingGallery.astro";
 
 interface Props {
   slug: string;
@@ -80,12 +87,6 @@ const houseCards = filteredModels.map((m) => toHouseModelCard(m));
 const heroImage = getMediaURL(hero.imageFallbackPath);
 const featureBodyImage = getMediaURL(featureBody.imageFallbackPath);
 
-const SEO_IMAGE_POOL = [
-  "/images/landing/uebersicht/lifestyle-01.webp",
-  "/images/photography/log-stack.webp",
-  "/images/content/advantage/wandaufbau/hero.webp",
-  "/images/landing/uebersicht/lifestyle-06.webp",
-];
 const galleryImgs = content.gallery?.images ?? [];
 const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
   const g = galleryImgs.length
@@ -97,7 +98,7 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
     image: getMediaURL(
       s.imageFallbackPath ??
         g?.src ??
-        SEO_IMAGE_POOL[i % SEO_IMAGE_POOL.length],
+        seoImagePool[i % seoImagePool.length],
     ),
     imageAlt: s.imageAlt ?? g?.alt ?? s.heading,
   };
@@ -204,11 +205,7 @@ const seoBlocks = (seoText?.sections ?? []).map((s, i) => {
             aria-label="Infopaket 2026 von BoHolz-Haus: Imagebroschüre, Hauskatalog und Bestseller-Katalog"
           >
             {
-              [
-                "/images/landing/imagebroschuere-2026-10b-cover.webp",
-                "/images/landing/hauskatalog-2026-10-cover.webp",
-                "/images/landing/kurzkatalog-2026-10-cover.webp",
-              ].map((cover) => (
+              catalogCovers.map((cover) => (
                 <img
                   class="ask-katalog-cover"
                   src={getMediaURL(cover)}

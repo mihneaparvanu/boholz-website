@@ -6,25 +6,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 BoHolz is a premium prefab home manufacturer from Germany. This is the public-facing marketing site, served by Astro in SSR mode (Node standalone adapter). Aesthetic is minimalist, high-end, precision-focused — keep that in mind when writing or styling UI.
 
-## Project documentation
-
-Detailed guides live in `docs/`. Read the relevant one before starting
-work in that area:
-
-- `docs/agent.md` — how agents in this project are structured
-- `docs/development.md` — local development setup, conventions
-- `docs/architecture.md` — high-level system design
-
 ## Commands
 
 > **Package manager / runtime: Bun.** Use `bun install`, `bun run dev`, `bun run build`, `bun x <cmd>`. The lockfile is `bun.lock`; do not regenerate it with npm/pnpm/yarn. Vite's esbuild dep resolves under `node_modules/.bun/esbuild@*/` — keep that in mind when chasing stack traces.
 
-- `bun run dev` — start dev server at `localhost:4321` (sets `NODE_TLS_REJECT_UNAUTHORIZED=0` so Drizzle can hit the dev DB)
+- `bun run dev` — start dev server at `localhost:4321`
 - `bun run build` — production build to `./dist/`
 - `bun run preview` — preview the production build
 - `bun run start` — run the production build on `0.0.0.0`
-- `bun x tsx scripts/<script>.ts` — run one-off DB inspection scripts against the live DB (folder is created when needed and deleted after, per repo rules)
-- `bun x drizzle-kit generate` / `migrate` — manage migrations against the `boholz` Postgres schema (config in `drizzle.config.ts`)
 
 Node ≥ 22.12 is required (`.node-version`).
 
@@ -32,7 +21,6 @@ Node ≥ 22.12 is required (`.node-version`).
 
 ```
 src/
-├── db/           schema, client, loaders, model types
 ├── features/     domain slices (own state, data, business logic)
 ├── layouts/      Layout.astro (page shell)
 ├── lib/          cross-feature utilities (≤8 files)
@@ -76,16 +64,11 @@ Astro pages (`src/pages/`) run on the server with `output: "server"` and the `@a
 
 ### Data layer
 
-- **Postgres + Drizzle ORM.** Schema lives in `src/db/schema.ts` under a dedicated `boholz` Postgres schema (`pgSchema("boholz")`). All tables go through `boholzSchema.table(...)`.
-- **Single source of truth for images:** the `media` table. Every entity joins to `media` via a pivot table (`category_media`, `model_media`, `floor_media`, `agent_media`, `news_media`) carrying flags like `isThumbnail`, `isHero`, `sortOrder`. When a thumbnail or hero fails to render, look at the pivot row, not the `media` row.
-- **DB client** in `src/db/db.ts` is a lazy Proxy singleton — no connection at build time, only on first query.
-- **All loaders live in `src/db/loaders.ts`.** They use Drizzle's `db.query.*` with nested `with:` and resolve every `media.path` through `getMediaURL()` (from `src/lib/media.ts`) before returning. Client components must always receive fully-resolved URLs.
-- **Entity types** live in `src/db/models.ts`, inferred from the schema.
-- **Virtual `BESTSELLER_CATEGORY`** is not in the DB; it's resolved client-side by filtering `houseModels.isFeatured`. The constant lives in `src/lib/constants.ts`.
+Data lives in typed files, not a database. Entities (house models, categories, locations) are TypeScript files under `src/domain/<entity>/`, with their types beside them. News and legal documents are Markdown files loaded through content collections registered in `src/content.config.ts`. Domain files store only the media path.
 
 ### Media / assets
 
-Media files live in the **Cloudflare R2** bucket `boholz-media`, in the BoHolz account and in the **EU jurisdiction** — so every S3 endpoint for it needs the `.eu.` host (`https://<account>.eu.r2.cloudflarestorage.com`), and the Worker binding needs `"jurisdiction": "eu"`. Reads are served by `workers/media`, routed at `boholz-haus.de/m/*`, so they never reach sn-c1. The DB stores only the path; `getMediaURL()` (in `src/core/media/media.ts`) joins `PUBLIC_ASSETS_URL` + path. Uploads go through the `add-house-model` skill.
+Media files live in the **Cloudflare R2** bucket `boholz-media`, in the BoHolz account and in the **EU jurisdiction** — so every S3 endpoint for it needs the `.eu.` host (`https://<account>.eu.r2.cloudflarestorage.com`), and the Worker binding needs `"jurisdiction": "eu"`. Reads are served by `workers/media`, routed at `boholz-haus.de/m/*`, so they never reach sn-c1. `getMediaURL()` (in `src/core/media/media.ts`) joins `PUBLIC_ASSETS_URL` + path. Uploads go through the `add-house-model` skill.
 
 ### Routing
 
@@ -135,7 +118,7 @@ Animation: `motion-v` (Vue port of Framer Motion) for transitions; native scroll
 - **Screenshots — NEVER add them to the project tree.** Verification screenshots (Playwright, browser captures, debug snapshots, "hero-*.png" comparison stacks, etc.) must be written to a system tempdir (`/tmp/boholz-screenshots/` or `mktemp -d`) and referenced by absolute path — never to the repo root, `dev/`, `docs/`, `.claude/`, or any other tracked location. The only PNG/JPG/WebP/GIF/AVIF files allowed in the tree are real site assets under `public/` and icon SVGs in `src/ui/icons/`. `.gitignore` blocks root-level images as a defensive backstop, but the rule is upstream: don't write them in the first place. Past incident: 13 root-level `hero-*.png` debug captures plus a legacy `.claude/screenshots/` dump had to be manually purged on 2026-05-28.
 - **Adding a new house model:** drop the source folder into `todo/houses-to-add/<Category>/<NAME>/` and invoke the `add-house-model` skill.
 - **Dev-only content lives in `/dev/`** (planning docs, sandbox routes). Never put experiments in `src/`. Never commit `/dev/` paths in a `main`-targeted push — `.githooks/pre-push` blocks it. Enable the hook once per clone: `git config core.hooksPath .githooks`.
-- **TypeScript:** no `any`. Entity types in `src/db/models.ts` (inferred from schema). View models derived via `Pick`/`Omit`/`Awaited<ReturnType<>>`, co-located in `features/<feature>/types.ts`. Name a type when its name communicates intent that the structure doesn't.
+- **TypeScript:** no `any`. Entity types live next to their data in `src/domain/<entity>/`. View models derived via `Pick`/`Omit`/`Awaited<ReturnType<>>`, co-located in `features/<feature>/types.ts`. Name a type when its name communicates intent that the structure doesn't.
 - **German umlauts in identifiers:** replace `ue/oe/ae/ss` in slugs and asset filenames.
 - **Image assets:** prefer WebP; minimum 1200px on shortest side; strip EXIF GPS but preserve ICC color profiles.
 - **SVGs:** logos and icons are implemented as components in `ui/icons/`, not raw `<img>` references.
@@ -151,9 +134,3 @@ Animation: `motion-v` (Vue port of Framer Motion) for transitions; native scroll
 1. Create `src/features/<kebab-name>/` with the main component and a `.types.ts` if needed.
 2. Keep content, composables, and sub-components inside the feature folder.
 3. Only graduate shared utilities to `lib/` when a second feature needs them.
-
-## Reference files
-
-- `docs/development.md` — fuller tech-stack brief and styling rules
-- `docs/agent.md` — asset pipeline, house categories, naming standard
-- `drizzle/` — generated SQL migrations; the schema source is `src/db/schema.ts`

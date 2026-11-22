@@ -1,4 +1,82 @@
-import type { LandingPageContent } from "./landing.types";
+import { getMediaURL } from "@/core/media/media";
+
+import type { SectionContent } from "@/core/design/sections/section.types";
+import type { OverviewCardData } from "@/features/home/Overview/overview.types";
+import type { LandingPageContent } from "@/features/landing/landing.types";
+
+export type HomeSection = SectionContent & {
+  id: string;
+  eyebrow: string;
+  navLabel: string;
+};
+
+export const homeSections = {
+  categories: {
+    id: "katalog",
+    eyebrow: "Broschüre",
+    navLabel: "Broschüre",
+    heading1: "Ihr Zuhause,",
+    heading2: "präzise gedacht.",
+    highlight: "Modell wählen.",
+    subheading:
+      "Vom Bungalow bis zur Stadtvilla — barrierefreie Fertighäuser aus Holz, gebaut mit Zimmermannskunst; auf Wunsch als Effizienzhaus 40.",
+  },
+  trust: {
+    id: "vertrauen",
+    eyebrow: "Vertrauen",
+    navLabel: "Vertrauen",
+    heading1: "Ihr Vertrauen",
+    highlight: "fest verankert.",
+    subheading:
+      "Wir bauen nicht nur Häuser, wir bauen Sicherheit. Mit hochwertiger Fertigung aus Deutschland und klaren vertraglichen Zusagen, auf die Sie sich verlassen können.",
+  },
+  overview: {
+    id: "auszeichnung",
+    eyebrow: "Auszeichnung",
+    navLabel: "Auszeichnung",
+    heading1: "Besser gebaut.",
+    highlight: "Sorgenfrei gelebt.",
+    subheading:
+      "BoHolz-Haus verbindet präzise Vorfertigung in Holzbauweise mit durchdachter Planung und abgestimmter Haustechnik. So entstehen klar definierte Leistungen, strukturierte Abläufe und ein Zuhause, das zu Ihren Bedürfnissen passt.",
+  },
+  buildPhases: {
+    id: "bauphasen",
+    eyebrow: "Bauphasen",
+    navLabel: "Bauphasen",
+    heading1: "In drei Phasen ins",
+    highlight: "eigene Zuhause.",
+    subheading:
+      "Vom ersten Beratungstermin bis zur Schlüsselübergabe — in klare Phasen gegliedert, begleitet von einem festen Ansprechpartner.",
+  },
+  finishes: {
+    id: "ausbaustufen",
+    eyebrow: "Ausbaustufen",
+    navLabel: "Ausbaustufen",
+    heading1: "Ihr Traumhaus.",
+    highlight: "Ihr Weg.",
+    subheading:
+      "Ein Hausbau ist eine ganz persönliche Reise. Wir bieten Ihnen vier flexible Ausbaustufen – vom Ausbauhaus bis zur schlüsselfertigen Übergabe. So behalten Sie die volle Kontrolle über Ihr Projekt, Ihren Zeitplan und Ihr Budget.",
+  },
+  qa: {
+    id: "fragen",
+    eyebrow: "Fragen",
+    navLabel: "Fragen",
+    heading1: "Klarheit schafft",
+    highlight: "Vertrauen.",
+    subheading:
+      "Mit BoHolz haben Sie bereits die Antwort auf die Frage nach Ihrem Traumhaus gefunden. Für alle weiteren Details – von der Bauweise bis zur Finanzierung – haben wir hier das Wichtigste übersichtlich für Sie zusammengefasst.",
+  },
+  contact: {
+    id: "kontakt",
+    eyebrow: "Kontakt",
+    navLabel: "Kontakt",
+    heading1: "Sprechen Sie",
+    heading2: "mit uns",
+    highlight: "persönlich.",
+    subheading:
+      "Buchen Sie eine Vor-Ort-Beratung — wir nehmen uns Zeit für Ihr Projekt.",
+  },
+} as const satisfies Record<string, HomeSection>;
 
 type HeroCopy = {
   heading: string;
@@ -47,7 +125,6 @@ export const overviewContent: LandingPageContent = {
     imageAlt:
       "Stadtvilla in Holzbauweise von BoHolz-Haus — moderne Architektur mit klaren Linien",
     imageFallbackPath: "/images/brand/hero.webp",
-    preferredCategory: "oneFamilyHouse",
     primaryCta: { label: "Persönliches Angebot anfragen", href: "/kontakt" },
     secondaryCta: { label: "Infopaket anfordern", href: "/katalog" },
   },
@@ -104,7 +181,6 @@ export const overviewContent: LandingPageContent = {
     imageFallbackPath:
       "/images/models/mehrfamilienhaus/satteldorf/satteldorf-12-familienhaus.webp",
     imageAlt: "BoHolz Mehrfamilienhaus — 12-Familienwohnhaus",
-    allowPlaceholder: true,
   },
 
   audience: {
@@ -235,3 +311,63 @@ export const overviewContent: LandingPageContent = {
     secondaryCta: { label: "Infopaket anfordern", href: "/katalog" },
   },
 };
+
+export const featuredCard: OverviewCardData = {
+  heading: "Hohe Bauqualität",
+  subheading:
+    "Massive Kreuzlagenholz-Wände, präzise im Werk vorgefertigt — jedes Detail vom Meister geprüft, jedes Haus gebaut für Generationen.",
+  featured: true,
+  image: {
+    url: getMediaURL("/images/stock/lifestyle/craftsmanship-factory.webp"),
+    alt: "BoHolz Fachkraft bei der Vorfertigung eines Holzelements im Werk",
+    width: 2560,
+    height: 1664,
+  },
+};
+
+export const overviewCardsSecondary: OverviewCardData[] = [
+  {
+    heading: "Echtes Holz",
+    subheading:
+      "Wir bauen mit Holz aus PEFC-zertifizierter Forstwirtschaft.",
+    image: {
+      url: getMediaURL("/images/photography/log-stack.webp"),
+      alt: "Gestapelte Holzstämme aus zertifizierter Forstwirtschaft",
+      width: 2560,
+      height: 1280,
+    },
+  },
+  {
+    heading: "Energieeffizienz",
+    subheading:
+      "Mindestens KfW-40-Standard serienmäßig — niedrige Energiekosten ab dem ersten Tag, förderfähig zum Bauantrag.",
+    image: {
+      url: getMediaURL("/images/stock/lifestyle/energy-efficiency-heatpump.webp"),
+      alt: "Moderne Luft-Wärmepumpe an der Fassade eines BoHolz Hauses",
+      width: 2688,
+      height: 1536,
+    },
+  },
+  {
+    heading: "Individuelle Planung",
+    subheading:
+      "Vom Grundriss bis zur Materialwahl in Ihrem Tempo geplant — gemeinsam mit unseren Architekten, nicht gegen sie.",
+    image: {
+      url: getMediaURL("/images/stock/lifestyle/house-planning-office.webp"),
+      alt: "Architektin bespricht einen Hausgrundriss am Planungstisch",
+      width: 4608,
+      height: 3584,
+    },
+  },
+  {
+    heading: "Smart Living",
+    subheading:
+      "Vernetzte Haustechnik vorbereitet — Heizung, Licht und Sicherheit von einer Hand, ohne Nachrüst-Kabelsalat.",
+    image: {
+      url: getMediaURL("/images/stock/lifestyle/smart-living.webp"),
+      alt: "Smart-Home-Steuerung in einem modernen Wohnraum",
+      width: 2048,
+      height: 1374,
+    },
+  },
+];

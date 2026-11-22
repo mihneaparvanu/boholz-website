@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 
 import NewsCard from "@/features/news/components/NewsCard.astro";
-import SiteShell from "../SiteShell.astro";
+import SiteShell from "@/features/shell/SiteShell.astro";
 
 const entries = await getCollection("news");
 const hasEntries = entries.length > 0;

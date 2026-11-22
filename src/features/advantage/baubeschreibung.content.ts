@@ -17,8 +17,8 @@ import type { SpecGroup } from "./advantage.types";
  *   3. No connective prose. If a block needs a sentence the BLB does not
  *      contain, the sentence has to come from the client.
  *
- * Identical for every house model, which is why it is file-based and shared
- * rather than per-model data in Postgres.
+ * Identical for every house model, which is why it is shared rather than
+ * per-model data.
  *
  * Two deliberate deviations from the PDF, both non-numeric:
  *   - S. 14 prints "Ihr Boholz-Haus"; written here with the brand's own
