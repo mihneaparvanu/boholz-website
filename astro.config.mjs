@@ -1,23 +1,11 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import node from "@astrojs/node";
 import vue from "@astrojs/vue";
-
-// https://astro.build/config
 export default defineConfig({
-  // Canonical origin — absolute URLs for sitemap.xml + canonical links.
   site: "https://boholz-haus.de",
   integrations: [vue()],
   output: "static",
-  // Hashed, immutable output under /a/ instead of Astro's default /_astro/.
-  // Shorter, and the leading underscore trips up some CDN and nginx rules.
   build: { assets: "a" },
-  adapter: node({ mode: "standalone" }),
-  // Routes renamed 2026-05-18; redirects keep old links + bookmarks alive.
-  // Typology landing pages moved from /landing/* → /wohnen/* on 2026-05-22.
-  // The übersicht/vorschau landing became the Einfamilienhaus landing and moved
-  // to /wohnen/einfamilienhaus (2026-09-14); point every old path there so no
-  // ad/bookmark 404s and no redirect chains.
   redirects: {
     "/unser-versprechen": "/bauen-mit-boholz",
     "/dein-zuhause": "/ihr-neues-zuhause",
@@ -28,18 +16,10 @@ export default defineConfig({
     "/landing/mehrfamilien": "/wohnen/mehrfamilien",
   },
   vite: {
-    // Dev server only. Vite rejects requests whose Host header it does not
-    // recognise, which blocks reaching `bun run dev` through anything but
-    // localhost — a tunnel, another device on the LAN, or the real hostname.
     server: {
-      allowedHosts: ["localhost", "0.lab", "boholz-haus.de", ".boholz-haus.de"],
+      allowedHosts: ["localhost", "boholz-haus.de", ".boholz-haus.de"],
     },
-    // Minify CSS with Lightning CSS (more aggressive than the esbuild default).
-    // The PostCSS transform pipeline (preset-env, custom-media) still runs first.
-    build: { cssMinify: "lightningcss" },
     ssr: {
-      // maplibre-gl uses browser-only APIs (window, Worker, WebGL).
-      // noExternal forces Vite to bundle it rather than handing it to Node.
       noExternal: ["maplibre-gl", "@indoorequal/vue-maplibre-gl"],
     },
   },
