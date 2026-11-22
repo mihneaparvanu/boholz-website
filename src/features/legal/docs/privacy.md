@@ -41,13 +41,17 @@ Detaillierte Informationen zu diesen Analyseprogrammen finden Sie in der folgend
 
 Wir hosten die Inhalte unserer Website bei folgendem Anbieter:
 
-### Hetzner
+### Cloudflare
 
-Anbieter ist die Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen (nachfolgend Hetzner).
+Anbieter ist die Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA (nachfolgend Cloudflare).
 
-Details entnehmen Sie der Datenschutzerklärung von Hetzner: <https://www.hetzner.com/de/rechtliches/datenschutz>.
+Wir nutzen Cloudflare für das Hosting dieser Website, für die Auslieferung unserer Bilder und für die Entgegennahme der Kontaktformulare. Cloudflare betreibt dafür ein weltweites Netzwerk von Servern. Wenn Sie unsere Website aufrufen, wird Ihre Anfrage über dieses Netzwerk geleitet. Dabei verarbeitet Cloudflare technisch erforderliche Daten, insbesondere Ihre IP-Adresse, Datum und Uhrzeit des Zugriffs, die aufgerufene Seite sowie Browser- und Geräteinformationen. Die von Ihnen in unseren Kontaktformularen eingegebenen Daten werden über Cloudflare an uns übermittelt.
 
-Die Verwendung von Hetzner erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer möglichst zuverlässigen Darstellung unserer Website. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TTDSG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z.&nbsp;B. Device-Fingerprinting) im Sinne des TTDSG umfasst. Die Einwilligung ist jederzeit widerrufbar.
+Sollte die Zustellung einer Formularanfrage per E-Mail technisch fehlschlagen, wird die Anfrage zusätzlich in den Protokollen (Logs) von Cloudflare gespeichert, damit sie nicht verloren geht. Diese Protokolle werden von Cloudflare nach spätestens sieben Tagen automatisch gelöscht.
+
+Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie hier: <https://www.cloudflare.com/cloudflare-customer-dpa/>. Weitere Informationen entnehmen Sie der Datenschutzerklärung von Cloudflare: <https://www.cloudflare.com/de-de/privacypolicy/>.
+
+Die Verwendung von Cloudflare erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer möglichst zuverlässigen und schnellen Darstellung unserer Website. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TTDSG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z.&nbsp;B. Device-Fingerprinting) im Sinne des TTDSG umfasst. Die Einwilligung ist jederzeit widerrufbar.
 
 #### Auftragsverarbeitung
 
@@ -149,7 +153,17 @@ Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben a
 
 Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde; die Einwilligung ist jederzeit widerrufbar.
 
-Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z.&nbsp;B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt.
+Die von Ihnen im Kontakt- bzw. Katalogformular eingegebenen Daten speichern wir für die Dauer von einem Jahr nach Eingang Ihrer Anfrage und löschen sie anschließend, sofern Sie uns nicht zuvor zur Löschung auffordern oder Ihre Einwilligung zur Speicherung widerrufen. Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt.
+
+### Microsoft 365 (E-Mail-Versand)
+
+Die Angaben aus unseren Kontakt- und Katalogformularen werden uns per E-Mail zugestellt. Dafür nutzen wir Microsoft 365 (Exchange Online). Anbieter ist die Microsoft Ireland Operations Limited, One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, D18 P521, Irland. Die Daten werden über eine Schnittstelle (Microsoft Graph) als E-Mail versendet und in unserem Microsoft-365-Postfach verarbeitet.
+
+Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist, im Übrigen auf Grundlage unseres berechtigten Interesses an einer effektiven Bearbeitung von Anfragen (Art. 6 Abs. 1 lit. f DSGVO).
+
+Eine Übermittlung von Daten in Drittstaaten, insbesondere in die USA, kann nicht ausgeschlossen werden. Sie wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Weitere Informationen entnehmen Sie der Datenschutzerklärung von Microsoft: <https://privacy.microsoft.com/de-de/privacystatement>.
+
+Wir haben einen Vertrag über Auftragsverarbeitung (AVV) mit Microsoft geschlossen.
 
 ### Anfrage per E-Mail, Telefon oder Telefax
 
